@@ -1,0 +1,88 @@
+// ==========================================================================
+// Objects / Tables
+// ==========================================================================
+table,
+.o-table
+{
+    width: 100%;
+    margin: 0 0 2em 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    /**
+     * Force all cells within a table to occupy the same width as each other.
+     *
+     * @link https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout#Values
+     */
+    &.-fixed
+    {
+        table-layout: fixed;
+    }
+
+    thead{
+        border-bottom: solid 2px $off-white;
+
+        tr{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+
+            th{
+                font-size: 0.9em;
+                font-weight: $medium;
+                padding: 0 0.75em 0.75em 0.75em;
+                text-align: left;
+                color: $off-black;
+            }
+        }
+    }
+
+    tbody{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        vertical-align: baseline;
+
+        tr{
+            border: solid 1px $off-white;
+            border-left: 0;
+            border-right: 0;
+            margin: 0;
+            padding: 0;
+            vertical-align: baseline;
+
+            &:nth-child(2n+1){
+                background: rgba(144,144,144,0.075);
+            }
+
+            td{
+                padding: 0.75em 0.75em;
+                margin: 0;
+                border: 0;
+                vertical-align: baseline;
+            }
+        }
+    }
+
+    tfoot{
+        margin: 0;
+        padding: 0;
+        border-top: solid 2px $off-white;
+        vertical-align: baseline;
+
+        tr{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+
+            td{
+                padding: 0.75em 0.75em;
+                margin: 0;
+                border: 0;
+                vertical-align: baseline;
+            }
+        }
+    }
+}

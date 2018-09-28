@@ -1,0 +1,46 @@
+// ==========================================================================
+// Settings / Config / Colors
+// ==========================================================================
+
+// Palette
+// =============================================================================
+$white:    #fff;
+$off-white:  darken($white, 10);
+$black:    #000;
+$off-black:  lighten($black, 10);
+$primary:   rgb(241, 172, 68);
+$secondary: rgb(54, 147, 223);
+
+// Specific
+// =============================================================================
+// Link
+$link-color:       $primary;
+$link-focus-color: $secondary;
+$link-hover-color: darken($link-color, 10%);
+
+// Selection
+$selection-text-color:       #3297fd;
+$selection-background-color: #fff;
+
+// Social Colors
+// =============================================================================
+$facebook-color:  #3b5998;
+$instagram-color: #e1306c;
+$youtube-color:   #cd201f;
+$twitter-color:   #1da1f2;
+$gplus-color:     #dd4b39;
+
+// Alert Colors
+// =============================================================================
+$alert-default: #a7a7a7;
+$alert-notice:  #3278bf;
+$alert-success: #209e60;
+$alert-error:   #c1001b;
+$alert-warning: #ffa412;
+
+// Background Colors
+// =============================================================================
+$base-background-color:         $white;
+$secondary-background-color:    darken($white, 25);
+$dark-background-color:       #131313;
+$navigation-background-color: #252525;

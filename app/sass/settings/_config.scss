@@ -1,0 +1,85 @@
+// ==========================================================================
+// Settings / Config
+// ==========================================================================
+
+// Context
+// =============================================================================
+// The current stylesheet context. Available values: frontend, editor.
+$context: frontend  !default;
+
+// Path is relative to the stylesheets directory.
+$assets-path: '../'  !default;
+
+// Typefaces
+// =============================================================================
+$font-sans-serif: 'Open Sans',   sans-serif; //Used for base font
+$font-heading:    'Open Sans',   sans-serif; //Used for headings base font
+$font-quote:      'Open Sans',   cursive;    //Used for blockquote elements or DCA quote blocks
+$font-code:       'Courier New', monospace;  //Used for code elements
+
+// Typography
+// =============================================================================
+// Weights
+$light: 300;
+$regular: 400;
+$medium: 500;
+$heavy: 700;
+
+// Basics
+$font-size: 18px;
+$base-font-weight: $light;
+$line-height: 1.64;
+$font-family: $font-sans-serif;
+$color: $black;
+
+// Headings
+$font-size-h1:  2.5em   !default;
+$font-size-h2:  1.25em  !default;
+$font-size-h3:  1em     !default;
+$font-size-h4:  0.8em   !default;
+$font-size-h5:  0.7em   !default;
+$font-size-h6:  0.6em   !default;
+$line-height-h: 1.5;              //Base heading line height, can be individually overwritten in base/_headings.scss
+$base-font-weight-h: $medium;     //Base heading font weight, can be individually overwritten in base/_headings.scss
+$base-margin-h:      0 0 1em 0;   //Base heading margin, can be individually overwritten in base/_headings.scss
+
+// Links
+$link-style:       unset; //Can be set to anything that works with text-decoration-style syntax
+$link-hover-style: unset;
+
+// ============================================================================
+// Default Settings Below - Shouldn't Need Configuration
+// =============================================================================
+
+// Transitions
+// =============================================================================
+$speed: 150ms;
+$easing: ease;
+
+// Spacing Units
+// =============================================================================
+$unit: 40px;
+$unit-small: 20px;
+$base-margin: 0 0 2em 0;
+$mobile-padding: 2rem;
+
+// Container
+// ==========================================================================
+$container-width: 1250px;//1350px
+$narrow-container-width: 846px;//864px
+$padding: $unit;
+
+// Breakpoints
+// =============================================================================
+$from-tiny: 320px            !default;
+$to-tiny: $from-tiny - 1     !default;
+$from-small: 480px           !default;
+$to-small: $from-small - 1   !default;
+$from-medium: 768px          !default;
+$to-medium: $from-medium - 1 !default;
+$from-large: 960px           !default;
+$to-large: $from-large - 1   !default;
+$from-big: 1024px            !default;
+$to-big: $from-big - 1       !default;
+$from-huge: $container-width + $unit !default;
+$to-huge: $from-huge - 1     !default;

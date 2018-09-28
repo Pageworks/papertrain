@@ -1,0 +1,17 @@
+// ==========================================================================
+// IE - Fix CSS issues in IE 11 and below
+// ==========================================================================
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    svg{
+        transform: none !important;
+    }
+}
+
+// ==========================================================================
+// Microsoft Edge - Fix CSS issues in Edge
+// ==========================================================================
+@supports (-ms-ime-align:auto){
+    svg{
+        transform: none !important;
+    }
+}

@@ -1,0 +1,49 @@
+// ==========================================================================
+// Objects / Buttons
+// ==========================================================================
+
+//
+// 1. Allow us to style box model properties.
+// 2. Fixes odd inner spacing in IE7.
+// 3. Line different sized buttons up a little nicer.
+// 4. Force all button-styled elements to appear clickable.
+//
+button,
+.o-button
+{
+    // Base
+    cursor: pointer; /* [4] */
+    user-select: none; /* [4] */
+    display: inline-block;
+
+    // Font
+    font-size: 0.8em;
+    font-weight: $medium;
+    letter-spacing: 0.25em;
+    line-height: 3.5em;
+    text-align: center;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    white-space: nowrap;
+    
+    // Sizing
+    height: 3.5em;
+    padding: 0 2em;
+    box-sizing: border-box; /* [1] */
+    overflow: visible; /* [2] */
+    
+
+    // Position
+    margin: $base-margin;
+    vertical-align: middle; /* [3] */
+    
+    // Color
+    background: transparent;
+    color: $primary;
+    
+    // Modifier Classes
+    &.-disabled{
+        opacity: 0.25;
+        pointer-events: none;
+    }
+}

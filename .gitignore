@@ -1,0 +1,30 @@
+# Packages
+# -------
+/node_modules
+
+# Craft CMS
+# -------
+.env
+license.key
+/.idea
+/storage
+/public/uploads
+/public/imager
+/craft
+/craft.bat
+/vendor
+
+
+# Logging
+# -------
+*.log
+error_log
+logs/
+
+
+# Other
+# -------
+/.sass-cache
+.DS_Store
+.stylelintcache
+_compiled

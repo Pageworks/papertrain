@@ -1,0 +1,82 @@
+{
+    "name": "papertrain-craft-boilerplate",
+    "description": "Papertrain is a Craft 3 Boilerplate - Updated 15/8/2018",
+    "version": "2.0.0",
+    "author": "Kyle Andrews <kyle@page.works> (https://gamesbykyle.com)",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AndrewK9/papertrain.git"
+    },
+    "keywords": [
+        "craft cms",
+        "craft 3",
+        "boilerplate"
+    ],
+    "bugs": {
+        "url": "https://github.com/AndrewK9/papertrain/issues",
+        "email": "andrews@gamesbykyle.com"
+    },
+    "scripts": {
+        "tsc": "tsc",
+        "lint:css": "stylelint app/sass/**/*.scss --cache",
+        "lint:ts": "cross-env NODE_ENV=development tslint app/scripts/**/*.ts -c .tslintrc.js -p tsconfig.json -t verbose",
+        "lint:svg": "svgo -f ./templates/_svgs",
+        "lint": "npm-run-all lint:*",
+        "precommit": "lint-staged",
+        "compile": "cross-env NODE_ENV=production webpack --config build-tools/config/webpack.config.js",
+        "dev": "cross-env NODE_ENV=development webpack --config build-tools/config/webpack.config.dev.js --watch",
+        "develope": "npm run dev",
+        "preview:dev": "webpack-dev-server --config build-tools/config/webpack.config.dev.js",
+        "preview": "http-server --p 9001 -s -o"
+    },
+    "lint-staged": {
+        "linters": {
+            "app/scripts/**/*.ts": [
+                "cross-env NODE_ENV=production tslint -c .tslintrc.js -p tsconfig.json -t verbose"
+            ],
+            "app/sass/**/*.scss": [
+                "stylelint --cache"
+            ]
+        }
+    },
+    "dependencies": {
+        "modernizr": "^3.6.0",
+        "pjax": "github:codewithkyle/pjax",
+        "uuid": "^3.3.2",
+        "webpack": "^4.19.1"
+    },
+    "devDependencies": {
+        "autoprefixer": "^9.1.5",
+        "awesome-typescript-loader": "^5.2.1",
+        "browser-sync": "^2.24.7",
+        "browser-sync-webpack-plugin": "^2.2.2",
+        "chalk": "^2.4.1",
+        "cross-env": "^5.2.0",
+        "css-loader": "^1.0.0",
+        "cssnano": "^4.1.0",
+        "friendly-errors-webpack-plugin": "^1.7.0",
+        "http-server": "^0.11.1",
+        "husky": "^0.14.3",
+        "lint-staged": "^7.3.0",
+        "mini-css-extract-plugin": "^0.4.3",
+        "node-sass": "^4.9.3",
+        "npm-run-all": "^4.1.3",
+        "ora": "^3.0.0",
+        "postcss-loader": "^3.0.0",
+        "sass-loader": "^7.1.0",
+        "source-map-loader": "^0.2.4",
+        "stylelint": "^9.5.0",
+        "stylelint-config-recommended-scss": "^3.2.0",
+        "stylelint-scss": "^3.3.0",
+        "stylelint-webpack-plugin": "^0.10.5",
+        "svgo": "^1.1.1",
+        "tslint": "^5.11.0",
+        "tslint-config-airbnb": "^5.11.0",
+        "tslint-config-prettier": "^1.15.0",
+        "typescript": "^3.0.3",
+        "uglifyjs-webpack-plugin": "^1.3.0",
+        "webpack-cli": "^3.1.1",
+        "webpack-dev-server": "^3.1.8"
+    }
+}

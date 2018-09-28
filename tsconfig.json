@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+      "outDir": "./_compiled/",
+      "sourceMap": true,
+      "noImplicitAny": true,
+      "module": "commonjs",
+      "target": "es5",
+      "lib": [
+            "es5",
+            "es2015",
+            "dom",
+            "scripthost"
+        ],
+  },
+  "include": [
+      "./app/scripts/**/*"
+  ]
+}

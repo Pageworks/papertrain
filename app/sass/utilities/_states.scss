@@ -1,0 +1,37 @@
+// ==========================================================================
+// Utilities / States
+// ==========================================================================
+
+/**
+ * ARIA roles display visual cursor hints
+ */
+[aria-busy='true']
+{
+    cursor: progress;
+}
+
+[aria-controls]
+{
+    cursor: pointer;
+}
+
+[aria-disabled]
+{
+    cursor: default;
+}
+
+/**
+ * Control visibility without affecting flow.
+ */
+
+.is-visible
+{
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.is-hidden
+{
+    visibility: hidden !important;
+    opacity: 0 !important;
+}

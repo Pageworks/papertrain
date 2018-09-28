@@ -1,0 +1,185 @@
+// ==========================================================================
+// Generic
+// ==========================================================================
+
+html
+{
+    box-sizing: border-box;
+}
+
+.no-scrolling{
+    body{
+        height: 100%;
+        overflow: hidden !important;
+    }
+}
+
+body{
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+//
+// Add the correct display in IE 10-.
+// 1. Add the correct display in IE.
+//
+template,
+/* [1] */
+[hidden]
+{
+    display: none;
+}
+
+*,
+:before,
+:after
+{
+    box-sizing: inherit;
+}
+
+address
+{
+    font-style: inherit;
+}
+
+dfn,
+cite,
+em,
+i
+{
+    font-style: italic;
+}
+
+b,
+strong
+{
+    font-weight: $heavy;
+}
+
+a
+{
+    text-decoration: none;
+
+    svg
+    {
+        pointer-events: none;
+    }
+}
+
+/**
+ * 1. Single taps should be dispatched immediately on clickable elements
+ */
+a,
+area,
+button,
+input,
+label,
+select,
+textarea,
+[tabindex]
+{
+    -ms-touch-action: manipulation; /* [1] */
+        touch-action: manipulation;
+}
+
+[hreflang] > abbr[title]
+{
+    text-decoration: none;
+}
+
+table
+{
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+hr
+{
+    border: 0;
+    border-bottom: solid 1px $off-white;
+    margin: 2em 0;
+}
+
+a
+{
+    color: $link-color;
+    text-decoration-style: $link-style;
+    text-decoration-skip-ink: none;
+
+    @include u-hocus
+    {
+        color: $link-hover-color;
+        text-decoration-style: $link-hover-style;
+    }
+}
+
+ul{
+    li{
+        list-style-type: disc;
+    }
+
+    &.-alt{
+        li{
+            list-style-type: circle;
+        }
+    }
+
+    &.-none{
+        padding: 0;
+        margin: 0;
+
+        li{
+            list-style-type: none;
+        }
+    }
+
+    &.-inline{
+
+        li{
+            display: inline-block;
+        }
+    }
+}
+
+p{
+    margin: $base-margin;
+}
+
+code{
+    background: rgba(144,144,144,0.075);
+    border-radius: 4px;
+    border: solid 1px $off-white;
+    font-family: $font-code;
+    font-size: 0.9em;
+    margin: 0 0.25em;
+    padding: 0.25em 0.65em;
+    white-space: nowrap;
+}
+
+blockquote{
+    border-left: solid 4px $off-white;
+    font-style: italic;
+    font-family: $font-quote;
+    margin: 0 0 2em 0;
+    padding: 0.5em 0 0.5em 2em;
+    quotes: none;
+    font-weight: $light;
+    font-size: 16pt;
+}
+
+dl{
+    margin: $base-margin;
+    padding: 0;
+    border: 0;
+
+    dt{
+        display: block;
+        font-weight: $medium;
+        margin: 0 0 1em 0;
+    }
+
+    dd{
+        margin-left: 2em;
+    }
+}
