@@ -572,7 +572,7 @@ var TransitionManager = /** @class */ (function () {
     TransitionManager.prototype.display = function (newView) {
         var templateName = this.getTemplateName(newView);
         if (env_1.isDebug)
-            console.log('%c[view] ' + '%cdisplaying: ' + templateName, 'color:#4688f2', 'color:#eee');
+            console.log('%c[view] ' + '%cdisplaying: ${templateName}', 'color:#4688f2', 'color:#eee');
         if (templateName === 'home')
             env_1.$html.classList.add('is-homepage');
         else
@@ -614,7 +614,7 @@ var TransitionManager = /** @class */ (function () {
         }
         var templateName = this.getTemplateName(detail.o);
         if (env_1.isDebug)
-            console.log('%c[view] ' + '%chiding: ' + templateName, 'color:#ff6e6e', 'color:#eee');
+            console.log('%c[view] ' + '%chiding: ${templateName}', 'color:#ff6e6e', 'color:#eee');
         detail.o.remove();
         // Tell the app to delete modules
         var event = new Event('deleteModules');
@@ -1618,14 +1618,8 @@ module.exports = function(responseText, request, href, options) {
   options = clone(options  || this.options)
   options.request = request
 
-  if(request.status === 404){
-    trigger(document, 'pjax:complete pjax:error pjax:404', options);
-    if(options.prefetch) this.prefetchError(href)
-    else this.latestChance(href)
-  }
-
   // Fail if unable to load HTML via AJAX
-  if (responseText === false || responseText === null) {
+  if (responseText === false) {
     trigger(document, "pjax:complete pjax:error", options)
 
     return
@@ -2278,8 +2272,8 @@ module.exports = v4;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\andre\Desktop\projects\papertrain\app\scripts\App.ts */"./app/scripts/App.ts");
-module.exports = __webpack_require__(/*! C:\Users\andre\Desktop\projects\papertrain\app\sass\main.scss */"./app/sass/main.scss");
+__webpack_require__(/*! C:\Users\andre\Desktop\papertrain\app\scripts\App.ts */"./app/scripts/App.ts");
+module.exports = __webpack_require__(/*! C:\Users\andre\Desktop\papertrain\app\sass\main.scss */"./app/sass/main.scss");
 
 
 /***/ })

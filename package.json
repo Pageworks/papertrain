@@ -2,11 +2,11 @@
     "name": "papertrain-craft-boilerplate",
     "description": "Papertrain is a Craft 3 Boilerplate - Updated 15/8/2018",
     "version": "2.0.0",
-    "author": "Kyle Andrews <kyle@page.works> (https://gamesbykyle.com)",
+    "author": "Kyle Andrews <kyle@page.works> (https://devkyle.com)",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/AndrewK9/papertrain.git"
+        "url": "https://github.com/Pageworks/papertrain.git"
     },
     "keywords": [
         "craft cms",
@@ -14,8 +14,8 @@
         "boilerplate"
     ],
     "bugs": {
-        "url": "https://github.com/AndrewK9/papertrain/issues",
-        "email": "andrews@gamesbykyle.com"
+        "url": "https://github.com/Pageworks/papertrain/issues",
+        "email": "kylea@page.works"
     },
     "scripts": {
         "tsc": "tsc",
