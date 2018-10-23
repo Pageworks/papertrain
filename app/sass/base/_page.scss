@@ -25,6 +25,12 @@ html
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: subpixel-antialiased;
 
+    &.dom-is-loading{
+        *{
+            cursor: wait !important;
+        }
+    }
+
     @media (min-width: $from-medium){
         text-align: left;
     }

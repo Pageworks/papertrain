@@ -1,4 +1,4 @@
-import { APP_NAME, $pjaxWrapper, $html, isDebug } from './utils/env';
+import { APP_NAME, pjaxWrapper, html, isDebug } from './utils/env';
 
 import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
@@ -20,20 +20,18 @@ class App{
      * Used to call any methods needed when the application initially loads
      */
     init(){
-        $html.classList.remove('has-no-js');
-        $html.classList.add('has-js');
+        html.classList.remove('has-no-js');
+        html.classList.add('has-js');
 
-        window.addEventListener('load', e => { $html.classList.add('has-loaded') });
+        window.addEventListener('load', e => { html.classList.add('has-loaded') });
 
         // Listen for our custom events
         document.addEventListener('seppuku', e => this.deleteModule(e) );
-        document.addEventListener('initModules', e => this.initModules() );
-        document.addEventListener('deleteModules', e => this.deleteModules() );
 
         this.initModules(); // Get initial modules
         this.handleStatus(); // Check the users visitor status
 
-        this.transitionManager = new TransitionManager();
+        this.transitionManager = new TransitionManager(this);
     }
 
     /**
@@ -45,16 +43,16 @@ class App{
      */
     handleStatus(){
         // Handle unique visitor status
-        if(window.localStorage.getItem(APP_NAME+'UniqueVisit') === null){
-            $html.classList.add('is-unique-visitor');
-            window.localStorage.setItem(APP_NAME+'UniqueVisit', 'visited');
+        if(window.localStorage.getItem(`${APP_NAME}_UniqueVisit`) === null){
+            html.classList.add('is-unique-visitor');
+            window.localStorage.setItem(`${APP_NAME}_UniqueVisit`, 'visited');
         }
 
         // Handle first visit of the day (in 24 hours) status
-        if(window.localStorage.getItem(APP_NAME+'DailyVisit') === null || (Date.now() - parseInt(window.localStorage.getItem(APP_NAME+'UniqueVisit')) > 86400000)){
-            $html.classList.add('is-first-of-day');
-        } else $html.classList.add('is-returning');
-        window.localStorage.setItem(APP_NAME+'DailyVisit', Date.now().toString()); // Always update daily visit status
+        if(window.localStorage.getItem(`${APP_NAME}_DailyVisit`) === null || (Date.now() - parseInt(window.localStorage.getItem(`${APP_NAME}_UniqueVisit`)) > 86400000)){
+            html.classList.add('is-first-of-day');
+        } else html.classList.add('is-returning');
+        window.localStorage.setItem(`${APP_NAME}_DailyVisit`, Date.now().toString()); // Always update daily visit status
     }
 
     /**
@@ -63,8 +61,6 @@ class App{
      * has a module associated with the HTML element
      */
     initModules(){
-        if(isDebug) console.log('%c-- Initiating Modules --','color:#eee');
-
         const modules = document.querySelectorAll('[data-module]');
 
         modules.forEach((module)=>{
@@ -76,7 +72,7 @@ class App{
                 this.currentModules.push(newModule);
                 newModule.init();
             }else{
-                if(isDebug) console.log('%cUndefined Module: '+'%c'+moduleType,'color:#ff6e6e','color:#eee');
+                if(isDebug) console.log('%cUndefined Module: '+`%c${moduleType}`,'color:#ff6e6e','color:#eee');
             }
         });
     }
@@ -87,8 +83,6 @@ class App{
      * Remove (and trigger destory()) any elements module in the current modules list that didn't survive the transition
      */
     deleteModules(){
-        if(isDebug) console.log('%c-- Deleting Unused Modules --','color:#eee');
-
         const modules = document.querySelectorAll('[data-module]');
         const survivingModules:Array<Element> = [];
         const deadModules:Array<any> = [];

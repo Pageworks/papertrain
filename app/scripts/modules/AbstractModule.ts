@@ -31,6 +31,6 @@ export default class{
      */
     destroy(isDebug: boolean, MODULE_NAME: string){
         this.$el.removeAttribute('data-uuid');
-        if(isDebug) console.log('%c[module] '+'%c'+MODULE_NAME+' - '+this.uuid,'color:#ff6e6e','color:#eee');
+        if(isDebug) console.log('%c[module] '+`%cDestroying ${MODULE_NAME} - ${this.uuid}`,'color:#ff6e6e','color:#eee');
     }
 }

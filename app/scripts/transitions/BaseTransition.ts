@@ -1,75 +1,41 @@
-import { APP_NAME, $pjaxWrapper, $pjaxContainer, $html, isDebug } from '../utils/env';
+import { APP_NAME, pjaxWrapper, pjaxContainer, html, isDebug } from '../utils/env';
 
 const MODULE_NAME = 'Transition';
 
-export default class {
-    options: TransitionOptions;
+import TransitionManager from './TransitionTypes'
 
-    constructor(options: object){
-        this.options = options;
-    }
+class Transition{
+
+    constructor(){ }
 
     /**
-     * Starts the page transition when called by the transition manager
-     * Updates the DOMs loading and animated status
+     * Called by the TransitionManager when Pjax is switching pages
      */
     launch(){
-        if(isDebug) console.log('%c-- Page Transition Launched --','color:#eee');
-
-        $html.classList.remove('dom-is-loaded', 'dom-is-animated');
-        $html.classList.add('dom-is-loading', this.options.overrideClass);
-    }
-
-    readyToRemove(oldView: Element, newView: Element){
-        const event = new CustomEvent('removeView', {
-            detail:{
-                o: oldView,
-                n: newView
-            }
-        });
-        document.dispatchEvent(event);
-    }
-
-    readyToReset(){
-        const event = new Event('resetTransitions');
-        document.dispatchEvent(event);
-    }
-
-    /**
-     * Gets incoming template name
-     * If we're in debug mode console.log the template swap
-     * Handles the initial transition (typically the hiding phase)
-     * @param oldView element
-     * @param newView element
-     */
-    hideView(oldView: Element, newView: Element){
         // Handle custom transition effects
 
-        this.readyToRemove(oldView, newView);// Call when ready to launch
+        // Call when transition is finished
+        this.launchFinished();
     }
 
     /**
-     * Called by the transition manager once it's switched out the page content
-     * and we're ready to end the page transition
-     * Updates the DOMs loading and animated status
-     * Calls the transition managers reinit method
-     * @param newView element
+     * Called when the base transition is finished hiding the page/content
+     * Sends a `pjax:continue` event
+     * This is used when Pjax is listening for a custom transition
+     * @see https://github.com/Pageworks/fuel-pjax#pjax-options
      */
-    displayView(newView: Element){
-        $html.classList.add('dom-is-loaded');
-        $html.classList.remove('dom-is-loading', this.options.overrideClass);
-        
-        // Put within a setTimeout if you want a delay between loaded and animated status
-        $html.classList.add('dom-is-animated');
-
-        this.readyToReset(); // Call when ready to reset the transition manager
+    launchFinished(){
+        const e = new Event('pjax:continue');
+        document.dispatchEvent(e);
     }
 
     /**
-     * Transition is finished and should be destroyed
-     * @todo Console.log the transitions destruction if in debug mode
+     * Call by the TransitionManager when Pjax has switched pages
      */
-    destroy(){
-        if(isDebug) console.log('%c-- Page Transition Ended --','color:#eee');
+    hide(){
+        // Handle custom transition effects
+
     }
 }
+
+export { Transition as default };

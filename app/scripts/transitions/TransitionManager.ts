@@ -1,210 +1,142 @@
-import { APP_NAME, $pjaxWrapper, $pjaxContainer, $html, isDebug } from '../utils/env';
+import { APP_NAME, pjaxContainer, html, isDebug } from '../utils/env';
 
 import * as transitions from './transitions';
 
-import * as PJAX from 'pjax';
+import Pjax from 'fuel-pjax';
 
-class TransitionManager {
-    transitions:{ [index:string] : Function };
-    transition: Transition;
-    wrapper: Element;
-    options: PJAX.IOptions;
-    pjax: PJAX;
-    initialAnimationDelay: number;
+export default class TransitionManager {
+    app:App
+    transitions:{ [index:string] : Function }
+    transition:Transition
+    pjax:Pjax
+    initialAnimationDelay:number
 
-    constructor(){
+    constructor(app:App){
+        this.app                    = app;
         this.transitions            = transitions;
         this.transition             = null;
-        this.initialAnimationDelay  = 1000;
+        this.pjax                   = new Pjax({ debug: isDebug, selectors: [`${pjaxContainer}`] });
 
-        /**
-         * -- PJAX CONFIG --
-         */
-        this.wrapper = document.querySelector($pjaxWrapper);
-        this.options = {
-            debug: isDebug,
-            elements: 'a:not(.no-transition)',
-            selectors: ['title', $pjaxContainer],
-            switches: {},
-            prefetch: true,
-            cacheBust: false
-        }
-        this.options.switches[$pjaxContainer] = (oldEl, newEl) => this.switch(oldEl, newEl);
-        this.pjax = new PJAX(this.options);
+        this.initialAnimationDelay  = 1000;
 
         this.init();
     }
 
-    switch(oldView: Element, newView:Element){
-        this.transition.hideView(oldView, newView);
-    }
-
     /**
      * Declare all initial event listeners
+     * By default `pjax:prefetch` and `pjax:cancel` do nothing but they are available if needed
      */
     init(){
-        window.addEventListener('load', e => { this.load() });
+        // Listen for when the page is loaded
+        document.addEventListener('DOMContentLoaded', e => { this.load() });
 
         // Listen for the pjax events
-        if(!this.pjax.options.prefetch) document.addEventListener('pjax:send', e => this.send(e) );
-        else{
-            document.addEventListener('pjax:prefetch', e => this.prefetch(e) );
-            document.addEventListener('pjax:prefetchRequested', e => this.prefetchRequested(e) );
-            document.addEventListener('pjax:loadingCached', e => this.loadingCached(e) );
+        document.addEventListener('pjax:error', e => this.endTransition(e) );
+        document.addEventListener('pjax:send', e => this.launchTransition(<CustomEvent>e) );
+        // document.addEventListener('pjax:prefetch', ()=>{ console.log('Event: pjax:prefetch'); });
+        // document.addEventListener('pjax:cancel', ()=>{ console.log('Event: pjax:cancel'); } );
+        document.addEventListener('pjax:complete', e => this.endTransition(e) );
+    }
+
+    /**
+     * Called when the DOM has finished it's initial content load
+     * Sets the base DOM status classes
+     */
+    load(){
+        html.classList.add('dom-is-loaded');
+        html.classList.remove('dom-is-loading');
+        
+        setTimeout(()=>{ html.classList.add('dom-is-animated') }, this.initialAnimationDelay);
+    }
+
+    /**
+     * Called when Pjax fires the `pjax:send` event
+     * Get the trigger element that is passed from Pjax via the CustomEvent.detail
+     * Set our transition attribute based on the `data-transition` attribute of the trigger element
+     * Construct our new transition
+     * Update the DOM status classes
+     * Launch our transition
+     * @param e CustomEvent
+     */
+    launchTransition(e:CustomEvent){
+        let transition  = 'BaseTransition';
+
+        if(e.detail !== undefined){
+            const el    = e.detail.el;
+            transition  = (el.getAttribute('data-transition') !== null) ? el.getAttribute('data-transition') : 'BaseTransition';
         }
 
-        document.addEventListener('pjax:404', e => this.handleError(e) );
+        html.setAttribute('data-transition', transition);
 
-        // Listen for our events
-        document.addEventListener('removeView', e => this.remove(e) );
-        document.addEventListener('resetTransitions', e => this.reinit() );
+        this.transition = new this.transitions[transition].prototype.constructor();
+
+        html.classList.remove('dom-is-loaded', 'dom-is-animated');
+        html.classList.add('dom-is-loading');
+
+        this.transition.launch();
     }
 
-    handleError(e: Event){
-        if(isDebug) console.log('%cPage Transition Error: '+'%cpage request returned 404','color:#ff6e6e','color:#eee');
-    }
+    /**
+     * Called when Pjax fires `pjax:error` or `pjax:cancel` or `pjax:complete`
+     * Resets DOM status classes to the default state(s)
+     * Gets the templates name from `this.getTemplateName()`
+     * Displays the name if we're in debug mode
+     * If the template is labeled `home` set the `is-homepage` status class
+     * Tells the main applicaiton it can init any new modules
+     * @param e Event
+     */
+    endTransition(e:Event){
+        const templateName = this.getTemplateName();
 
-    load(){
-        $html.classList.add('dom-is-loaded');
-        $html.classList.remove('dom-is-loading');
+        if(isDebug) console.log('%c[view] '+`%cDisplaying: ${templateName}`,'color:#ecc653','color:#eee');
+
+        html.classList.add('dom-is-loaded');
+        html.classList.remove('dom-is-loading');
         
-        setTimeout(()=>{ $html.classList.add('dom-is-animated') }, this.initialAnimationDelay);
-    }
+        setTimeout(()=>{ html.classList.add('dom-is-animated') }, this.initialAnimationDelay);
 
-    launchRequest(e: any){
-        const el            = e.triggerElement;
-        const transition    = (el.getAttribute('data-transition') !== null) ? el.getAttribute('data-transition') : 'BaseTransition';
+        if(templateName === 'home') html.classList.add('is-homepage');
+        else html.classList.remove('is-homepage');
 
-        $html.setAttribute('data-transition', transition);
+        // Tell our transition it can end the transition
+        this.transition.hide();
 
-        this.transition = new this.transitions[transition].prototype.constructor({
-            wrapper: this.wrapper,
-            clickedLink: el,
-            manager: this
-        });
-    }
+        // Tell our main applicaiton it can init any new modules
+        this.app.initModules();
 
-    /**
-     * Launch when pjax recieves a non-prefetch request
-     * Launch the request and begin transition animation
-     * @param e event
-     */
-    send(e: Event){
-        this.launchRequest(e);
-        this.transition.launch();
-    }
+        // Tell our main applicaiton it can delete any old modules
+        this.app.deleteModules();
 
-    /**
-     * Launche when pjax recieves a prefetch request
-     * @param e event
-     */
-    prefetch(e: Event){
-        this.launchRequest(e);
-    }
-
-
-    /**
-     * Launch when the prefetch request is still loading but the user
-     * confirmed that they want to transition to the requested page
-     * Begin page transition animation
-     * @param e event
-     */
-    prefetchRequested(e: Event){
-        this.transition.launch();
-    }
-
-    /**
-     * Launch when the user wants to transition to a cached request
-     * Begin page transition animation
-     * @param e event
-     */
-    loadingCached(e: Event){
-        this.transition.launch();
+        // Reset for next transition
+        this.reinit();
     }
     
     /**
-     * @todo Look through element and child nodes for `data-template`
-     * @todo Console.log the change if in debug
-     * @todo Update $html with our active template attribute data-active
-     * @param newView element
+     * Get all sections within our Pjax wrapper (article)
+     * Look through elements for the first node with a `data-template` attribute
+     * Return the name given to the section
+     * Otherwise return 'MISSING_TEMPLATE_NAME'
      */
-    getTemplateName(newView: Element){
-        return 'MISSING_TEMPLATE_NAME'
-    }
+    getTemplateName(){
+        let templateName = 'MISSING_TEMPLATE_NAME';
 
-    /**
-     * Called by the remove method
-     * Switches out the inner HTML
-     * Call the init modules method in our main application
-     * Calls onSwitch for pjax
-     * Tells the transition that we've switched the content and it can end the transition
-     * @param newView element
-     */
-    display(newView: Element){
-        const templateName = this.getTemplateName(newView);
+        const secitons = html.querySelectorAll('section');
 
-        if(isDebug) console.log('%c[view] '+'%cdisplaying: ${templateName}','color:#4688f2','color:#eee');
-
-        if(templateName === 'home') $html.classList.add('is-homepage');
-        else $html.classList.remove('is-homepage');
-        
-        this.wrapper.innerHTML = newView.outerHTML;
-
-        // Tell the app it's okay to init any new modules
-        const event = new Event('initModules');
-        document.dispatchEvent(event);
-
-        /**
-         * Switches old elements with new elements
-         * @see pjax
-         */
-        this.pjax.onSwitch();
-
-        this.transition.displayView(newView);
-    }
-
-     /**
-     * Returns the detail value if the event is a CustomEvent
-     * @param e event
-     */
-    getCustomEvent(e: Event): e is CustomEvent{
-        return 'detail' in e;
-    }
-
-    /**
-     * Called by a transition class
-     * Removes the element
-     * Calls the delete modules method in our main application
-     * Passes our new view into the display method
-     * @param oldView element
-     * @param newView element
-     */
-    remove(e: Event){
-        let detail = null;
-        if(this.getCustomEvent(e)) detail = e.detail;
-        else{
-            if(isDebug) console.log('%cPage Transition Error: '+'%cevent was not a custom event','color:#ff6e6e','color:#eee');
-            return;
+        if(secitons){
+            secitons.forEach((el)=>{
+                if(el.getAttribute('data-template') !== null) templateName = el.getAttribute('data-template'); 
+            });
         }
 
-        const templateName = this.getTemplateName(detail.o);
-
-        if(isDebug) console.log('%c[view] '+'%chiding: ${templateName}','color:#ff6e6e','color:#eee');
-
-        detail.o.remove();
-
-        // Tell the app to delete modules
-        const event = new Event('deleteModules');
-        document.dispatchEvent(event);
-
-        this.display(detail.n);
+        return templateName;
     }
 
+    /**
+     * Called when we've finished our transition
+     * Resets our transition object and the DOM's `data-transition` attribute
+     */
     reinit(){
-        this.transition.destroy();
-        $html.setAttribute('data-transition', '');
+        html.setAttribute('data-transition', '');
         this.transition = null;
     }
 }
-
-export { TransitionManager as default }
