@@ -53,19 +53,6 @@
 }
 
 //
-// Injects generic rules for disabling UL/OL/LI styles.
-//
-// @output `list-style`, `margin`, `padding`
-//
-@mixin u-list-reset
-{
-    margin: 0;
-    padding: 0;
-
-    list-style: none;
-}
-
-//
 // Prevent text from wrapping onto multiple lines for the current element.
 //
 // An ellipsis is appended to the end of the line.
@@ -87,40 +74,6 @@
     {
         max-width: $width; // [1]
     }
-}
-
-//
-// Hide the current element from all.
-//
-// The element will be hidden from screen readers and removed from the document flow.
-//
-// @link   http://juicystudio.com/article/screen-readers-display-none.php
-// @param  {Boolean} $important [true] - Whether the visibility is important.
-// @output `display`, `visibility`
-//
-@mixin u-hidden($important: true)
-{
-    display: none   $important;
-    visibility: hidden $important;
-
-    $important: important($important);
-}
-
-//
-// Show the current element for all.
-//
-// The element will be accessible from screen readers and visible in the document flow.
-//
-// @param  {String}  $display   [block] - The rendering box used for the element.
-// @param  {Boolean} $important [true]  - Whether the visibility is important.
-// @output `display`, `visibility`
-//
-@mixin u-shown($display: block, $important: true)
-{
-    display: $display $important;
-    visibility: visible  $important;
-
-    $important: important($important);
 }
 
 //
@@ -208,7 +161,7 @@
 
 @mixin u-mobile-padding{
     &.u-mobile-padding{
-        @media (max-width: $from-huge){
+        @media (max-width: $screen-container){
             padding-left: $mobile-padding !important;
             padding-right: $mobile-padding !important;
         }

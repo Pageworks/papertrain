@@ -91,9 +91,9 @@
   !*** ./app/sass/main.scss ***!
   \****************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/lib/loader.js):\n\n    @media (min-width: $from-medium){\n                      ^\n      Undefined variable: \"$from-medium\".\n      in /Users/andrews/Documents/projects/papertrain/app/sass/base/_page.scss (line 34, column 24)\n    at runLoaders (/Users/andrews/Documents/projects/papertrain/node_modules/webpack/lib/NormalModule.js:286:20)\n    at /Users/andrews/Documents/projects/papertrain/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /Users/andrews/Documents/projects/papertrain/node_modules/loader-runner/lib/LoaderRunner.js:230:18\n    at context.callback (/Users/andrews/Documents/projects/papertrain/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.render [as callback] (/Users/andrews/Documents/projects/papertrain/node_modules/sass-loader/lib/loader.js:52:13)\n    at Object.done [as callback] (/Users/andrews/Documents/projects/papertrain/node_modules/neo-async/async.js:7974:18)\n    at options.error (/Users/andrews/Documents/projects/papertrain/node_modules/node-sass/lib/index.js:294:32)");
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 

@@ -1,7 +1,3 @@
-// ==========================================================================
-// Utilities / Alignment
-// ==========================================================================
-
 // Floats
 // ==========================================================================
 .u-float-left
@@ -14,7 +10,7 @@
     float: right !important;
 }
 
-// Horizontal Text
+// Text
 // ==========================================================================
 .u-text-center
 {
@@ -23,23 +19,19 @@
 
 .u-text-left
 {
-    @media (min-width: $from-medium){
-        text-align: left !important;
-    }
+    text-align: left !important;
 }
 
 .u-text-right
 {
-    @media (min-width: $from-medium){
-        text-align: right !important;
-    }
+    text-align: right !important;
 }
 
 .u-text-justify{
     text-align: justify !important;
 }
 
-// Vertical Text
+// Vertical
 // ==========================================================================
 .u-align-baseline
 {

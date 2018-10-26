@@ -1,92 +1,5 @@
-// ==========================================================================
 // Generic
 // ==========================================================================
-
-html
-{
-    box-sizing: border-box;
-}
-
-.no-scrolling{
-    body{
-        height: 100%;
-        overflow: hidden !important;
-    }
-}
-
-body{
-    overflow-x: hidden;
-    position: relative;
-    min-height: 100vh;
-}
-
-//
-// Add the correct display in IE 10-.
-// 1. Add the correct display in IE.
-//
-template,
-/* [1] */
-[hidden]
-{
-    display: none;
-}
-
-*,
-:before,
-:after
-{
-    box-sizing: inherit;
-}
-
-address
-{
-    font-style: inherit;
-}
-
-dfn,
-cite,
-em,
-i
-{
-    font-style: italic;
-}
-
-b,
-strong
-{
-    font-weight: $heavy;
-}
-
-a
-{
-    text-decoration: none;
-
-    svg
-    {
-        pointer-events: none;
-    }
-}
-
-/**
- * 1. Single taps should be dispatched immediately on clickable elements
- */
-a,
-area,
-button,
-input,
-label,
-select,
-textarea,
-[tabindex]
-{
-    -ms-touch-action: manipulation; /* [1] */
-        touch-action: manipulation;
-}
-
-[hreflang] > abbr[title]
-{
-    text-decoration: none;
-}
 
 table
 {
@@ -98,7 +11,7 @@ hr
 {
     border: 0;
     border-bottom: solid 1px $off-white;
-    margin: 2em 0;
+    margin: 0;
 }
 
 a

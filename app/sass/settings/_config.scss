@@ -16,7 +16,7 @@ $heavy: 700;
 // Typography
 // =============================================================================
 $font-size: 16px;
-$base-font-weight: $regular;
+$font-weight: $regular;
 $line-height: normal;
 $font-family: $font-sans-serif;
 $color: $font-base;
@@ -47,6 +47,11 @@ $mobile-padding: 2em;
 $container-width:           1280px;
 $narrow-container-width:    840px;
 $padding:                   0;
+
+// Layout
+// =============================================================================
+$gutter-large: 24px;
+$gutter-small: 16px;
 
 // Breakpoints
 // =============================================================================

@@ -10,8 +10,6 @@
 /// @link https://github.com/inuitcss/inuitcss/blob/512977a/utilities/_utilities.spacing.scss
 ////
 
-/* stylelint-disable string-quotes */
-
 $spacing-directions: (
     null:          null,
     '-top':        '-top',
@@ -34,6 +32,7 @@ $spacing-sizes: (
     '-x2'       :   $unit*2,
     '-x4'       :   $unit*4,
     '-x6'       :   $unit*6,
+    '-x8'       :   $unit*8,
 ) !default;
 
 @each $property-namespace, $property in $spacing-properties {
@@ -47,5 +46,3 @@ $spacing-sizes: (
         }
     }
 }
-
-/* stylelint-enable string-quotes */

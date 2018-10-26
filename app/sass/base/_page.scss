@@ -17,22 +17,24 @@ html
     font-family: $font-family;
     font-size: $font-size; /* [1] */
     line-height: $line-height; /* [1] */
+    font-weight: $font-weight;
+    color: $font-base; /* [1] */
     overflow-y: scroll; /* [2] */
-    min-height: 100%; /* [3] */
-    color: $color;
-    text-align: justify;
+    overflow-x: hidden;
+    min-height: 100vh; /* [3] */
+    text-align: left;
     position: relative;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: subpixel-antialiased;
+    
+    *{
+        box-sizing: border-box;
+    }
 
     &.dom-is-loading{
         *{
             cursor: wait !important;
         }
-    }
-
-    @media (min-width: $from-medium){
-        text-align: left;
     }
 }
 
