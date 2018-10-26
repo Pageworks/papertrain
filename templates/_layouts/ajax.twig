@@ -1,5 +1,3 @@
-{% if craft.app.request.isAjax %}
-    {% spaceless %}
-        {% block content %}{% endblock %}
-    {% endspaceless %}
-{% endif %}
+{% spaceless %}
+    {% block content %}{% endblock %}
+{% endspaceless %}

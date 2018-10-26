@@ -5,7 +5,7 @@
     {% set pageTitle = pageTitle ~ " | " ~ category.title %}
 {% endif %}
 <!doctype html>
-<html lang="en-US" class="has-no-js" data-debug="true">
+<html lang="en-US" class="has-no-js" data-debug="false">
 <head>
     {% block head %}
         <meta charset="utf-8">
@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon" href="{{siteUrl}}assets/images/apple-touch-icon.png">
     <link rel="icon" href="{{siteUrl}}assets/images/favicon.png">
 
-    <link rel="stylesheet" type="text/css" href="/assets/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="{{siteUrl}}assets/styles/main.css">
     
     {# Linked Fonts #}
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">

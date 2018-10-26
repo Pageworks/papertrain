@@ -35,7 +35,7 @@
                     "
                 {% endif %}>
 
-            <section class="c-dca_row o-layout -gutter {{block.width}}">
+            <div class="c-dca_row o-layout -gutter {{block.width}}">
 
         {% else %}
             {% set colMap = {
@@ -62,8 +62,8 @@
 
         {% if loop.last %}
 				</div>
-			</section>
+			</div>
 		{% endif %}
 
     {% endfor %}
-</article>
+</div>
