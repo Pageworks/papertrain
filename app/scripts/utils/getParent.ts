@@ -5,10 +5,10 @@
  * @returns parent or starting element
  */
 export function getParent(el:Element, selector:string){
-    let parent = el.parentElement;
+    let parent = el;
     do{
+        parent = parent.parentElement;
         if(parent.classList.contains(selector)) return parent;
-        else parent = parent.parentElement;
     } while (parent.parentElement !== null)
     return el;
 }
