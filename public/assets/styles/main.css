@@ -596,7 +596,7 @@ code {
 blockquote {
   border-left: solid 4px #eeeeee;
   font-style: italic;
-  font-family: "Open Sans", cursive;
+  font-family: "Roboto", cursive;
   margin: 0 0 2em 0;
   padding: 0.5em 0 0.5em 2em;
   quotes: none;
@@ -647,16 +647,16 @@ svg {
   /* [5] */ }
 
 html {
-  font-family: "Open Sans", sans-serif;
-  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
   /* [1] */
-  line-height: 1.64;
+  line-height: normal;
   /* [1] */
   overflow-y: scroll;
   /* [2] */
   min-height: 100%;
   /* [3] */
-  color: #070707;
+  color: #555765;
   text-align: justify;
   position: relative;
   -moz-osx-font-smoothing: grayscale;
@@ -683,7 +683,7 @@ html {
   color: #070707;
   margin: 0 0 1em 0;
   padding: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500; }
 
 h1,
