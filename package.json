@@ -1,8 +1,8 @@
 {
     "name": "papertrain-craft-boilerplate",
-    "description": "Papertrain is a Craft 3 Boilerplate - Updated 15/8/2018",
+    "description": "Papertrain is a Craft 3 Boilerplate - Updated 2018/10/26",
     "version": "2.0.0",
-    "author": "Kyle Andrews <kyle@page.works> (https://devkyle.com)",
+    "author": "Kyle Andrews <kylea@page.works> (https://page.works/)",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -26,7 +26,6 @@
         "precommit": "lint-staged",
         "compile": "cross-env NODE_ENV=production webpack --config build-tools/config/webpack.config.js",
         "dev": "cross-env NODE_ENV=development webpack --config build-tools/config/webpack.config.dev.js --watch",
-        "develope": "npm run dev",
         "preview:dev": "webpack-dev-server --config build-tools/config/webpack.config.dev.js",
         "preview": "http-server --p 9001 -s -o"
     },

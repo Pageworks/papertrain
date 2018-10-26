@@ -2,45 +2,117 @@
 // Settings / Config / Colors
 // ==========================================================================
 
-// Palette
+// Base Palette
 // =============================================================================
-$white:    #fff;
-$off-white:  darken($white, 10);
-$black:    #000;
-$off-black:  lighten($black, 10);
+$white:     #fafafa;
+$off-white: #eeeeee;
+$black:     #070707;
+$off-black: #434343;
+
+// Brand Palette
+// =============================================================================
 $primary:   rgb(241, 172, 68);
 $secondary: rgb(54, 147, 223);
 
-// Specific
+// Font Palette
 // =============================================================================
-// Link
+$font-base:     #555765;
+$font-alt:      #f4f4f4;
+$helper-light:  rgba(255,255,255,0.5);
+$helper-dark:   rgba(0,0,0,0.5);
+
+// Link Colors
+// =============================================================================
 $link-color:       $primary;
 $link-focus-color: $secondary;
 $link-hover-color: darken($link-color, 10%);
 
 // Selection
+// =============================================================================
 $selection-text-color:       #3297fd;
-$selection-background-color: #fff;
-
-// Social Colors
-// =============================================================================
-$facebook-color:  #3b5998;
-$instagram-color: #e1306c;
-$youtube-color:   #cd201f;
-$twitter-color:   #1da1f2;
-$gplus-color:     #dd4b39;
-
-// Alert Colors
-// =============================================================================
-$alert-default: #a7a7a7;
-$alert-notice:  #3278bf;
-$alert-success: #209e60;
-$alert-error:   #c1001b;
-$alert-warning: #ffa412;
+$selection-background-color: #fafafa;
 
 // Background Colors
 // =============================================================================
 $base-background-color:         $white;
-$secondary-background-color:    darken($white, 25);
-$dark-background-color:       #131313;
-$navigation-background-color: #252525;
+$secondary-background-color:    #f4f4f4;
+$dark-background-color:         #333333;
+
+// Alert Colors
+// =============================================================================
+$notice:    #4688f2;
+$success:   #4de07e;
+$error:     #ff6e6e;
+$warning:   #ffa412;
+
+// Social Media Colors
+// =============================================================================
+$facebook: #3b5998;
+$twitter: #1da1f2;
+$youtube: #ff0000;
+$instagrammagenta: #c32aa3;
+$instagramblue: #4c5fd7;
+$instagrampurple: #7232bd;
+$instagramorange: #f46f30;
+$instagramyellow: #ffdc7d;
+$googleblue: #4285f4;
+$googlered: #ea4335; 
+$googleyellow: #fbbc05; 
+$googlegreen: #34a853;
+$pinterest: #bd081c;
+$googleplus: #db4437;
+$linkedin: #007bb5;
+$vimeoblue: #1ab7ea;
+$tumblr: #2c4762;
+$snapchat: #fffc00;
+$whatsappgreen: #25d366;
+$whatsappteal1: #075e54;
+$whatsappteal2: #128c7e;
+$mastodon: #2b90d9;
+$apple: #a6b1b7;
+$amazon: #ff9900;
+$microsoftred: #f35022;
+$microsoftgreen: #80bb03;
+$microsoftblue: #03a5f0;
+$microsoftyellow: #ffb903;
+$periscope: #40a4c4;
+$foursquarepink: #f94877; 
+$foursquarenavy: #073282;
+$foursquareblue: #2d5be3; 
+$swarm: #ffa633;
+$medium: #02b875;
+$skypeblue: #00aff0;
+$skypedkblue: #0078d7;
+$android: #a4c639;
+$stumbleupon: #e94826;
+$flickrpink: #f40083;
+$flickrblue: #006add;
+$yahoo: #430297;
+$twitch: #6441a4;
+$soundcloud: #ff5500;
+$spotifygreen: #1ed760;
+$spotifydarkgreen: #1db954;
+$dribbble: #ea4c89;
+$slackpurple: #4d394b; 
+$slackskyblue: #70cadb; 
+$slackmosss: #3eb890; 
+$slackpink: #e01765; 
+$slackyellow: #e8a723; 
+$slackgreenblue: #1a937d;
+$slackviolet: #472a49; 
+$slackolive: #65863a; 
+$slackred: #cc2027; 
+$reddit: #ff5700;
+$deviantart: #05cc47;
+$pocket: #ee4056;
+$quora: #aa2200;
+$quorablue: #2b6dad;
+$slideshareorange: #e68523;
+$slideshareblue: #00a0dc;
+$fivehundredpx: #0099e5;
+$vk: #4a76a8;
+$listlyorange: #df6d46;
+$listlyblue: #52b1b3;
+$vine: #00b489;
+$steam: #171a21;
+$discord: #7289da;
