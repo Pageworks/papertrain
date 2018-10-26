@@ -1,4 +1,4 @@
-# Packages
+# NPM Packages
 # -------
 /node_modules
 
@@ -7,12 +7,15 @@
 .env
 license.key
 /.idea
-/storage
-/public/uploads
-/public/imager
 /craft
 /craft.bat
 /vendor
+/storage/*
+!/storage/.gitkeep
+/public/uploads/*
+!/public/uploads/.gitkeep
+/public/imager/*
+!/public/imager/.gitkeep
 
 
 # Logging
