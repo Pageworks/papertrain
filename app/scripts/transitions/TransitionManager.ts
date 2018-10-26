@@ -1,15 +1,13 @@
-import { APP_NAME, pjaxContainer, html, isDebug } from '../utils/env';
-
+import { APP_NAME, pjaxContainer, html, isDebug } from '../env';
 import * as transitions from './transitions';
-
 import Pjax from 'fuel-pjax';
 
 export default class TransitionManager {
-    app:App
-    transitions:{ [index:string] : Function }
-    transition:Transition
-    pjax:Pjax
-    initialAnimationDelay:number
+    app:                    App
+    transitions:            { [index:string] : Function }
+    transition:             Transition
+    pjax:                   Pjax
+    initialAnimationDelay:  number
 
     constructor(app:App){
         this.app                    = app;
@@ -27,10 +25,8 @@ export default class TransitionManager {
      * By default `pjax:prefetch` and `pjax:cancel` do nothing but they are available if needed
      */
     init(){
-        // Listen for when the page is loaded
-        document.addEventListener('DOMContentLoaded', e => { this.load() });
+        document.addEventListener('DOMContentLoaded', e => { this.load() }); // Listen for when the page is loaded
 
-        // Listen for the pjax events
         document.addEventListener('pjax:error', e => this.endTransition(e) );
         document.addEventListener('pjax:send', e => this.launchTransition(<CustomEvent>e) );
         // document.addEventListener('pjax:prefetch', ()=>{ console.log('Event: pjax:prefetch'); });
@@ -56,7 +52,7 @@ export default class TransitionManager {
      * Construct our new transition
      * Update the DOM status classes
      * Launch our transition
-     * @param e CustomEvent
+     * @param {CustomEvent} e
      */
     launchTransition(e:CustomEvent){
         let transition  = 'BaseTransition';
@@ -83,7 +79,7 @@ export default class TransitionManager {
      * Displays the name if we're in debug mode
      * If the template is labeled `home` set the `is-homepage` status class
      * Tells the main applicaiton it can init any new modules
-     * @param e Event
+     * @param {Event} e
      */
     endTransition(e:Event){
         const templateName = this.getTemplateName();

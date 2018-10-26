@@ -1,4 +1,4 @@
-import { APP_NAME, pjaxWrapper, html, isDebug } from './utils/env';
+import { APP_NAME, html, isDebug } from './env';
 
 import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
@@ -25,8 +25,7 @@ class App{
 
         window.addEventListener('load', e => { html.classList.add('has-loaded') });
 
-        // Listen for our custom events
-        document.addEventListener('seppuku', e => this.deleteModule(e) );
+        document.addEventListener('seppuku', e => this.deleteModule(<CustomEvent>e) ); // Listen for our custom events
 
         this.initModules(); // Get initial modules
         this.handleStatus(); // Check the users visitor status
@@ -108,21 +107,12 @@ class App{
     }
 
     /**
-     * Returns the detail value if the event is a CustomEvent
-     * @param e event
-     */
-    getCustomEvent(e: Event): e is CustomEvent{
-        return 'detail' in e;
-    }
-
-    /**
      * Delete a module based on the modules UUID
-     * @param moduleID
+     * @param {CustomEvent} e
      */
-    public deleteModule(e: Event){
-        let moduleID = null;
-        if(this.getCustomEvent(e)) moduleID = e.detail;
-        else{
+    public deleteModule(e:CustomEvent){
+        const moduleID = e.detail.id;
+        if(!moduleID){
             if(isDebug) console.log('%cDelete Module Error: '+'%cmodule UUID was not sent in the custom event','color:#ff6e6e','color:#eee');
             return;
         }
@@ -137,7 +127,9 @@ class App{
     }
 }
 
-// IIFE for launching the application
+/**
+ * IIFE for launching the application
+ */
 (()=>{
     new App();
 })();

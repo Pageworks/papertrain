@@ -1,4 +1,4 @@
-const APP_NAME      = 'papertrain';
+const APP_NAME      = 'REPLACE_ME';
 
 const html              = document.documentElement;
 const body              = document.body;

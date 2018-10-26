@@ -1,4 +1,4 @@
-import { isDebug } from '../utils/env';
+import { isDebug } from '../env';
 import AbstractModule from './AbstractModule';
 
 const MODULE_NAME = 'Example';

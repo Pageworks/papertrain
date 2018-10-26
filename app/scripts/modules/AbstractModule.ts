@@ -18,16 +18,21 @@ export default class{
      * Used when removing a specific module, call is initiated by a module
      */
     seppuku(){
-        const event = new CustomEvent('seppuku', { detail: this.uuid });
+        const event = new CustomEvent('seppuku', {
+            detail:{
+                id: this.uuid
+            }
+        });
         document.dispatchEvent(event);
+        
     }
 
     /**
      * Called by a module, removes attribute and logs out destruction to the console
      * Used when the page transitions, call is initiated by applicaiton
      * You shouldn't call this method, if you need to remove a module use the `seppuku` method
-     * @param isDebug
-     * @param MODULE_NAME
+     * @param {boolean} isDebug
+     * @param {string} MODULE_NAME
      */
     destroy(isDebug: boolean, MODULE_NAME: string){
         this.$el.removeAttribute('data-uuid');

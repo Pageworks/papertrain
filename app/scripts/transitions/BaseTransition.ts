@@ -1,15 +1,10 @@
-import { APP_NAME, pjaxWrapper, pjaxContainer, html, isDebug } from '../utils/env';
-
-const MODULE_NAME = 'Transition';
-
-import TransitionManager from './TransitionTypes'
-
-class Transition{
+export default class Transition{
 
     constructor(){ }
 
     /**
      * Called by the TransitionManager when Pjax is switching pages
+     * Used to start any custom page transition animaitons
      */
     launch(){
         // Handle custom transition effects
@@ -31,11 +26,10 @@ class Transition{
 
     /**
      * Call by the TransitionManager when Pjax has switched pages
+     * Used to stop any custom page transition animations
      */
     hide(){
         // Handle custom transition effects
 
     }
 }
-
-export { Transition as default };
