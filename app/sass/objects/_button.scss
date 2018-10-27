@@ -12,38 +12,127 @@ button,
 .o-button
 {
     // Base
-    cursor: pointer; /* [4] */
-    user-select: none; /* [4] */
-    display: inline-block;
-
-    // Font
-    font-size: 0.8em;
-    font-weight: $medium;
-    letter-spacing: 0.25em;
-    line-height: 3.5em;
-    text-align: center;
-    text-decoration: none !important;
+    text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;
-    
-    // Sizing
-    height: 3.5em;
-    padding: 0 2em;
-    box-sizing: border-box; /* [1] */
-    overflow: visible; /* [2] */
-    
+    text-align: center;
+    line-height: 36px;
+    display: inline-block;
+    user-select: none;
 
-    // Position
-    margin: $base-margin;
-    vertical-align: middle; /* [3] */
-    
-    // Color
-    background: transparent;
     color: $primary;
+    letter-spacing: 0.25px;
+    font-weight: $medium;
+
     
+    padding: 0 8px;
+    min-width: 64px;
+    height: 36px;
+    margin: 0 8px;
+    
+    border-radius: 2px;
+    background: rgba(0,0,0,0);
+    transition: background 125ms $ease-out;
+
+    @include u-hocus{
+        background: rgba($primary, 0.08);
+        transition: background 150ms $ease-in;
+    }
+
+    &:active{
+        background: rgba($primary, 0.15);
+        transition: background 150ms $ease-sharp;
+    }
+
     // Modifier Classes
-    &.-disabled{
-        opacity: 0.25;
+    &.is-disabled{
+        color: rgba(0,0,0,0.26);
         pointer-events: none;
+    }
+
+    &.-wide{
+        display: block;
+    }
+
+    &.has-icon{
+        padding: 0 16px 0 12px;
+
+        svg{
+            @include size(18px, 18px);
+            transform: translateY(1px);
+            margin-right: 8px;
+        }
+    }
+
+    // Solid
+    &.-solid{
+        padding: 0 16px;
+        background: $primary;
+        color: $white;
+
+        &:active{
+            background: darken($primary, 3);
+        }
+
+        &.is-disabled{
+            background: rgba(35,35,35,0.1);
+            color: rgba(0,0,0,0.26);
+        }
+    }
+
+    // Outline
+    &.-outline{
+        padding: 0 16px;
+        box-shadow: 0 0 0 2px rgba(35,35,35,0.1);
+    }
+
+    // Icon
+    &.-icon{
+        background: rgba(0,0,0,0);
+        color: $primary;
+
+        html.has-js > & {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0;
+
+            &:hover{
+                &:after{
+                    transform: scale(1);
+                    opacity: 0.75;
+                    transition: transform 100ms $ease-in, opacity 25ms $ease-in;
+                }
+            }
+
+            &::after{
+                content:"";
+                transform: scale(0);
+                position: absolute;
+                @include size(36px, 36px);
+                transform-origin: center;
+                background: rgba(241, 172, 68, 0.175);
+                border-radius: 100%;
+                opacity: 0;
+                transition: transform 75ms $ease-out, opacity 25ms 50ms $ease-out;
+            }
+
+            svg{
+                @include size(18px, 18px);
+            }
+
+            &.is-on,
+            &:active{
+                &:after{
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            .-alt{
+                display: none;
+            }
+        }
     }
 }

@@ -38,6 +38,27 @@ html
     }
 }
 
+section{
+    &.-secondary-background{
+        background: $secondary-background-color;
+    }
+
+    &.-dark-background{
+        background: $dark-background-color;
+        color: $font-alt;
+    }
+}
+
+body{
+    background: $base-background-color;
+
+    article{
+        section:first-of-type{
+            min-height: 80vh;
+        }
+    }
+}
+
 ::selection
 {
     color: $selection-text-color;

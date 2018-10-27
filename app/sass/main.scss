@@ -14,13 +14,10 @@
 @import "tools/ratio";
 @import 'tools/widths';
 
-// Generic
-// ==========================================================================
-@import 'generic/normalize';
-@import 'generic/generic';
-
 // Base
 // ==========================================================================
+@import 'base/normalize';
+@import 'base/generic';
 @import 'base/page';
 @import 'base/headings';
 

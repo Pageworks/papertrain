@@ -10,12 +10,18 @@
     // Gutter modifiers
     @media (min-width: $screen-container){
         &.-gutter{
-            margin-left: -$gutter-large;
-            margin-right: -$gutter-large;
+            margin-left: -$gutter;
+            margin-right: -$gutter;
         }
+
         &.-gutter-small{
             margin-left: -$gutter-small;
             margin-right: -$gutter-small;
+        }
+
+        &.-gutter-large{
+            margin-left: -$gutter-large;
+            margin-right: -$gutter-large;
         }
     }
 
@@ -43,17 +49,23 @@
     vertical-align: top; // [3]
 
     // Gutter modifiers
-    @media (min-width: $screen-container){  // [3]
+    @media (min-width: $screen-container){
         .o-layout.-gutter > &
         {
-            padding-left: $gutter-large;
-            padding-right: $gutter-large;
+            padding-left: $gutter;
+            padding-right: $gutter;
         }
 
         .o-layout.-gutter-small > &
         {
             padding-left: $gutter-small;
             padding-right: $gutter-small;
+        }
+
+        .o-layout.-gutter-large > &
+        {
+            padding-left: $gutter-large;
+            padding-right: $gutter-large;
         }
     }
 

@@ -6,28 +6,40 @@
     margin: 0;
     text-transform: capitalize;
     color: $black;
+
+    section.-dark-background & {
+        color: $white;
+    }
 }
 
 h1,
 .o-h1
 {
     font-size: 96px;
-    letter-spacing: -1.5;
+    letter-spacing: -1.5px;
     font-weight: $light;
     opacity: 0.54;
     font-family: $font-heading;
     @include h;
+    
+    section.-dark-background & {
+        opacity: 1;
+    }
 }
 
 h2,
 .o-h2
 {
     font-size: 60px;
-    letter-spacing: -0.5;
+    letter-spacing: -0.5px;
     font-weight: $light;
     opacity: 0.54;
     font-family: $font-heading;
     @include h;
+    
+    section.-dark-background & {
+        opacity: 1;
+    }
 }
 
 h3,
@@ -39,17 +51,25 @@ h3,
     opacity: 0.54;
     font-family: $font-heading;
     @include h;
+
+    section.-dark-background & {
+        opacity: 1;
+    }
 }
 
 h4,
 .o-h4
 {
     font-size: 34px;
-    letter-spacing: 0.25;
+    letter-spacing: 0.25px;
     font-weight: $regular;
     opacity: 0.54;
     font-family: $font-heading;
     @include h;
+
+    section.-dark-background & {
+        opacity: 1;
+    }
 }
 
 h5,
@@ -62,6 +82,10 @@ h5,
     opacity: 0.87;
     font-family: $font-heading;
     @include h;
+
+    section.-dark-background & {
+        opacity: 1;
+    }
 }
 
 h6,
@@ -69,18 +93,26 @@ h6,
 .o-title
 {
     font-size: 20px; 
-    letter-spacing: 0.15;
+    letter-spacing: 0.15px;
     font-weight: $medium;
     opacity: 0.87;
     font-family: $font-heading;
     @include h;
+
+    section.-dark-background & {
+        opacity: 1;
+    }
 }
 
 .o-subtitle{
     font-size: 16px;
-    letter-spacing: 0.15;
+    letter-spacing: 0.15px;
     font-weight: $regular;
     opacity: 0.87;
     font-family: $font-heading;
     @include h;
+
+    section.-dark-background & {
+        opacity: 1;
+    }
 }
