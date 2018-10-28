@@ -2,6 +2,7 @@ import { APP_NAME, html, isDebug } from './env';
 
 import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
+import '@fortawesome/fontawesome-pro/js/all.js';
 
 class App{
     modules:{ [index:string] : Function };
