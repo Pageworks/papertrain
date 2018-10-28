@@ -1,6 +1,7 @@
-# NPM Packages
+# NPM
 # -------
 /node_modules
+.npmrc
 
 # Craft CMS
 # -------
