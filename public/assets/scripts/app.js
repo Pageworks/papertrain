@@ -378,6 +378,17 @@ var default_1 = /** @class */ (function (_super) {
         this.inputs.forEach(function (el) { el.addEventListener('focus', function (e) { return _this.handleFocus(e); }); });
         this.inputs.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleBlur(e); }); });
     };
+    /**
+     * @todo Call when a user is typing into an input, if the input is valid remove any `is-invalid` status classes
+     */
+    default_1.prototype.handleKeystroke = function (e) {
+    };
+    /**
+     * Sets the status classes for the input wrapper based on the inputs validity
+     * @todo Call on init to check prefilled inputs
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+     * @param {Event} e input element
+     */
     default_1.prototype.handleBlur = function (e) {
         var targetEl = e.target;
         var inputWrapper = getParent_1.getParent(e.target, 'js-input');
@@ -391,6 +402,10 @@ var default_1 = /** @class */ (function (_super) {
             inputWrapper.classList.add('is-invalid');
         }
     };
+    /**
+     * Sets the `has-focus` status class to the inputs wrapper
+     * @param {Event} e input element
+     */
     default_1.prototype.handleFocus = function (e) {
         var inputWrapper = getParent_1.getParent(e.target, 'js-input');
         inputWrapper.classList.add('has-focus');

@@ -24,6 +24,19 @@ export default class extends AbstractModule{
         this.inputs.forEach((el)=>{ el.addEventListener('blur', e => this.handleBlur(e) ); });
     }
 
+    /**
+     * @todo Call when a user is typing into an input, if the input is valid remove any `is-invalid` status classes
+     */
+    handleKeystroke(e:Event){
+
+    }
+
+    /**
+     * Sets the status classes for the input wrapper based on the inputs validity
+     * @todo Call on init to check prefilled inputs
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
+     * @param {Event} e input element
+     */
     handleBlur(e:Event){
         const targetEl = <HTMLInputElement>e.target;
         const inputWrapper = getParent(<Element>e.target, 'js-input');
@@ -41,6 +54,10 @@ export default class extends AbstractModule{
         }
     }
 
+    /**
+     * Sets the `has-focus` status class to the inputs wrapper
+     * @param {Event} e input element
+     */
     handleFocus(e:Event){
         const inputWrapper = getParent(<Element>e.target, 'js-input');
         inputWrapper.classList.add('has-focus');
