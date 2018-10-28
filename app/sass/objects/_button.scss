@@ -12,25 +12,23 @@ button,
 .o-button
 {
     // Base
+    color: $primary;
+    letter-spacing: 0.25px;
+    font-weight: $medium;
+    font-size: 14px;
     text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;
     text-align: center;
     line-height: 36px;
-    display: inline-block;
-    user-select: none;
-
-    color: $primary;
-    letter-spacing: 0.25px;
-    font-weight: $medium;
-    font-size: 14px;
-
     
     padding: 0 8px;
     min-width: 64px;
     height: 36px;
     margin: 0 8px;
     
+    display: inline-block;
+    user-select: none;
     border-radius: 2px;
     background: rgba(0,0,0,0);
     transition: background 125ms $ease-out;
@@ -99,14 +97,6 @@ button,
             flex-direction: column;
             padding: 0;
 
-            &:hover{
-                &:after{
-                    transform: scale(1);
-                    opacity: 0.75;
-                    transition: transform 100ms $ease-in, opacity 25ms $ease-in;
-                }
-            }
-
             &::after{
                 content:"";
                 transform: scale(0);
@@ -123,16 +113,28 @@ button,
                 @include size(18px, 18px);
             }
 
-            &.is-on,
-            &:active{
-                &:after{
-                    transform: scale(1);
-                    opacity: 1;
-                }
-            }
-
             .-alt{
                 display: none !important;
+            }
+
+            &:hover{
+                html.has-no-touch & {
+                    &:after{
+                        transform: scale(1);
+                        opacity: 0.75;
+                        transition: transform 100ms $ease-in, opacity 25ms $ease-in;
+                    }
+                }
+            }
+    
+            &.is-on,
+            &:active{
+                html.has-no-touch & {
+                    &:after{
+                        transform: scale(1);
+                        opacity: 1;
+                    }
+                }
             }
         }
     }

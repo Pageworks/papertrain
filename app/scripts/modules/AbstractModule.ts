@@ -1,14 +1,14 @@
 import * as uuid from 'uuid/v4';
 
 export default class{
-    $el: Element;
+    el: Element;
     uuid: string;
 
     constructor(el: Element){
-        this.$el = el; // Sets initial reference to the element that generated the module
+        this.el = el; // Sets initial reference to the element that generated the module
         this.uuid = uuid(); // Generates a UUID using UUID v4
 
-        this.$el.setAttribute('data-uuid', this.uuid); // Sets modules UUID to be used later when handling modules destruction
+        this.el.setAttribute('data-uuid', this.uuid); // Sets modules UUID to be used later when handling modules destruction
     }
 
     init(){}
@@ -35,7 +35,7 @@ export default class{
      * @param {string} MODULE_NAME
      */
     destroy(isDebug: boolean, MODULE_NAME: string){
-        this.$el.removeAttribute('data-uuid');
+        this.el.removeAttribute('data-uuid');
         if(isDebug) console.log('%c[module] '+`%cDestroying ${MODULE_NAME} - ${this.uuid}`,'color:#ff6e6e','color:#eee');
     }
 }

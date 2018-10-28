@@ -8,11 +8,13 @@ class App{
     modules:{ [index:string] : Function };
     currentModules: Array<Module>;
     transitionManager: TransitionManager;
+    touchSupport: boolean
 
     constructor(){
         this.modules            = modules;
         this.currentModules     = [];
         this.transitionManager  = null;
+        this.touchSupport       = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
 
         this.init();
     }
@@ -23,6 +25,11 @@ class App{
     init(){
         html.classList.remove('has-no-js');
         html.classList.add('has-js');
+
+        if(this.touchSupport){
+            html.classList.add('has-touch');
+            html.classList.remove('has-no-touch');
+        }
 
         window.addEventListener('load', e => { html.classList.add('has-loaded') });
 

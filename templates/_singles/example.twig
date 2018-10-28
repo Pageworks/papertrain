@@ -117,21 +117,49 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="o-layout_item u-1/1 u-1/2@medium">
-                    <ul>
+                <div class="o-layout_item u-1/1 u-1/2@medium u-text-center">
+                    <ul class="o-wrapper">
                         <li><span>Single-line item</span></li>
                         <li><span>Single-line item</span></li>
                         <li><span>Secondary list</span>
-                            <ul class="-alt">
+                            <ul class="-circle">
                                 <li><span>Single-line item</span></li>
                                 <li><span>Single-line item</span></li>
                                 <li><span>Single-line item</span></li>
+                                <li><span>Third list</span>
+                                    <ul class="-square">
+                                        <li><span>Single-line item</span></li>
+                                        <li><span>Single-line item</span></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
+                        <li><span>Single-line item</span></li>
+                        <li><span>Single-line item</span></li>
                         <li><span>Single-line item</span></li>
                     </ul>
                 </div>
             </div>
+            <hr class="u-margin-vertical-x6" />
+        </div>
+        {% import '_macros/form' as form %}
+        <div class="o-container-narrow">
+            <h3 class="u-text-center u-margin-bottom-x6">Solid Style Input Example</h3>
+            <form class="o-layout -gutter -solid" data-module="BasicForm">
+                {{ form.input('Full Name', 'fullName', 'text', 'u-1/1', true, 'name') }}
+
+                {{ form.input('Email Address', 'email', 'email', 'u-1/1', true, 'email') }}
+
+                {{ form.number('Age', 'age', 'u-1/1 u-1/2@medium') }}
+
+                {{ form.number('Weight', 'weight', 'u-1/1 u-1/2@medium', false) }}
+
+                {{ form.password('Password', 'password', 'u-1/1 u-1/2@medium', true) }}
+
+                {{ form.pin('Pin', 'pin', 'u-1/1 u-1/2@medium', true) }}
+            </form>
+            <hr class="u-margin-vertical-x6" />
+            <h3 class="u-text-center u-margin-bottom-x6">Outline Style Input Example</h3>
         </div>
     </section>
 <!-- Content -->

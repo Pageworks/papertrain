@@ -116,6 +116,7 @@ var App = /** @class */ (function () {
         this.modules = modules;
         this.currentModules = [];
         this.transitionManager = null;
+        this.touchSupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
         this.init();
     }
     /**
@@ -125,6 +126,10 @@ var App = /** @class */ (function () {
         var _this = this;
         env_1.html.classList.remove('has-no-js');
         env_1.html.classList.add('has-js');
+        if (this.touchSupport) {
+            env_1.html.classList.add('has-touch');
+            env_1.html.classList.remove('has-no-touch');
+        }
         window.addEventListener('load', function (e) { env_1.html.classList.add('has-loaded'); });
         document.addEventListener('seppuku', function (e) { return _this.deleteModule(e); }); // Listen for our custom events
         this.initModules(); // Get initial modules
@@ -271,8 +276,9 @@ exports.isDebug = isDebug;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var _Example_1 = __webpack_require__(/*! ./modules/_Example */ "./app/scripts/modules/_Example.ts");
-exports.Example = _Example_1.default;
+// export { default as Example } from './modules/_Example';
+var BasicForm_1 = __webpack_require__(/*! ./modules/BasicForm */ "./app/scripts/modules/BasicForm.ts");
+exports.BasicForm = BasicForm_1.default;
 
 
 /***/ }),
@@ -290,9 +296,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var uuid = __webpack_require__(/*! uuid/v4 */ "./node_modules/uuid/v4.js");
 var default_1 = /** @class */ (function () {
     function default_1(el) {
-        this.$el = el; // Sets initial reference to the element that generated the module
+        this.el = el; // Sets initial reference to the element that generated the module
         this.uuid = uuid(); // Generates a UUID using UUID v4
-        this.$el.setAttribute('data-uuid', this.uuid); // Sets modules UUID to be used later when handling modules destruction
+        this.el.setAttribute('data-uuid', this.uuid); // Sets modules UUID to be used later when handling modules destruction
     }
     default_1.prototype.init = function () { };
     /**
@@ -315,7 +321,7 @@ var default_1 = /** @class */ (function () {
      * @param {string} MODULE_NAME
      */
     default_1.prototype.destroy = function (isDebug, MODULE_NAME) {
-        this.$el.removeAttribute('data-uuid');
+        this.el.removeAttribute('data-uuid');
         if (isDebug)
             console.log('%c[module] ' + ("%cDestroying " + MODULE_NAME + " - " + this.uuid), 'color:#ff6e6e', 'color:#eee');
     };
@@ -326,10 +332,10 @@ exports.default = default_1;
 
 /***/ }),
 
-/***/ "./app/scripts/modules/_Example.ts":
-/*!*****************************************!*\
-  !*** ./app/scripts/modules/_Example.ts ***!
-  \*****************************************/
+/***/ "./app/scripts/modules/BasicForm.ts":
+/*!******************************************!*\
+  !*** ./app/scripts/modules/BasicForm.ts ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -351,13 +357,15 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var env_1 = __webpack_require__(/*! ../env */ "./app/scripts/env.ts");
 var AbstractModule_1 = __webpack_require__(/*! ./AbstractModule */ "./app/scripts/modules/AbstractModule.ts");
-var MODULE_NAME = 'Example';
+var getParent_1 = __webpack_require__(/*! ../utils/getParent */ "./app/scripts/utils/getParent.ts");
+var MODULE_NAME = 'BasicForm';
 var default_1 = /** @class */ (function (_super) {
     __extends(default_1, _super);
     function default_1(el) {
         var _this = _super.call(this, el) || this;
         if (env_1.isDebug)
             console.log('%c[module] ' + ("%cBuilding: " + MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
+        _this.inputs = _this.el.querySelectorAll('input');
         return _this;
     }
     /**
@@ -366,12 +374,35 @@ var default_1 = /** @class */ (function (_super) {
      * register any initial event listeners
      */
     default_1.prototype.init = function () {
+        var _this = this;
+        this.inputs.forEach(function (el) { el.addEventListener('focus', function (e) { return _this.handleFocus(e); }); });
+        this.inputs.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleBlur(e); }); });
+    };
+    default_1.prototype.handleBlur = function (e) {
+        var targetEl = e.target;
+        var inputWrapper = getParent_1.getParent(e.target, 'js-input');
+        inputWrapper.classList.remove('has-focus');
+        inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+        if (targetEl.value && targetEl.validity.valid) {
+            inputWrapper.classList.add('has-value');
+            inputWrapper.classList.add('is-valid');
+        }
+        if (!targetEl.validity.valid) {
+            inputWrapper.classList.add('is-invalid');
+        }
+    };
+    default_1.prototype.handleFocus = function (e) {
+        var inputWrapper = getParent_1.getParent(e.target, 'js-input');
+        inputWrapper.classList.add('has-focus');
     };
     /**
      * Called when the module is destroyed
      * Remove all event listners before calling super.destory()
      */
     default_1.prototype.destroy = function () {
+        var _this = this;
+        this.inputs.forEach(function (el) { el.removeEventListener('focus', function (e) { return _this.handleFocus(e); }); });
+        this.inputs.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleBlur(e); }); });
         _super.prototype.destroy.call(this, env_1.isDebug, MODULE_NAME);
     };
     return default_1;
@@ -565,6 +596,36 @@ exports.default = TransitionManager;
 Object.defineProperty(exports, "__esModule", { value: true });
 var BaseTransition_1 = __webpack_require__(/*! ./BaseTransition */ "./app/scripts/transitions/BaseTransition.ts");
 exports.BaseTransition = BaseTransition_1.default;
+
+
+/***/ }),
+
+/***/ "./app/scripts/utils/getParent.ts":
+/*!****************************************!*\
+  !*** ./app/scripts/utils/getParent.ts ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Attempt to find the elements parent with the desired class
+ * @param {Element} el starting element
+ * @param {String} selector parent elements class
+ * @returns parent or starting element
+ */
+function getParent(el, selector) {
+    var parent = el;
+    do {
+        parent = parent.parentElement;
+        if (parent.classList.contains(selector))
+            return parent;
+    } while (parent.parentElement !== null);
+    return el;
+}
+exports.getParent = getParent;
 
 
 /***/ }),

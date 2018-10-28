@@ -1,0 +1,39 @@
+{# Basic Form Input #}
+{% macro input(label, name, type = 'text', width = 'u-1/1', required = true, autocomplete, pattern, margin = 'u-margin-bottom-x6') %}
+    <div class="o-layout_item {{width}} {{margin}}">
+        <div class="js-input o-input">
+            <input type="{{type}}" {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern %}pattern="{{pattern}}"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+            <label>{{label}}</label>
+        </div>
+    </div>
+{% endmacro %}
+
+{# Number Form Input #}
+{% macro number(label, name, width = 'u-1/1', required = true, min = 0, max, step, margin = 'u-margin-bottom-x6') %}
+    <div class="o-layout_item {{width}} {{margin}}">
+        <div class="js-input o-input">
+            <input type="number" min="{{min}}" inputmode="numeric" {% if max %}max="{{max}}"{% endif %} {% if step %}step="{{step}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+            <label>{{label}}</label>
+        </div>
+    </div>
+{% endmacro %}
+
+{# Password Form Input #}
+{% macro password(label, name, width = 'u-1/1', required = true, pattern = '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$', margin = 'u-margin-bottom-x6') %}
+    <div class="o-layout_item {{width}} {{margin}}">
+        <div class="js-input o-input">
+            <input type="password" pattern="{{pattern}}" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+            <label>{{label}}</label>
+        </div>
+    </div>
+{% endmacro %}
+
+{# Pin Form Input #}
+{% macro pin(label, name, width = 'u-1/1', required = true,  min = 4, max = 8, pattern = '^[0-9]*', margin = 'u-margin-bottom-x6') %}
+    <div class="o-layout_item {{width}} {{margin}}">
+        <div class="js-input o-input">
+            <input type="password" inputmode="numeric" minlength="{{min}}" maxlength="{{max}}" pattern="{{pattern}}" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+            <label>{{label}}</label>
+        </div>
+    </div>
+{% endmacro %}
