@@ -23,6 +23,7 @@ button,
     color: $primary;
     letter-spacing: 0.25px;
     font-weight: $medium;
+    font-size: 14px;
 
     
     padding: 0 8px;
@@ -86,12 +87,12 @@ button,
         box-shadow: 0 0 0 2px rgba(35,35,35,0.1);
     }
 
-    // Icon
+    // Icon ONLY
     &.-icon{
         background: rgba(0,0,0,0);
         color: $primary;
 
-        html.has-js > & {
+        html.has-js & {
             display: inline-flex;
             justify-content: center;
             align-items: center;
@@ -131,7 +132,7 @@ button,
             }
 
             .-alt{
-                display: none;
+                display: none !important;
             }
         }
     }

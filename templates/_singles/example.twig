@@ -1,6 +1,6 @@
 {% extends '_layouts/base' %}
 {% block content %}
-    <section class="o-container-full u-padding-vertical-x8 u-mobile-padding">
+    <section data-template="Example Page" class="o-container-full u-padding-vertical-x8 u-mobile-padding">
         <h1 class="u-text-center u-margin-bottom-x6">Base Elements</h1>
         <div class="o-container">
             <div class="o-layout -gutter">
@@ -68,6 +68,67 @@
                         <span>Button</span>
                     </a>
                     <a href="javascript:void(0);" class="u-margin-bottom o-button -solid -wide"><span>Button</span></a>
+                </div>
+                <hr class="u-margin-vertical-x6"/>
+                <div class="o-layout_item u-1/1 u-1/2@medium u-margin-bottom-x4">
+                    <table class="o-table">
+                        <thead>
+                            <tr>
+                                <th>The table header</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dessert (100g serving)</td>
+                                <td>Calories</td>
+                                <td>Fat (g)</td>
+                                <td>Carbs (g)</td>
+                                <td>Protein (g)</td>
+                            </tr>
+                            <tr>
+                                <td>Frozen yogurt</td>
+                                <td class="-number">159</td>
+                                <td class="-number">6.0</td>
+                                <td class="-number">24</td>
+                                <td class="-number">4.0</td>
+                            </tr>
+                            <tr>
+                                <td>Ice cream sandwich</td>
+                                <td class="-number">237</td>
+                                <td class="-number">9.0</td>
+                                <td class="-number">37</td>
+                                <td class="-number">4.3</td>
+                            </tr>
+                            <tr>
+                                <td>Eclair</td>
+                                <td class="-number">262</td>
+                                <td class="-number">16.0</td>
+                                <td class="-number">24</td>
+                                <td class="-number">4.3</td>
+                            </tr>
+                            <tr>
+                                <td>Cupcake</td>
+                                <td class="-number">305</td>
+                                <td class="-number">3.7</td>
+                                <td class="-number">67</td>
+                                <td class="-number">4.3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="o-layout_item u-1/1 u-1/2@medium">
+                    <ul>
+                        <li><span>Single-line item</span></li>
+                        <li><span>Single-line item</span></li>
+                        <li><span>Secondary list</span>
+                            <ul class="-alt">
+                                <li><span>Single-line item</span></li>
+                                <li><span>Single-line item</span></li>
+                                <li><span>Single-line item</span></li>
+                            </ul>
+                        </li>
+                        <li><span>Single-line item</span></li>
+                    </ul>
                 </div>
             </div>
         </div>

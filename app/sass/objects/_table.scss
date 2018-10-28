@@ -1,11 +1,9 @@
 // ==========================================================================
 // Objects / Tables
 // ==========================================================================
-table,
-.o-table
-{
+table{
+    display: inline-block;
     width: 100%;
-    margin: 0 0 2em 0;
     border-collapse: collapse;
     border-spacing: 0;
 
@@ -14,74 +12,84 @@ table,
      *
      * @link https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout#Values
      */
-    &.-fixed
-    {
-        table-layout: fixed;
-    }
 
     thead{
-        border-bottom: solid 2px $off-white;
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
 
-        tr{
-            margin: 0;
-            padding: 0;
-            border: 0;
-            vertical-align: baseline;
-
-            th{
-                font-size: 0.9em;
-                font-weight: $medium;
-                padding: 0 0.75em 0.75em 0.75em;
-                text-align: left;
-                color: $off-black;
-            }
+        th{
+            height: 64px;
+            padding: 0 14px 0 24px;
+            font-size: 20px;
+            text-transform: capitalize;
         }
     }
 
     tbody{
         margin: 0;
-        padding: 0;
         border: 0;
-        vertical-align: baseline;
-
-        tr{
-            border: solid 1px $off-white;
-            border-left: 0;
-            border-right: 0;
-            margin: 0;
-            padding: 0;
-            vertical-align: baseline;
-
-            &:nth-child(2n+1){
-                background: rgba(144,144,144,0.075);
-            }
-
-            td{
-                padding: 0.75em 0.75em;
-                margin: 0;
-                border: 0;
-                vertical-align: baseline;
-            }
-        }
-    }
-
-    tfoot{
-        margin: 0;
-        padding: 0;
-        border-top: solid 2px $off-white;
+        display: inline-block;
         vertical-align: baseline;
 
         tr{
             margin: 0;
             padding: 0;
-            border: 0;
             vertical-align: baseline;
+            font-size: 13px;
+            height: 48px;
+            background: $white;
+            border-bottom: 2px solid $off-white;
+            transition: background 150ms $ease;
+
+            &:hover{
+                background: $off-white;
+            }
 
             td{
-                padding: 0.75em 0.75em;
+                padding: 0;
                 margin: 0;
                 border: 0;
-                vertical-align: baseline;
+                vertical-align: middle;
+                text-align: left;
+                padding-left: 56px;
+
+                &.-number{
+                    text-align: right;
+                }
+
+                &:first-of-type{
+                    padding-left: 24px;
+                    padding-right: 24px;
+                }
+
+                &:last-of-type{
+                    padding-right: 24px;
+                }
+            }
+
+            &:first-of-type{
+                font-size: 12px;
+                height: 56px;
+    
+                &:hover{
+                    background: $white;
+                }
+    
+                td{
+                    text-align: right;
+                    padding-left: 56px;
+    
+                    &:first-of-type{
+                        text-align: left;
+                        padding-left: 24px;
+                        padding-right: 24px;
+                    }
+    
+                    &:last-of-type{
+                        padding-right: 24px;
+                    }
+                }
             }
         }
     }

@@ -481,14 +481,14 @@ template {
 [hidden] {
   display: none; }
 
-table {
-  border-spacing: 0;
-  border-collapse: collapse; }
-
 hr {
   border: 0;
-  border-bottom: solid 1px #eeeeee;
-  margin: 0; }
+  border-bottom: solid 1px #070707;
+  opacity: 0.12;
+  margin: 0;
+  display: block; }
+  section.-dark-background hr {
+    border-color: #fafafa; }
 
 a {
   color: #f1ac44;
@@ -498,20 +498,17 @@ a {
     color: #ed9715;
     text-decoration-style: unset; }
 
-ul li {
-  list-style-type: disc; }
-
-ul.-alt li {
-  list-style-type: circle; }
-
-ul.-none {
-  padding: 0;
-  margin: 0; }
-  ul.-none li {
-    list-style-type: none; }
-
-ul.-inline li {
-  display: inline-block; }
+ul {
+  padding: 8px 16px;
+  margin: 0;
+  font-size: 16px; }
+  ul ul {
+    padding: 8px 16px 4px; }
+  ul li {
+    list-style-type: disc;
+    min-height: 24px; }
+  ul.-alt li {
+    list-style-type: circle; }
 
 p {
   margin: 0; }
@@ -592,72 +589,40 @@ h1,
   font-size: 96px;
   letter-spacing: -1.5px;
   font-weight: 300;
-  opacity: 0.54;
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize;
-  color: #070707; }
-  section.-dark-background h1, section.-dark-background
-  .o-h1 {
-    color: #fafafa; }
-  section.-dark-background h1, section.-dark-background
-  .o-h1 {
-    opacity: 1; }
+  text-transform: capitalize; }
 
 h2,
 .o-h2 {
   font-size: 60px;
   letter-spacing: -0.5px;
   font-weight: 300;
-  opacity: 0.54;
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize;
-  color: #070707; }
-  section.-dark-background h2, section.-dark-background
-  .o-h2 {
-    color: #fafafa; }
-  section.-dark-background h2, section.-dark-background
-  .o-h2 {
-    opacity: 1; }
+  text-transform: capitalize; }
 
 h3,
 .o-h3 {
   font-size: 48px;
   letter-spacing: 0;
   font-weight: 400;
-  opacity: 0.54;
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize;
-  color: #070707; }
-  section.-dark-background h3, section.-dark-background
-  .o-h3 {
-    color: #fafafa; }
-  section.-dark-background h3, section.-dark-background
-  .o-h3 {
-    opacity: 1; }
+  text-transform: capitalize; }
 
 h4,
 .o-h4 {
   font-size: 34px;
   letter-spacing: 0.25px;
   font-weight: 400;
-  opacity: 0.54;
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize;
-  color: #070707; }
-  section.-dark-background h4, section.-dark-background
-  .o-h4 {
-    color: #fafafa; }
-  section.-dark-background h4, section.-dark-background
-  .o-h4 {
-    opacity: 1; }
+  text-transform: capitalize; }
 
 h5,
 .o-h5,
@@ -665,20 +630,10 @@ h5,
   font-size: 24px;
   letter-spacing: 0;
   font-weight: 400;
-  opacity: 0.87;
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize;
-  color: #070707; }
-  section.-dark-background h5, section.-dark-background
-  .o-h5, section.-dark-background
-  .o-headline {
-    color: #fafafa; }
-  section.-dark-background h5, section.-dark-background
-  .o-h5, section.-dark-background
-  .o-headline {
-    opacity: 1; }
+  text-transform: capitalize; }
 
 h6,
 .o-h6,
@@ -686,35 +641,19 @@ h6,
   font-size: 20px;
   letter-spacing: 0.15px;
   font-weight: 500;
-  opacity: 0.87;
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize;
-  color: #070707; }
-  section.-dark-background h6, section.-dark-background
-  .o-h6, section.-dark-background
-  .o-title {
-    color: #fafafa; }
-  section.-dark-background h6, section.-dark-background
-  .o-h6, section.-dark-background
-  .o-title {
-    opacity: 1; }
+  text-transform: capitalize; }
 
 .o-subtitle {
   font-size: 16px;
   letter-spacing: 0.15px;
   font-weight: 400;
-  opacity: 0.87;
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize;
-  color: #070707; }
-  section.-dark-background .o-subtitle {
-    color: #fafafa; }
-  section.-dark-background .o-subtitle {
-    opacity: 1; }
+  text-transform: capitalize; }
 
 .o-container {
   max-width: 1280px;
@@ -909,10 +848,9 @@ h6,
   .o-wrapper.-right {
     text-align: right; }
 
-table,
-.o-table {
+table {
+  display: inline-block;
   width: 100%;
-  margin: 0 0 2em 0;
   border-collapse: collapse;
   border-spacing: 0;
   /**
@@ -920,66 +858,59 @@ table,
      *
      * @link https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout#Values
      */ }
-  table.-fixed,
-  .o-table.-fixed {
-    table-layout: fixed; }
-  table thead,
-  .o-table thead {
-    border-bottom: solid 2px #eeeeee; }
-    table thead tr,
-    .o-table thead tr {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      vertical-align: baseline; }
-      table thead tr th,
-      .o-table thead tr th {
-        font-size: 0.9em;
-        font-weight: 500;
-        padding: 0 0.75em 0.75em 0.75em;
-        text-align: left;
-        color: #434343; }
-  table tbody,
-  .o-table tbody {
+  table thead {
     margin: 0;
     padding: 0;
+    vertical-align: middle; }
+    table thead th {
+      height: 64px;
+      padding: 0 14px 0 24px;
+      font-size: 20px;
+      text-transform: capitalize; }
+  table tbody {
+    margin: 0;
     border: 0;
+    display: inline-block;
     vertical-align: baseline; }
-    table tbody tr,
-    .o-table tbody tr {
-      border: solid 1px #eeeeee;
-      border-left: 0;
-      border-right: 0;
+    table tbody tr {
       margin: 0;
       padding: 0;
-      vertical-align: baseline; }
-      table tbody tr:nth-child(2n+1),
-      .o-table tbody tr:nth-child(2n+1) {
-        background: rgba(144, 144, 144, 0.075); }
-      table tbody tr td,
-      .o-table tbody tr td {
-        padding: 0.75em 0.75em;
+      vertical-align: baseline;
+      font-size: 13px;
+      height: 48px;
+      background: #fafafa;
+      border-bottom: 2px solid #eeeeee;
+      transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+      table tbody tr:hover {
+        background: #eeeeee; }
+      table tbody tr td {
+        padding: 0;
         margin: 0;
         border: 0;
-        vertical-align: baseline; }
-  table tfoot,
-  .o-table tfoot {
-    margin: 0;
-    padding: 0;
-    border-top: solid 2px #eeeeee;
-    vertical-align: baseline; }
-    table tfoot tr,
-    .o-table tfoot tr {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      vertical-align: baseline; }
-      table tfoot tr td,
-      .o-table tfoot tr td {
-        padding: 0.75em 0.75em;
-        margin: 0;
-        border: 0;
-        vertical-align: baseline; }
+        vertical-align: middle;
+        text-align: left;
+        padding-left: 56px; }
+        table tbody tr td.-number {
+          text-align: right; }
+        table tbody tr td:first-of-type {
+          padding-left: 24px;
+          padding-right: 24px; }
+        table tbody tr td:last-of-type {
+          padding-right: 24px; }
+      table tbody tr:first-of-type {
+        font-size: 12px;
+        height: 56px; }
+        table tbody tr:first-of-type:hover {
+          background: #fafafa; }
+        table tbody tr:first-of-type td {
+          text-align: right;
+          padding-left: 56px; }
+          table tbody tr:first-of-type td:first-of-type {
+            text-align: left;
+            padding-left: 24px;
+            padding-right: 24px; }
+          table tbody tr:first-of-type td:last-of-type {
+            padding-right: 24px; }
 
 @media (min-width: 1288px) {
   .o-layout.-gutter {
@@ -1148,6 +1079,7 @@ button,
   color: #f1ac44;
   letter-spacing: 0.25px;
   font-weight: 500;
+  font-size: 14px;
   padding: 0 8px;
   min-width: 64px;
   height: 36px;
@@ -1200,19 +1132,19 @@ button,
   .o-button.-icon {
     background: rgba(0, 0, 0, 0);
     color: #f1ac44; }
-    html.has-js > button.-icon, html.has-js >
+    html.has-js button.-icon, html.has-js
     .o-button.-icon {
       display: inline-flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       padding: 0; }
-      html.has-js > button.-icon:hover:after, html.has-js >
+      html.has-js button.-icon:hover:after, html.has-js
       .o-button.-icon:hover:after {
         transform: scale(1);
         opacity: 0.75;
         transition: transform 100ms cubic-bezier(0, 0, 0.2, 1), opacity 25ms cubic-bezier(0, 0, 0.2, 1); }
-      html.has-js > button.-icon::after, html.has-js >
+      html.has-js button.-icon::after, html.has-js
       .o-button.-icon::after {
         content: "";
         transform: scale(0);
@@ -1224,18 +1156,18 @@ button,
         border-radius: 100%;
         opacity: 0;
         transition: transform 75ms cubic-bezier(0.4, 0, 1, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
-      html.has-js > button.-icon svg, html.has-js >
+      html.has-js button.-icon svg, html.has-js
       .o-button.-icon svg {
         height: 18px;
         width: 18px; }
-      html.has-js > button.-icon.is-on:after, html.has-js > button.-icon:active:after, html.has-js >
-      .o-button.-icon.is-on:after, html.has-js >
+      html.has-js button.-icon.is-on:after, html.has-js button.-icon:active:after, html.has-js
+      .o-button.-icon.is-on:after, html.has-js
       .o-button.-icon:active:after {
         transform: scale(1);
         opacity: 1; }
-      html.has-js > button.-icon .-alt, html.has-js >
+      html.has-js button.-icon .-alt, html.has-js
       .o-button.-icon .-alt {
-        display: none; }
+        display: none !important; }
 
 .c-transition {
   height: 100vh;

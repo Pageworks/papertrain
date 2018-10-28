@@ -1,17 +1,17 @@
 // Generic
 // ==========================================================================
 
-table
-{
-    border-spacing: 0;
-    border-collapse: collapse;
-}
-
 hr
 {
     border: 0;
-    border-bottom: solid 1px $off-white;
+    border-bottom: solid 1px $black;
+    opacity: 0.12;
     margin: 0;
+    display: block;
+
+    section.-dark-background & {
+        border-color: $white;
+    }
 }
 
 a
@@ -28,29 +28,22 @@ a
 }
 
 ul{
+    padding: 8px 16px;
+    margin: 0;
+    font-size: 16px;
+
+    ul{
+        padding: 8px 16px 4px;
+    }
+
     li{
         list-style-type: disc;
+        min-height: 24px;
     }
 
     &.-alt{
         li{
             list-style-type: circle;
-        }
-    }
-
-    &.-none{
-        padding: 0;
-        margin: 0;
-
-        li{
-            list-style-type: none;
-        }
-    }
-
-    &.-inline{
-
-        li{
-            display: inline-block;
         }
     }
 }
