@@ -26,7 +26,10 @@
 </head> 
 <body>
     {% spaceless %}
-        <div class="js-transition c-transition"></div>
+        <div class="js-transition c-transition">
+            <div class="c-transition_primary"></div>
+            <div class="c-transition_secondary"></div>
+        </div>
         {% include '_includes/header.twig' %}
         <main class="js-pjax-wrapper">
             <article id="content" role="main" class="js-pjax-container">
