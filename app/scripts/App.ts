@@ -2,6 +2,11 @@ import { APP_NAME, html, isDebug } from './env';
 
 import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
+
+/**
+ * FontAwesome Pro requires an access token to be set in the .npmrc file
+ * @see https://fontawesome.com/
+ */
 import '@fortawesome/fontawesome-pro/js/all.js';
 
 class App{
