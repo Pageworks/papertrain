@@ -44,6 +44,7 @@ export default class extends AbstractModule{
             }
         });
 
+        // Handle input status for prefilled elements
         this.selects.forEach((el)=>{
             if (el instanceof HTMLSelectElement){
                 if(el.value !== 'any'){
@@ -94,6 +95,12 @@ export default class extends AbstractModule{
         }
     }
 
+    /**
+     * Called when a user clicks on the eye icon for a password or pin input.
+     * If the content is hidden we set the inputs type to `text`.
+     * If the content isn't hidden we set the inputs type to `password`.
+     * @param {Event} e
+     */
     handleToggle(e:Event){
         if (e.target instanceof Element){
             const inputWrapper  = getParent(e.target, 'js-input');
@@ -184,6 +191,9 @@ export default class extends AbstractModule{
         this.inputs.forEach((el)=>{ el.removeEventListener('focus', e => this.handleFocus(e) ); });
         this.inputs.forEach((el)=>{ el.removeEventListener('blur', e => this.handleBlur(e) ); });
         this.inputs.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleKeystroke(e) ); });
+        this.selects.forEach((el)=>{ el.removeEventListener('change', e => this.handleSelection(e) ); });
+        this.textareas.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleTextarea(e) ); });
+        this.textareas.forEach((el)=>{ el.removeEventListener('blur', e => this.handleTextarea(e) ); });
         this.passwordToggles.forEach((el)=>{ el.removeEventListener('click', e => this.handleToggle(e) ); });
         super.destroy(isDebug, MODULE_NAME);
     }

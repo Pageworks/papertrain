@@ -396,6 +396,7 @@ var default_1 = /** @class */ (function (_super) {
                     _this.handleInputStatus(el);
             }
         });
+        // Handle input status for prefilled elements
         this.selects.forEach(function (el) {
             if (el instanceof HTMLSelectElement) {
                 if (el.value !== 'any') {
@@ -444,6 +445,12 @@ var default_1 = /** @class */ (function (_super) {
             }
         }
     };
+    /**
+     * Called when a user clicks on the eye icon for a password or pin input.
+     * If the content is hidden we set the inputs type to `text`.
+     * If the content isn't hidden we set the inputs type to `password`.
+     * @param {Event} e
+     */
     default_1.prototype.handleToggle = function (e) {
         if (e.target instanceof Element) {
             var inputWrapper = getParent_1.getParent(e.target, 'js-input');
@@ -532,6 +539,9 @@ var default_1 = /** @class */ (function (_super) {
         this.inputs.forEach(function (el) { el.removeEventListener('focus', function (e) { return _this.handleFocus(e); }); });
         this.inputs.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleBlur(e); }); });
         this.inputs.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
+        this.selects.forEach(function (el) { el.removeEventListener('change', function (e) { return _this.handleSelection(e); }); });
+        this.textareas.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleTextarea(e); }); });
+        this.textareas.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleTextarea(e); }); });
         this.passwordToggles.forEach(function (el) { el.removeEventListener('click', function (e) { return _this.handleToggle(e); }); });
         _super.prototype.destroy.call(this, env_1.isDebug, MODULE_NAME);
     };

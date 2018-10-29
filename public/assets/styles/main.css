@@ -1205,6 +1205,66 @@ form {
         top: 12px;
         font-size: 12px !important;
         color: #f1ac44 !important; }
+  form.-outline .o-input.is-invalid input {
+    border: 2px solid rgba(255, 110, 110, 0.87);
+    padding: 11px 15px 13px;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+    form.-outline .o-input.is-invalid input + label {
+      color: #ff6e6e;
+      font-size: 12px;
+      bottom: 48px; }
+  html.has-js form.-outline .o-input.has-value label {
+    font-size: 12px;
+    bottom: 48px; }
+  html.has-js form.-outline .o-input.is-invalid .o-error {
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 25ms cubic-bezier(0, 0, 0.2, 1); }
+  form.-outline .o-input input + label,
+  form.-outline .o-input select + label {
+    bottom: 18px;
+    left: 12px;
+    position: absolute; }
+    html.has-no-js form.-outline .o-input input + label, html.has-no-js
+    form.-outline .o-input select + label {
+      font-size: 12px;
+      bottom: 48px; }
+  form.-outline label {
+    color: rgba(7, 7, 7, 0.6);
+    pointer-events: none;
+    font-size: 16px;
+    transition: all 75ms cubic-bezier(0.4, 0, 1, 1);
+    background: #fafafa; }
+  form.-outline input,
+  form.-outline select {
+    height: 100%;
+    background: transparent;
+    border-radius: 4px;
+    padding: 12px 16px 14px;
+    border: 1px solid rgba(67, 67, 67, 0.3);
+    transition: all 75ms cubic-bezier(0.4, 0, 0.6, 1); }
+    form.-outline input + label,
+    form.-outline select + label {
+      position: absolute;
+      left: 16px;
+      bottom: 20px;
+      padding: 0 4px; }
+    form.-outline input:hover,
+    form.-outline select:hover {
+      border: 1px solid rgba(67, 67, 67, 0.87);
+      transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
+    form.-outline input:focus,
+    form.-outline select:focus {
+      border: 2px solid rgba(241, 172, 68, 0.87);
+      padding: 11px 15px 13px;
+      transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
+      form.-outline input:focus + label,
+      form.-outline select:focus + label {
+        color: #f1ac44;
+        font-size: 12px;
+        bottom: 48px;
+        background: #fafafa;
+        transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
   form.-solid .o-input.is-invalid input + label {
     color: #ff6e6e;
     font-size: 12px;
@@ -1252,6 +1312,7 @@ form {
   form.-solid input,
   form.-solid select {
     height: 100%;
+    padding: 20px 12px 6px;
     background: #eeeeee;
     border-radius: 4px 4px 0 0;
     border-bottom: 1px solid rgba(7, 7, 7, 0.42);
@@ -1292,10 +1353,14 @@ fieldset {
     box-shadow: none;
     border: none;
     outline: none; }
+  input:invalid,
+  select:invalid,
+  textarea:invalid,
+  fieldset:invalid {
+    box-shadow: none; }
 
 input,
 select {
-  padding: 20px 12px 6px;
   background: transparent;
   color: rgba(7, 7, 7, 0.87); }
 

@@ -231,6 +231,29 @@
             </form>
             <hr class="u-margin-vertical-x6" />
             <h3 class="u-text-center u-margin-bottom-x6">Outline Style Input Example</h3>
+            <form class="o-layout -gutter -outline" data-module="BasicForm">
+                {{ form.input('Full Name', 'fullName', 'text', 'u-1/1', true, 'name') }}
+
+                {{ form.input('Email Address', 'email', 'email', 'u-1/1', true, 'email') }}
+
+                {{ form.number('Age', 'age', 'u-1/1 u-1/2@medium') }}
+
+                {{ form.number('Weight', 'weight', 'u-1/1 u-1/2@medium', false) }}
+
+                {{ form.password('Password', 'password', 'u-1/1 u-1/2@medium', true) }}
+
+                {{ form.pin('Pin', 'pin', 'u-1/1 u-1/2@medium', true) }}
+
+                {{ form.select('Favorite Thing', 'favThing', options, true, 'u-1/1 u-1/2@medium') }}
+
+                {{ form.textarea('Description', 'desc') }}
+
+                {{ form.radio('Favorite Flavor', 'favFlavor', flavors) }}
+
+                {{ form.checkbox('Backup Favorites', 'otherFlavors', otherFlavors) }}
+
+                {{ form.date('Birthday', 'birthday') }}
+            </form>
         </div>
     </section>
 <!-- Content -->

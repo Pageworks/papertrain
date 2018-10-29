@@ -396,9 +396,98 @@ form{
     }
 
     // Outline Input Style
-    // &.-outline{
+    &.-outline{
+        .o-input{
+            &.is-invalid{
+                input{
+                    border: 2px solid rgba($error, 0.87);
+                    padding: 11px 15px 13px;
+                    transition: all 150ms $ease;
 
-    // }
+                    & + label{
+                        color: $error;
+                        font-size: 12px;
+                        bottom: 48px;
+                    }
+                }
+            }
+
+            html.has-js & {
+                &.has-value{
+                    label{
+                        font-size: 12px;
+                        bottom: 48px;
+                    }
+                }
+    
+                &.is-invalid{    
+                    .o-error{
+                        opacity: 1;
+                        transform: translateY(0);
+                        transition: transform 150ms $ease-in, opacity 25ms $ease-in;
+                    }
+                }
+            }
+
+            input,
+            select{
+                & + label{
+                    bottom: 18px;
+                    left: 12px;
+                    position: absolute;
+    
+                    html.has-no-js & {
+                        font-size: 12px;
+                        bottom: 48px;
+                    }
+                }
+            }
+        }
+
+        label{
+            color: rgba($black, 0.6);
+            pointer-events: none;
+            font-size: 16px;
+            transition: all 75ms $ease-out;
+            background: $white;
+        }
+
+        input,
+        select{
+            height: 100%;
+            background: transparent;
+            border-radius: 4px;
+            padding: 12px 16px 14px;
+            border: 1px solid rgba($off-black, 0.3);
+            transition: all 75ms $ease-sharp;
+
+            & + label{
+                position: absolute;
+                left: 16px;
+                bottom: 20px;
+                padding: 0 4px;
+            }
+
+            &:hover{
+                border: 1px solid rgba($off-black, 0.87);
+                transition: border 150ms $ease-in;
+            }
+
+            &:focus{
+                border: 2px solid rgba($primary, 0.87);
+                padding: 11px 15px 13px;
+                transition: all 150ms $ease-in;
+
+                & + label{
+                    color: $primary;
+                    font-size: 12px;
+                    bottom: 48px;
+                    background: $white;
+                    transition: all 150ms $ease-in;
+                }
+            }
+        }
+    }
 
     // Solid Input Style
     &.-solid{
@@ -479,6 +568,7 @@ form{
         input,
         select{
             height: 100%;
+            padding: 20px 12px 6px;
             background: $off-white;
             border-radius: 4px 4px 0 0;
             border-bottom: 1px solid rgba($black, 0.42);
@@ -526,11 +616,14 @@ fieldset{
         border: none;
         outline: none;
     }
+
+    &:invalid{
+        box-shadow: none;
+    }
 }
 
 input,
 select{
-    padding: 20px 12px 6px;
     background: transparent;
     color: rgba($black, 0.87);
 }
