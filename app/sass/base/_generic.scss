@@ -27,14 +27,25 @@ a
     }
 }
 
-ul{
-    padding: 8px 16px;
+ol{
+    padding: 8px 0 0 16px;
     margin: 0;
     font-size: 16px;
     text-align: left;
 
-    ul{
-        padding: 8px 16px 4px;
+    ul,ol{
+        padding-bottom: 2px;
+    }
+}
+
+ul{
+    padding: 8px 0 0 16px;
+    margin: 0;
+    font-size: 16px;
+    text-align: left;
+
+    ul,ol{
+        padding-bottom: 2px;
     }
 
     li{

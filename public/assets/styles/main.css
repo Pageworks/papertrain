@@ -498,13 +498,21 @@ a {
     color: #ed9715;
     text-decoration-style: unset; }
 
-ul {
-  padding: 8px 16px;
+ol {
+  padding: 8px 0 0 16px;
   margin: 0;
   font-size: 16px;
   text-align: left; }
-  ul ul {
-    padding: 8px 16px 4px; }
+  ol ul, ol ol {
+    padding-bottom: 2px; }
+
+ul {
+  padding: 8px 0 0 16px;
+  margin: 0;
+  font-size: 16px;
+  text-align: left; }
+  ul ul, ul ol {
+    padding-bottom: 2px; }
   ul li {
     list-style-type: disc;
     min-height: 24px; }
@@ -514,7 +522,7 @@ ul {
     list-style-type: square; }
 
 p {
-  margin: 0; }
+  margin: 0 0 16px; }
 
 code {
   background: rgba(144, 144, 144, 0.075);
@@ -537,7 +545,7 @@ blockquote {
   font-size: 16pt; }
 
 dl {
-  margin: 0;
+  margin: 0 0 16px;
   padding: 0;
   border: 0; }
   dl dt {
@@ -595,7 +603,8 @@ h1,
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  color: rgba(7, 7, 7, 0.87); }
 
 h2,
 .o-h2 {
@@ -605,7 +614,8 @@ h2,
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  color: rgba(7, 7, 7, 0.87); }
 
 h3,
 .o-h3 {
@@ -615,7 +625,8 @@ h3,
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  color: rgba(7, 7, 7, 0.87); }
 
 h4,
 .o-h4 {
@@ -625,7 +636,8 @@ h4,
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  color: rgba(7, 7, 7, 0.6); }
 
 h5,
 .o-h5,
@@ -636,7 +648,8 @@ h5,
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  color: rgba(7, 7, 7, 0.6); }
 
 h6,
 .o-h6,
@@ -647,7 +660,8 @@ h6,
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  color: rgba(7, 7, 7, 0.87); }
 
 .o-subtitle {
   font-size: 16px;
@@ -656,7 +670,8 @@ h6,
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
-  text-transform: capitalize; }
+  text-transform: capitalize;
+  color: rgba(7, 7, 7, 0.6); }
 
 .o-container {
   max-width: 1280px;

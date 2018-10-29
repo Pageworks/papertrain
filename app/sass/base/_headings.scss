@@ -15,6 +15,7 @@ h1,
     font-weight: $light;
     font-family: $font-heading;
     @include h;
+    color: rgba($black, 0.87);
 }
 
 h2,
@@ -25,6 +26,7 @@ h2,
     font-weight: $light;
     font-family: $font-heading;
     @include h;
+    color: rgba($black, 0.87);
 }
 
 h3,
@@ -35,6 +37,7 @@ h3,
     font-weight: $regular;
     font-family: $font-heading;
     @include h;
+    color: rgba($black, 0.87);
 }
 
 h4,
@@ -45,6 +48,7 @@ h4,
     font-weight: $regular;
     font-family: $font-heading;
     @include h;
+    color: rgba($black, 0.60);
 }
 
 h5,
@@ -56,6 +60,7 @@ h5,
     font-weight: $regular;
     font-family: $font-heading;
     @include h;
+    color: rgba($black, 0.60);
 }
 
 h6,
@@ -67,6 +72,7 @@ h6,
     font-weight: $medium;
     font-family: $font-heading;
     @include h;
+    color: rgba($black, 0.87);
 }
 
 .o-subtitle{
@@ -75,4 +81,5 @@ h6,
     font-weight: $regular;
     font-family: $font-heading;
     @include h;
+    color: rgba($black, 0.60);
 }
