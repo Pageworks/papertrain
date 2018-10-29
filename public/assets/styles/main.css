@@ -958,12 +958,7 @@ form {
   margin: 0; }
   form .o-input {
     height: 56px;
-    overflow: hidden;
     position: relative; }
-    form .o-input.is-invalid label {
-      color: #ff6e6e !important;
-      font-size: 12px !important;
-      bottom: 34px !important; }
     form .o-input .-visible,
     form .o-input .-hidden {
       position: absolute;
@@ -980,22 +975,240 @@ form {
       display: inline-block; }
     form .o-input.has-content-visible .-hidden {
       display: none; }
-  form input {
-    border: none;
-    padding: 20px 12px 6px;
-    background: transparent;
-    color: rgba(7, 7, 7, 0.87);
+  form .o-radio {
+    position: relative;
+    padding: 32px 0 6px;
+    text-align: center; }
+    form .o-radio label {
+      position: absolute;
+      top: 0;
+      left: 12px; }
+    form .o-radio .o-radio_item {
+      display: flex;
+      align-items: center;
+      margin: 8px 16px; }
+      @media (min-width: 960px) {
+        form .o-radio .o-radio_item {
+          display: inline-flex; } }
+      form .o-radio .o-radio_item label {
+        display: flex;
+        align-items: center; }
+      form .o-radio .o-radio_item:hover {
+        cursor: pointer !important; }
+        form .o-radio .o-radio_item:hover .o-radio_icon:before {
+          transform: scale(1);
+          opacity: 0.15;
+          transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+      form .o-radio .o-radio_item:active .o-radio_icon:before {
+        opacity: 0;
+        transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
+      form .o-radio .o-radio_item:active .o-radio_icon:after {
+        transform: scale(1);
+        opacity: 0.25;
+        transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+      form .o-radio .o-radio_item .o-radio_icon {
+        height: 20px;
+        width: 20px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 8px;
+        position: relative;
+        pointer-events: none; }
+        form .o-radio .o-radio_item .o-radio_icon::before {
+          content: "";
+          background: #f1ac44;
+          position: absolute;
+          display: inline-block;
+          border-radius: 100%;
+          height: 26px;
+          width: 26px;
+          transform: scale(0);
+          opacity: 0;
+          transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
+        form .o-radio .o-radio_item .o-radio_icon::after {
+          content: "";
+          background: #f1ac44;
+          position: absolute;
+          display: inline-block;
+          border-radius: 100%;
+          height: 28px;
+          width: 28px;
+          transform: scale(0);
+          opacity: 0;
+          transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
+        form .o-radio .o-radio_item .o-radio_icon .o-radio_outter {
+          height: 16px;
+          width: 16px;
+          border-radius: 100%;
+          border: 2px solid #f1ac44;
+          position: absolute; }
+        form .o-radio .o-radio_item .o-radio_icon .o-radio_inner {
+          transform: scale(0);
+          height: 100%;
+          width: 100%;
+          border: solid 10px #f1ac44;
+          border-radius: 100%;
+          position: absolute;
+          transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1); }
+      form .o-radio .o-radio_item input:checked + label .o-radio_icon .o-radio_inner {
+        transform: scale(0.5);
+        transition: transform 150ms cubic-bezier(0, 0, 0.2, 1); }
+      form .o-radio .o-radio_item input + label {
+        vertical-align: middle;
+        position: relative;
+        left: 0;
+        pointer-events: all;
+        cursor: pointer; }
+  form .o-checkbox {
+    position: relative;
+    padding: 32px 0 6px; }
+    form .o-checkbox label {
+      position: absolute;
+      top: 0;
+      left: 12px; }
+    form .o-checkbox .o-checkbox_item label {
+      height: 24px;
+      line-height: 24px;
+      display: flex;
+      align-items: center;
+      margin: 8px 16px; }
+    form .o-checkbox .o-checkbox_item:hover {
+      cursor: pointer !important; }
+      form .o-checkbox .o-checkbox_item:hover .o-checkbox_icon:before {
+        transform: scale(1);
+        opacity: 0.15;
+        transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+    form .o-checkbox .o-checkbox_item:active .o-checkbox_icon:before {
+      opacity: 0;
+      transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
+    form .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
+      transform: scale(1);
+      opacity: 0.25;
+      transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+    form .o-checkbox .o-checkbox_item .o-checkbox_icon {
+      height: 20px;
+      width: 20px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-right: 8px;
+      position: relative;
+      pointer-events: none; }
+      form .o-checkbox .o-checkbox_item .o-checkbox_icon::before {
+        content: "";
+        background: #f1ac44;
+        position: absolute;
+        display: inline-block;
+        border-radius: 100%;
+        height: 26px;
+        width: 26px;
+        transform: scale(0);
+        opacity: 0;
+        transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
+      form .o-checkbox .o-checkbox_item .o-checkbox_icon::after {
+        content: "";
+        background: #f1ac44;
+        position: absolute;
+        display: inline-block;
+        border-radius: 100%;
+        height: 28px;
+        width: 28px;
+        transform: scale(0);
+        opacity: 0;
+        transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
+      form .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_box {
+        position: absolute;
+        height: 16px;
+        width: 16px;
+        border-radius: 2px;
+        border: 2px solid #f1ac44;
+        background: transparent;
+        transition: background 75ms cubic-bezier(0.4, 0, 0.6, 1); }
+      form .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check {
+        position: absolute;
+        transform: scale(0.5); }
+        form .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check path {
+          stroke: #fafafa;
+          stroke-width: 3px;
+          stroke-linecap: round;
+          stroke-dasharray: 30;
+          stroke-dashoffset: 30;
+          transition: stroke-dashoffset 75ms cubic-bezier(0.4, 0, 0.6, 1); }
+    form .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
+      background: #f1ac44;
+      transition: background 150ms cubic-bezier(0, 0, 0.2, 1); }
+    form .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_check path {
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 150ms cubic-bezier(0, 0, 0.2, 1); }
+    form .o-checkbox .o-checkbox_item input ~ label {
+      vertical-align: middle;
+      position: relative;
+      left: 0;
+      pointer-events: all;
+      cursor: pointer; }
+  form .o-textarea {
+    position: relative; }
+    html.has-js form .o-textarea.is-invalid .o-error {
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 25ms cubic-bezier(0, 0, 0.2, 1); }
+    form .o-textarea.is-invalid textarea {
+      border: 2px solid #ff6e6e;
+      padding: 31px 15px 15px;
+      transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1), padding 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+      form .o-textarea.is-invalid textarea + label {
+        top: 12px;
+        font-size: 12px;
+        color: #ff6e6e !important; }
+    form .o-textarea.has-value textarea + label {
+      top: 12px;
+      font-size: 12px; }
+  form .o-error {
+    padding: 8px 4px 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
     width: 100%;
-    font-size: 16px;
-    line-height: 16px; }
-    form input ::placeholder {
-      color: rgba(7, 7, 7, 0.87); }
-    form input:invalid {
-      box-shadow: none; }
-    form input:focus, form input:active {
-      box-shadow: none;
-      border: none;
-      outline: none; }
+    font-size: 12px;
+    color: #ff6e6e;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
+    form .o-error svg {
+      margin-right: 8px; }
+  form .o-arrow {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-60%);
+    color: #434343; }
+  form textarea {
+    padding: 32px 16px 16px;
+    border-radius: 4px;
+    border: 1px solid #434343;
+    width: 100%;
+    min-height: 106px;
+    background: transparent;
+    transition: border 75ms cubic-bezier(0.4, 0, 0.6, 1), padding 75ms cubic-bezier(0.4, 0, 0.6, 1); }
+    form textarea + label {
+      position: absolute;
+      top: 20px;
+      left: 16px !important; }
+    form textarea:focus {
+      border: 2px solid #f1ac44;
+      padding: 31px 15px 15px;
+      transition: border 150ms cubic-bezier(0, 0, 0.2, 1), padding 150ms cubic-bezier(0, 0, 0.2, 1); }
+      form textarea:focus + label {
+        top: 12px;
+        font-size: 12px !important;
+        color: #f1ac44 !important; }
+  form.-solid .o-input.is-invalid input + label {
+    color: #ff6e6e;
+    font-size: 12px;
+    bottom: 34px; }
   html.has-js form.-solid .o-input::after {
     content: "";
     height: 2px;
@@ -1013,36 +1226,108 @@ form {
     transition: transform 150ms cubic-bezier(0, 0, 0.2, 1); }
   html.has-js form.-solid .o-input.has-value label {
     font-size: 12px;
-    bottom: 34px; }
+    bottom: 35px; }
   html.has-js form.-solid .o-input.is-invalid:after {
     transform: scaleX(1);
     background: #ff6e6e;
     transition: background 75ms cubic-bezier(0.4, 0, 0.2, 1); }
-  form.-solid .o-input input {
+  html.has-js form.-solid .o-input.is-invalid .o-error {
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 25ms cubic-bezier(0, 0, 0.2, 1); }
+  form.-solid .o-input input + label,
+  form.-solid .o-input select + label {
+    bottom: 18px;
+    left: 12px;
+    position: absolute; }
+    html.has-no-js form.-solid .o-input input + label, html.has-no-js
+    form.-solid .o-input select + label {
+      font-size: 12px;
+      bottom: 35px; }
+  form.-solid label {
+    color: rgba(7, 7, 7, 0.6);
+    pointer-events: none;
+    font-size: 16px;
+    transition: all 75ms cubic-bezier(0.4, 0, 1, 1); }
+  form.-solid input,
+  form.-solid select {
     height: 100%;
     background: #eeeeee;
     border-radius: 4px 4px 0 0;
     border-bottom: 1px solid rgba(7, 7, 7, 0.42);
-    transition: border-bottom-color 75ms cubic-bezier(0.4, 0, 1, 1); }
-    html.has-no-js form.-solid .o-input input:focus {
-      border-bottom-color: #f1ac44;
-      transition: border-bottom-color 150ms cubic-bezier(0, 0, 0.2, 1); }
-    form.-solid .o-input input:focus + label {
-      color: #f1ac44;
-      font-size: 12px;
-      bottom: 34px;
-      transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
-  form.-solid .o-input label {
-    color: rgba(7, 7, 7, 0.6);
-    pointer-events: none;
-    bottom: 18px;
-    position: absolute;
-    font-size: 16px;
-    left: 12px;
-    transition: all 75ms cubic-bezier(0.4, 0, 1, 1); }
-    html.has-no-js form.-solid .o-input label {
-      font-size: 12px;
-      bottom: 34px; }
+    transition: border-bottom-color 75ms cubic-bezier(0.4, 0, 1, 1), background 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+    form.-solid input:hover,
+    form.-solid select:hover {
+      background: #e6e6e6; }
+    form.-solid input:focus,
+    form.-solid select:focus {
+      background: #e1e1e1; }
+      html.has-no-js form.-solid input:focus, html.has-no-js
+      form.-solid select:focus {
+        border-bottom-color: #f1ac44;
+        transition: border-bottom-color 150ms cubic-bezier(0, 0, 0.2, 1); }
+      form.-solid input:focus + label,
+      form.-solid select:focus + label {
+        color: #f1ac44;
+        font-size: 12px;
+        bottom: 35px;
+        transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
+
+input,
+select,
+textarea,
+fieldset {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 16px; }
+  input:focus, input:active,
+  select:focus,
+  select:active,
+  textarea:focus,
+  textarea:active,
+  fieldset:focus,
+  fieldset:active {
+    box-shadow: none;
+    border: none;
+    outline: none; }
+
+input,
+select {
+  padding: 20px 12px 6px;
+  background: transparent;
+  color: rgba(7, 7, 7, 0.87); }
+
+input[type=radio],
+input[type=checkbox] {
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  border: none;
+  outline: none;
+  background: transparent;
+  opacity: 0;
+  visibility: hidden; }
+
+input ::placeholder,
+textarea ::placeholder {
+  color: rgba(7, 7, 7, 0.87); }
+
+input[type=date] {
+  text-indent: -2px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none; }
+
+@media (min-width: 1280px) {
+  select {
+    text-indent: -2px; } }
+
+html.has-js select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none; }
 
 input[type=number] {
   -moz-appearance: textfield;

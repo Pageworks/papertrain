@@ -370,6 +370,8 @@ var default_1 = /** @class */ (function (_super) {
         if (env_1.isDebug)
             console.log('%c[module] ' + ("%cBuilding: " + MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
         _this.inputs = _this.el.querySelectorAll('input');
+        _this.selects = _this.el.querySelectorAll('select');
+        _this.textareas = _this.el.querySelectorAll('textarea');
         _this.passwordToggles = _this.el.querySelectorAll('.js-password-toggle');
         return _this;
     }
@@ -383,11 +385,64 @@ var default_1 = /** @class */ (function (_super) {
         this.inputs.forEach(function (el) { el.addEventListener('focus', function (e) { return _this.handleFocus(e); }); });
         this.inputs.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleBlur(e); }); });
         this.inputs.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
+        this.selects.forEach(function (el) { el.addEventListener('change', function (e) { return _this.handleSelection(e); }); });
+        this.textareas.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleTextarea(e); }); });
+        this.textareas.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleTextarea(e); }); });
         this.passwordToggles.forEach(function (el) { el.addEventListener('click', function (e) { return _this.handleToggle(e); }); });
+        // Handle input status for prefilled elements
         this.inputs.forEach(function (el) {
-            if (el.value !== '' || el.innerText !== '')
-                _this.handleInputStatus(el);
+            if (el instanceof HTMLInputElement) {
+                if (el.value !== '' || el.innerText !== '')
+                    _this.handleInputStatus(el);
+            }
         });
+        this.selects.forEach(function (el) {
+            if (el instanceof HTMLSelectElement) {
+                if (el.value !== 'any') {
+                    var inputWrapper = getParent_1.getParent(el, 'js-input');
+                    inputWrapper.classList.add('has-value');
+                    inputWrapper.classList.add('is-valid');
+                }
+            }
+        });
+    };
+    /**
+     * Called when a user releases a key while a textarea element has focus.
+     * @param {Event} e
+     */
+    default_1.prototype.handleTextarea = function (e) {
+        if (e.target instanceof HTMLTextAreaElement) {
+            var inputWrapper = getParent_1.getParent(e.target, 'js-input');
+            inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+            if (e.target.validity.valid && e.target.value !== '') {
+                inputWrapper.classList.add('has-value');
+                inputWrapper.classList.add('is-valid');
+            }
+            else if (!e.target.validity.valid) {
+                inputWrapper.classList.add('is-invalid');
+                var errorObject = inputWrapper.querySelector('.js-error');
+                if (errorObject)
+                    errorObject.innerHTML = e.target.validationMessage;
+            }
+        }
+    };
+    /**
+     * Called when a user selects a different option in the selection dropdown.
+     * If the selected option isn't `any` set the `has-value` status class.
+     * @param {Event} e
+     */
+    default_1.prototype.handleSelection = function (e) {
+        if (e.target instanceof HTMLSelectElement) {
+            var inputWrapper = getParent_1.getParent(e.target, 'js-input');
+            console.log(e.target);
+            if (e.target.value === 'any') {
+                inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+            }
+            else {
+                inputWrapper.classList.add('has-value');
+                inputWrapper.classList.add('is-valid');
+            }
+        }
     };
     default_1.prototype.handleToggle = function (e) {
         if (e.target instanceof Element) {
@@ -445,6 +500,9 @@ var default_1 = /** @class */ (function (_super) {
         }
         else {
             inputWrapper.classList.add('is-invalid');
+            var errorObject = inputWrapper.querySelector('.js-error');
+            if (errorObject)
+                errorObject.innerHTML = el.validationMessage;
         }
     };
     /**

@@ -7,12 +7,16 @@ const MODULE_NAME = 'BasicForm';
 export default class extends AbstractModule{
     inputs:             NodeList
     passwordToggles:    NodeList
+    selects:            NodeList
+    textareas:          NodeList
 
     constructor(el: Element){
         super(el);
         if(isDebug) console.log('%c[module] '+`%cBuilding: ${MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
         this.inputs             = this.el.querySelectorAll('input');
+        this.selects            = this.el.querySelectorAll('select');
+        this.textareas          = this.el.querySelectorAll('textarea');
         this.passwordToggles    = this.el.querySelectorAll('.js-password-toggle');
     }
 
@@ -26,11 +30,68 @@ export default class extends AbstractModule{
         this.inputs.forEach((el)=>{ el.addEventListener('blur', e => this.handleBlur(e) ); });
         this.inputs.forEach((el)=>{ el.addEventListener('keyup', e => this.handleKeystroke(e) ); });
 
+        this.selects.forEach((el)=>{ el.addEventListener('change', e => this.handleSelection(e) ); });
+
+        this.textareas.forEach((el)=>{ el.addEventListener('keyup', e => this.handleTextarea(e) ); });
+        this.textareas.forEach((el)=>{ el.addEventListener('blur', e => this.handleTextarea(e) ); });
+
         this.passwordToggles.forEach((el)=>{ el.addEventListener('click', e => this.handleToggle(e) ); });
 
+        // Handle input status for prefilled elements
         this.inputs.forEach((el)=>{
-            if(el.value !== '' || el.innerText !== '') this.handleInputStatus(el);
+            if (el instanceof HTMLInputElement){
+                if(el.value !== '' || el.innerText !== '') this.handleInputStatus(el);
+            }
         });
+
+        this.selects.forEach((el)=>{
+            if (el instanceof HTMLSelectElement){
+                if(el.value !== 'any'){
+                    const inputWrapper  = getParent(el, 'js-input');
+                    inputWrapper.classList.add('has-value');
+                    inputWrapper.classList.add('is-valid');
+                }
+            }
+        });
+    }
+
+    /**
+     * Called when a user releases a key while a textarea element has focus.
+     * @param {Event} e
+     */
+    handleTextarea(e:Event){
+        if (e.target instanceof HTMLTextAreaElement){
+            const inputWrapper  = getParent(e.target, 'js-input');
+            inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+
+            if(e.target.validity.valid && e.target.value !== ''){
+                inputWrapper.classList.add('has-value');
+                inputWrapper.classList.add('is-valid');
+            }else if(!e.target.validity.valid){
+                inputWrapper.classList.add('is-invalid');
+                const errorObject = inputWrapper.querySelector('.js-error');
+                if(errorObject) errorObject.innerHTML = e.target.validationMessage;
+            }
+        }
+    }
+
+    /**
+     * Called when a user selects a different option in the selection dropdown.
+     * If the selected option isn't `any` set the `has-value` status class.
+     * @param {Event} e
+     */
+    handleSelection(e:Event){
+        if (e.target instanceof HTMLSelectElement){
+            const inputWrapper  = getParent(e.target, 'js-input');
+
+            console.log(e.target);
+            if(e.target.value === 'any'){
+                inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+            }else{
+                inputWrapper.classList.add('has-value');
+                inputWrapper.classList.add('is-valid');
+            }
+        }
     }
 
     handleToggle(e:Event){
@@ -91,6 +152,8 @@ export default class extends AbstractModule{
             inputWrapper.classList.add('is-valid');
         }else{
             inputWrapper.classList.add('is-invalid');
+            const errorObject = inputWrapper.querySelector('.js-error');
+            if(errorObject) errorObject.innerHTML = el.validationMessage;
         }
     }
 

@@ -5,18 +5,10 @@ form{
     padding: 0;
     margin: 0;
 
+    // Base input wrapper
     .o-input{
         height: 56px;
-        overflow: hidden;
         position: relative;
-
-        &.is-invalid{
-            label{
-                color: $error !important;
-                font-size: 12px !important;
-                bottom: 34px !important;
-            }
-        }
 
         .-visible,
         .-hidden{
@@ -51,37 +43,376 @@ form{
         }
     }
 
-    input{
-        border: none;
-        padding: 20px 12px 6px;
-        background: transparent;
-        color: rgba($black, 0.87);
-        width: 100%;
-        font-size: 16px;
-        line-height: 16px;
+    // Radio input wrapper
+    // Radio buttons have a universal style
+    .o-radio{
+        position: relative;
+        padding: 32px 0 6px;
+        text-align: center;
 
-        ::placeholder{
-            color: rgba($black, 0.87);
+        label{
+            position: absolute;
+            top: 0;
+            left: 12px;
         }
 
-        &:invalid{
-            box-shadow: none;
-        }
+        .o-radio_item{
+            display: flex;
+            align-items: center;
+            margin: $unit $unit*2;
 
-        &:focus,
-        &:active{
-            box-shadow: none;
-            border: none;
-            outline: none;
+            @media (min-width: $screen-medium){
+                display: inline-flex;
+            }
+
+            label{
+                display: flex;
+                align-items: center;
+            }
+
+            &:hover{
+                cursor: pointer !important;
+
+                .o-radio_icon{
+                    &:before{
+                        transform: scale(1);
+                        opacity: 0.15;
+                        transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                    }   
+                }
+            }
+
+            &:active{
+                .o-radio_icon{
+                    &:before{
+                        opacity: 0;
+                        transition: opacity 75ms $ease-out;
+                    }
+
+                    &:after{
+                        transform: scale(1);
+                        opacity: 0.25;
+                        transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                    }
+                }
+            }
+
+            .o-radio_icon{
+                @include size(20px, 20px);
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-right: $unit;
+                position: relative;
+                pointer-events: none;
+
+                &::before{
+                    content:"";
+                    background: $primary;
+                    position: absolute;
+                    display: inline-block;
+                    border-radius: 100%;
+                    @include size(26px, 26px);
+                    transform: scale(0);
+                    opacity: 0;
+                    transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+                }
+
+                &::after{
+                    content:"";
+                    background: $primary;
+                    position: absolute;
+                    display: inline-block;
+                    border-radius: 100%;
+                    @include size(28px, 28px);
+                    transform: scale(0);
+                    opacity: 0;
+                    transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+                }
+
+                .o-radio_outter{
+                    @include size(16px, 16px);
+                    border-radius: 100%;
+                    border: 2px solid $primary;
+                    position: absolute;
+                }
+
+                .o-radio_inner{
+                    transform: scale(0);
+                    @include size(100%, 100%);
+                    border: solid 10px $primary;
+                    border-radius: 100%;
+                    position: absolute;
+                    transition: transform 125ms $ease-sharp;
+                }
+            }
+
+            input{
+                &:checked{
+                    & + label{
+                        .o-radio_icon{
+                            .o-radio_inner{
+                                transform: scale(0.5);
+                                transition: transform 150ms $ease-in;
+                            }
+                        }
+                    }
+                }
+    
+                & + label{
+                    vertical-align: middle;
+                    position: relative;
+                    left: 0;
+                    pointer-events: all;
+                    cursor: pointer;
+                }
+            }
         }
     }
 
+    // Checkbox input wrapper
+    // Checkbox inputs have a universal style
+    .o-checkbox{
+        position: relative;
+        padding: 32px 0 6px;
+
+        label{
+            position: absolute;
+            top: 0;
+            left: 12px;
+        }
+
+        .o-checkbox_item{
+
+            label{
+                height: 24px;
+                line-height: 24px;
+                display: flex;
+                align-items: center;
+                margin: $unit $unit*2;
+            }
+
+            &:hover{
+                cursor: pointer !important;
+
+                .o-checkbox_icon{
+                    &:before{
+                        transform: scale(1);
+                        opacity: 0.15;
+                        transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                    }   
+                }
+            }
+
+            &:active{
+                .o-checkbox_icon{
+                    &:before{
+                        opacity: 0;
+                        transition: opacity 75ms $ease-out;
+                    }
+
+                    &:after{
+                        transform: scale(1);
+                        opacity: 0.25;
+                        transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                    }
+                }
+            }
+
+            .o-checkbox_icon{
+                @include size(20px, 20px);
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-right: $unit;
+                position: relative;
+                pointer-events: none;
+
+                &::before{
+                    content:"";
+                    background: $primary;
+                    position: absolute;
+                    display: inline-block;
+                    border-radius: 100%;
+                    @include size(26px, 26px);
+                    transform: scale(0);
+                    opacity: 0;
+                    transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+                }
+
+                &::after{
+                    content:"";
+                    background: $primary;
+                    position: absolute;
+                    display: inline-block;
+                    border-radius: 100%;
+                    @include size(28px, 28px);
+                    transform: scale(0);
+                    opacity: 0;
+                    transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+                }
+
+                .o-checkbox_box{
+                    position: absolute;
+                    @include size(16px, 16px);
+                    border-radius: 2px;
+                    border: 2px solid $primary;
+                    background: transparent;
+                    transition: background 75ms $ease-sharp;
+                }
+
+                .o-checkbox_check{
+                    position: absolute;
+                    transform: scale(0.5);                    
+                    path{
+                        stroke: $white;
+                        stroke-width: 3px;
+                        stroke-linecap: round;
+                        stroke-dasharray: 30;
+                        stroke-dashoffset: 30;
+                        transition: stroke-dashoffset 75ms $ease-sharp;
+                    }
+                }
+            }
+
+            input{
+                &:checked{
+                    & + label{
+                        .o-checkbox_icon{
+                            .o-checkbox_box{
+                                background: $primary;
+                                transition: background 150ms $ease-in;
+                            }
+    
+                            .o-checkbox_check{
+                                path{
+                                    stroke-dashoffset: 0;
+                                    transition: stroke-dashoffset 150ms $ease-in;
+                                }
+                            }
+                        }
+                    }
+                }
+    
+                & ~ label{
+                    vertical-align: middle;
+                    position: relative;
+                    left: 0;
+                    pointer-events: all;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    // Text area input wrapper
+    .o-textarea{
+        position: relative;
+
+        &.is-invalid{
+            html.has-js & {
+                .o-error{
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition: transform 150ms $ease-in, opacity 25ms $ease-in;
+                }
+            }
+
+            textarea{
+                border: 2px solid $error;
+                padding: 31px 15px 15px;
+                transition: border 150ms $ease, padding 150ms $ease;
+
+                & + label{
+                    top: 12px;
+                    font-size: 12px;
+                    color: $error !important;
+                }
+            }
+        }
+
+        &.has-value{
+            textarea{
+                & + label{
+                    top: 12px;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    // Error reporting object
+    .o-error{
+        padding: $unit $unit-small 0;
+        @include position(absolute, 100% null null 0);
+        width: 100%;
+        font-size: 12px;
+        color: $error;
+        opacity: 0;
+        transform: translateY(5px);
+        transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+
+        svg{
+            margin-right: $unit;
+        }
+    }
+
+    // Dropdown arrow icon
+    .o-arrow{
+        @include position(absolute, 50% 12px null null);
+        transform: translateY(-60%);
+        color: $off-black;
+    }
+
+    // Text area has a universal style
+    textarea{
+        padding: 32px 16px 16px;
+        border-radius: 4px;
+        border: 1px solid $off-black;
+        width: 100%;
+        min-height: 106px;
+        background: transparent;
+        transition: border 75ms $ease-sharp, padding 75ms $ease-sharp;
+
+        & + label{
+            position: absolute;
+            top: 20px;
+            left: 16px !important;
+        }
+
+        &:focus{
+            border: 2px solid $primary;
+            padding: 31px 15px 15px;
+            transition: border 150ms $ease-in, padding 150ms $ease-in;
+
+            & + label{
+                top: 12px;
+                font-size: 12px !important;
+                color: $primary !important;
+            }
+        }
+    }
+
+    // Outline Input Style
     // &.-outline{
 
     // }
 
+    // Solid Input Style
     &.-solid{
         .o-input{
+            &.is-invalid{
+                input{
+                    & + label{
+                        color: $error;
+                        font-size: 12px;
+                        bottom: 34px;
+                    }
+                }
+            }
+
             html.has-js & {
                 &::after{
                     content: "";
@@ -93,67 +424,151 @@ form{
                     background: $primary;
                     transform-origin: center;
                 }
-
+    
                 &.has-focus{
                     &:after{
                         transform: scaleX(1);
                         transition: transform 150ms $ease-in;
                     }
                 }
-
+    
                 &.has-value{
                     label{
                         font-size: 12px;
-                        bottom: 34px;
+                        bottom: 35px;
                     }
                 }
-
+    
                 &.is-invalid{
                     &:after{
                         transform: scaleX(1);
                         background: $error;
                         transition: background 75ms $ease;
                     }
-                }
-            }
-
-            input{
-                height: 100%;
-                background: $off-white;
-                border-radius: 4px 4px 0 0;
-                border-bottom: 1px solid rgba($black, 0.42);
-                transition: border-bottom-color 75ms $ease-out;
-
-                &:focus{
-                    html.has-no-js & {
-                        border-bottom-color: $primary;
-                        transition: border-bottom-color 150ms $ease-in;
-                    }
-
-                    & + label{
-                        color: $primary;
-                        font-size: 12px;
-                        bottom: 34px;
-                        transition: all 150ms $ease-in;
-                    }
-                }
-            }
     
-            label{
-                color: rgba($black, 0.6);
-                pointer-events: none;
-                bottom: 18px;
-                position: absolute;
-                font-size: 16px;
-                left: 12px;
-                transition: all 75ms $ease-out;
+                    .o-error{
+                        opacity: 1;
+                        transform: translateY(0);
+                        transition: transform 150ms $ease-in, opacity 25ms $ease-in;
+                    }
+                }
+            }
 
-                html.has-no-js & {
-                    font-size: 12px;
-                    bottom: 34px;
+            input,
+            select{
+                & + label{
+                    bottom: 18px;
+                    left: 12px;
+                    position: absolute;
+    
+                    html.has-no-js & {
+                        font-size: 12px;
+                        bottom: 35px;
+                    }
                 }
             }
         }
+
+        label{
+            color: rgba($black, 0.6);
+            pointer-events: none;
+            font-size: 16px;
+            transition: all 75ms $ease-out;
+        }
+
+        input,
+        select{
+            height: 100%;
+            background: $off-white;
+            border-radius: 4px 4px 0 0;
+            border-bottom: 1px solid rgba($black, 0.42);
+            transition: border-bottom-color 75ms $ease-out, background 150ms $ease;
+
+            &:hover{
+                background: darken($off-white, 3);
+            }
+
+            &:focus{
+                background: darken($off-white, 5);
+
+                html.has-no-js & {
+                    border-bottom-color: $primary;
+                    transition: border-bottom-color 150ms $ease-in;
+                }
+
+                & + label{
+                    color: $primary;
+                    font-size: 12px;
+                    bottom: 35px;
+                    transition: all 150ms $ease-in;
+                }
+            }
+        }
+    }
+}
+
+// Normalize Inputs
+// ==========================================================================
+
+input,
+select,
+textarea,
+fieldset{
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    line-height: 16px;
+
+    &:focus,
+    &:active{
+        box-shadow: none;
+        border: none;
+        outline: none;
+    }
+}
+
+input,
+select{
+    padding: 20px 12px 6px;
+    background: transparent;
+    color: rgba($black, 0.87);
+}
+
+input[type=radio],
+input[type=checkbox]{
+    @include size(0px,0px);
+    position: absolute;
+    border: none;
+    outline: none;
+    background: transparent;
+    opacity: 0;
+    visibility: hidden;
+}
+
+input,
+textarea{
+    ::placeholder{
+        color: rgba($black, 0.87);
+    }
+}
+
+input[type=date]{
+    text-indent: -2px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+select{
+    @media (min-width: $screen-large){
+        text-indent: -2px;
+    }
+
+    html.has-js & {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
     }
 }
 

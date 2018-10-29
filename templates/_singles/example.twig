@@ -158,6 +158,76 @@
                 {{ form.password('Password', 'password', 'u-1/1 u-1/2@medium', true) }}
 
                 {{ form.pin('Pin', 'pin', 'u-1/1 u-1/2@medium', true) }}
+
+                {% set options = [
+                    { 
+                        title: 'Orange',
+                        value: 'orange'
+                    },
+                    { 
+                        title: 'Cat',
+                        value: 'cat'
+                    },
+                    { 
+                        title: 'Spider',
+                        value: 'spider'
+                    },
+                ] %}
+                {{ form.select('Favorite Thing', 'favThing', options, true, 'u-1/1 u-1/2@medium') }}
+
+                {{ form.textarea('Description', 'desc') }}
+
+                {% set flavors = [
+                    { 
+                        title: 'Cookie Dough',
+                        value: 'cookieDough'
+                    },
+                    { 
+                        title: 'Candy Bar',
+                        value: 'candyBar'
+                    },
+                    { 
+                        title: 'Birthday Cake',
+                        value: 'birthdayCake'
+                    },
+                    { 
+                        title: 'Chocolate',
+                        value: 'chocolate'
+                    },
+                    { 
+                        title: 'Lemon Cake',
+                        value: 'lemonCake'
+                    },
+                ] %}
+
+                {{ form.radio('Favorite Flavor', 'favFlavor', flavors) }}
+
+                {% set otherFlavors = [
+                    { 
+                        title: 'Mint Chip',
+                        value: 'mintChip'
+                    },
+                    { 
+                        title: 'Chocolate Moca Chip',
+                        value: 'chocolateMocaChip'
+                    },
+                    { 
+                        title: 's\'mores',
+                        value: 'smores'
+                    },
+                    { 
+                        title: 'Peanut Butter Cup',
+                        value: 'peanutButterCup'
+                    },
+                    { 
+                        title: 'Cookies & Cream',
+                        value: 'cookiesAndCream'
+                    },
+                ] %}
+
+                {{ form.checkbox('Backup Favorites', 'otherFlavors', otherFlavors) }}
+
+                {{ form.date('Birthday', 'birthday') }}
             </form>
             <hr class="u-margin-vertical-x6" />
             <h3 class="u-text-center u-margin-bottom-x6">Outline Style Input Example</h3>
