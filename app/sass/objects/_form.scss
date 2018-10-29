@@ -17,6 +17,38 @@ form{
                 bottom: 34px !important;
             }
         }
+
+        .-visible,
+        .-hidden{
+            @include position(absolute, 50% 12px null null);
+            transform: translateY(-50%);
+            color: $off-black;
+            cursor: pointer;
+        }
+
+        // Used for password and pin inputs
+        // The password field is hidden (default)
+        &.has-content-hidden{
+            .-visible{
+                display: none;
+            }
+
+            .-hidden{
+                display: inline-block;
+            }
+        }
+
+        // Used for password and pin inputs
+        // The password field is visible
+        &.has-content-visible{
+            .-visible{
+                display: inline-block;
+            }
+
+            .-hidden{
+                display: none;
+            }
+        }
     }
 
     input{
@@ -44,9 +76,9 @@ form{
         }
     }
 
-    &.-outline{
+    // &.-outline{
 
-    }
+    // }
 
     &.-solid{
         .o-input{

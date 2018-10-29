@@ -860,8 +860,7 @@ table {
   white-space: nowrap;
   /**
      * Force all cells within a table to occupy the same width as each other.
-     *
-     * @link https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout#Values
+     * @see https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout#Values
      */ }
   table thead {
     margin: 0;
@@ -965,6 +964,22 @@ form {
       color: #ff6e6e !important;
       font-size: 12px !important;
       bottom: 34px !important; }
+    form .o-input .-visible,
+    form .o-input .-hidden {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      color: #434343;
+      cursor: pointer; }
+    form .o-input.has-content-hidden .-visible {
+      display: none; }
+    form .o-input.has-content-hidden .-hidden {
+      display: inline-block; }
+    form .o-input.has-content-visible .-visible {
+      display: inline-block; }
+    form .o-input.has-content-visible .-hidden {
+      display: none; }
   form input {
     border: none;
     padding: 20px 12px 6px;
@@ -1082,7 +1097,7 @@ button,
     .o-button.has-icon svg {
       height: 18px;
       width: 18px;
-      transform: translateY(1px);
+      transform: translateY(3px);
       margin-right: 8px; }
   button.-solid,
   .o-button.-solid {

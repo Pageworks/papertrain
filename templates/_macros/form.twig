@@ -2,7 +2,7 @@
 {% macro input(label, name, type = 'text', width = 'u-1/1', required = true, autocomplete, pattern, margin = 'u-margin-bottom-x6') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-input">
-            <input type="{{type}}" {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern %}pattern="{{pattern}}"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+            <input type="{{type}}" {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern %}pattern="{{pattern}}"{% elseif type == 'email' %}pattern=".+@.+\..+"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
             <label>{{label}}</label>
         </div>
     </div>
@@ -19,11 +19,17 @@
 {% endmacro %}
 
 {# Password Form Input #}
-{% macro password(label, name, width = 'u-1/1', required = true, pattern = '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$', margin = 'u-margin-bottom-x6') %}
+{% macro password(label, name, width = 'u-1/1', required = true, margin = 'u-margin-bottom-x6', pattern) %}
     <div class="o-layout_item {{width}} {{margin}}">
-        <div class="js-input o-input">
-            <input type="password" pattern="{{pattern}}" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+        <div class="js-input o-input has-content-hidden">
+            <input type="password" pattern="{% if not pattern %}^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}${% else %}{{pattern}}{% endif %}" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
             <label>{{label}}</label>
+            <a href="javascript:void(0);" class="js-password-toggle -hidden">
+                <i class="fas fa-eye"></i>
+            </a>
+            <a href="javascript:void(0);" class="js-password-toggle -visible">
+                <i class="fas fa-eye-slash"></i>
+            </a>
         </div>
     </div>
 {% endmacro %}
@@ -31,9 +37,15 @@
 {# Pin Form Input #}
 {% macro pin(label, name, width = 'u-1/1', required = true,  min = 4, max = 8, pattern = '^[0-9]*', margin = 'u-margin-bottom-x6') %}
     <div class="o-layout_item {{width}} {{margin}}">
-        <div class="js-input o-input">
+        <div class="js-input o-input has-content-hidden">
             <input type="password" inputmode="numeric" minlength="{{min}}" maxlength="{{max}}" pattern="{{pattern}}" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
             <label>{{label}}</label>
+            <a href="javascript:void(0);" class="js-password-toggle -hidden">
+                <i class="fas fa-eye"></i>
+            </a>
+            <a href="javascript:void(0);" class="js-password-toggle -visible">
+                <i class="fas fa-eye-slash"></i>
+            </a>
         </div>
     </div>
 {% endmacro %}

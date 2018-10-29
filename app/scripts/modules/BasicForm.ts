@@ -5,13 +5,15 @@ import { getParent } from '../utils/getParent';
 const MODULE_NAME = 'BasicForm';
 
 export default class extends AbstractModule{
-    inputs: NodeList
+    inputs:             NodeList
+    passwordToggles:    NodeList
 
     constructor(el: Element){
         super(el);
         if(isDebug) console.log('%c[module] '+`%cBuilding: ${MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
-        this.inputs = this.el.querySelectorAll('input');
+        this.inputs             = this.el.querySelectorAll('input');
+        this.passwordToggles    = this.el.querySelectorAll('.js-password-toggle');
     }
 
     /**
@@ -22,41 +24,89 @@ export default class extends AbstractModule{
     init(){
         this.inputs.forEach((el)=>{ el.addEventListener('focus', e => this.handleFocus(e) ); });
         this.inputs.forEach((el)=>{ el.addEventListener('blur', e => this.handleBlur(e) ); });
+        this.inputs.forEach((el)=>{ el.addEventListener('keyup', e => this.handleKeystroke(e) ); });
+
+        this.passwordToggles.forEach((el)=>{ el.addEventListener('click', e => this.handleToggle(e) ); });
+
+        this.inputs.forEach((el)=>{
+            if(el.value !== '' || el.innerText !== '') this.handleInputStatus(el);
+        });
+    }
+
+    handleToggle(e:Event){
+        if (e.target instanceof Element){
+            const inputWrapper  = getParent(e.target, 'js-input');
+            const input         = inputWrapper.querySelector('input');
+
+            if(inputWrapper.classList.contains('has-content-hidden')){
+                inputWrapper.classList.remove('has-content-hidden');
+                inputWrapper.classList.add('has-content-visible');
+                input.setAttribute('type', 'text');
+            }else{
+                inputWrapper.classList.add('has-content-hidden');
+                inputWrapper.classList.remove('has-content-visible');
+                input.setAttribute('type', 'password');
+            }
+        }
     }
 
     /**
-     * @todo Call when a user is typing into an input, if the input is valid remove any `is-invalid` status classes
+     * Called when we need to make sure an input is valid.
+     * If the input has innerText and a value and is valid return true.
+     * @param {HTMLInputElement} el input element
+     */
+    validityCheck(el:HTMLInputElement){
+        let isValid = true;
+        if(el.innerText === '' && el.value === '' && el.getAttribute('required') !== null) isValid = false;
+        else if(!el.validity.valid) isValid = false;
+        return isValid;
+    }
+
+    /**
+     * Called whenever a user releases a key while an input is in focus.
+     * If the target is an input element and the input was marked as `is-invalid` on the previous blur event
+     * we should check if the issue has been fixed. If it has add our `is-valid` class, otherwise, do nothing.
+     * @param {Event} e
      */
     handleKeystroke(e:Event){
+        if (e.target instanceof HTMLInputElement){
+            const inputWrapper = getParent(e.target, 'js-input');
 
+            if(inputWrapper.classList.contains('is-invalid')){
+                if(this.validityCheck(e.target)){
+                    inputWrapper.classList.add('is-valid');
+                    inputWrapper.classList.remove('is-invalid');
+                }
+            }
+        }
+    }
+
+    handleInputStatus(el:HTMLInputElement){
+        const inputWrapper = getParent(el, 'js-input');
+        inputWrapper.classList.remove('has-focus');
+        inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+
+        if(this.validityCheck(el)){
+            inputWrapper.classList.add('has-value');
+            inputWrapper.classList.add('is-valid');
+        }else{
+            inputWrapper.classList.add('is-invalid');
+        }
     }
 
     /**
      * Sets the status classes for the input wrapper based on the inputs validity
      * @todo Call on init to check prefilled inputs
      * @see https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
-     * @param {Event} e input element
+     * @param {Event} e
      */
     handleBlur(e:Event){
-        const targetEl = <HTMLInputElement>e.target;
-        const inputWrapper = getParent(<Element>e.target, 'js-input');
-        inputWrapper.classList.remove('has-focus');
-
-        inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
-
-        if(targetEl.value && targetEl.validity.valid){
-            inputWrapper.classList.add('has-value');
-            inputWrapper.classList.add('is-valid');
-        }
-
-        if(!targetEl.validity.valid){
-            inputWrapper.classList.add('is-invalid');
-        }
+        if (e.target instanceof HTMLInputElement) this.handleInputStatus(e.target);
     }
 
     /**
      * Sets the `has-focus` status class to the inputs wrapper
-     * @param {Event} e input element
+     * @param {Event} e
      */
     handleFocus(e:Event){
         const inputWrapper = getParent(<Element>e.target, 'js-input');
@@ -70,6 +120,8 @@ export default class extends AbstractModule{
     destroy(){
         this.inputs.forEach((el)=>{ el.removeEventListener('focus', e => this.handleFocus(e) ); });
         this.inputs.forEach((el)=>{ el.removeEventListener('blur', e => this.handleBlur(e) ); });
+        this.inputs.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleKeystroke(e) ); });
+        this.passwordToggles.forEach((el)=>{ el.removeEventListener('click', e => this.handleToggle(e) ); });
         super.destroy(isDebug, MODULE_NAME);
     }
 }

@@ -370,6 +370,7 @@ var default_1 = /** @class */ (function (_super) {
         if (env_1.isDebug)
             console.log('%c[module] ' + ("%cBuilding: " + MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
         _this.inputs = _this.el.querySelectorAll('input');
+        _this.passwordToggles = _this.el.querySelectorAll('.js-password-toggle');
         return _this;
     }
     /**
@@ -381,34 +382,84 @@ var default_1 = /** @class */ (function (_super) {
         var _this = this;
         this.inputs.forEach(function (el) { el.addEventListener('focus', function (e) { return _this.handleFocus(e); }); });
         this.inputs.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleBlur(e); }); });
+        this.inputs.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
+        this.passwordToggles.forEach(function (el) { el.addEventListener('click', function (e) { return _this.handleToggle(e); }); });
+        this.inputs.forEach(function (el) {
+            if (el.value !== '' || el.innerText !== '')
+                _this.handleInputStatus(el);
+        });
+    };
+    default_1.prototype.handleToggle = function (e) {
+        if (e.target instanceof Element) {
+            var inputWrapper = getParent_1.getParent(e.target, 'js-input');
+            var input = inputWrapper.querySelector('input');
+            if (inputWrapper.classList.contains('has-content-hidden')) {
+                inputWrapper.classList.remove('has-content-hidden');
+                inputWrapper.classList.add('has-content-visible');
+                input.setAttribute('type', 'text');
+            }
+            else {
+                inputWrapper.classList.add('has-content-hidden');
+                inputWrapper.classList.remove('has-content-visible');
+                input.setAttribute('type', 'password');
+            }
+        }
     };
     /**
-     * @todo Call when a user is typing into an input, if the input is valid remove any `is-invalid` status classes
+     * Called when we need to make sure an input is valid.
+     * If the input has innerText and a value and is valid return true.
+     * @param {HTMLInputElement} el input element
+     */
+    default_1.prototype.validityCheck = function (el) {
+        var isValid = true;
+        if (el.innerText === '' && el.value === '' && el.getAttribute('required') !== null)
+            isValid = false;
+        else if (!el.validity.valid)
+            isValid = false;
+        return isValid;
+    };
+    /**
+     * Called whenever a user releases a key while an input is in focus.
+     * If the target is an input element and the input was marked as `is-invalid` on the previous blur event
+     * we should check if the issue has been fixed. If it has add our `is-valid` class, otherwise, do nothing.
+     * @param {Event} e
      */
     default_1.prototype.handleKeystroke = function (e) {
+        if (e.target instanceof HTMLInputElement) {
+            var inputWrapper = getParent_1.getParent(e.target, 'js-input');
+            if (inputWrapper.classList.contains('is-invalid')) {
+                if (this.validityCheck(e.target)) {
+                    inputWrapper.classList.add('is-valid');
+                    inputWrapper.classList.remove('is-invalid');
+                }
+            }
+        }
+    };
+    default_1.prototype.handleInputStatus = function (el) {
+        var inputWrapper = getParent_1.getParent(el, 'js-input');
+        inputWrapper.classList.remove('has-focus');
+        inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+        if (this.validityCheck(el)) {
+            inputWrapper.classList.add('has-value');
+            inputWrapper.classList.add('is-valid');
+        }
+        else {
+            inputWrapper.classList.add('is-invalid');
+        }
     };
     /**
      * Sets the status classes for the input wrapper based on the inputs validity
      * @todo Call on init to check prefilled inputs
      * @see https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
-     * @param {Event} e input element
+     * @param {Event} e
      */
     default_1.prototype.handleBlur = function (e) {
-        var targetEl = e.target;
-        var inputWrapper = getParent_1.getParent(e.target, 'js-input');
-        inputWrapper.classList.remove('has-focus');
-        inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
-        if (targetEl.value && targetEl.validity.valid) {
-            inputWrapper.classList.add('has-value');
-            inputWrapper.classList.add('is-valid');
-        }
-        if (!targetEl.validity.valid) {
-            inputWrapper.classList.add('is-invalid');
-        }
+        if (e.target instanceof HTMLInputElement)
+            this.handleInputStatus(e.target);
     };
     /**
      * Sets the `has-focus` status class to the inputs wrapper
-     * @param {Event} e input element
+     * @param {Event} e
      */
     default_1.prototype.handleFocus = function (e) {
         var inputWrapper = getParent_1.getParent(e.target, 'js-input');
@@ -422,6 +473,8 @@ var default_1 = /** @class */ (function (_super) {
         var _this = this;
         this.inputs.forEach(function (el) { el.removeEventListener('focus', function (e) { return _this.handleFocus(e); }); });
         this.inputs.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleBlur(e); }); });
+        this.inputs.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
+        this.passwordToggles.forEach(function (el) { el.removeEventListener('click', function (e) { return _this.handleToggle(e); }); });
         _super.prototype.destroy.call(this, env_1.isDebug, MODULE_NAME);
     };
     return default_1;
