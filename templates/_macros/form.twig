@@ -199,3 +199,23 @@
         </div>
     </div>
 {% endmacro %}
+
+{# Switch Form Input #}
+{% macro switch(label, name, checked = true, width = 'u-1/1', margin = 'u-margin-bottom-x6') %}
+    <div class="o-layout_item {{width}} {{margin}}">
+        <div class="js-input o-switch">
+            <div class="o-switch_item">
+                <input type="checkbox" id="id-{{name}}" name="{{name}}" value="{{name}}" {% if checked %}checked{% endif %} />
+                <label for="id-{{name}}">
+                    <span>{{label}}</span>
+                    <div class="o-switch_icon">
+                        <div class="o-switch_track"></div>
+                        <div class="o-switch_handle">
+                            <div class="o-switch_circle"></div>
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
