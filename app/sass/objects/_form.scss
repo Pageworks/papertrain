@@ -10,6 +10,13 @@ form{
         height: 56px;
         position: relative;
 
+        &.is-invalid{
+            .o-help{
+                opacity: 0;
+                transition: opacity 25ms $ease-sharp;
+            }
+        }
+
         .-visible,
         .-hidden{
             @include position(absolute, null 12px 18px null);
@@ -349,20 +356,32 @@ form{
         }
     }
 
-    // Error reporting object
-    .o-error{
+    // Text objects
+    .o-error,
+    .o-help{
         padding: $unit $unit-small 0;
         @include position(absolute, 100% null null 0);
         width: 100%;
-        font-size: 12px;
-        color: $error;
-        opacity: 0;
-        transform: translateY(5px);
-        transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+        color: $helper-dark;
+        font-size: 12px;        
 
         svg{
             margin-right: $unit;
         }
+    }
+
+    // Error object
+    .o-error{
+        color: $error;
+        opacity: 0;
+        transform: translateY(5px);
+        transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+    }
+
+    // Helper object
+    .o-help{
+        opacity: 1;
+        transition: opacity 150ms 75ms $ease-sharp;
     }
 
     // Dropdown arrow icon
