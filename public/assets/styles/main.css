@@ -977,11 +977,12 @@ form {
     form .o-input .-visible,
     form .o-input .-hidden {
       position: absolute;
-      top: 50%;
       right: 12px;
-      transform: translateY(-50%);
+      bottom: 18px;
       color: #434343;
       cursor: pointer; }
+    form .o-input.has-content-hidden input, form .o-input.has-content-visible input {
+      padding-right: 34px !important; }
     form .o-input.has-content-hidden .-visible {
       display: none; }
     form .o-input.has-content-hidden .-hidden {
@@ -1220,17 +1221,30 @@ form {
         top: 12px;
         font-size: 12px !important;
         color: #f1ac44 !important; }
+  form input.has-icon {
+    padding-left: 48px !important;
+    padding-right: 16px !important; }
+  form .o-icon {
+    position: absolute;
+    left: 17px;
+    bottom: 17px;
+    font-size: 22px; }
   form.-outline .o-input.is-invalid input {
     border: 2px solid rgba(255, 110, 110, 0.87);
-    padding: 11px 15px 13px;
+    padding: 11px 15px 9px;
     transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); }
     form.-outline .o-input.is-invalid input + label {
       color: #ff6e6e;
       font-size: 12px;
-      bottom: 48px; }
+      bottom: 48px;
+      left: 16px; }
+  html.has-js form.-outline .o-input.has-value input,
+  html.has-js form.-outline .o-input.has-value select {
+    padding: 11px 15px 9px; }
   html.has-js form.-outline .o-input.has-value label {
     font-size: 12px;
-    bottom: 48px; }
+    bottom: 48px;
+    left: 16px; }
   html.has-js form.-outline .o-input.is-invalid .o-error {
     opacity: 1;
     transform: translateY(0);
@@ -1244,6 +1258,11 @@ form {
     form.-outline .o-input select + label {
       font-size: 12px;
       bottom: 48px; }
+  form.-outline input.has-icon {
+    padding-left: 48px !important;
+    padding-right: 16px !important; }
+    form.-outline input.has-icon + label {
+      left: 48px; }
   form.-outline label {
     color: rgba(7, 7, 7, 0.6);
     pointer-events: none;
@@ -1255,7 +1274,7 @@ form {
     height: 100%;
     background: transparent;
     border-radius: 4px;
-    padding: 12px 16px 14px;
+    padding: 12px 16px 10px;
     border: 1px solid rgba(67, 67, 67, 0.3);
     transition: all 75ms cubic-bezier(0.4, 0, 0.6, 1); }
     form.-outline input + label,
@@ -1271,13 +1290,14 @@ form {
     form.-outline input:focus,
     form.-outline select:focus {
       border: 2px solid rgba(241, 172, 68, 0.87);
-      padding: 11px 15px 13px;
+      padding: 11px 15px 9px;
       transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
       form.-outline input:focus + label,
       form.-outline select:focus + label {
         color: #f1ac44;
         font-size: 12px;
         bottom: 48px;
+        left: 16px;
         background: #fafafa;
         transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
   form.-solid .o-input.is-invalid input + label {
@@ -1324,6 +1344,8 @@ form {
     pointer-events: none;
     font-size: 16px;
     transition: all 75ms cubic-bezier(0.4, 0, 1, 1); }
+  form.-solid input.has-icon + label {
+    left: 48px; }
   form.-solid input,
   form.-solid select {
     height: 100%;
@@ -1377,7 +1399,9 @@ fieldset {
 input,
 select {
   background: transparent;
-  color: rgba(7, 7, 7, 0.87); }
+  color: rgba(7, 7, 7, 0.87);
+  white-space: nowrap;
+  text-overflow: ellipsis; }
 
 input[type=radio],
 input[type=checkbox] {

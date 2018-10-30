@@ -154,8 +154,10 @@ export default class extends AbstractModule{
         inputWrapper.classList.remove('has-focus');
         inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
 
+        console.log(el);
+
         if(this.validityCheck(el)){
-            inputWrapper.classList.add('has-value');
+            if(el.value !== '' || el.innerText !== '') inputWrapper.classList.add('has-value');
             inputWrapper.classList.add('is-valid');
         }else{
             inputWrapper.classList.add('is-invalid');

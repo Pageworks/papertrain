@@ -501,8 +501,10 @@ var default_1 = /** @class */ (function (_super) {
         var inputWrapper = getParent_1.getParent(el, 'js-input');
         inputWrapper.classList.remove('has-focus');
         inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+        console.log(el);
         if (this.validityCheck(el)) {
-            inputWrapper.classList.add('has-value');
+            if (el.value !== '' || el.innerText !== '')
+                inputWrapper.classList.add('has-value');
             inputWrapper.classList.add('is-valid');
         }
         else {

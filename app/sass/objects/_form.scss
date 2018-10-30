@@ -12,10 +12,16 @@ form{
 
         .-visible,
         .-hidden{
-            @include position(absolute, 50% 12px null null);
-            transform: translateY(-50%);
+            @include position(absolute, null 12px 18px null);
             color: $off-black;
             cursor: pointer;
+        }
+
+        &.has-content-hidden,
+        &.has-content-visible{
+            input{
+                padding-right: 34px !important;
+            }
         }
 
         // Used for password and pin inputs
@@ -395,28 +401,49 @@ form{
         }
     }
 
+    input{
+        &.has-icon{
+            padding-left: 48px !important;
+            padding-right: 16px !important;
+        }
+    }
+
+    .o-icon{
+        position: absolute;
+        left: 17px;
+        bottom: 17px;
+        font-size: 22px;
+    }
+
     // Outline Input Style
     &.-outline{
         .o-input{
             &.is-invalid{
                 input{
                     border: 2px solid rgba($error, 0.87);
-                    padding: 11px 15px 13px;
+                    padding: 11px 15px 9px;
                     transition: all 150ms $ease;
 
                     & + label{
                         color: $error;
                         font-size: 12px;
                         bottom: 48px;
+                        left: 16px;
                     }
                 }
             }
 
             html.has-js & {
                 &.has-value{
+                    input,
+                    select{
+                        padding: 11px 15px 9px;
+                    }
+
                     label{
                         font-size: 12px;
                         bottom: 48px;
+                        left: 16px;
                     }
                 }
     
@@ -444,6 +471,17 @@ form{
             }
         }
 
+        input{
+            &.has-icon{
+                padding-left: 48px !important;
+                padding-right: 16px !important;
+
+                & + label{
+                    left: 48px;
+                }
+            }
+        }
+
         label{
             color: rgba($black, 0.6);
             pointer-events: none;
@@ -457,7 +495,7 @@ form{
             height: 100%;
             background: transparent;
             border-radius: 4px;
-            padding: 12px 16px 14px;
+            padding: 12px 16px 10px;
             border: 1px solid rgba($off-black, 0.3);
             transition: all 75ms $ease-sharp;
 
@@ -475,13 +513,14 @@ form{
 
             &:focus{
                 border: 2px solid rgba($primary, 0.87);
-                padding: 11px 15px 13px;
+                padding: 11px 15px 9px;
                 transition: all 150ms $ease-in;
 
                 & + label{
                     color: $primary;
                     font-size: 12px;
                     bottom: 48px;
+                    left: 16px;
                     background: $white;
                     transition: all 150ms $ease-in;
                 }
@@ -565,6 +604,14 @@ form{
             transition: all 75ms $ease-out;
         }
 
+        input{
+            &.has-icon{
+                & + label{
+                    left: 48px;
+                }
+            }
+        }
+
         input,
         select{
             height: 100%;
@@ -626,6 +673,8 @@ input,
 select{
     background: transparent;
     color: rgba($black, 0.87);
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 input[type=radio],

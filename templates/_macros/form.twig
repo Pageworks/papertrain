@@ -1,9 +1,10 @@
 {# Basic Form Input #}
-{% macro input(label, name, type = 'text', width = 'u-1/1', required = true, autocomplete, pattern, margin = 'u-margin-bottom-x6') %}
+{% macro input(label, name, type = 'text', width = 'u-1/1', required = true, autocomplete, icon, pattern, margin = 'u-margin-bottom-x6') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-input">
-            <input type="{{type}}" {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern %}pattern="{{pattern}}"{% elseif type == 'email' %}pattern=".+@.+\..+"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+            <input {% if icon %}class="has-icon"{% endif %} type="{{type}}" {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern %}pattern="{{pattern}}"{% elseif type == 'email' %}pattern=".+@.+\..+"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
             <label>{{label}}</label>
+            {% if icon %}<i class="o-icon {{icon}}"></i>{% endif %}
             <div class="o-error">
                 <i class="far fa-exclamation-circle"></i>
                 <span class="js-error o-error_message">Something went wrong.</span>
@@ -13,11 +14,12 @@
 {% endmacro %}
 
 {# Number Form Input #}
-{% macro number(label, name, width = 'u-1/1', required = true, min = 0, max, step, margin = 'u-margin-bottom-x6') %}
+{% macro number(label, name, width = 'u-1/1', required = true, icon, min = 0, max, step, margin = 'u-margin-bottom-x6') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-input">
-            <input type="number" min="{{min}}" inputmode="numeric" {% if max %}max="{{max}}"{% endif %} {% if step %}step="{{step}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+            <input {% if icon %}class="has-icon"{% endif %} type="number" min="{{min}}" inputmode="numeric" {% if max %}max="{{max}}"{% endif %} {% if step %}step="{{step}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
             <label>{{label}}</label>
+            {% if icon %}<i class="o-icon {{icon}}"></i>{% endif %}
             <div class="o-error">
                 <i class="far fa-exclamation-circle"></i>
                 <span class="js-error o-error_message">Something went wrong.</span>
@@ -141,11 +143,12 @@
 {% endmacro %}
 
 {# Date Form Input #}
-{% macro date(label, name, required = true, width = 'u-1/1', startDate, minDate, maxDate, margin = 'u-margin-bottom-x6') %}
+{% macro date(label, name, required = true, width = 'u-1/1', icon = 'far fa-calendar-alt', startDate, minDate, maxDate, margin = 'u-margin-bottom-x6') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-input">
-            <input type="date" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} value="{% if startDate %}{{startDate}}{% else %}{{now|date('Y-m-d')}}{% endif %}" {% if minDate %}min="{{minDate}}"{% endif %} {% if maxDate %}max="{{maxDate}}"{% endif %} pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" />
+            <input {% if icon %}class="has-icon"{% endif %} type="date" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} value="{% if startDate %}{{startDate}}{% else %}{{now|date('Y-m-d')}}{% endif %}" {% if minDate %}min="{{minDate}}"{% endif %} {% if maxDate %}max="{{maxDate}}"{% endif %} pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" />
             <label>{{label}}</label>
+            {% if icon %}<i class="o-icon {{icon}}"></i>{% endif %}
             <div class="o-error">
                 <i class="far fa-exclamation-circle"></i>
                 <span class="js-error o-error_message">Something went wrong.</span>
