@@ -1,6 +1,24 @@
 {% extends '_layouts/base' %}
+{% import '_macros/form' as form %}
+
 {% block content %}
-    <section data-template="Example Page" class="o-container-full u-padding-vertical-x6 u-mobile-padding">
+    <section data-template="Example Page" class="js-section o-container-full -dark-background u-padding-vertical-x6 u-mobile-padding">
+        <div class="o-wrapper" style="position:fixed;top:0;right:0;padding:16px 32px 0 0;">
+            <div class="js-dark-mode-input o-switch">
+                <div class="o-switch_item">
+                    <input type="checkbox" id="id-dark-mode" value="1" checked />
+                    <label for="id-dark-mode">
+                        <span class="u-margin-right-x2">Dark Mode</span>
+                        <div class="o-switch_icon">
+                            <div class="o-switch_track"></div>
+                            <div class="o-switch_handle">
+                                <div class="o-switch_circle"></div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
         <h1 class="u-text-center">Base Elements</h1>
         <hr class="u-margin-vertical-x6"/>
         <div class="o-container">
@@ -69,7 +87,7 @@
                     <a href="javascript:void(0);" class="u-margin-bottom-x2 o-button -solid -wide"><span>Button</span></a>
                 </div>
                 <hr class="u-margin-vertical-x6"/>
-                <div class="o-layout_item u-1/1 u-3/5@medium u-margin-bottom-x4">
+                <div class="o-layout_item u-1/1 u-1/2@medium u-margin-bottom-x4">
                     <table class="o-table">
                         <thead>
                             <tr>
@@ -115,7 +133,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="o-layout_item u-1/1 u-1/5@medium u-text-center u-margin-bottom-x4">
+                <div class="o-layout_item u-1/1 u-1/2@medium u-text-center u-margin-bottom-x4">
                     <ul class="o-wrapper">
                         <li><span>Single-line item</span></li>
                         <li><span>Single-line item</span></li>
@@ -137,7 +155,7 @@
                         <li><span>Single-line item</span></li>
                     </ul>
                 </div>
-                <div class="o-layout_item u-1/1 u-1/5@medium u-text-center u-margin-bottom-x4">
+                <div class="o-layout_item u-1/1 u-1/2@medium u-text-center u-margin-bottom-x4">
                     <ol class="o-wrapper">
                         <li><span>Single-line item</span></li>
                         <li><span>Single-line item</span></li>
@@ -151,12 +169,11 @@
                         <li><span>Single-line item</span></li>
                         <li><span>Single-line item</span></li>
                         <li><span>Single-line item</span></li>
-                    </ol>
+                    </ul>
                 </div>
             </div>
             <hr class="u-margin-vertical-x6" />
         </div>
-        {% import '_macros/form' as form %}
         <div class="o-container-narrow">
             <h3 class="u-text-center u-margin-bottom-x6">Solid Style Input Example</h3>
             <form class="o-layout -gutter -solid" data-module="BasicForm">
@@ -275,3 +292,19 @@
     </section>
 <!-- Content -->
 {% endblock %}
+
+{% js %}
+    var darkModeToggle = document.body.querySelector('.js-dark-mode-input');
+    var darkModeInput = darkModeToggle.querySelector('input');
+    var section = document.body.querySelector('.js-section');
+    if(darkModeToggle && section && darkModeInput) darkModeToggle.addEventListener('click', function(e){
+        e.preventDefault();
+        if(section.classList.contains('-dark-background')){
+            section.classList.remove('-dark-background');
+            darkModeInput.removeAttribute('checked');
+        }else{
+            section.classList.add('-dark-background');
+            darkModeInput.setAttribute('checked', true);
+        }
+    });
+{% endjs %}

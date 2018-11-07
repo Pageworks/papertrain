@@ -1,6 +1,133 @@
 // Forms
 // ==========================================================================
 
+// Switch (styled single checkbox) input wrapper
+// Switch inputs have a universal style
+.o-switch{
+    height: 48px;
+    width: 100%;
+
+    .o-switch_item{
+        width: 100%;
+        height: 100%;
+
+        input{
+            &:checked{
+                & + label{
+                    .o-switch_icon{
+                        .o-switch_handle{
+                            transform: translateX(20px);
+
+                            .o-switch_circle{
+                                border-color: $primary;
+                            }
+                        }
+
+                        .o-switch_track{
+                            background: $primary;
+                            opacity: 0.54;
+                        }
+                    }
+                }
+            }
+        }
+        
+        label{
+            @include size(100%, 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            pointer-events: all;
+
+            .o-switch_icon{
+                // pointer-events: none;
+                display: inline-flex;
+                align-items: center;
+                cursor: pointer;
+
+                &:active{
+                    .o-switch_handle{
+                        &:before{
+                            opacity: 0;
+                            transition: opacity 75ms $ease-out;
+                        }
+    
+                        &:after{
+                            transform: scale(1);
+                            opacity: 0.25;
+                            transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                        }
+                    }
+                }
+
+                &:hover{
+                    .o-switch_handle{
+                        &:before{
+                            transform: scale(1);
+                            opacity: 0.15;
+                            transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                        }
+                    }
+                }
+
+                .o-switch_track{
+                    opacity: 0.38;
+                    border-radius: 7px;
+                    @include size(30px, 12px);
+                    background: $black;
+                    transition: background 75ms $ease;
+                }
+
+                .o-switch_handle{
+                    @include size(10px, 10px);
+                    position: absolute;
+                    transform: translateX(0);
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    transition: transform 150ms $ease;
+
+                    .o-switch_circle{
+                        border: 10px solid $white;
+                        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+                        border-radius: 100%;
+                        position: absolute;
+                        z-index: 5;
+                        transition: border-color 75ms $ease;
+                    }
+
+                    &::before{
+                        content:"";
+                        background: $primary;
+                        position: absolute;
+                        display: inline-block;
+                        border-radius: 100%;
+                        @include size(42px, 42px);
+                        transform: scale(0);
+                        opacity: 0;
+                        z-index: 1;
+                        transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+                    }
+    
+                    &::after{
+                        content:"";
+                        background: $primary;
+                        position: absolute;
+                        display: inline-block;
+                        border-radius: 100%;
+                        @include size(42px, 42px);
+                        transform: scale(0);
+                        opacity: 0;
+                        z-index: 2;
+                        transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+                    }
+                }
+            }
+        }
+    }
+}
+
 form{
     padding: 0;
     margin: 0;
@@ -22,6 +149,10 @@ form{
             @include position(absolute, null 12px 18px null);
             color: $off-black;
             cursor: pointer;
+
+            section.-dark-background & {
+                color: $font-alt;
+            }
         }
 
         &.has-content-hidden,
@@ -320,133 +451,6 @@ form{
         }
     }
 
-    // Switch (styled single checkbox) input wrapper
-    // Switch inputs have a universal style
-    .o-switch{
-        height: 48px;
-        width: 100%;
-
-        .o-switch_item{
-            width: 100%;
-            height: 100%;
-
-            input{
-                &:checked{
-                    & + label{
-                        .o-switch_icon{
-                            .o-switch_handle{
-                                transform: translateX(20px);
-
-                                .o-switch_circle{
-                                    border-color: $primary;
-                                }
-                            }
-
-                            .o-switch_track{
-                                background: $primary;
-                                opacity: 0.54;
-                            }
-                        }
-                    }
-                }
-            }
-            
-            label{
-                @include size(100%, 100%);
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                pointer-events: all;
-
-                .o-switch_icon{
-                    // pointer-events: none;
-                    display: inline-flex;
-                    align-items: center;
-                    cursor: pointer;
-
-                    &:active{
-                        .o-switch_handle{
-                            &:before{
-                                opacity: 0;
-                                transition: opacity 75ms $ease-out;
-                            }
-        
-                            &:after{
-                                transform: scale(1);
-                                opacity: 0.25;
-                                transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                            }
-                        }
-                    }
-
-                    &:hover{
-                        .o-switch_handle{
-                            &:before{
-                                transform: scale(1);
-                                opacity: 0.15;
-                                transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                            }
-                        }
-                    }
-
-                    .o-switch_track{
-                        opacity: 0.38;
-                        border-radius: 7px;
-                        @include size(30px, 12px);
-                        background: $black;
-                        transition: background 75ms $ease;
-                    }
-
-                    .o-switch_handle{
-                        @include size(10px, 10px);
-                        position: absolute;
-                        transform: translateX(0);
-                        display: inline-flex;
-                        justify-content: center;
-                        align-items: center;
-                        flex-direction: column;
-                        transition: transform 150ms $ease;
-
-                        .o-switch_circle{
-                            border: 10px solid $white;
-                            box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
-                            border-radius: 100%;
-                            position: absolute;
-                            z-index: 5;
-                            transition: border-color 75ms $ease;
-                        }
-
-                        &::before{
-                            content:"";
-                            background: $primary;
-                            position: absolute;
-                            display: inline-block;
-                            border-radius: 100%;
-                            @include size(42px, 42px);
-                            transform: scale(0);
-                            opacity: 0;
-                            z-index: 1;
-                            transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
-                        }
-        
-                        &::after{
-                            content:"";
-                            background: $primary;
-                            position: absolute;
-                            display: inline-block;
-                            border-radius: 100%;
-                            @include size(42px, 42px);
-                            transform: scale(0);
-                            opacity: 0;
-                            z-index: 2;
-                            transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     // Text area input wrapper
     .o-textarea{
         position: relative;
@@ -490,7 +494,11 @@ form{
         @include position(absolute, 100% null null 0);
         width: 100%;
         color: $helper-dark;
-        font-size: 12px;        
+        font-size: 12px;
+
+        section.-dark-background & {
+            color: $helper-light;
+        }
 
         svg{
             margin-right: $unit;
@@ -516,6 +524,10 @@ form{
         @include position(absolute, 50% 12px null null);
         transform: translateY(-60%);
         color: $off-black;
+
+        section.-dark-background & {
+            color: $font-alt;
+        }
     }
 
     // Text area has a universal style
@@ -527,6 +539,10 @@ form{
         min-height: 106px;
         background: transparent;
         transition: border 75ms $ease-sharp, padding 75ms $ease-sharp;
+
+        section.-dark-background & {
+            border: 1px solid rgba($off-white, 0.3);
+        }
 
         & + label{
             position: absolute;
@@ -635,6 +651,11 @@ form{
             font-size: 16px;
             transition: all 75ms $ease-out;
             background: $white;
+
+            section.-dark-background & {
+                color: rgba($font-alt, 0.6);
+                background: $dark-background-color;
+            }
         }
 
         input,
@@ -645,6 +666,10 @@ form{
             padding: 12px 16px 10px;
             border: 1px solid rgba($off-black, 0.3);
             transition: all 75ms $ease-sharp;
+
+            section.-dark-background & {
+                border: 1px solid rgba($off-white, 0.3);
+            }
 
             & + label{
                 position: absolute;
@@ -670,6 +695,10 @@ form{
                     left: 16px;
                     background: $white;
                     transition: all 150ms $ease-in;
+
+                    section.-dark-background & {
+                        background: $dark-background-color;
+                    }
                 }
             }
         }
@@ -749,6 +778,10 @@ form{
             pointer-events: none;
             font-size: 16px;
             transition: all 75ms $ease-out;
+
+            section.-dark-background & {
+                color: rgba($white, 0.6);
+            }
         }
 
         input{
@@ -768,12 +801,25 @@ form{
             border-bottom: 1px solid rgba($black, 0.42);
             transition: border-bottom-color 75ms $ease-out, background 150ms $ease;
 
+            section.-dark-background & {
+                border-bottom: 1px solid rgba($white, 0.42);
+                background: darken($dark-background-color, 2);
+            }
+
             &:hover{
                 background: darken($off-white, 3);
+
+                section.-dark-background & {
+                    background: darken($dark-background-color, 3);
+                }
             }
 
             &:focus{
                 background: darken($off-white, 5);
+
+                section.-dark-background & {
+                    background: darken($dark-background-color, 5);
+                }
 
                 html.has-no-js & {
                     border-bottom-color: $primary;
@@ -822,6 +868,10 @@ select{
     color: rgba($black, 0.87);
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    section.-dark-background & {
+        color: rgba($font-alt, 0.87);
+    }
 }
 
 input[type=radio],
@@ -837,6 +887,12 @@ input[type=checkbox]{
 
 input,
 textarea{
+    section.-dark-background & {
+        ::placeholder{
+            color: rgba($font-alt, 0.87);
+        }
+    }
+
     ::placeholder{
         color: rgba($black, 0.87);
     }

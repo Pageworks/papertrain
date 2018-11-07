@@ -39,12 +39,20 @@ table{
             vertical-align: baseline;
             font-size: 13px;
             height: 48px;
-            background: $white;
+            background: transparent;
             border-bottom: 2px solid $off-white;
             transition: background 150ms $ease;
 
+            section.-dark-background & {
+                border-bottom: 2px solid darken($dark-background-color, 3);
+            }
+
             &:hover{
                 background: $off-white;
+
+                section.-dark-background & {
+                    background: darken($dark-background-color, 2);
+                }
             }
 
             td{

@@ -85,7 +85,6 @@ export default class extends AbstractModule{
         if (e.target instanceof HTMLSelectElement){
             const inputWrapper  = getParent(e.target, 'js-input');
 
-            console.log(e.target);
             if(e.target.value === 'any'){
                 inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
             }else{
@@ -153,8 +152,6 @@ export default class extends AbstractModule{
         const inputWrapper = getParent(el, 'js-input');
         inputWrapper.classList.remove('has-focus');
         inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
-
-        console.log(el);
 
         if(this.validityCheck(el)){
             if(el.value !== '' || el.innerText !== '') inputWrapper.classList.add('has-value');

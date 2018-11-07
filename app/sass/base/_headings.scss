@@ -16,6 +16,10 @@ h1,
     font-family: $font-heading;
     @include h;
     color: rgba($black, 0.87);
+
+    section.-dark-background & {
+        color: rgba($white, 0.87);
+    }
 }
 
 h2,
@@ -27,6 +31,10 @@ h2,
     font-family: $font-heading;
     @include h;
     color: rgba($black, 0.87);
+
+    section.-dark-background & {
+        color: rgba($white, 0.87);
+    }
 }
 
 h3,
@@ -38,6 +46,10 @@ h3,
     font-family: $font-heading;
     @include h;
     color: rgba($black, 0.87);
+
+    section.-dark-background & {
+        color: rgba($white, 0.87);
+    }
 }
 
 h4,
@@ -49,6 +61,10 @@ h4,
     font-family: $font-heading;
     @include h;
     color: rgba($black, 0.60);
+
+    section.-dark-background & {
+        color: rgba($white, 0.60);
+    }
 }
 
 h5,
@@ -61,6 +77,10 @@ h5,
     font-family: $font-heading;
     @include h;
     color: rgba($black, 0.60);
+
+    section.-dark-background & {
+        color: rgba($white, 0.60);
+    }
 }
 
 h6,
@@ -73,6 +93,10 @@ h6,
     font-family: $font-heading;
     @include h;
     color: rgba($black, 0.87);
+
+    section.-dark-background & {
+        color: rgba($white, 0.87);
+    }
 }
 
 .o-subtitle{
@@ -82,4 +106,8 @@ h6,
     font-family: $font-heading;
     @include h;
     color: rgba($black, 0.60);
+
+    section.-dark-background & {
+        color: rgba($white, 0.60);
+    }
 }

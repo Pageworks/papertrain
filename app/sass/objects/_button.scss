@@ -47,6 +47,10 @@ button,
     &.is-disabled{
         color: rgba(0,0,0,0.26);
         pointer-events: none;
+
+        section.-dark-background & {
+            color: rgba($white, 0.3);
+        }
     }
 
     &.-wide{
@@ -74,15 +78,24 @@ button,
         }
 
         &.is-disabled{
-            background: rgba(35,35,35,0.1);
-            color: rgba(0,0,0,0.26);
+            background: rgba($black,0.1);
+            color: rgba($black,0.26);
+
+            section.-dark-background & {
+                background: rgba($white,0.05);
+                color: rgba($white, 0.3);
+            }
         }
     }
 
     // Outline
     &.-outline{
         padding: 0 16px;
-        box-shadow: 0 0 0 2px rgba(35,35,35,0.1);
+        box-shadow: 0 0 0 2px rgba($black,0.05);
+
+        section.-dark-background & {
+            box-shadow: 0 0 0 2px rgba($white,0.05);
+        }
     }
 
     // Icon ONLY
