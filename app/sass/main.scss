@@ -34,8 +34,11 @@
 // ==========================================================================
 @import 'components/header';
 @import 'components/footer';
-@import 'components/dca';
 @import 'components/transition';
+
+// Complex Content
+// ==========================================================================
+@import 'complex-content/cc';
 
 // Templates
 // ==========================================================================

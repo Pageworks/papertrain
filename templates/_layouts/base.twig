@@ -31,10 +31,8 @@
             <div class="c-transition_secondary"></div>
         </div>
         {% include '_includes/header.twig' %}
-        <main class="js-pjax-wrapper">
-            <article id="content" role="main" class="js-pjax-container">
-                {% block content %}{% endblock %}
-            </article>
+        <main role="main" class="js-pjax-container">
+            {% block content %}{% endblock %}
         </main>
         {% include '_includes/footer.twig' %}
     {% endspaceless %}

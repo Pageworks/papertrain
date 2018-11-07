@@ -2,7 +2,7 @@
 // ==========================================================================
 /// @link https://github.com/inuitcss/inuitcss/blob/6eb574f/utilities/_utilities.widths.scss
 
-$widths-fractions: 1 2 3 4 5 !default;
+$widths-fractions: 1 2 3 !default;
 
 @include widths($widths-fractions);
 @include widths($widths-fractions, $screen-xsmall, xsmall);

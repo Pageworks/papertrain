@@ -39,6 +39,10 @@ html
 }
 
 section{
+    &.-primary-background{
+        background: $base-background-color;
+    }
+
     &.-secondary-background{
         background: $secondary-background-color;
     }
@@ -52,10 +56,8 @@ section{
 body{
     background: $base-background-color;
 
-    article{
-        section:first-of-type{
-            min-height: 80vh;
-        }
+    main{
+        min-height: 80vh;
     }
 }
 
