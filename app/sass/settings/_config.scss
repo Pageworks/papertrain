@@ -15,7 +15,7 @@ $heavy: 700;
 
 // Typography
 // =============================================================================
-$font-size: 16px;
+$font-size: 1rem;
 $font-weight: $regular;
 $line-height: normal;
 $font-family: $font-sans-serif;
@@ -37,8 +37,8 @@ $ease-out:      cubic-bezier(0.4, 0.0, 1, 1);
 
 // Spacing Units
 // =============================================================================
-$unit: 8px;
-$unit-small: 4px;
+$unit: 0.5rem;
+$unit-small: 0.25rem;
 $base-margin: 0 0 $unit*4;
 
 // Container
@@ -49,9 +49,9 @@ $padding:                   0;
 
 // Layout
 // =============================================================================
-$gutter:        24px;
-$gutter-small:  16px;
-$gutter-large:  32px;
+$gutter:        1rem;
+$gutter-small:  0.5rem;
+$gutter-large:  2rem;
 
 // Breakpoints
 // =============================================================================
