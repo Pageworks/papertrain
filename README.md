@@ -9,12 +9,7 @@
 </p>
 
 # Papertrain - A Craft 3 Boilerplate
-Papertrain is a front-end boilerplate for [Craft 3](https://craftcms.com/3) based on the boilerplates by [Pageworks](https://page.works/) and [Locomotive](https://locomotive.ca/). Includes SASS snippets from [Intuit](https://github.com/intuit) and grid system concepts by [Harry Roberts](https://csswizardry.com/2011/08/building-better-grid-systems/).
-
-## Requirements
-| Prerequisite    | How to check  | How to install                   |
-| --------------- | ------------- | -------------------------------- |
-| Node.js 4.1.1   | `node -v`     | [nodejs.org](https://nodejs.org) |
+Papertrain is a frameworks for [Craft 3](https://craftcms.com/3) using a modern webpack setup. It includes SASS snippets from [Intuit](https://github.com/intuit) and grid system concepts by [Harry Roberts](https://csswizardry.com/2011/08/building-better-grid-systems/).
 
 ## Getting Started
 
@@ -42,18 +37,18 @@ Papertrain is a front-end boilerplate for [Craft 3](https://craftcms.com/3) base
 ### Grid
 Uses a inline-block gird system by [Intuit](https://github.com/intuit).
 
-Start by inserting a `.o-layout` block and add a `.o-layout_item` element within the block. Initial blocks are `width: 100%`, additional values are avialable using `.u-1/2 .u-1/3 .u-1/4 ect...`. Additional fractions can be generated from `app/sass/tools/utilities/widths.scss`, currently using `1 2 3 4 5` values.
+Start by inserting a `.o-layout` block and add a `.o-layout_item` element within the block. Initial blocks are `width: 100%`, additional values are avialable using `.u-1/2 .u-1/3 .u-1/4 ect...`. Additional fractions can be generated from `app/sass/tools/utilities/widths.scss`, currently using `1 2 3` values.
 
 Create responsive elements using `@size` on the `.u-1/x` classes. If you wanted a block to start at full width but switch to 1/2 at a medium screen use `u-1/2@medium`. You can adjust the generated breakpoints in `app/sass/tools/utilities/widths.scss` by adding or removing `@include widths($widths-fractions, $size-variable-from-config, desired-@-name)`.
 
-## JavaScript
-- Uses a JavaScript modules structure. Add JavaScript modules via HTML data attributes: `data-module="example"`
+## Typescirpt
+- Uses a Typescript module structure. Add Typescript modules via HTML data attributes: `data-module="example"`
 - All DOM related JavaScript is hooked to `js-` prefixed classes
 - jQuery is **NOT** included and should be avoided whenever possible
-- [FontAwesome 5](https://fontawesome.com/) is globally included
+- [FontAwesome 5 Pro](https://fontawesome.com/) is globally included
 
 ## Page Transitions
-Using [fuel-pjax](#) for page transitions.
+Using [fuel-pjax](https://github.com/Pageworks/fuel-pjax) for page transitions and link prefetching Build custom page transitions with the Transition Manager class.
 
 ### Usage
 1. `base.twig` includes the basic pjax container/wrapper setup. When a transition is launched the new container is put the pjax wrapper and the old one is removed.
