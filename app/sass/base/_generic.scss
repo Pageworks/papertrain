@@ -17,13 +17,15 @@ hr
 a
 {
     color: $link-color;
-    text-decoration-style: $link-style;
     text-decoration-skip-ink: none;
+    text-decoration: $link-style;
+    transition: color 50ms $ease, text-decoration 50ms $ease;
 
     @include u-hocus
     {
         color: $link-hover-color;
-        text-decoration-style: $link-hover-style;
+        text-decoration: $link-hover-style;
+        transition: color 75ms $ease, text-decoration 75ms $ease;
     }
 }
 

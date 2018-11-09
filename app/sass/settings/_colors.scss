@@ -24,9 +24,9 @@ $helper-dark:   rgba(0,0,0,0.5);
 
 // Link Colors
 // =============================================================================
-$link-color:       $primary;
+$link-color:       $secondary;
 $link-focus-color: $secondary;
-$link-hover-color: darken($link-color, 10%);
+$link-hover-color: lighten($link-color, 10);
 
 // Selection
 // =============================================================================

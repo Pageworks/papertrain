@@ -491,12 +491,14 @@ hr {
     border-color: #fafafa; }
 
 a {
-  color: #f1ac44;
-  text-decoration-style: unset;
-  text-decoration-skip-ink: none; }
+  color: #3693df;
+  text-decoration-skip-ink: none;
+  text-decoration: unset;
+  transition: color 50ms cubic-bezier(0.4, 0, 0.2, 1), text-decoration 50ms cubic-bezier(0.4, 0, 0.2, 1); }
   a:focus, a:hover {
-    color: #ed9715;
-    text-decoration-style: unset; }
+    color: #62abe6;
+    text-decoration: unset;
+    transition: color 75ms cubic-bezier(0.4, 0, 0.2, 1), text-decoration 75ms cubic-bezier(0.4, 0, 0.2, 1); }
 
 ol {
   padding: 8px 0 0 16px;
