@@ -524,7 +524,7 @@ ul {
     list-style-type: square; }
 
 p {
-  margin: 0 0 16px; }
+  margin: 0 0 32px; }
 
 code {
   background: rgba(144, 144, 144, 0.075);
@@ -547,7 +547,7 @@ blockquote {
   font-size: 16pt; }
 
 dl {
-  margin: 0 0 16px;
+  margin: 0 0 32px;
   padding: 0;
   border: 0; }
   dl dt {

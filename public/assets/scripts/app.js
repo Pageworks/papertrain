@@ -8344,8 +8344,8 @@ module.exports = v4;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/andrews/Documents/projects/papertrain/app/scripts/App.ts */"./app/scripts/App.ts");
-module.exports = __webpack_require__(/*! /Users/andrews/Documents/projects/papertrain/app/sass/main.scss */"./app/sass/main.scss");
+__webpack_require__(/*! /Users/andrewsk/Documents/projects/papertrain/app/scripts/App.ts */"./app/scripts/App.ts");
+module.exports = __webpack_require__(/*! /Users/andrewsk/Documents/projects/papertrain/app/sass/main.scss */"./app/sass/main.scss");
 
 
 /***/ })
