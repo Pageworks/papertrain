@@ -1317,7 +1317,7 @@ form {
     form .o-help svg {
       margin-right: 8px; }
   form .o-error {
-    color: #F25652;
+    color: #F25652 !important;
     opacity: 0;
     transform: translateY(5px);
     transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
@@ -1807,8 +1807,7 @@ button,
   transform: translate3d(0, -101%, 0);
   transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1);
   background: #eeeeee;
-  overflow: hidden;
-  position: relative; }
+  overflow: hidden; }
   .c-transition .c-transition_primary,
   .c-transition .c-transition_secondary {
     position: absolute;
