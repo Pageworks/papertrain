@@ -502,12 +502,12 @@ hr {
   section.-dark-background hr {
     border-color: #fafafa; }
 
-a {
+a:not(.o-button) {
   color: #3693df;
   text-decoration-skip-ink: none;
   text-decoration: unset;
   transition: color 50ms cubic-bezier(0.4, 0, 0.2, 1), text-decoration 50ms cubic-bezier(0.4, 0, 0.2, 1); }
-  a:focus, a:hover {
+  a:not(.o-button):focus, a:not(.o-button):hover {
     color: #62abe6;
     text-decoration: unset;
     transition: color 75ms cubic-bezier(0.4, 0, 0.2, 1), text-decoration 75ms cubic-bezier(0.4, 0, 0.2, 1); }
@@ -1883,7 +1883,7 @@ button,
         line-height: 24px;
         height: 24px; } }
   .o-tooltip:hover .o-tip {
-    animation: tooltipPopup 1725ms 300ms linear; }
+    animation: tooltipPopup 1725ms linear; }
 
 @keyframes tooltipPopup {
   0% {
