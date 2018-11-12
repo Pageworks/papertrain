@@ -216,6 +216,22 @@
                     </div>
                 </div>
             </div>
+            <div class="u-margin-left-x4 o-wrapper">
+                <div class="js-form-square-input o-switch">
+                    <div class="o-switch_item">
+                        <input type="checkbox" id="id-form-square" value="1" />
+                        <label for="id-form-square">
+                            <span class="u-margin-right-x2">Square Style</span>
+                            <div class="o-switch_icon">
+                                <div class="o-switch_track"></div>
+                                <div class="o-switch_handle">
+                                    <div class="o-switch_circle"></div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
             <form class="js-form o-layout -gutter -solid" data-module="BasicForm">
                 {{ form.input('Full Name', 'fullName', 'text', 'u-1/1', true, 'name', 'fas fa-user', 'Please provide your first and last name.') }}
 
@@ -329,7 +345,7 @@
     var formStyleInput = formStyleToggle.querySelector('input');
     var formEl = document.body.querySelector('.js-form');
 
-    if(formStyleToggle && formEl) formStyleToggle.addEventListener('click', function(e){
+    if(formStyleToggle && formEl) formStyleInput.addEventListener('change', function(e){
         e.preventDefault();
         if(formEl.classList.contains('-solid')){
             formEl.classList.remove('-solid');
@@ -339,6 +355,21 @@
             formEl.classList.add('-solid');
             formEl.classList.remove('-outline');
             formStyleInput.removeAttribute('checked');
+        }
+    });
+
+    // Square Style Toggle
+    var formSquareToggle = document.body.querySelector('.js-form-square-input');
+    var formSquareInput = formSquareToggle.querySelector('input');
+    
+    if(formSquareToggle && formEl) formSquareInput.addEventListener('change', function(e){
+        e.preventDefault();
+        if(formEl.classList.contains('-square')){
+            formEl.classList.remove('-square');
+            formSquareInput.setAttribute('checked', true);
+        }else{
+            formEl.classList.add('-square');
+            formSquareInput.removeAttribute('checked');
         }
     });
 {% endjs %}
