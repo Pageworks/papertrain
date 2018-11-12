@@ -1,4 +1,5 @@
 declare module 'uuid/v4';
+declare module 'animejs';
 
 interface TransitionManager{
     remove: Function

@@ -47,6 +47,7 @@
     },
     "devDependencies": {
         "@fortawesome/fontawesome-pro": "^5.4.2",
+        "animejs": "^2.2.0",
         "autoprefixer": "^9.3.1",
         "awesome-typescript-loader": "^5.2.1",
         "browser-sync": "^2.26.3",
