@@ -133,6 +133,14 @@ form{
     padding: 0;
     margin: 0;
 
+    &.-square{
+        input,
+        select,
+        textarea{
+            border-radius: 0 !important;
+        }
+    }
+
     // Base input wrapper
     .o-input{
         height: 56px;
@@ -584,6 +592,9 @@ form{
 
     // Solid Input Style
     @import './form-styles/solid';
+
+    // Base Style
+    @import './form-styles/base';
 }
 
 // Normalize Inputs

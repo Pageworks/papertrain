@@ -1101,6 +1101,10 @@ table {
 form {
   padding: 0;
   margin: 0; }
+  form.-square input,
+  form.-square select,
+  form.-square textarea {
+    border-radius: 0 !important; }
   form .o-input {
     height: 56px;
     position: relative; }
@@ -1537,6 +1541,88 @@ form {
         transition: border-bottom-color 150ms cubic-bezier(0, 0, 0.2, 1); }
       form.-solid input:focus + label,
       form.-solid select:focus + label {
+        color: #f1ac44;
+        font-size: 12px;
+        bottom: 35px;
+        transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
+  form .o-input.is-invalid input + label {
+    color: #F25652;
+    font-size: 12px;
+    bottom: 34px; }
+  html.has-js form .o-input::after {
+    content: "";
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    display: inline-block;
+    transition: transform 75ms cubic-bezier(0.4, 0, 1, 1);
+    background: #f1ac44;
+    transform-origin: center; }
+  html.has-js form .o-input.has-focus:after {
+    transform: scaleX(1);
+    transition: transform 150ms cubic-bezier(0, 0, 0.2, 1); }
+  html.has-js form .o-input.has-value label {
+    font-size: 12px;
+    bottom: 35px; }
+  html.has-js form .o-input.is-invalid:after {
+    transform: scaleX(1);
+    background: #F25652;
+    transition: background 75ms cubic-bezier(0.4, 0, 0.2, 1); }
+  html.has-js form .o-input.is-invalid .o-error {
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 25ms cubic-bezier(0, 0, 0.2, 1); }
+  form .o-input input + label,
+  form .o-input select + label {
+    bottom: 18px;
+    left: 12px;
+    position: absolute; }
+    html.has-no-js form .o-input input + label, html.has-no-js
+    form .o-input select + label {
+      font-size: 12px;
+      bottom: 35px; }
+  form label {
+    color: rgba(7, 7, 7, 0.6);
+    pointer-events: none;
+    font-size: 16px;
+    transition: all 75ms cubic-bezier(0.4, 0, 1, 1); }
+    section.-dark-background form label {
+      color: rgba(250, 250, 250, 0.6); }
+  form input.has-icon + label {
+    left: 48px; }
+  form input,
+  form select {
+    height: 100%;
+    padding: 20px 12px 6px;
+    background: transparent;
+    border-radius: 4px 4px 0 0;
+    border-bottom: 1px solid rgba(7, 7, 7, 0.42);
+    transition: border-bottom-color 75ms cubic-bezier(0.4, 0, 1, 1), background 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+    section.-dark-background form input, section.-dark-background
+    form select {
+      border-bottom: 1px solid rgba(250, 250, 250, 0.42);
+      background: transparent; }
+    form input:hover,
+    form select:hover {
+      background: transparent; }
+      section.-dark-background form input:hover, section.-dark-background
+      form select:hover {
+        background: transparent; }
+    form input:focus,
+    form select:focus {
+      background: transparent; }
+      section.-dark-background form input:focus, section.-dark-background
+      form select:focus {
+        background: transparent; }
+      html.has-no-js form input:focus, html.has-no-js
+      form select:focus {
+        border-bottom-color: #f1ac44;
+        transition: border-bottom-color 150ms cubic-bezier(0, 0, 0.2, 1); }
+      form input:focus + label,
+      form select:focus + label {
         color: #f1ac44;
         font-size: 12px;
         bottom: 35px;
