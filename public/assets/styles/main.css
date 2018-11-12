@@ -1789,7 +1789,8 @@ button,
     opacity: 0;
     position: absolute;
     left: 50%;
-    top: calc(100% + 4px); }
+    top: calc(100% + 4px);
+    pointer-events: none; }
     @media (min-width: 1280px) {
       .o-tooltip .o-tip {
         padding: 0 8px;
