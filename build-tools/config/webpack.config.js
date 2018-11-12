@@ -28,11 +28,22 @@ module.exports = {
                     {
                         loader: "css-loader",
                         options: {
-                            url: false
+                            url: false,
+                            sourceMap: true
                         }
                     },
-                    "postcss-loader",
-                    "sass-loader"
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    }
                 ]
             },
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }

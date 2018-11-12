@@ -24,14 +24,20 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                  MiniCssExtractPlugin.loader,
-                  {
-                    loader: "css-loader",
-                    options: {
-                        url: false
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: "css-loader",
+                        options: {
+                            url: false,
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true
+                        }
                     }
-                },
-                  "sass-loader"
                 ]
             },
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
