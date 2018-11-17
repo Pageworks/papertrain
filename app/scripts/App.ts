@@ -44,6 +44,34 @@ class App{
         this.handleStatus(); // Check the users visitor status
 
         this.transitionManager = new TransitionManager(this);
+
+        if(!isDebug) this.createEasterEgg();
+    }
+
+    createEasterEgg(){
+        const lines = [
+            '         ▄              ▄',
+            '        ▌▒█           ▄▀▒▌',
+            '        ▌▒▒█        ▄▀▒▒▒▐',
+            '       ▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐',
+            '     ▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐',
+            '   ▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌',
+            '  ▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒▌',
+            '  ▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐',
+            ' ▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄▌',
+            ' ▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▌            SUCH CODE.',
+            '▌▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒▐                   MUCH WOW.',
+            '▐▒▒▐▀▐▀▒░▄▄▒▄▒▒▒▒▒▒░▒░▒░▒▒▒▒▌             MANY SKILL.',
+            '▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒▒▒░▒░▒░▒▒▐',
+            ' ▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒░▒░▒░▒░▒▒▒▌',
+            ' ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▒▄▒▒▐',
+            '  ▀▄▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▄▒▒▒▒▌',
+            '    ▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀',
+            '      ▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀',
+            '         ▒▒▒▒▒▒▒▒▒▒▀▀',
+        ];
+        console.log(`%c${lines.join('\n').toString()}`, 'color: #e1b303');
+        console.log('%cMade with ☕ and ❤️ by Pageworks %chttp://www.page.works/', 'font-size: 16px; color: #eee', 'color: #4de07e; font-size: 16px;');
     }
 
     /**

@@ -139,6 +139,33 @@ var App = /** @class */ (function () {
         this.initModules(); // Get initial modules
         this.handleStatus(); // Check the users visitor status
         this.transitionManager = new TransitionManager_1.default(this);
+        if (!env_1.isDebug)
+            this.createEasterEgg();
+    };
+    App.prototype.createEasterEgg = function () {
+        var lines = [
+            '         ▄              ▄',
+            '        ▌▒█           ▄▀▒▌',
+            '        ▌▒▒█        ▄▀▒▒▒▐',
+            '       ▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐',
+            '     ▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐',
+            '   ▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌',
+            '  ▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒▌',
+            '  ▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐',
+            ' ▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄▌',
+            ' ▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▌            SUCH CODE.',
+            '▌▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒▐                   MUCH WOW.',
+            '▐▒▒▐▀▐▀▒░▄▄▒▄▒▒▒▒▒▒░▒░▒░▒▒▒▒▌             MANY SKILL.',
+            '▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒▒▒░▒░▒░▒▒▐',
+            ' ▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒░▒░▒░▒░▒▒▒▌',
+            ' ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▒▄▒▒▐',
+            '  ▀▄▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▄▒▒▒▒▌',
+            '    ▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀',
+            '      ▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀',
+            '         ▒▒▒▒▒▒▒▒▒▒▀▀',
+        ];
+        console.log("%c" + lines.join('\n').toString(), 'color: #e1b303');
+        console.log('%cMade with ☕ and ❤️ by Pageworks %chttp://www.page.works/', 'font-size: 16px; color: #eee', 'color: #4de07e; font-size: 16px;');
     };
     /**
      * Sets relevant classes based on the users visitor status
