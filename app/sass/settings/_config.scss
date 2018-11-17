@@ -53,7 +53,7 @@ $gutter:        1rem;
 $gutter-small:  0.5rem;
 $gutter-large:  2rem;
 
-// Breakpoints
+// Screen Breakpoints
 // =============================================================================
 $screen-xsmall:     600px;
 $screen-small:      840px;
@@ -62,4 +62,8 @@ $screen-large:      1280px;
 $screen-xlarge:     1440px;
 $screen-xxlarge:    1600px;
 $screen-xxxlarge:   1920px;
+
+// Custom Breakpoints
+// =============================================================================
 $screen-container:  $container-width;
+$screen-nav:        960px;
