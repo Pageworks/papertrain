@@ -10,10 +10,10 @@ import TransitionManager from './transitions/TransitionManager';
 // import '@fortawesome/fontawesome-pro/js/all.js';
 
 class App{
-    modules:{ [index:string] : Function };
-    currentModules: Array<Module>;
-    transitionManager: TransitionManager;
-    touchSupport: boolean
+    modules:            { [index:string] : Function }
+    currentModules:     Array<Module>
+    transitionManager:  TransitionManager
+    touchSupport:       boolean
 
     constructor(){
         this.modules            = modules;
