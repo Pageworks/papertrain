@@ -71,16 +71,16 @@
             {% endswitch %}
 
             {# Generic utility blocks #}
-            {% include '_cc/base/' ~ block.type %}
+            {% include '_complex-content/base/' ~ block.type %}
         {% else %}
             {# Open a new column if we don't have one opened #}
             {% if not columnOpen %}
                 {% set columnOpen = true %}
-                {% include '_cc/base/openColumn' %}
+                {% include '_complex-content/base/openColumn' %}
             {% endif %}
 
             {# Include the content for the block #}
-			{% include '_cc/blocks/' ~ block.type %}
+			{% include '_complex-content/blocks/' ~ block.type %}
         {% endif %}
 
         {# When we run out of blocks close any open elements #}
