@@ -7,6 +7,8 @@
 
 .o-layout
 {
+    @include u-flexbox;
+
     // Gutter modifiers
     @media (min-width: $screen-container){
         &.-gutter{
@@ -23,17 +25,6 @@
             margin-left: -$gutter-large;
             margin-right: -$gutter-large;
         }
-    }
-
-    // Horizontal aligment modifiers
-    &.-center
-    {
-        text-align: center;
-    }
-
-    &.-right
-    {
-        text-align: right;
     }
 }
 
@@ -68,16 +59,5 @@
             padding-left: $gutter-large;
             padding-right: $gutter-large;
         }
-    }
-
-    // Vertical alignment modifiers
-    .o-layout.-middle > &
-    {
-        vertical-align: middle;
-    }
-
-    .o-layout.-bottom > &
-    {
-        vertical-align: bottom;
     }
 }
