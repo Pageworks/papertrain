@@ -1,0 +1,16 @@
+.o-image{
+    .o-image_shim{
+        position: relative;
+
+        .o-image_image,
+        .o-image_overlay{
+            @include position(absolute, 0 null null 0);
+            @include size(100%, 100%);
+        }
+
+        .o-image_image{
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+        }
+    }
+}

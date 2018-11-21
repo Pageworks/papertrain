@@ -1,0 +1,22 @@
+{% if block.image|length %}
+	<div class="o-image o-wrapper u-1/1 {{ block.padding }} {{block.alignment}}">
+		<div class="o-image_shim {{ block.aspectRatio }}">
+            {% set selectedRatio = '16/9' %}
+            {% set imageWidth = 840 %}
+            {% switch block.aspectRatio %}
+                {% case 'u-ratio-1/1' %}
+                    {% set selectedRatio = '1/1' %}
+                {% case 'u-ratio-4/3' %}
+                    {% set selectedRatio = '4/3' %}
+                {% case 'u-ratio-36/10' %}
+                    {% set selectedRatio = '36/10' %}
+                    {% set imageWidth = 1200 %}
+            {% endswitch %}
+            {% set image = block.image[0] %}
+            {% set focalPoint = image.getFocalPoint() %}
+            {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, ratio: selectedRatio, mode: block.resizeMode }) %}
+            <div class="o-image_image" style="background-image:url({{ transformedImage.url }});background-size:{% if block.resizeMode == 'crop' %}cover{% else %}contian{% endif %};"></div>
+            {% if block.overlayDensity|length %}<div class="o-image_overlay" style="background-color:{{block.overlayTint}};opacity:{% if block.overlayDensity|length %}{{block.overlayDensity}}{% else %}0{% endif %};"></div>{% endif %}
+        </div>
+	</div>
+{% endif %}

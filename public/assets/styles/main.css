@@ -2047,6 +2047,19 @@ button,
       left: 0;
       object-fit: cover; }
 
+.o-image .o-image_shim {
+  position: relative; }
+  .o-image .o-image_shim .o-image_image,
+  .o-image .o-image_shim .o-image_overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; }
+  .o-image .o-image_shim .o-image_image {
+    background-repeat: no-repeat !important;
+    background-position: center !important; }
+
 .u-float-left {
   float: left !important; }
 
