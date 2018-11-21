@@ -39,6 +39,10 @@ ol{
     ul,ol{
         padding-bottom: 2px;
     }
+
+    li ul li{
+        list-style-type: disc;
+    }
 }
 
 ul{
@@ -56,13 +60,15 @@ ul{
         min-height: 24px;
     }
 
-    &.-circle{
+    &.-circle,
+    li ul{
         li{
             list-style-type: circle;
         }
     }
 
-    &.-square{
+    &.-square,
+    li ul li ul{
         li{
             list-style-type: square;
         }
