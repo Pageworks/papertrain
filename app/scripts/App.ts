@@ -111,9 +111,10 @@ class App{
                 const newModule = new this.modules[moduleType].prototype.constructor(module);
                 this.currentModules.push(newModule);
                 newModule.init();
-            }else{
-                if(isDebug) console.log('%cUndefined Module: '+`%c${moduleType}`,'color:#ff6e6e','color:#eee');
             }
+            else if(this.modules[moduleType] === undefined){
+                if(isDebug) console.log('%cUndefined Module: '+`%c${moduleType}`,'color:#ff6e6e','color:#eee');
+            }            
         });
     }
 
