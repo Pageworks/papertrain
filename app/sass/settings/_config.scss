@@ -41,9 +41,10 @@ $ease-out:      cubic-bezier(0.4, 0.0, 1, 1);
 
 // Spacing Units
 // =============================================================================
-$unit: 0.5rem;
-$unit-small: 0.25rem;
-$base-margin: 0 0 $unit*4;
+$unit:          1rem;
+$unit-small:    0.5rem;
+$unit-tiny:     0.25rem;
+$base-margin:   0 0 $unit*4;
 
 // Container
 // ==========================================================================
