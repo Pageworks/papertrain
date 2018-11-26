@@ -30,6 +30,7 @@
                         </section>
                     {% endif %}
                     {% set sectionOpen = true %}
+                    {% set currentColumn = 1 %}
                 {% case "container" %}
                     {# If we already have a container open close it #}
                     {% if containerOpen %}
@@ -42,6 +43,7 @@
                     {% endif %}
                     {% set containerOpen = true %}
                     {% set columnLayout = block.columnLayout.value %}
+                    {% set currentColumn = 1 %}
                 {% case "endColumn" %}
                     {# Update our current column ID #}
                     {% switch columnLayout %}
