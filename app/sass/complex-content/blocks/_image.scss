@@ -2,6 +2,12 @@
     .o-image_shim{
         position: relative;
 
+        &.u-ratio-36\/10{
+            @media (max-width: 721px){
+                min-height: 200px;
+            }
+        }
+
         .o-image_image,
         .o-image_overlay{
             @include position(absolute, 0 null null 0);
@@ -11,6 +17,10 @@
         .o-image_image{
             background-repeat: no-repeat !important;
             background-position: center !important;
+        }
+
+        img{
+            max-width: 100%;
         }
     }
 }

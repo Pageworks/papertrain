@@ -5,7 +5,7 @@
     {% set transformedImage = craft.imager.transformImage(backgroundImage, { width: 1920, height: 1080 }, { mode: 'crop', position: focalPoint }) %}
 {% endif %}
 
-<section class="c-complex-content_section o-container-full {{block.padding}} {{block.backgroundColor}} u-mobile-padding {% if block.backgroundVideo|length %}has-video{% endif %} {% if transformedImage is defined %}has-image{% endif %}" {% if transformedImage is defined %}style="background: url({{transformedImage.url}});"{% endif %}>
+<section class="c-complex-content_section o-container-full {{block.padding}} {{block.backgroundColor}} {% if block.backgroundVideo|length %}has-video{% endif %} {% if transformedImage is defined %}has-image{% endif %}" {% if transformedImage is defined %}style="background: url({{transformedImage.url}});"{% endif %}>
     {% if block.backgroundVideo|length or transformedImage is defined %}<div class="c-complex-content_overlay" style="background-color:{{block.overlayTint}};opacity:{% if block.overlayDensity|length %}{{block.overlayDensity}}{% else %}0{% endif %};"></div>{% endif %}
     {% if block.backgroundVideo|length %}
         <div class="c-complex-content_video">

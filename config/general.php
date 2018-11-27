@@ -23,11 +23,11 @@ return [
     // Dev environment settings
     'dev' => [
         // Base site URL
-        'siteUrl' => null,
-        'allowUpdates' => true,
-        // Dev Mode (see https://craftcms.com/support/dev-mode)
-        'devMode' => true,
-        'testToEmailAddress' => 'REPLACE_ME',
+        'siteUrl'               => null,
+        'allowUpdates'          => true,
+        'devMode'               => true,
+        'testToEmailAddress'    => 'REPLACE_ME',
+        'enableTemplateCaching' => false
     ],
 
     // Staging environment settings

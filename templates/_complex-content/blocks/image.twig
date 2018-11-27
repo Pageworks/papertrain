@@ -1,22 +1,41 @@
 {% if block.image|length %}
 	<div class="o-image o-wrapper u-1/1 {{ block.padding }}{{ block.paddingSize }} {{block.alignment}}">
-		<div class="o-image_shim {{ block.aspectRatio }}">
-            {% set selectedRatio = '16/9' %}
-            {% set imageWidth = 840 %}
-            {% switch block.aspectRatio %}
-                {% case 'u-ratio-1/1' %}
-                    {% set selectedRatio = '1/1' %}
-                {% case 'u-ratio-4/3' %}
-                    {% set selectedRatio = '4/3' %}
-                {% case 'u-ratio-36/10' %}
-                    {% set selectedRatio = '36/10' %}
-                    {% set imageWidth = 1920 %}
-            {% endswitch %}
+        {% set grayscale = block.grayscale %}
+        {% set imageWidth = block.imageWidth %}
+        {% if block.aspectRatio != 'none' %}
+            <div class="o-image_shim {{ block.aspectRatio }}">
+                {% set selectedRatio = 16/9 %}
+                {% switch block.aspectRatio %}
+                    {% case 'u-ratio-1/1' %}
+                        {% set selectedRatio = 1/1 %}
+                    {% case 'u-ratio-4/3' %}
+                        {% set selectedRatio = 4/3 %}
+                    {% case 'u-ratio-36/10' %}
+                        {% set selectedRatio = 36/10 %}
+                        {% set imageWidth = 1920 %}
+                {% endswitch %}
+                {% set image = block.image[0] %}
+                {% set focalPoint = image.getFocalPoint() %}
+                {% if grayscale %}
+                    {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, ratio: selectedRatio, mode: block.resizeMode, format: 'jpg', cropZoom: block.cropZoom|number_format, interlace: true, effects: { grayscale: true } }) %}
+                {% else %}
+                    {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, ratio: selectedRatio, mode: block.resizeMode, format: 'jpg', cropZoom: block.cropZoom|number_format, interlace: true }) %}
+                {% endif %}
+                <div class="o-image_image" style="background-image:url({{ transformedImage.url }});{% if block.resizeMode == 'crop' %}background-size:cover;{% endif %}"></div>
+                {% if block.overlayDensity|length %}<div class="o-image_overlay" style="background-color:{{block.overlayTint}};opacity:{% if block.overlayDensity|length %}{{block.overlayDensity}}{% else %}0{% endif %};"></div>{% endif %}
+            </div>
+        {% else %}
             {% set image = block.image[0] %}
             {% set focalPoint = image.getFocalPoint() %}
-            {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, ratio: selectedRatio, mode: block.resizeMode }) %}
-            <div class="o-image_image" style="background-image:url({{ transformedImage.url }});background-size:{% if block.resizeMode == 'crop' %}cover{% else %}contian{% endif %};"></div>
-            {% if block.overlayDensity|length %}<div class="o-image_overlay" style="background-color:{{block.overlayTint}};opacity:{% if block.overlayDensity|length %}{{block.overlayDensity}}{% else %}0{% endif %};"></div>{% endif %}
-        </div>
+            {% if grayscale %}
+                {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, mode: 'fit', format: 'jpg', interlace: true, effects: { grayscale: grayscale } }) %}
+            {% else %}
+                {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, mode: 'fit', format: 'jpg', interlace: true }) %}
+            {% endif %}
+            <div class="o-image_shim">
+                <img src="{{ transformedImage.url }}" alt="{{ image.title }}" />
+                {% if block.overlayDensity|length %}<div class="o-image_overlay" style="background-color:{{block.overlayTint}};opacity:{% if block.overlayDensity|length %}{{block.overlayDensity}}{% else %}0{% endif %};"></div>{% endif %}
+            </div>
+        {% endif %}
 	</div>
 {% endif %}

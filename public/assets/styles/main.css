@@ -2052,6 +2052,9 @@ button,
 
 .o-image .o-image_shim {
   position: relative; }
+  @media (max-width: 721px) {
+    .o-image .o-image_shim.u-ratio-36\/10 {
+      min-height: 200px; } }
   .o-image .o-image_shim .o-image_image,
   .o-image .o-image_shim .o-image_overlay {
     position: absolute;
@@ -2062,6 +2065,8 @@ button,
   .o-image .o-image_shim .o-image_image {
     background-repeat: no-repeat !important;
     background-position: center !important; }
+  .o-image .o-image_shim img {
+    max-width: 100%; }
 
 .o-copy p:last-of-type {
   margin-bottom: 0; }
