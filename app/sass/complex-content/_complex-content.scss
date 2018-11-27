@@ -32,5 +32,37 @@
         &:first-child{
             padding-top: 0 !important;
         }
+
+        .c-complex-content_container{
+            .c-complex-content_column{
+                @media (max-width: $screen-large){
+                    margin: 1rem 0;
+                }
+
+                &:only-child{
+                    @media (max-width: $screen-large){
+                        margin: 0;
+                    }
+                }
+            }
+
+            &:first-of-type{
+                .c-complex-content_column{
+                    @media (max-width: $screen-large){
+                        margin-top: 0;
+                    }
+                }
+            }
+
+            &:last-of-type{
+                .c-complex-content_column{
+                    &:last-child{
+                        @media (max-width: $screen-large){
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
