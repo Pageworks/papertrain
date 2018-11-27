@@ -1,5 +1,5 @@
 {% if block.image|length %}
-	<div class="o-image o-wrapper u-1/1 {{ block.padding }} {{block.alignment}}">
+	<div class="o-image o-wrapper u-1/1 {{ block.padding }}{{ block.paddingSize }} {{block.alignment}}">
 		<div class="o-image_shim {{ block.aspectRatio }}">
             {% set selectedRatio = '16/9' %}
             {% set imageWidth = 840 %}
@@ -10,7 +10,7 @@
                     {% set selectedRatio = '4/3' %}
                 {% case 'u-ratio-36/10' %}
                     {% set selectedRatio = '36/10' %}
-                    {% set imageWidth = 1200 %}
+                    {% set imageWidth = 1920 %}
             {% endswitch %}
             {% set image = block.image[0] %}
             {% set focalPoint = image.getFocalPoint() %}
