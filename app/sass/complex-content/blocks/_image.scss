@@ -3,7 +3,7 @@
         position: relative;
 
         .c-complex-content_column.u-1\/3\@large & {
-            @media (max-width: $screen-large){
+            @media (max-width: $screen-large - 1){
                 max-width: 480px;
                 margin: 0 auto;
             }
