@@ -35,7 +35,10 @@
 // 3. Default item alignment is with the tops of each other, like most traditional grid/layout systems.
 .o-layout_item
 {
-    display: inline-block; // [1]
+    display: inline-flex; // [1]
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
     width: 100%; // [2]
     vertical-align: top; // [3]
     position: relative;

@@ -47,6 +47,8 @@
             }
 
             &:first-of-type{
+                padding-top: 0 !important;
+
                 .c-complex-content_column{
                     @media (max-width: $screen-large){
                         margin-top: 0;
@@ -55,6 +57,8 @@
             }
 
             &:last-of-type{
+                padding-bottom: 0 !important;
+
                 .c-complex-content_column{
                     &:last-child{
                         @media (max-width: $screen-large){

@@ -56,7 +56,7 @@ module.exports = {
         new BrowserSyncPlugin({
             host: 'localhost',
             port: 3000,
-            proxy: 'http://papertrain.craft.local/',
+            proxy: 'http://papertrain.local/',
             reload: false
         })
     ]
