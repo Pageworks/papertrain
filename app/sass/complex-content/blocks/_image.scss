@@ -2,6 +2,13 @@
     .o-image_shim{
         position: relative;
 
+        .c-complex-content_column.u-1\/3\@large & {
+            @media (max-width: $screen-large){
+                max-width: 480px;
+                margin: 0 auto;
+            }
+        }
+
         &.u-ratio-36\/10{
             @media (max-width: 721px){
                 min-height: 200px;
@@ -17,6 +24,10 @@
         .o-image_image{
             background-repeat: no-repeat !important;
             background-position: center !important;
+
+            @media (max-width: $screen-large){
+                background-size: cover !important;
+            }
         }
 
         img{

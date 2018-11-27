@@ -2075,6 +2075,10 @@ button,
 
 .o-image .o-image_shim {
   position: relative; }
+  @media (max-width: 1280px) {
+    .c-complex-content_column.u-1\/3\@large .o-image .o-image_shim {
+      max-width: 480px;
+      margin: 0 auto; } }
   @media (max-width: 721px) {
     .o-image .o-image_shim.u-ratio-36\/10 {
       min-height: 200px; } }
@@ -2088,6 +2092,9 @@ button,
   .o-image .o-image_shim .o-image_image {
     background-repeat: no-repeat !important;
     background-position: center !important; }
+    @media (max-width: 1280px) {
+      .o-image .o-image_shim .o-image_image {
+        background-size: cover !important; } }
   .o-image .o-image_shim img {
     max-width: 100%; }
 
