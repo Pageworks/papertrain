@@ -15,7 +15,6 @@ return [
         'cpTrigger'                     => 'webmaster',
         'securityKey'                   => getenv('SECURITY_KEY'),
         'useEmailAsUsername'            => true,
-        'allowUpdates'                  => false,
         'useCompressedJs'               => true,
         'phpSessionName'                => 'cpsessid',
         'sendPoweredByHeader'           => false,
