@@ -16,18 +16,18 @@
                         {% set imageWidth = 1920 %}
                 {% endswitch %}
                 {% if grayscale %}
-                    {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, ratio: selectedRatio, mode: block.resizeMode, format: 'jpg', cropZoom: block.cropZoom|number_format, position: image.getFocalPoint(), effects: { grayscale: true } }) %}
+                    {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, ratio: selectedRatio, mode: block.resizeMode, cropZoom: block.cropZoom|number_format, position: image.getFocalPoint(), effects: { grayscale: true } }) %}
                 {% else %}
-                    {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, ratio: selectedRatio, mode: block.resizeMode, format: 'jpg', cropZoom: block.cropZoom|number_format, position: image.getFocalPoint() }) %}
+                    {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, ratio: selectedRatio, mode: block.resizeMode, cropZoom: block.cropZoom|number_format, position: image.getFocalPoint() }) %}
                 {% endif %}
                 <div class="o-image_image" style="background-image:url({{ transformedImage.url }});{% if block.resizeMode == 'crop' %}background-size:cover;{% endif %}"></div>
                 {% if block.overlay != 'none' %}<div class="o-image_overlay" style="background-color:rgba({{ block.overlay }});"></div>{% endif %}
             </div>
         {% else %}
             {% if grayscale %}
-                {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, mode: 'fit', format: 'jpg', position: image.getFocalPoint(), effects: { grayscale: grayscale } }) %}
+                {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, mode: 'fit', position: image.getFocalPoint(), effects: { grayscale: grayscale } }) %}
             {% else %}
-                {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, mode: 'fit', format: 'jpg', position: image.getFocalPoint() }) %}
+                {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, mode: 'fit', position: image.getFocalPoint() }) %}
             {% endif %}
             <div class="o-image_shim">
                 <img src="{{ transformedImage.url }}" alt="{{ image.title }}" />

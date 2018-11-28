@@ -2327,8 +2327,6 @@ button,
       top: 0;
       left: 0;
       object-fit: cover; }
-  .c-complex-content .c-complex-content_section:first-child {
-    padding-top: 0 !important; }
   @media (max-width: 1279px) {
     .c-complex-content .c-complex-content_section .c-complex-content_container .c-complex-content_column {
       margin: 1rem 0; } }
@@ -2339,16 +2337,12 @@ button,
     margin-bottom: 0; }
   .c-complex-content .c-complex-content_section .c-complex-content_container .c-complex-content_column:first-child {
     margin-top: 0; }
-  .c-complex-content .c-complex-content_section .c-complex-content_container:first-of-type {
-    padding-top: 0 !important; }
-    @media (max-width: 1279px) {
-      .c-complex-content .c-complex-content_section .c-complex-content_container:first-of-type .c-complex-content_column {
-        margin-top: 0; } }
-  .c-complex-content .c-complex-content_section .c-complex-content_container:last-of-type {
-    padding-bottom: 0 !important; }
-    @media (max-width: 1279px) {
-      .c-complex-content .c-complex-content_section .c-complex-content_container:last-of-type .c-complex-content_column:last-child {
-        margin-bottom: 0; } }
+  @media (max-width: 1279px) {
+    .c-complex-content .c-complex-content_section .c-complex-content_container:first-of-type .c-complex-content_column {
+      margin-top: 0; } }
+  @media (max-width: 1279px) {
+    .c-complex-content .c-complex-content_section .c-complex-content_container:last-of-type .c-complex-content_column:last-child {
+      margin-bottom: 0; } }
 
 .o-image .o-image_shim {
   position: relative; }
@@ -2455,6 +2449,9 @@ button,
 .u-padding-x6 {
   padding: 6rem !important; }
 
+.u-padding-x8 {
+  padding: 8rem !important; }
+
 .u-padding-top {
   padding-top: 1rem !important; }
 
@@ -2475,6 +2472,9 @@ button,
 
 .u-padding-top-x6 {
   padding-top: 6rem !important; }
+
+.u-padding-top-x8 {
+  padding-top: 8rem !important; }
 
 .u-padding-right {
   padding-right: 1rem !important; }
@@ -2497,6 +2497,9 @@ button,
 .u-padding-right-x6 {
   padding-right: 6rem !important; }
 
+.u-padding-right-x8 {
+  padding-right: 8rem !important; }
+
 .u-padding-bottom {
   padding-bottom: 1rem !important; }
 
@@ -2518,6 +2521,9 @@ button,
 .u-padding-bottom-x6 {
   padding-bottom: 6rem !important; }
 
+.u-padding-bottom-x8 {
+  padding-bottom: 8rem !important; }
+
 .u-padding-left {
   padding-left: 1rem !important; }
 
@@ -2538,6 +2544,9 @@ button,
 
 .u-padding-left-x6 {
   padding-left: 6rem !important; }
+
+.u-padding-left-x8 {
+  padding-left: 8rem !important; }
 
 .u-padding-horizontal {
   padding-left: 1rem !important;
@@ -2567,6 +2576,10 @@ button,
   padding-left: 6rem !important;
   padding-right: 6rem !important; }
 
+.u-padding-horizontal-x8 {
+  padding-left: 8rem !important;
+  padding-right: 8rem !important; }
+
 .u-padding-vertical {
   padding-top: 1rem !important;
   padding-bottom: 1rem !important; }
@@ -2595,6 +2608,10 @@ button,
   padding-top: 6rem !important;
   padding-bottom: 6rem !important; }
 
+.u-padding-vertical-x8 {
+  padding-top: 8rem !important;
+  padding-bottom: 8rem !important; }
+
 .u-margin {
   margin: 1rem !important; }
 
@@ -2615,6 +2632,9 @@ button,
 
 .u-margin-x6 {
   margin: 6rem !important; }
+
+.u-margin-x8 {
+  margin: 8rem !important; }
 
 .u-margin-top {
   margin-top: 1rem !important; }
@@ -2637,6 +2657,9 @@ button,
 .u-margin-top-x6 {
   margin-top: 6rem !important; }
 
+.u-margin-top-x8 {
+  margin-top: 8rem !important; }
+
 .u-margin-right {
   margin-right: 1rem !important; }
 
@@ -2657,6 +2680,9 @@ button,
 
 .u-margin-right-x6 {
   margin-right: 6rem !important; }
+
+.u-margin-right-x8 {
+  margin-right: 8rem !important; }
 
 .u-margin-bottom {
   margin-bottom: 1rem !important; }
@@ -2679,6 +2705,9 @@ button,
 .u-margin-bottom-x6 {
   margin-bottom: 6rem !important; }
 
+.u-margin-bottom-x8 {
+  margin-bottom: 8rem !important; }
+
 .u-margin-left {
   margin-left: 1rem !important; }
 
@@ -2699,6 +2728,9 @@ button,
 
 .u-margin-left-x6 {
   margin-left: 6rem !important; }
+
+.u-margin-left-x8 {
+  margin-left: 8rem !important; }
 
 .u-margin-horizontal {
   margin-left: 1rem !important;
@@ -2728,6 +2760,10 @@ button,
   margin-left: 6rem !important;
   margin-right: 6rem !important; }
 
+.u-margin-horizontal-x8 {
+  margin-left: 8rem !important;
+  margin-right: 8rem !important; }
+
 .u-margin-vertical {
   margin-top: 1rem !important;
   margin-bottom: 1rem !important; }
@@ -2755,6 +2791,10 @@ button,
 .u-margin-vertical-x6 {
   margin-top: 6rem !important;
   margin-bottom: 6rem !important; }
+
+.u-margin-vertical-x8 {
+  margin-top: 8rem !important;
+  margin-bottom: 8rem !important; }
 
 .u-1\/1 {
   width: 100% !important; }

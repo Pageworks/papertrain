@@ -29,9 +29,9 @@
             }
         }
 
-        &:first-child{
-            padding-top: 0 !important;
-        }
+        // &:first-child{
+        //     padding-top: 0 !important;
+        // }
 
         .c-complex-content_container{
             .c-complex-content_column{
@@ -55,7 +55,7 @@
             }
 
             &:first-of-type{
-                padding-top: 0 !important;
+                // padding-top: 0 !important;
 
                 .c-complex-content_column{
                     @media (max-width: $screen-large - 1){
@@ -65,7 +65,7 @@
             }
 
             &:last-of-type{
-                padding-bottom: 0 !important;
+                // padding-bottom: 0 !important;
 
                 .c-complex-content_column{
                     &:last-child{
