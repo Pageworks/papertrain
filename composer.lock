@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e015221f4f93b7dabb35ef932aa212e3",
+    "content-hash": "49843e00d4e45d939e422d1809712d15",
     "packages": [
         {
             "name": "aelvan/imager",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aelvan/Imager-Craft/zipball/70e5c2fc77efbc848b1d30769adf34032ecd9ef0",
-                "reference": "70e5c2fc77efbc848b1d30769adf34032ecd9ef0",
+                "url": "https://api.github.com/repos/aelvan/Imager-Craft/zipball/2535087141dd7dbcd0721e4c2134fbef7e8c21a1",
+                "reference": "2535087141dd7dbcd0721e4c2134fbef7e8c21a1",
                 "shasum": ""
             },
             "require": {
@@ -68,15 +68,15 @@
                 "docs": "https://github.com/aelvan/Imager-Craft/blob/craft3/README.md",
                 "issues": "https://github.com/aelvan/Imager-Craft/issues"
             },
-            "time": "2018-11-01T19:04:22+00:00"
+            "time": "2018-11-27T18:37:11+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.73.0",
+            "version": "3.76.0",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/3b6ebec911d85503f107f2b748acacb2e8485ebb",
-                "reference": "3b6ebec911d85503f107f2b748acacb2e8485ebb",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/ae331953146493aa71853b5c675f0b7b48c9c952",
+                "reference": "ae331953146493aa71853b5c675f0b7b48c9c952",
                 "shasum": ""
             },
             "require": {
@@ -132,7 +132,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-11-20T00:09:45+00:00"
+            "time": "2018-11-27T05:14:58+00:00"
         },
         {
             "name": "cebe/markdown",
@@ -416,11 +416,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.0.32",
+            "version": "3.0.33",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/0bc53c9d10478acb32ba4d3af0c3d4e949dee920",
-                "reference": "0bc53c9d10478acb32ba4d3af0c3d4e949dee920",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/7d116eacee6c501395972ceef8a103825242cbf4",
+                "reference": "7d116eacee6c501395972ceef8a103825242cbf4",
                 "shasum": ""
             },
             "require": {
@@ -454,6 +454,9 @@
                 "yiisoft/yii2-queue": "2.1.0",
                 "yiisoft/yii2-swiftmailer": "^2.1.0",
                 "zendframework/zend-feed": "^2.8.0"
+            },
+            "conflict": {
+                "league/oauth2-client": "2.4.0"
             },
             "provide": {
                 "bower-asset/bootstrap": "3.3.* | 3.2.* | 3.1.*",
@@ -491,7 +494,7 @@
                 "docs": "https://github.com/craftcms/docs",
                 "rss": "https://github.com/craftcms/cms/releases.atom"
             },
-            "time": "2018-11-20T18:44:56+00:00"
+            "time": "2018-11-27T19:30:29+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -1801,11 +1804,11 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.48",
+            "version": "1.0.49",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a6ded5b2f6055e2db97b4b859fdfca2b952b78aa",
-                "reference": "a6ded5b2f6055e2db97b4b859fdfca2b952b78aa",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a63cc83d8a931b271be45148fa39ba7156782ffd",
+                "reference": "a63cc83d8a931b271be45148fa39ba7156782ffd",
                 "shasum": ""
             },
             "require": {
@@ -1871,15 +1874,15 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-10-15T13:53:10+00:00"
+            "time": "2018-11-23T23:41:29+00:00"
         },
         {
             "name": "league/oauth2-client",
-            "version": "2.3.1",
+            "version": "2.4.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-client/zipball/4dfceb5b25fe89dba7034de75bb097dfb2ec4b46",
-                "reference": "4dfceb5b25fe89dba7034de75bb097dfb2ec4b46",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-client/zipball/cc114abc622a53af969e8664722e84ca36257530",
+                "reference": "cc114abc622a53af969e8664722e84ca36257530",
                 "shasum": ""
             },
             "require": {
@@ -1925,7 +1928,7 @@
                 "oauth2",
                 "single sign on"
             ],
-            "time": "2018-11-19T23:15:14+00:00"
+            "time": "2018-11-22T18:33:57+00:00"
         },
         {
             "name": "mikehaertl/php-shellcommand",
@@ -2072,11 +2075,11 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.35.1",
+            "version": "1.36.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/5c05a2be472b22f63291d192410df9f0e0de3b19",
-                "reference": "5c05a2be472b22f63291d192410df9f0e0de3b19",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/63da8cdf89d7a5efe43aabc794365f6e7b7b8983",
+                "reference": "63da8cdf89d7a5efe43aabc794365f6e7b7b8983",
                 "shasum": ""
             },
             "require": {
@@ -2117,7 +2120,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-11-14T21:55:58+00:00"
+            "time": "2018-11-22T18:23:02+00:00"
         },
         {
             "name": "nystudio107/craft-eagerbeaver",
@@ -2395,11 +2398,11 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
                 "shasum": ""
             },
             "require": {
@@ -2416,7 +2419,6 @@
                     "Psr\\Log\\": "Psr/Log/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2433,7 +2435,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2018-11-20T15:27:04+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -2910,11 +2912,11 @@
         },
         {
             "name": "solspace/craft3-freeform",
-            "version": "2.5.1",
+            "version": "2.5.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solspace/craft3-freeform/zipball/750ba849e20baf2e5f71436186bc28a5e08c947a",
-                "reference": "750ba849e20baf2e5f71436186bc28a5e08c947a",
+                "url": "https://api.github.com/repos/solspace/craft3-freeform/zipball/b3dd99c9093796caafa57fbcbf1822ae3e47ef7b",
+                "reference": "b3dd99c9093796caafa57fbcbf1822ae3e47ef7b",
                 "shasum": ""
             },
             "require": {
@@ -2953,7 +2955,7 @@
                 }
             ],
             "description": "The most intuitive and powerful form builder for Craft.",
-            "time": "2018-11-20T15:20:42+00:00"
+            "time": "2018-11-27T18:46:36+00:00"
         },
         {
             "name": "ssnepenthe/color-utils",

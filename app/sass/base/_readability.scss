@@ -9,36 +9,37 @@
  * If additional column layouts are added OR their screen size breakpoints are adjusted
  * be sure to visit this file and recalculate the new `line-height` values.
  *
+ * To convert PX to REM take the PX amount and multiply it by 0.0625
  */
 
 p{
-    line-height: 26px;
+    line-height: 1.625rem;
 
     @media (min-width: $screen-xsmall){
-        line-height: 28px;
+        line-height: 1.75rem;
     }
 
     @media (min-width: $screen-small){
-        line-height: 29px;
+        line-height: 1.8125rem;
     }
 
     @media (min-width: $screen-medium){
-        line-height: 30px;
+        line-height: 1.875rem;
     }
 
     @media (min-width: $screen-large){
-        line-height: 32px;
+        line-height: 2rem;
 
         .c-complex-content_column.u-1\/2\@large & {
-            line-height: 28px;
+            line-height: 1.75rem;
         }
 
         .c-complex-content_column.u-1\/3\@large & {
-            line-height: 26px;
+            line-height: 1.625rem;
         }
 
         .c-complex-content_column.u-2\/3\@large & {
-            line-height: 29px;
+            line-height: 1.8125rem;
         }
     }
 }
@@ -46,33 +47,33 @@ p{
 h1,
 .o-h1
 {
-    line-height: 64px;
+    line-height: 4rem;
 
     @media (min-width: $screen-xsmall){
-        line-height: 65px;
+        line-height: 4.0625rem;
     }
 
     @media (min-width: $screen-small){
-        line-height: 67px;
+        line-height: 4.1875rem;
     }
 
     @media (min-width: $screen-medium){
-        line-height: 68px;
+        line-height: 4.25rem;
     }
 
     @media (min-width: $screen-large){
-        line-height: 70px;
+        line-height: 4.375rem;
 
         .c-complex-content_column.u-1\/2\@large & {
             line-height: 66px;
         }
 
         .c-complex-content_column.u-1\/3\@large & {
-            line-height: 64px;
+            line-height: 4rem;
         }
 
         .c-complex-content_column.u-2\/3\@large & {
-            line-height: 67px;
+            line-height: 4.1875rem;
         }
     }
 }
@@ -80,33 +81,33 @@ h1,
 h2,
 .o-h2
 {
-    line-height: 51px;
+    line-height: 3.1875rem;
 
     @media (min-width: $screen-xsmall){
-        line-height: 52px;
+        line-height: 3.25rem;
     }
 
     @media (min-width: $screen-small){
-        line-height: 54px;
+        line-height: 3.375rem;
     }
 
     @media (min-width: $screen-medium){
-        line-height: 55px;
+        line-height: 3.4375rem;
     }
 
     @media (min-width: $screen-large){
-        line-height: 57px;
+        line-height: 3.5625rem;
 
         .c-complex-content_column.u-1\/2\@large & {
-            line-height: 53px;
+            line-height: 3.3125rem;
         }
 
         .c-complex-content_column.u-1\/3\@large & {
-            line-height: 51px;
+            line-height: 3.1875rem;
         }
 
         .c-complex-content_column.u-2\/3\@large & {
-            line-height: 54px;
+            line-height: 3.375rem;
         }
     }
 }
@@ -114,33 +115,33 @@ h2,
 h3,
 .o-h3
 {
-    line-height: 41px;
+    line-height: 2.5625rem;
 
     @media (min-width: $screen-xsmall){
-        line-height: 42px;
+        line-height: 2.625rem;
     }
 
     @media (min-width: $screen-small){
-        line-height: 44px;
+        line-height: 2.75rem;
     }
 
     @media (min-width: $screen-medium){
-        line-height: 45px;
+        line-height: 2.8125rem;
     }
 
     @media (min-width: $screen-large){
-        line-height: 47px;
+        line-height: 2.9375rem;
 
         .c-complex-content_column.u-1\/2\@large & {
-            line-height: 42px;
+            line-height: 2.625rem;
         }
 
         .c-complex-content_column.u-1\/3\@large & {
-            line-height: 41px;
+            line-height: 2.5625rem;
         }
 
         .c-complex-content_column.u-2\/3\@large & {
-            line-height: 44px;
+            line-height: 2.75rem;
         }
     }
 }
@@ -148,33 +149,33 @@ h3,
 h4,
 .o-h4
 {
-    line-height: 32px;
+    line-height: 2rem;
 
     @media (min-width: $screen-xsmall){
-        line-height: 33px;
+        line-height: 2.0625rem;
     }
 
     @media (min-width: $screen-small){
-        line-height: 35px;
+        line-height: 2.1875rem;
     }
 
     @media (min-width: $screen-medium){
-        line-height: 36px;
+        line-height: 2.25rem;
     }
 
     @media (min-width: $screen-large){
-        line-height: 38px;
+        line-height: 2.375rem;
 
         .c-complex-content_column.u-1\/2\@large & {
-            line-height: 34px;
+            line-height: 2.125rem;
         }
 
         .c-complex-content_column.u-1\/3\@large & {
-            line-height: 32px;
+            line-height: 2rem;
         }
 
         .c-complex-content_column.u-2\/3\@large & {
-            line-height: 35px;
+            line-height: 2.1875rem;
         }
     }
 }
@@ -184,33 +185,33 @@ h5,
 .o-headline,
 .o-title
 {
-    line-height: 26px;
+    line-height: 1.625rem;
 
     @media (min-width: $screen-xsmall){
-        line-height: 28px;
+        line-height: 1.75rem;
     }
 
     @media (min-width: $screen-small){
-        line-height: 29px;
+        line-height: 1.8125rem;
     }
 
     @media (min-width: $screen-medium){
-        line-height: 30px;
+        line-height: 1.875rem;
     }
 
     @media (min-width: $screen-large){
-        line-height: 32px;
+        line-height: 2rem;
 
         .c-complex-content_column.u-1\/2\@large & {
-            line-height: 28px;
+            line-height: 1.75rem;
         }
 
         .c-complex-content_column.u-1\/3\@large & {
-            line-height: 26px;
+            line-height: 1.625rem;
         }
 
         .c-complex-content_column.u-2\/3\@large & {
-            line-height: 29px;
+            line-height: 1.8125rem;
         }
     }
 }
@@ -219,33 +220,33 @@ h6,
 .o-h6,
 .o-subtitle
 {   
-    line-height: 22px;
+    line-height: 1.375rem;
 
     @media (min-width: $screen-xsmall){
-        line-height: 23px;
+        line-height: 1.4375rem;
     }
 
     @media (min-width: $screen-small){
-        line-height: 25px;
+        line-height: 1.5625rem;
     }
 
     @media (min-width: $screen-medium){
-        line-height: 26px;
+        line-height: 1.625rem;
     }
 
     @media (min-width: $screen-large){
-        line-height: 28px;
+        line-height: 1.75rem;
 
         .c-complex-content_column.u-1\/2\@large & {
-            line-height: 23px;
+            line-height: 1.4375rem;
         }
 
         .c-complex-content_column.u-1\/3\@large & {
-            line-height: 22px;
+            line-height: 1.375rem;
         }
 
         .c-complex-content_column.u-2\/3\@large & {
-            line-height: 25px;
+            line-height: 1.5625rem;
         }
     }
 }
