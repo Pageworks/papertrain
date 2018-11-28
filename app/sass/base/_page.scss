@@ -47,7 +47,9 @@ section{
         background: $secondary-background-color;
     }
 
-    &.-dark-background{
+    &.-dark-background,
+    &.has-image,
+    &.has-video{
         background: $dark-background-color;
         color: $font-alt;
     }
