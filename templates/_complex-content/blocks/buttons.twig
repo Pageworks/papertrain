@@ -1,0 +1,9 @@
+{% if block.buttons|length %}
+	<div class="o-buttons o-wrapper -flexbox u-1/1 {{ block.padding }}{{ block.paddingSize }} {{block.alignment}}">
+		{% for button in block.buttons %}
+            <a href="{{ button.buttonLink.url }}" class="o-button {{ button.buttonStyle }}" target="{{ button.buttonLink.target }}">
+                <span>{{ button.buttonLink.text }}</span>
+            </a>
+        {% endfor %}
+	</div>
+{% endif %}

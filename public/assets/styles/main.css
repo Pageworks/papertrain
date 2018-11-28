@@ -589,9 +589,7 @@ html {
   min-height: 100vh;
   /* [3] */
   text-align: left;
-  position: relative;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: subpixel-antialiased; }
+  position: relative; }
   html * {
     box-sizing: border-box; }
   html.dom-is-loading * {
@@ -1328,9 +1326,9 @@ table {
     .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle {
       transform: translateX(20px); }
       .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
-        border-color: #f1ac44; }
+        border-color: #6200ee; }
     .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_track {
-      background: #f1ac44;
+      background: #6200ee;
       opacity: 0.54; }
     .o-switch .o-switch_item label {
       height: 100%;
@@ -1380,7 +1378,7 @@ table {
             transition: border-color 75ms cubic-bezier(0.4, 0, 0.2, 1); }
           .o-switch .o-switch_item label .o-switch_icon .o-switch_handle::before {
             content: "";
-            background: #f1ac44;
+            background: #6200ee;
             position: absolute;
             display: inline-block;
             border-radius: 100%;
@@ -1392,7 +1390,7 @@ table {
             transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
           .o-switch .o-switch_item label .o-switch_icon .o-switch_handle::after {
             content: "";
-            background: #f1ac44;
+            background: #6200ee;
             position: absolute;
             display: inline-block;
             border-radius: 100%;
@@ -1481,7 +1479,7 @@ form {
         pointer-events: none; }
         form .o-radio .o-radio_item .o-radio_icon::before {
           content: "";
-          background: #f1ac44;
+          background: #6200ee;
           position: absolute;
           display: inline-block;
           border-radius: 100%;
@@ -1492,7 +1490,7 @@ form {
           transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
         form .o-radio .o-radio_item .o-radio_icon::after {
           content: "";
-          background: #f1ac44;
+          background: #6200ee;
           position: absolute;
           display: inline-block;
           border-radius: 100%;
@@ -1505,13 +1503,13 @@ form {
           height: 16px;
           width: 16px;
           border-radius: 100%;
-          border: 2px solid #f1ac44;
+          border: 2px solid #6200ee;
           position: absolute; }
         form .o-radio .o-radio_item .o-radio_icon .o-radio_inner {
           transform: scale(0);
           height: 100%;
           width: 100%;
-          border: solid 10px #f1ac44;
+          border: solid 10px #6200ee;
           border-radius: 100%;
           position: absolute;
           transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1); }
@@ -1563,7 +1561,7 @@ form {
       pointer-events: none; }
       form .o-checkbox .o-checkbox_item .o-checkbox_icon::before {
         content: "";
-        background: #f1ac44;
+        background: #6200ee;
         position: absolute;
         display: inline-block;
         border-radius: 100%;
@@ -1574,7 +1572,7 @@ form {
         transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
       form .o-checkbox .o-checkbox_item .o-checkbox_icon::after {
         content: "";
-        background: #f1ac44;
+        background: #6200ee;
         position: absolute;
         display: inline-block;
         border-radius: 100%;
@@ -1588,7 +1586,7 @@ form {
         height: 16px;
         width: 16px;
         border-radius: 2px;
-        border: 2px solid #f1ac44;
+        border: 2px solid #6200ee;
         background: transparent;
         transition: background 75ms cubic-bezier(0.4, 0, 0.6, 1); }
       form .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check {
@@ -1602,7 +1600,7 @@ form {
           stroke-dashoffset: 30;
           transition: stroke-dashoffset 75ms cubic-bezier(0.4, 0, 0.6, 1); }
     form .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
-      background: #f1ac44;
+      background: #6200ee;
       transition: background 150ms cubic-bezier(0, 0, 0.2, 1); }
     form .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_check path {
       stroke-dashoffset: 0;
@@ -1677,13 +1675,13 @@ form {
       top: 20px;
       left: 16px !important; }
     form textarea:focus {
-      border: 2px solid #f1ac44;
+      border: 2px solid #6200ee;
       padding: 31px 15px 15px;
       transition: border 150ms cubic-bezier(0, 0, 0.2, 1), padding 150ms cubic-bezier(0, 0, 0.2, 1); }
       form textarea:focus + label {
         top: 12px;
         font-size: 12px !important;
-        color: #f1ac44 !important; }
+        color: #6200ee !important; }
   form input.has-icon {
     padding-left: 48px !important;
     padding-right: 16px !important; }
@@ -1758,12 +1756,12 @@ form {
       transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
     form.-outline input:focus,
     form.-outline select:focus {
-      border: 2px solid rgba(241, 172, 68, 0.87);
+      border: 2px solid rgba(98, 0, 238, 0.87);
       padding: 11px 15px 9px;
       transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
       form.-outline input:focus + label,
       form.-outline select:focus + label {
-        color: #f1ac44;
+        color: #6200ee;
         font-size: 12px;
         bottom: 48px;
         left: 16px;
@@ -1786,7 +1784,7 @@ form {
     transform: scaleX(0);
     display: inline-block;
     transition: transform 75ms cubic-bezier(0.4, 0, 1, 1);
-    background: #f1ac44;
+    background: #6200ee;
     transform-origin: center; }
   html.has-js form.-solid .o-input.has-focus:after {
     transform: scaleX(1);
@@ -1846,11 +1844,11 @@ form {
         background: #262626; }
       html.has-no-js form.-solid input:focus, html.has-no-js
       form.-solid select:focus {
-        border-bottom-color: #f1ac44;
+        border-bottom-color: #6200ee;
         transition: border-bottom-color 150ms cubic-bezier(0, 0, 0.2, 1); }
       form.-solid input:focus + label,
       form.-solid select:focus + label {
-        color: #f1ac44;
+        color: #6200ee;
         font-size: 12px;
         bottom: 35px;
         transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1868,7 +1866,7 @@ form {
     transform: scaleX(0);
     display: inline-block;
     transition: transform 75ms cubic-bezier(0.4, 0, 1, 1);
-    background: #f1ac44;
+    background: #6200ee;
     transform-origin: center; }
   html.has-js form .o-input.has-focus:after {
     transform: scaleX(1);
@@ -1928,11 +1926,11 @@ form {
         background: transparent; }
       html.has-no-js form input:focus, html.has-no-js
       form select:focus {
-        border-bottom-color: #f1ac44;
+        border-bottom-color: #6200ee;
         transition: border-bottom-color 150ms cubic-bezier(0, 0, 0.2, 1); }
       form input:focus + label,
       form select:focus + label {
-        color: #f1ac44;
+        color: #6200ee;
         font-size: 12px;
         bottom: 35px;
         transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -2018,36 +2016,48 @@ input[type=number]::-webkit-outer-spin-button {
 
 button,
 .o-button {
-  color: #f1ac44;
-  letter-spacing: 0.25px;
+  color: #6200ee;
+  letter-spacing: 1px;
   font-weight: 500;
   font-size: 14px;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
   text-align: center;
-  line-height: 36px;
+  line-height: 37px;
   padding: 0 8px;
   min-width: 64px;
   height: 36px;
   margin: 0 8px;
   display: inline-block;
   user-select: none;
-  border-radius: 2px;
-  background: rgba(0, 0, 0, 0);
-  transition: background 125ms cubic-bezier(0.4, 0, 1, 1); }
-  button:focus, button:hover,
-  .o-button:focus,
-  .o-button:hover {
-    background: rgba(241, 172, 68, 0.08);
-    transition: background 150ms cubic-bezier(0, 0, 0.2, 1); }
-  button:active,
-  .o-button:active {
-    background: rgba(241, 172, 68, 0.15);
-    transition: background 150ms cubic-bezier(0.4, 0, 0.6, 1); }
+  overflow: hidden;
+  border-radius: 4px;
+  background: transparent;
+  position: relative;
+  opacity: 0.87; }
+  button::before,
+  .o-button::before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #6200ee;
+    opacity: 0;
+    transition: opacity 125ms cubic-bezier(0.4, 0, 1, 1); }
+  button:hover:before,
+  .o-button:hover:before {
+    opacity: 0.04;
+    transition: opacity 150ms cubic-bezier(0, 0, 0.2, 1); }
+  button:active:before,
+  .o-button:active:before {
+    opacity: 0.19;
+    transition: opacity 75ms cubic-bezier(0.4, 0, 0.6, 1); }
   button.is-disabled,
   .o-button.is-disabled {
-    color: rgba(0, 0, 0, 0.26);
+    color: rgba(7, 7, 7, 0.26);
     pointer-events: none; }
     section.-dark-background button.is-disabled, section.-dark-background
     .o-button.is-disabled {
@@ -2055,6 +2065,9 @@ button,
   button.-wide,
   .o-button.-wide {
     display: block; }
+  button.-round,
+  .o-button.-round {
+    border-radius: 17px; }
   button.has-icon,
   .o-button.has-icon {
     padding: 0 16px 0 12px; }
@@ -2067,11 +2080,17 @@ button,
   button.-solid,
   .o-button.-solid {
     padding: 0 16px;
-    background: #f1ac44;
+    background: #6200ee;
     color: #fafafa; }
-    button.-solid:active,
-    .o-button.-solid:active {
-      background: #f0a636; }
+    button.-solid:before,
+    .o-button.-solid:before {
+      background-color: #fafafa; }
+    button.-solid:hover:before,
+    .o-button.-solid:hover:before {
+      opacity: 0.08; }
+    button.-solid:active:before,
+    .o-button.-solid:active:before {
+      opacity: 0.33; }
     button.-solid.is-disabled,
     .o-button.-solid.is-disabled {
       background: rgba(7, 7, 7, 0.1);
@@ -2083,14 +2102,40 @@ button,
   button.-outline,
   .o-button.-outline {
     padding: 0 16px;
-    box-shadow: 0 0 0 2px rgba(7, 7, 7, 0.05); }
-    section.-dark-background button.-outline, section.-dark-background
-    .o-button.-outline {
-      box-shadow: 0 0 0 2px rgba(250, 250, 250, 0.05); }
+    border: 2px solid #6200ee;
+    line-height: 34px; }
+  button.-raised,
+  .o-button.-raised {
+    padding: 0 16px;
+    background: #6200ee;
+    color: #fafafa;
+    box-shadow: 0 3px 1px -2px rgba(7, 7, 7, 0.2), 0 2px 2px 0 rgba(7, 7, 7, 0.14), 0 1px 5px 0 rgba(7, 7, 7, 0.12);
+    transition: box-shadow 150ms cubic-bezier(0.4, 0, 1, 1); }
+    button.-raised:before,
+    .o-button.-raised:before {
+      background-color: #fafafa; }
+    button.-raised:hover,
+    .o-button.-raised:hover {
+      box-shadow: 0 2px 4px -1px rgba(7, 7, 7, 0.2), 0 4px 5px 0 rgba(7, 7, 7, 0.14), 0 1px 10px 0 rgba(7, 7, 7, 0.12);
+      transition: box-shadow 150ms cubic-bezier(0, 0, 0.2, 1); }
+      button.-raised:hover:before,
+      .o-button.-raised:hover:before {
+        opacity: 0.08; }
+    button.-raised:active:before,
+    .o-button.-raised:active:before {
+      opacity: 0.33; }
+    button.-raised.is-disabled,
+    .o-button.-raised.is-disabled {
+      background: rgba(7, 7, 7, 0.1);
+      color: rgba(7, 7, 7, 0.26); }
+      section.-dark-background button.-raised.is-disabled, section.-dark-background
+      .o-button.-raised.is-disabled {
+        background: rgba(250, 250, 250, 0.05);
+        color: rgba(250, 250, 250, 0.3); }
   button.-icon,
   .o-button.-icon {
-    background: rgba(0, 0, 0, 0);
-    color: #f1ac44; }
+    background: rgba(7, 7, 7, 0);
+    color: #6200ee; }
     html.has-js button.-icon, html.has-js
     .o-button.-icon {
       display: inline-flex;
@@ -2110,7 +2155,7 @@ button,
       html.has-js button.-icon::before, html.has-js
       .o-button.-icon::before {
         content: "";
-        background: #f1ac44;
+        background: #6200ee;
         position: absolute;
         display: inline-block;
         border-radius: 100%;
@@ -2122,7 +2167,7 @@ button,
       html.has-js button.-icon::after, html.has-js
       .o-button.-icon::after {
         content: "";
-        background: #f1ac44;
+        background: #6200ee;
         position: absolute;
         display: inline-block;
         border-radius: 100%;
@@ -2371,6 +2416,15 @@ button,
 
 .o-copy p:last-of-type {
   margin-bottom: 0; }
+
+.o-buttons .o-button:first-child {
+  margin-left: 0; }
+
+.o-buttons .o-button:last-child {
+  margin-right: 0; }
+
+.o-buttons .o-button.-base:first-child {
+  margin-left: -8px; }
 
 .u-float-left {
   float: left !important; }
