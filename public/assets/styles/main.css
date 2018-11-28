@@ -624,6 +624,8 @@ body {
  * This section adjusts the base headings style such as colour, weights, and size
  * to adjust line heights please visit the readability SCSS file.
  * @see `base/_readability.scss`
+ *
+ * To calculate REM version of tracking divide value by 16px. Example: (0.2/16px) = 0.0125rem
  */
 h1,
 .o-h1 {
