@@ -1,6 +1,12 @@
 // Headings
 // ==========================================================================
 
+/**
+ * This section adjusts the base headings style such as colour & weights
+ * to adjust font sizes and line heights visit the readability SCSS file
+ * @see `base/_readability.scss`
+ */
+
 @mixin  h {
     padding: 0;
     margin: 0;
@@ -10,7 +16,7 @@
 h1,
 .o-h1
 {
-    font-size: 6rem;
+    font-size: 42px;
     letter-spacing: -1.5px;
     font-weight: $light;
     font-family: $font-heading;
@@ -25,7 +31,7 @@ h1,
 h2,
 .o-h2
 {
-    font-size: 3.75rem;
+    font-size: 33px;
     letter-spacing: -0.5px;
     font-weight: $light;
     font-family: $font-heading;
@@ -40,7 +46,7 @@ h2,
 h3,
 .o-h3
 {
-    font-size: 3rem;
+    font-size: 26px;
     letter-spacing: 0;
     font-weight: $regular;
     font-family: $font-heading;
@@ -55,7 +61,7 @@ h3,
 h4,
 .o-h4
 {
-    font-size: 2.125rem;
+    font-size: 20px;
     letter-spacing: 0.25px;
     font-weight: $regular;
     font-family: $font-heading;
@@ -69,26 +75,11 @@ h4,
 
 h5,
 .o-h5,
-.o-headline
-{
-    font-size: 1.75rem;
-    letter-spacing: 0;
-    font-weight: $regular;
-    font-family: $font-heading;
-    @include h;
-    color: contrast($base-background-color, 0.6);
-
-    section.-dark-background & {
-        color: contrast($dark-background-color, 0.6);
-    }
-}
-
-h6,
-.o-h6,
+.o-headline,
 .o-title
 {
-    font-size: 1.5rem; 
-    letter-spacing: 0.15px;
+    font-size: 1rem;
+    letter-spacing: 0;
     font-weight: $medium;
     font-family: $font-heading;
     @include h;
@@ -99,8 +90,11 @@ h6,
     }
 }
 
-.o-subtitle{
-    font-size: 1.25rem;
+h6,
+.o-h6,
+.o-subtitle
+{
+    font-size: 13px;
     letter-spacing: 0.15px;
     font-weight: $regular;
     font-family: $font-heading;

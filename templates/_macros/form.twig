@@ -1,5 +1,5 @@
 {# Basic Form Input #}
-{% macro input(label, name, type = 'text', width = 'u-1/1', required = true, autocomplete, icon, help, pattern, margin = 'u-margin-bottom-x6') %}
+{% macro input(label, name, type = 'text', width = 'u-1/1', required = true, autocomplete, icon, help, pattern, margin = 'u-margin-bottom-x4') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-input">
             <input {% if icon %}class="has-icon"{% endif %} type="{{type}}" {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern %}pattern="{{pattern}}"{% elseif type == 'email' %}pattern=".+@.+\..+"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
@@ -19,7 +19,7 @@
 {% endmacro %}
 
 {# Number Form Input #}
-{% macro number(label, name, width = 'u-1/1', required = true, icon, help, min = 0, max, step, margin = 'u-margin-bottom-x6') %}
+{% macro number(label, name, width = 'u-1/1', required = true, icon, help, min = 0, max, step, margin = 'u-margin-bottom-x4') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-input">
             <input {% if icon %}class="has-icon"{% endif %} type="number" min="{{min}}" inputmode="numeric" {% if max %}max="{{max}}"{% endif %} {% if step %}step="{{step}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
@@ -39,7 +39,7 @@
 {% endmacro %}
 
 {# Password Form Input #}
-{% macro password(label, name, width = 'u-1/1', help, required = true, margin = 'u-margin-bottom-x6', pattern) %}
+{% macro password(label, name, width = 'u-1/1', help, required = true, margin = 'u-margin-bottom-x4', pattern) %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-input has-content-hidden">
             <input type="password" pattern="{% if not pattern %}^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}${% else %}{{pattern}}{% endif %}" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
@@ -68,7 +68,7 @@
 {% endmacro %}
 
 {# Pin Form Input #}
-{% macro pin(label, name, width = 'u-1/1', required = true, help,  min = 4, max = 8, pattern = '^[0-9]*', margin = 'u-margin-bottom-x6') %}
+{% macro pin(label, name, width = 'u-1/1', required = true, help,  min = 4, max = 8, pattern = '^[0-9]*', margin = 'u-margin-bottom-x4') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-input has-content-hidden">
             <input type="password" inputmode="numeric" minlength="{{min}}" maxlength="{{max}}" pattern="{{pattern}}" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
@@ -97,7 +97,7 @@
 {% endmacro %}
 
 {# Select Form Input #}
-{% macro select(label, name, options, allowAny = true, help, width = 'u-1/1', margin = 'u-margin-bottom-x6') %}
+{% macro select(label, name, options, allowAny = true, help, width = 'u-1/1', margin = 'u-margin-bottom-x4') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-input">
             <select id="{{name}}" name="{{name}}" >
@@ -118,7 +118,7 @@
 {% endmacro %}
 
 {# Textarea Input #}
-{% macro textarea(label, name, required = true, help, width = 'u-1/1', margin = 'u-margin-bottom-x6') %}
+{% macro textarea(label, name, required = true, help, width = 'u-1/1', margin = 'u-margin-bottom-x4') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-textarea">
             <textarea id="{{name}}" name="{{name}}" {% if required %}required{% endif %}></textarea>
@@ -137,7 +137,7 @@
 {% endmacro %}
 
 {# Radio Button Form Input #}
-{% macro radio(label, name, options, width = 'u-1/1', margin = 'u-margin-bottom-x6') %}
+{% macro radio(label, name, options, width = 'u-1/1', margin = 'u-margin-bottom-x4') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <fieldset class="js-input o-radio">
             {% for option in options %}
@@ -158,7 +158,7 @@
 {% endmacro %}
 
 {# Checkbox Form Input #}
-{% macro checkbox(label, name, options, width = 'u-1/1', margin = 'u-margin-bottom-x6') %}
+{% macro checkbox(label, name, options, width = 'u-1/1', margin = 'u-margin-bottom-x4') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <fieldset class="js-input o-checkbox">
             {% for option in options %}
@@ -181,7 +181,7 @@
 {% endmacro %}
 
 {# Date Form Input #}
-{% macro date(label, name, required = true, help, width = 'u-1/1', icon = 'far fa-calendar-alt', startDate, minDate, maxDate, margin = 'u-margin-bottom-x6') %}
+{% macro date(label, name, required = true, help, width = 'u-1/1', icon = 'far fa-calendar-alt', startDate, minDate, maxDate, margin = 'u-margin-bottom-x4') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-input">
             <input {% if icon %}class="has-icon"{% endif %} type="date" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} value="{% if startDate %}{{startDate}}{% else %}{{now|date('Y-m-d')}}{% endif %}" {% if minDate %}min="{{minDate}}"{% endif %} {% if maxDate %}max="{{maxDate}}"{% endif %} pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" />
@@ -201,7 +201,7 @@
 {% endmacro %}
 
 {# Switch Form Input #}
-{% macro switch(label, name, checked = true, width = 'u-1/1', margin = 'u-margin-bottom-x6') %}
+{% macro switch(label, name, checked = true, width = 'u-1/1', margin = 'u-margin-bottom-x4') %}
     <div class="o-layout_item {{width}} {{margin}}">
         <div class="js-input o-switch">
             <div class="o-switch_item">

@@ -21,7 +21,6 @@ $heavy: 700;
 // =============================================================================
 $font-size: 1rem;
 $font-weight: $regular;
-$line-height: 24px;
 $font-family: $font-sans-serif;
 $color: $font-base;
 
@@ -44,7 +43,7 @@ $ease-out:      cubic-bezier(0.4, 0.0, 1, 1);
 $unit:          1rem;
 $unit-small:    0.5rem;
 $unit-tiny:     0.25rem;
-$base-margin:   0 0 $unit;
+$base-margin:   0 0 28px;
 
 // Container
 // ==========================================================================

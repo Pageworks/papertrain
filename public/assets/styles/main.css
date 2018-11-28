@@ -541,8 +541,7 @@ ul {
     list-style-type: square; }
 
 p {
-  margin: 0 0 1rem;
-  line-height: 24px; }
+  margin: 0 0 28px; }
 
 code {
   background: rgba(144, 144, 144, 0.075);
@@ -565,7 +564,7 @@ blockquote {
   font-size: 16pt; }
 
 dl {
-  margin: 0 0 1rem;
+  margin: 0 0 28px;
   padding: 0;
   border: 0; }
   dl dt {
@@ -621,9 +620,14 @@ body {
 :root {
   font-size: 100%; }
 
+/**
+ * This section adjusts the base headings style such as colour & weights
+ * to adjust font sizes and line heights visit the readability SCSS file
+ * @see `base/_readability.scss`
+ */
 h1,
 .o-h1 {
-  font-size: 6rem;
+  font-size: 42px;
   letter-spacing: -1.5px;
   font-weight: 300;
   font-family: "Roboto", sans-serif;
@@ -637,7 +641,7 @@ h1,
 
 h2,
 .o-h2 {
-  font-size: 3.75rem;
+  font-size: 33px;
   letter-spacing: -0.5px;
   font-weight: 300;
   font-family: "Roboto", sans-serif;
@@ -651,7 +655,7 @@ h2,
 
 h3,
 .o-h3 {
-  font-size: 3rem;
+  font-size: 26px;
   letter-spacing: 0;
   font-weight: 400;
   font-family: "Roboto", sans-serif;
@@ -665,7 +669,7 @@ h3,
 
 h4,
 .o-h4 {
-  font-size: 2.125rem;
+  font-size: 20px;
   letter-spacing: 0.25px;
   font-weight: 400;
   font-family: "Roboto", sans-serif;
@@ -679,38 +683,26 @@ h4,
 
 h5,
 .o-h5,
-.o-headline {
-  font-size: 1.75rem;
-  letter-spacing: 0;
-  font-weight: 400;
-  font-family: "Roboto", sans-serif;
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
-  color: rgba(7, 7, 7, 0.6); }
-  section.-dark-background h5, section.-dark-background
-  .o-h5, section.-dark-background
-  .o-headline {
-    color: rgba(250, 250, 250, 0.6); }
-
-h6,
-.o-h6,
+.o-headline,
 .o-title {
-  font-size: 1.5rem;
-  letter-spacing: 0.15px;
+  font-size: 1rem;
+  letter-spacing: 0;
   font-weight: 500;
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
   color: rgba(7, 7, 7, 0.87); }
-  section.-dark-background h6, section.-dark-background
-  .o-h6, section.-dark-background
+  section.-dark-background h5, section.-dark-background
+  .o-h5, section.-dark-background
+  .o-headline, section.-dark-background
   .o-title {
     color: rgba(250, 250, 250, 0.87); }
 
+h6,
+.o-h6,
 .o-subtitle {
-  font-size: 1.25rem;
+  font-size: 13px;
   letter-spacing: 0.15px;
   font-weight: 400;
   font-family: "Roboto", sans-serif;
@@ -718,8 +710,238 @@ h6,
   margin: 0;
   text-transform: capitalize;
   color: rgba(7, 7, 7, 0.6); }
-  section.-dark-background .o-subtitle {
+  section.-dark-background h6, section.-dark-background
+  .o-h6, section.-dark-background
+  .o-subtitle {
     color: rgba(250, 250, 250, 0.6); }
+
+/**
+ * This section adjusts the line-height settings for maximum readability across devices
+ * @see https://grtcalculator.com/
+ *
+ * Line heights are based on a font size of 1rem.
+ * If additional column layouts are added OR their screen size breakpoints are adjusted
+ * be sure to visit this file and recalculate the new `line-height` values.
+ *
+ */
+p {
+  line-height: 26px; }
+  @media (min-width: 600px) {
+    p {
+      line-height: 28px; } }
+  @media (min-width: 840px) {
+    p {
+      line-height: 29px; } }
+  @media (min-width: 960px) {
+    p {
+      line-height: 30px; } }
+  @media (min-width: 1280px) {
+    p {
+      line-height: 32px; }
+      .c-complex-content_column.u-1\/2\@large p {
+        line-height: 28px; }
+      .c-complex-content_column.u-1\/3\@large p {
+        line-height: 26px; }
+      .c-complex-content_column.u-2\/3\@large p {
+        line-height: 29px; } }
+
+h1,
+.o-h1 {
+  line-height: 64px; }
+  @media (min-width: 600px) {
+    h1,
+    .o-h1 {
+      line-height: 65px; } }
+  @media (min-width: 840px) {
+    h1,
+    .o-h1 {
+      line-height: 67px; } }
+  @media (min-width: 960px) {
+    h1,
+    .o-h1 {
+      line-height: 68px; } }
+  @media (min-width: 1280px) {
+    h1,
+    .o-h1 {
+      line-height: 70px; }
+      .c-complex-content_column.u-1\/2\@large h1, .c-complex-content_column.u-1\/2\@large
+      .o-h1 {
+        line-height: 66px; }
+      .c-complex-content_column.u-1\/3\@large h1, .c-complex-content_column.u-1\/3\@large
+      .o-h1 {
+        line-height: 64px; }
+      .c-complex-content_column.u-2\/3\@large h1, .c-complex-content_column.u-2\/3\@large
+      .o-h1 {
+        line-height: 67px; } }
+
+h2,
+.o-h2 {
+  line-height: 51px; }
+  @media (min-width: 600px) {
+    h2,
+    .o-h2 {
+      line-height: 52px; } }
+  @media (min-width: 840px) {
+    h2,
+    .o-h2 {
+      line-height: 54px; } }
+  @media (min-width: 960px) {
+    h2,
+    .o-h2 {
+      line-height: 55px; } }
+  @media (min-width: 1280px) {
+    h2,
+    .o-h2 {
+      line-height: 57px; }
+      .c-complex-content_column.u-1\/2\@large h2, .c-complex-content_column.u-1\/2\@large
+      .o-h2 {
+        line-height: 53px; }
+      .c-complex-content_column.u-1\/3\@large h2, .c-complex-content_column.u-1\/3\@large
+      .o-h2 {
+        line-height: 51px; }
+      .c-complex-content_column.u-2\/3\@large h2, .c-complex-content_column.u-2\/3\@large
+      .o-h2 {
+        line-height: 54px; } }
+
+h3,
+.o-h3 {
+  line-height: 41px; }
+  @media (min-width: 600px) {
+    h3,
+    .o-h3 {
+      line-height: 42px; } }
+  @media (min-width: 840px) {
+    h3,
+    .o-h3 {
+      line-height: 44px; } }
+  @media (min-width: 960px) {
+    h3,
+    .o-h3 {
+      line-height: 45px; } }
+  @media (min-width: 1280px) {
+    h3,
+    .o-h3 {
+      line-height: 47px; }
+      .c-complex-content_column.u-1\/2\@large h3, .c-complex-content_column.u-1\/2\@large
+      .o-h3 {
+        line-height: 42px; }
+      .c-complex-content_column.u-1\/3\@large h3, .c-complex-content_column.u-1\/3\@large
+      .o-h3 {
+        line-height: 41px; }
+      .c-complex-content_column.u-2\/3\@large h3, .c-complex-content_column.u-2\/3\@large
+      .o-h3 {
+        line-height: 44px; } }
+
+h4,
+.o-h4 {
+  line-height: 32px; }
+  @media (min-width: 600px) {
+    h4,
+    .o-h4 {
+      line-height: 33px; } }
+  @media (min-width: 840px) {
+    h4,
+    .o-h4 {
+      line-height: 35px; } }
+  @media (min-width: 960px) {
+    h4,
+    .o-h4 {
+      line-height: 36px; } }
+  @media (min-width: 1280px) {
+    h4,
+    .o-h4 {
+      line-height: 38px; }
+      .c-complex-content_column.u-1\/2\@large h4, .c-complex-content_column.u-1\/2\@large
+      .o-h4 {
+        line-height: 34px; }
+      .c-complex-content_column.u-1\/3\@large h4, .c-complex-content_column.u-1\/3\@large
+      .o-h4 {
+        line-height: 32px; }
+      .c-complex-content_column.u-2\/3\@large h4, .c-complex-content_column.u-2\/3\@large
+      .o-h4 {
+        line-height: 35px; } }
+
+h5,
+.o-h5,
+.o-headline,
+.o-title {
+  line-height: 26px; }
+  @media (min-width: 600px) {
+    h5,
+    .o-h5,
+    .o-headline,
+    .o-title {
+      line-height: 28px; } }
+  @media (min-width: 840px) {
+    h5,
+    .o-h5,
+    .o-headline,
+    .o-title {
+      line-height: 29px; } }
+  @media (min-width: 960px) {
+    h5,
+    .o-h5,
+    .o-headline,
+    .o-title {
+      line-height: 30px; } }
+  @media (min-width: 1280px) {
+    h5,
+    .o-h5,
+    .o-headline,
+    .o-title {
+      line-height: 32px; }
+      .c-complex-content_column.u-1\/2\@large h5, .c-complex-content_column.u-1\/2\@large
+      .o-h5, .c-complex-content_column.u-1\/2\@large
+      .o-headline, .c-complex-content_column.u-1\/2\@large
+      .o-title {
+        line-height: 28px; }
+      .c-complex-content_column.u-1\/3\@large h5, .c-complex-content_column.u-1\/3\@large
+      .o-h5, .c-complex-content_column.u-1\/3\@large
+      .o-headline, .c-complex-content_column.u-1\/3\@large
+      .o-title {
+        line-height: 26px; }
+      .c-complex-content_column.u-2\/3\@large h5, .c-complex-content_column.u-2\/3\@large
+      .o-h5, .c-complex-content_column.u-2\/3\@large
+      .o-headline, .c-complex-content_column.u-2\/3\@large
+      .o-title {
+        line-height: 29px; } }
+
+h6,
+.o-h6,
+.o-subtitle {
+  line-height: 22px; }
+  @media (min-width: 600px) {
+    h6,
+    .o-h6,
+    .o-subtitle {
+      line-height: 23px; } }
+  @media (min-width: 840px) {
+    h6,
+    .o-h6,
+    .o-subtitle {
+      line-height: 25px; } }
+  @media (min-width: 960px) {
+    h6,
+    .o-h6,
+    .o-subtitle {
+      line-height: 26px; } }
+  @media (min-width: 1280px) {
+    h6,
+    .o-h6,
+    .o-subtitle {
+      line-height: 28px; }
+      .c-complex-content_column.u-1\/2\@large h6, .c-complex-content_column.u-1\/2\@large
+      .o-h6, .c-complex-content_column.u-1\/2\@large
+      .o-subtitle {
+        line-height: 23px; }
+      .c-complex-content_column.u-1\/3\@large h6, .c-complex-content_column.u-1\/3\@large
+      .o-h6, .c-complex-content_column.u-1\/3\@large
+      .o-subtitle {
+        line-height: 22px; }
+      .c-complex-content_column.u-2\/3\@large h6, .c-complex-content_column.u-2\/3\@large
+      .o-h6, .c-complex-content_column.u-2\/3\@large
+      .o-subtitle {
+        line-height: 25px; } }
 
 .o-container {
   max-width: 1280px;
@@ -1139,6 +1361,7 @@ form {
     border-radius: 0 !important; }
   form .o-input {
     height: 56px;
+    width: 100%;
     position: relative; }
     form .o-input.is-invalid .o-help {
       opacity: 0;
@@ -1166,7 +1389,8 @@ form {
   form .o-radio {
     position: relative;
     padding: 32px 0 6px;
-    text-align: center; }
+    text-align: left;
+    width: 100%; }
     form .o-radio label {
       position: absolute;
       top: 0;
@@ -1251,7 +1475,8 @@ form {
         cursor: pointer; }
   form .o-checkbox {
     position: relative;
-    padding: 32px 0 6px; }
+    padding: 32px 0 6px;
+    width: 100%; }
     form .o-checkbox label {
       position: absolute;
       top: 0;
@@ -1338,7 +1563,8 @@ form {
       pointer-events: all;
       cursor: pointer; }
   form .o-textarea {
-    position: relative; }
+    position: relative;
+    width: 100%; }
     html.has-js form .o-textarea.is-invalid .o-error {
       opacity: 1;
       transform: translateY(0);

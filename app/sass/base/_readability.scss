@@ -1,0 +1,251 @@
+// Readability Settings
+// ==========================================================================
+
+/**
+ * This section adjusts the line-height settings for maximum readability across devices
+ * @see https://grtcalculator.com/
+ *
+ * Line heights are based on a font size of 1rem.
+ * If additional column layouts are added OR their screen size breakpoints are adjusted
+ * be sure to visit this file and recalculate the new `line-height` values.
+ *
+ */
+
+p{
+    line-height: 26px;
+
+    @media (min-width: $screen-xsmall){
+        line-height: 28px;
+    }
+
+    @media (min-width: $screen-small){
+        line-height: 29px;
+    }
+
+    @media (min-width: $screen-medium){
+        line-height: 30px;
+    }
+
+    @media (min-width: $screen-large){
+        line-height: 32px;
+
+        .c-complex-content_column.u-1\/2\@large & {
+            line-height: 28px;
+        }
+
+        .c-complex-content_column.u-1\/3\@large & {
+            line-height: 26px;
+        }
+
+        .c-complex-content_column.u-2\/3\@large & {
+            line-height: 29px;
+        }
+    }
+}
+
+h1,
+.o-h1
+{
+    line-height: 64px;
+
+    @media (min-width: $screen-xsmall){
+        line-height: 65px;
+    }
+
+    @media (min-width: $screen-small){
+        line-height: 67px;
+    }
+
+    @media (min-width: $screen-medium){
+        line-height: 68px;
+    }
+
+    @media (min-width: $screen-large){
+        line-height: 70px;
+
+        .c-complex-content_column.u-1\/2\@large & {
+            line-height: 66px;
+        }
+
+        .c-complex-content_column.u-1\/3\@large & {
+            line-height: 64px;
+        }
+
+        .c-complex-content_column.u-2\/3\@large & {
+            line-height: 67px;
+        }
+    }
+}
+
+h2,
+.o-h2
+{
+    line-height: 51px;
+
+    @media (min-width: $screen-xsmall){
+        line-height: 52px;
+    }
+
+    @media (min-width: $screen-small){
+        line-height: 54px;
+    }
+
+    @media (min-width: $screen-medium){
+        line-height: 55px;
+    }
+
+    @media (min-width: $screen-large){
+        line-height: 57px;
+
+        .c-complex-content_column.u-1\/2\@large & {
+            line-height: 53px;
+        }
+
+        .c-complex-content_column.u-1\/3\@large & {
+            line-height: 51px;
+        }
+
+        .c-complex-content_column.u-2\/3\@large & {
+            line-height: 54px;
+        }
+    }
+}
+
+h3,
+.o-h3
+{
+    line-height: 41px;
+
+    @media (min-width: $screen-xsmall){
+        line-height: 42px;
+    }
+
+    @media (min-width: $screen-small){
+        line-height: 44px;
+    }
+
+    @media (min-width: $screen-medium){
+        line-height: 45px;
+    }
+
+    @media (min-width: $screen-large){
+        line-height: 47px;
+
+        .c-complex-content_column.u-1\/2\@large & {
+            line-height: 42px;
+        }
+
+        .c-complex-content_column.u-1\/3\@large & {
+            line-height: 41px;
+        }
+
+        .c-complex-content_column.u-2\/3\@large & {
+            line-height: 44px;
+        }
+    }
+}
+
+h4,
+.o-h4
+{
+    line-height: 32px;
+
+    @media (min-width: $screen-xsmall){
+        line-height: 33px;
+    }
+
+    @media (min-width: $screen-small){
+        line-height: 35px;
+    }
+
+    @media (min-width: $screen-medium){
+        line-height: 36px;
+    }
+
+    @media (min-width: $screen-large){
+        line-height: 38px;
+
+        .c-complex-content_column.u-1\/2\@large & {
+            line-height: 34px;
+        }
+
+        .c-complex-content_column.u-1\/3\@large & {
+            line-height: 32px;
+        }
+
+        .c-complex-content_column.u-2\/3\@large & {
+            line-height: 35px;
+        }
+    }
+}
+
+h5,
+.o-h5,
+.o-headline,
+.o-title
+{
+    line-height: 26px;
+
+    @media (min-width: $screen-xsmall){
+        line-height: 28px;
+    }
+
+    @media (min-width: $screen-small){
+        line-height: 29px;
+    }
+
+    @media (min-width: $screen-medium){
+        line-height: 30px;
+    }
+
+    @media (min-width: $screen-large){
+        line-height: 32px;
+
+        .c-complex-content_column.u-1\/2\@large & {
+            line-height: 28px;
+        }
+
+        .c-complex-content_column.u-1\/3\@large & {
+            line-height: 26px;
+        }
+
+        .c-complex-content_column.u-2\/3\@large & {
+            line-height: 29px;
+        }
+    }
+}
+
+h6,
+.o-h6,
+.o-subtitle
+{   
+    line-height: 22px;
+
+    @media (min-width: $screen-xsmall){
+        line-height: 23px;
+    }
+
+    @media (min-width: $screen-small){
+        line-height: 25px;
+    }
+
+    @media (min-width: $screen-medium){
+        line-height: 26px;
+    }
+
+    @media (min-width: $screen-large){
+        line-height: 28px;
+
+        .c-complex-content_column.u-1\/2\@large & {
+            line-height: 23px;
+        }
+
+        .c-complex-content_column.u-1\/3\@large & {
+            line-height: 22px;
+        }
+
+        .c-complex-content_column.u-2\/3\@large & {
+            line-height: 25px;
+        }
+    }
+}
