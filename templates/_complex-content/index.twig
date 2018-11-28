@@ -9,95 +9,96 @@
     'cc.sectionSetings:backgroundImage',
     'cc.image:image'
 ]) %}
-
-<article data-template="{{entry.slug}}" class="o-container-full c-complex-content">
-    {% for block in entry.cc %}
-        {# Determine if we need to grab a utility block or a content block #}
-        {% if block.type == "sectionSettings" or block.type == "container" or block.type == "endColumn" %}
-            {% switch block.type %}
-                {% case "sectionSettings" %}
-                    {# If we already have an open section check if we need to close anything #}
-                    {% if sectionOpen %}
-                        {% if columnOpen %}
-                            </div>
-                            {% set columnOpen = false %}
+{% cache %}
+    <article data-template="{{entry.slug}}" class="o-container-full c-complex-content">
+        {% for block in entry.cc %}
+            {# Determine if we need to grab a utility block or a content block #}
+            {% if block.type == "sectionSettings" or block.type == "container" or block.type == "endColumn" %}
+                {% switch block.type %}
+                    {% case "sectionSettings" %}
+                        {# If we already have an open section check if we need to close anything #}
+                        {% if sectionOpen %}
+                            {% if columnOpen %}
+                                </div>
+                                {% set columnOpen = false %}
+                            {% endif %}
+                            {% if containerOpen %}
+                                    </div>
+                                </div>
+                                {% set containerOpen = false %}
+                            {% endif %}
+                            </section>
                         {% endif %}
+                        {% set sectionOpen = true %}
+                        {% set currentColumn = 1 %}
+                    {% case "container" %}
+                        {# If we already have a container open close it #}
                         {% if containerOpen %}
+                            {% if columnOpen %}
+                                </div>
+                                {% set columnOpen = false %}
+                            {% endif %}
                                 </div>
                             </div>
-                            {% set containerOpen = false %}
                         {% endif %}
-                        </section>
-                    {% endif %}
-                    {% set sectionOpen = true %}
-                    {% set currentColumn = 1 %}
-                {% case "container" %}
-                    {# If we already have a container open close it #}
-                    {% if containerOpen %}
-                        {% if columnOpen %}
-                            </div>
-                            {% set columnOpen = false %}
-                        {% endif %}
-                            </div>
-                        </div>
-                    {% endif %}
-                    {% set containerOpen = true %}
-                    {% set columnLayout = block.columnLayout.value %}
-                    {% set currentColumn = 1 %}
-                {% case "endColumn" %}
-                    {# Update our current column ID #}
-                    {% switch columnLayout %}
-                        {% case 1 %}
-                            {% set currentColumn = 1 %}
-                        {% case 2 %}
-                            {% set currentColumn = currentColumn + 1 %}
-                            {% if currentColumn > 2 %}
+                        {% set containerOpen = true %}
+                        {% set columnLayout = block.columnLayout.value %}
+                        {% set currentColumn = 1 %}
+                    {% case "endColumn" %}
+                        {# Update our current column ID #}
+                        {% switch columnLayout %}
+                            {% case 1 %}
                                 {% set currentColumn = 1 %}
-                            {% endif %}
-                        {% case 3 %}
-                            {% set currentColumn = currentColumn + 1 %}
-                            {% if currentColumn > 3 %}
-                                {% set currentColumn = 1 %}
-                            {% endif %}
-                        {% case 4 %}
-                            {% set currentColumn = currentColumn + 1 %}
-                            {% if currentColumn > 2 %}
-                                {% set currentColumn = 1 %}
-                            {% endif %}
-                        {% case 5 %}
-                            {% set currentColumn = currentColumn + 1 %}
-                            {% if currentColumn > 2 %}
-                                {% set currentColumn = 1 %}
-                            {% endif %}
-                    {% endswitch %}
-                    {% set columnOpen = false %}
-            {% endswitch %}
+                            {% case 2 %}
+                                {% set currentColumn = currentColumn + 1 %}
+                                {% if currentColumn > 2 %}
+                                    {% set currentColumn = 1 %}
+                                {% endif %}
+                            {% case 3 %}
+                                {% set currentColumn = currentColumn + 1 %}
+                                {% if currentColumn > 3 %}
+                                    {% set currentColumn = 1 %}
+                                {% endif %}
+                            {% case 4 %}
+                                {% set currentColumn = currentColumn + 1 %}
+                                {% if currentColumn > 2 %}
+                                    {% set currentColumn = 1 %}
+                                {% endif %}
+                            {% case 5 %}
+                                {% set currentColumn = currentColumn + 1 %}
+                                {% if currentColumn > 2 %}
+                                    {% set currentColumn = 1 %}
+                                {% endif %}
+                        {% endswitch %}
+                        {% set columnOpen = false %}
+                {% endswitch %}
 
-            {# Generic utility blocks #}
-            {% include '_complex-content/base/' ~ block.type %}
-        {% else %}
-            {# Open a new column if we don't have one opened #}
-            {% if not columnOpen %}
-                {% set columnOpen = true %}
-                {% include '_complex-content/base/openColumn' %}
+                {# Generic utility blocks #}
+                {% include '_complex-content/base/' ~ block.type %}
+            {% else %}
+                {# Open a new column if we don't have one opened #}
+                {% if not columnOpen %}
+                    {% set columnOpen = true %}
+                    {% include '_complex-content/base/openColumn' %}
+                {% endif %}
+
+                {# Include the content for the block #}
+                {% include '_complex-content/blocks/' ~ block.type %}
             {% endif %}
 
-            {# Include the content for the block #}
-			{% include '_complex-content/blocks/' ~ block.type %}
-        {% endif %}
-
-        {# When we run out of blocks close any open elements #}
-        {% if loop.last %}
-            {% if columnOpen %}
-                </div>
-            {% endif %}
-            {% if containerOpen %}
+            {# When we run out of blocks close any open elements #}
+            {% if loop.last %}
+                {% if columnOpen %}
                     </div>
-                </div>
+                {% endif %}
+                {% if containerOpen %}
+                        </div>
+                    </div>
+                {% endif %}
+                {% if sectionOpen %}
+                    </section>
+                {% endif %}
             {% endif %}
-            {% if sectionOpen %}
-                </section>
-            {% endif %}
-        {% endif %}
-    {% endfor %}
-</article>
+        {% endfor %}
+    </article>
+{% endcache %}
