@@ -40,6 +40,7 @@
         }
     },
     "dependencies": {
+        "@fortawesome/fontawesome-pro": "^5.5.0",
         "animejs": "^2.2.0",
         "fuel-pjax": "git+https://github.com/Pageworks/fuel-pjax.git#v1.0.5",
         "modernizr": "^3.6.0",
@@ -47,6 +48,7 @@
         "webpack": "^4.26.0"
     },
     "devDependencies": {
+        "@types/animejs": "^2.0.1",
         "autoprefixer": "^9.3.1",
         "awesome-typescript-loader": "^5.2.1",
         "browser-sync": "^2.26.3",

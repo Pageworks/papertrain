@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
       "outDir": "./_compiled/",
+      "esModuleInterop": true,
       "sourceMap": true,
       "noImplicitAny": true,
       "module": "commonjs",

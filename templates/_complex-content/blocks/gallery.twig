@@ -1,0 +1,46 @@
+{% if block.slides|length %}
+	<div class="o-gallery o-wrapper u-1/1 {{ block.padding }}{{ block.paddingSize }}" data-module="BasicGallery" data-style="{{ block.style }}" data-timing="{{ block.slideTransition }}">
+        {% switch block.aspectRatio %}
+            {% case 'u-ratio-1/1' %}
+                {% set selectedRatio = "1/1" %}
+                {% set width = 860 %}
+            {% case 'u-ratio-4/3' %}
+                {% set selectedRatio = "4/3" %}
+                {% set width = 860 %}
+            {% case 'u-ratio-2/3' %}
+                {% set selectedRatio = "2/3" %}
+                {% set width = 1280 %}
+        {% endswitch %}
+        <div class="o-gallery_shim {{ block.aspectRatio }}">
+            {% for slide in block.slides %}
+                {% set image = slide.image[0] ?? null %}
+                {% set transformedImage = craft.imager.transformImage(image, { width: width, ratio: selectedRatio, mode: "crop", position: image.getFocalPoint() }) %}
+                {% switch block.style %}
+                    {% case 'slide' %}
+                        {% if loop.first %}
+                            {% set slideStyle = 'style="transform:translate3d(0,0,0);"' %}
+                        {% else %}
+                            {% set slideStyle = 'style="transform:translate3d(100%,0,0);"' %}
+                        {% endif %}
+                    {% case 'fade' %}
+                        {% if loop.first %}
+                            {% set slideStyle = 'style="opacity:1;z-index:2;"' %}
+                        {% else %}
+                            {% set slideStyle = 'style="opacity:0;z-index:1;"' %}
+                        {% endif %}
+                {% endswitch %}
+                <div class="js-slide o-gallery_slide" {{ slideStyle|raw }} data-id="{{ loop.index0 }}">
+                    <div class="o-gallery_image" style="background-image:url({{ transformedImage.url }});background-size:cover;"></div>
+                </div>
+            {% endfor %}
+            <div class="o-gallery_controls">
+                <a href="javascript:void(0);" class="o-gallery_button js-button" data-direction="-1">
+                    <i class="fal fa-arrow-circle-left"></i>
+                </a>
+                <a href="javascript:void(0);" class="o-gallery_button js-button" data-direction="1">
+                    <i class="fal fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+	</div>
+{% endif %}
