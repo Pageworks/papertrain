@@ -554,14 +554,21 @@ code {
   white-space: nowrap; }
 
 blockquote {
-  border-left: solid 4px #eeeeee;
-  font-style: italic;
+  border-left: solid 3px rgba(98, 0, 238, 0.15);
   font-family: "Roboto Slab", cursive;
-  margin: 0 0 2em 0;
-  padding: 0.5em 0 0.5em 2em;
+  margin: 0 0 0 -1rem !important;
+  padding: 0 0 0 1rem;
   quotes: none;
-  font-weight: 300;
-  font-size: 16pt; }
+  font-size: 1.25rem;
+  letter-spacing: 0.0125rem;
+  line-height: 2rem;
+  text-align: justify;
+  color: rgba(98, 0, 238, 0.87); }
+  section.-dark-background blockquote,
+  section.has-image blockquote,
+  section.has-video blockquote {
+    color: rgba(244, 244, 244, 0.87);
+    border-left-color: rgba(244, 244, 244, 0.15); }
 
 dl {
   margin: 0 0 28px;
@@ -2425,6 +2432,56 @@ button,
 
 .o-buttons .o-button.-base:first-child {
   margin-left: -8px; }
+
+.o-quote {
+  text-align: center;
+  font-size: 2.0625rem;
+  letter-spacing: -0.015rem;
+  font-weight: 500;
+  color: rgba(7, 7, 7, 0.87); }
+  section.-dark-background .o-quote,
+  section.has-image .o-quote,
+  section.has-video .o-quote {
+    color: rgba(250, 250, 250, 0.87); }
+  .o-quote .o-quote_shim {
+    position: relative;
+    max-width: 640px; }
+    .o-quote .o-quote_shim .o-quote_icon {
+      font-size: 6rem;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      opacity: 0.06;
+      line-height: 0;
+      transform: translateY(2.35rem);
+      display: inline-block; }
+      section.-dark-background .o-quote .o-quote_shim .o-quote_icon,
+      section.has-image .o-quote .o-quote_shim .o-quote_icon,
+      section.has-video .o-quote .o-quote_shim .o-quote_icon {
+        opacity: 0.15; }
+    .o-quote .o-quote_shim .o-quote_body {
+      margin: 0;
+      line-height: 3.1875rem; }
+      @media (min-width: 600px) {
+        .o-quote .o-quote_shim .o-quote_body {
+          line-height: 3.25rem; } }
+      @media (min-width: 840px) {
+        .o-quote .o-quote_shim .o-quote_body {
+          line-height: 3.375rem; } }
+      @media (min-width: 960px) {
+        .o-quote .o-quote_shim .o-quote_body {
+          line-height: 3.4375rem; } }
+    .o-quote .o-quote_shim .o-quote_source {
+      font-family: "Roboto Slab", sans-serif;
+      font-weight: 500;
+      font-size: 1.25rem;
+      letter-spacing: 0.0125rem;
+      line-height: 2rem;
+      text-transform: capitalize;
+      font-style: normal;
+      color: rgba(7, 7, 7, 0.6); }
+      section.-dark-background .o-quote .o-quote_shim .o-quote_source,
+      section.has-image .o-quote .o-quote_shim .o-quote_source,
+      section.has-video .o-quote .o-quote_shim .o-quote_source {
+        color: rgba(250, 250, 250, 0.6); }
 
 .u-float-left {
   float: left !important; }

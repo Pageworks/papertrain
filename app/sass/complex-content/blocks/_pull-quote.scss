@@ -1,0 +1,73 @@
+.o-quote{
+    text-align: center;
+    font-size: 2.0625rem;
+    letter-spacing: -0.015rem;
+    font-weight: $medium;
+
+    // Color Settings
+    color: contrast($base-background-color, 0.87);
+
+    section.-dark-background &,
+    section.has-image &,
+    section.has-video & {
+        color: contrast($dark-background-color, 0.87);
+    }
+
+    .o-quote_shim{
+        position: relative;
+        max-width: 640px;
+
+        .o-quote_icon{
+            font-size: 6rem;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            opacity: 0.06;
+            line-height: 0;
+            transform: translateY(2.35rem);
+            display: inline-block;
+
+            section.-dark-background &,
+            section.has-image &,
+            section.has-video & {
+                opacity: 0.15;
+            }
+        }
+
+        .o-quote_body{
+            margin: 0;
+
+            // Readability Settings
+            line-height: 3.1875rem;
+
+            @media (min-width: $screen-xsmall){
+                line-height: 3.25rem;
+            }
+
+            @media (min-width: $screen-small){
+                line-height: 3.375rem;
+            }
+
+            @media (min-width: $screen-medium){
+                line-height: 3.4375rem;
+            }
+        }
+
+        .o-quote_source{
+            font-family: $font-heading;
+            font-weight: $medium;
+            font-size: 1.25rem;
+            letter-spacing: 0.0125rem;
+            line-height: 2rem;
+            text-transform: capitalize;
+            font-style: normal;
+            
+            // Color Settings
+            color: contrast($base-background-color, 0.6);
+
+            section.-dark-background &,
+            section.has-image &,
+            section.has-video & {
+                color: contrast($dark-background-color, 0.6);
+            }
+        }
+    }
+}
