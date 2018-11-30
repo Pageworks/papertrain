@@ -730,6 +730,33 @@ var default_1 = /** @class */ (function (_super) {
             }
         });
     };
+    default_1.prototype.handleStackTransition = function (newSlideID, currSlideID, direction) {
+        var _this = this;
+        var currSlide = this.slides[currSlideID];
+        var newSlide = this.slides[newSlideID];
+        var slideEl = currSlide;
+        slideEl.style.zIndex = '1';
+        var newEl = newSlide;
+        newEl.style.zIndex = '5';
+        // Show slide
+        animejs_1.default({
+            targets: newSlide,
+            duration: (this.transition * 1000),
+            easing: [0.4, 0.0, 0.2, 1],
+            translateX: [100 * direction + "%", 0],
+            complete: function () {
+                // Hide slide
+                animejs_1.default({
+                    targets: currSlide,
+                    duration: 100,
+                    translateX: "100%",
+                    complete: function () {
+                        _this.cleanGallery();
+                    }
+                });
+            }
+        });
+    };
     /**
      * Handles switching slides.
      * First we get our current slide ID.
@@ -755,6 +782,9 @@ var default_1 = /** @class */ (function (_super) {
                 break;
             case 'slide':
                 this.handleSlideTransition(newSlideID, currSlideID, direction);
+                break;
+            case 'stack':
+                this.handleStackTransition(newSlideID, currSlideID, direction);
                 break;
         }
         this.slideID = newSlideID;

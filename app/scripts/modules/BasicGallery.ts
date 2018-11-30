@@ -125,6 +125,36 @@ export default class extends AbstractModule{
         });
     }
 
+    handleStackTransition(newSlideID:number, currSlideID:number, direction:number){
+        const currSlide = this.slides[currSlideID];
+        const newSlide  = this.slides[newSlideID];
+
+        const slideEl = <HTMLElement>currSlide;
+        slideEl.style.zIndex = '1';
+
+        const newEl = <HTMLElement>newSlide;
+        newEl.style.zIndex = '5';
+
+        // Show slide
+        anime({
+            targets: newSlide,
+            duration: (this.transition * 1000),
+            easing: [0.4, 0.0, 0.2, 1],
+            translateX: [`${100 * direction}%`, 0],
+            complete: ()=>{
+                // Hide slide
+                anime({
+                    targets: currSlide,
+                    duration: 100,
+                    translateX: `100%`,
+                    complete: ()=>{
+                        this.cleanGallery();
+                    }
+                });
+            }
+        });
+    }
+
     /**
      * Handles switching slides.
      * First we get our current slide ID.
@@ -149,6 +179,9 @@ export default class extends AbstractModule{
                 break;
             case 'slide':
                 this.handleSlideTransition(newSlideID, currSlideID, direction);
+                break;
+            case 'stack':
+                this.handleStackTransition(newSlideID, currSlideID, direction);
                 break;
         }
 
