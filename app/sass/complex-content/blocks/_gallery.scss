@@ -22,7 +22,7 @@
         }
 
         .o-gallery_controls{
-            @include size(100%, 64px);
+            @include size(100%, 48px);
             @include position(absolute, null 0 0 null);
             text-align: right;
             z-index: 5;
@@ -30,23 +30,24 @@
             cursor: pointer;
 
             .o-gallery_button{
-                @include size(80px, 64px);
-                background-color: rgba($white, 0.87);
-                color: rgba($primary, 0.87);
+                @include size(32px, 48px);
+                background-color: rgba($primary, 0.87);
+                color: contrast($primary, 1);
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                transition: background-color 150ms $ease-out;
+                transition: all 150ms $ease-out;
 
                 &:hover{
-                    background-color: rgba($white, 1);
-                    transition: background-color 150ms $ease-in;
+                    background-color: contrast($primary, 1);
+                    color: rgba($primary, 0.87);
+                    transition: all 150ms $ease-in;
                 }
 
                 svg{
                     display: inline-block;
                     position: absolute;
-                    @include size(32px, 32px);
+                    @include size(18px, 18px);
                 }
             }
         }
