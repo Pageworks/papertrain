@@ -125,6 +125,14 @@ export default class extends AbstractModule{
         });
     }
 
+    /**
+     * This is the basic stack transition for the gallery.
+     * Transitions are handled using animejs.
+     * @see http://animejs.com/documentation/
+     * @param { number } newSlideID The array index value of our new slide
+     * @param { number } currSlideID The array index value of the current slide
+     * @param { number } direction What direciton we should transition
+     */
     handleStackTransition(newSlideID:number, currSlideID:number, direction:number){
         const currSlide = this.slides[currSlideID];
         const newSlide  = this.slides[newSlideID];
@@ -156,6 +164,57 @@ export default class extends AbstractModule{
     }
 
     /**
+     * This is the basic parallax transition for the gallery.
+     * Transitions are handled using animejs.
+     * @see http://animejs.com/documentation/
+     * @param { number } newSlideID The array index value of our new slide
+     * @param { number } currSlideID The array index value of the current slide
+     * @param { number } direction What direciton we should transition
+     */
+    handleParallaxTransition(newSlideID:number, currSlideID:number, direction:number){
+        const currSlide = <HTMLElement>this.slides[currSlideID];
+        const newSlide  = <HTMLElement>this.slides[newSlideID];
+
+        const currSlideImg = currSlide.querySelector('.js-img');
+        const newSlideImg = newSlide.querySelector('.js-img');
+
+        // Show slide
+        anime({
+            targets: newSlide,
+            duration: (this.transition * 2000),
+            easing: [0.4, 0.0, 0.2, 1],
+            translateX: [`${100 * direction}%`, 0],
+        });
+
+        // New Image
+        anime({
+            targets: newSlideImg,
+            duration: (this.transition * 2000),
+            easing: [0.4, 0.0, 0.2, 1],
+            translateX: [`${50 * -direction}%`, 0],
+        });
+
+        // Hide slide
+        anime({
+            targets: currSlide,
+            duration: (this.transition * 2000),
+            easing: [0.4, 0.0, 0.2, 1],
+            translateX: [0, `${100 * -direction}%`],
+            complete: ()=>{
+                this.cleanGallery();
+            }
+        });
+
+        // Old Image
+        anime({
+            targets: currSlideImg,
+            duration: (this.transition * 2000),
+            easing: [0.4, 0.0, 0.2, 1],
+            translateX: [0, `${50 * direction}%`],
+        });
+    }
+
+    /**
      * Handles switching slides.
      * First we get our current slide ID.
      * Then we set our new slide ID based on the current slide ID and the direction we're heading.
@@ -182,6 +241,9 @@ export default class extends AbstractModule{
                 break;
             case 'stack':
                 this.handleStackTransition(newSlideID, currSlideID, direction);
+                break;
+            case 'parallax':
+                this.handleParallaxTransition(newSlideID, currSlideID, direction);
                 break;
         }
 

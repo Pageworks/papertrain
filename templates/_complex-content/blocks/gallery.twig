@@ -13,7 +13,7 @@
         {% endswitch %}
         <div class="o-gallery_shim {{ block.aspectRatio }}">
             {% for slide in block.slides %}
-                {% set transformedImage = craft.imager.transformImage(slide, { width: width, ratio: selectedRatio, mode: "crop", position: slide.getFocalPoint() }) %}
+                {% set transformedImage = craft.imager.transformImage(slide, { width: width, ratio: selectedRatio, mode: "crop", format: 'jpg', position: slide.getFocalPoint() }) %}
                 {% switch block.style %}
                     {% case 'slide' %}
                         {% if loop.first %}
@@ -33,9 +33,15 @@
                         {% else %}
                             {% set slideStyle = 'style="transform:translate3d(100%,0,0);z-index:1;"' %}
                         {% endif %}
+                    {% case 'parallax' %}
+                        {% if loop.first %}
+                            {% set slideStyle = 'style="transform:translate3d(0,0,0);"' %}
+                        {% else %}
+                            {% set slideStyle = 'style="transform:translate3d(100%,0,0);"' %}
+                        {% endif %}
                 {% endswitch %}
                 <div class="js-slide o-gallery_slide" {{ slideStyle|raw }} data-id="{{ loop.index0 }}">
-                    <div class="o-gallery_image" style="background-image:url({{ transformedImage.url }});background-size:cover;"></div>
+                    <div class="js-img o-gallery_image" style="background-image:url({{ transformedImage.url }});background-size:cover;"></div>
                 </div>
             {% endfor %}
             <div class="o-gallery_controls">

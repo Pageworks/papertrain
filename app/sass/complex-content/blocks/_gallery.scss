@@ -15,6 +15,7 @@
             @include position(absolute, 0 null null 0);
             @include size(100%, 100%);
             display: inline-block;
+            overflow: hidden;
 
             .o-gallery_image{
                 @include position(absolute, 0 null null 0);
