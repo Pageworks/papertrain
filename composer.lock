@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "49843e00d4e45d939e422d1809712d15",
+    "content-hash": "d71bc11a80469f65a9cf54c4d9b746b6",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -416,11 +416,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.0.33",
+            "version": "3.0.34",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/7d116eacee6c501395972ceef8a103825242cbf4",
-                "reference": "7d116eacee6c501395972ceef8a103825242cbf4",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/6607823af6ccdb336daf24b1c8da587a7b5c8cb1",
+                "reference": "6607823af6ccdb336daf24b1c8da587a7b5c8cb1",
                 "shasum": ""
             },
             "require": {
@@ -494,7 +494,7 @@
                 "docs": "https://github.com/craftcms/docs",
                 "rss": "https://github.com/craftcms/cms/releases.atom"
             },
-            "time": "2018-11-27T19:30:29+00:00"
+            "time": "2018-12-04T23:45:37+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -786,11 +786,11 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "2.1.6",
+            "version": "2.1.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/0578b32b30b22de3e8664f797cf846fc9246f786",
-                "reference": "0578b32b30b22de3e8664f797cf846fc9246f786",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/709f21f92707308cdf8f9bcfa1af4cb26586521e",
+                "reference": "709f21f92707308cdf8f9bcfa1af4cb26586521e",
                 "shasum": ""
             },
             "require": {
@@ -828,7 +828,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2018-09-25T20:47:26+00:00"
+            "time": "2018-12-04T22:38:24+00:00"
         },
         {
             "name": "elvanto/litemoji",
@@ -1478,27 +1478,25 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.4.2",
+            "version": "1.5.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
-                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
+                "reference": "9f83dded91781a01c63574e387eaa769be769115",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
-                "psr/http-message": "~1.0"
+                "psr/http-message": "~1.0",
+                "ralouphie/getallheaders": "^2.0.5"
             },
             "provide": {
                 "psr/http-message-implementation": "1.0"
             },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.5-dev"
                 }
             },
             "autoload": {
@@ -1509,7 +1507,6 @@
                     "src/functions_include.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1528,13 +1525,14 @@
             "keywords": [
                 "http",
                 "message",
+                "psr-7",
                 "request",
                 "response",
                 "stream",
                 "uri",
                 "url"
             ],
-            "time": "2017-03-20T17:10:46+00:00"
+            "time": "2018-12-04T20:46:45+00:00"
         },
         {
             "name": "hashids/hashids",
@@ -2438,6 +2436,36 @@
             "time": "2018-11-20T15:27:04+00:00"
         },
         {
+            "name": "ralouphie/getallheaders",
+            "version": "2.0.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/getallheaders.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralph Khattar",
+                    "email": "ralph.khattar@gmail.com"
+                }
+            ],
+            "description": "A polyfill for getallheaders.",
+            "time": "2016-02-11T07:05:27+00:00"
+        },
+        {
             "name": "ramsey/uuid",
             "version": "3.8.0",
             "dist": {
@@ -2730,11 +2758,11 @@
         },
         {
             "name": "sebastianlenz/linkfield",
-            "version": "1.0.13",
+            "version": "1.0.15",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastian-lenz/craft-linkfield/zipball/33792bcedb205d53d705953ee17747d7a49abec4",
-                "reference": "33792bcedb205d53d705953ee17747d7a49abec4",
+                "url": "https://api.github.com/repos/sebastian-lenz/craft-linkfield/zipball/a7adc11ddb8a41b3281ffe002b67ec87c4021cfd",
+                "reference": "a7adc11ddb8a41b3281ffe002b67ec87c4021cfd",
                 "shasum": ""
             },
             "require": {
@@ -2753,12 +2781,11 @@
                     "typedlinkfield\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "A Craft field type for selecting links",
-            "time": "2018-09-17T14:45:05+00:00"
+            "time": "2018-10-23T08:59:56+00:00"
         },
         {
             "name": "seld/cli-prompt",
@@ -2912,11 +2939,11 @@
         },
         {
             "name": "solspace/craft3-freeform",
-            "version": "2.5.2",
+            "version": "2.5.3",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solspace/craft3-freeform/zipball/b3dd99c9093796caafa57fbcbf1822ae3e47ef7b",
-                "reference": "b3dd99c9093796caafa57fbcbf1822ae3e47ef7b",
+                "url": "https://api.github.com/repos/solspace/craft3-freeform/zipball/37628c0e6f4e0be7553b91a967edb222e703ba6a",
+                "reference": "37628c0e6f4e0be7553b91a967edb222e703ba6a",
                 "shasum": ""
             },
             "require": {
@@ -2955,7 +2982,7 @@
                 }
             ],
             "description": "The most intuitive and powerful form builder for Craft.",
-            "time": "2018-11-27T18:46:36+00:00"
+            "time": "2018-11-28T18:00:50+00:00"
         },
         {
             "name": "ssnepenthe/color-utils",
@@ -3798,11 +3825,11 @@
         },
         {
             "name": "verbb/super-table",
-            "version": "2.0.9",
+            "version": "2.0.14",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/verbb/super-table/zipball/b947ff8b83a478aed57c4b0107c5058596f71fa6",
-                "reference": "b947ff8b83a478aed57c4b0107c5058596f71fa6",
+                "url": "https://api.github.com/repos/verbb/super-table/zipball/6acd2d45508f6525ad574eec1d3cf41335c32b77",
+                "reference": "6acd2d45508f6525ad574eec1d3cf41335c32b77",
                 "shasum": ""
             },
             "require": {
@@ -3813,9 +3840,6 @@
                 "name": "Super Table",
                 "handle": "super-table",
                 "description": "Super-charge your Craft workflow with Super Table. Use it to group fields together or build complex Matrix-in-Matrix solutions.",
-                "schemaVersion": "2.0.4",
-                "hasCpSettings": false,
-                "hasCpSection": false,
                 "documentationUrl": "https://github.com/verbb/super-table",
                 "changelogUrl": "https://raw.githubusercontent.com/verbb/super-table/craft-3/CHANGELOG.md",
                 "class": "verbb\\supertable\\SuperTable"
@@ -3825,7 +3849,6 @@
                     "verbb\\supertable\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3837,13 +3860,20 @@
             ],
             "description": "Super-charge your Craft workflow with Super Table. Use it to group fields together or build complex Matrix-in-Matrix solutions.",
             "keywords": [
-                "Craft",
                 "cms",
+                "craft",
                 "craft-plugin",
                 "craftcms",
                 "super table"
             ],
-            "time": "2018-09-09T05:23:53+00:00"
+            "support": {
+                "email": "support@verbb.io",
+                "issues": "https://github.com/verbb/super-table/issues?state=open",
+                "source": "https://github.com/verbb/super-table",
+                "docs": "https://github.com/verbb/super-table",
+                "rss": "https://github.com/verbb/super-table/commits/v2.atom"
+            },
+            "time": "2018-11-12T11:32:09+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
