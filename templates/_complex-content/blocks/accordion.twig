@@ -1,0 +1,17 @@
+{% if block.rows|length %}
+	<div class="o-accordion o-wrapper u-1/1 {{ block.padding }}{{ block.paddingSize }}" data-module="BasicAccordion">
+		{% for row in block.rows %}
+            {% if row.headline|length and row.body|length %}
+                <div class="o-accordion_row">
+                    <div class="o-accordion_headline">
+                        <h3>{{ row.headline }}</h3>
+                        <i class="o-accordion_icon fal fa-plus"></i>
+                    </div>
+                    <div class="o-accordion_body">
+                        {{ row.body }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+	</div>
+{% endif %}
