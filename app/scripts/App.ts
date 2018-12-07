@@ -64,8 +64,9 @@ class App{
             '      ▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀',
             '         ▒▒▒▒▒▒▒▒▒▒▀▀',
         ];
-        console.log(`%c${lines.join('\n').toString()}`, 'color: #e1b303');
-        console.log('%cMade with ☕ and ❤️ by Pageworks %chttp://www.page.works/', 'font-size: 16px; color: #eee', 'color: #4de07e; font-size: 16px;');
+        console.log(`%c${lines.join('\n').toString()}`, 'color: #3f8efc; font-size: 14px;');
+        console.log('%cMade with ❤️ by Pageworks', 'font-size: 16px; color: #ffa412;');
+        console.log('%cCheck us out at http://www.page.works/', 'color: #ffa412; font-size: 16px;');
     }
 
     /**
