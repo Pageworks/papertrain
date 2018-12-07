@@ -1,16 +1,131 @@
-// .o-accordion{
-//     .o-accordion_row{
-//         .o-accordion_headline{
-//             h3{
+.o-accordion{
+    .o-accordion_row{
+        display: block;
+        margin: 0;
+        transition: margin-bottom $speed $ease;
 
-//             }
-//             .o-accordion_icon{
+        &.is-open{
+            margin-bottom: $unit*2;
 
-//             }
-//         }
+            .o-accordion_headline{
+                &:after{
+                    transform: scaleX(1);
+                    opacity: 1;
+                    transition: transform 300ms $ease-in, opacity 75ms 0ms $ease-in;
+                }
 
-//         .o-accordion_body{
+                .o-accordion_icon{
+                    .o-accordion_line{
+                        &.-vertical{
+                            transform: scaleY(0);
+                            opacity: 0;
+                        }
 
-//         }
-//     }
-// }
+                        &.-right{
+                            transform: translateX(1px)  translateY(4px) rotate(-45deg);
+                            width: 15px;
+                        }
+    
+                        &.-left{
+                            width: 10px;
+                            transform: translateX(-100%) rotate(45deg);
+                        }
+                    }
+                }
+            }
+        }
+
+        .o-accordion_headline{
+            position: relative;
+            display: block;
+            height: 64px;
+            cursor: pointer;
+            margin-bottom: 24px;
+
+            &::after{
+                content:"";
+                transform-origin: center;
+                transform: scaleX(0);
+                opacity: 0;
+                background-color: contrast($base-background-color, 0.1);
+                @include size(100%, 2px);
+                position: absolute;
+                top: calc(64px + 8px);
+                left: 0;
+                transition: transform 300ms $ease-out, opacity 75ms 225ms $ease-out;
+
+                section.-dark-background &,
+                section.has-image &,
+                section.has-video & {
+                    background-color: contrast($dark-background-color, 0.15);
+                }
+            }
+
+            h3{
+                font-size: 3rem;
+                color: contrast($base-background-color, 0.6);
+                line-height: 64px;
+                pointer-events: none;
+
+                section.-dark-background &,
+                section.has-image &,
+                section.has-video & {
+                    color: contrast($dark-background-color, 0.6);
+                }
+                
+            }
+            .o-accordion_icon{
+                @include position(absolute, 50% 0 null null);
+                transform: translateY(-50%);
+                @include size(20px, 64px);
+                display: inline-flex;
+                align-items: center;
+                justify-items: center;
+                pointer-events: none;
+
+                .o-accordion_line{
+                    display: inline-block;
+                    position: absolute;
+                    background-color: lighten($primary, 13%);
+                    transition: all $speed $ease;
+
+                    &.-vertical{
+                        @include size(3px, 23px);
+                        transform-origin: top;
+                        transform: scaleY(1);
+                        opacity: 1;
+                        transition: transform $speed $ease;
+                    }
+
+                    &.-right,
+                    &.-left{
+                        @include size(10px, 3px);
+                    }
+
+                    &.-right{
+                        transform-origin: left;
+                        transform: translateX(3px);
+                        transition: all $speed $ease;
+                    }
+
+                    &.-left{
+                        transform-origin: right;
+                        transform: translateX(-10px);
+                        transition: all $speed $ease;
+                    }
+                }
+            }
+        }
+
+        .o-accordion_body{
+            overflow: hidden;
+            height: 0;
+            padding: 0 $unit;
+
+            &.-split{
+                margin-left: -$unit;
+                margin-right: -$unit;
+            }
+        }
+    }
+}

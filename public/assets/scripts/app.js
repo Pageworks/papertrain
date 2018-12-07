@@ -403,6 +403,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var env_1 = __webpack_require__(/*! ../env */ "./app/scripts/env.ts");
 var AbstractModule_1 = __importDefault(__webpack_require__(/*! ./AbstractModule */ "./app/scripts/modules/AbstractModule.ts"));
+var animejs_1 = __importDefault(__webpack_require__(/*! animejs */ "./node_modules/animejs/anime.min.js"));
 var MODULE_NAME = 'BasicAccordion';
 var default_1 = /** @class */ (function (_super) {
     __extends(default_1, _super);
@@ -410,6 +411,9 @@ var default_1 = /** @class */ (function (_super) {
         var _this = _super.call(this, el) || this;
         if (env_1.isDebug)
             console.log('%c[module] ' + ("%cBuilding: " + MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
+        _this.rows = Array.from(_this.el.querySelectorAll('.js-row'));
+        _this.headlines = [];
+        _this.multiRow = (_this.el.getAttribute('data-single-open') === 'true') ? true : false;
         return _this;
     }
     /**
@@ -418,6 +422,80 @@ var default_1 = /** @class */ (function (_super) {
      * register any initial event listeners
      */
     default_1.prototype.init = function () {
+        var _this = this;
+        this.rows.map(function (el) {
+            var headline = el.querySelector('.js-headline');
+            headline.addEventListener('click', function (e) { return _this.handleToggle(e); });
+            _this.headlines.push(headline);
+        });
+    };
+    default_1.prototype.closeRows = function (rowToClose) {
+        if (rowToClose === null)
+            return;
+        rowToClose.classList.remove('is-open');
+        var body = rowToClose.querySelector('.js-body');
+        var bodyEls = body.querySelectorAll('*');
+        animejs_1.default({
+            targets: body,
+            duration: 300,
+            easing: [0.4, 0.0, 1, 1],
+            height: [body.scrollHeight + "px", 0]
+        });
+        // Hide children
+        animejs_1.default({
+            targets: bodyEls,
+            duration: 75,
+            easing: [0.4, 0.0, 1, 1],
+            opacity: [1, 0]
+        });
+    };
+    default_1.prototype.handleToggle = function (e) {
+        e.preventDefault();
+        var target = e.currentTarget;
+        var row = target.parentElement;
+        var body = row.querySelector('.js-body');
+        var bodyEls = body.querySelectorAll('*');
+        if (row.classList.contains('is-open')) {
+            row.classList.remove('is-open');
+            // Close row
+            animejs_1.default({
+                targets: body,
+                duration: 300,
+                easing: [0.4, 0.0, 1, 1],
+                height: [body.scrollHeight + "px", 0]
+            });
+            // Hide children
+            animejs_1.default({
+                targets: bodyEls,
+                duration: 75,
+                easing: [0.4, 0.0, 1, 1],
+                opacity: [1, 0]
+            });
+        }
+        else {
+            if (!this.multiRow) {
+                var oldRow = this.el.querySelector('.js-row.is-open');
+                this.closeRows(oldRow);
+            }
+            row.classList.add('is-open');
+            // Open row
+            animejs_1.default({
+                targets: body,
+                duration: 300,
+                easing: [0.0, 0.0, 0.2, 1],
+                height: [0, body.scrollHeight + "px"],
+            });
+            // Show children
+            animejs_1.default({
+                targets: bodyEls,
+                duration: 150,
+                easing: [0.4, 0.0, 1, 1],
+                delay: function (el, i) {
+                    return i * 75 + 150;
+                },
+                opacity: [0, 1]
+            });
+        }
     };
     /**
      * Called when the module is destroyed
