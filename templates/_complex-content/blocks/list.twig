@@ -1,0 +1,11 @@
+{% if block.listItems|length %}
+	<div class="o-list o-wrapper u-1/1 {{ block.padding }}{{ block.paddingSize }} {{ block.alignment }}">
+		<ul class="o-list_list {{ block.listStyle }}">
+        {% for item in block.listItems %}
+            <li class="o-list_item">
+                {{ item.item|striptags('<strong><a><em>')|raw }}
+            </li>
+        {% endfor %}
+        </ul>
+	</div>
+{% endif %}

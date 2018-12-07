@@ -2542,6 +2542,50 @@ button,
           height: 18px;
           width: 18px; }
 
+.o-list .o-list_list {
+  padding-left: 1.5rem;
+  display: inline-block;
+  max-width: 420px; }
+  .o-list .o-list_list.-default .o-list_item::before {
+    content: "";
+    height: 2px;
+    width: 0.75rem;
+    background-color: #6200ee;
+    position: absolute;
+    top: 50%;
+    left: -1.5rem;
+    transform: translateY(-50%);
+    opacity: 0.6; }
+  .o-list .o-list_list.-plus .o-list_item::before {
+    content: "";
+    height: 2px;
+    width: 0.75rem;
+    background-color: #6200ee;
+    position: absolute;
+    top: 50%;
+    left: -1.5rem;
+    transform: translateY(-50%);
+    opacity: 0.6; }
+  .o-list .o-list_list.-plus .o-list_item::after {
+    content: "";
+    height: 0.75rem;
+    width: 2px;
+    background-color: #6200ee;
+    position: absolute;
+    top: 50%;
+    left: -1.2rem;
+    transform: translateY(-50%);
+    opacity: 0.6; }
+  .o-list .o-list_list .o-list_item {
+    list-style: none;
+    position: relative;
+    margin: 1rem 0;
+    font-size: 1.25rem; }
+    .o-list .o-list_list .o-list_item:first-child {
+      margin-top: 0; }
+    .o-list .o-list_list .o-list_item:last-child {
+      margin-bottom: 0; }
+
 .u-float-left {
   float: left !important; }
 
