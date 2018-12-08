@@ -17,8 +17,8 @@ export default class extends AbstractModule{
     slideID:    number
     isDirty:    boolean
 
-    constructor(el: Element){
-        super(el);
+    constructor(el:Element, app:App){
+        super(el, app);
         if(isDebug) console.log('%c[module] '+`%cBuilding: ${MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
         // CMS Input Data

@@ -1,12 +1,14 @@
 import uuid from 'uuid/v4';
 
 export default class{
-    el: Element;
-    uuid: string;
+    el:     Element
+    uuid:   string
+    app:    App
 
-    constructor(el: Element){
-        this.el = el; // Sets initial reference to the element that generated the module
-        this.uuid = uuid(); // Generates a UUID using UUID v4
+    constructor(el:Element, app:App){
+        this.el     = el; // Sets initial reference to the element that generated the module
+        this.uuid   = uuid(); // Generates a UUID using UUID v4
+        this.app    = app;
 
         this.el.setAttribute('data-uuid', this.uuid); // Sets modules UUID to be used later when handling modules destruction
     }
@@ -18,13 +20,7 @@ export default class{
      * Used when removing a specific module, call is initiated by a module
      */
     seppuku(){
-        const event = new CustomEvent('seppuku', {
-            detail:{
-                id: this.uuid
-            }
-        });
-        document.dispatchEvent(event);
-        
+        this.app.deleteModule(this.uuid);
     }
 
     /**

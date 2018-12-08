@@ -103,7 +103,7 @@ class App{
             const moduleUUID = module.getAttribute('data-uuid');
 
             if(this.modules[moduleType] !== undefined && moduleUUID === null){
-                const newModule = new this.modules[moduleType].prototype.constructor(module);
+                const newModule = new this.modules[moduleType].prototype.constructor(module, this);
                 this.currentModules.push(newModule);
                 newModule.init();
             }

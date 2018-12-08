@@ -10,8 +10,8 @@ export default class extends AbstractModule{
     selects:            NodeList
     textareas:          NodeList
 
-    constructor(el: Element){
-        super(el);
+    constructor(el:Element, app:App){
+        super(el, app);
         if(isDebug) console.log('%c[module] '+`%cBuilding: ${MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
         this.inputs             = this.el.querySelectorAll('input');

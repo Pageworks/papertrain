@@ -20,6 +20,7 @@ interface Module{
 }
 
 declare class App{
-    initModules: Function
-    deleteModules: Function
+    initModules:    Function
+    deleteModules:  Function
+    deleteModule:   Function
 }
