@@ -12,6 +12,9 @@ module.exports = {
     },
     entry: [ path.resolve(projectRoot, "app/scripts/App.ts"),  path.resolve(projectRoot, "app/sass/main.scss")],
     devtool: "source-map",
+    node: {
+        fs: "empty"
+    },
     module: {
         rules: [
             { 

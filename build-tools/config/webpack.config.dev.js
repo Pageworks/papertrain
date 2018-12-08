@@ -2,8 +2,13 @@ const path = require('path');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-
 const projectRoot = path.resolve(__dirname, '../../');
+const fs = require('fs');
+const dotenv = require('dotenv');
+const envConfig = dotenv.parse(fs.readFileSync('.env'));
+for (let k in envConfig) {
+  process.env[k] = envConfig[k]
+}
 
 module.exports = {
     mode: "development",
@@ -12,6 +17,9 @@ module.exports = {
     },
     entry: [ path.resolve(projectRoot, "app/scripts/App.ts"),  path.resolve(projectRoot, "app/sass/main.scss")],
     devtool: "source-map",
+    node: {
+        fs: "empty"
+    },
     module: {
         rules: [
             { 
@@ -56,8 +64,8 @@ module.exports = {
         new BrowserSyncPlugin({
             host: 'localhost',
             port: 3000,
-            proxy: 'http://papertrain.local/',
+            proxy: process.env.DEV_URL,
             reload: false
         })
     ]
-  };
+};

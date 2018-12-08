@@ -48,6 +48,7 @@
     },
     "devDependencies": {
         "@types/animejs": "^2.0.1",
+        "@types/dotenv": "^6.1.0",
         "autoprefixer": "^9.4.2",
         "awesome-typescript-loader": "^5.2.1",
         "browser-sync": "^2.26.3",
@@ -56,6 +57,7 @@
         "cross-env": "^5.2.0",
         "css-loader": "^1.0.1",
         "cssnano": "^4.1.7",
+        "dotenv": "^6.2.0",
         "friendly-errors-webpack-plugin": "^1.7.0",
         "http-server": "^0.11.1",
         "husky": "^0.14.3",

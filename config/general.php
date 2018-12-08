@@ -28,7 +28,7 @@ return [
     // Dev environment settings
     'dev' => [
         // Base site URL
-        'siteUrl'               => null,
+        'siteUrl'               => getenv('DEV_URL'),
         'allowUpdates'          => true,
         'devMode'               => true,
         'testToEmailAddress'    => 'REPLACE_ME',
