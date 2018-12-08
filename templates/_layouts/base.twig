@@ -1,39 +1,41 @@
 {% set pageTitle = siteName %}
+{% if siteSettings.titleOverride|length %}
+    {% set pageTitle = siteSettings.titleOverride %}
+{% endif %}
 {% if entry is defined %}
     {% set pageTitle = pageTitle ~ " | " ~ entry.title %}
 {% elseif category is defined %}
     {% set pageTitle = pageTitle ~ " | " ~ category.title %}
 {% endif %}
 <!doctype html>
-<html lang="en-US" class="has-no-js has-no-touch" data-debug="true">
-<head>
-    {% block head %}
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{pageTitle}}</title>
-    {% endblock %}
+<html lang="en-US" class="has-no-js has-no-touch">
+    <head>
+        {% block head %}
+            <meta charset="utf-8">
+            <meta http-equiv="x-ua-compatible" content="ie=edge">
+            <meta name="description" content="">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>{{pageTitle}}</title>
+        {% endblock %}
 
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="apple-touch-icon" href="{{siteUrl}}assets/images/apple-touch-icon.png">
-    <link rel="icon" href="{{siteUrl}}assets/images/favicon.png">
+        <link rel="apple-touch-icon" href="{{siteUrl}}assets/images/apple-touch-icon.png">
+        <link rel="icon" href="{{siteUrl}}assets/images/favicon.png">
 
-    <link rel="stylesheet" type="text/css" href="{{siteUrl}}assets/styles/main.css">
-</head> 
-<body>
-    {% spaceless %}
-        <div class="js-transition c-transition">
-            <div class="c-transition_primary"></div>
-            <div class="c-transition_secondary"></div>
-        </div>
-        {% include '_includes/header.twig' %}
-        <main role="main" class="js-pjax-container">
-            {% block content %}{% endblock %}
-        </main>
-        {% include '_includes/footer.twig' %}
-    {% endspaceless %}
-    <script src="{{siteUrl}}assets/scripts/app.js"></script>
-    <script src="{{siteUrl}}assets/scripts/fontawesome.min.js"></script>
-</body>
+        <link rel="stylesheet" type="text/css" href="{{siteUrl}}assets/styles/main.css">
+    </head> 
+    <body>
+        {% spaceless %}
+            <div class="js-transition c-transition">
+                <div class="c-transition_primary"></div>
+                <div class="c-transition_secondary"></div>
+            </div>
+            {% include '_includes/header.twig' %}
+            <main role="main" class="js-pjax-container">
+                {% block content %}{% endblock %}
+            </main>
+            {% include '_includes/footer.twig' %}
+        {% endspaceless %}
+        <script src="{{siteUrl}}assets/scripts/app.js"></script>
+        <script src="{{siteUrl}}assets/scripts/fontawesome.min.js"></script>
+    </body>
 </html>
