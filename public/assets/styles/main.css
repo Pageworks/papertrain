@@ -1657,7 +1657,7 @@ form {
       color: rgba(255, 255, 255, 0.5); }
     form .o-error svg,
     form .o-help svg {
-      margin-right: 1rem; }
+      margin-right: 0.5rem; }
   form .o-error {
     color: #F25652 !important;
     opacity: 0;
