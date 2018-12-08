@@ -55,7 +55,7 @@
     
                         &:after{
                             transform: scale(1);
-                            opacity: 0.25;
+                            opacity: $primary-active-opacity;
                             transition: transform 150ms $ease-in, opacity 75ms $ease-in;
                         }
                     }
@@ -65,7 +65,7 @@
                     .o-switch_handle{
                         &:before{
                             transform: scale(1);
-                            opacity: 0.15;
+                            opacity: $primary-hover-opacity;
                             transition: transform 150ms $ease-in, opacity 75ms $ease-in;
                         }
                     }
@@ -231,7 +231,7 @@ form{
                 .o-radio_icon{
                     &:before{
                         transform: scale(1);
-                        opacity: 0.15;
+                        opacity: $primary-hover-opacity;
                         transition: transform 150ms $ease-in, opacity 75ms $ease-in;
                     }   
                 }
@@ -246,7 +246,7 @@ form{
 
                     &:after{
                         transform: scale(1);
-                        opacity: 0.25;
+                        opacity: $primary-active-opacity;
                         transition: transform 150ms $ease-in, opacity 75ms $ease-in;
                     }
                 }
@@ -355,7 +355,7 @@ form{
                 .o-checkbox_icon{
                     &:before{
                         transform: scale(1);
-                        opacity: 0.15;
+                        opacity: $primary-hover-opacity;
                         transition: transform 150ms $ease-in, opacity 75ms $ease-in;
                     }   
                 }
@@ -370,7 +370,7 @@ form{
 
                     &:after{
                         transform: scale(1);
-                        opacity: 0.25;
+                        opacity: $primary-active-opacity;
                         transition: transform 150ms $ease-in, opacity 75ms $ease-in;
                     }
                 }

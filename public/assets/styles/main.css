@@ -1360,11 +1360,11 @@ table {
           transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
         .o-switch .o-switch_item label .o-switch_icon:active .o-switch_handle:after {
           transform: scale(1);
-          opacity: 0.25;
+          opacity: 0.19;
           transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
         .o-switch .o-switch_item label .o-switch_icon:hover .o-switch_handle:before {
           transform: scale(1);
-          opacity: 0.15;
+          opacity: 0.04;
           transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
         .o-switch .o-switch_item label .o-switch_icon .o-switch_track {
           opacity: 0.38;
@@ -1472,14 +1472,14 @@ form {
         cursor: pointer !important; }
         form .o-radio .o-radio_item:hover .o-radio_icon:before {
           transform: scale(1);
-          opacity: 0.15;
+          opacity: 0.04;
           transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
       form .o-radio .o-radio_item:active .o-radio_icon:before {
         opacity: 0;
         transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
       form .o-radio .o-radio_item:active .o-radio_icon:after {
         transform: scale(1);
-        opacity: 0.25;
+        opacity: 0.19;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
       form .o-radio .o-radio_item .o-radio_icon {
         height: 20px;
@@ -1554,14 +1554,14 @@ form {
       cursor: pointer !important; }
       form .o-checkbox .o-checkbox_item:hover .o-checkbox_icon:before {
         transform: scale(1);
-        opacity: 0.15;
+        opacity: 0.04;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
     form .o-checkbox .o-checkbox_item:active .o-checkbox_icon:before {
       opacity: 0;
       transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
     form .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
       transform: scale(1);
-      opacity: 0.25;
+      opacity: 0.19;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
     form .o-checkbox .o-checkbox_item .o-checkbox_icon {
       height: 20px;
@@ -2067,7 +2067,7 @@ button,
     transition: opacity 150ms cubic-bezier(0, 0, 0.2, 1); }
   button:active:before,
   .o-button:active:before {
-    opacity: 0.19;
+    opacity: 0.04;
     transition: opacity 75ms cubic-bezier(0.4, 0, 0.6, 1); }
   button.is-disabled,
   .o-button.is-disabled {

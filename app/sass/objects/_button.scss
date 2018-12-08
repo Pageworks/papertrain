@@ -46,14 +46,14 @@ button,
 
     &:hover{
         &:before{
-            opacity: 0.04;
+            opacity: $primary-hover-opacity;
             transition: opacity 150ms $ease-in;
         }
     }
 
     &:active{
         &:before{
-            opacity: 0.19;
+            opacity: $primary-hover-opacity;
             transition: opacity 75ms $ease-sharp;
         }
     }
