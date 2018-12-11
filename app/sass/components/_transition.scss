@@ -6,6 +6,7 @@
     transition: transform 125ms $ease-sharp;
     background: $off-white;
     overflow: hidden;
+    display: none;
 
     .c-transition_primary,
     .c-transition_secondary{
@@ -35,6 +36,7 @@
 
     html.dom-is-loading & {
         transform: translate3d(0, 0, 0);
+        display: inline-block;
         transition: transform 150ms $ease-in;
 
         .c-transition_primary{

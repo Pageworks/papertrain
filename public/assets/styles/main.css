@@ -2305,7 +2305,8 @@ button,
   transform: translate3d(0, -101%, 0);
   transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1);
   background: #eeeeee;
-  overflow: hidden; }
+  overflow: hidden;
+  display: none; }
   .c-transition .c-transition_primary,
   .c-transition .c-transition_secondary {
     position: absolute;
@@ -2327,6 +2328,7 @@ button,
     display: none; }
   html.dom-is-loading .c-transition {
     transform: translate3d(0, 0, 0);
+    display: inline-block;
     transition: transform 150ms cubic-bezier(0, 0, 0.2, 1); }
     html.dom-is-loading .c-transition .c-transition_primary {
       animation: primaryBar 2s infinite linear; }
