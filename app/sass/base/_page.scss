@@ -15,7 +15,6 @@
 html
 {
     font-family: $font-family;
-    font-size: $font-size; /* [1] */
     line-height: normal; /* [1] */
     font-weight: $font-weight;
     color: $font-base; /* [1] */
@@ -56,6 +55,7 @@ section{
 
 body{
     background: $base-background-color;
+    font-size: $font-size; /* [1] */
 
     main{
         min-height: 80vh;

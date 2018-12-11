@@ -124,6 +124,15 @@ button,
         padding: 0 16px;
         border: 2px solid $primary;
         line-height: 34px;
+
+        &.-alt{
+            border-color: rgba($black, 0.1);
+            transition: border-color 150ms $ease;
+
+            &:hover{
+                border-color: $primary;
+            }
+        }
     }
 
     // Raised

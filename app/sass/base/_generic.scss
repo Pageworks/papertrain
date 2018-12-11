@@ -20,12 +20,34 @@ a
         color: $link-color;
         text-decoration-skip-ink: none;
         text-decoration: $link-style;
-        transition: color 50ms $ease, text-decoration 50ms $ease;
+        transition: color 150ms $ease-out, text-decoration 150ms $ease-out;
+        position: relative;
+        display: inline-block;
+
+        &::after{
+            content:"";
+            background-color: $link-color;
+            @include size(100%, 1px);
+            transform: translateY(2px) scaleX(0);
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            opacity: 0;
+            display: inline-block;
+            transform-origin: center;
+            transition: transform 100ms $ease-sharp, opacity 100ms $ease;
+        }
 
         @include u-hocus{
             color: $link-hover-color;
             text-decoration: $link-hover-style;
-            transition: color 75ms $ease, text-decoration 75ms $ease;
+            transition: color 150ms $ease-in, text-decoration 150ms $ease-in;
+
+            &:after{
+                opacity: 0.87;
+                transform: translateY(0) scaleX(1);
+                transition: transform 150ms $ease-in, opacity 150ms $ease;
+            }
         }
     }
 }

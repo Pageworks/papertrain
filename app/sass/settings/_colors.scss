@@ -4,7 +4,7 @@
 
 // Base Palette
 // =============================================================================
-$white:     #fafafa;
+$white:     #fdfdfd;
 $off-white: #eeeeee;
 $black:     #070707;
 $off-black: #241F20;//#434343;
@@ -22,7 +22,7 @@ $primary-active-opacity: 0.19;
 
 // Font Palette
 // =============================================================================
-$font-base:     #555765;
+$font-base:     #4f4f4f; //#555765
 $font-alt:      #f4f4f4;
 $helper-light:  rgba(255,255,255,0.5);
 $helper-dark:   rgba(0,0,0,0.5);
@@ -31,12 +31,12 @@ $helper-dark:   rgba(0,0,0,0.5);
 // =============================================================================
 $link-color:       $secondary;
 $link-focus-color: $secondary;
-$link-hover-color: lighten($link-color, 10);
+$link-hover-color: darken($secondary, 6);
 
 // Selection
 // =============================================================================
-$selection-text-color:       #3f8efc;
-$selection-background-color: #fafafa;
+$selection-text-color:       $white;
+$selection-background-color: $secondary;
 
 // Background Colors
 // =============================================================================
