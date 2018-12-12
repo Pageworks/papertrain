@@ -32,7 +32,9 @@
     &:focus,
     &:hover
     {
-        @content;
+        html.has-no-touch{
+            @content;
+        }
     }
 }
 
@@ -48,7 +50,9 @@
     &:focus,
     &:active
     {
-        @content;
+        html.has-no-touch{
+            @content;
+        }
     }
 }
 

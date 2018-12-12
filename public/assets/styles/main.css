@@ -530,11 +530,11 @@ a:not(.o-button) {
     display: inline-block;
     transform-origin: center;
     transition: transform 100ms cubic-bezier(0.4, 0, 0.6, 1), opacity 100ms cubic-bezier(0.4, 0, 0.2, 1); }
-  a:not(.o-button):focus, a:not(.o-button):hover {
+  a:not(.o-button):focus html.has-no-touch, a:not(.o-button):hover html.has-no-touch {
     color: #217cfc;
     text-decoration: unset;
     transition: color 150ms cubic-bezier(0, 0, 0.2, 1), text-decoration 150ms cubic-bezier(0, 0, 0.2, 1); }
-    a:not(.o-button):focus:after, a:not(.o-button):hover:after {
+    a:not(.o-button):focus html.has-no-touch:after, a:not(.o-button):hover html.has-no-touch:after {
       opacity: 0.87;
       transform: translateY(0) scaleX(1);
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 150ms cubic-bezier(0.4, 0, 0.2, 1); }
