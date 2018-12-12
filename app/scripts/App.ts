@@ -1,4 +1,4 @@
-import { APP_NAME, html, isDebug } from './env';
+import { APP_NAME, html, isDebug, setDebug } from './env';
 
 import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
@@ -24,6 +24,9 @@ class App{
     init(){
         html.classList.remove('has-no-js');
         html.classList.add('has-js');
+
+        // Check for production debug status
+        if(html.getAttribute('data-debug') !== null) setDebug(true);
 
         if(this.touchSupport){
             html.classList.add('has-touch');

@@ -1,3 +1,4 @@
+{# SEO Settings #}
 {% set pageTitle = siteName %}
 {% if siteSettings.titleOverride|length %}
     {% set pageTitle = siteSettings.titleOverride %}
@@ -7,8 +8,10 @@
 {% elseif category is defined %}
     {% set pageTitle = pageTitle ~ " | " ~ category.title %}
 {% endif %}
+
+{% set isDebug = craft.app.request.getParam('debug') %}
 <!doctype html>
-<html lang="en-US" class="has-no-js has-no-touch">
+<html lang="en-US" class="has-no-js has-no-touch" {% if isDebug|length %}data-debug="true"{% endif %}>
     <head>
         {% block head %}
             <meta charset="utf-8">

@@ -135,6 +135,9 @@ var App = /** @class */ (function () {
         var _this = this;
         env_1.html.classList.remove('has-no-js');
         env_1.html.classList.add('has-js');
+        // Check for production debug status
+        if (env_1.html.getAttribute('data-debug') !== null)
+            env_1.setDebug(true);
         if (this.touchSupport) {
             env_1.html.classList.add('has-touch');
             env_1.html.classList.remove('has-no-touch');
@@ -299,6 +302,10 @@ var pjaxContainer = '.js-pjax-container';
 exports.pjaxContainer = pjaxContainer;
 var pjaxWrapper = '.js-pjax-wrapper';
 exports.pjaxWrapper = pjaxWrapper;
+function setDebug(status) {
+    exports.isDebug = isDebug = status;
+}
+exports.setDebug = setDebug;
 
 
 /***/ }),
