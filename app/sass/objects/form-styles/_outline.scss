@@ -1,5 +1,9 @@
 &.-outline{
     .o-input{
+        &:after{
+            display: none !important;
+        }
+
         &.is-invalid{
             input{
                 border: 2px solid rgba($error, 0.87);

@@ -98,13 +98,13 @@ button,
             background-color: $white;
         }
 
-        &:hover{
+        @include hover{
             &:before{
                 opacity: 0.04;
             }
         }
 
-        &:active{
+        @include active{
             &:before{
                 opacity: 0.15;
             }
@@ -131,7 +131,7 @@ button,
             border-color: rgba($black, 0.1);
             transition: border-color 150ms $ease;
 
-            &:hover{
+            @include hover{
                 border-color: $primary;
             }
         }
@@ -149,7 +149,7 @@ button,
             background-color: $white;
         }
 
-        &:hover{
+        @include hover{
             box-shadow: 0 2px 4px -1px rgba($black,.2),0 4px 5px 0 rgba($black,.14),0 1px 10px 0 rgba($black,.12);
             transition: box-shadow 150ms $ease-in;
 
@@ -158,7 +158,7 @@ button,
             }
         }
 
-        &:active{
+        @include active{
             &:before{
                 opacity: 0.33;
             }
@@ -180,7 +180,7 @@ button,
         background: rgba($black,0);
         color: $primary;
 
-        html.has-js & {
+        html.has-js.has-no-touch & {
             display: inline-flex;
             justify-content: center;
             align-items: center;

@@ -1255,9 +1255,9 @@ table {
       section.-dark-background table tbody tr {
         border-bottom: 2px solid #2b2b2b; }
       table tbody tr:hover {
-        background: #eeeeee; }
+        background: #f8f8f8; }
         section.-dark-background table tbody tr:hover {
-          background: #2e2e2e; }
+          background: #363636; }
       table tbody tr td {
         padding: 0;
         margin: 0;
@@ -1730,6 +1730,8 @@ form {
     left: 17px;
     bottom: 17px;
     font-size: 22px; }
+  form.-outline .o-input:after {
+    display: none !important; }
   form.-outline .o-input.is-invalid input {
     border: 2px solid rgba(242, 86, 82, 0.87);
     padding: 11px 15px 9px;
@@ -2125,10 +2127,10 @@ button,
     button.-solid:before,
     .o-button.-solid:before {
       background-color: #fdfdfd; }
-    button.-solid:hover:before,
+    html.has-no-touch button.-solid:hover:before, html.has-no-touch
     .o-button.-solid:hover:before {
       opacity: 0.04; }
-    button.-solid:active:before,
+    html.has-no-touch button.-solid:active:before, html.has-no-touch
     .o-button.-solid:active:before {
       opacity: 0.15; }
     button.-solid.is-disabled,
@@ -2148,7 +2150,7 @@ button,
     .o-button.-outline.-alt {
       border-color: rgba(7, 7, 7, 0.1);
       transition: border-color 150ms cubic-bezier(0.4, 0, 0.2, 1); }
-      button.-outline.-alt:hover,
+      html.has-no-touch button.-outline.-alt:hover, html.has-no-touch
       .o-button.-outline.-alt:hover {
         border-color: #6200ee; }
   button.-raised,
@@ -2161,14 +2163,14 @@ button,
     button.-raised:before,
     .o-button.-raised:before {
       background-color: #fdfdfd; }
-    button.-raised:hover,
+    html.has-no-touch button.-raised:hover, html.has-no-touch
     .o-button.-raised:hover {
       box-shadow: 0 2px 4px -1px rgba(7, 7, 7, 0.2), 0 4px 5px 0 rgba(7, 7, 7, 0.14), 0 1px 10px 0 rgba(7, 7, 7, 0.12);
       transition: box-shadow 150ms cubic-bezier(0, 0, 0.2, 1); }
-      button.-raised:hover:before,
+      html.has-no-touch button.-raised:hover:before, html.has-no-touch
       .o-button.-raised:hover:before {
         opacity: 0.08; }
-    button.-raised:active:before,
+    html.has-no-touch button.-raised:active:before, html.has-no-touch
     .o-button.-raised:active:before {
       opacity: 0.33; }
     button.-raised.is-disabled,
@@ -2183,22 +2185,22 @@ button,
   .o-button.-icon {
     background: rgba(7, 7, 7, 0);
     color: #6200ee; }
-    html.has-js button.-icon, html.has-js
+    html.has-js.has-no-touch button.-icon, html.has-js.has-no-touch
     .o-button.-icon {
       display: inline-flex;
       justify-content: center;
       align-items: center;
       padding: 0; }
-      html.has-js button.-icon .-active, html.has-js
+      html.has-js.has-no-touch button.-icon .-active, html.has-js.has-no-touch
       .o-button.-icon .-active {
         display: none; }
-      html.has-js button.-icon.is-active .-inactive, html.has-js
+      html.has-js.has-no-touch button.-icon.is-active .-inactive, html.has-js.has-no-touch
       .o-button.-icon.is-active .-inactive {
         display: none; }
-      html.has-js button.-icon.is-active .-active, html.has-js
+      html.has-js.has-no-touch button.-icon.is-active .-active, html.has-js.has-no-touch
       .o-button.-icon.is-active .-active {
         display: initial; }
-      html.has-js button.-icon::before, html.has-js
+      html.has-js.has-no-touch button.-icon::before, html.has-js.has-no-touch
       .o-button.-icon::before {
         content: "";
         background: #6200ee;
@@ -2211,7 +2213,7 @@ button,
         transform-origin: center;
         opacity: 0;
         transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
-      html.has-js button.-icon::after, html.has-js
+      html.has-js.has-no-touch button.-icon::after, html.has-js.has-no-touch
       .o-button.-icon::after {
         content: "";
         background: #6200ee;
@@ -2223,23 +2225,23 @@ button,
         transform: scale(0);
         opacity: 0;
         transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
-      html.has-js button.-icon svg, html.has-js
+      html.has-js.has-no-touch button.-icon svg, html.has-js.has-no-touch
       .o-button.-icon svg {
         height: 18px;
         width: 18px; }
-      html.has-js button.-icon .-alt, html.has-js
+      html.has-js.has-no-touch button.-icon .-alt, html.has-js.has-no-touch
       .o-button.-icon .-alt {
         display: none !important; }
-      html.has-js button.-icon:hover:before, html.has-js
+      html.has-js.has-no-touch button.-icon:hover:before, html.has-js.has-no-touch
       .o-button.-icon:hover:before {
         transform: scale(1);
         opacity: 0.04;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-      html.has-js button.-icon:active:before, html.has-js
+      html.has-js.has-no-touch button.-icon:active:before, html.has-js.has-no-touch
       .o-button.-icon:active:before {
         opacity: 0;
         transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
-      html.has-js button.-icon:active:after, html.has-js
+      html.has-js.has-no-touch button.-icon:active:after, html.has-js.has-no-touch
       .o-button.-icon:active:after {
         transform: scale(1);
         opacity: 0.15;

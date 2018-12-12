@@ -48,10 +48,10 @@ table{
             }
 
             &:hover{
-                background: $off-white;
+                background: lighten($off-white, 4);
 
                 section.-dark-background & {
-                    background: darken($dark-background-color, 2);
+                    background: lighten($dark-background-color, 1);
                 }
             }
 
