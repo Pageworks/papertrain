@@ -206,7 +206,7 @@ button,
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
-                @include size(26px, 26px);
+                @include size(32px, 32px);
                 transform: scale(0);
                 transform-origin: center;
                 opacity: 0;
@@ -219,7 +219,7 @@ button,
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
-                @include size(28px, 28px);
+                @include size(32px, 32px);
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;

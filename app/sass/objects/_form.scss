@@ -25,8 +25,8 @@
                         }
 
                         .o-switch_track{
-                            background: $primary;
-                            opacity: 0.54;
+                            // background: $primary;
+                            // opacity: 0.54;
                         }
                     }
                 }
@@ -72,7 +72,7 @@
                 }
 
                 .o-switch_track{
-                    opacity: 0.38;
+                    opacity: 0.3;
                     border-radius: 7px;
                     @include size(30px, 12px);
                     background: $black;
@@ -200,7 +200,7 @@
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
-                @include size(28px, 28px);
+                @include size(32px, 32px);
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
@@ -212,7 +212,7 @@
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
-                @include size(28px, 28px);
+                @include size(32px, 32px);
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
@@ -324,7 +324,7 @@
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
-                @include size(28px, 28px);
+                @include size(32px, 32px);
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
@@ -336,7 +336,7 @@
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
-                @include size(28px, 28px);
+                @include size(32px, 32px);
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
@@ -421,6 +421,55 @@
         @include position(absolute, null 12px 18px null);
         color: $off-black;
         cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before{
+            content:"";
+            background: $primary;
+            position: absolute;
+            display: inline-block;
+            border-radius: 100%;
+            @include size(32px, 32px);
+            transform: scale(0);
+            transform-origin: center;
+            opacity: 0;
+            transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+        }
+
+        &::after{
+            content:"";
+            background: $primary;
+            position: absolute;
+            display: inline-block;
+            border-radius: 100%;
+            @include size(32px, 32px);
+            transform: scale(0);
+            opacity: 0;
+            transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+        }
+
+        &:hover{
+            &:before{
+                transform: scale(1);
+                opacity: $primary-hover-opacity;
+                transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+            }
+        }
+
+        &:active{
+            &:before{
+                opacity: 0;
+                transition: opacity 75ms $ease-out;
+            }
+
+            &:after{
+                transform: scale(1);
+                opacity: $primary-active-opacity;
+                transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+            }
+        }
 
         section.-dark-background & {
             color: $font-alt;
@@ -442,7 +491,7 @@
         }
 
         .-hidden{
-            display: inline-block;
+            display: inline-flex;
         }
     }
 
@@ -450,7 +499,7 @@
     // The password field is visible
     &.has-content-visible{
         .-visible{
-            display: inline-block;
+            display: inline-flex;
         }
 
         .-hidden{
@@ -671,7 +720,7 @@ textarea{
 }
 
 input[type=date]{
-    text-indent: -2px;
+    text-indent: -1px;
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -679,7 +728,7 @@ input[type=date]{
 
 select{
     @media (min-width: $screen-large){
-        text-indent: -2px;
+        text-indent: -1px;
     }
 
     html.has-js & {
