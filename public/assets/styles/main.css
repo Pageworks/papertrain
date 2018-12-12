@@ -1254,9 +1254,9 @@ table {
       transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1); }
       section.-dark-background table tbody tr {
         border-bottom: 2px solid #2b2b2b; }
-      table tbody tr:hover {
+      table tbody tr:hover:not(:first-of-type) {
         background: #f8f8f8; }
-        section.-dark-background table tbody tr:hover {
+        section.-dark-background table tbody tr:hover:not(:first-of-type) {
           background: #363636; }
       table tbody tr td {
         padding: 0;

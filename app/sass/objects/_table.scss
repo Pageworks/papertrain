@@ -48,10 +48,12 @@ table{
             }
 
             &:hover{
-                background: lighten($off-white, 4);
+                &:not(:first-of-type){
+                    background: lighten($off-white, 4);
 
-                section.-dark-background & {
-                    background: lighten($dark-background-color, 1);
+                    section.-dark-background & {
+                        background: lighten($dark-background-color, 1);
+                    }
                 }
             }
 
