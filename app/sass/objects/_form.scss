@@ -129,9 +129,277 @@
     }
 }
 
-form{
-    padding: 0;
-    margin: 0;
+// Radio input wrapper
+// Radio buttons have a universal style
+.o-radio{
+    position: relative;
+    padding: 32px 0 6px;
+    text-align: left;
+    width: 100%;
+
+    label{
+        position: absolute;
+        top: 0;
+        left: 12px;
+    }
+
+    .o-radio_item{
+        display: flex;
+        align-items: center;
+        margin: $unit $unit*2;
+
+        @media (min-width: $screen-medium){
+            display: inline-flex;
+        }
+
+        label{
+            display: flex;
+            align-items: center;
+        }
+
+        &:hover{
+            cursor: pointer !important;
+
+            .o-radio_icon{
+                &:before{
+                    transform: scale(1);
+                    opacity: $primary-hover-opacity;
+                    transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                }   
+            }
+        }
+
+        &:active{
+            .o-radio_icon{
+                &:before{
+                    opacity: 0;
+                    transition: opacity 75ms $ease-out;
+                }
+
+                &:after{
+                    transform: scale(1);
+                    opacity: $primary-active-opacity;
+                    transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                }
+            }
+        }
+
+        .o-radio_icon{
+            @include size(20px, 20px);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-right: $unit;
+            position: relative;
+            pointer-events: none;
+
+            &::before{
+                content:"";
+                background: $primary;
+                position: absolute;
+                display: inline-block;
+                border-radius: 100%;
+                @include size(28px, 28px);
+                transform: scale(0);
+                opacity: 0;
+                transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+            }
+
+            &::after{
+                content:"";
+                background: $primary;
+                position: absolute;
+                display: inline-block;
+                border-radius: 100%;
+                @include size(28px, 28px);
+                transform: scale(0);
+                opacity: 0;
+                transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+            }
+
+            .o-radio_outter{
+                @include size(16px, 16px);
+                border-radius: 100%;
+                border: 2px solid $primary;
+                position: absolute;
+            }
+
+            .o-radio_inner{
+                transform: scale(0);
+                @include size(100%, 100%);
+                border: solid 10px $primary;
+                border-radius: 100%;
+                position: absolute;
+                transition: transform 125ms $ease-sharp;
+            }
+        }
+
+        input{
+            &:checked{
+                & + label{
+                    .o-radio_icon{
+                        .o-radio_inner{
+                            transform: scale(0.4);
+                            transition: transform 150ms $ease-in;
+                        }
+                    }
+                }
+            }
+
+            & + label{
+                vertical-align: middle;
+                position: relative;
+                left: 0;
+                pointer-events: all;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// Checkbox input wrapper
+// Checkbox inputs have a universal style
+.o-checkbox{
+    position: relative;
+    padding: 32px 0 6px;
+    width: 100%;
+
+    label{
+        position: absolute;
+        top: 0;
+        left: 12px;
+    }
+
+    .o-checkbox_item{
+
+        label{
+            height: 24px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            margin: $unit $unit*2;
+        }
+
+        &:hover{
+            cursor: pointer !important;
+
+            .o-checkbox_icon{
+                &:before{
+                    transform: scale(1);
+                    opacity: $primary-hover-opacity;
+                    transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                }   
+            }
+        }
+
+        &:active{
+            .o-checkbox_icon{
+                &:before{
+                    opacity: 0;
+                    transition: opacity 75ms $ease-out;
+                }
+
+                &:after{
+                    transform: scale(1);
+                    opacity: $primary-active-opacity;
+                    transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                }
+            }
+        }
+
+        .o-checkbox_icon{
+            @include size(20px, 20px);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-right: $unit;
+            position: relative;
+            pointer-events: none;
+
+            &::before{
+                content:"";
+                background: $primary;
+                position: absolute;
+                display: inline-block;
+                border-radius: 100%;
+                @include size(28px, 28px);
+                transform: scale(0);
+                opacity: 0;
+                transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+            }
+
+            &::after{
+                content:"";
+                background: $primary;
+                position: absolute;
+                display: inline-block;
+                border-radius: 100%;
+                @include size(28px, 28px);
+                transform: scale(0);
+                opacity: 0;
+                transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+            }
+
+            .o-checkbox_box{
+                position: absolute;
+                @include size(16px, 16px);
+                border-radius: 2px;
+                border: 2px solid $primary;
+                background: transparent;
+                transition: background 75ms $ease-sharp;
+            }
+
+            .o-checkbox_check{
+                position: absolute;
+                transform: scale(0.5);                    
+                path{
+                    stroke: $white;
+                    stroke-width: 3px;
+                    stroke-linecap: round;
+                    stroke-dasharray: 30;
+                    stroke-dashoffset: 30;
+                    transition: stroke-dashoffset 75ms $ease-sharp;
+                }
+            }
+        }
+
+        input{
+            &:checked{
+                & + label{
+                    .o-checkbox_icon{
+                        .o-checkbox_box{
+                            background: $primary;
+                            transition: background 150ms $ease-in;
+                        }
+
+                        .o-checkbox_check{
+                            path{
+                                stroke-dashoffset: 0;
+                                transition: stroke-dashoffset 150ms $ease-in;
+                            }
+                        }
+                    }
+                }
+            }
+
+            & ~ label{
+                vertical-align: middle;
+                position: relative;
+                left: 0;
+                pointer-events: all;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// Base input wrapper
+.o-input{
+    height: 56px;
+    width: 100%;
+    position: relative;
 
     &.-square{
         input,
@@ -141,325 +409,65 @@ form{
         }
     }
 
-    // Base input wrapper
-    .o-input{
-        height: 56px;
-        width: 100%;
-        position: relative;
+    &.is-invalid{
+        .o-help{
+            opacity: 0;
+            transition: opacity 25ms $ease-sharp;
+        }
+    }
 
-        &.is-invalid{
-            .o-help{
-                opacity: 0;
-                transition: opacity 25ms $ease-sharp;
-            }
+    .-visible,
+    .-hidden{
+        @include position(absolute, null 12px 18px null);
+        color: $off-black;
+        cursor: pointer;
+
+        section.-dark-background & {
+            color: $font-alt;
+        }
+    }
+
+    &.has-content-hidden,
+    &.has-content-visible{
+        input{
+            padding-right: 34px !important;
+        }
+    }
+
+    // Used for password and pin inputs
+    // The password field is hidden (default)
+    &.has-content-hidden{
+        .-visible{
+            display: none;
         }
 
-        .-visible,
         .-hidden{
-            @include position(absolute, null 12px 18px null);
-            color: $off-black;
-            cursor: pointer;
-
-            section.-dark-background & {
-                color: $font-alt;
-            }
-        }
-
-        &.has-content-hidden,
-        &.has-content-visible{
-            input{
-                padding-right: 34px !important;
-            }
-        }
-
-        // Used for password and pin inputs
-        // The password field is hidden (default)
-        &.has-content-hidden{
-            .-visible{
-                display: none;
-            }
-
-            .-hidden{
-                display: inline-block;
-            }
-        }
-
-        // Used for password and pin inputs
-        // The password field is visible
-        &.has-content-visible{
-            .-visible{
-                display: inline-block;
-            }
-
-            .-hidden{
-                display: none;
-            }
+            display: inline-block;
         }
     }
 
-    // Radio input wrapper
-    // Radio buttons have a universal style
-    .o-radio{
-        position: relative;
-        padding: 32px 0 6px;
-        text-align: left;
-        width: 100%;
-
-        label{
-            position: absolute;
-            top: 0;
-            left: 12px;
+    // Used for password and pin inputs
+    // The password field is visible
+    &.has-content-visible{
+        .-visible{
+            display: inline-block;
         }
 
-        .o-radio_item{
-            display: flex;
-            align-items: center;
-            margin: $unit $unit*2;
-
-            @media (min-width: $screen-medium){
-                display: inline-flex;
-            }
-
-            label{
-                display: flex;
-                align-items: center;
-            }
-
-            &:hover{
-                cursor: pointer !important;
-
-                .o-radio_icon{
-                    &:before{
-                        transform: scale(1);
-                        opacity: $primary-hover-opacity;
-                        transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                    }   
-                }
-            }
-
-            &:active{
-                .o-radio_icon{
-                    &:before{
-                        opacity: 0;
-                        transition: opacity 75ms $ease-out;
-                    }
-
-                    &:after{
-                        transform: scale(1);
-                        opacity: $primary-active-opacity;
-                        transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                    }
-                }
-            }
-
-            .o-radio_icon{
-                @include size(20px, 20px);
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                margin-right: $unit;
-                position: relative;
-                pointer-events: none;
-
-                &::before{
-                    content:"";
-                    background: $primary;
-                    position: absolute;
-                    display: inline-block;
-                    border-radius: 100%;
-                    @include size(28px, 28px);
-                    transform: scale(0);
-                    opacity: 0;
-                    transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
-                }
-
-                &::after{
-                    content:"";
-                    background: $primary;
-                    position: absolute;
-                    display: inline-block;
-                    border-radius: 100%;
-                    @include size(28px, 28px);
-                    transform: scale(0);
-                    opacity: 0;
-                    transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
-                }
-
-                .o-radio_outter{
-                    @include size(16px, 16px);
-                    border-radius: 100%;
-                    border: 2px solid $primary;
-                    position: absolute;
-                }
-
-                .o-radio_inner{
-                    transform: scale(0);
-                    @include size(100%, 100%);
-                    border: solid 10px $primary;
-                    border-radius: 100%;
-                    position: absolute;
-                    transition: transform 125ms $ease-sharp;
-                }
-            }
-
-            input{
-                &:checked{
-                    & + label{
-                        .o-radio_icon{
-                            .o-radio_inner{
-                                transform: scale(0.4);
-                                transition: transform 150ms $ease-in;
-                            }
-                        }
-                    }
-                }
-    
-                & + label{
-                    vertical-align: middle;
-                    position: relative;
-                    left: 0;
-                    pointer-events: all;
-                    cursor: pointer;
-                }
-            }
+        .-hidden{
+            display: none;
         }
     }
+}
 
-    // Checkbox input wrapper
-    // Checkbox inputs have a universal style
-    .o-checkbox{
-        position: relative;
-        padding: 32px 0 6px;
-        width: 100%;
+form{
+    padding: 0;
+    margin: 0;
 
-        label{
-            position: absolute;
-            top: 0;
-            left: 12px;
-        }
-
-        .o-checkbox_item{
-
-            label{
-                height: 24px;
-                line-height: 24px;
-                display: flex;
-                align-items: center;
-                margin: $unit $unit*2;
-            }
-
-            &:hover{
-                cursor: pointer !important;
-
-                .o-checkbox_icon{
-                    &:before{
-                        transform: scale(1);
-                        opacity: $primary-hover-opacity;
-                        transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                    }   
-                }
-            }
-
-            &:active{
-                .o-checkbox_icon{
-                    &:before{
-                        opacity: 0;
-                        transition: opacity 75ms $ease-out;
-                    }
-
-                    &:after{
-                        transform: scale(1);
-                        opacity: $primary-active-opacity;
-                        transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                    }
-                }
-            }
-
-            .o-checkbox_icon{
-                @include size(20px, 20px);
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                margin-right: $unit;
-                position: relative;
-                pointer-events: none;
-
-                &::before{
-                    content:"";
-                    background: $primary;
-                    position: absolute;
-                    display: inline-block;
-                    border-radius: 100%;
-                    @include size(28px, 28px);
-                    transform: scale(0);
-                    opacity: 0;
-                    transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
-                }
-
-                &::after{
-                    content:"";
-                    background: $primary;
-                    position: absolute;
-                    display: inline-block;
-                    border-radius: 100%;
-                    @include size(28px, 28px);
-                    transform: scale(0);
-                    opacity: 0;
-                    transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
-                }
-
-                .o-checkbox_box{
-                    position: absolute;
-                    @include size(16px, 16px);
-                    border-radius: 2px;
-                    border: 2px solid $primary;
-                    background: transparent;
-                    transition: background 75ms $ease-sharp;
-                }
-
-                .o-checkbox_check{
-                    position: absolute;
-                    transform: scale(0.5);                    
-                    path{
-                        stroke: $white;
-                        stroke-width: 3px;
-                        stroke-linecap: round;
-                        stroke-dasharray: 30;
-                        stroke-dashoffset: 30;
-                        transition: stroke-dashoffset 75ms $ease-sharp;
-                    }
-                }
-            }
-
-            input{
-                &:checked{
-                    & + label{
-                        .o-checkbox_icon{
-                            .o-checkbox_box{
-                                background: $primary;
-                                transition: background 150ms $ease-in;
-                            }
-    
-                            .o-checkbox_check{
-                                path{
-                                    stroke-dashoffset: 0;
-                                    transition: stroke-dashoffset 150ms $ease-in;
-                                }
-                            }
-                        }
-                    }
-                }
-    
-                & ~ label{
-                    vertical-align: middle;
-                    position: relative;
-                    left: 0;
-                    pointer-events: all;
-                    cursor: pointer;
-                }
-            }
+    &.-square{
+        input,
+        select,
+        textarea{
+            border-radius: 0 !important;
         }
     }
 

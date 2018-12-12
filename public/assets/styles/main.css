@@ -1434,155 +1434,39 @@ table {
             z-index: 2;
             transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
 
-form {
-  padding: 0;
-  margin: 0; }
-  form.-square input,
-  form.-square select,
-  form.-square textarea {
-    border-radius: 0 !important; }
-  form .o-input {
-    height: 56px;
-    width: 100%;
-    position: relative; }
-    form .o-input.is-invalid .o-help {
-      opacity: 0;
-      transition: opacity 25ms cubic-bezier(0.4, 0, 0.6, 1); }
-    form .o-input .-visible,
-    form .o-input .-hidden {
-      position: absolute;
-      right: 12px;
-      bottom: 18px;
-      color: #241F20;
-      cursor: pointer; }
-      section.-dark-background form .o-input .-visible, section.-dark-background
-      form .o-input .-hidden {
-        color: #f4f4f4; }
-    form .o-input.has-content-hidden input, form .o-input.has-content-visible input {
-      padding-right: 34px !important; }
-    form .o-input.has-content-hidden .-visible {
-      display: none; }
-    form .o-input.has-content-hidden .-hidden {
-      display: inline-block; }
-    form .o-input.has-content-visible .-visible {
-      display: inline-block; }
-    form .o-input.has-content-visible .-hidden {
-      display: none; }
-  form .o-radio {
-    position: relative;
-    padding: 32px 0 6px;
-    text-align: left;
-    width: 100%; }
-    form .o-radio label {
-      position: absolute;
-      top: 0;
-      left: 12px; }
-    form .o-radio .o-radio_item {
+.o-radio {
+  position: relative;
+  padding: 32px 0 6px;
+  text-align: left;
+  width: 100%; }
+  .o-radio label {
+    position: absolute;
+    top: 0;
+    left: 12px; }
+  .o-radio .o-radio_item {
+    display: flex;
+    align-items: center;
+    margin: 1rem 2rem; }
+    @media (min-width: 960px) {
+      .o-radio .o-radio_item {
+        display: inline-flex; } }
+    .o-radio .o-radio_item label {
       display: flex;
-      align-items: center;
-      margin: 1rem 2rem; }
-      @media (min-width: 960px) {
-        form .o-radio .o-radio_item {
-          display: inline-flex; } }
-      form .o-radio .o-radio_item label {
-        display: flex;
-        align-items: center; }
-      form .o-radio .o-radio_item:hover {
-        cursor: pointer !important; }
-        form .o-radio .o-radio_item:hover .o-radio_icon:before {
-          transform: scale(1);
-          opacity: 0.04;
-          transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-      form .o-radio .o-radio_item:active .o-radio_icon:before {
-        opacity: 0;
-        transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
-      form .o-radio .o-radio_item:active .o-radio_icon:after {
-        transform: scale(1);
-        opacity: 0.19;
-        transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-      form .o-radio .o-radio_item .o-radio_icon {
-        height: 20px;
-        width: 20px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-right: 1rem;
-        position: relative;
-        pointer-events: none; }
-        form .o-radio .o-radio_item .o-radio_icon::before {
-          content: "";
-          background: #6200ee;
-          position: absolute;
-          display: inline-block;
-          border-radius: 100%;
-          height: 28px;
-          width: 28px;
-          transform: scale(0);
-          opacity: 0;
-          transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
-        form .o-radio .o-radio_item .o-radio_icon::after {
-          content: "";
-          background: #6200ee;
-          position: absolute;
-          display: inline-block;
-          border-radius: 100%;
-          height: 28px;
-          width: 28px;
-          transform: scale(0);
-          opacity: 0;
-          transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
-        form .o-radio .o-radio_item .o-radio_icon .o-radio_outter {
-          height: 16px;
-          width: 16px;
-          border-radius: 100%;
-          border: 2px solid #6200ee;
-          position: absolute; }
-        form .o-radio .o-radio_item .o-radio_icon .o-radio_inner {
-          transform: scale(0);
-          height: 100%;
-          width: 100%;
-          border: solid 10px #6200ee;
-          border-radius: 100%;
-          position: absolute;
-          transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1); }
-      form .o-radio .o-radio_item input:checked + label .o-radio_icon .o-radio_inner {
-        transform: scale(0.4);
-        transition: transform 150ms cubic-bezier(0, 0, 0.2, 1); }
-      form .o-radio .o-radio_item input + label {
-        vertical-align: middle;
-        position: relative;
-        left: 0;
-        pointer-events: all;
-        cursor: pointer; }
-  form .o-checkbox {
-    position: relative;
-    padding: 32px 0 6px;
-    width: 100%; }
-    form .o-checkbox label {
-      position: absolute;
-      top: 0;
-      left: 12px; }
-    form .o-checkbox .o-checkbox_item label {
-      height: 24px;
-      line-height: 24px;
-      display: flex;
-      align-items: center;
-      margin: 1rem 2rem; }
-    form .o-checkbox .o-checkbox_item:hover {
+      align-items: center; }
+    .o-radio .o-radio_item:hover {
       cursor: pointer !important; }
-      form .o-checkbox .o-checkbox_item:hover .o-checkbox_icon:before {
+      .o-radio .o-radio_item:hover .o-radio_icon:before {
         transform: scale(1);
         opacity: 0.04;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-    form .o-checkbox .o-checkbox_item:active .o-checkbox_icon:before {
+    .o-radio .o-radio_item:active .o-radio_icon:before {
       opacity: 0;
       transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
-    form .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
+    .o-radio .o-radio_item:active .o-radio_icon:after {
       transform: scale(1);
       opacity: 0.19;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-    form .o-checkbox .o-checkbox_item .o-checkbox_icon {
+    .o-radio .o-radio_item .o-radio_icon {
       height: 20px;
       width: 20px;
       display: inline-flex;
@@ -1592,7 +1476,7 @@ form {
       margin-right: 1rem;
       position: relative;
       pointer-events: none; }
-      form .o-checkbox .o-checkbox_item .o-checkbox_icon::before {
+      .o-radio .o-radio_item .o-radio_icon::before {
         content: "";
         background: #6200ee;
         position: absolute;
@@ -1603,7 +1487,7 @@ form {
         transform: scale(0);
         opacity: 0;
         transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
-      form .o-checkbox .o-checkbox_item .o-checkbox_icon::after {
+      .o-radio .o-radio_item .o-radio_icon::after {
         content: "";
         background: #6200ee;
         position: absolute;
@@ -1614,36 +1498,159 @@ form {
         transform: scale(0);
         opacity: 0;
         transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
-      form .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_box {
-        position: absolute;
+      .o-radio .o-radio_item .o-radio_icon .o-radio_outter {
         height: 16px;
         width: 16px;
-        border-radius: 2px;
+        border-radius: 100%;
         border: 2px solid #6200ee;
-        background: transparent;
-        transition: background 75ms cubic-bezier(0.4, 0, 0.6, 1); }
-      form .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check {
+        position: absolute; }
+      .o-radio .o-radio_item .o-radio_icon .o-radio_inner {
+        transform: scale(0);
+        height: 100%;
+        width: 100%;
+        border: solid 10px #6200ee;
+        border-radius: 100%;
         position: absolute;
-        transform: scale(0.5); }
-        form .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check path {
-          stroke: #fdfdfd;
-          stroke-width: 3px;
-          stroke-linecap: round;
-          stroke-dasharray: 30;
-          stroke-dashoffset: 30;
-          transition: stroke-dashoffset 75ms cubic-bezier(0.4, 0, 0.6, 1); }
-    form .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
-      background: #6200ee;
-      transition: background 150ms cubic-bezier(0, 0, 0.2, 1); }
-    form .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_check path {
-      stroke-dashoffset: 0;
-      transition: stroke-dashoffset 150ms cubic-bezier(0, 0, 0.2, 1); }
-    form .o-checkbox .o-checkbox_item input ~ label {
+        transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1); }
+    .o-radio .o-radio_item input:checked + label .o-radio_icon .o-radio_inner {
+      transform: scale(0.4);
+      transition: transform 150ms cubic-bezier(0, 0, 0.2, 1); }
+    .o-radio .o-radio_item input + label {
       vertical-align: middle;
       position: relative;
       left: 0;
       pointer-events: all;
       cursor: pointer; }
+
+.o-checkbox {
+  position: relative;
+  padding: 32px 0 6px;
+  width: 100%; }
+  .o-checkbox label {
+    position: absolute;
+    top: 0;
+    left: 12px; }
+  .o-checkbox .o-checkbox_item label {
+    height: 24px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    margin: 1rem 2rem; }
+  .o-checkbox .o-checkbox_item:hover {
+    cursor: pointer !important; }
+    .o-checkbox .o-checkbox_item:hover .o-checkbox_icon:before {
+      transform: scale(1);
+      opacity: 0.04;
+      transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+  .o-checkbox .o-checkbox_item:active .o-checkbox_icon:before {
+    opacity: 0;
+    transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
+  .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
+    transform: scale(1);
+    opacity: 0.19;
+    transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+  .o-checkbox .o-checkbox_item .o-checkbox_icon {
+    height: 20px;
+    width: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 1rem;
+    position: relative;
+    pointer-events: none; }
+    .o-checkbox .o-checkbox_item .o-checkbox_icon::before {
+      content: "";
+      background: #6200ee;
+      position: absolute;
+      display: inline-block;
+      border-radius: 100%;
+      height: 28px;
+      width: 28px;
+      transform: scale(0);
+      opacity: 0;
+      transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
+    .o-checkbox .o-checkbox_item .o-checkbox_icon::after {
+      content: "";
+      background: #6200ee;
+      position: absolute;
+      display: inline-block;
+      border-radius: 100%;
+      height: 28px;
+      width: 28px;
+      transform: scale(0);
+      opacity: 0;
+      transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
+    .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_box {
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      border-radius: 2px;
+      border: 2px solid #6200ee;
+      background: transparent;
+      transition: background 75ms cubic-bezier(0.4, 0, 0.6, 1); }
+    .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check {
+      position: absolute;
+      transform: scale(0.5); }
+      .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check path {
+        stroke: #fdfdfd;
+        stroke-width: 3px;
+        stroke-linecap: round;
+        stroke-dasharray: 30;
+        stroke-dashoffset: 30;
+        transition: stroke-dashoffset 75ms cubic-bezier(0.4, 0, 0.6, 1); }
+  .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
+    background: #6200ee;
+    transition: background 150ms cubic-bezier(0, 0, 0.2, 1); }
+  .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_check path {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 150ms cubic-bezier(0, 0, 0.2, 1); }
+  .o-checkbox .o-checkbox_item input ~ label {
+    vertical-align: middle;
+    position: relative;
+    left: 0;
+    pointer-events: all;
+    cursor: pointer; }
+
+.o-input {
+  height: 56px;
+  width: 100%;
+  position: relative; }
+  .o-input.-square input,
+  .o-input.-square select,
+  .o-input.-square textarea {
+    border-radius: 0 !important; }
+  .o-input.is-invalid .o-help {
+    opacity: 0;
+    transition: opacity 25ms cubic-bezier(0.4, 0, 0.6, 1); }
+  .o-input .-visible,
+  .o-input .-hidden {
+    position: absolute;
+    right: 12px;
+    bottom: 18px;
+    color: #241F20;
+    cursor: pointer; }
+    section.-dark-background .o-input .-visible, section.-dark-background
+    .o-input .-hidden {
+      color: #f4f4f4; }
+  .o-input.has-content-hidden input, .o-input.has-content-visible input {
+    padding-right: 34px !important; }
+  .o-input.has-content-hidden .-visible {
+    display: none; }
+  .o-input.has-content-hidden .-hidden {
+    display: inline-block; }
+  .o-input.has-content-visible .-visible {
+    display: inline-block; }
+  .o-input.has-content-visible .-hidden {
+    display: none; }
+
+form {
+  padding: 0;
+  margin: 0; }
+  form.-square input,
+  form.-square select,
+  form.-square textarea {
+    border-radius: 0 !important; }
   form .o-textarea {
     position: relative;
     width: 100%; }
