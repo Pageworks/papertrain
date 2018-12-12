@@ -38,7 +38,7 @@ a
             transition: transform 100ms $ease-sharp, opacity 100ms $ease;
         }
 
-        @include u-hocus{
+        @include hover{
             color: $link-hover-color;
             text-decoration: $link-hover-style;
             transition: color 150ms $ease-in, text-decoration 150ms $ease-in;

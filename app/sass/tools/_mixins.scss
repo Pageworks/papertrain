@@ -20,37 +20,21 @@
     }
 }
 
-//
-// Generate `:hover` and `:focus` styles in one go.
-//
-// @link    https://github.com/inuitcss/inuitcss/blob/master/tools/_tools.mixins.scss
-// @content Wrapped in `:focus` and `:hover` pseudo-classes.
-// @output  Wraps the given content in `:focus` and `:hover` pseudo-classes.
-//
-@mixin u-hocus
+@mixin hover
 {
-    &:focus,
     &:hover
     {
-        html.has-no-touch{
+        html.has-no-touch & {
             @content;
         }
     }
 }
 
-//
-// Generate `:active` and `:focus` styles in one go.
-//
-// @see     {Mixin} u-hocus
-// @content Wrapped in `:focus` and `:active` pseudo-classes.
-// @output  Wraps the given content in `:focus` and `:hover` pseudo-classes.
-//
-@mixin u-actus
+@mixin active
 {
-    &:focus,
     &:active
     {
-        html.has-no-touch{
+        html.has-no-touch & {
             @content;
         }
     }

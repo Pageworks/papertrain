@@ -530,11 +530,11 @@ a:not(.o-button) {
     display: inline-block;
     transform-origin: center;
     transition: transform 100ms cubic-bezier(0.4, 0, 0.6, 1), opacity 100ms cubic-bezier(0.4, 0, 0.2, 1); }
-  a:not(.o-button):focus html.has-no-touch, a:not(.o-button):hover html.has-no-touch {
+  html.has-no-touch a:not(.o-button):hover {
     color: #217cfc;
     text-decoration: unset;
     transition: color 150ms cubic-bezier(0, 0, 0.2, 1), text-decoration 150ms cubic-bezier(0, 0, 0.2, 1); }
-    a:not(.o-button):focus html.has-no-touch:after, a:not(.o-button):hover html.has-no-touch:after {
+    html.has-no-touch a:not(.o-button):hover:after {
       opacity: 0.87;
       transform: translateY(0) scaleX(1);
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 150ms cubic-bezier(0.4, 0, 0.2, 1); }
@@ -1379,7 +1379,7 @@ table {
           transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
         .o-switch .o-switch_item label .o-switch_icon:active .o-switch_handle:after {
           transform: scale(1);
-          opacity: 0.19;
+          opacity: 0.15;
           transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
         .o-switch .o-switch_item label .o-switch_icon:hover .o-switch_handle:before {
           transform: scale(1);
@@ -1464,7 +1464,7 @@ table {
       transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
     .o-radio .o-radio_item:active .o-radio_icon:after {
       transform: scale(1);
-      opacity: 0.19;
+      opacity: 0.15;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
     .o-radio .o-radio_item .o-radio_icon {
       height: 20px;
@@ -1547,7 +1547,7 @@ table {
     transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
   .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
     transform: scale(1);
-    opacity: 0.19;
+    opacity: 0.15;
     transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
   .o-checkbox .o-checkbox_item .o-checkbox_icon {
     height: 20px;
@@ -2068,7 +2068,7 @@ button,
   padding: 0 8px;
   min-width: 64px;
   height: 36px;
-  margin: 0 8px;
+  margin: 0;
   display: inline-block;
   user-select: none;
   overflow: hidden;
@@ -2076,8 +2076,8 @@ button,
   background: transparent;
   position: relative;
   opacity: 0.87; }
-  button::before,
-  .o-button::before {
+  button:not(.-icon)::before,
+  .o-button:not(.-icon)::before {
     content: "";
     height: 100%;
     width: 100%;
@@ -2087,13 +2087,13 @@ button,
     background-color: #6200ee;
     opacity: 0;
     transition: opacity 125ms cubic-bezier(0.4, 0, 1, 1); }
-  button:hover:before,
+  html.has-no-touch button:hover:before, html.has-no-touch
   .o-button:hover:before {
     opacity: 0.04;
     transition: opacity 150ms cubic-bezier(0, 0, 0.2, 1); }
-  button:active:before,
+  html.has-no-touch button:active:before, html.has-no-touch
   .o-button:active:before {
-    opacity: 0.04;
+    opacity: 0.15;
     transition: opacity 75ms cubic-bezier(0.4, 0, 0.6, 1); }
   button.is-disabled,
   .o-button.is-disabled {
@@ -2127,10 +2127,10 @@ button,
       background-color: #fdfdfd; }
     button.-solid:hover:before,
     .o-button.-solid:hover:before {
-      opacity: 0.08; }
+      opacity: 0.04; }
     button.-solid:active:before,
     .o-button.-solid:active:before {
-      opacity: 0.33; }
+      opacity: 0.15; }
     button.-solid.is-disabled,
     .o-button.-solid.is-disabled {
       background: rgba(7, 7, 7, 0.1);
@@ -2188,7 +2188,6 @@ button,
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       padding: 0; }
       html.has-js button.-icon .-active, html.has-js
       .o-button.-icon .-active {
@@ -2209,6 +2208,7 @@ button,
         height: 26px;
         width: 26px;
         transform: scale(0);
+        transform-origin: center;
         opacity: 0;
         transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
       html.has-js button.-icon::after, html.has-js
@@ -2233,7 +2233,7 @@ button,
       html.has-js button.-icon:hover:before, html.has-js
       .o-button.-icon:hover:before {
         transform: scale(1);
-        opacity: 0.15;
+        opacity: 0.04;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
       html.has-js button.-icon:active:before, html.has-js
       .o-button.-icon:active:before {
@@ -2242,7 +2242,7 @@ button,
       html.has-js button.-icon:active:after, html.has-js
       .o-button.-icon:active:after {
         transform: scale(1);
-        opacity: 0.25;
+        opacity: 0.15;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
 
 @keyframes iconPop {

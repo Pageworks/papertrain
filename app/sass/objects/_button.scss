@@ -25,7 +25,7 @@ button,
     padding: 0 8px;
     min-width: 64px;
     height: 36px;
-    margin: 0 8px;
+    margin: 0;
     
     display: inline-block;
     user-select: none;
@@ -35,25 +35,27 @@ button,
     position: relative;
     opacity: 0.87;
 
-    &::before{
-        content:"";
-        @include size(100%, 100%);
-        @include position(absolute, 0 null null 0);
-        background-color: $primary;
-        opacity: 0;
-        transition: opacity 125ms $ease-out;
+    &:not(.-icon){
+        &::before{
+            content:"";
+            @include size(100%, 100%);
+            @include position(absolute, 0 null null 0);
+            background-color: $primary;
+            opacity: 0;
+            transition: opacity 125ms $ease-out;
+        }        
     }
 
-    &:hover{
+    @include hover{
         &:before{
             opacity: $primary-hover-opacity;
             transition: opacity 150ms $ease-in;
         }
     }
 
-    &:active{
+    @include active{
         &:before{
-            opacity: $primary-hover-opacity;
+            opacity: $primary-active-opacity;
             transition: opacity 75ms $ease-sharp;
         }
     }
@@ -98,13 +100,13 @@ button,
 
         &:hover{
             &:before{
-                opacity: 0.08;
+                opacity: 0.04;
             }
         }
 
         &:active{
             &:before{
-                opacity: 0.33;
+                opacity: 0.15;
             }
         }
 
@@ -182,7 +184,6 @@ button,
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             padding: 0;
 
             .-active{
@@ -207,6 +208,7 @@ button,
                 border-radius: 100%;
                 @include size(26px, 26px);
                 transform: scale(0);
+                transform-origin: center;
                 opacity: 0;
                 transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
             }
@@ -234,7 +236,7 @@ button,
             &:hover{
                 &:before{
                     transform: scale(1);
-                    opacity: 0.15;
+                    opacity: $primary-hover-opacity;
                     transition: transform 150ms $ease-in, opacity 75ms $ease-in;
                 }
             }
@@ -247,7 +249,7 @@ button,
 
                 &:after{
                     transform: scale(1);
-                    opacity: 0.25;
+                    opacity: $primary-active-opacity;
                     transition: transform 150ms $ease-in, opacity 75ms $ease-in;
                 }
             }
