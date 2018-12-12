@@ -2,6 +2,12 @@
 // Settings / Config / Colors
 // ==========================================================================
 
+/*
+ * NOTE: `-alt` colours are used to style elements when they're within a section
+ * that has the `$dark-background-color` applied. Test your colours on both backgrounds
+ * at the example page.
+*/
+
 // Base Palette
 // =============================================================================
 $white:     #fdfdfd;
@@ -12,8 +18,10 @@ $cool-black:#1b2836;//#3E4E59;
 
 // Brand Palette
 // =============================================================================
-$primary:   #6200ee;
-$secondary: #3f8efc;
+$primary:       #6200ee;
+$secondary:     #3f8efc; // Used as the anchor elements base colour
+$primary-alt:   #F5CB5C;
+$secondary-alt:   $secondary;
 
 // Interaction Settings
 // =============================================================================
@@ -35,8 +43,8 @@ $link-hover-color: darken($secondary, 6);
 
 // Selection
 // =============================================================================
-$selection-text-color:       $white;
-$selection-background-color: $secondary;
+$selection-text-color:       $secondary;
+$selection-background-color: $white;
 
 // Background Colors
 // =============================================================================
