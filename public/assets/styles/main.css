@@ -2192,6 +2192,16 @@ button,
       html.has-no-touch button.-outline.-alt:hover, html.has-no-touch
       .o-button.-outline.-alt:hover {
         border-color: #6200ee; }
+    button.-outline.is-disabled,
+    .o-button.-outline.is-disabled {
+      background: rgba(7, 7, 7, 0.04);
+      color: rgba(7, 7, 7, 0.26);
+      border-color: rgba(7, 7, 7, 0.1); }
+      section.-dark-background button.-outline.is-disabled, section.-dark-background
+      .o-button.-outline.is-disabled {
+        background: rgba(253, 253, 253, 0.05);
+        color: rgba(253, 253, 253, 0.3);
+        border-color: rgba(253, 253, 253, 0.04); }
   button.-raised,
   .o-button.-raised {
     padding: 0 16px;
@@ -2285,19 +2295,6 @@ button,
         transform: scale(1);
         opacity: 0.15;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-
-@keyframes iconPop {
-  0% {
-    transform: scale(0);
-    opacity: 0; }
-  75% {
-    transform: scale(1);
-    opacity: 1;
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
-  100% {
-    transform: scale(1);
-    opacity: 0;
-    animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); } }
 
 .o-tooltip {
   position: relative; }

@@ -135,6 +135,18 @@ button,
                 border-color: $primary;
             }
         }
+
+        &.is-disabled{
+            background: rgba($black,0.04);
+            color: rgba($black,0.26);
+            border-color: rgba($black, 0.1);
+
+            section.-dark-background & {
+                background: rgba($white,0.05);
+                color: rgba($white, 0.3);
+                border-color: rgba($white, 0.04);
+            }
+        }
     }
 
     // Raised
@@ -254,22 +266,5 @@ button,
                 }
             }
         }
-    }
-}
-
-@keyframes iconPop{
-    0%{
-        transform: scale(0);
-        opacity: 0;
-    }
-    75%{
-        transform: scale(1);
-        opacity: 1;
-        animation-timing-function: $ease-in;
-    }
-    100%{
-        transform: scale(1);
-        opacity: 0;
-        animation-timing-function: $ease-sharp;
     }
 }
