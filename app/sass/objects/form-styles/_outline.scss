@@ -111,6 +111,10 @@
             padding: 11px 15px 9px;
             transition: all 150ms $ease-in;
 
+            section.-dark-background & {
+                border-color: rgba($primary-alt, 0.87);
+            }
+
             & + label{
                 color: $primary;
                 font-size: 12px;
@@ -121,6 +125,7 @@
 
                 section.-dark-background & {
                     background: $dark-background-color;
+                    color: $primary-alt;
                 }
             }
         }

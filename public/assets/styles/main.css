@@ -1,4 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:300,400,700|Share+Tech+Mono);
+/*
+ * NOTE: `-alt` colours are used to style elements when they're within a section
+ * that has the `$dark-background-color` applied. Test your colours on both backgrounds
+ * at the example page.
+*/
 /**
  * Calculate the luminance for a color.
  * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
@@ -644,8 +649,8 @@ body {
     min-height: 80vh; }
 
 ::selection {
-  color: #fdfdfd;
-  background-color: #3f8efc;
+  color: #3f8efc;
+  background-color: #fdfdfd;
   text-shadow: none; }
 
 :root {
@@ -1360,6 +1365,8 @@ table {
       transform: translateX(20px); }
       .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
         border-color: #6200ee; }
+        section.-dark-background .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
+          border-color: #F5CB5C; }
     .o-switch .o-switch_item label {
       height: 100%;
       width: 100%;
@@ -1418,6 +1425,8 @@ table {
             opacity: 0;
             z-index: 1;
             transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
+            section.-dark-background .o-switch .o-switch_item label .o-switch_icon .o-switch_handle::before {
+              background: #fdfdfd; }
           .o-switch .o-switch_item label .o-switch_icon .o-switch_handle::after {
             content: "";
             background: #6200ee;
@@ -1430,6 +1439,8 @@ table {
             opacity: 0;
             z-index: 2;
             transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
+            section.-dark-background .o-switch .o-switch_item label .o-switch_icon .o-switch_handle::after {
+              background: #fdfdfd; }
 
 .o-radio {
   position: relative;
@@ -1484,6 +1495,8 @@ table {
         transform: scale(0);
         opacity: 0;
         transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
+        section.-dark-background .o-radio .o-radio_item .o-radio_icon::before {
+          background: #fdfdfd; }
       .o-radio .o-radio_item .o-radio_icon::after {
         content: "";
         background: #6200ee;
@@ -1495,12 +1508,16 @@ table {
         transform: scale(0);
         opacity: 0;
         transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
+        section.-dark-background .o-radio .o-radio_item .o-radio_icon::after {
+          background: #fdfdfd; }
       .o-radio .o-radio_item .o-radio_icon .o-radio_outter {
         height: 16px;
         width: 16px;
         border-radius: 100%;
         border: 2px solid #6200ee;
         position: absolute; }
+        section.-dark-background .o-radio .o-radio_item .o-radio_icon .o-radio_outter {
+          border-color: #F5CB5C; }
       .o-radio .o-radio_item .o-radio_icon .o-radio_inner {
         transform: scale(0);
         height: 100%;
@@ -1509,6 +1526,8 @@ table {
         border-radius: 100%;
         position: absolute;
         transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1); }
+        section.-dark-background .o-radio .o-radio_item .o-radio_icon .o-radio_inner {
+          border-color: #F5CB5C; }
     .o-radio .o-radio_item input:checked + label .o-radio_icon .o-radio_inner {
       transform: scale(0.4);
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1567,6 +1586,8 @@ table {
       transform: scale(0);
       opacity: 0;
       transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
+      section.-dark-background .o-checkbox .o-checkbox_item .o-checkbox_icon::before {
+        background: #fdfdfd; }
     .o-checkbox .o-checkbox_item .o-checkbox_icon::after {
       content: "";
       background: #6200ee;
@@ -1578,6 +1599,8 @@ table {
       transform: scale(0);
       opacity: 0;
       transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
+      section.-dark-background .o-checkbox .o-checkbox_item .o-checkbox_icon::after {
+        background: #fdfdfd; }
     .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_box {
       position: absolute;
       height: 16px;
@@ -1586,6 +1609,8 @@ table {
       border: 2px solid #6200ee;
       background: transparent;
       transition: background 75ms cubic-bezier(0.4, 0, 0.6, 1); }
+      section.-dark-background .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_box {
+        border-color: #F5CB5C; }
     .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check {
       position: absolute;
       transform: scale(0.5); }
@@ -1596,9 +1621,13 @@ table {
         stroke-dasharray: 30;
         stroke-dashoffset: 30;
         transition: stroke-dashoffset 75ms cubic-bezier(0.4, 0, 0.6, 1); }
+        section.-dark-background .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check path {
+          stroke: #070707; }
   .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
     background: #6200ee;
     transition: background 150ms cubic-bezier(0, 0, 0.2, 1); }
+    section.-dark-background .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
+      background: #F5CB5C; }
   .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_check path {
     stroke-dashoffset: 0;
     transition: stroke-dashoffset 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1643,6 +1672,9 @@ table {
       transform-origin: center;
       opacity: 0;
       transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
+      section.-dark-background .o-input .-visible::before, section.-dark-background
+      .o-input .-hidden::before {
+        background: #fdfdfd; }
     .o-input .-visible::after,
     .o-input .-hidden::after {
       content: "";
@@ -1655,6 +1687,9 @@ table {
       transform: scale(0);
       opacity: 0;
       transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
+      section.-dark-background .o-input .-visible::after, section.-dark-background
+      .o-input .-hidden::after {
+        background: #fdfdfd; }
     .o-input .-visible:hover:before,
     .o-input .-hidden:hover:before {
       transform: scale(1);
@@ -1745,10 +1780,12 @@ form {
     border: 1px solid #241F20;
     width: 100%;
     min-height: 106px;
+    color: #4f4f4f;
     background: transparent;
     transition: border 75ms cubic-bezier(0.4, 0, 0.6, 1), padding 75ms cubic-bezier(0.4, 0, 0.6, 1); }
     section.-dark-background form textarea {
-      border: 1px solid rgba(238, 238, 238, 0.3); }
+      border: 1px solid rgba(238, 238, 238, 0.3);
+      color: #f4f4f4; }
     form textarea + label {
       position: absolute;
       top: 20px;
@@ -1757,10 +1794,14 @@ form {
       border: 2px solid #6200ee;
       padding: 31px 15px 15px;
       transition: border 150ms cubic-bezier(0, 0, 0.2, 1), padding 150ms cubic-bezier(0, 0, 0.2, 1); }
+      section.-dark-background form textarea:focus {
+        border-color: #F5CB5C; }
       form textarea:focus + label {
         top: 12px;
         font-size: 12px !important;
         color: #6200ee !important; }
+        section.-dark-background form textarea:focus + label {
+          color: #F5CB5C !important; }
   form input.has-icon {
     padding-left: 48px !important;
     padding-right: 16px !important; }
@@ -1840,6 +1881,9 @@ form {
       border: 2px solid rgba(98, 0, 238, 0.87);
       padding: 11px 15px 9px;
       transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
+      section.-dark-background form.-outline input:focus, section.-dark-background
+      form.-outline select:focus {
+        border-color: rgba(245, 203, 92, 0.87); }
       form.-outline input:focus + label,
       form.-outline select:focus + label {
         color: #6200ee;
@@ -1850,7 +1894,8 @@ form {
         transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
         section.-dark-background form.-outline input:focus + label, section.-dark-background
         form.-outline select:focus + label {
-          background: #333333; }
+          background: #333333;
+          color: #F5CB5C; }
   form.-solid .o-input.is-invalid input + label {
     color: #F25652;
     font-size: 12px;
@@ -1867,6 +1912,8 @@ form {
     transition: transform 75ms cubic-bezier(0.4, 0, 1, 1);
     background: #6200ee;
     transform-origin: center; }
+    section.-dark-background html.has-js form.-solid .o-input::after {
+      background: #F5CB5C; }
   html.has-js form.-solid .o-input.has-focus:after {
     transform: scaleX(1);
     transition: transform 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1927,12 +1974,18 @@ form {
       form.-solid select:focus {
         border-bottom-color: #6200ee;
         transition: border-bottom-color 150ms cubic-bezier(0, 0, 0.2, 1); }
+        section.-dark-background html.has-no-js form.-solid input:focus, section.-dark-background html.has-no-js
+        form.-solid select:focus {
+          border-bottom-color: #F5CB5C; }
       form.-solid input:focus + label,
       form.-solid select:focus + label {
         color: #6200ee;
         font-size: 12px;
         bottom: 35px;
         transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
+        section.-dark-background form.-solid input:focus + label, section.-dark-background
+        form.-solid select:focus + label {
+          color: #F5CB5C; }
   form .o-input.is-invalid input + label {
     color: #F25652;
     font-size: 12px;
@@ -1963,6 +2016,8 @@ form {
     opacity: 1;
     transform: translateY(0);
     transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 25ms cubic-bezier(0, 0, 0.2, 1); }
+  section.-dark-background form .o-input:after {
+    background: #F5CB5C !important; }
   form .o-input input + label,
   form .o-input select + label {
     bottom: 18px;
@@ -2009,12 +2064,18 @@ form {
       form select:focus {
         border-bottom-color: #6200ee;
         transition: border-bottom-color 150ms cubic-bezier(0, 0, 0.2, 1); }
+        section.-dark-background html.has-no-js form input:focus, section.-dark-background html.has-no-js
+        form select:focus {
+          border-bottom-color: #F5CB5C; }
       form input:focus + label,
       form select:focus + label {
         color: #6200ee;
         font-size: 12px;
         bottom: 35px;
         transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
+        section.-dark-background form input:focus + label, section.-dark-background
+        form select:focus + label {
+          color: #F5CB5C; }
 
 input,
 select,

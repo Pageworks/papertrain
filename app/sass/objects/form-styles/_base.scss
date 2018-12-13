@@ -50,6 +50,12 @@
         }
     }
 
+    &:after{
+        section.-dark-background & {
+            background: $primary-alt !important;
+        }
+    }
+
     input,
     select{
         & + label{
@@ -116,6 +122,10 @@ select{
         html.has-no-js & {
             border-bottom-color: $primary;
             transition: border-bottom-color 150ms $ease-in;
+
+            section.-dark-background & {
+                border-bottom-color: $primary-alt;
+            }
         }
 
         & + label{
@@ -123,6 +133,10 @@ select{
             font-size: 12px;
             bottom: 35px;
             transition: all 150ms $ease-in;
+
+            section.-dark-background & {
+                color: $primary-alt;
+            }
         }
     }
 }

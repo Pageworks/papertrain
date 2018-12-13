@@ -21,6 +21,10 @@
 
                             .o-switch_circle{
                                 border-color: $primary;
+
+                                section.-dark-background & {
+                                    border-color: $primary-alt;
+                                }
                             }
                         }
 
@@ -109,6 +113,10 @@
                         opacity: 0;
                         z-index: 1;
                         transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+
+                        section.-dark-background & {
+                            background: $white;
+                        }
                     }
     
                     &::after{
@@ -122,6 +130,10 @@
                         opacity: 0;
                         z-index: 2;
                         transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+
+                        section.-dark-background & {
+                            background: $white;
+                        }
                     }
                 }
             }
@@ -204,6 +216,10 @@
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+
+                section.-dark-background & {
+                    background: $white;
+                }
             }
 
             &::after{
@@ -216,6 +232,10 @@
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+
+                section.-dark-background & {
+                    background: $white;
+                }
             }
 
             .o-radio_outter{
@@ -223,6 +243,10 @@
                 border-radius: 100%;
                 border: 2px solid $primary;
                 position: absolute;
+
+                section.-dark-background & {
+                    border-color: $primary-alt;
+                }
             }
 
             .o-radio_inner{
@@ -232,6 +256,10 @@
                 border-radius: 100%;
                 position: absolute;
                 transition: transform 125ms $ease-sharp;
+
+                section.-dark-background & {
+                    border-color: $primary-alt;
+                }
             }
         }
 
@@ -328,6 +356,10 @@
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+
+                section.-dark-background & {
+                    background: $white;
+                }
             }
 
             &::after{
@@ -340,6 +372,10 @@
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+
+                section.-dark-background & {
+                    background: $white;
+                }
             }
 
             .o-checkbox_box{
@@ -349,18 +385,26 @@
                 border: 2px solid $primary;
                 background: transparent;
                 transition: background 75ms $ease-sharp;
+
+                section.-dark-background & {
+                    border-color: $primary-alt;
+                }
             }
 
             .o-checkbox_check{
                 position: absolute;
                 transform: scale(0.5);                    
                 path{
-                    stroke: $white;
+                    stroke: contrast($primary);
                     stroke-width: 3px;
                     stroke-linecap: round;
                     stroke-dasharray: 30;
                     stroke-dashoffset: 30;
                     transition: stroke-dashoffset 75ms $ease-sharp;
+
+                    section.-dark-background & {
+                        stroke: contrast($primary-alt);
+                    }
                 }
             }
         }
@@ -372,6 +416,10 @@
                         .o-checkbox_box{
                             background: $primary;
                             transition: background 150ms $ease-in;
+
+                            section.-dark-background & {
+                                background: $primary-alt;
+                            }
                         }
 
                         .o-checkbox_check{
@@ -436,6 +484,10 @@
             transform-origin: center;
             opacity: 0;
             transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+
+            section.-dark-background & {
+                background: $white;
+            }
         }
 
         &::after{
@@ -448,6 +500,10 @@
             transform: scale(0);
             opacity: 0;
             transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+
+            section.-dark-background & {
+                background: $white;
+            }
         }
 
         &:hover{
@@ -607,11 +663,13 @@ form{
         border: 1px solid $off-black;
         width: 100%;
         min-height: 106px;
+        color: $font-base;
         background: transparent;
         transition: border 75ms $ease-sharp, padding 75ms $ease-sharp;
 
         section.-dark-background & {
             border: 1px solid rgba($off-white, 0.3);
+            color: $font-alt;
         }
 
         & + label{
@@ -625,10 +683,18 @@ form{
             padding: 31px 15px 15px;
             transition: border 150ms $ease-in, padding 150ms $ease-in;
 
+            section.-dark-background & {
+                border-color: $primary-alt;
+            }
+
             & + label{
                 top: 12px;
                 font-size: 12px !important;
                 color: $primary !important;
+
+                section.-dark-background & {
+                    color: $primary-alt !important;
+                }
             }
         }
     }

@@ -20,6 +20,10 @@
                 transition: transform 75ms $ease-out;
                 background: $primary;
                 transform-origin: center;
+
+                section.-dark-background & {
+                    background: $primary-alt;
+                }
             }
 
             &.has-focus{
@@ -117,6 +121,10 @@
             html.has-no-js & {
                 border-bottom-color: $primary;
                 transition: border-bottom-color 150ms $ease-in;
+
+                section.-dark-background & {
+                    border-bottom-color: $primary-alt;
+                }
             }
 
             & + label{
@@ -124,6 +132,10 @@
                 font-size: 12px;
                 bottom: 35px;
                 transition: all 150ms $ease-in;
+
+                section.-dark-background & {
+                    color: $primary-alt;
+                }
             }
         }
     }
