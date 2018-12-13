@@ -98,7 +98,7 @@ ul{
 }
 
 p{
-    margin: $base-margin;
+    margin: $base-p-margin;
 }
 
 code{
@@ -129,21 +129,5 @@ blockquote{
     section.has-video & {
         color: rgba($font-alt, 0.87);
         border-left-color: rgba($font-alt, 0.15);
-    }
-}
-
-dl{
-    margin: $base-margin;
-    padding: 0;
-    border: 0;
-
-    dt{
-        display: block;
-        font-weight: $medium;
-        margin: 0 0 1em 0;
-    }
-
-    dd{
-        margin-left: 2em;
     }
 }
