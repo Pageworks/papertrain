@@ -6,7 +6,7 @@
 // =============================================================================
 $font-sans-serif:   'Roboto', sans-serif;
 $font-serif:        'Roboto Slab', serif;
-$font-heading:      'Roboto Slab', sans-serif;
+$font-heading:      $font-serif;
 $font-quote:        'Roboto Slab', cursive;
 $font-code:         'Share Tech Mono', monospace;
 
@@ -19,10 +19,14 @@ $heavy: 700;
 
 // Typography
 // =============================================================================
-$font-size: 1rem;
 $font-weight: $regular;
 $font-family: $font-sans-serif;
 $color: $font-base;
+
+$base-font-size: 20;
+$base-font-type: 'px';
+$x-height: 11;
+$heading-x-height: 11;
 
 // Links Style
 // Can be set to anything that works with text-decoration-style

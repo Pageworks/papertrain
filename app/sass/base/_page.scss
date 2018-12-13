@@ -55,7 +55,7 @@ section{
 
 body{
     background: $base-background-color;
-    font-size: $font-size; /* [1] */
+    font-size: 1rem; /* [1] */
 
     main{
         min-height: 80vh;

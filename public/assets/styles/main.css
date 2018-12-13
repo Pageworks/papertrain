@@ -668,7 +668,7 @@ h1,
   font-size: 2.625rem;
   letter-spacing: -0.0357rem;
   font-weight: 300;
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Roboto Slab", serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
@@ -688,7 +688,7 @@ h2,
   font-size: 2.0625rem;
   letter-spacing: -0.015rem;
   font-weight: 300;
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Roboto Slab", serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
@@ -708,7 +708,7 @@ h3,
   font-size: 1.625rem;
   letter-spacing: 0;
   font-weight: 400;
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Roboto Slab", serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
@@ -728,7 +728,7 @@ h4,
   font-size: 1.25rem;
   letter-spacing: 0.0125rem;
   font-weight: 400;
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Roboto Slab", serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
@@ -750,7 +750,7 @@ h5,
   font-size: 1rem;
   letter-spacing: 0;
   font-weight: 700;
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Roboto Slab", serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
@@ -781,7 +781,7 @@ h6,
   font-size: 0.8125rem;
   letter-spacing: 0 0.115rem;
   font-weight: 400;
-  font-family: "Roboto Slab", sans-serif;
+  font-family: "Roboto Slab", serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
@@ -1280,8 +1280,6 @@ table {
       table tbody tr:first-of-type {
         font-size: 12px;
         height: 56px; }
-        table tbody tr:first-of-type:hover {
-          background: #fdfdfd; }
         table tbody tr:first-of-type td {
           text-align: right;
           padding-left: 56px; }
@@ -2637,7 +2635,7 @@ button,
         .o-quote .o-quote_shim .o-quote_body {
           line-height: 3.4375rem; } }
     .o-quote .o-quote_shim .o-quote_source {
-      font-family: "Roboto Slab", sans-serif;
+      font-family: "Roboto Slab", serif;
       font-weight: 500;
       font-size: 1.25rem;
       letter-spacing: 0.0125rem;
