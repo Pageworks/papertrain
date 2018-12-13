@@ -9,7 +9,7 @@
  * To calculate REM version of tracking divide value by 16px. Example: (0.2/16px) = 0.0125rem
  */
 
-@mixin  h {
+@mixin  base-heading {
     padding: 0;
     margin: 0;
     text-transform: capitalize;
@@ -18,11 +18,13 @@
 
 .o-h1
 {
+    @include base-heading;
+    @include u-h1;
+
     font-size: 2.625rem;
     letter-spacing: -0.0357rem;
     font-weight: $light;
     font-family: $font-heading;
-    @include h;
     color: contrast($base-background-color, 0.87);
 
     section.-dark-background &,
@@ -34,11 +36,13 @@
 
 .o-h2
 {
+    @include base-heading;
+    @include u-h2;
+
     font-size: 2.0625rem;
     letter-spacing: -0.015rem;
     font-weight: $light;
     font-family: $font-heading;
-    @include h;
     color: contrast($base-background-color, 0.87);
 
     section.-dark-background &,
@@ -50,11 +54,13 @@
 
 .o-h3
 {
+    @include base-heading;
+    @include u-h3;
+
     font-size: 1.625rem;
     letter-spacing: 0;
     font-weight: $regular;
     font-family: $font-heading;
-    @include h;
     color: contrast($base-background-color, 0.87);
 
     section.-dark-background &,
@@ -66,11 +72,13 @@
 
 .o-h4
 {
+    @include base-heading;
+    @include u-h4;
+
     font-size: 1.25rem;
     letter-spacing: 0.0125rem;
     font-weight: $regular;
     font-family: $font-heading;
-    @include h;
     color: contrast($base-background-color, 0.6);
 
     section.-dark-background &,
@@ -84,11 +92,14 @@
 .o-headline,
 .o-title
 {
+    @include base-heading;
+    @include u-base-font;
+
     font-size: 1rem;
     letter-spacing: 0;
     font-weight: $heavy;
     font-family: $font-heading;
-    @include h;
+    @include base-heading;
     color: contrast($base-background-color, 0.87);
 
     section.-dark-background &,
@@ -101,11 +112,14 @@
 .o-h6,
 .o-subtitle
 {
+    @include base-heading;
+    @include u-h6;
+
     font-size: 0.8125rem;
     letter-spacing: 0.0.115rem;
     font-weight: $regular;
     font-family: $font-heading;
-    @include h;
+    @include base-heading;
     color: contrast($base-background-color, 0.6);
 
     section.-dark-background &,

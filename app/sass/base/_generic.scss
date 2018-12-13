@@ -99,6 +99,8 @@ ul{
 
 p{
     margin: $base-p-margin;
+
+    @include u-base-font;
 }
 
 code{

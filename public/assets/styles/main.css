@@ -579,7 +579,9 @@ ul {
     list-style-type: square; }
 
 p {
-  margin: 0 0 28px; }
+  margin: 0 0 28px;
+  font-size: 20px;
+  line-height: 32px; }
 
 code {
   background: rgba(144, 144, 144, 0.075);
@@ -660,14 +662,16 @@ body {
  * To calculate REM version of tracking divide value by 16px. Example: (0.2/16px) = 0.0125rem
  */
 .o-h1 {
-  font-size: 2.625rem;
-  letter-spacing: -0.0357rem;
-  font-weight: 300;
-  font-family: "Roboto Slab", serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
   width: 100%;
+  font-size: 52px;
+  line-height: 84px;
+  font-size: 2.625rem;
+  letter-spacing: -0.0357rem;
+  font-weight: 300;
+  font-family: "Roboto Slab", serif;
   color: rgba(7, 7, 7, 0.87); }
   section.-dark-background .o-h1,
   section.has-image .o-h1,
@@ -675,14 +679,16 @@ body {
     color: rgba(253, 253, 253, 0.87); }
 
 .o-h2 {
-  font-size: 2.0625rem;
-  letter-spacing: -0.015rem;
-  font-weight: 300;
-  font-family: "Roboto Slab", serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
   width: 100%;
+  font-size: 41px;
+  line-height: 66px;
+  font-size: 2.0625rem;
+  letter-spacing: -0.015rem;
+  font-weight: 300;
+  font-family: "Roboto Slab", serif;
   color: rgba(7, 7, 7, 0.87); }
   section.-dark-background .o-h2,
   section.has-image .o-h2,
@@ -690,14 +696,16 @@ body {
     color: rgba(253, 253, 253, 0.87); }
 
 .o-h3 {
-  font-size: 1.625rem;
-  letter-spacing: 0;
-  font-weight: 400;
-  font-family: "Roboto Slab", serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
   width: 100%;
+  font-size: 32px;
+  line-height: 52px;
+  font-size: 1.625rem;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-family: "Roboto Slab", serif;
   color: rgba(7, 7, 7, 0.87); }
   section.-dark-background .o-h3,
   section.has-image .o-h3,
@@ -705,14 +713,16 @@ body {
     color: rgba(253, 253, 253, 0.87); }
 
 .o-h4 {
-  font-size: 1.25rem;
-  letter-spacing: 0.0125rem;
-  font-weight: 400;
-  font-family: "Roboto Slab", serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
   width: 100%;
+  font-size: 25px;
+  line-height: 40px;
+  font-size: 1.25rem;
+  letter-spacing: 0.0125rem;
+  font-weight: 400;
+  font-family: "Roboto Slab", serif;
   color: rgba(7, 7, 7, 0.6); }
   section.-dark-background .o-h4,
   section.has-image .o-h4,
@@ -722,6 +732,12 @@ body {
 .o-h5,
 .o-headline,
 .o-title {
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  width: 100%;
+  font-size: 20px;
+  line-height: 32px;
   font-size: 1rem;
   letter-spacing: 0;
   font-weight: 700;
@@ -748,6 +764,12 @@ body {
 
 .o-h6,
 .o-subtitle {
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  width: 100%;
+  font-size: 16px;
+  line-height: 25.888px;
   font-size: 0.8125rem;
   letter-spacing: 0 0.115rem;
   font-weight: 400;

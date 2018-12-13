@@ -1,37 +1,46 @@
-@function round($number, $digits: 0, $mode: round) {
-    $n: 1;
-    // $number must be a number
-    @if type-of($number) != number {
-        @warn '#{ $number } is not a number.';
-        @return $number;
-    }
-    // $digits must be a unitless number
-    @if type-of($digits) != number {
-        @warn '#{ $digits } is not a number.';
-        @return $number;
-    } @else if not unitless($digits) {
-        @warn '#{ $digits } has a unit.';
-        @return $number;
-    }
-    @for $i from 1 through $digits {
-        $n: $n * 10;
-    }
-    @if $mode == round {
-        @return round($number * $n) / $n;
-    } @else if $mode == ceil {
-        @return ceil($number * $n) / $n;
-    } @else if $mode == floor {
-        @return floor($number * $n) / $n;
-    } @else {
-        @warn '#{ $mode } is undefined keyword.';
-        @return $number;
-    }
-}
-
 @function strip-unit($number) {
     @if type-of($number) == 'number' and not unitless($number) {
       @return $number / ($number * 0 + 1);
     }
   
     @return $number;
+}
+
+$golden-ratio: 1.618;
+$base-size: strip-unit($base-font-size);
+
+$h1-size: round($base-size * ($golden-ratio * $golden-ratio));
+$h2-size: round($base-size * 2.058);
+$h3-size: round($base-size * $golden-ratio);
+$h4-size: round($base-size * 1.272);
+$h6-size: round($base-size / 1.272);
+
+@mixin u-h1{
+    font-size: $h1-size + px;
+    line-height: round($h1-size * $golden-ratio) + px;
+}
+
+@mixin u-h2{    
+    font-size: $h2-size + px;
+    line-height: round($h2-size * $golden-ratio) + px;
+}
+
+@mixin u-h3{
+    font-size: $h3-size + px;
+    line-height: round($h3-size * $golden-ratio) + px;
+}
+
+@mixin u-h4{
+    font-size: $h4-size + px;
+    line-height: round($h4-size * $golden-ratio) + px;
+}
+
+@mixin u-base-font{
+    font-size: $base-size + px;
+    line-height: round($base-size * $golden-ratio) + px;
+}
+
+@mixin u-h6{
+    font-size: $h6-size + px;
+    line-height: ($h6-size * $golden-ratio) + px;
 }
