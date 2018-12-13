@@ -2178,6 +2178,9 @@ button,
   background: transparent;
   position: relative;
   opacity: 0.87; }
+  section.-dark-background button, section.-dark-background
+  .o-button {
+    color: #F5CB5C; }
   button:not(.-icon)::before,
   .o-button:not(.-icon)::before {
     content: "";
@@ -2189,6 +2192,9 @@ button,
     background-color: #6200ee;
     opacity: 0;
     transition: opacity 125ms cubic-bezier(0.4, 0, 1, 1); }
+    section.-dark-background button:not(.-icon)::before, section.-dark-background
+    .o-button:not(.-icon)::before {
+      background-color: #F5CB5C; }
   html.has-no-touch button:hover:before, html.has-no-touch
   .o-button:hover:before {
     opacity: 0.04;
@@ -2224,15 +2230,22 @@ button,
     padding: 0 16px;
     background: #6200ee;
     color: #fdfdfd; }
+    section.-dark-background button.-solid, section.-dark-background
+    .o-button.-solid {
+      background: #F5CB5C;
+      color: #070707; }
+      section.-dark-background button.-solid:before, section.-dark-background
+      .o-button.-solid:before {
+        background-color: #070707; }
     button.-solid:before,
     .o-button.-solid:before {
       background-color: #fdfdfd; }
     html.has-no-touch button.-solid:hover:before, html.has-no-touch
     .o-button.-solid:hover:before {
-      opacity: 0.04; }
+      opacity: 0.1; }
     html.has-no-touch button.-solid:active:before, html.has-no-touch
     .o-button.-solid:active:before {
-      opacity: 0.15; }
+      opacity: 0.2; }
     button.-solid.is-disabled,
     .o-button.-solid.is-disabled {
       background: rgba(7, 7, 7, 0.1);
@@ -2246,10 +2259,19 @@ button,
     padding: 0 16px;
     border: 2px solid #6200ee;
     line-height: 34px; }
+    section.-dark-background button.-outline, section.-dark-background
+    .o-button.-outline {
+      border-color: #F5CB5C; }
     button.-outline.-alt,
     .o-button.-outline.-alt {
       border-color: rgba(7, 7, 7, 0.1);
       transition: border-color 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+      section.-dark-background button.-outline.-alt, section.-dark-background
+      .o-button.-outline.-alt {
+        border-color: rgba(253, 253, 253, 0.1); }
+        html.has-no-touch section.-dark-background button.-outline.-alt:hover, html.has-no-touch section.-dark-background
+        .o-button.-outline.-alt:hover {
+          border-color: #F5CB5C; }
       html.has-no-touch button.-outline.-alt:hover, html.has-no-touch
       .o-button.-outline.-alt:hover {
         border-color: #6200ee; }
@@ -2356,6 +2378,10 @@ button,
         transform: scale(1);
         opacity: 0.15;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+    section.-dark-background button.-icon:before, section.-dark-background button.-icon:after, section.-dark-background
+    .o-button.-icon:before, section.-dark-background
+    .o-button.-icon:after {
+      background: #fdfdfd !important; }
 
 .o-tooltip {
   position: relative; }

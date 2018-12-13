@@ -35,6 +35,10 @@ button,
     position: relative;
     opacity: 0.87;
 
+    section.-dark-background & {
+        color: $primary-alt;
+    }
+
     &:not(.-icon){
         &::before{
             content:"";
@@ -43,6 +47,10 @@ button,
             background-color: $primary;
             opacity: 0;
             transition: opacity 125ms $ease-out;
+
+            section.-dark-background & {
+                background-color: $primary-alt;
+            }
         }        
     }
 
@@ -92,21 +100,30 @@ button,
     &.-solid{
         padding: 0 16px;
         background: $primary;
-        color: $white;
+        color: contrast($primary);
+
+        section.-dark-background & {
+            background: $primary-alt;
+            color: contrast($primary-alt);
+
+            &:before{
+                background-color: contrast($primary-alt);
+            }
+        }
 
         &:before{
-            background-color: $white;
+            background-color: contrast($primary);
         }
 
         @include hover{
             &:before{
-                opacity: 0.04;
+                opacity: 0.1;
             }
         }
 
         @include active{
             &:before{
-                opacity: 0.15;
+                opacity: 0.2;
             }
         }
 
@@ -127,9 +144,21 @@ button,
         border: 2px solid $primary;
         line-height: 34px;
 
+        section.-dark-background & {
+            border-color: $primary-alt;
+        }
+
         &.-alt{
             border-color: rgba($black, 0.1);
             transition: border-color 150ms $ease;
+
+            section.-dark-background & {
+                border-color: rgba($white, 0.1);
+
+                @include hover{
+                    border-color: $primary-alt;
+                }
+            }
 
             @include hover{
                 border-color: $primary;
@@ -264,6 +293,13 @@ button,
                     opacity: $primary-active-opacity;
                     transition: transform 150ms $ease-in, opacity 75ms $ease-in;
                 }
+            }
+        }
+
+        &:before,
+        &:after{
+            section.-dark-background & {
+                background: $white !important;
             }
         }
     }
