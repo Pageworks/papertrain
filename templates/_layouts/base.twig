@@ -11,7 +11,7 @@
 
 {% set isDebug = craft.app.request.getParam('debug') %}
 <!doctype html>
-<html lang="en-US" class="has-no-js has-no-touch" {% if isDebug|length %}data-debug="true"{% endif %}>
+<html lang="en-US" class="has-no-js has-no-touch" {% if isDebug|length and currentUser|length and currentUser.admin %}data-debug="true"{% endif %}>
     <head>
         {% block head %}
             <meta charset="utf-8">
@@ -25,7 +25,7 @@
         <link rel="icon" href="{{siteUrl}}assets/images/favicon.png">
 
         <link rel="stylesheet" type="text/css" href="{{siteUrl}}assets/styles/main.css">
-    </head> 
+    </head>
     <body>
         {% spaceless %}
             <div class="js-transition c-transition">
@@ -38,7 +38,7 @@
             </main>
             {% include '_includes/footer.twig' %}
         {% endspaceless %}
-        <script src="{{siteUrl}}assets/scripts/app.js"></script>
-        <script src="{{siteUrl}}assets/scripts/fontawesome.min.js"></script>
+        <script async src="{{siteUrl}}assets/scripts/app.js"></script>
+        <script async src="{{siteUrl}}assets/scripts/fontawesome.min.js"></script>
     </body>
 </html>

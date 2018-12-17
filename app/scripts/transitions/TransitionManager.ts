@@ -41,7 +41,7 @@ export default class TransitionManager {
     load(){
         html.classList.add('dom-is-loaded');
         html.classList.remove('dom-is-loading');
-        
+
         setTimeout(()=>{ html.classList.add('dom-is-animated') }, this.initialAnimationDelay);
     }
 
@@ -84,15 +84,21 @@ export default class TransitionManager {
     endTransition(e:Event){
         const templateName = this.getTemplateName();
 
-        if(isDebug) console.log('%c[view] '+`%cDisplaying: ${templateName}`,'color:#ecc653','color:#eee');
+        if(isDebug){
+            console.log('%c[view] '+`%cDisplaying: ${templateName}`,'color:#ecc653','color:#eee');
+        }
 
         html.classList.add('dom-is-loaded');
         html.classList.remove('dom-is-loading');
-        
+
         setTimeout(()=>{ html.classList.add('dom-is-animated') }, this.initialAnimationDelay);
 
-        if(templateName === 'home') html.classList.add('is-homepage');
-        else html.classList.remove('is-homepage');
+        if(templateName === 'home'){
+            html.classList.add('is-homepage');
+        }
+        else{
+            html.classList.remove('is-homepage');
+        }
 
         // Tell our transition it can end the transition
         this.transition.hide();
@@ -106,7 +112,7 @@ export default class TransitionManager {
         // Reset for next transition
         this.reinit();
     }
-    
+
     /**
      * Get all sections within our Pjax wrapper (article)
      * Look through elements for the first node with a `data-template` attribute
@@ -120,7 +126,7 @@ export default class TransitionManager {
 
         if(secitons){
             secitons.forEach((el)=>{
-                if(el.getAttribute('data-template') !== null) templateName = el.getAttribute('data-template'); 
+                if(el.getAttribute('data-template') !== null) templateName = el.getAttribute('data-template');
             });
         }
 

@@ -26,7 +26,9 @@ class App{
         html.classList.add('has-js');
 
         // Check for production debug status
-        if(html.getAttribute('data-debug') !== null) setDebug(true);
+        if(html.getAttribute('data-debug') !== null){
+            setDebug(true);
+        }
 
         if(this.touchSupport){
             html.classList.add('has-touch');
@@ -42,7 +44,9 @@ class App{
 
         this.transitionManager = new TransitionManager(this);
 
-        if(!isDebug) this.createEasterEgg();
+        if(!isDebug){
+            this.createEasterEgg();
+        }
     }
 
     createEasterEgg(){
@@ -89,7 +93,9 @@ class App{
         // Handle first visit of the day (in 24 hours) status
         if(window.localStorage.getItem(`${APP_NAME}_DailyVisit`) === null || (Date.now() - parseInt(window.localStorage.getItem(`${APP_NAME}_UniqueVisit`)) > 86400000)){
             html.classList.add('is-first-of-day');
-        } else html.classList.add('is-returning');
+        } else {
+            html.classList.add('is-returning');
+        }
         window.localStorage.setItem(`${APP_NAME}_DailyVisit`, Date.now().toString()); // Always update daily visit status
     }
 
@@ -111,8 +117,10 @@ class App{
                 newModule.init();
             }
             else if(this.modules[moduleType] === undefined){
-                if(isDebug) console.log('%cUndefined Module: '+`%c${moduleType}`,'color:#ff6e6e','color:#eee');
-            }            
+                if(isDebug){
+                    console.log('%cUndefined Module: '+`%c${moduleType}`,'color:#ff6e6e','color:#eee');
+                }
+            }
         });
     }
 
@@ -130,8 +138,14 @@ class App{
 
         this.currentModules.map((currModule)=>{
             let survived:boolean = false;
-            survivingModules.map((survivingModule)=>{ if(survivingModule.getAttribute('data-uuid') === currModule.uuid) survived = true; });
-            if(!survived) deadModules.push(currModule);
+            survivingModules.map((survivingModule)=>{
+                if(survivingModule.getAttribute('data-uuid') === currModule.uuid){
+                    survived = true;
+                }
+            });
+            if(!survived){
+                deadModules.push(currModule);
+            }
         });
 
         if(deadModules.length){
@@ -153,7 +167,9 @@ class App{
     public deleteModule(e:CustomEvent){
         const moduleID = e.detail.id;
         if(!moduleID){
-            if(isDebug) console.log('%cDelete Module Error: '+'%cmodule UUID was not sent in the custom event','color:#ff6e6e','color:#eee');
+            if(isDebug){
+                console.log('%cDelete Module Error: '+'%cmodule UUID was not sent in the custom event','color:#ff6e6e','color:#eee');
+            }
             return;
         }
 

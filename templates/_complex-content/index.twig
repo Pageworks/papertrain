@@ -53,8 +53,6 @@
                     {% case "endColumn" %}
                         {# Update our current column ID #}
                         {% switch columnLayout %}
-                            {% case 1 %}
-                                {% set currentColumn = 1 %}
                             {% case 2 %}
                                 {% set currentColumn = currentColumn + 1 %}
                                 {% if currentColumn > 2 %}
@@ -75,6 +73,8 @@
                                 {% if currentColumn > 2 %}
                                     {% set currentColumn = 1 %}
                                 {% endif %}
+                            {% default %}
+                                {% set currentColumn = 1 %}
                         {% endswitch %}
                         {% set columnOpen = false %}
                 {% endswitch %}

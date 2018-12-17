@@ -7,7 +7,9 @@ export default class extends AbstractModule{
 
     constructor(el:Element, app:App){
         super(el, app);
-        if(isDebug) console.log('%c[module] '+`%cBuilding: ${MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        if(isDebug){
+            console.log('%c[module] '+`%cBuilding: ${MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        }
     }
 
     /**
