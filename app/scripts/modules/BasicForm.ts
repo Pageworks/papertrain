@@ -2,17 +2,18 @@ import { isDebug } from '../env';
 import AbstractModule from './AbstractModule';
 import { getParent } from '../utils/getParent';
 
-const MODULE_NAME = 'BasicForm';
+export default class BasicForm extends AbstractModule{
 
-export default class extends AbstractModule{
-    inputs:             NodeList
-    passwordToggles:    NodeList
-    selects:            NodeList
-    textareas:          NodeList
+    private static MODULE_NAME = 'BasicForm';
+
+    private inputs:             NodeList
+    private passwordToggles:    NodeList
+    private selects:            NodeList
+    private textareas:          NodeList
 
     constructor(el:Element, app:App){
         super(el, app);
-        if(isDebug) console.log('%c[module] '+`%cBuilding: ${MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicForm.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
         this.inputs             = this.el.querySelectorAll('input');
         this.selects            = this.el.querySelectorAll('select');
@@ -25,7 +26,7 @@ export default class extends AbstractModule{
      * Used to call any initial methods or to
      * register any initial event listeners
      */
-    init(){
+    public init(): void{
         this.inputs.forEach((el)=>{ el.addEventListener('focus', e => this.handleFocus(e) ); });
         this.inputs.forEach((el)=>{ el.addEventListener('blur', e => this.handleBlur(e) ); });
         this.inputs.forEach((el)=>{ el.addEventListener('keyup', e => this.handleKeystroke(e) ); });
@@ -60,7 +61,7 @@ export default class extends AbstractModule{
      * Called when a user releases a key while a textarea element has focus.
      * @param {Event} e
      */
-    handleTextarea(e:Event){
+    private handleTextarea(e:Event): void{
         if (e.target instanceof HTMLTextAreaElement){
             const inputWrapper  = getParent(e.target, 'js-input');
             inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
@@ -81,7 +82,7 @@ export default class extends AbstractModule{
      * If the selected option isn't `any` set the `has-value` status class.
      * @param {Event} e
      */
-    handleSelection(e:Event){
+    private handleSelection(e:Event): void{
         if (e.target instanceof HTMLSelectElement){
             const inputWrapper  = getParent(e.target, 'js-input');
 
@@ -100,7 +101,7 @@ export default class extends AbstractModule{
      * If the content isn't hidden we set the inputs type to `password`.
      * @param {Event} e
      */
-    handleToggle(e:Event){
+    private handleToggle(e:Event): void{
         if (e.target instanceof Element){
             const inputWrapper  = getParent(e.target, 'js-input');
             const input         = inputWrapper.querySelector('input');
@@ -122,7 +123,7 @@ export default class extends AbstractModule{
      * If the input has innerText and a value and is valid return true.
      * @param {HTMLInputElement} el input element
      */
-    validityCheck(el:HTMLInputElement){
+    private validityCheck(el:HTMLInputElement): boolean{
         let isValid = true;
         if(el.innerText === '' && el.value === '' && el.getAttribute('required') !== null) isValid = false;
         else if(!el.validity.valid) isValid = false;
@@ -135,7 +136,7 @@ export default class extends AbstractModule{
      * we should check if the issue has been fixed. If it has add our `is-valid` class, otherwise, do nothing.
      * @param {Event} e
      */
-    handleKeystroke(e:Event){
+    private handleKeystroke(e:Event): void{
         if (e.target instanceof HTMLInputElement){
             const inputWrapper = getParent(e.target, 'js-input');
 
@@ -148,7 +149,7 @@ export default class extends AbstractModule{
         }
     }
 
-    handleInputStatus(el:HTMLInputElement){
+    private handleInputStatus(el:HTMLInputElement): void{
         const inputWrapper = getParent(el, 'js-input');
         inputWrapper.classList.remove('has-focus');
         inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
@@ -169,7 +170,7 @@ export default class extends AbstractModule{
      * @see https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
      * @param {Event} e
      */
-    handleBlur(e:Event){
+    private handleBlur(e:Event): void{
         if (e.target instanceof HTMLInputElement) this.handleInputStatus(e.target);
     }
 
@@ -177,7 +178,7 @@ export default class extends AbstractModule{
      * Sets the `has-focus` status class to the inputs wrapper
      * @param {Event} e
      */
-    handleFocus(e:Event){
+    private handleFocus(e:Event): void{
         const inputWrapper = getParent(<Element>e.target, 'js-input');
         inputWrapper.classList.add('has-focus');
     }
@@ -186,7 +187,7 @@ export default class extends AbstractModule{
      * Called when the module is destroyed
      * Remove all event listners before calling super.destory()
      */
-    destroy(){
+    public destroy(): void{
         this.inputs.forEach((el)=>{ el.removeEventListener('focus', e => this.handleFocus(e) ); });
         this.inputs.forEach((el)=>{ el.removeEventListener('blur', e => this.handleBlur(e) ); });
         this.inputs.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleKeystroke(e) ); });
@@ -194,6 +195,6 @@ export default class extends AbstractModule{
         this.textareas.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleTextarea(e) ); });
         this.textareas.forEach((el)=>{ el.removeEventListener('blur', e => this.handleTextarea(e) ); });
         this.passwordToggles.forEach((el)=>{ el.removeEventListener('click', e => this.handleToggle(e) ); });
-        super.destroy(isDebug, MODULE_NAME);
+        super.destroy(isDebug, BasicForm.MODULE_NAME);
     }
 }

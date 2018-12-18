@@ -3,28 +3,29 @@ import AbstractModule from './AbstractModule';
 import anime from 'animejs';
 import { getParent } from '../utils/getParent';
 
-const MODULE_NAME = 'BasicGallery';
+export default class BasicGallery extends AbstractModule{
 
-export default class extends AbstractModule{
-    style:      string
-    timing:     number
-    slides:     NodeList
-    actionsEls: NodeList
-    counter:    number
-    transition: number
-    baseTime:   number
-    time:       number
-    slideID:    number
-    isDirty:    boolean
+    private static MODULE_NAME = 'BasicGallery';
+
+    private style:      string
+    private timing:     number
+    private slides:     NodeList
+    private actionsEls: NodeList
+    private counter:    number
+    private transition: number
+    private baseTime:   number
+    private time:       number
+    private slideID:    number
+    private isDirty:    boolean
 
     constructor(el:Element, app:App){
         super(el, app);
-        if(isDebug) console.log('%c[module] '+`%cBuilding: ${MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicGallery.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
         // CMS Input Data
         this.style      = this.el.getAttribute('data-style');
         this.timing     = parseInt(this.el.getAttribute('data-timing'));
-        
+
         // NodeLists
         this.slides     = this.el.querySelectorAll('.js-slide');
         this.actionsEls = this.el.querySelectorAll('.js-button');
@@ -42,7 +43,7 @@ export default class extends AbstractModule{
      * Used to call any initial methods or to
      * register any initial event listeners
      */
-    init(){
+    public init(): void{
         this.actionsEls.forEach((el)=>{ el.addEventListener('click', e => this.handleActionButton(e) ); });
 
         // Only start our loop if the gallery IS NOT set to manual transition
@@ -55,7 +56,7 @@ export default class extends AbstractModule{
     /**
      * Resets the counter and the galleries `isDirty` status.
      */
-    cleanGallery(){
+    private cleanGallery(): void{
         this.counter = this.timing;
         this.isDirty = false;
     }
@@ -68,7 +69,7 @@ export default class extends AbstractModule{
      * @param { number } currSlideID What is the current active slide ID
      * @param { number } direction What direction is the gallery going
      */
-    handleSlideTransition(newSlideID:number, currSlideID:number, direction:number){
+    private handleSlideTransition(newSlideID:number, currSlideID:number, direction:number): void{
         const currSlide = this.slides[currSlideID];
         const newSlide  = this.slides[newSlideID];
 
@@ -99,7 +100,7 @@ export default class extends AbstractModule{
      * @param { number } newSlideID What is the new slide ID
      * @param { number } currSlideID What is the current active slide ID
      */
-    handleFadeTransition(newSlideID:number, currSlideID:number){
+    private handleFadeTransition(newSlideID:number, currSlideID:number): void{
         const currSlide = this.slides[currSlideID];
         const newSlide  = this.slides[newSlideID];
 
@@ -133,7 +134,7 @@ export default class extends AbstractModule{
      * @param { number } currSlideID The array index value of the current slide
      * @param { number } direction What direciton we should transition
      */
-    handleStackTransition(newSlideID:number, currSlideID:number, direction:number){
+    private handleStackTransition(newSlideID:number, currSlideID:number, direction:number): void{
         const currSlide = this.slides[currSlideID];
         const newSlide  = this.slides[newSlideID];
 
@@ -171,7 +172,7 @@ export default class extends AbstractModule{
      * @param { number } currSlideID The array index value of the current slide
      * @param { number } direction What direciton we should transition
      */
-    handleParallaxTransition(newSlideID:number, currSlideID:number, direction:number){
+    private handleParallaxTransition(newSlideID:number, currSlideID:number, direction:number): void{
         const currSlide = <HTMLElement>this.slides[currSlideID];
         const newSlide  = <HTMLElement>this.slides[newSlideID];
 
@@ -224,17 +225,17 @@ export default class extends AbstractModule{
      * Finally we set our `slideID` variable to the value of our `newSlideID`.
      * @param { number } direction Decides what direction in the slides array is the gallery going. Default value is `1`.
      */
-    switchSlides(direction:number = 1){
+    private switchSlides(direction:number = 1): void{
         const currSlideID = this.slideID;
         let newSlideID = this.slideID + direction;
         if(newSlideID < 0) newSlideID = this.slides.length - 1;
         else if(newSlideID >= this.slides.length) newSlideID = 0;
-        
+
         this.isDirty = true;
 
         switch(this.style){
             case 'fade':
-                this.handleFadeTransition(newSlideID, currSlideID);    
+                this.handleFadeTransition(newSlideID, currSlideID);
                 break;
             case 'slide':
                 this.handleSlideTransition(newSlideID, currSlideID, direction);
@@ -260,7 +261,7 @@ export default class extends AbstractModule{
      * Finally we pass our callback method back into `reqeustAnimationFrame` to be called again.
      * @see https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
      */
-    callbackLoop(){
+    private callbackLoop(): void{
         const timeNew   = Date.now();
         const deltaTime = (timeNew - this.time) / 1000;
         this.time       = timeNew;
@@ -281,7 +282,7 @@ export default class extends AbstractModule{
      * Then we call the switch slides method and pass along the desired direciton.
      * @param { Event } e Event fired when a user clicks our galleries action buttons
      */
-    handleActionButton(e:Event){
+    private handleActionButton(e:Event): void{
         if(e.target instanceof Element){
             const button = getParent(e.target, 'js-button');
             const direction = parseInt(button.getAttribute('data-direction'));
@@ -293,9 +294,9 @@ export default class extends AbstractModule{
      * Called when the module is destroyed
      * Remove all event listners before calling super.destory()
      */
-    destroy(){
+    public destroy(): void{
         this.actionsEls.forEach((el)=>{ el.removeEventListener('click', e => this.handleActionButton(e) ); });
         this.callbackLoop = ()=>{};
-        super.destroy(isDebug, MODULE_NAME);
+        super.destroy(isDebug, BasicGallery.MODULE_NAME);
     }
 }

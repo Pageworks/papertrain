@@ -2,16 +2,17 @@ import { isDebug } from '../env';
 import AbstractModule from './AbstractModule';
 import anime from 'animejs';
 
-const MODULE_NAME = 'BasicAccordion';
+export default class BasicAccordion extends AbstractModule{
 
-export default class extends AbstractModule{
-    rows:       Array<Element>
-    headlines:  Array<HTMLAnchorElement>
-    multiRow:   boolean
+    private static MODULE_NAME = 'BasicAccordion';
+
+    private rows:       Array<Element>
+    private headlines:  Array<HTMLAnchorElement>
+    private multiRow:   boolean
 
     constructor(el:Element, app:App){
         super(el, app);
-        if(isDebug) console.log('%c[module] '+`%cBuilding: ${MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicAccordion.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
         this.rows       = Array.from(this.el.querySelectorAll('.js-row'));
         this.headlines  = [];
@@ -23,7 +24,7 @@ export default class extends AbstractModule{
      * Used to call any initial methods or to
      * register any initial event listeners
      */
-    init(){
+    public init(): void{
         this.rows.map((el)=>{
             const headline = <HTMLAnchorElement>el.querySelector('.js-headline');
 
@@ -32,13 +33,13 @@ export default class extends AbstractModule{
             this.headlines.push(headline);
         });
     }
-    
-    closeRows(rowToClose:Element){
+
+    private closeRows(rowToClose:Element): void{
         if(rowToClose === null) return;
         rowToClose.classList.remove('is-open');
         const body      = rowToClose.querySelector('.js-body');
         const bodyEls   = body.querySelectorAll('*');
-        
+
         anime({
             targets: body,
             duration: 300,
@@ -55,16 +56,16 @@ export default class extends AbstractModule{
         });
     }
 
-    handleToggle(e:Event){
+    private handleToggle(e:Event): void{
         e.preventDefault();
         const target    = <HTMLAnchorElement>e.currentTarget;
         const row       = target.parentElement;
         const body      = row.querySelector('.js-body');
         const bodyEls   = body.querySelectorAll('*');
-        
+
         if(row.classList.contains('is-open')){
             row.classList.remove('is-open');
-            
+
             // Close row
             anime({
                 targets: body,
@@ -113,7 +114,7 @@ export default class extends AbstractModule{
      * Called when the module is destroyed
      * Remove all event listners before calling super.destory()
      */
-    destroy(){
-        super.destroy(isDebug, MODULE_NAME);
+    public destroy(): void{
+        super.destroy(isDebug, BasicAccordion.MODULE_NAME);
     }
 }

@@ -3,11 +3,12 @@ import * as transitions from './transitions';
 import Pjax from 'fuel-pjax';
 
 export default class TransitionManager {
-    app:                    App
-    transitions:            { [index:string] : Function }
-    transition:             Transition
-    pjax:                   Pjax
-    initialAnimationDelay:  number
+
+    private app:                    App
+    private transitions:            { [index:string] : Function }
+    private transition:             Transition
+    private pjax:                   Pjax
+    private initialAnimationDelay:  number
 
     constructor(app:App){
         this.app                    = app;
@@ -24,7 +25,7 @@ export default class TransitionManager {
      * Declare all initial event listeners
      * By default `pjax:prefetch` and `pjax:cancel` do nothing but they are available if needed
      */
-    init(){
+    public init(): void{
         document.addEventListener('DOMContentLoaded', e => { this.load() }); // Listen for when the page is loaded
 
         document.addEventListener('pjax:error', e => this.endTransition(e) );
@@ -38,7 +39,7 @@ export default class TransitionManager {
      * Called when the DOM has finished it's initial content load
      * Sets the base DOM status classes
      */
-    load(){
+    private load(): void{
         html.classList.add('dom-is-loaded');
         html.classList.remove('dom-is-loading');
 
@@ -54,7 +55,7 @@ export default class TransitionManager {
      * Launch our transition
      * @param {CustomEvent} e
      */
-    launchTransition(e:CustomEvent){
+    private launchTransition(e:CustomEvent): void{
         let transition  = 'BaseTransition';
 
         if(e.detail !== undefined){
@@ -81,7 +82,7 @@ export default class TransitionManager {
      * Tells the main applicaiton it can init any new modules
      * @param {Event} e
      */
-    endTransition(e:Event){
+    private endTransition(e:Event): void{
         const templateName = this.getTemplateName();
 
         if(isDebug){
@@ -119,7 +120,7 @@ export default class TransitionManager {
      * Return the name given to the section
      * Otherwise return 'MISSING_TEMPLATE_NAME'
      */
-    getTemplateName(){
+    private getTemplateName(): string{
         let templateName = 'MISSING_TEMPLATE_NAME';
 
         const secitons = html.querySelectorAll('section');
@@ -137,7 +138,7 @@ export default class TransitionManager {
      * Called when we've finished our transition
      * Resets our transition object and the DOM's `data-transition` attribute
      */
-    reinit(){
+    private reinit(): void{
         html.setAttribute('data-transition', '');
         this.transition = null;
     }

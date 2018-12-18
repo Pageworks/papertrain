@@ -6,7 +6,7 @@ export default class Transition{
      * Called by the TransitionManager when Pjax is switching pages
      * Used to start any custom page transition animaitons
      */
-    launch(){
+    public launch(): void{
         // Handle custom transition effects
 
         // Call when transition is finished
@@ -19,7 +19,7 @@ export default class Transition{
      * This is used when Pjax is listening for a custom transition
      * @see https://github.com/Pageworks/fuel-pjax#pjax-options
      */
-    launchFinished(){
+    public launchFinished(): void{
         const e = new Event('pjax:continue');
         document.dispatchEvent(e);
     }
@@ -28,7 +28,7 @@ export default class Transition{
      * Call by the TransitionManager when Pjax has switched pages
      * Used to stop any custom page transition animations
      */
-    hide(){
+    public hide(): void{
         // Handle custom transition effects
 
     }

@@ -4,10 +4,10 @@ import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
 
 class App{
-    modules:            { [index:string] : Function }
-    currentModules:     Array<Module>
-    transitionManager:  TransitionManager
-    touchSupport:       boolean
+    private modules:            { [index:string] : Function }
+    private currentModules:     Array<Module>
+    private transitionManager:  TransitionManager
+    private touchSupport:       boolean
 
     constructor(){
         this.modules            = modules;
@@ -21,7 +21,7 @@ class App{
     /**
      * Used to call any methods needed when the application initially loads
      */
-    init(){
+    private init(): void{
         html.classList.remove('has-no-js');
         html.classList.add('has-js');
 
@@ -49,7 +49,7 @@ class App{
         }
     }
 
-    createEasterEgg(){
+    private createEasterEgg(): void{
         const lines = [
             '',
             '                                          `..-::///+++++///::-.``',
@@ -98,7 +98,7 @@ class App{
      * Always reset the daily visit time on every visit
      * @todo Check if we need permision to set these trackers
      */
-    handleStatus(){
+    private handleStatus(): void{
         // Handle unique visitor status
         if(window.localStorage.getItem(`${APP_NAME}_UniqueVisit`) === null){
             html.classList.add('is-unique-visitor');
@@ -119,7 +119,7 @@ class App{
      * If a module already has a UUID we won't do anything since it already
      * has a module associated with the HTML element
      */
-    initModules(){
+    public initModules(): void{
         const modules = document.querySelectorAll('[data-module]');
 
         modules.forEach((module)=>{
@@ -144,7 +144,7 @@ class App{
      * If an element already has a UUID it's an element that survived the page transition
      * Remove (and trigger destory()) any elements module in the current modules list that didn't survive the transition
      */
-    deleteModules(){
+    public deleteModules(): void{
         const modules = document.querySelectorAll('[data-module]');
         const survivingModules:Array<Element> = [];
         const deadModules:Array<any> = [];
@@ -179,7 +179,7 @@ class App{
      * Delete a module based on the modules UUID
      * @param {CustomEvent} e
      */
-    public deleteModule(e:CustomEvent){
+    public deleteModule(e:CustomEvent): void{
         const moduleID = e.detail.id;
         if(!moduleID){
             if(isDebug){

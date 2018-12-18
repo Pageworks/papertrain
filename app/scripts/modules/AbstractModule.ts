@@ -1,9 +1,9 @@
 import uuid from 'uuid/v4';
 
-export default class{
-    el:     Element
-    uuid:   string
-    app:    App
+export default class AbstractModule{
+    public el:     Element
+    public uuid:   string
+    private app:    App
 
     constructor(el:Element, app:App){
         this.el     = el; // Sets initial reference to the element that generated the module
@@ -13,13 +13,15 @@ export default class{
         this.el.setAttribute('data-uuid', this.uuid); // Sets modules UUID to be used later when handling modules destruction
     }
 
-    init(){}
+    public init(): void{
+
+    }
 
     /**
      * Acts as the modules self-destruct method, when called the module will be removed from the page
      * Used when removing a specific module, call is initiated by a module
      */
-    seppuku(){
+    public seppuku(): void{
         this.app.deleteModule(this.uuid);
     }
 
@@ -30,7 +32,7 @@ export default class{
      * @param {boolean} isDebug
      * @param {string} MODULE_NAME
      */
-    destroy(isDebug: boolean, MODULE_NAME: string){
+    public destroy(isDebug: boolean, MODULE_NAME: string): void{
         this.el.removeAttribute('data-uuid');
         if(isDebug){
             console.log('%c[module] '+`%cDestroying ${MODULE_NAME} - ${this.uuid}`,'color:#ff6e6e','color:#eee');

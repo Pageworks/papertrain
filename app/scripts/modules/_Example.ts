@@ -1,14 +1,14 @@
 import { isDebug } from '../env';
 import AbstractModule from './AbstractModule';
 
-const MODULE_NAME = 'Example';
+export default class Example extends AbstractModule{
 
-export default class extends AbstractModule{
+    private static MODULE_NAME = 'Example'
 
     constructor(el:Element, app:App){
         super(el, app);
         if(isDebug){
-            console.log('%c[module] '+`%cBuilding: ${MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+            console.log('%c[module] '+`%cBuilding: ${Example.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
         }
     }
 
@@ -26,6 +26,6 @@ export default class extends AbstractModule{
      * Remove all event listners before calling super.destory()
      */
     destroy(){
-        super.destroy(isDebug, MODULE_NAME);
+        super.destroy(isDebug, Example.MODULE_NAME);
     }
 }
