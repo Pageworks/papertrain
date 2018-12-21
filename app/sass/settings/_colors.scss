@@ -10,53 +10,54 @@
 
 // Base Palette
 // =============================================================================
-$white:     #fdfdfd;
-$off-white: #eeeeee;
-$black:     #070707;
-$off-black: #241F20;//#434343;
-$cool-black:#1b2836;//#3E4E59;
+$white:     #ffffff;
+$off-white: #fafafa;
+$light-gray:#eeeeee;
+$black:     #000000;
+$off-black: #414141;
+$cool-black:#4b4e6d;
 
 // Brand Palette
 // =============================================================================
-$primary:       #6200ee;
-$secondary:     #3f8efc; // Used as the anchor elements base colour
-$primary-alt:   #F5CB5C;
-$secondary-alt:   $secondary;
+$primary:       #c1bf0a;
+$secondary:     #c2418f;
+$primary-alt:   $primary;
+$secondary-alt: $secondary;
 
 // Interaction Settings
 // =============================================================================
-$primary-hover-opacity: 0.04;
-$primary-active-opacity: 0.15;
+$primary-hover-opacity: 0.15;
+$primary-active-opacity: 0.3;
 
 // Font Palette
 // =============================================================================
-$font-base:     #4f4f4f; //#555765
-$font-alt:      #f4f4f4;
+$font-base:     $off-black; //#555765
+$font-alt:      $white;
 $helper-light:  rgba(255,255,255,0.5);
 $helper-dark:   rgba(0,0,0,0.5);
 
 // Link Colors
 // =============================================================================
-$link-color:       $secondary;
-$link-focus-color: $secondary;
-$link-hover-color: darken($secondary, 6);
+$link-color:       $primary;
+$link-focus-color: $primary;
+$link-hover-color: darken($primary, 6);
 
 // Selection
 // =============================================================================
-$selection-text-color:       $secondary;
-$selection-background-color: $white;
+$selection-text-color:       #3b83f9;
+$selection-background-color: $light-gray;
 
 // Background Colors
 // =============================================================================
 $base-background-color:         $white;
-$secondary-background-color:    #f4f4f4;
-$dark-background-color:         #333333;
+$secondary-background-color:    $off-white;
+$dark-background-color:         $off-black;
 
 // Alert Colors
 // =============================================================================
-$notice:    #4688f2;
+$notice:    #3b83f9;
 $success:   #4de07e;
-$error:     #F25652;
+$error:     #ff715b;
 $warning:   #ffa412;
 
 // Social Media Colors
@@ -70,8 +71,8 @@ $instagrampurple: #7232bd;
 $instagramorange: #f46f30;
 $instagramyellow: #ffdc7d;
 $googleblue: #4285f4;
-$googlered: #ea4335; 
-$googleyellow: #fbbc05; 
+$googlered: #ea4335;
+$googleyellow: #fbbc05;
 $googlegreen: #34a853;
 $pinterest: #bd081c;
 $googleplus: #db4437;
@@ -90,9 +91,9 @@ $microsoftgreen: #80bb03;
 $microsoftblue: #03a5f0;
 $microsoftyellow: #ffb903;
 $periscope: #40a4c4;
-$foursquarepink: #f94877; 
+$foursquarepink: #f94877;
 $foursquarenavy: #073282;
-$foursquareblue: #2d5be3; 
+$foursquareblue: #2d5be3;
 $swarm: #ffa633;
 $medium: #02b875;
 $skypeblue: #00aff0;
@@ -107,15 +108,15 @@ $soundcloud: #ff5500;
 $spotifygreen: #1ed760;
 $spotifydarkgreen: #1db954;
 $dribbble: #ea4c89;
-$slackpurple: #4d394b; 
-$slackskyblue: #70cadb; 
-$slackmosss: #3eb890; 
-$slackpink: #e01765; 
-$slackyellow: #e8a723; 
+$slackpurple: #4d394b;
+$slackskyblue: #70cadb;
+$slackmosss: #3eb890;
+$slackpink: #e01765;
+$slackyellow: #e8a723;
 $slackgreenblue: #1a937d;
-$slackviolet: #472a49; 
-$slackolive: #65863a; 
-$slackred: #cc2027; 
+$slackviolet: #472a49;
+$slackolive: #65863a;
+$slackred: #cc2027;
 $reddit: #ff5700;
 $deviantart: #05cc47;
 $pocket: #ee4056;
