@@ -1,16 +1,63 @@
+# 0.1.2-beta - 2018-12-22
+
+### Adds
+- Adds: Basic lowercase text transform utility class
+- Adds: Form input `-square` so input types can be both round an square
+- Adds: `animejs` is now imported via NPM
+- Adds: New navigation breakpoint variable to the config file
+- Adds: Custom Pageworks developer easter egg to production sites
+- Adds: Base heading sizes are generated based on the golden ratio
+- Adds: Added `dotenv`
+- Adds: Developers can now set their development websites URL in the `.env` file to prevent namespace issues between contributors
+- Adds: Live debug tool. Admins when logged in can add `&debug=true` to a production website to view console logs
+- Adds: New `hover` and `active` mixins that only apply styles when the devince is **NOT** a touch device [Issue #47](https://github.com/Pageworks/papertrain/issues/47)
+- Adds: `$primary` and `$secondary` now have alt colours that will be used on dark backgrounds
+- Adds: Icons that have opacity based hover effects (such as buttons) use opacity values set in the config file
+- Adds: `async` attribute to scripts to help with load times
+- Adds: New logo
+
+### Fixes
+- Fixes: Updated readme
+- Fixes: Updated TypeScript classes to follow proper namespace and style standards
+- Fixes: Updated the basic buttons to look better and added an `-alt` style to the basic `-outline` style button
+- Fixes: Added the default icon hover effect to the password and pin input icons
+- Fixes: Unique input styles (radio, checkboxes, switches) have been moved outside the `form` element
+- Fixes: The loading bar line is now hidden by default since OSX allows users to overscroll on Chrome
+- Fixes: Heading elements are normalized and custom heading styles are assigned to classes for better SEO
+- Fixes: Base unit sizes are based on `rem` values instead of pixels and the base size has been doubled
+- Fixes: Updated how gutters are generated and used to be less confusing [Issue #41](https://github.com/Pageworks/papertrain/issues/41)
+- Fixes: Fixed a bug with `initModules` [Issue #44](https://github.com/Pageworks/papertrain/issues/44)
+- Fixes: Updates to the newest version of `fuel-pjax`
+- Fixes: Font imports have been moved from `base.twig` to an `@import` in the config file
+- Fixes: The base grid system now uses flexbox by default instead of inline blocks
+- Fixes: Updates the webpack compile files to use the best CSS, PostCSS and SASS loader settings
+
+### Removes
+- Removes: `u-hocus` and `u-actus` mixins
+
+---
+
 #  0.1.1-beta - 2018-11-09
 
+### Adds
 - Adds: contrast SASS function
 - Adds: `isInView` utility function for tracking if elemenets are within the viewport
+
+### Fixes
 - Fixes: Headings use contrast function
 - Fixes: Project now uses `rem` instead of `px`, `$unit` size is still the same
 - Removes: Bourbon, keeps the 4 mixins that are actually used, see [Issue #27](https://github.com/Pageworks/papertrain/issues/27)
 
+---
+
 #  0.1.0-beta - 2018-11-09
 
+### Adds
 - Adds: Webpack
 - Adds: TypeScript
 - Adds: Custom flavor of Pjax
+
+### Fixes
 - Fixes: Updates to newest version of `node-sass`
 - Fixes: Reworks JavaScript Architecture to work with TypeScript
 - Fixes: Reworks transition manager to use promises instead of callbacks
