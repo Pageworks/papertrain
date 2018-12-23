@@ -9,11 +9,7 @@
 </p>
 
 # Papertrain - A Craft 3 Boilerplate
-Papertrain is a frameworks for [Craft 3](https://craftcms.com/3) using a modern webpack setup. It includes SASS snippets from [Intuit](https://github.com/intuit) and grid system concepts by [Harry Roberts](https://csswizardry.com/2011/08/building-better-grid-systems/).
-
-## Getting Started
-
-`TODO: this`
+Papertrain is a frameworks for [Craft 3](https://craftcms.com/3) using a modern webpack setup. It includes SASS snippets from [Intuit](https://github.com/intuit) and grid system concepts by [Harry Roberts](https://csswizardry.com/2011/08/building-better-grid-systems/). Learn more about the project or how to get started at [papertrain.io/getting-started](http://papertrain.io/getting-started).
 
 ## CSS
 - Using [SASS](https://sass-lang.com/) as our CSS preprocessor
@@ -21,23 +17,11 @@ Papertrain is a frameworks for [Craft 3](https://craftcms.com/3) using a modern 
 - Minimal BEM like CSS Syntax `.block_element -modifier`
 - SASS snippets from [Intuit](https://github.com/intuit)
 - Using [Transparent UI Namespaces](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
-- Uisng [Bourbon](https://www.bourbon.io/) for additonal mixins for SASS utility
-
-### SASS Import
-1. __Settings:__ global variables and colour pallets.
-1. __Vendors:__ bourbon mixins for base utility `@include size(x, y)`
-1. __Tools:__ site wide mixins.
-1. __Generic:__ low level far reaching generic element settings.
-1. __Base:__ css for unclassed HTML elements `p {}, blockquote {}, ul {}` go in page.
-1. __Objects:__ generic objects and object elements `.o-youtube-video`.
-1. __Components:__ complete secitons of UI `.c-dca -copy`.
-1. __Templates:__ css for specific template pages, used to style individual and unique elements within a page.
-1. __Utilities:__ generic utility selectors, used to adjust elements in a very specific way `.u-text-center`
 
 ### Grid
-Uses a inline-block gird system by [Intuit](https://github.com/intuit).
+Uses a inline-flex gird system based on the inline-block system by [Intuit](https://github.com/intuit).
 
-Start by inserting a `.o-layout` block and add a `.o-layout_item` element within the block. Initial blocks are `width: 100%`, additional values are avialable using `.u-1/2 .u-1/3 .u-1/4 ect...`. Additional fractions can be generated from `app/sass/tools/utilities/widths.scss`, currently using `1 2 3` values.
+Start by inserting a `.o-layout` block and add a `.o-layout_item` element within the block. Initial blocks are `width: 100%`, additional values are avialable using `.u-1/2 .u-1/3 .u-2/3 ect...`. Additional fractions can be generated from `app/sass/tools/utilities/widths.scss`, currently using `1 2 3` as the base values.
 
 Create responsive elements using `@size` on the `.u-1/x` classes. If you wanted a block to start at full width but switch to 1/2 at a medium screen use `u-1/2@medium`. You can adjust the generated breakpoints in `app/sass/tools/utilities/widths.scss` by adding or removing `@include widths($widths-fractions, $size-variable-from-config, desired-@-name)`.
 
