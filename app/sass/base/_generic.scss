@@ -16,39 +16,11 @@ hr
 
 a
 {
-    &:not(.o-button){
-        color: $link-color;
-        text-decoration-skip-ink: none;
-        text-decoration: $link-style;
-        transition: color 150ms $ease-out, text-decoration 150ms $ease-out;
-        position: relative;
-        display: inline-block;
+    color: $font-base;
+    text-decoration: none;
 
-        &::after{
-            content:"";
-            background-color: $link-color;
-            @include size(100%, 1px);
-            transform: translateY(2px) scaleX(0);
-            position: absolute;
-            bottom: 4px;
-            left: 0;
-            opacity: 0;
-            display: inline-block;
-            transform-origin: center;
-            transition: transform 100ms $ease-sharp, opacity 100ms $ease;
-        }
-
-        @include hover{
-            color: $link-hover-color;
-            text-decoration: $link-hover-style;
-            transition: color 150ms $ease-in, text-decoration 150ms $ease-in;
-
-            &:after{
-                opacity: 0.87;
-                transform: translateY(0) scaleX(1);
-                transition: transform 150ms $ease-in, opacity 150ms $ease;
-            }
-        }
+    section.-dark-background & {
+        color: $font-alt;
     }
 }
 
@@ -101,6 +73,41 @@ p{
     margin: $base-p-margin;
 
     @include u-base-font;
+
+    a{
+        color: $link-color;
+        text-decoration-skip-ink: none;
+        text-decoration: $link-style;
+        transition: color 150ms $ease-out, text-decoration 150ms $ease-out;
+        position: relative;
+        display: inline-block;
+
+        &::after{
+            content:"";
+            background-color: $link-color;
+            @include size(100%, 2px);
+            transform: scaleY(0);
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            opacity: 0;
+            display: inline-block;
+            transform-origin: bottom;
+            transition: transform 175ms $ease-sharp, opacity 75ms 100ms $ease;
+        }
+
+        @include hover{
+            color: $link-hover-color;
+            text-decoration: $link-hover-style;
+            transition: color 150ms $ease-in, text-decoration 150ms $ease-in;
+
+            &:after{
+                opacity: 0.87;
+                transform: scaleY(1);
+                transition: transform 225ms $ease-in, opacity 75ms 0ms $ease;
+            }
+        }
+    }
 }
 
 code{
