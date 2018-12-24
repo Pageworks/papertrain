@@ -1,4 +1,4 @@
-export default class Transition{
+export default class BaseTransition{
 
     constructor(){ }
 

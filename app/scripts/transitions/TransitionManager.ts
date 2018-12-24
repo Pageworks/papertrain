@@ -101,6 +101,10 @@ export default class TransitionManager {
             html.classList.remove('is-homepage');
         }
 
+        if(this.transition === null){
+            return;
+        }
+
         // Tell our transition it can end the transition
         this.transition.hide();
 
@@ -141,5 +145,6 @@ export default class TransitionManager {
     private reinit(): void{
         html.setAttribute('data-transition', '');
         this.transition = null;
+        console.log('Transition renit');
     }
 }
