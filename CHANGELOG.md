@@ -1,3 +1,15 @@
+# 1.0.0 - 2018-12-24
+
+### Adds
+- Adds: Initial project welcome message and success page
+- Fixes: Buttons padding and margins use `$unit` as base sizes
+- Fixes: Moves `<a>` element base style within a `<p>` element
+- Fixes: Normalized base `<a>` element
+- Fixes: Updates viewport `<meta>` for a better user experience
+- Fixes: Updates npm modules
+
+---
+
 # 0.1.2-beta - 2018-12-22
 
 ### Adds
