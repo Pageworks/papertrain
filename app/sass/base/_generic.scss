@@ -75,16 +75,15 @@ p{
     @include u-base-font;
 
     a{
-        color: $link-color;
+        color: $primary;
         text-decoration-skip-ink: none;
-        text-decoration: $link-style;
-        transition: color 150ms $ease-out, text-decoration 150ms $ease-out;
+        transition: color 150ms $ease;
         position: relative;
         display: inline-block;
 
         &::after{
             content:"";
-            background-color: $link-color;
+            background-color: $primary;
             @include size(100%, 2px);
             transform: scaleY(0);
             position: absolute;
@@ -97,8 +96,7 @@ p{
         }
 
         @include hover{
-            color: $link-hover-color;
-            text-decoration: $link-hover-style;
+            color: $primary;
             transition: color 150ms $ease-in, text-decoration 150ms $ease-in;
 
             &:after{

@@ -1,3 +1,9 @@
+# 1.0.1 - 2019-01-04
+
+### Removes
+- Removes: `svgo` dependency and lint script
+- Removes: Custom link color and style variables from the `config.scss` and `colors.scss` files [#68](https://github.com/Pageworks/papertrain/issues/68)
+
 # 1.0.0 - 2018-12-24
 
 ### Adds
