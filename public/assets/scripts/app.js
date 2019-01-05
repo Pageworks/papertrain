@@ -126,6 +126,8 @@ var App = /** @class */ (function () {
         this.currentModules = [];
         this.transitionManager = null;
         this.touchSupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+        this._prevScroll = 0;
+        this._scrollDistance = 0;
         this.init();
     }
     /**
@@ -144,6 +146,7 @@ var App = /** @class */ (function () {
             env_1.html.classList.remove('has-no-touch');
         }
         window.addEventListener('load', function (e) { env_1.html.classList.add('has-loaded'); });
+        window.addEventListener('scroll', function (e) { return _this.handleScroll(); });
         document.addEventListener('seppuku', function (e) { return _this.deleteModule(e); }); // Listen for our custom events
         this.initModules(); // Get initial modules
         this.handleStatus(); // Check the users visitor status
@@ -192,6 +195,28 @@ var App = /** @class */ (function () {
         console.log('                                                %cMade with ❤️ by Pageworks', 'font-size: 16px; color: #569eff;');
         console.log('                                       %cCheck us out at http://www.page.works/', 'color: #569eff; font-size: 16px;');
         console.log("%c" + lines.join('\n').toString(), 'color: #a7ab2d; font-size: 14px;');
+    };
+    /**
+     * Called when the user scrolls.
+     * If the user is scrolling down the page add the scroll delta to
+     * the total tracked scroll distance. If the distance passes the
+     * trigger distance add the `has-scrolled` status class.
+     * If the user scrolled up reset the scroll distance and remove
+     * the `has-scrolled` status class.
+     */
+    App.prototype.handleScroll = function () {
+        var currentScroll = window.scrollY;
+        if (!env_1.html.classList.contains('has-scrolled') && currentScroll >= this._prevScroll) {
+            this._scrollDistance += currentScroll - this._prevScroll;
+            if (this._scrollDistance >= env_1.scrollTrigger) {
+                env_1.html.classList.add('has-scrolled');
+            }
+        }
+        else if (env_1.html.classList.contains('has-scrolled') && currentScroll < this._prevScroll) {
+            env_1.html.classList.remove('has-scrolled');
+            this._scrollDistance = 0;
+        }
+        this._prevScroll = currentScroll;
     };
     /**
      * Sets relevant classes based on the users visitor status
@@ -326,6 +351,8 @@ var pjaxContainer = '.js-pjax-container';
 exports.pjaxContainer = pjaxContainer;
 var pjaxWrapper = '.js-pjax-wrapper';
 exports.pjaxWrapper = pjaxWrapper;
+var scrollTrigger = 100; // in pixels
+exports.scrollTrigger = scrollTrigger;
 var easing = {
     ease: [0.4, 0.0, 0.2, 1],
     in: [0.0, 0.0, 0.2, 1],

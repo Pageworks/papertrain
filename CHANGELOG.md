@@ -3,6 +3,7 @@
 ### Adds
 
 - Adds: Predefined easing JSON object that uses the custom easing values defined in `config.scss`[#77](https://github.com/Pageworks/papertrain/issues/77)
+- Adds: Scroll status tracking class to `html` [#76](https://github.com/Pageworks/papertrain/issues/76)
 
 ### Fixes
 

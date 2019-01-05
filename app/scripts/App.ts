@@ -1,19 +1,24 @@
-import { APP_NAME, html, isDebug, setDebug } from './env';
+import { APP_NAME, html, isDebug, setDebug, scrollTrigger } from './env';
 
 import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
 
 class App{
-    private modules:            { [index:string] : Function }
-    private currentModules:     Array<Module>
-    private transitionManager:  TransitionManager
-    private touchSupport:       boolean
+    private modules:            { [index:string] : Function };
+    private currentModules:     Array<Module>;
+    private transitionManager:  TransitionManager;
+    private touchSupport:       boolean;
+    private _scrollDistance:    number;
+    private _prevScroll:        number;
 
     constructor(){
         this.modules            = modules;
         this.currentModules     = [];
         this.transitionManager  = null;
         this.touchSupport       = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+
+        this._prevScroll        = 0;
+        this._scrollDistance    = 0;
 
         this.init();
     }
@@ -36,6 +41,7 @@ class App{
         }
 
         window.addEventListener('load', e => { html.classList.add('has-loaded') });
+        window.addEventListener('scroll', e => this.handleScroll() );
 
         document.addEventListener('seppuku', e => this.deleteModule(<CustomEvent>e) ); // Listen for our custom events
 
@@ -89,6 +95,32 @@ class App{
         console.log('                                                %cMade with ❤️ by Pageworks', 'font-size: 16px; color: #569eff;');
         console.log('                                       %cCheck us out at http://www.page.works/', 'color: #569eff; font-size: 16px;');
         console.log(`%c${lines.join('\n').toString()}`, 'color: #a7ab2d; font-size: 14px;');
+    }
+
+    /**
+     * Called when the user scrolls.
+     * If the user is scrolling down the page add the scroll delta to
+     * the total tracked scroll distance. If the distance passes the
+     * trigger distance add the `has-scrolled` status class.
+     * If the user scrolled up reset the scroll distance and remove
+     * the `has-scrolled` status class.
+     */
+    private handleScroll(): void{
+        const currentScroll:number = window.scrollY;
+
+        if(!html.classList.contains('has-scrolled') && currentScroll >= this._prevScroll){
+            this._scrollDistance += currentScroll - this._prevScroll;
+
+            if(this._scrollDistance >= scrollTrigger){
+                html.classList.add('has-scrolled');
+            }
+        }
+        else if(html.classList.contains('has-scrolled') && currentScroll < this._prevScroll){
+            html.classList.remove('has-scrolled');
+            this._scrollDistance = 0;
+        }
+
+        this._prevScroll = currentScroll;
     }
 
     /**
