@@ -326,6 +326,13 @@ var pjaxContainer = '.js-pjax-container';
 exports.pjaxContainer = pjaxContainer;
 var pjaxWrapper = '.js-pjax-wrapper';
 exports.pjaxWrapper = pjaxWrapper;
+var easing = {
+    ease: [0.4, 0.0, 0.2, 1],
+    in: [0.0, 0.0, 0.2, 1],
+    out: [0.4, 0.0, 1, 1],
+    sharp: [0.4, 0.0, 0.6, 1]
+};
+exports.easing = easing;
 function setDebug(status) {
     exports.isDebug = isDebug = status;
 }

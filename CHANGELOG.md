@@ -1,5 +1,9 @@
 # 1.0.1 - 2019-01-04
 
+### Adds
+
+- Adds: Predefined easing JSON object that uses the custom easing values defined in `config.scss`[#77](https://github.com/Pageworks/papertrain/issues/77)
+
 ### Fixes
 
 - Fixes: Heading elements were not using generated values from `typography.scss` [#70](https://github.com/Pageworks/papertrain/issues/70)
