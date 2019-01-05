@@ -673,8 +673,6 @@ body {
   width: 100%;
   font-size: 42px;
   line-height: 68px;
-  font-size: 2.625rem;
-  letter-spacing: -0.0357rem;
   font-weight: 300;
   font-family: "Roboto Slab", serif;
   color: rgba(0, 0, 0, 0.87); }
@@ -690,8 +688,6 @@ body {
   width: 100%;
   font-size: 33px;
   line-height: 53px;
-  font-size: 2.0625rem;
-  letter-spacing: -0.015rem;
   font-weight: 300;
   font-family: "Roboto Slab", serif;
   color: rgba(0, 0, 0, 0.87); }
@@ -707,8 +703,6 @@ body {
   width: 100%;
   font-size: 26px;
   line-height: 42px;
-  font-size: 1.625rem;
-  letter-spacing: 0;
   font-weight: 400;
   font-family: "Roboto Slab", serif;
   color: rgba(0, 0, 0, 0.87); }
@@ -724,8 +718,6 @@ body {
   width: 100%;
   font-size: 20px;
   line-height: 32px;
-  font-size: 1.25rem;
-  letter-spacing: 0.0125rem;
   font-weight: 400;
   font-family: "Roboto Slab", serif;
   color: rgba(0, 0, 0, 0.6); }
@@ -743,8 +735,6 @@ body {
   width: 100%;
   font-size: 16px;
   line-height: 26px;
-  font-size: 1rem;
-  letter-spacing: 0;
   font-weight: 700;
   font-family: "Roboto Slab", serif;
   padding: 0;
@@ -775,8 +765,6 @@ body {
   width: 100%;
   font-size: 13px;
   line-height: 21.034px;
-  font-size: 0.8125rem;
-  letter-spacing: 0 0.115rem;
   font-weight: 400;
   font-family: "Roboto Slab", serif;
   padding: 0;
@@ -793,46 +781,6 @@ body {
   section.has-video
   .o-subtitle {
     color: rgba(255, 255, 255, 0.6); }
-
-/**
- * This section adjusts the line-height settings for maximum readability across devices
- * @see https://grtcalculator.com/
- *
- * Line heights are based on a font size of 1rem.
- * If additional column layouts are added OR their screen size breakpoints are adjusted
- * be sure to visit this file and recalculate the new `line-height` values.
- *
- * To convert PX to REM take the PX amount and multiply it by 0.0625
- */
-p {
-  line-height: 1.618; }
-
-h1,
-.o-h1 {
-  line-height: 1.618; }
-
-h2,
-.o-h2 {
-  line-height: 1.618; }
-
-h3,
-.o-h3 {
-  line-height: 1.618; }
-
-h4,
-.o-h4 {
-  line-height: 1.618; }
-
-h5,
-.o-h5,
-.o-headline,
-.o-title {
-  line-height: 1.618; }
-
-h6,
-.o-h6,
-.o-subtitle {
-  line-height: 1.618; }
 
 .o-container {
   max-width: 1280px;
@@ -1059,12 +1007,16 @@ table {
       font-size: 13px;
       height: 48px;
       background: transparent;
-      border-bottom: 2px solid #fafafa;
+      border-bottom: 2px solid #f7f7f7;
       transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+      section.-secondary-background table tbody tr {
+        border-bottom: 2px solid #f2f2f2; }
       section.-dark-background table tbody tr {
-        border-bottom: 2px solid #393939; }
+        border-bottom: 2px solid #3c3c3c; }
       table tbody tr:hover:not(:first-of-type) {
-        background: white; }
+        background: #fcfcfc; }
+        section.-secondary-background table tbody tr:hover:not(:first-of-type) {
+          background: whitesmoke; }
         section.-dark-background table tbody tr:hover:not(:first-of-type) {
           background: #444444; }
       table tbody tr td {

@@ -1,5 +1,10 @@
 # 1.0.1 - 2019-01-04
 
+### Fixes
+
+- Fixes: Heading elements were not using generated values from `typography.scss` [#70](https://github.com/Pageworks/papertrain/issues/70)
+- Fixes: Tables were not using borders and hover colours based on section background colours [#72](https://github.com/Pageworks/papertrain/issues/72)
+
 ### Removes
 - Removes: `svgo` dependency and lint script
 - Removes: Custom link color and style variables from the `config.scss` and `colors.scss` files [#68](https://github.com/Pageworks/papertrain/issues/68)

@@ -40,16 +40,24 @@ table{
             font-size: 13px;
             height: 48px;
             background: transparent;
-            border-bottom: 2px solid $off-white;
+            border-bottom: 2px solid darken($base-background-color, 3);
             transition: background 150ms $ease;
 
+            section.-secondary-background & {
+                border-bottom: 2px solid darken($secondary-background-color, 3);
+            }
+
             section.-dark-background & {
-                border-bottom: 2px solid darken($dark-background-color, 3);
+                border-bottom: 2px solid darken($dark-background-color, 2);
             }
 
             &:hover{
                 &:not(:first-of-type){
-                    background: lighten($off-white, 4);
+                    background: darken($base-background-color, 1);
+
+                    section.-secondary-background & {
+                        background: darken($secondary-background-color, 2);
+                    }
 
                     section.-dark-background & {
                         background: lighten($dark-background-color, 1);
@@ -82,17 +90,17 @@ table{
             &:first-of-type{
                 font-size: 12px;
                 height: 56px;
-    
+
                 td{
                     text-align: right;
                     padding-left: 56px;
-    
+
                     &:first-of-type{
                         text-align: left;
                         padding-left: 24px;
                         padding-right: 24px;
                     }
-    
+
                     &:last-of-type{
                         padding-right: 24px;
                     }
