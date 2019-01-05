@@ -1,13 +1,13 @@
 // Imports
 // =============================================================================
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:300,400,700|Share+Tech+Mono');
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono|Montserrat:300,400,500,700');
 
 // Typefaces
 // =============================================================================
-$font-sans-serif:   'Roboto', sans-serif;
-$font-serif:        'Roboto Slab', serif;
-$font-heading:      $font-serif;
-$font-quote:        'Roboto Slab', cursive;
+$font-sans-serif:   'Circular', 'Montserrat', sans-serif;
+$font-serif:        serif;
+$font-heading:      $font-sans-serif;
+$font-quote:        'Circular', 'Montserrat', cursive;
 $font-code:         'Share Tech Mono', monospace;
 
 // Weights

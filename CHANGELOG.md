@@ -4,6 +4,8 @@
 
 - Adds: Predefined easing JSON object that uses the custom easing values defined in `config.scss`[#77](https://github.com/Pageworks/papertrain/issues/77)
 - Adds: Scroll status tracking class to `html` [#76](https://github.com/Pageworks/papertrain/issues/76)
+- Adds: Custom open source font [#76](https://github.com/Pageworks/papertrain/issues/67)
+- Adds: Montserrat as a backup base font if the custom font fails to load [#76](https://github.com/Pageworks/papertrain/issues/67)
 
 ### Fixes
 
@@ -15,6 +17,7 @@
 - Removes: Custom link color and style variables from the `config.scss` and `colors.scss` files [#68](https://github.com/Pageworks/papertrain/issues/68)
 - Removes: Uploaded demo assets [#71](https://github.com/Pageworks/papertrain/issues/71)
 - Removes: Demo entries from the Standard Pages section [#69](https://github.com/Pageworks/papertrain/issues/69)
+- Removes: Roboto as a base font [#76](https://github.com/Pageworks/papertrain/issues/67)
 
 # 1.0.0 - 2018-12-24
 

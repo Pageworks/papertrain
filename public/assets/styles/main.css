@@ -1,9 +1,66 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:300,400,700|Share+Tech+Mono);
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono|Montserrat:300,400,500,700);
 /*
  * NOTE: `-alt` colours are used to style elements when they're within a section
  * that has the `$dark-background-color` applied. Test your colours on both backgrounds
  * at the example page.
 */
+/* CircularStd @font-face kit */
+@font-face {
+  font-family: 'Circular';
+  src: url("/assets/fonts/CircularStd-Black.eot");
+  src: url("/assets/fonts/CircularStd-Black.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/CircularStd-Black.woff") format("woff"), url("/assets/fonts/CircularStd-Black.ttf") format("truetype"), url("/assets/fonts/CircularStd-Black.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 800;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Circular';
+  src: url("/assets/fonts/CircularStd-BlackItalic.eot");
+  src: url("/assets/fonts/CircularStd-BlackItalic.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/CircularStd-BlackItalic.woff") format("woff"), url("/assets/fonts/CircularStd-BlackItalic.ttf") format("truetype"), url("/assets/fonts/CircularStd-BlackItalic.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 800;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'Circular';
+  src: url("/assets/fonts/CircularStd-Bold.eot");
+  src: url("/assets/fonts/CircularStd-Bold.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/CircularStd-Bold.woff") format("woff"), url("/assets/fonts/CircularStd-Bold.ttf") format("truetype"), url("/assets/fonts/CircularStd-Bold.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 600;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Circular';
+  src: url("/assets/fonts/CircularStd-BoldItalic.eot");
+  src: url("/assets/fonts/CircularStd-BoldItalic.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/CircularStd-BoldItalic.woff") format("woff"), url("/assets/fonts/CircularStd-BoldItalic.ttf") format("truetype"), url("/assets/fonts/CircularStd-BoldItalic.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 600;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'Circular';
+  src: url("/assets/fonts/CircularStd-Medium.eot");
+  src: url("/assets/fonts/CircularStd-Medium.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/CircularStd-Medium.woff") format("woff"), url("/assets/fonts/CircularStd-Medium.ttf") format("truetype"), url("/assets/fonts/CircularStd-Medium.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Circular';
+  src: url("/assets/fonts/CircularStd-MediumItalic.eot");
+  src: url("/assets/fonts/CircularStd-MediumItalic.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/CircularStd-MediumItalic.woff") format("woff"), url("/assets/fonts/CircularStd-MediumItalic.ttf") format("truetype"), url("/assets/fonts/CircularStd-MediumItalic.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 500;
+  font-style: italic; }
+
+@font-face {
+  font-family: 'Circular';
+  src: url("/assets/fonts/CircularStd-Book.eot");
+  src: url("/assets/fonts/CircularStd-Book.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/CircularStd-Book.woff") format("woff"), url("/assets/fonts/CircularStd-Book.ttf") format("truetype"), url("/assets/fonts/CircularStd-Book.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 400;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Circular';
+  src: url("/assets/fonts/CircularStd-BookItalic.eot");
+  src: url("/assets/fonts/CircularStd-BookItalic.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/CircularStd-BookItalic.woff") format("woff"), url("/assets/fonts/CircularStd-BookItalic.ttf") format("truetype"), url("/assets/fonts/CircularStd-BookItalic.svg#bcc26993292869431e54c666aafa8fcd") format("svg");
+  font-weight: 400;
+  font-style: italic; }
+
 /**
  * Calculate the luminance for a color.
  * See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
@@ -600,7 +657,7 @@ code {
 
 blockquote {
   border-left: solid 3px rgba(193, 191, 10, 0.15);
-  font-family: "Roboto Slab", cursive;
+  font-family: "Circular", "Montserrat", cursive;
   margin: 0 0 0 -1rem !important;
   padding: 0 0 0 1rem;
   quotes: none;
@@ -616,7 +673,7 @@ blockquote {
     border-left-color: rgba(255, 255, 255, 0.15); }
 
 html {
-  font-family: "Roboto", sans-serif;
+  font-family: "Circular", "Montserrat", sans-serif;
   line-height: normal;
   /* [1] */
   font-weight: 400;
@@ -674,7 +731,7 @@ body {
   font-size: 42px;
   line-height: 68px;
   font-weight: 300;
-  font-family: "Roboto Slab", serif;
+  font-family: "Circular", "Montserrat", sans-serif;
   color: rgba(0, 0, 0, 0.87); }
   section.-dark-background .o-h1,
   section.has-image .o-h1,
@@ -689,7 +746,7 @@ body {
   font-size: 33px;
   line-height: 53px;
   font-weight: 300;
-  font-family: "Roboto Slab", serif;
+  font-family: "Circular", "Montserrat", sans-serif;
   color: rgba(0, 0, 0, 0.87); }
   section.-dark-background .o-h2,
   section.has-image .o-h2,
@@ -704,7 +761,7 @@ body {
   font-size: 26px;
   line-height: 42px;
   font-weight: 400;
-  font-family: "Roboto Slab", serif;
+  font-family: "Circular", "Montserrat", sans-serif;
   color: rgba(0, 0, 0, 0.87); }
   section.-dark-background .o-h3,
   section.has-image .o-h3,
@@ -719,7 +776,7 @@ body {
   font-size: 20px;
   line-height: 32px;
   font-weight: 400;
-  font-family: "Roboto Slab", serif;
+  font-family: "Circular", "Montserrat", sans-serif;
   color: rgba(0, 0, 0, 0.6); }
   section.-dark-background .o-h4,
   section.has-image .o-h4,
@@ -736,7 +793,7 @@ body {
   font-size: 16px;
   line-height: 26px;
   font-weight: 700;
-  font-family: "Roboto Slab", serif;
+  font-family: "Circular", "Montserrat", sans-serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
@@ -766,7 +823,7 @@ body {
   font-size: 13px;
   line-height: 21.034px;
   font-weight: 400;
-  font-family: "Roboto Slab", serif;
+  font-family: "Circular", "Montserrat", sans-serif;
   padding: 0;
   margin: 0;
   text-transform: capitalize;
@@ -2391,7 +2448,7 @@ button,
         .o-quote .o-quote_shim .o-quote_body {
           line-height: 3.4375rem; } }
     .o-quote .o-quote_shim .o-quote_source {
-      font-family: "Roboto Slab", serif;
+      font-family: "Circular", "Montserrat", sans-serif;
       font-weight: 500;
       font-size: 1.25rem;
       letter-spacing: 0.0125rem;
