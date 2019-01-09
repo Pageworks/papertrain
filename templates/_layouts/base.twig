@@ -1,12 +1,9 @@
 {# SEO Settings #}
 {% set pageTitle = siteName %}
-{% if siteSettings.titleOverride|length %}
-    {% set pageTitle = siteSettings.titleOverride %}
-{% endif %}
 {% if entry is defined %}
-    {% set pageTitle = pageTitle ~ " | " ~ entry.title %}
+    {% set pageTitle = siteName ~ " | " ~ entry.title %}
 {% elseif category is defined %}
-    {% set pageTitle = pageTitle ~ " | " ~ category.title %}
+    {% set pageTitle = siteName ~ " | " ~ category.title %}
 {% endif %}
 
 {% set isDebug = craft.app.request.getParam('debug') %}

@@ -1,3 +1,9 @@
+# 1.0.2 - 2019-01-09
+
+### Removes
+
+- Removes: Removes site name override so we can support clean craft installs.
+
 # 1.0.1 - 2019-01-04
 
 ### Adds
