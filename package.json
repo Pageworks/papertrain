@@ -40,7 +40,7 @@
     },
     "dependencies": {
         "animejs": "^2.2.0",
-        "fuel-pjax": "git+https://github.com/Pageworks/fuel-pjax.git#v1.0.7",
+        "fuel-pjax": "git+https://github.com/Pageworks/fuel-pjax.git#v1.0.8",
         "modernizr": "^3.6.0",
         "uuid": "^3.3.2",
         "webpack": "^4.28.2"

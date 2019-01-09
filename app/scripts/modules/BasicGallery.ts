@@ -5,37 +5,36 @@ import { getParent } from '../utils/getParent';
 
 export default class BasicGallery extends AbstractModule{
 
-    private static MODULE_NAME = 'BasicGallery';
+    private static MODULE_NAME:string = 'BasicGallery';
 
-    private style:      string
-    private timing:     number
-    private slides:     NodeList
-    private actionsEls: NodeList
-    private counter:    number
-    private transition: number
-    private baseTime:   number
-    private time:       number
-    private slideID:    number
-    private isDirty:    boolean
+    private _style:      string;
+    private _timing:     number;
+    private _slides:     Array<Element>;
+    private _actionsEls: Array<Element>;
+    private _counter:    number;
+    private _transition: number;
+    private _time:       number;
+    private _slideID:    number;
+    private _isDirty:    boolean;
 
     constructor(el:Element, app:App){
         super(el, app);
         if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicGallery.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
         // CMS Input Data
-        this.style      = this.el.getAttribute('data-style');
-        this.timing     = parseInt(this.el.getAttribute('data-timing'));
+        this._style      = this.el.getAttribute('data-style');
+        this._timing     = parseInt(this.el.getAttribute('data-timing'));
 
         // NodeLists
-        this.slides     = this.el.querySelectorAll('.js-slide');
-        this.actionsEls = this.el.querySelectorAll('.js-button');
+        this._slides     = Array.from(this.el.querySelectorAll('.js-slide'));
+        this._actionsEls = Array.from(this.el.querySelectorAll('.js-button'));
 
         // Gallery Data
-        this.transition = 0.3;
-        this.counter    = this.timing;
-        this.time       = null;
-        this.isDirty    = false;
-        this.slideID    = 0;
+        this._transition = 0.3;
+        this._counter    = this._timing;
+        this._time       = null;
+        this._isDirty    = false;
+        this._slideID    = 0;
     }
 
     /**
@@ -44,11 +43,11 @@ export default class BasicGallery extends AbstractModule{
      * register any initial event listeners
      */
     public init(): void{
-        this.actionsEls.forEach((el)=>{ el.addEventListener('click', e => this.handleActionButton(e) ); });
+        this._actionsEls.forEach((el)=>{ el.addEventListener('click', e => this.handleActionButton(e) ); });
 
         // Only start our loop if the gallery IS NOT set to manual transition
-        if(this.timing !== -1){
-            this.time = Date.now();
+        if(this._timing !== -1){
+            this._time = Date.now();
             window.requestAnimationFrame(() => this.callbackLoop());
         }
     }
@@ -57,8 +56,8 @@ export default class BasicGallery extends AbstractModule{
      * Resets the counter and the galleries `isDirty` status.
      */
     private cleanGallery(): void{
-        this.counter = this.timing;
-        this.isDirty = false;
+        this._counter = this._timing;
+        this._isDirty = false;
     }
 
     /**
@@ -70,13 +69,13 @@ export default class BasicGallery extends AbstractModule{
      * @param { number } direction What direction is the gallery going
      */
     private handleSlideTransition(newSlideID:number, currSlideID:number, direction:number): void{
-        const currSlide = this.slides[currSlideID];
-        const newSlide  = this.slides[newSlideID];
+        const currSlide = this._slides[currSlideID];
+        const newSlide  = this._slides[newSlideID];
 
         // Hide slide
         anime({
             targets: currSlide,
-            duration: (this.transition * 1000),
+            duration: (this._transition * 1000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [0, `${100 * -direction}%`]
         });
@@ -84,7 +83,7 @@ export default class BasicGallery extends AbstractModule{
         // Show slide
         anime({
             targets: newSlide,
-            duration: (this.transition * 1000),
+            duration: (this._transition * 1000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [`${100 * direction}%`, 0],
             complete: ()=>{
@@ -101,13 +100,13 @@ export default class BasicGallery extends AbstractModule{
      * @param { number } currSlideID What is the current active slide ID
      */
     private handleFadeTransition(newSlideID:number, currSlideID:number): void{
-        const currSlide = this.slides[currSlideID];
-        const newSlide  = this.slides[newSlideID];
+        const currSlide = this._slides[currSlideID];
+        const newSlide  = this._slides[newSlideID];
 
         // Hide slide
         anime({
             targets: currSlide,
-            duration: (this.transition * 1000),
+            duration: (this._transition * 1000),
             easing: [0.4, 0.0, 0.2, 1],
             opacity: [1,0],
             zIndex: 1
@@ -116,7 +115,7 @@ export default class BasicGallery extends AbstractModule{
         // Show slide
         anime({
             targets: newSlide,
-            duration: (this.transition * 1000),
+            duration: (this._transition * 1000),
             easing: [0.4, 0.0, 0.2, 1],
             opacity: [0,1],
             zIndex: 2,
@@ -135,8 +134,8 @@ export default class BasicGallery extends AbstractModule{
      * @param { number } direction What direciton we should transition
      */
     private handleStackTransition(newSlideID:number, currSlideID:number, direction:number): void{
-        const currSlide = this.slides[currSlideID];
-        const newSlide  = this.slides[newSlideID];
+        const currSlide = this._slides[currSlideID];
+        const newSlide  = this._slides[newSlideID];
 
         const slideEl = <HTMLElement>currSlide;
         slideEl.style.zIndex = '1';
@@ -147,7 +146,7 @@ export default class BasicGallery extends AbstractModule{
         // Show slide
         anime({
             targets: newSlide,
-            duration: (this.transition * 1000),
+            duration: (this._transition * 1000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [`${100 * direction}%`, 0],
             complete: ()=>{
@@ -173,8 +172,8 @@ export default class BasicGallery extends AbstractModule{
      * @param { number } direction What direciton we should transition
      */
     private handleParallaxTransition(newSlideID:number, currSlideID:number, direction:number): void{
-        const currSlide = <HTMLElement>this.slides[currSlideID];
-        const newSlide  = <HTMLElement>this.slides[newSlideID];
+        const currSlide = <HTMLElement>this._slides[currSlideID];
+        const newSlide  = <HTMLElement>this._slides[newSlideID];
 
         const currSlideImg = currSlide.querySelector('.js-img');
         const newSlideImg = newSlide.querySelector('.js-img');
@@ -182,7 +181,7 @@ export default class BasicGallery extends AbstractModule{
         // Show slide
         anime({
             targets: newSlide,
-            duration: (this.transition * 2000),
+            duration: (this._transition * 2000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [`${100 * direction}%`, 0],
         });
@@ -190,7 +189,7 @@ export default class BasicGallery extends AbstractModule{
         // New Image
         anime({
             targets: newSlideImg,
-            duration: (this.transition * 2000),
+            duration: (this._transition * 2000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [`${50 * -direction}%`, 0],
         });
@@ -198,7 +197,7 @@ export default class BasicGallery extends AbstractModule{
         // Hide slide
         anime({
             targets: currSlide,
-            duration: (this.transition * 2000),
+            duration: (this._transition * 2000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [0, `${100 * -direction}%`],
             complete: ()=>{
@@ -209,7 +208,7 @@ export default class BasicGallery extends AbstractModule{
         // Old Image
         anime({
             targets: currSlideImg,
-            duration: (this.transition * 2000),
+            duration: (this._transition * 2000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [0, `${50 * direction}%`],
         });
@@ -226,14 +225,14 @@ export default class BasicGallery extends AbstractModule{
      * @param { number } direction Decides what direction in the slides array is the gallery going. Default value is `1`.
      */
     private switchSlides(direction:number = 1): void{
-        const currSlideID = this.slideID;
-        let newSlideID = this.slideID + direction;
-        if(newSlideID < 0) newSlideID = this.slides.length - 1;
-        else if(newSlideID >= this.slides.length) newSlideID = 0;
+        const currSlideID = this._slideID;
+        let newSlideID = this._slideID + direction;
+        if(newSlideID < 0) newSlideID = this._slides.length - 1;
+        else if(newSlideID >= this._slides.length) newSlideID = 0;
 
-        this.isDirty = true;
+        this._isDirty = true;
 
-        switch(this.style){
+        switch(this._style){
             case 'fade':
                 this.handleFadeTransition(newSlideID, currSlideID);
                 break;
@@ -248,7 +247,7 @@ export default class BasicGallery extends AbstractModule{
                 break;
         }
 
-        this.slideID = newSlideID;
+        this._slideID = newSlideID;
     }
 
     /**
@@ -263,13 +262,13 @@ export default class BasicGallery extends AbstractModule{
      */
     private callbackLoop(): void{
         const timeNew   = Date.now();
-        const deltaTime = (timeNew - this.time) / 1000;
-        this.time       = timeNew;
+        const deltaTime = (timeNew - this._time) / 1000;
+        this._time       = timeNew;
 
-        if(!this.isDirty) this.counter -= deltaTime;
+        if(!this._isDirty) this._counter -= deltaTime;
 
         if(document.hasFocus()){
-            if(this.counter <= 0 && !this.isDirty) this.switchSlides(1);
+            if(this._counter <= 0 && !this._isDirty) this.switchSlides(1);
         }
 
         window.requestAnimationFrame(() => this.callbackLoop());
@@ -286,7 +285,7 @@ export default class BasicGallery extends AbstractModule{
         if(e.target instanceof Element){
             const button = getParent(e.target, 'js-button');
             const direction = parseInt(button.getAttribute('data-direction'));
-            if(!this.isDirty) this.switchSlides(direction);
+            if(!this._isDirty) this.switchSlides(direction);
         }
     }
 
@@ -295,7 +294,7 @@ export default class BasicGallery extends AbstractModule{
      * Remove all event listners before calling super.destory()
      */
     public destroy(): void{
-        this.actionsEls.forEach((el)=>{ el.removeEventListener('click', e => this.handleActionButton(e) ); });
+        this._actionsEls.forEach((el)=>{ el.removeEventListener('click', e => this.handleActionButton(e) ); });
         this.callbackLoop = ()=>{};
         super.destroy(isDebug, BasicGallery.MODULE_NAME);
     }

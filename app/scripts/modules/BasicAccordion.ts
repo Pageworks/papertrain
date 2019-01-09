@@ -4,19 +4,21 @@ import anime from 'animejs';
 
 export default class BasicAccordion extends AbstractModule{
 
-    private static MODULE_NAME = 'BasicAccordion';
+    private static MODULE_NAME:string = 'BasicAccordion';
 
-    private rows:       Array<Element>
-    private headlines:  Array<HTMLAnchorElement>
-    private multiRow:   boolean
+    private _rows:       Array<Element>;
+    private _headlines:  Array<HTMLAnchorElement>;
+    private _multiRow:   boolean;
 
     constructor(el:Element, app:App){
         super(el, app);
-        if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicAccordion.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        if(isDebug){
+            console.log('%c[module] '+`%cBuilding: ${BasicAccordion.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        }
 
-        this.rows       = Array.from(this.el.querySelectorAll('.js-row'));
-        this.headlines  = [];
-        this.multiRow   = (this.el.getAttribute('data-single-open') === 'true') ? true : false;
+        this._rows       = Array.from(this.el.querySelectorAll('.js-row'));
+        this._headlines  = [];
+        this._multiRow   = (this.el.getAttribute('data-single-open') === 'true') ? true : false;
     }
 
     /**
@@ -25,12 +27,12 @@ export default class BasicAccordion extends AbstractModule{
      * register any initial event listeners
      */
     public init(): void{
-        this.rows.map((el)=>{
+        this._rows.map((el)=>{
             const headline = <HTMLAnchorElement>el.querySelector('.js-headline');
 
             headline.addEventListener('click', e => this.handleToggle(e) );
 
-            this.headlines.push(headline);
+            this._headlines.push(headline);
         });
     }
 
@@ -38,7 +40,7 @@ export default class BasicAccordion extends AbstractModule{
         if(rowToClose === null) return;
         rowToClose.classList.remove('is-open');
         const body      = rowToClose.querySelector('.js-body');
-        const bodyEls   = body.querySelectorAll('*');
+        const bodyEls   = Array.from(body.querySelectorAll('*'));
 
         anime({
             targets: body,
@@ -61,7 +63,7 @@ export default class BasicAccordion extends AbstractModule{
         const target    = <HTMLAnchorElement>e.currentTarget;
         const row       = target.parentElement;
         const body      = row.querySelector('.js-body');
-        const bodyEls   = body.querySelectorAll('*');
+        const bodyEls   = Array.from(body.querySelectorAll('*'));
 
         if(row.classList.contains('is-open')){
             row.classList.remove('is-open');
@@ -82,7 +84,7 @@ export default class BasicAccordion extends AbstractModule{
                 opacity: [1, 0]
             });
         }else{
-            if(!this.multiRow){
+            if(!this._multiRow){
                 const oldRow = this.el.querySelector('.js-row.is-open');
                 this.closeRows(oldRow);
             }

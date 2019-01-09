@@ -120,12 +120,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var env_1 = __webpack_require__(/*! ./env */ "./app/scripts/env.ts");
 var modules = __importStar(__webpack_require__(/*! ./modules */ "./app/scripts/modules.ts"));
 var TransitionManager_1 = __importDefault(__webpack_require__(/*! ./transitions/TransitionManager */ "./app/scripts/transitions/TransitionManager.ts"));
+var polyfill_1 = __importDefault(__webpack_require__(/*! ./polyfill */ "./app/scripts/polyfill.ts"));
 var App = /** @class */ (function () {
     function App() {
-        this.modules = modules;
-        this.currentModules = [];
-        this.transitionManager = null;
-        this.touchSupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+        this._modules = modules;
+        this._currentModules = [];
+        this._transitionManager = null;
+        this._touchSupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
         this._prevScroll = 0;
         this._scrollDistance = 0;
         this.init();
@@ -137,11 +138,15 @@ var App = /** @class */ (function () {
         var _this = this;
         env_1.html.classList.remove('has-no-js');
         env_1.html.classList.add('has-js');
+        // If user is using IE 11 load the polyfill
+        if ('-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style) {
+            polyfill_1.default();
+        }
         // Check for production debug status
         if (env_1.html.getAttribute('data-debug') !== null) {
             env_1.setDebug(true);
         }
-        if (this.touchSupport) {
+        if (this._touchSupport) {
             env_1.html.classList.add('has-touch');
             env_1.html.classList.remove('has-no-touch');
         }
@@ -150,7 +155,7 @@ var App = /** @class */ (function () {
         document.addEventListener('seppuku', function (e) { return _this.deleteModule(e); }); // Listen for our custom events
         this.initModules(); // Get initial modules
         this.handleStatus(); // Check the users visitor status
-        this.transitionManager = new TransitionManager_1.default(this);
+        this._transitionManager = new TransitionManager_1.default(this);
         if (!env_1.isDebug) {
             this.createEasterEgg();
         }
@@ -247,16 +252,16 @@ var App = /** @class */ (function () {
      */
     App.prototype.initModules = function () {
         var _this = this;
-        var modules = document.querySelectorAll('[data-module]');
+        var modules = Array.from(document.querySelectorAll('[data-module]'));
         modules.forEach(function (module) {
             var moduleType = module.getAttribute('data-module');
             var moduleUUID = module.getAttribute('data-uuid');
-            if (_this.modules[moduleType] !== undefined && moduleUUID === null) {
-                var newModule = new _this.modules[moduleType].prototype.constructor(module, _this);
-                _this.currentModules.push(newModule);
+            if (_this._modules[moduleType] !== undefined && moduleUUID === null) {
+                var newModule = new _this._modules[moduleType].prototype.constructor(module, _this);
+                _this._currentModules.push(newModule);
                 newModule.init();
             }
-            else if (_this.modules[moduleType] === undefined) {
+            else if (_this._modules[moduleType] === undefined) {
                 if (env_1.isDebug) {
                     console.log('%cUndefined Module: ' + ("%c" + moduleType), 'color:#ff6e6e', 'color:#eee');
                 }
@@ -270,12 +275,12 @@ var App = /** @class */ (function () {
      */
     App.prototype.deleteModules = function () {
         var _this = this;
-        var modules = document.querySelectorAll('[data-module]');
+        var modules = Array.from(document.querySelectorAll('[data-module]'));
         var survivingModules = [];
         var deadModules = [];
         modules.forEach(function (module) { if (module.getAttribute('data-uuid') !== null)
             survivingModules.push(module); });
-        this.currentModules.map(function (currModule) {
+        this._currentModules.map(function (currModule) {
             var survived = false;
             survivingModules.map(function (survivingModule) {
                 if (survivingModule.getAttribute('data-uuid') === currModule.uuid) {
@@ -288,10 +293,10 @@ var App = /** @class */ (function () {
         });
         if (deadModules.length) {
             deadModules.map(function (deadModule) {
-                for (var i = 0; i < _this.currentModules.length; i++) {
-                    if (_this.currentModules[i].uuid === deadModule.uuid) {
-                        _this.currentModules[i].destroy();
-                        _this.currentModules.splice(i);
+                for (var i = 0; i < _this._currentModules.length; i++) {
+                    if (_this._currentModules[i].uuid === deadModule.uuid) {
+                        _this._currentModules[i].destroy();
+                        _this._currentModules.splice(i);
                     }
                 }
             });
@@ -309,11 +314,11 @@ var App = /** @class */ (function () {
             }
             return;
         }
-        for (var i = 0; i < this.currentModules.length; i++) {
-            if (this.currentModules[i].uuid === moduleID) {
-                this.currentModules[i].destroy();
-                var index = this.currentModules.indexOf(this.currentModules[i]);
-                this.currentModules.splice(index, 1);
+        for (var i = 0; i < this._currentModules.length; i++) {
+            if (this._currentModules[i].uuid === moduleID) {
+                this._currentModules[i].destroy();
+                var index = this._currentModules.indexOf(this._currentModules[i]);
+                this._currentModules.splice(index, 1);
             }
         }
     };
@@ -406,7 +411,7 @@ var AbstractModule = /** @class */ (function () {
     function AbstractModule(el, app) {
         this.el = el; // Sets initial reference to the element that generated the module
         this.uuid = v4_1.default(); // Generates a UUID using UUID v4
-        this.app = app;
+        this._app = app;
         this.el.setAttribute('data-uuid', this.uuid); // Sets modules UUID to be used later when handling modules destruction
     }
     AbstractModule.prototype.init = function () {
@@ -416,7 +421,7 @@ var AbstractModule = /** @class */ (function () {
      * Used when removing a specific module, call is initiated by a module
      */
     AbstractModule.prototype.seppuku = function () {
-        this.app.deleteModule(this.uuid);
+        this._app.deleteModule(this.uuid);
     };
     /**
      * Called by a module, removes attribute and logs out destruction to the console
@@ -471,11 +476,12 @@ var BasicAccordion = /** @class */ (function (_super) {
     __extends(BasicAccordion, _super);
     function BasicAccordion(el, app) {
         var _this = _super.call(this, el, app) || this;
-        if (env_1.isDebug)
+        if (env_1.isDebug) {
             console.log('%c[module] ' + ("%cBuilding: " + BasicAccordion.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
-        _this.rows = Array.from(_this.el.querySelectorAll('.js-row'));
-        _this.headlines = [];
-        _this.multiRow = (_this.el.getAttribute('data-single-open') === 'true') ? true : false;
+        }
+        _this._rows = Array.from(_this.el.querySelectorAll('.js-row'));
+        _this._headlines = [];
+        _this._multiRow = (_this.el.getAttribute('data-single-open') === 'true') ? true : false;
         return _this;
     }
     /**
@@ -485,10 +491,10 @@ var BasicAccordion = /** @class */ (function (_super) {
      */
     BasicAccordion.prototype.init = function () {
         var _this = this;
-        this.rows.map(function (el) {
+        this._rows.map(function (el) {
             var headline = el.querySelector('.js-headline');
             headline.addEventListener('click', function (e) { return _this.handleToggle(e); });
-            _this.headlines.push(headline);
+            _this._headlines.push(headline);
         });
     };
     BasicAccordion.prototype.closeRows = function (rowToClose) {
@@ -496,7 +502,7 @@ var BasicAccordion = /** @class */ (function (_super) {
             return;
         rowToClose.classList.remove('is-open');
         var body = rowToClose.querySelector('.js-body');
-        var bodyEls = body.querySelectorAll('*');
+        var bodyEls = Array.from(body.querySelectorAll('*'));
         animejs_1.default({
             targets: body,
             duration: 300,
@@ -516,7 +522,7 @@ var BasicAccordion = /** @class */ (function (_super) {
         var target = e.currentTarget;
         var row = target.parentElement;
         var body = row.querySelector('.js-body');
-        var bodyEls = body.querySelectorAll('*');
+        var bodyEls = Array.from(body.querySelectorAll('*'));
         if (row.classList.contains('is-open')) {
             row.classList.remove('is-open');
             // Close row
@@ -535,7 +541,7 @@ var BasicAccordion = /** @class */ (function (_super) {
             });
         }
         else {
-            if (!this.multiRow) {
+            if (!this._multiRow) {
                 var oldRow = this.el.querySelector('.js-row.is-open');
                 this.closeRows(oldRow);
             }
@@ -609,10 +615,10 @@ var BasicForm = /** @class */ (function (_super) {
         var _this = _super.call(this, el, app) || this;
         if (env_1.isDebug)
             console.log('%c[module] ' + ("%cBuilding: " + BasicForm.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
-        _this.inputs = _this.el.querySelectorAll('input');
-        _this.selects = _this.el.querySelectorAll('select');
-        _this.textareas = _this.el.querySelectorAll('textarea');
-        _this.passwordToggles = _this.el.querySelectorAll('.js-password-toggle');
+        _this._inputs = Array.from(_this.el.querySelectorAll('input'));
+        _this._selects = Array.from(_this.el.querySelectorAll('select'));
+        _this._textareas = Array.from(_this.el.querySelectorAll('textarea'));
+        _this._passwordToggles = Array.from(_this.el.querySelectorAll('.js-password-toggle'));
         return _this;
     }
     /**
@@ -622,22 +628,22 @@ var BasicForm = /** @class */ (function (_super) {
      */
     BasicForm.prototype.init = function () {
         var _this = this;
-        this.inputs.forEach(function (el) { el.addEventListener('focus', function (e) { return _this.handleFocus(e); }); });
-        this.inputs.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleBlur(e); }); });
-        this.inputs.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
-        this.selects.forEach(function (el) { el.addEventListener('change', function (e) { return _this.handleSelection(e); }); });
-        this.textareas.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleTextarea(e); }); });
-        this.textareas.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleTextarea(e); }); });
-        this.passwordToggles.forEach(function (el) { el.addEventListener('click', function (e) { return _this.handleToggle(e); }); });
+        this._inputs.forEach(function (el) { el.addEventListener('focus', function (e) { return _this.handleFocus(e); }); });
+        this._inputs.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleBlur(e); }); });
+        this._inputs.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
+        this._selects.forEach(function (el) { el.addEventListener('change', function (e) { return _this.handleSelection(e); }); });
+        this._textareas.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleTextarea(e); }); });
+        this._textareas.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleTextarea(e); }); });
+        this._passwordToggles.forEach(function (el) { el.addEventListener('click', function (e) { return _this.handleToggle(e); }); });
         // Handle input status for prefilled elements
-        this.inputs.forEach(function (el) {
+        this._inputs.forEach(function (el) {
             if (el instanceof HTMLInputElement) {
                 if (el.value !== '' || el.innerText !== '')
                     _this.handleInputStatus(el);
             }
         });
         // Handle input status for prefilled elements
-        this.selects.forEach(function (el) {
+        this._selects.forEach(function (el) {
             if (el instanceof HTMLSelectElement) {
                 if (el.value !== 'any') {
                     var inputWrapper = getParent_1.getParent(el, 'js-input');
@@ -776,13 +782,13 @@ var BasicForm = /** @class */ (function (_super) {
      */
     BasicForm.prototype.destroy = function () {
         var _this = this;
-        this.inputs.forEach(function (el) { el.removeEventListener('focus', function (e) { return _this.handleFocus(e); }); });
-        this.inputs.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleBlur(e); }); });
-        this.inputs.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
-        this.selects.forEach(function (el) { el.removeEventListener('change', function (e) { return _this.handleSelection(e); }); });
-        this.textareas.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleTextarea(e); }); });
-        this.textareas.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleTextarea(e); }); });
-        this.passwordToggles.forEach(function (el) { el.removeEventListener('click', function (e) { return _this.handleToggle(e); }); });
+        this._inputs.forEach(function (el) { el.removeEventListener('focus', function (e) { return _this.handleFocus(e); }); });
+        this._inputs.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleBlur(e); }); });
+        this._inputs.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
+        this._selects.forEach(function (el) { el.removeEventListener('change', function (e) { return _this.handleSelection(e); }); });
+        this._textareas.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleTextarea(e); }); });
+        this._textareas.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleTextarea(e); }); });
+        this._passwordToggles.forEach(function (el) { el.removeEventListener('click', function (e) { return _this.handleToggle(e); }); });
         _super.prototype.destroy.call(this, env_1.isDebug, BasicForm.MODULE_NAME);
     };
     BasicForm.MODULE_NAME = 'BasicForm';
@@ -830,17 +836,17 @@ var BasicGallery = /** @class */ (function (_super) {
         if (env_1.isDebug)
             console.log('%c[module] ' + ("%cBuilding: " + BasicGallery.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
         // CMS Input Data
-        _this.style = _this.el.getAttribute('data-style');
-        _this.timing = parseInt(_this.el.getAttribute('data-timing'));
+        _this._style = _this.el.getAttribute('data-style');
+        _this._timing = parseInt(_this.el.getAttribute('data-timing'));
         // NodeLists
-        _this.slides = _this.el.querySelectorAll('.js-slide');
-        _this.actionsEls = _this.el.querySelectorAll('.js-button');
+        _this._slides = Array.from(_this.el.querySelectorAll('.js-slide'));
+        _this._actionsEls = Array.from(_this.el.querySelectorAll('.js-button'));
         // Gallery Data
-        _this.transition = 0.3;
-        _this.counter = _this.timing;
-        _this.time = null;
-        _this.isDirty = false;
-        _this.slideID = 0;
+        _this._transition = 0.3;
+        _this._counter = _this._timing;
+        _this._time = null;
+        _this._isDirty = false;
+        _this._slideID = 0;
         return _this;
     }
     /**
@@ -850,10 +856,10 @@ var BasicGallery = /** @class */ (function (_super) {
      */
     BasicGallery.prototype.init = function () {
         var _this = this;
-        this.actionsEls.forEach(function (el) { el.addEventListener('click', function (e) { return _this.handleActionButton(e); }); });
+        this._actionsEls.forEach(function (el) { el.addEventListener('click', function (e) { return _this.handleActionButton(e); }); });
         // Only start our loop if the gallery IS NOT set to manual transition
-        if (this.timing !== -1) {
-            this.time = Date.now();
+        if (this._timing !== -1) {
+            this._time = Date.now();
             window.requestAnimationFrame(function () { return _this.callbackLoop(); });
         }
     };
@@ -861,8 +867,8 @@ var BasicGallery = /** @class */ (function (_super) {
      * Resets the counter and the galleries `isDirty` status.
      */
     BasicGallery.prototype.cleanGallery = function () {
-        this.counter = this.timing;
-        this.isDirty = false;
+        this._counter = this._timing;
+        this._isDirty = false;
     };
     /**
      * This is the basic slide transition for the gallery.
@@ -874,19 +880,19 @@ var BasicGallery = /** @class */ (function (_super) {
      */
     BasicGallery.prototype.handleSlideTransition = function (newSlideID, currSlideID, direction) {
         var _this = this;
-        var currSlide = this.slides[currSlideID];
-        var newSlide = this.slides[newSlideID];
+        var currSlide = this._slides[currSlideID];
+        var newSlide = this._slides[newSlideID];
         // Hide slide
         animejs_1.default({
             targets: currSlide,
-            duration: (this.transition * 1000),
+            duration: (this._transition * 1000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [0, 100 * -direction + "%"]
         });
         // Show slide
         animejs_1.default({
             targets: newSlide,
-            duration: (this.transition * 1000),
+            duration: (this._transition * 1000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [100 * direction + "%", 0],
             complete: function () {
@@ -903,12 +909,12 @@ var BasicGallery = /** @class */ (function (_super) {
      */
     BasicGallery.prototype.handleFadeTransition = function (newSlideID, currSlideID) {
         var _this = this;
-        var currSlide = this.slides[currSlideID];
-        var newSlide = this.slides[newSlideID];
+        var currSlide = this._slides[currSlideID];
+        var newSlide = this._slides[newSlideID];
         // Hide slide
         animejs_1.default({
             targets: currSlide,
-            duration: (this.transition * 1000),
+            duration: (this._transition * 1000),
             easing: [0.4, 0.0, 0.2, 1],
             opacity: [1, 0],
             zIndex: 1
@@ -916,7 +922,7 @@ var BasicGallery = /** @class */ (function (_super) {
         // Show slide
         animejs_1.default({
             targets: newSlide,
-            duration: (this.transition * 1000),
+            duration: (this._transition * 1000),
             easing: [0.4, 0.0, 0.2, 1],
             opacity: [0, 1],
             zIndex: 2,
@@ -935,8 +941,8 @@ var BasicGallery = /** @class */ (function (_super) {
      */
     BasicGallery.prototype.handleStackTransition = function (newSlideID, currSlideID, direction) {
         var _this = this;
-        var currSlide = this.slides[currSlideID];
-        var newSlide = this.slides[newSlideID];
+        var currSlide = this._slides[currSlideID];
+        var newSlide = this._slides[newSlideID];
         var slideEl = currSlide;
         slideEl.style.zIndex = '1';
         var newEl = newSlide;
@@ -944,7 +950,7 @@ var BasicGallery = /** @class */ (function (_super) {
         // Show slide
         animejs_1.default({
             targets: newSlide,
-            duration: (this.transition * 1000),
+            duration: (this._transition * 1000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [100 * direction + "%", 0],
             complete: function () {
@@ -970,28 +976,28 @@ var BasicGallery = /** @class */ (function (_super) {
      */
     BasicGallery.prototype.handleParallaxTransition = function (newSlideID, currSlideID, direction) {
         var _this = this;
-        var currSlide = this.slides[currSlideID];
-        var newSlide = this.slides[newSlideID];
+        var currSlide = this._slides[currSlideID];
+        var newSlide = this._slides[newSlideID];
         var currSlideImg = currSlide.querySelector('.js-img');
         var newSlideImg = newSlide.querySelector('.js-img');
         // Show slide
         animejs_1.default({
             targets: newSlide,
-            duration: (this.transition * 2000),
+            duration: (this._transition * 2000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [100 * direction + "%", 0],
         });
         // New Image
         animejs_1.default({
             targets: newSlideImg,
-            duration: (this.transition * 2000),
+            duration: (this._transition * 2000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [50 * -direction + "%", 0],
         });
         // Hide slide
         animejs_1.default({
             targets: currSlide,
-            duration: (this.transition * 2000),
+            duration: (this._transition * 2000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [0, 100 * -direction + "%"],
             complete: function () {
@@ -1001,7 +1007,7 @@ var BasicGallery = /** @class */ (function (_super) {
         // Old Image
         animejs_1.default({
             targets: currSlideImg,
-            duration: (this.transition * 2000),
+            duration: (this._transition * 2000),
             easing: [0.4, 0.0, 0.2, 1],
             translateX: [0, 50 * direction + "%"],
         });
@@ -1018,14 +1024,14 @@ var BasicGallery = /** @class */ (function (_super) {
      */
     BasicGallery.prototype.switchSlides = function (direction) {
         if (direction === void 0) { direction = 1; }
-        var currSlideID = this.slideID;
-        var newSlideID = this.slideID + direction;
+        var currSlideID = this._slideID;
+        var newSlideID = this._slideID + direction;
         if (newSlideID < 0)
-            newSlideID = this.slides.length - 1;
-        else if (newSlideID >= this.slides.length)
+            newSlideID = this._slides.length - 1;
+        else if (newSlideID >= this._slides.length)
             newSlideID = 0;
-        this.isDirty = true;
-        switch (this.style) {
+        this._isDirty = true;
+        switch (this._style) {
             case 'fade':
                 this.handleFadeTransition(newSlideID, currSlideID);
                 break;
@@ -1039,7 +1045,7 @@ var BasicGallery = /** @class */ (function (_super) {
                 this.handleParallaxTransition(newSlideID, currSlideID, direction);
                 break;
         }
-        this.slideID = newSlideID;
+        this._slideID = newSlideID;
     };
     /**
      * This is the callback loop for the `requestAnimationFrame`.
@@ -1054,12 +1060,12 @@ var BasicGallery = /** @class */ (function (_super) {
     BasicGallery.prototype.callbackLoop = function () {
         var _this = this;
         var timeNew = Date.now();
-        var deltaTime = (timeNew - this.time) / 1000;
-        this.time = timeNew;
-        if (!this.isDirty)
-            this.counter -= deltaTime;
+        var deltaTime = (timeNew - this._time) / 1000;
+        this._time = timeNew;
+        if (!this._isDirty)
+            this._counter -= deltaTime;
         if (document.hasFocus()) {
-            if (this.counter <= 0 && !this.isDirty)
+            if (this._counter <= 0 && !this._isDirty)
                 this.switchSlides(1);
         }
         window.requestAnimationFrame(function () { return _this.callbackLoop(); });
@@ -1075,7 +1081,7 @@ var BasicGallery = /** @class */ (function (_super) {
         if (e.target instanceof Element) {
             var button = getParent_1.getParent(e.target, 'js-button');
             var direction = parseInt(button.getAttribute('data-direction'));
-            if (!this.isDirty)
+            if (!this._isDirty)
                 this.switchSlides(direction);
         }
     };
@@ -1085,7 +1091,7 @@ var BasicGallery = /** @class */ (function (_super) {
      */
     BasicGallery.prototype.destroy = function () {
         var _this = this;
-        this.actionsEls.forEach(function (el) { el.removeEventListener('click', function (e) { return _this.handleActionButton(e); }); });
+        this._actionsEls.forEach(function (el) { el.removeEventListener('click', function (e) { return _this.handleActionButton(e); }); });
         this.callbackLoop = function () { };
         _super.prototype.destroy.call(this, env_1.isDebug, BasicGallery.MODULE_NAME);
     };
@@ -1093,6 +1099,101 @@ var BasicGallery = /** @class */ (function (_super) {
     return BasicGallery;
 }(AbstractModule_1.default));
 exports.default = BasicGallery;
+
+
+/***/ }),
+
+/***/ "./app/scripts/polyfill.ts":
+/*!*********************************!*\
+  !*** ./app/scripts/polyfill.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/* tslint:disable */
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Array.from() polyfill
+ * Souce: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from#Polyfill
+ */
+exports.default = (function () {
+    if (!Array.from) {
+        Array.from = (function () {
+            var toStr = Object.prototype.toString;
+            var isCallable = function (fn) {
+                return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
+            };
+            var toInteger = function (value) {
+                var number = Number(value);
+                if (isNaN(number)) {
+                    return 0;
+                }
+                if (number === 0 || !isFinite(number)) {
+                    return number;
+                }
+                return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
+            };
+            var maxSafeInteger = Math.pow(2, 53) - 1;
+            var toLength = function (value) {
+                var len = toInteger(value);
+                return Math.min(Math.max(len, 0), maxSafeInteger);
+            };
+            // The length property of the from method is 1.
+            return function from(arrayLike) {
+                // 1. Let C be the this value.
+                var C = this;
+                // 2. Let items be ToObject(arrayLike).
+                var items = Object(arrayLike);
+                // 3. ReturnIfAbrupt(items).
+                if (arrayLike == null) {
+                    throw new TypeError('Array.from requires an array-like object - not null or undefined');
+                }
+                // 4. If mapfn is undefined, then let mapping be false.
+                var mapFn = arguments.length > 1 ? arguments[1] : void undefined;
+                var T;
+                if (typeof mapFn !== 'undefined') {
+                    // 5. else
+                    // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
+                    if (!isCallable(mapFn)) {
+                        throw new TypeError('Array.from: when provided, the second argument must be a function');
+                    }
+                    // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
+                    if (arguments.length > 2) {
+                        T = arguments[2];
+                    }
+                }
+                // 10. Let lenValue be Get(items, "length").
+                // 11. Let len be ToLength(lenValue).
+                var len = toLength(items.length);
+                // 13. If IsConstructor(C) is true, then
+                // 13. a. Let A be the result of calling the [[Construct]] internal method
+                // of C with an argument list containing the single item len.
+                // 14. a. Else, Let A be ArrayCreate(len).
+                var A = isCallable(C) ? Object(new C(len)) : new Array(len);
+                // 16. Let k be 0.
+                var k = 0;
+                // 17. Repeat, while k < len… (also steps a - h)
+                var kValue;
+                while (k < len) {
+                    kValue = items[k];
+                    if (mapFn) {
+                        A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
+                    }
+                    else {
+                        A[k] = kValue;
+                    }
+                    k += 1;
+                }
+                // 18. Let putStatus be Put(A, "length", len, true).
+                A.length = len;
+                // 20. Return A.
+                return A;
+            };
+        }());
+    }
+});
 
 
 /***/ }),
@@ -1168,11 +1269,11 @@ var transitions = __importStar(__webpack_require__(/*! ./transitions */ "./app/s
 var fuel_pjax_1 = __importDefault(__webpack_require__(/*! fuel-pjax */ "./node_modules/fuel-pjax/pjax.js"));
 var TransitionManager = /** @class */ (function () {
     function TransitionManager(app) {
-        this.app = app;
-        this.transitions = transitions;
-        this.transition = null;
-        this.pjax = new fuel_pjax_1.default({ debug: env_1.isDebug, selectors: ["" + env_1.pjaxContainer] });
-        this.initialAnimationDelay = 1000;
+        this._app = app;
+        this._transitions = transitions;
+        this._transition = null;
+        this._pjax = new fuel_pjax_1.default({ debug: env_1.isDebug, selectors: ["" + env_1.pjaxContainer] });
+        this._initialAnimationDelay = 1000;
         this.init();
     }
     /**
@@ -1195,7 +1296,7 @@ var TransitionManager = /** @class */ (function () {
     TransitionManager.prototype.load = function () {
         env_1.html.classList.add('dom-is-loaded');
         env_1.html.classList.remove('dom-is-loading');
-        setTimeout(function () { env_1.html.classList.add('dom-is-animated'); }, this.initialAnimationDelay);
+        setTimeout(function () { env_1.html.classList.add('dom-is-animated'); }, this._initialAnimationDelay);
     };
     /**
      * Called when Pjax fires the `pjax:send` event
@@ -1213,10 +1314,10 @@ var TransitionManager = /** @class */ (function () {
             transition = (el.getAttribute('data-transition') !== null) ? el.getAttribute('data-transition') : 'BaseTransition';
         }
         env_1.html.setAttribute('data-transition', transition);
-        this.transition = new this.transitions[transition].prototype.constructor();
+        this._transition = new this._transitions[transition].prototype.constructor();
         env_1.html.classList.remove('dom-is-loaded', 'dom-is-animated');
         env_1.html.classList.add('dom-is-loading');
-        this.transition.launch();
+        this._transition.launch();
     };
     /**
      * Called when Pjax fires `pjax:error` or `pjax:cancel` or `pjax:complete`
@@ -1234,22 +1335,22 @@ var TransitionManager = /** @class */ (function () {
         }
         env_1.html.classList.add('dom-is-loaded');
         env_1.html.classList.remove('dom-is-loading');
-        setTimeout(function () { env_1.html.classList.add('dom-is-animated'); }, this.initialAnimationDelay);
+        setTimeout(function () { env_1.html.classList.add('dom-is-animated'); }, this._initialAnimationDelay);
         if (templateName === 'home') {
             env_1.html.classList.add('is-homepage');
         }
         else {
             env_1.html.classList.remove('is-homepage');
         }
-        if (this.transition === null) {
+        if (this._transition === null) {
             return;
         }
         // Tell our transition it can end the transition
-        this.transition.hide();
+        this._transition.hide();
         // Tell our main applicaiton it can init any new modules
-        this.app.initModules();
+        this._app.initModules();
         // Tell our main applicaiton it can delete any old modules
-        this.app.deleteModules();
+        this._app.deleteModules();
         // Reset for next transition
         this.reinit();
     };
@@ -1261,7 +1362,7 @@ var TransitionManager = /** @class */ (function () {
      */
     TransitionManager.prototype.getTemplateName = function () {
         var templateName = 'MISSING_TEMPLATE_NAME';
-        var secitons = env_1.html.querySelectorAll('section');
+        var secitons = Array.from(env_1.html.querySelectorAll('section'));
         if (secitons) {
             secitons.forEach(function (el) {
                 if (el.getAttribute('data-template') !== null)
@@ -1276,7 +1377,7 @@ var TransitionManager = /** @class */ (function () {
      */
     TransitionManager.prototype.reinit = function () {
         env_1.html.setAttribute('data-transition', '');
-        this.transition = null;
+        this._transition = null;
         console.log('Transition renit');
     };
     return TransitionManager;

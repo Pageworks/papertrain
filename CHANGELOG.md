@@ -1,5 +1,14 @@
 # 1.0.2 - 2019-01-09
 
+### Adds
+
+- Adds: Adds polyfill include to fix `Array.from()` for IE 11
+
+### Fixes:
+
+- Fixes: Fixes application for IE 11
+- Fixes: Cleans up all typescript files
+
 ### Removes
 
 - Removes: Removes site name override so we can support clean craft installs.

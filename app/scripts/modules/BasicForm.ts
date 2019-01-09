@@ -4,21 +4,21 @@ import { getParent } from '../utils/getParent';
 
 export default class BasicForm extends AbstractModule{
 
-    private static MODULE_NAME = 'BasicForm';
+    private static MODULE_NAME:string = 'BasicForm';
 
-    private inputs:             NodeList
-    private passwordToggles:    NodeList
-    private selects:            NodeList
-    private textareas:          NodeList
+    private _inputs:             Array<HTMLInputElement>;
+    private _passwordToggles:    Array<Element>;
+    private _selects:            Array<HTMLSelectElement>;
+    private _textareas:          Array<HTMLTextAreaElement>;
 
     constructor(el:Element, app:App){
         super(el, app);
         if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicForm.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
-        this.inputs             = this.el.querySelectorAll('input');
-        this.selects            = this.el.querySelectorAll('select');
-        this.textareas          = this.el.querySelectorAll('textarea');
-        this.passwordToggles    = this.el.querySelectorAll('.js-password-toggle');
+        this._inputs             = Array.from(this.el.querySelectorAll('input'));
+        this._selects            = Array.from(this.el.querySelectorAll('select'));
+        this._textareas          = Array.from(this.el.querySelectorAll('textarea'));
+        this._passwordToggles    = Array.from(this.el.querySelectorAll('.js-password-toggle'));
     }
 
     /**
@@ -27,26 +27,26 @@ export default class BasicForm extends AbstractModule{
      * register any initial event listeners
      */
     public init(): void{
-        this.inputs.forEach((el)=>{ el.addEventListener('focus', e => this.handleFocus(e) ); });
-        this.inputs.forEach((el)=>{ el.addEventListener('blur', e => this.handleBlur(e) ); });
-        this.inputs.forEach((el)=>{ el.addEventListener('keyup', e => this.handleKeystroke(e) ); });
+        this._inputs.forEach((el)=>{ el.addEventListener('focus', e => this.handleFocus(e) ); });
+        this._inputs.forEach((el)=>{ el.addEventListener('blur', e => this.handleBlur(e) ); });
+        this._inputs.forEach((el)=>{ el.addEventListener('keyup', e => this.handleKeystroke(e) ); });
 
-        this.selects.forEach((el)=>{ el.addEventListener('change', e => this.handleSelection(e) ); });
+        this._selects.forEach((el)=>{ el.addEventListener('change', e => this.handleSelection(e) ); });
 
-        this.textareas.forEach((el)=>{ el.addEventListener('keyup', e => this.handleTextarea(e) ); });
-        this.textareas.forEach((el)=>{ el.addEventListener('blur', e => this.handleTextarea(e) ); });
+        this._textareas.forEach((el)=>{ el.addEventListener('keyup', e => this.handleTextarea(e) ); });
+        this._textareas.forEach((el)=>{ el.addEventListener('blur', e => this.handleTextarea(e) ); });
 
-        this.passwordToggles.forEach((el)=>{ el.addEventListener('click', e => this.handleToggle(e) ); });
+        this._passwordToggles.forEach((el)=>{ el.addEventListener('click', e => this.handleToggle(e) ); });
 
         // Handle input status for prefilled elements
-        this.inputs.forEach((el)=>{
+        this._inputs.forEach((el)=>{
             if (el instanceof HTMLInputElement){
                 if(el.value !== '' || el.innerText !== '') this.handleInputStatus(el);
             }
         });
 
         // Handle input status for prefilled elements
-        this.selects.forEach((el)=>{
+        this._selects.forEach((el)=>{
             if (el instanceof HTMLSelectElement){
                 if(el.value !== 'any'){
                     const inputWrapper  = getParent(el, 'js-input');
@@ -188,13 +188,13 @@ export default class BasicForm extends AbstractModule{
      * Remove all event listners before calling super.destory()
      */
     public destroy(): void{
-        this.inputs.forEach((el)=>{ el.removeEventListener('focus', e => this.handleFocus(e) ); });
-        this.inputs.forEach((el)=>{ el.removeEventListener('blur', e => this.handleBlur(e) ); });
-        this.inputs.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleKeystroke(e) ); });
-        this.selects.forEach((el)=>{ el.removeEventListener('change', e => this.handleSelection(e) ); });
-        this.textareas.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleTextarea(e) ); });
-        this.textareas.forEach((el)=>{ el.removeEventListener('blur', e => this.handleTextarea(e) ); });
-        this.passwordToggles.forEach((el)=>{ el.removeEventListener('click', e => this.handleToggle(e) ); });
+        this._inputs.forEach((el)=>{ el.removeEventListener('focus', e => this.handleFocus(e) ); });
+        this._inputs.forEach((el)=>{ el.removeEventListener('blur', e => this.handleBlur(e) ); });
+        this._inputs.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleKeystroke(e) ); });
+        this._selects.forEach((el)=>{ el.removeEventListener('change', e => this.handleSelection(e) ); });
+        this._textareas.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleTextarea(e) ); });
+        this._textareas.forEach((el)=>{ el.removeEventListener('blur', e => this.handleTextarea(e) ); });
+        this._passwordToggles.forEach((el)=>{ el.removeEventListener('click', e => this.handleToggle(e) ); });
         super.destroy(isDebug, BasicForm.MODULE_NAME);
     }
 }

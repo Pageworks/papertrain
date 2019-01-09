@@ -4,19 +4,19 @@ import Pjax from 'fuel-pjax';
 
 export default class TransitionManager {
 
-    private app:                    App
-    private transitions:            { [index:string] : Function }
-    private transition:             Transition
-    private pjax:                   Pjax
-    private initialAnimationDelay:  number
+    private _app:                    App;
+    private _transitions:            { [index:string] : Function };
+    private _transition:             Transition;
+    private _pjax:                   Pjax;
+    private _initialAnimationDelay:  number;
 
     constructor(app:App){
-        this.app                    = app;
-        this.transitions            = transitions;
-        this.transition             = null;
-        this.pjax                   = new Pjax({ debug: isDebug, selectors: [`${pjaxContainer}`] });
+        this._app                    = app;
+        this._transitions            = transitions;
+        this._transition             = null;
+        this._pjax                   = new Pjax({ debug: isDebug, selectors: [`${pjaxContainer}`] });
 
-        this.initialAnimationDelay  = 1000;
+        this._initialAnimationDelay  = 1000;
 
         this.init();
     }
@@ -43,7 +43,7 @@ export default class TransitionManager {
         html.classList.add('dom-is-loaded');
         html.classList.remove('dom-is-loading');
 
-        setTimeout(()=>{ html.classList.add('dom-is-animated') }, this.initialAnimationDelay);
+        setTimeout(()=>{ html.classList.add('dom-is-animated') }, this._initialAnimationDelay);
     }
 
     /**
@@ -65,12 +65,12 @@ export default class TransitionManager {
 
         html.setAttribute('data-transition', transition);
 
-        this.transition = new this.transitions[transition].prototype.constructor();
+        this._transition = new this._transitions[transition].prototype.constructor();
 
         html.classList.remove('dom-is-loaded', 'dom-is-animated');
         html.classList.add('dom-is-loading');
 
-        this.transition.launch();
+        this._transition.launch();
     }
 
     /**
@@ -92,7 +92,7 @@ export default class TransitionManager {
         html.classList.add('dom-is-loaded');
         html.classList.remove('dom-is-loading');
 
-        setTimeout(()=>{ html.classList.add('dom-is-animated') }, this.initialAnimationDelay);
+        setTimeout(()=>{ html.classList.add('dom-is-animated') }, this._initialAnimationDelay);
 
         if(templateName === 'home'){
             html.classList.add('is-homepage');
@@ -101,18 +101,18 @@ export default class TransitionManager {
             html.classList.remove('is-homepage');
         }
 
-        if(this.transition === null){
+        if(this._transition === null){
             return;
         }
 
         // Tell our transition it can end the transition
-        this.transition.hide();
+        this._transition.hide();
 
         // Tell our main applicaiton it can init any new modules
-        this.app.initModules();
+        this._app.initModules();
 
         // Tell our main applicaiton it can delete any old modules
-        this.app.deleteModules();
+        this._app.deleteModules();
 
         // Reset for next transition
         this.reinit();
@@ -127,7 +127,7 @@ export default class TransitionManager {
     private getTemplateName(): string{
         let templateName = 'MISSING_TEMPLATE_NAME';
 
-        const secitons = html.querySelectorAll('section');
+        const secitons = Array.from(html.querySelectorAll('section'));
 
         if(secitons){
             secitons.forEach((el)=>{
@@ -144,7 +144,7 @@ export default class TransitionManager {
      */
     private reinit(): void{
         html.setAttribute('data-transition', '');
-        this.transition = null;
+        this._transition = null;
         console.log('Transition renit');
     }
 }

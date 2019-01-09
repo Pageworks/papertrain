@@ -2,20 +2,21 @@ import { APP_NAME, html, isDebug, setDebug, scrollTrigger } from './env';
 
 import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
+import polyfill from './polyfill';
 
 class App{
-    private modules:            { [index:string] : Function };
-    private currentModules:     Array<Module>;
-    private transitionManager:  TransitionManager;
-    private touchSupport:       boolean;
+    private _modules:           { [index:string] : Function };
+    private _currentModules:    Array<Module>;
+    private _transitionManager: TransitionManager;
+    private _touchSupport:      boolean;
     private _scrollDistance:    number;
     private _prevScroll:        number;
 
     constructor(){
-        this.modules            = modules;
-        this.currentModules     = [];
-        this.transitionManager  = null;
-        this.touchSupport       = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+        this._modules            = modules;
+        this._currentModules     = [];
+        this._transitionManager  = null;
+        this._touchSupport       = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
 
         this._prevScroll        = 0;
         this._scrollDistance    = 0;
@@ -30,12 +31,17 @@ class App{
         html.classList.remove('has-no-js');
         html.classList.add('has-js');
 
+        // If user is using IE 11 load the polyfill
+        if('-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style){
+            polyfill();
+        }
+
         // Check for production debug status
         if(html.getAttribute('data-debug') !== null){
             setDebug(true);
         }
 
-        if(this.touchSupport){
+        if(this._touchSupport){
             html.classList.add('has-touch');
             html.classList.remove('has-no-touch');
         }
@@ -48,7 +54,7 @@ class App{
         this.initModules(); // Get initial modules
         this.handleStatus(); // Check the users visitor status
 
-        this.transitionManager = new TransitionManager(this);
+        this._transitionManager = new TransitionManager(this);
 
         if(!isDebug){
             this.createEasterEgg();
@@ -152,18 +158,18 @@ class App{
      * has a module associated with the HTML element
      */
     public initModules(): void{
-        const modules = document.querySelectorAll('[data-module]');
+        const modules = Array.from(document.querySelectorAll('[data-module]'));
 
         modules.forEach((module)=>{
             const moduleType = module.getAttribute('data-module');
             const moduleUUID = module.getAttribute('data-uuid');
 
-            if(this.modules[moduleType] !== undefined && moduleUUID === null){
-                const newModule = new this.modules[moduleType].prototype.constructor(module, this);
-                this.currentModules.push(newModule);
+            if(this._modules[moduleType] !== undefined && moduleUUID === null){
+                const newModule = new this._modules[moduleType].prototype.constructor(module, this);
+                this._currentModules.push(newModule);
                 newModule.init();
             }
-            else if(this.modules[moduleType] === undefined){
+            else if(this._modules[moduleType] === undefined){
                 if(isDebug){
                     console.log('%cUndefined Module: '+`%c${moduleType}`,'color:#ff6e6e','color:#eee');
                 }
@@ -177,13 +183,13 @@ class App{
      * Remove (and trigger destory()) any elements module in the current modules list that didn't survive the transition
      */
     public deleteModules(): void{
-        const modules = document.querySelectorAll('[data-module]');
+        const modules = Array.from(document.querySelectorAll('[data-module]'));
         const survivingModules:Array<Element> = [];
         const deadModules:Array<any> = [];
 
         modules.forEach((module)=>{ if(module.getAttribute('data-uuid') !== null) survivingModules.push(module); });
 
-        this.currentModules.map((currModule)=>{
+        this._currentModules.map((currModule)=>{
             let survived:boolean = false;
             survivingModules.map((survivingModule)=>{
                 if(survivingModule.getAttribute('data-uuid') === currModule.uuid){
@@ -197,10 +203,10 @@ class App{
 
         if(deadModules.length){
             deadModules.map((deadModule)=>{
-                for(let i = 0; i < this.currentModules.length; i++){
-                    if(this.currentModules[i].uuid === deadModule.uuid){
-                        this.currentModules[i].destroy();
-                        this.currentModules.splice(i);
+                for(let i = 0; i < this._currentModules.length; i++){
+                    if(this._currentModules[i].uuid === deadModule.uuid){
+                        this._currentModules[i].destroy();
+                        this._currentModules.splice(i);
                     }
                 }
             });
@@ -220,11 +226,11 @@ class App{
             return;
         }
 
-        for(let i = 0; i < this.currentModules.length; i++){
-            if(this.currentModules[i].uuid === moduleID){
-                this.currentModules[i].destroy();
-                const index = this.currentModules.indexOf(this.currentModules[i]);
-                this.currentModules.splice(index, 1);
+        for(let i = 0; i < this._currentModules.length; i++){
+            if(this._currentModules[i].uuid === moduleID){
+                this._currentModules[i].destroy();
+                const index = this._currentModules.indexOf(this._currentModules[i]);
+                this._currentModules.splice(index, 1);
             }
         }
     }

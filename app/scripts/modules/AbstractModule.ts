@@ -1,14 +1,14 @@
 import uuid from 'uuid/v4';
 
 export default class AbstractModule{
-    public el:     Element
-    public uuid:   string
-    private app:    App
+    public el:      Element;
+    public uuid:    string;
+    private _app:   App;
 
     constructor(el:Element, app:App){
         this.el     = el; // Sets initial reference to the element that generated the module
         this.uuid   = uuid(); // Generates a UUID using UUID v4
-        this.app    = app;
+        this._app    = app;
 
         this.el.setAttribute('data-uuid', this.uuid); // Sets modules UUID to be used later when handling modules destruction
     }
@@ -22,7 +22,7 @@ export default class AbstractModule{
      * Used when removing a specific module, call is initiated by a module
      */
     public seppuku(): void{
-        this.app.deleteModule(this.uuid);
+        this._app.deleteModule(this.uuid);
     }
 
     /**
