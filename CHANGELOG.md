@@ -3,6 +3,7 @@
 ### Adds
 
 - Adds: Adds polyfill include to fix `Array.from()` for IE 11
+- Adds: Adds `pt_` table prefix
 
 ### Fixes:
 
