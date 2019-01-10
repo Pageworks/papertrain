@@ -1,3 +1,9 @@
+# 1.0.3 - 2019-01-10
+
+### Fixes
+
+- Fixes: Incorrect database dump file
+
 # 1.0.2 - 2019-01-09
 
 ### Adds
