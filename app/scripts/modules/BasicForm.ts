@@ -6,19 +6,23 @@ export default class BasicForm extends AbstractModule{
 
     private static MODULE_NAME:string = 'BasicForm';
 
-    private _inputs:             Array<HTMLInputElement>;
-    private _passwordToggles:    Array<Element>;
-    private _selects:            Array<HTMLSelectElement>;
-    private _textareas:          Array<HTMLTextAreaElement>;
+    private _inputs:            Array<HTMLInputElement>;
+    private _passwordToggles:   Array<Element>;
+    private _selects:           Array<HTMLSelectElement>;
+    private _textareas:         Array<HTMLTextAreaElement>;
+    private _formType:          string;
 
     constructor(el:Element, app:App){
         super(el, app);
         if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicForm.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
-        this._inputs             = Array.from(this.el.querySelectorAll('input'));
-        this._selects            = Array.from(this.el.querySelectorAll('select'));
-        this._textareas          = Array.from(this.el.querySelectorAll('textarea'));
-        this._passwordToggles    = Array.from(this.el.querySelectorAll('.js-password-toggle'));
+        // Elements
+        this._inputs            = Array.from(this.el.querySelectorAll('input'));
+        this._selects           = Array.from(this.el.querySelectorAll('select'));
+        this._textareas         = Array.from(this.el.querySelectorAll('textarea'));
+        this._passwordToggles   = Array.from(this.el.querySelectorAll('.js-password-toggle'));
+
+        this._formType          = this.el.getAttribute('data-type');
     }
 
     /**
@@ -55,6 +59,29 @@ export default class BasicForm extends AbstractModule{
                 }
             }
         });
+    }
+
+    /**
+     * Loops through all inputs to make sure they pass our `validityCheck` method.
+     * If everything passes remove the `is-disabled` status class from the
+     * submit buttonb. If an input fails add the `is-disabled` status class.
+     */
+    private activeSubmitButton(): void{
+        let hasInvalidInput = false;
+        this._inputs.forEach((el)=>{
+            if(!this.validityCheck(el)){
+                hasInvalidInput = true;
+            }
+        });
+
+        if(!hasInvalidInput){
+            const submitButton = this.el.querySelector('.js-submit-button');
+            submitButton.classList.remove('is-disabled');
+        }
+        else{
+            const submitButton = this.el.querySelector('.js-submit-button');
+            submitButton.classList.add('is-disabled');
+        }
     }
 
     /**
@@ -149,6 +176,15 @@ export default class BasicForm extends AbstractModule{
         }
     }
 
+    /**
+     * Starts by getting the inputs wrapper element.
+     * Then resets the wrappers status classes.
+     * If the element passes our `validityCheck` method add the `is-valid`
+     * status class to the elements wrapper.
+     * If the element fails the check add the `is-invalid` status class.
+     * Also grab the error object and apply the error message.
+     * @param { HTMLInputElement } el
+     */
     private handleInputStatus(el:HTMLInputElement): void{
         const inputWrapper = getParent(el, 'js-input');
         inputWrapper.classList.remove('has-focus');
@@ -172,6 +208,12 @@ export default class BasicForm extends AbstractModule{
      */
     private handleBlur(e:Event): void{
         if (e.target instanceof HTMLInputElement) this.handleInputStatus(e.target);
+
+        switch(this._formType){
+            case 'login':
+                this.activeSubmitButton();
+                break;
+        }
     }
 
     /**

@@ -615,10 +615,12 @@ var BasicForm = /** @class */ (function (_super) {
         var _this = _super.call(this, el, app) || this;
         if (env_1.isDebug)
             console.log('%c[module] ' + ("%cBuilding: " + BasicForm.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
+        // Elements
         _this._inputs = Array.from(_this.el.querySelectorAll('input'));
         _this._selects = Array.from(_this.el.querySelectorAll('select'));
         _this._textareas = Array.from(_this.el.querySelectorAll('textarea'));
         _this._passwordToggles = Array.from(_this.el.querySelectorAll('.js-password-toggle'));
+        _this._formType = _this.el.getAttribute('data-type');
         return _this;
     }
     /**
@@ -652,6 +654,28 @@ var BasicForm = /** @class */ (function (_super) {
                 }
             }
         });
+    };
+    /**
+     * Loops through all inputs to make sure they pass our `validityCheck` method.
+     * If everything passes remove the `is-disabled` status class from the
+     * submit buttonb. If an input fails add the `is-disabled` status class.
+     */
+    BasicForm.prototype.activeSubmitButton = function () {
+        var _this = this;
+        var hasInvalidInput = false;
+        this._inputs.forEach(function (el) {
+            if (!_this.validityCheck(el)) {
+                hasInvalidInput = true;
+            }
+        });
+        if (!hasInvalidInput) {
+            var submitButton = this.el.querySelector('.js-submit-button');
+            submitButton.classList.remove('is-disabled');
+        }
+        else {
+            var submitButton = this.el.querySelector('.js-submit-button');
+            submitButton.classList.add('is-disabled');
+        }
     };
     /**
      * Called when a user releases a key while a textarea element has focus.
@@ -742,6 +766,15 @@ var BasicForm = /** @class */ (function (_super) {
             }
         }
     };
+    /**
+     * Starts by getting the inputs wrapper element.
+     * Then resets the wrappers status classes.
+     * If the element passes our `validityCheck` method add the `is-valid`
+     * status class to the elements wrapper.
+     * If the element fails the check add the `is-invalid` status class.
+     * Also grab the error object and apply the error message.
+     * @param { HTMLInputElement } el
+     */
     BasicForm.prototype.handleInputStatus = function (el) {
         var inputWrapper = getParent_1.getParent(el, 'js-input');
         inputWrapper.classList.remove('has-focus');
@@ -767,6 +800,11 @@ var BasicForm = /** @class */ (function (_super) {
     BasicForm.prototype.handleBlur = function (e) {
         if (e.target instanceof HTMLInputElement)
             this.handleInputStatus(e.target);
+        switch (this._formType) {
+            case 'login':
+                this.activeSubmitButton();
+                break;
+        }
     };
     /**
      * Sets the `has-focus` status class to the inputs wrapper
