@@ -4,7 +4,7 @@ import anime from 'animejs';
 
 export default class BasicAccordion extends AbstractModule{
 
-    private static MODULE_NAME:string = 'BasicAccordion';
+    public static MODULE_NAME:string = 'BasicAccordion';
 
     private _rows:       Array<Element>;
     private _headlines:  Array<HTMLAnchorElement>;

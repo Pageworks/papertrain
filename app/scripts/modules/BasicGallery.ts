@@ -5,7 +5,7 @@ import { getParent } from '../utils/getParent';
 
 export default class BasicGallery extends AbstractModule{
 
-    private static MODULE_NAME:string = 'BasicGallery';
+    public static MODULE_NAME:string = 'BasicGallery';
 
     private _style:      string;
     private _timing:     number;
