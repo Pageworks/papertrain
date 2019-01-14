@@ -119,20 +119,18 @@ export default class TransitionManager {
     }
 
     /**
-     * Get all sections within our Pjax wrapper (article)
-     * Look through elements for the first node with a `data-template` attribute
-     * Return the name given to the section
-     * Otherwise return 'MISSING_TEMPLATE_NAME'
+     * Gets the first element with a `data-template` attribute.
+     * If the element exists get the template name.
+     * Return the templates name or our missing name value.
+     * @returns string
      */
     private getTemplateName(): string{
         let templateName = 'MISSING_TEMPLATE_NAME';
 
-        const secitons = Array.from(html.querySelectorAll('section'));
+        const templateEl = html.querySelector('[data-template]');
 
-        if(secitons){
-            secitons.forEach((el)=>{
-                if(el.getAttribute('data-template') !== null) templateName = el.getAttribute('data-template');
-            });
+        if(templateEl){
+            templateName = templateEl.getAttribute('data-template');
         }
 
         return templateName;
