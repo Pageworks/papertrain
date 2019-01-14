@@ -1,20 +1,20 @@
 {# SEO Settings #}
 {% set pageTitle = siteName %}
 {% if entry is defined %}
-    {% set pageTitle = siteName ~ " | " ~ entry.title %}
+    {% set pageTitle = entry.title ~ " | " ~ siteName %}
 {% elseif category is defined %}
-    {% set pageTitle = siteName ~ " | " ~ category.title %}
+    {% set pageTitle = category.title ~ " | " ~ siteName %}
 {% endif %}
 
 {% set isDebug = craft.app.request.getParam('debug') %}
 <!doctype html>
 <html lang="en-US" class="has-no-js has-no-touch" {% if isDebug|length and currentUser|length and currentUser.admin %}data-debug="true"{% endif %}>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
         {% block head %}
-            <meta charset="utf-8">
-            <meta http-equiv="x-ua-compatible" content="ie=edge">
-            <meta name="description" content="">
-            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
             <title>{{pageTitle}}</title>
         {% endblock %}
 
