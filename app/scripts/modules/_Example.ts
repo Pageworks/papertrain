@@ -3,7 +3,7 @@ import AbstractModule from './AbstractModule';
 
 export default class Example extends AbstractModule{
 
-    private static MODULE_NAME:string = 'Example';
+    public static MODULE_NAME:string = 'Example';
 
     constructor(el:Element, app:App){
         super(el, app);

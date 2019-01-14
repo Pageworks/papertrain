@@ -4,7 +4,7 @@ import { getParent } from '../utils/getParent';
 
 export default class BasicForm extends AbstractModule{
 
-    private static MODULE_NAME:string = 'BasicForm';
+    public static MODULE_NAME:string = 'BasicForm';
 
     private _inputs:            Array<HTMLInputElement>;
     private _passwordToggles:   Array<Element>;
