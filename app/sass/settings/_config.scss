@@ -43,7 +43,7 @@ $base-p-margin: 0 0 $unit;
 // Container
 // ==========================================================================
 $container-width:           1280px;
-$narrow-container-width:    840px;
+$narrow-container-width:    680px;
 $padding:                   0;
 
 // Layout
@@ -54,13 +54,13 @@ $gutter-large:  2rem;
 
 // Screen Breakpoints
 // =============================================================================
-$screen-xsmall:     600px;
-$screen-small:      840px;
-$screen-medium:     960px;
-$screen-large:      1280px;
-$screen-xlarge:     1440px;
-$screen-xxlarge:    1600px;
-$screen-xxxlarge:   1920px;
+$screen-xsmall:     600px - 1;
+$screen-small:      840px - 1;
+$screen-medium:     960px - 1;
+$screen-large:      1280px - 1;
+$screen-xlarge:     1440px - 1;
+$screen-xxlarge:    1600px - 1;
+$screen-xxxlarge:   1920px - 1;
 
 // Custom Breakpoints
 // =============================================================================

@@ -7,6 +7,9 @@
 .o-switch{
     height: 48px;
     width: 100%;
+    margin-bottom: $unit;
+    position: relative;
+    padding: 0 $unit-small;
 
     .o-switch_item{
         width: 100%;
@@ -36,27 +39,26 @@
                 }
             }
         }
-        
+
         label{
             @include size(100%, 100%);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            pointer-events: all;
+            pointer-events: all !important;
 
             .o-switch_icon{
-                // pointer-events: none;
                 display: inline-flex;
                 align-items: center;
                 cursor: pointer;
 
-                &:active{
+                @include active{
                     .o-switch_handle{
                         &:before{
                             opacity: 0;
                             transition: opacity 75ms $ease-out;
                         }
-    
+
                         &:after{
                             transform: scale(1);
                             opacity: $primary-active-opacity;
@@ -65,7 +67,7 @@
                     }
                 }
 
-                &:hover{
+                @include hover{
                     .o-switch_handle{
                         &:before{
                             transform: scale(1);
@@ -118,7 +120,7 @@
                             background: $white;
                         }
                     }
-    
+
                     &::after{
                         content:"";
                         background: $primary;
@@ -137,6 +139,16 @@
                     }
                 }
             }
+
+            span{
+                cursor: pointer;
+            }
+        }
+
+        .o-help{
+            position: relative;
+            padding: 0;
+            margin-top: 4px;
         }
     }
 }
@@ -148,6 +160,8 @@
     padding: 32px 0 6px;
     text-align: left;
     width: 100%;
+    margin-bottom: $unit;
+    margin-top: $unit;
 
     label{
         position: absolute;
@@ -158,11 +172,7 @@
     .o-radio_item{
         display: flex;
         align-items: center;
-        margin: $unit $unit*2;
-
-        @media (min-width: $screen-medium){
-            display: inline-flex;
-        }
+        margin: $unit;
 
         label{
             display: flex;
@@ -177,7 +187,7 @@
                     transform: scale(1);
                     opacity: $primary-hover-opacity;
                     transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                }   
+                }
             }
         }
 
@@ -292,6 +302,8 @@
     position: relative;
     padding: 32px 0 6px;
     width: 100%;
+    margin-bottom: $unit;
+    margin-top: $unit;
 
     label{
         position: absolute;
@@ -300,13 +312,12 @@
     }
 
     .o-checkbox_item{
-
         label{
             height: 24px;
             line-height: 24px;
             display: flex;
             align-items: center;
-            margin: $unit $unit*2;
+            margin: $unit;
         }
 
         &:hover{
@@ -317,7 +328,7 @@
                     transform: scale(1);
                     opacity: $primary-hover-opacity;
                     transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                }   
+                }
             }
         }
 
@@ -393,7 +404,7 @@
 
             .o-checkbox_check{
                 position: absolute;
-                transform: scale(0.5);                    
+                transform: scale(0.5);
                 path{
                     stroke: contrast($primary);
                     stroke-width: 3px;
@@ -443,131 +454,7 @@
     }
 }
 
-// Base input wrapper
-.o-input{
-    height: 56px;
-    width: 100%;
-    position: relative;
-
-    &.-square{
-        input,
-        select,
-        textarea{
-            border-radius: 0 !important;
-        }
-    }
-
-    &.is-invalid{
-        .o-help{
-            opacity: 0;
-            transition: opacity 25ms $ease-sharp;
-        }
-    }
-
-    .-visible,
-    .-hidden{
-        @include position(absolute, null 12px 18px null);
-        color: $off-black;
-        cursor: pointer;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-
-        &::before{
-            content:"";
-            background: $primary;
-            position: absolute;
-            display: inline-block;
-            border-radius: 100%;
-            @include size(32px, 32px);
-            transform: scale(0);
-            transform-origin: center;
-            opacity: 0;
-            transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
-
-            section.-dark-background & {
-                background: $white;
-            }
-        }
-
-        &::after{
-            content:"";
-            background: $primary;
-            position: absolute;
-            display: inline-block;
-            border-radius: 100%;
-            @include size(32px, 32px);
-            transform: scale(0);
-            opacity: 0;
-            transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
-
-            section.-dark-background & {
-                background: $white;
-            }
-        }
-
-        &:hover{
-            &:before{
-                transform: scale(1);
-                opacity: $primary-hover-opacity;
-                transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-            }
-        }
-
-        &:active{
-            &:before{
-                opacity: 0;
-                transition: opacity 75ms $ease-out;
-            }
-
-            &:after{
-                transform: scale(1);
-                opacity: $primary-active-opacity;
-                transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-            }
-        }
-
-        section.-dark-background & {
-            color: $font-alt;
-        }
-    }
-
-    &.has-content-hidden,
-    &.has-content-visible{
-        input{
-            padding-right: 34px !important;
-        }
-    }
-
-    // Used for password and pin inputs
-    // The password field is hidden (default)
-    &.has-content-hidden{
-        .-visible{
-            display: none;
-        }
-
-        .-hidden{
-            display: inline-flex;
-        }
-    }
-
-    // Used for password and pin inputs
-    // The password field is visible
-    &.has-content-visible{
-        .-visible{
-            display: inline-flex;
-        }
-
-        .-hidden{
-            display: none;
-        }
-    }
-}
-
-form{
-    padding: 0;
-    margin: 0;
-
+.o-form{
     &.-square{
         input,
         select,
@@ -580,8 +467,17 @@ form{
     .o-textarea{
         position: relative;
         width: 100%;
+        margin-bottom: $unit;
+        margin-top: $unit;
+        transition: all 150ms $ease;
+
+        &.has-helper{
+            margin-bottom: $unit*2;
+        }
 
         &.is-invalid{
+            margin-bottom: $unit*2;
+
             html.has-js & {
                 .o-error{
                     opacity: 1;
@@ -611,12 +507,183 @@ form{
                 }
             }
         }
+
+        textarea{
+            padding: 32px 16px 16px;
+            border-radius: 4px;
+            border: 2px solid rgba($black, 0.3);
+            width: 100%;
+            min-height: 106px;
+            color: $font-base;
+            background: transparent;
+            transition: border 75ms $ease-sharp, padding 75ms $ease-sharp;
+
+            section.-dark-background & {
+                border: 1px solid rgba($off-white, 0.3);
+                color: $font-alt;
+            }
+
+            & + label{
+                position: absolute;
+                top: 20px;
+                left: 16px !important;
+            }
+
+            &:focus{
+                border: 2px solid $primary;
+                padding: 31px 15px 15px;
+                transition: border 150ms $ease-in, padding 150ms $ease-in;
+
+                section.-dark-background & {
+                    border-color: $primary-alt;
+                }
+
+                & + label{
+                    top: 12px;
+                    font-size: 12px !important;
+                    color: $primary !important;
+
+                    section.-dark-background & {
+                        color: $primary-alt !important;
+                    }
+                }
+            }
+        }
+    }
+
+    // Base input wrapper
+    .o-input{
+        height: 56px;
+        width: 100%;
+        position: relative;
+        margin-bottom: $unit;
+        transition: all 150ms $ease;
+
+        &.-square{
+            input,
+            select,
+            textarea{
+                border-radius: 0 !important;
+            }
+        }
+
+        &.is-invalid{
+            margin-bottom: $unit*2;
+
+            .o-help{
+                opacity: 0;
+                transition: opacity 25ms $ease-sharp;
+            }
+        }
+
+        &.has-helper{
+            margin-bottom: $unit*2;
+        }
+
+        .-visible,
+        .-hidden{
+            @include position(absolute, null 12px 18px null);
+            color: $off-black;
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            &::before{
+                content:"";
+                background: $primary;
+                position: absolute;
+                display: inline-block;
+                border-radius: 100%;
+                @include size(32px, 32px);
+                transform: scale(0);
+                transform-origin: center;
+                opacity: 0;
+                transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+
+                section.-dark-background & {
+                    background: $white;
+                }
+            }
+
+            &::after{
+                content:"";
+                background: $primary;
+                position: absolute;
+                display: inline-block;
+                border-radius: 100%;
+                @include size(32px, 32px);
+                transform: scale(0);
+                opacity: 0;
+                transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+
+                section.-dark-background & {
+                    background: $white;
+                }
+            }
+
+            &:hover{
+                &:before{
+                    transform: scale(1);
+                    opacity: $primary-hover-opacity;
+                    transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                }
+            }
+
+            &:active{
+                &:before{
+                    opacity: 0;
+                    transition: opacity 75ms $ease-out;
+                }
+
+                &:after{
+                    transform: scale(1);
+                    opacity: $primary-active-opacity;
+                    transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                }
+            }
+
+            section.-dark-background & {
+                color: $font-alt;
+            }
+        }
+
+        &.has-content-hidden,
+        &.has-content-visible{
+            input{
+                padding-right: 34px !important;
+            }
+        }
+
+        // Used for password and pin inputs
+        // The password field is hidden (default)
+        &.has-content-hidden{
+            .-visible{
+                display: none;
+            }
+
+            .-hidden{
+                display: inline-flex;
+            }
+        }
+
+        // Used for password and pin inputs
+        // The password field is visible
+        &.has-content-visible{
+            .-visible{
+                display: inline-flex;
+            }
+
+            .-hidden{
+                display: none;
+            }
+        }
     }
 
     // Text objects
     .o-error,
     .o-help{
-        padding: $unit $unit-small 0;
+        padding: $unit-small;
         @include position(absolute, 100% null null 0);
         width: 100%;
         color: $helper-dark;
@@ -656,55 +723,17 @@ form{
         }
     }
 
-    // Text area has a universal style
-    textarea{
-        padding: 32px 16px 16px;
-        border-radius: 4px;
-        border: 1px solid $off-black;
-        width: 100%;
-        min-height: 106px;
-        color: $font-base;
-        background: transparent;
-        transition: border 75ms $ease-sharp, padding 75ms $ease-sharp;
-
-        section.-dark-background & {
-            border: 1px solid rgba($off-white, 0.3);
-            color: $font-alt;
-        }
-
-        & + label{
-            position: absolute;
-            top: 20px;
-            left: 16px !important;
-        }
-
-        &:focus{
-            border: 2px solid $primary;
-            padding: 31px 15px 15px;
-            transition: border 150ms $ease-in, padding 150ms $ease-in;
-
-            section.-dark-background & {
-                border-color: $primary-alt;
-            }
-
-            & + label{
-                top: 12px;
-                font-size: 12px !important;
-                color: $primary !important;
-
-                section.-dark-background & {
-                    color: $primary-alt !important;
-                }
-            }
-        }
-    }
-
-    // General input settings
+    // General input
     input{
         &.has-icon{
             padding-left: 48px !important;
             padding-right: 16px !important;
         }
+    }
+
+    // General label
+    label{
+        user-select: none;
     }
 
     .o-icon{
@@ -721,97 +750,5 @@ form{
     @import './form-styles/solid';
 
     // Base Style
-    @import './form-styles/base';
-}
-
-// Normalize Inputs
-// ==========================================================================
-
-input,
-select,
-textarea,
-fieldset{
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    line-height: 16px;
-
-    &:focus,
-    &:active{
-        box-shadow: none;
-        border: none;
-        outline: none;
-    }
-
-    &:invalid{
-        box-shadow: none;
-    }
-}
-
-input,
-select{
-    background: transparent;
-    color: rgba($black, 0.87);
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    section.-dark-background & {
-        color: rgba($font-alt, 0.87);
-    }
-}
-
-input[type=radio],
-input[type=checkbox]{
-    @include size(0px,0px);
-    position: absolute;
-    border: none;
-    outline: none;
-    background: transparent;
-    opacity: 0;
-    visibility: hidden;
-}
-
-input,
-textarea{
-    section.-dark-background & {
-        ::placeholder{
-            color: rgba($font-alt, 0.87);
-        }
-    }
-
-    ::placeholder{
-        color: rgba($black, 0.87);
-    }
-}
-
-input[type=date]{
-    text-indent: -1px;
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-}
-
-select{
-    @media (min-width: $screen-large){
-        text-indent: -1px;
-    }
-
-    html.has-js & {
-        appearance: none;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-    }
-}
-
-input[type=number] { 
-    -moz-appearance: textfield;
-    appearance: textfield;
-    margin: 0; 
-}
-
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-      -webkit-appearance: none; 
-      margin: 0; 
+    @import './form-styles/underline';
 }

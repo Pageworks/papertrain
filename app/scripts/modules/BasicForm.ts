@@ -221,8 +221,9 @@ export default class BasicForm extends AbstractModule{
      * @param {Event} e
      */
     private handleFocus(e:Event): void{
-        const inputWrapper = getParent(<Element>e.target, 'js-input');
-        inputWrapper.classList.add('has-focus');
+        const target = <Element>e.currentTarget;
+        const parent = target.parentElement;
+        parent.classList.add('has-focus');
     }
 
     /**
