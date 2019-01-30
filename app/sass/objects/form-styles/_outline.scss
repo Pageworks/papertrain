@@ -1,6 +1,101 @@
-// Background Config Settings
-// =============================================================================
+/* stylelint-disable */
+// Background Colors Config
+&.-outline{
+    label{
+        .-base-background & {
+            color: contrast($base-background-color, 0.6);
+            background: $base-background-color;
+        }
 
+        .-secondary-background & {
+            color: contrast($secondary-background-color, 0.6);
+            background: $secondary-background-color;
+        }
+
+        .-dark-background & {
+            color: contrast($dark-background-color, 0.6);
+            background: $dark-background-color;
+        }
+
+        .-brand-background & {
+            color: contrast($brand-background-color, 0.6);
+            background: $brand-background-color;
+        }
+    }
+
+    input,
+    select{
+        .-base-background & {
+            border-color: contrast($base-background-color, 0.3);
+
+            @include hover{
+                border-color: contrast($base-background-color, 0.6);
+                transition: border 150ms $ease-in;
+            }
+
+            &:focus{
+                border-color: $primary !important;
+
+                & + label{
+                    color: $primary;
+                }
+            }
+        }
+
+        .-secondary-background & {
+            border-color: contrast($secondary-background-color, 0.3);
+
+            @include hover{
+                border-color: contrast($secondary-background-color, 0.6);
+                transition: border 150ms $ease-in;
+            }
+
+            &:focus{
+                border-color: $primary !important;
+
+                & + label{
+                    color: $primary;
+                }
+            }
+        }
+
+        .-dark-background & {
+            border-color: contrast($dark-background-color, 0.3);
+
+            @include hover{
+                border-color: contrast($dark-background-color, 0.6);
+                transition: border 150ms $ease-in;
+            }
+
+            &:focus{
+                border-color: $primary-alt !important;
+
+                & + label{
+                    color: $primary-alt;
+                }
+            }
+        }
+
+        .-brand-background & {
+            border-color: contrast($brand-background-color, 0.3);
+
+            @include hover{
+                border-color: contrast($brand-background-color, 0.6);
+                transition: border 150ms $ease-in;
+            }
+
+            &:focus{
+                border-color: $primary-alt !important;
+
+                & + label{
+                    color: $primary-alt;
+                }
+            }
+        }
+    }
+}
+
+// General Style Config
 &.-outline{
     .o-input{
         &:after{
@@ -9,7 +104,7 @@
 
         &.is-invalid{
             input{
-                border: 2px solid rgba($error, 0.87);
+                border-color: rgba($error, 0.87) !important;
                 padding: 11px 15px 9px;
                 transition: all 150ms $ease;
 
@@ -72,16 +167,9 @@
     }
 
     label{
-        color: rgba($black, 0.6);
         pointer-events: none;
         font-size: 16px;
         transition: all 75ms $ease-out;
-        background: $white;
-
-        section.-dark-background & {
-            color: rgba($font-alt, 0.6);
-            background: $dark-background-color;
-        }
     }
 
     input,
@@ -90,16 +178,9 @@
         background: transparent;
         border-radius: 4px;
         padding: 12px 16px 10px;
-        border: 2px solid rgba($black, 0.3);
+        border-width: 2px;
+        border-style: solid;
         transition: all 75ms $ease-sharp;
-
-        section.-dark-background & {
-            border: 2px solid rgba($white, 0.3);
-
-            @include hover{
-                border: 2px solid rgba($white, 0.6);
-            }
-        }
 
         & + label{
             position: absolute;
@@ -108,32 +189,15 @@
             padding: 0 4px;
         }
 
-        @include hover{
-            border: 2px solid rgba($off-black, 0.6);
-            transition: border 150ms $ease-in;
-        }
-
         &:focus{
-            border: 2px solid rgba($primary, 0.87) !important;
             padding: 11px 15px 9px;
             transition: all 150ms $ease-in;
 
-            section.-dark-background & {
-                border-color: rgba($primary-alt, 0.87) !important;
-            }
-
             & + label{
-                color: $primary;
                 font-size: 12px;
                 bottom: 48px;
                 left: 16px;
-                background: $white;
                 transition: all 150ms $ease-in;
-
-                section.-dark-background & {
-                    background: $dark-background-color;
-                    color: $primary-alt;
-                }
             }
         }
     }
