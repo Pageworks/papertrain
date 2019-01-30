@@ -51,8 +51,8 @@ return [
     // Production environment settings
     'production' => [
         // Base site URL
-        'siteUrl'       => getenv('PRODUCTION_URL'),
-        'allowUpdates'  => false,
+        'siteUrl'           => getenv('PRODUCTION_URL'),
+        'allowAdminChanges' => false,
         'aliases' => [
             '@rootUrl' => getenv('PRODUCTION_URL'),
         ],
