@@ -1,4 +1,3 @@
-// ==========================================================================
 // Base / Page
 // ==========================================================================
 
@@ -24,7 +23,7 @@ html
     text-align: left;
     position: relative;
 
-    
+
     *{
         box-sizing: border-box;
     }
@@ -33,23 +32,6 @@ html
         *{
             cursor: wait !important;
         }
-    }
-}
-
-section{
-    &.-primary-background{
-        background: $base-background-color;
-    }
-
-    &.-secondary-background{
-        background: $secondary-background-color;
-    }
-
-    &.-dark-background,
-    &.has-image,
-    &.has-video{
-        background: $dark-background-color;
-        color: $font-alt;
     }
 }
 

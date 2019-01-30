@@ -39,7 +39,7 @@
             &.is-invalid{
                 &:after{
                     transform: scaleX(1);
-                    background: $error;
+                    background: $error !important;
                     transition: background 75ms $ease;
                 }
 
@@ -101,16 +101,19 @@
         transition: border-bottom-color 75ms $ease-out, background 150ms $ease;
 
         section.-dark-background & {
-            border-bottom: 1px solid rgba($white, 0.42);
+            border-bottom: 2px solid rgba($white, 0.3);
             background: transparent;
+
+            @include hover{
+                background: transparent;
+                border-bottom: 2px solid rgba($white, 0.6);
+            }
         }
 
-        &:hover{
+        @include hover{
             background: transparent;
-
-            section.-dark-background & {
-                background: transparent;
-            }
+            border-bottom: 2px solid rgba($black, 0.6);
+            transition: border 150ms $ease-in;
         }
 
         &:focus{

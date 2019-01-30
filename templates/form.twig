@@ -1,52 +1,113 @@
 {% extends '_layouts/base' %}
 
 {% block content %}
-    <section data-template="Forms Page" class="js-section o-container-full u-padding-vertical-x4 u-mobile-padding">
+    <section data-template="Forms Page" class="js-section o-container-full u-padding-vertical-x4 u-mobile-padding -primary-background">
         <h1 class="o-h1 u-text-center">Form Elements</h1>
-        <p class="u-text-center o-container-narrow">Please use this page to style the form input elements.</p>
+        <p class="u-text-center o-container-narrow u-margin-bottom-x2">Please use this page to style the form input elements.</p>
         <div class="o-container-narrow u-text-center">
-            <div class="o-wrapper">
-                <div class="js-form-square-input o-switch">
-                    <div class="o-switch_item">
-                        <input type="checkbox" id="id-form-square" value="1" />
-                        <label for="id-form-square">
-                            <span class="u-margin-right-x2">Square Style</span>
-                            <div class="o-switch_icon">
-                                <div class="o-switch_track"></div>
-                                <div class="o-switch_handle">
-                                    <div class="o-switch_circle"></div>
+            <form class="u-1/1 o-form -underline  js-example-form-controller">
+                <div class="o-wrapper u-align-top u-padding-horizontal u-1/1">
+                    <div class="js-form-square-input o-switch">
+                        <div class="o-switch_item">
+                            <input type="checkbox" id="id-form-square" value="1" />
+                            <label for="id-form-square">
+                                <span class="u-margin-right-x2">Square Style</span>
+                                <div class="o-switch_icon">
+                                    <div class="o-switch_track"></div>
+                                    <div class="o-switch_handle">
+                                        <div class="o-switch_circle"></div>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="o-wrapper u-align-top u-padding-horizontal u-1/1 js-color-wrapper">
+                    <div class="js-input o-color">
+                        <input type="color"  name="customColor" id="customColor" class="js-custom-color-input" value="#547980" />
+                        <label for="customColor">Custom Background Color</label>
+                    </div>
+                </div>
+                <div class="o-wrapper u-align-top u-padding-horizontal u-1/1 u-1/2@medium">
+                    <div class="js-input o-input has-value">
+                    <select id="id-form-style" name="form-style" class="js-form-style-input" >
+                        <option value="-underline">Underline</option>
+                        <option value="-outline">Outline</option>
+                        <option value="-solid">Solid</option>
+                    </select>
+                    <label>Form Style</label>
+                    <i class="o-arrow fas fa-sort-down"></i>
+                    </div>
+                </div>
+                <div class="o-wrapper u-align-top u-padding-horizontal u-1/1 u-1/2@medium">
+                    <div class="js-input o-input has-value">
+                    <select id="id-form-style" name="form-style" class="js-background-input" >
+                        <option value="-primary-background">Primary</option>
+                        <option value="-secondary-background">Secondary</option>
+                        <option value="-dark-background">Dark</option>
+                        <option value="-brand-background">Brand</option>
+                        <option value="-custom-background">Custom</option>
+                    </select>
+                    <label>Background Color</label>
+                    <i class="o-arrow fas fa-sort-down"></i>
+                    </div>
+                </div>
+            </form>
         </div>
         <hr class="u-margin-vertical-x2"/>
         <div class="o-container-narrow">
             {% set form = craft.freeform.form('sampleForm') %}
-            <div class="o-form -underline" data-module="BasicForm">
+            <h2 class="o-h3 u-text-center u-margin-bottom">{{ form.name }}</h2>
+            <div class="o-form -underline js-form" data-module="BasicForm">
                 {{ form.render() }}
             </div>
         </div>
     </section>
 {% endblock %}
 
-{# {% js %}
-    var formStyleToggle = document.body.querySelector('.js-form-style-input');
-    var formStyleInput = formStyleToggle.querySelector('input');
+{% js %}
+    // Form
     var formEl = document.body.querySelector('.js-form');
 
-    if(formStyleToggle && formEl) formStyleInput.addEventListener('change', function(e){
+    // Style Input
+    var formStyleInput = document.body.querySelector('.js-form-style-input');
+
+    formStyleInput.addEventListener('change', function(e){
         e.preventDefault();
-        if(formEl.classList.contains('-solid')){
-            formEl.classList.remove('-solid');
-            formEl.classList.add('-outline');
-            formStyleInput.setAttribute('checked', true);
-        }else{
-            formEl.classList.add('-solid');
-            formEl.classList.remove('-outline');
-            formStyleInput.removeAttribute('checked');
+        var selectedStyle = formStyleInput.value;
+
+        formEl.classList.remove('-underline', '-outline', '-solid');
+        formEl.classList.add(selectedStyle);
+    });
+
+    // Background Input
+    var backgroundInput = document.body.querySelector('.js-background-input');
+    var page = document.body.querySelector('.js-section');
+    var colorWrapper = document.body.querySelector('.js-color-wrapper');
+    var colorInput = colorWrapper.querySelector('.js-custom-color-input');
+    var selectedColor = colorInput.value;
+    var selected = null;
+
+    backgroundInput.addEventListener('change', function(e){
+        e.preventDefault();
+
+        selected = backgroundInput.value;
+
+        page.classList.remove('-primary-background', '-secondary-background', '-dark-background', '-custom-background');
+        page.classList.add(selected);
+
+        if(selected === '-custom-background'){
+            colorWrapper.classList.remove('is-hidden');
+            colorWrapper.classList.add('is-visible');
+            selectedColor = colorInput.value;
+            page.style.cssText = `background-color:${selectedColor}`;
+        }
+    });
+
+    colorInput.addEventListener('change', function(){
+        selectedColor = colorInput.value;
+        if(selected === '-custom-background'){
+            page.style.cssText = `background-color:${selectedColor}`;
         }
     });
 
@@ -64,4 +125,4 @@
             formSquareInput.removeAttribute('checked');
         }
     });
-{% endjs %} #}
+{% endjs %}

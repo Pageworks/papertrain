@@ -255,6 +255,16 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0; }
 
+input[type="color"] {
+  -webkit-appearance: none;
+  border: none; }
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0; }
+
+input[type="color"]::-webkit-color-swatch {
+  border: none; }
+
 ::placeholder {
   display: none;
   color: transparent; }
@@ -389,16 +399,6 @@ html {
   html.dom-is-loading * {
     cursor: wait !important; }
 
-section.-primary-background {
-  background: #ffffff; }
-
-section.-secondary-background {
-  background: #fafafa; }
-
-section.-dark-background, section.has-image, section.has-video {
-  background: #414141;
-  color: #ffffff; }
-
 body {
   background: #ffffff;
   font-size: 1rem;
@@ -414,128 +414,25 @@ body {
 :root {
   font-size: 100%; }
 
-/**
- * This section adjusts the base headings style such as colour, weights, and size
- * to adjust line heights please visit the readability SCSS file.
- * @see `base/_readability.scss`
- *
- * To calculate REM version of tracking divide value by 16px. Example: (0.2/16px) = 0.0125rem
- */
-.o-h1 {
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
-  width: 100%;
-  font-size: 42px;
-  line-height: 68px;
-  font-weight: 300;
-  font-family: "Circular", "Montserrat", sans-serif;
-  color: rgba(0, 0, 0, 0.87); }
-  section.-dark-background .o-h1,
-  section.has-image .o-h1,
-  section.has-video .o-h1 {
-    color: rgba(255, 255, 255, 0.87); }
+section.-primary-background,
+article.-primary-background {
+  background: #ffffff; }
 
-.o-h2 {
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
-  width: 100%;
-  font-size: 33px;
-  line-height: 53px;
-  font-weight: 300;
-  font-family: "Circular", "Montserrat", sans-serif;
-  color: rgba(0, 0, 0, 0.87); }
-  section.-dark-background .o-h2,
-  section.has-image .o-h2,
-  section.has-video .o-h2 {
-    color: rgba(255, 255, 255, 0.87); }
+section.-secondary-background,
+article.-secondary-background {
+  background: #fafafa; }
 
-.o-h3 {
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
-  width: 100%;
-  font-size: 26px;
-  line-height: 42px;
-  font-weight: 400;
-  font-family: "Circular", "Montserrat", sans-serif;
-  color: rgba(0, 0, 0, 0.87); }
-  section.-dark-background .o-h3,
-  section.has-image .o-h3,
-  section.has-video .o-h3 {
-    color: rgba(255, 255, 255, 0.87); }
+section.-brand-background,
+article.-brand-background {
+  background: #547980;
+  color: white; }
 
-.o-h4 {
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
-  width: 100%;
-  font-size: 20px;
-  line-height: 32px;
-  font-weight: 400;
-  font-family: "Circular", "Montserrat", sans-serif;
-  color: rgba(0, 0, 0, 0.6); }
-  section.-dark-background .o-h4,
-  section.has-image .o-h4,
-  section.has-video .o-h4 {
-    color: rgba(255, 255, 255, 0.6); }
-
-.o-h5,
-.o-headline,
-.o-title {
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
-  width: 100%;
-  font-size: 16px;
-  line-height: 26px;
-  font-weight: 700;
-  font-family: "Circular", "Montserrat", sans-serif;
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
-  width: 100%;
-  color: rgba(0, 0, 0, 0.87); }
-  section.-dark-background .o-h5,
-  section.has-image .o-h5,
-  section.has-video .o-h5, section.-dark-background
-  .o-headline,
-  section.has-image
-  .o-headline,
-  section.has-video
-  .o-headline, section.-dark-background
-  .o-title,
-  section.has-image
-  .o-title,
-  section.has-video
-  .o-title {
-    color: rgba(255, 255, 255, 0.87); }
-
-.o-h6,
-.o-subtitle {
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
-  width: 100%;
-  font-size: 13px;
-  line-height: 21.034px;
-  font-weight: 400;
-  font-family: "Circular", "Montserrat", sans-serif;
-  padding: 0;
-  margin: 0;
-  text-transform: capitalize;
-  width: 100%;
-  color: rgba(0, 0, 0, 0.6); }
-  section.-dark-background .o-h6,
-  section.has-image .o-h6,
-  section.has-video .o-h6, section.-dark-background
-  .o-subtitle,
-  section.has-image
-  .o-subtitle,
-  section.has-video
-  .o-subtitle {
-    color: rgba(255, 255, 255, 0.6); }
+section.-dark-background, section.has-image, section.has-video,
+article.-dark-background,
+article.has-image,
+article.has-video {
+  background: #414141;
+  color: #ffffff; }
 
 .o-container {
   max-width: 1280px;
@@ -865,31 +762,37 @@ table {
       padding-right: 1rem; } }
 
 .o-switch {
-  height: 48px;
-  width: 100%;
-  margin-bottom: 1rem;
-  position: relative;
-  padding: 0 0.5rem; }
+  height: 48px !important;
+  width: 100% !important;
+  margin-bottom: 1rem !important;
+  position: relative !important;
+  padding: 0 0.5rem !important; }
   .o-switch .o-switch_item {
-    width: 100%;
-    height: 100%; }
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important; }
     .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle {
-      transform: translateX(20px); }
+      transform: translateX(20px) !important; }
       .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
         border-color: #45ADA8; }
         section.-dark-background .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
           border-color: #E5FCC2; }
+    .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_track {
+      background: #45ADA8;
+      opacity: 0.54; }
     .o-switch .o-switch_item label {
-      height: 100%;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      pointer-events: all !important; }
+      width: 100%  !important;
+      height: 100%  !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      pointer-events: all !important;
+      left: 0 !important;
+      bottom: 0 !important; }
       .o-switch .o-switch_item label .o-switch_icon {
-        display: inline-flex;
-        align-items: center;
-        cursor: pointer; }
+        display: inline-flex !important;
+        align-items: center !important;
+        cursor: pointer !important; }
         html.has-no-touch .o-switch .o-switch_item label .o-switch_icon:active .o-switch_handle:before {
           opacity: 0;
           transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
@@ -954,40 +857,42 @@ table {
             section.-dark-background .o-switch .o-switch_item label .o-switch_icon .o-switch_handle::after {
               background: #ffffff; }
       .o-switch .o-switch_item label span {
-        cursor: pointer; }
+        cursor: pointer !important; }
     .o-switch .o-switch_item .o-help {
       position: relative;
       padding: 0;
       margin-top: 4px; }
 
 .o-radio {
-  position: relative;
-  padding: 32px 0 6px;
-  text-align: left;
-  width: 100%;
-  margin-bottom: 1rem;
-  margin-top: 1rem; }
+  position: relative !important;
+  padding: 1rem 0 0 !important;
+  text-align: left !important;
+  width: 100% !important;
+  margin-bottom: 1rem !important;
+  margin-top: 1rem !important; }
+  .o-radio.has-helper {
+    margin-bottom: 2rem; }
   .o-radio label {
-    position: absolute;
-    top: 0;
-    left: 12px; }
+    position: absolute !important;
+    top: 0 !important;
+    left: 0.5rem !important; }
   .o-radio .o-radio_item {
-    display: flex;
-    align-items: center;
-    margin: 1rem; }
+    display: flex !important;
+    align-items: center !important;
+    margin: 1rem !important; }
     .o-radio .o-radio_item label {
-      display: flex;
-      align-items: center; }
-    .o-radio .o-radio_item:hover {
+      display: flex !important;
+      align-items: center !important; }
+    html.has-no-touch .o-radio .o-radio_item:hover {
       cursor: pointer !important; }
-      .o-radio .o-radio_item:hover .o-radio_icon:before {
+      html.has-no-touch .o-radio .o-radio_item:hover .o-radio_icon:before {
         transform: scale(1);
         opacity: 0.07;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-    .o-radio .o-radio_item:active .o-radio_icon:before {
+    html.has-no-touch .o-radio .o-radio_item:active .o-radio_icon:before {
       opacity: 0;
       transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
-    .o-radio .o-radio_item:active .o-radio_icon:after {
+    html.has-no-touch .o-radio .o-radio_item:active .o-radio_icon:after {
       transform: scale(1);
       opacity: 0.11;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1046,41 +951,46 @@ table {
         section.-dark-background .o-radio .o-radio_item .o-radio_icon .o-radio_inner {
           border-color: #E5FCC2; }
     .o-radio .o-radio_item input:checked + label .o-radio_icon .o-radio_inner {
-      transform: scale(0.4);
+      transform: scale(0.4) !important;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1); }
     .o-radio .o-radio_item input + label {
-      vertical-align: middle;
-      position: relative;
-      left: 0;
-      pointer-events: all;
-      cursor: pointer; }
+      vertical-align: middle !important;
+      position: relative !important;
+      left: 0 !important;
+      pointer-events: all !important;
+      cursor: pointer !important; }
+  .o-radio .o-help,
+  .o-radio .o-error {
+    padding: 0 0 0 0.5rem !important; }
 
 .o-checkbox {
-  position: relative;
-  padding: 32px 0 6px;
-  width: 100%;
-  margin-bottom: 1rem;
-  margin-top: 1rem; }
+  position: relative !important;
+  padding: 1rem 0 0 !important;
+  width: 100% !important;
+  margin-bottom: 1rem !important;
+  margin-top: 1rem !important; }
+  .o-checkbox.has-helper {
+    margin-bottom: 2rem; }
   .o-checkbox label {
-    position: absolute;
-    top: 0;
-    left: 12px; }
+    position: absolute !important;
+    top: 0 !important;
+    left: 0.5rem !important; }
   .o-checkbox .o-checkbox_item label {
-    height: 24px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    margin: 1rem; }
-  .o-checkbox .o-checkbox_item:hover {
+    height: 24px !important;
+    line-height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    margin: 1rem !important; }
+  html.has-no-touch .o-checkbox .o-checkbox_item:hover {
     cursor: pointer !important; }
-    .o-checkbox .o-checkbox_item:hover .o-checkbox_icon:before {
+    html.has-no-touch .o-checkbox .o-checkbox_item:hover .o-checkbox_icon:before {
       transform: scale(1);
       opacity: 0.07;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-  .o-checkbox .o-checkbox_item:active .o-checkbox_icon:before {
+  html.has-no-touch .o-checkbox .o-checkbox_item:active .o-checkbox_icon:before {
     opacity: 0;
     transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
-  .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
+  html.has-no-touch .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
     transform: scale(1);
     opacity: 0.11;
     transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1143,7 +1053,7 @@ table {
         section.-dark-background .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check path {
           stroke: black; }
   .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
-    background: #45ADA8;
+    background: #45ADA8 !important;
     transition: background 150ms cubic-bezier(0, 0, 0.2, 1); }
     section.-dark-background .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
       background: #E5FCC2; }
@@ -1151,10 +1061,38 @@ table {
     stroke-dashoffset: 0;
     transition: stroke-dashoffset 150ms cubic-bezier(0, 0, 0.2, 1); }
   .o-checkbox .o-checkbox_item input ~ label {
-    vertical-align: middle;
-    position: relative;
-    left: 0;
-    pointer-events: all;
+    vertical-align: middle !important;
+    position: relative !important;
+    left: 0 !important;
+    pointer-events: all !important;
+    cursor: pointer !important; }
+  .o-checkbox .o-help,
+  .o-checkbox .o-error {
+    padding: 0 0 0 0.5rem !important; }
+
+.o-color {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem; }
+  .o-color input {
+    padding: 0 !important;
+    width: 32px !important;
+    height: 32px !important;
+    border: 0 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer; }
+    .o-color input:focus + label {
+      color: rgba(0, 0, 0, 0.6) !important;
+      bottom: auto !important;
+      transition: all 150ms cubic-bezier(0, 0, 0.2, 1);
+      font-size: 16px !important; }
+      section.-dark-background .o-color input:focus + label {
+        color: rgba(255, 255, 255, 0.6) !important; }
+  .o-color label {
+    pointer-events: all !important;
+    margin-left: 1rem;
     cursor: pointer; }
 
 .o-form.-square input,
@@ -1190,19 +1128,24 @@ table {
   .o-form .o-textarea textarea {
     padding: 32px 16px 16px;
     border-radius: 4px;
-    border: 2px solid rgba(0, 0, 0, 0.3);
     width: 100%;
     min-height: 106px;
     color: #414141;
     background: transparent;
-    transition: border 75ms cubic-bezier(0.4, 0, 0.6, 1), padding 75ms cubic-bezier(0.4, 0, 0.6, 1); }
+    transition: border 75ms cubic-bezier(0.4, 0, 0.6, 1), padding 75ms cubic-bezier(0.4, 0, 0.6, 1);
+    border: 2px solid rgba(0, 0, 0, 0.3); }
     section.-dark-background .o-form .o-textarea textarea {
-      border: 1px solid rgba(250, 250, 250, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.3);
       color: #ffffff; }
+      html.has-no-touch section.-dark-background .o-form .o-textarea textarea:hover {
+        border: 2px solid rgba(255, 255, 255, 0.6); }
     .o-form .o-textarea textarea + label {
       position: absolute;
       top: 20px;
       left: 16px !important; }
+    html.has-no-touch .o-form .o-textarea textarea:hover {
+      border: 2px solid rgba(65, 65, 65, 0.6);
+      transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
     .o-form .o-textarea textarea:focus {
       border: 2px solid #45ADA8;
       padding: 31px 15px 15px;
@@ -1274,16 +1217,16 @@ table {
       section.-dark-background .o-form .o-input .-visible::after, section.-dark-background
       .o-form .o-input .-hidden::after {
         background: #ffffff; }
-    .o-form .o-input .-visible:hover:before,
+    html.has-no-touch .o-form .o-input .-visible:hover:before, html.has-no-touch
     .o-form .o-input .-hidden:hover:before {
       transform: scale(1);
       opacity: 0.07;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-    .o-form .o-input .-visible:active:before,
+    html.has-no-touch .o-form .o-input .-visible:active:before, html.has-no-touch
     .o-form .o-input .-hidden:active:before {
       opacity: 0;
       transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
-    .o-form .o-input .-visible:active:after,
+    html.has-no-touch .o-form .o-input .-visible:active:after, html.has-no-touch
     .o-form .o-input .-hidden:active:after {
       transform: scale(1);
       opacity: 0.11;
@@ -1310,7 +1253,11 @@ table {
   left: 0;
   width: 100%;
   color: rgba(0, 0, 0, 0.5);
-  font-size: 12px; }
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden; }
   section.-dark-background .o-form .o-error, section.-dark-background
   .o-form .o-help {
     color: rgba(255, 255, 255, 0.5); }
@@ -1409,29 +1356,32 @@ html.has-js .o-form.-outline .o-input.is-invalid .o-error {
   background: transparent;
   border-radius: 4px;
   padding: 12px 16px 10px;
-  border: 1px solid rgba(65, 65, 65, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.3);
   transition: all 75ms cubic-bezier(0.4, 0, 0.6, 1); }
   section.-dark-background .o-form.-outline input, section.-dark-background
   .o-form.-outline select {
-    border: 1px solid rgba(250, 250, 250, 0.3); }
+    border: 2px solid rgba(255, 255, 255, 0.3); }
+    html.has-no-touch section.-dark-background .o-form.-outline input:hover, html.has-no-touch section.-dark-background
+    .o-form.-outline select:hover {
+      border: 2px solid rgba(255, 255, 255, 0.6); }
   .o-form.-outline input + label,
   .o-form.-outline select + label {
     position: absolute;
     left: 16px;
     bottom: 20px;
     padding: 0 4px; }
-  .o-form.-outline input:hover,
+  html.has-no-touch .o-form.-outline input:hover, html.has-no-touch
   .o-form.-outline select:hover {
-    border: 1px solid rgba(65, 65, 65, 0.87);
+    border: 2px solid rgba(65, 65, 65, 0.6);
     transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
   .o-form.-outline input:focus,
   .o-form.-outline select:focus {
-    border: 2px solid rgba(69, 173, 168, 0.87);
+    border: 2px solid rgba(69, 173, 168, 0.87) !important;
     padding: 11px 15px 9px;
     transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
     section.-dark-background .o-form.-outline input:focus, section.-dark-background
     .o-form.-outline select:focus {
-      border-color: rgba(229, 252, 194, 0.87); }
+      border-color: rgba(229, 252, 194, 0.87) !important; }
     .o-form.-outline input:focus + label,
     .o-form.-outline select:focus + label {
       color: #45ADA8;
@@ -1573,7 +1523,7 @@ html.has-js .o-form.-underline .o-input.has-value label {
 
 html.has-js .o-form.-underline .o-input.is-invalid:after {
   transform: scaleX(1);
-  background: #ff715b;
+  background: #ff715b !important;
   transition: background 75ms cubic-bezier(0.4, 0, 0.2, 1); }
 
 html.has-js .o-form.-underline .o-input.is-invalid .o-error {
@@ -1615,14 +1565,17 @@ section.-dark-background .o-form.-underline .o-input:after {
   transition: border-bottom-color 75ms cubic-bezier(0.4, 0, 1, 1), background 150ms cubic-bezier(0.4, 0, 0.2, 1); }
   section.-dark-background .o-form.-underline input, section.-dark-background
   .o-form.-underline select {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
     background: transparent; }
-  .o-form.-underline input:hover,
-  .o-form.-underline select:hover {
-    background: transparent; }
-    section.-dark-background .o-form.-underline input:hover, section.-dark-background
+    html.has-no-touch section.-dark-background .o-form.-underline input:hover, html.has-no-touch section.-dark-background
     .o-form.-underline select:hover {
-      background: transparent; }
+      background: transparent;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.6); }
+  html.has-no-touch .o-form.-underline input:hover, html.has-no-touch
+  .o-form.-underline select:hover {
+    background: transparent;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.6);
+    transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
   .o-form.-underline input:focus,
   .o-form.-underline select:focus {
     background: transparent; }
@@ -1920,6 +1873,182 @@ button,
     opacity: 0;
     transform: scale(1) translateX(-50%);
     animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); } }
+
+/**
+ * This section adjusts the base headings style such as colour, weights, and size
+ * to adjust line heights please visit the readability SCSS file.
+ * @see `base/_readability.scss`
+ *
+ * To calculate REM version of tracking divide value by 16px. Example: (0.2/16px) = 0.0125rem
+ */
+.o-h1 {
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  width: 100%;
+  color: black;
+  font-size: 42px;
+  line-height: 68px;
+  font-weight: 300;
+  font-family: "Circular", "Montserrat", sans-serif;
+  opacity: 0.87; }
+  section.-dark-background .o-h1,
+  section.has-image .o-h1,
+  section.has-video .o-h1 {
+    color: white; }
+  section.-brand-background .o-h1 {
+    color: white; }
+
+.o-h2 {
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  width: 100%;
+  color: black;
+  font-size: 33px;
+  line-height: 53px;
+  font-weight: 300;
+  font-family: "Circular", "Montserrat", sans-serif;
+  opacity: 0.87; }
+  section.-dark-background .o-h2,
+  section.has-image .o-h2,
+  section.has-video .o-h2 {
+    color: white; }
+  section.-brand-background .o-h2 {
+    color: white; }
+
+.o-h3 {
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  width: 100%;
+  color: black;
+  font-size: 26px;
+  line-height: 42px;
+  font-weight: 400;
+  font-family: "Circular", "Montserrat", sans-serif;
+  opacity: 0.87; }
+  section.-dark-background .o-h3,
+  section.has-image .o-h3,
+  section.has-video .o-h3 {
+    color: white; }
+  section.-brand-background .o-h3 {
+    color: white; }
+
+.o-h4 {
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  width: 100%;
+  color: black;
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 400;
+  font-family: "Circular", "Montserrat", sans-serif;
+  opacity: 0.87; }
+  section.-dark-background .o-h4,
+  section.has-image .o-h4,
+  section.has-video .o-h4 {
+    color: white; }
+  section.-brand-background .o-h4 {
+    color: white; }
+
+.o-h5,
+.o-headline,
+.o-title {
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  width: 100%;
+  color: black;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 700;
+  font-family: "Circular", "Montserrat", sans-serif;
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  width: 100%;
+  color: black;
+  opacity: 0.87; }
+  section.-dark-background .o-h5,
+  section.has-image .o-h5,
+  section.has-video .o-h5, section.-dark-background
+  .o-headline,
+  section.has-image
+  .o-headline,
+  section.has-video
+  .o-headline, section.-dark-background
+  .o-title,
+  section.has-image
+  .o-title,
+  section.has-video
+  .o-title {
+    color: white; }
+  section.-brand-background .o-h5, section.-brand-background
+  .o-headline, section.-brand-background
+  .o-title {
+    color: white; }
+  section.-dark-background .o-h5,
+  section.has-image .o-h5,
+  section.has-video .o-h5, section.-dark-background
+  .o-headline,
+  section.has-image
+  .o-headline,
+  section.has-video
+  .o-headline, section.-dark-background
+  .o-title,
+  section.has-image
+  .o-title,
+  section.has-video
+  .o-title {
+    color: white; }
+  section.-brand-background .o-h5, section.-brand-background
+  .o-headline, section.-brand-background
+  .o-title {
+    color: white; }
+
+.o-h6,
+.o-subtitle {
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  width: 100%;
+  color: black;
+  font-size: 13px;
+  line-height: 21.034px;
+  font-weight: 400;
+  font-family: "Circular", "Montserrat", sans-serif;
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  width: 100%;
+  color: black;
+  opacity: 0.87; }
+  section.-dark-background .o-h6,
+  section.has-image .o-h6,
+  section.has-video .o-h6, section.-dark-background
+  .o-subtitle,
+  section.has-image
+  .o-subtitle,
+  section.has-video
+  .o-subtitle {
+    color: white; }
+  section.-brand-background .o-h6, section.-brand-background
+  .o-subtitle {
+    color: white; }
+  section.-dark-background .o-h6,
+  section.has-image .o-h6,
+  section.has-video .o-h6, section.-dark-background
+  .o-subtitle,
+  section.has-image
+  .o-subtitle,
+  section.has-video
+  .o-subtitle {
+    color: white; }
+  section.-brand-background .o-h6, section.-brand-background
+  .o-subtitle {
+    color: white; }
 
 .c-transition {
   height: 4px;
@@ -2971,11 +3100,15 @@ button,
  */
 .is-visible {
   visibility: visible !important;
-  opacity: 1 !important; }
+  opacity: 1 !important;
+  height: auto !important;
+  transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
 
 .is-hidden {
   visibility: hidden !important;
-  opacity: 0 !important; }
+  opacity: 0 !important;
+  height: 0 !important;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.6, 1); }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   svg {
