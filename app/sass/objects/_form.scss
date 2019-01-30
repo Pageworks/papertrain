@@ -1,9 +1,7 @@
 // Forms
 // ==========================================================================
 
-// Switch (styled single checkbox) input wrapper
-// Switch inputs have a universal style
-// Styled outside of the form element since they are not always form elements
+// Switch (styled single checkbox) Input
 .o-switch{
     height: 48px !important;
     width: 100% !important;
@@ -157,8 +155,7 @@
     }
 }
 
-// Radio input wrapper
-// Radio buttons have a universal style
+// Radio Input
 .o-radio{
     position: relative !important;
     padding: $unit 0 0 !important;
@@ -309,8 +306,7 @@
     }
 }
 
-// Checkbox input wrapper
-// Checkbox inputs have a universal style
+// Checkbox Input
 .o-checkbox{
     position: relative !important;
     padding: $unit 0 0 !important;
@@ -476,6 +472,7 @@
     }
 }
 
+// Color Input
 .o-color{
     display: flex;
     justify-content: flex-start;
@@ -512,6 +509,7 @@
     }
 }
 
+// Form Object / Wrapper
 .o-form{
     &.-square{
         input,
@@ -521,7 +519,7 @@
         }
     }
 
-    // Text area input wrapper
+    // Textarea Input
     .o-textarea{
         position: relative;
         width: 100%;
@@ -618,7 +616,7 @@
         }
     }
 
-    // Base input wrapper
+    // Input
     .o-input{
         height: 56px;
         width: 100%;

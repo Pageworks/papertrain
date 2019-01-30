@@ -8,14 +8,10 @@
 {
     visibility: visible !important;
     opacity: 1 !important;
-    height: auto !important;
-    transition: all 150ms $ease-in;
 }
 
 .is-hidden
 {
     visibility: hidden !important;
     opacity: 0 !important;
-    height: 0 !important;
-    transition: all 150ms $ease-sharp;
 }
