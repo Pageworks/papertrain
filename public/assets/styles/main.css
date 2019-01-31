@@ -803,6 +803,177 @@ table {
 .o-form .o-input select {
   color: white; }
 
+.-base-background .o-form .o-radio .o-checkbox_icon:before, .-base-background .o-form .o-radio .o-checkbox_icon:after, .-base-background
+.o-form .o-radio .o-radio_icon:before, .-base-background
+.o-form .o-radio .o-radio_icon:after, .-base-background
+.o-form .o-radio .o-switch_icon .o-switch_handle:before, .-base-background
+.o-form .o-radio .o-switch_icon .o-switch_handle:after, .-base-background
+.o-form .o-checkbox .o-checkbox_icon:before, .-base-background
+.o-form .o-checkbox .o-checkbox_icon:after, .-base-background
+.o-form .o-checkbox .o-radio_icon:before, .-base-background
+.o-form .o-checkbox .o-radio_icon:after, .-base-background
+.o-form .o-checkbox .o-switch_icon .o-switch_handle:before, .-base-background
+.o-form .o-checkbox .o-switch_icon .o-switch_handle:after, .-base-background
+.o-form .o-switch .o-checkbox_icon:before, .-base-background
+.o-form .o-switch .o-checkbox_icon:after, .-base-background
+.o-form .o-switch .o-radio_icon:before, .-base-background
+.o-form .o-switch .o-radio_icon:after, .-base-background
+.o-form .o-switch .o-switch_icon .o-switch_handle:before, .-base-background
+.o-form .o-switch .o-switch_icon .o-switch_handle:after {
+  background-color: #45ADA8; }
+
+.-secondary-background .o-form .o-radio .o-checkbox_icon:before, .-secondary-background .o-form .o-radio .o-checkbox_icon:after, .-secondary-background
+.o-form .o-radio .o-radio_icon:before, .-secondary-background
+.o-form .o-radio .o-radio_icon:after, .-secondary-background
+.o-form .o-radio .o-switch_icon .o-switch_handle:before, .-secondary-background
+.o-form .o-radio .o-switch_icon .o-switch_handle:after, .-secondary-background
+.o-form .o-checkbox .o-checkbox_icon:before, .-secondary-background
+.o-form .o-checkbox .o-checkbox_icon:after, .-secondary-background
+.o-form .o-checkbox .o-radio_icon:before, .-secondary-background
+.o-form .o-checkbox .o-radio_icon:after, .-secondary-background
+.o-form .o-checkbox .o-switch_icon .o-switch_handle:before, .-secondary-background
+.o-form .o-checkbox .o-switch_icon .o-switch_handle:after, .-secondary-background
+.o-form .o-switch .o-checkbox_icon:before, .-secondary-background
+.o-form .o-switch .o-checkbox_icon:after, .-secondary-background
+.o-form .o-switch .o-radio_icon:before, .-secondary-background
+.o-form .o-switch .o-radio_icon:after, .-secondary-background
+.o-form .o-switch .o-switch_icon .o-switch_handle:before, .-secondary-background
+.o-form .o-switch .o-switch_icon .o-switch_handle:after {
+  background-color: #45ADA8; }
+
+.-dark-background .o-form .o-radio .o-checkbox_icon:before, .-dark-background .o-form .o-radio .o-checkbox_icon:after, .-dark-background
+.o-form .o-radio .o-radio_icon:before, .-dark-background
+.o-form .o-radio .o-radio_icon:after, .-dark-background
+.o-form .o-radio .o-switch_icon .o-switch_handle:before, .-dark-background
+.o-form .o-radio .o-switch_icon .o-switch_handle:after, .-dark-background
+.o-form .o-checkbox .o-checkbox_icon:before, .-dark-background
+.o-form .o-checkbox .o-checkbox_icon:after, .-dark-background
+.o-form .o-checkbox .o-radio_icon:before, .-dark-background
+.o-form .o-checkbox .o-radio_icon:after, .-dark-background
+.o-form .o-checkbox .o-switch_icon .o-switch_handle:before, .-dark-background
+.o-form .o-checkbox .o-switch_icon .o-switch_handle:after, .-dark-background
+.o-form .o-switch .o-checkbox_icon:before, .-dark-background
+.o-form .o-switch .o-checkbox_icon:after, .-dark-background
+.o-form .o-switch .o-radio_icon:before, .-dark-background
+.o-form .o-switch .o-radio_icon:after, .-dark-background
+.o-form .o-switch .o-switch_icon .o-switch_handle:before, .-dark-background
+.o-form .o-switch .o-switch_icon .o-switch_handle:after {
+  background-color: #E5FCC2; }
+
+.-brand-background .o-form .o-radio .o-checkbox_icon:before, .-brand-background .o-form .o-radio .o-checkbox_icon:after, .-brand-background
+.o-form .o-radio .o-radio_icon:before, .-brand-background
+.o-form .o-radio .o-radio_icon:after, .-brand-background
+.o-form .o-radio .o-switch_icon .o-switch_handle:before, .-brand-background
+.o-form .o-radio .o-switch_icon .o-switch_handle:after, .-brand-background
+.o-form .o-checkbox .o-checkbox_icon:before, .-brand-background
+.o-form .o-checkbox .o-checkbox_icon:after, .-brand-background
+.o-form .o-checkbox .o-radio_icon:before, .-brand-background
+.o-form .o-checkbox .o-radio_icon:after, .-brand-background
+.o-form .o-checkbox .o-switch_icon .o-switch_handle:before, .-brand-background
+.o-form .o-checkbox .o-switch_icon .o-switch_handle:after, .-brand-background
+.o-form .o-switch .o-checkbox_icon:before, .-brand-background
+.o-form .o-switch .o-checkbox_icon:after, .-brand-background
+.o-form .o-switch .o-radio_icon:before, .-brand-background
+.o-form .o-switch .o-radio_icon:after, .-brand-background
+.o-form .o-switch .o-switch_icon .o-switch_handle:before, .-brand-background
+.o-form .o-switch .o-switch_icon .o-switch_handle:after {
+  background-color: #E5FCC2; }
+
+.-base-background .o-form .o-radio .o-radio_outter, .-base-background
+.o-form .o-radio .o-radio_inner, .-base-background
+.o-form .o-radio .o-checkbox_box, .-base-background
+.o-form .o-checkbox .o-radio_outter, .-base-background
+.o-form .o-checkbox .o-radio_inner, .-base-background
+.o-form .o-checkbox .o-checkbox_box, .-base-background
+.o-form .o-switch .o-radio_outter, .-base-background
+.o-form .o-switch .o-radio_inner, .-base-background
+.o-form .o-switch .o-checkbox_box {
+  border-color: #45ADA8; }
+
+.-secondary-background .o-form .o-radio .o-radio_outter, .-secondary-background
+.o-form .o-radio .o-radio_inner, .-secondary-background
+.o-form .o-radio .o-checkbox_box, .-secondary-background
+.o-form .o-checkbox .o-radio_outter, .-secondary-background
+.o-form .o-checkbox .o-radio_inner, .-secondary-background
+.o-form .o-checkbox .o-checkbox_box, .-secondary-background
+.o-form .o-switch .o-radio_outter, .-secondary-background
+.o-form .o-switch .o-radio_inner, .-secondary-background
+.o-form .o-switch .o-checkbox_box {
+  border-color: #45ADA8; }
+
+.-dark-background .o-form .o-radio .o-radio_outter, .-dark-background
+.o-form .o-radio .o-radio_inner, .-dark-background
+.o-form .o-radio .o-checkbox_box, .-dark-background
+.o-form .o-checkbox .o-radio_outter, .-dark-background
+.o-form .o-checkbox .o-radio_inner, .-dark-background
+.o-form .o-checkbox .o-checkbox_box, .-dark-background
+.o-form .o-switch .o-radio_outter, .-dark-background
+.o-form .o-switch .o-radio_inner, .-dark-background
+.o-form .o-switch .o-checkbox_box {
+  border-color: #E5FCC2; }
+
+.-brand-background .o-form .o-radio .o-radio_outter, .-brand-background
+.o-form .o-radio .o-radio_inner, .-brand-background
+.o-form .o-radio .o-checkbox_box, .-brand-background
+.o-form .o-checkbox .o-radio_outter, .-brand-background
+.o-form .o-checkbox .o-radio_inner, .-brand-background
+.o-form .o-checkbox .o-checkbox_box, .-brand-background
+.o-form .o-switch .o-radio_outter, .-brand-background
+.o-form .o-switch .o-radio_inner, .-brand-background
+.o-form .o-switch .o-checkbox_box {
+  border-color: #E5FCC2; }
+
+.-base-background .o-form .o-checkbox .o-checkbox_item .o-checkbox_check path {
+  stroke: rgba(0, 0, 0, 0.87) !important; }
+
+.-secondary-background .o-form .o-checkbox .o-checkbox_item .o-checkbox_check path {
+  stroke: rgba(0, 0, 0, 0.87) !important; }
+
+.-dark-background .o-form .o-checkbox .o-checkbox_item .o-checkbox_check path {
+  stroke: rgba(0, 0, 0, 0.87) !important; }
+
+.-brand-background .o-form .o-checkbox .o-checkbox_item .o-checkbox_check path {
+  stroke: rgba(0, 0, 0, 0.87) !important; }
+
+.-base-background .o-form .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
+  background-color: #45ADA8; }
+
+.-secondary-background .o-form .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
+  background-color: #45ADA8; }
+
+.-dark-background .o-form .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
+  background-color: #E5FCC2; }
+
+.-brand-background .o-form .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
+  background-color: #E5FCC2; }
+
+.-base-background .o-form .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
+  border-color: #45ADA8; }
+
+.-secondary-background .o-form .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
+  border-color: #45ADA8; }
+
+.-dark-background .o-form .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
+  border-color: #E5FCC2; }
+
+.-brand-background .o-form .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
+  border-color: #E5FCC2; }
+
+.-base-background .o-form .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_track {
+  background-color: #45ADA8; }
+
+.-secondary-background .o-form .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_track {
+  background-color: #45ADA8; }
+
+.-dark-background .o-form .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_track {
+  background-color: #E5FCC2; }
+
+.-brand-background .o-form .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_track {
+  background-color: #E5FCC2; }
+
+.o-form .o-switch .o-switch_item label .o-switch_icon .o-switch_track {
+  background-color: #000000; }
+
 .o-switch {
   height: 48px !important;
   width: 100% !important;
@@ -815,12 +986,7 @@ table {
     position: relative !important; }
     .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle {
       transform: translateX(20px) !important; }
-      .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
-        border-color: #45ADA8; }
-        section.-dark-background .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_handle .o-switch_circle {
-          border-color: #E5FCC2; }
     .o-switch .o-switch_item input:checked + label .o-switch_icon .o-switch_track {
-      background: #45ADA8;
       opacity: 0.54; }
     .o-switch .o-switch_item label {
       width: 100%  !important;
@@ -835,9 +1001,6 @@ table {
         display: inline-flex !important;
         align-items: center !important;
         cursor: pointer !important; }
-        html.has-no-touch .o-switch .o-switch_item label .o-switch_icon:active .o-switch_handle:before {
-          opacity: 0;
-          transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
         html.has-no-touch .o-switch .o-switch_item label .o-switch_icon:active .o-switch_handle:after {
           transform: scale(1);
           opacity: 0.11;
@@ -851,7 +1014,6 @@ table {
           border-radius: 7px;
           height: 12px;
           width: 30px;
-          background: #000000;
           transition: background 75ms cubic-bezier(0.4, 0, 0.2, 1); }
         .o-switch .o-switch_item label .o-switch_icon .o-switch_handle {
           height: 10px;
@@ -864,7 +1026,9 @@ table {
           flex-direction: column;
           transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1); }
           .o-switch .o-switch_item label .o-switch_icon .o-switch_handle .o-switch_circle {
-            border: 10px solid #ffffff;
+            border-width: 10px;
+            border-style: solid;
+            border-color: #ffffff;
             box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
             border-radius: 100%;
             position: absolute;
@@ -872,7 +1036,6 @@ table {
             transition: border-color 75ms cubic-bezier(0.4, 0, 0.2, 1); }
           .o-switch .o-switch_item label .o-switch_icon .o-switch_handle::before {
             content: "";
-            background: #45ADA8;
             position: absolute;
             display: inline-block;
             border-radius: 100%;
@@ -882,11 +1045,8 @@ table {
             opacity: 0;
             z-index: 1;
             transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
-            section.-dark-background .o-switch .o-switch_item label .o-switch_icon .o-switch_handle::before {
-              background: #ffffff; }
           .o-switch .o-switch_item label .o-switch_icon .o-switch_handle::after {
             content: "";
-            background: #45ADA8;
             position: absolute;
             display: inline-block;
             border-radius: 100%;
@@ -896,8 +1056,6 @@ table {
             opacity: 0;
             z-index: 2;
             transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
-            section.-dark-background .o-switch .o-switch_item label .o-switch_icon .o-switch_handle::after {
-              background: #ffffff; }
       .o-switch .o-switch_item label span {
         cursor: pointer !important; }
     .o-switch .o-switch_item .o-help {
@@ -931,9 +1089,6 @@ table {
         transform: scale(1);
         opacity: 0.07;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-    html.has-no-touch .o-radio .o-radio_item:active .o-radio_icon:before {
-      opacity: 0;
-      transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
     html.has-no-touch .o-radio .o-radio_item:active .o-radio_icon:after {
       transform: scale(1);
       opacity: 0.11;
@@ -950,7 +1105,6 @@ table {
       pointer-events: none; }
       .o-radio .o-radio_item .o-radio_icon::before {
         content: "";
-        background: #45ADA8;
         position: absolute;
         display: inline-block;
         border-radius: 100%;
@@ -959,11 +1113,8 @@ table {
         transform: scale(0);
         opacity: 0;
         transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
-        section.-dark-background .o-radio .o-radio_item .o-radio_icon::before {
-          background: #ffffff; }
       .o-radio .o-radio_item .o-radio_icon::after {
         content: "";
-        background: #45ADA8;
         position: absolute;
         display: inline-block;
         border-radius: 100%;
@@ -972,26 +1123,22 @@ table {
         transform: scale(0);
         opacity: 0;
         transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
-        section.-dark-background .o-radio .o-radio_item .o-radio_icon::after {
-          background: #ffffff; }
       .o-radio .o-radio_item .o-radio_icon .o-radio_outter {
         height: 16px;
         width: 16px;
         border-radius: 100%;
-        border: 2px solid #45ADA8;
+        border-width: 2px;
+        border-style: solid;
         position: absolute; }
-        section.-dark-background .o-radio .o-radio_item .o-radio_icon .o-radio_outter {
-          border-color: #E5FCC2; }
       .o-radio .o-radio_item .o-radio_icon .o-radio_inner {
         transform: scale(0);
         height: 100%;
         width: 100%;
-        border: solid 10px #45ADA8;
+        border-width: 10px;
+        border-style: solid;
         border-radius: 100%;
         position: absolute;
         transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1); }
-        section.-dark-background .o-radio .o-radio_item .o-radio_icon .o-radio_inner {
-          border-color: #E5FCC2; }
     .o-radio .o-radio_item input:checked + label .o-radio_icon .o-radio_inner {
       transform: scale(0.4) !important;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1029,9 +1176,6 @@ table {
       transform: scale(1);
       opacity: 0.07;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-  html.has-no-touch .o-checkbox .o-checkbox_item:active .o-checkbox_icon:before {
-    opacity: 0;
-    transition: opacity 75ms cubic-bezier(0.4, 0, 1, 1); }
   html.has-no-touch .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
     transform: scale(1);
     opacity: 0.11;
@@ -1048,7 +1192,6 @@ table {
     pointer-events: none; }
     .o-checkbox .o-checkbox_item .o-checkbox_icon::before {
       content: "";
-      background: #45ADA8;
       position: absolute;
       display: inline-block;
       border-radius: 100%;
@@ -1057,11 +1200,8 @@ table {
       transform: scale(0);
       opacity: 0;
       transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
-      section.-dark-background .o-checkbox .o-checkbox_item .o-checkbox_icon::before {
-        background: #ffffff; }
     .o-checkbox .o-checkbox_item .o-checkbox_icon::after {
       content: "";
-      background: #45ADA8;
       position: absolute;
       display: inline-block;
       border-radius: 100%;
@@ -1070,35 +1210,26 @@ table {
       transform: scale(0);
       opacity: 0;
       transition: transform 75ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
-      section.-dark-background .o-checkbox .o-checkbox_item .o-checkbox_icon::after {
-        background: #ffffff; }
     .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_box {
       position: absolute;
       height: 16px;
       width: 16px;
       border-radius: 2px;
-      border: 2px solid #45ADA8;
+      border-width: 2px;
+      border-style: solid;
       background: transparent;
       transition: background 75ms cubic-bezier(0.4, 0, 0.6, 1); }
-      section.-dark-background .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_box {
-        border-color: #E5FCC2; }
     .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check {
       position: absolute;
       transform: scale(0.5); }
       .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check path {
-        stroke: black;
         stroke-width: 3px;
         stroke-linecap: round;
         stroke-dasharray: 30;
         stroke-dashoffset: 30;
         transition: stroke-dashoffset 75ms cubic-bezier(0.4, 0, 0.6, 1); }
-        section.-dark-background .o-checkbox .o-checkbox_item .o-checkbox_icon .o-checkbox_check path {
-          stroke: black; }
   .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
-    background: #45ADA8 !important;
     transition: background 150ms cubic-bezier(0, 0, 0.2, 1); }
-    section.-dark-background .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_box {
-      background: #E5FCC2; }
   .o-checkbox .o-checkbox_item input:checked + label .o-checkbox_icon .o-checkbox_check path {
     stroke-dashoffset: 0;
     transition: stroke-dashoffset 150ms cubic-bezier(0, 0, 0.2, 1); }
