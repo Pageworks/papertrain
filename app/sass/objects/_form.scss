@@ -922,13 +922,14 @@
 
         .-visible,
         .-hidden{
-            @include position(absolute, null 12px 18px null);
+            @include position(absolute, null 0 0 null);
             cursor: pointer;
             display: inline-flex;
             justify-content: center;
             align-items: center;
             opacity: 0.3;
             transition: all 150ms $ease;
+            @include size(48px, 48px);
 
             &::before{
                 content:"";
@@ -975,7 +976,7 @@
         &.has-content-hidden,
         &.has-content-visible{
             input{
-                padding-right: 34px !important;
+                padding-right: 48px !important;
             }
         }
 

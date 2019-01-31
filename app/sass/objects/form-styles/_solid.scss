@@ -173,9 +173,12 @@
 // ==========================================================================
 &.-solid{
     input,
-    select,
-    textarea{
+    select{
         border-radius: 8px 8px 0 0;
+    }
+
+    textarea{
+        border-radius: 8px;
     }
 
     .o-input{
