@@ -233,7 +233,7 @@
                     </div>
                 </div>
             </div>
-            <form class="js-form o-layout -gutter -solid" data-module="BasicForm">
+            {# <form class="js-form o-layout -gutter -solid" data-module="BasicForm">
                 {{ form.input('Full Name', 'fullName', 'text', 'u-1/1', true, 'name', 'fas fa-user', 'Please provide your first and last name.') }}
 
                 {{ form.input('Email Address', 'email', 'email', 'u-1/1', true, 'email') }}
@@ -247,15 +247,15 @@
                 {{ form.pin('Pin', 'pin', 'u-1/1 u-1/2@medium', true) }}
 
                 {% set options = [
-                    { 
+                    {
                         title: 'Orange',
                         value: 'orange'
                     },
-                    { 
+                    {
                         title: 'Cat',
                         value: 'cat'
                     },
-                    { 
+                    {
                         title: 'Spider',
                         value: 'spider'
                     },
@@ -265,23 +265,23 @@
                 {{ form.textarea('Description', 'desc', false, 'Please describe something you see.') }}
 
                 {% set flavors = [
-                    { 
+                    {
                         title: 'Cookie Dough',
                         value: 'cookieDough'
                     },
-                    { 
+                    {
                         title: 'Candy Bar',
                         value: 'candyBar'
                     },
-                    { 
+                    {
                         title: 'Birthday Cake',
                         value: 'birthdayCake'
                     },
-                    { 
+                    {
                         title: 'Chocolate',
                         value: 'chocolate'
                     },
-                    { 
+                    {
                         title: 'Lemon Cake',
                         value: 'lemonCake'
                     },
@@ -290,23 +290,23 @@
                 {{ form.radio('Favorite Flavor', 'favFlavor', flavors) }}
 
                 {% set otherFlavors = [
-                    { 
+                    {
                         title: 'Mint Chip',
                         value: 'mintChip'
                     },
-                    { 
+                    {
                         title: 'Chocolate Moca Chip',
                         value: 'chocolateMocaChip'
                     },
-                    { 
+                    {
                         title: 'S\'mores',
                         value: 'smores'
                     },
-                    { 
+                    {
                         title: 'Peanut Butter Cup',
                         value: 'peanutButterCup'
                     },
-                    { 
+                    {
                         title: 'Cookies & Cream',
                         value: 'cookiesAndCream'
                     },
@@ -319,7 +319,7 @@
                 {{ form.switch('Are You Happy?', 'isHappy', true, 'u-1/1', null) }}
 
                 {{ form.switch('Are Sure?', 'isSure', false) }}
-            </form>
+            </form> #}
         </div>
     </section>
 <!-- Content -->
@@ -362,7 +362,7 @@
     // Square Style Toggle
     var formSquareToggle = document.body.querySelector('.js-form-square-input');
     var formSquareInput = formSquareToggle.querySelector('input');
-    
+
     if(formSquareToggle && formEl) formSquareInput.addEventListener('change', function(e){
         e.preventDefault();
         if(formEl.classList.contains('-square')){

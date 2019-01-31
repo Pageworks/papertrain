@@ -9,7 +9,7 @@ hr
     margin: 0;
     display: block;
 
-    section.-dark-background & {
+    .-dark-background & {
         border-color: $white;
     }
 }
@@ -19,7 +19,7 @@ a
     color: $font-base;
     text-decoration: none;
 
-    section.-dark-background & {
+    .-dark-background & {
         color: $font-alt;
     }
 }
@@ -105,38 +105,5 @@ p{
                 transition: transform 225ms $ease-in, opacity 75ms 0ms $ease;
             }
         }
-    }
-}
-
-code{
-    background: $light-gray;
-    border-radius: 4px;
-    font-family: $font-code;
-    font-size: $unit;
-    margin: 0;
-    padding: $unit-small $unit;
-    white-space: nowrap;
-    overflow-x: auto;
-    max-width: 100%;
-    display: inline-block;
-}
-
-blockquote{
-    border-left: solid 3px rgba($primary, 0.15);
-    font-family: $font-quote;
-    margin: 0 0 0 -1rem !important;
-    padding: 0 0 0 1rem;
-    quotes: none;
-    font-size: 1.25rem;
-    letter-spacing: 0.0125rem;
-    line-height: 2rem;
-    text-align: justify;
-    color: rgba($primary, 0.87);
-
-    section.-dark-background &,
-    section.has-image &,
-    section.has-video & {
-        color: rgba($font-alt, 0.87);
-        border-left-color: rgba($font-alt, 0.15);
     }
 }

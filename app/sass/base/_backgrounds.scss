@@ -8,10 +8,12 @@ section,
 article{
     &.-base-background{
         background: $base-background-color;
+        color: $font-base;
     }
 
     &.-secondary-background{
         background: $secondary-background-color;
+        color: $font-base;
     }
 
     &.-brand-background{

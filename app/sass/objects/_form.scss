@@ -1,4 +1,126 @@
-// Forms
+/* stylelint-disable */
+
+// Background Colors Config
+// ==========================================================================
+
+.o-form{
+    .o-help{
+        .-base-background & {
+            color: contrast($base-background-color, 0.5);
+        }
+
+        .-secondary-background & {
+            color: contrast($secondary-background-color, 0.5);
+        }
+
+        .-dark-background & {
+            color: contrast($dark-background-color, 0.5);
+        }
+
+        .-brand-background & {
+            color: contrast($brand-background-color, 0.5);
+        }
+    }
+
+    .o-textarea{
+        textarea{
+            .-base-background & {
+                border-color: contrast($base-background-color, 0.3);
+                color: $font-base;
+
+                @include hover{
+                    border-color: contrast($base-background-color, 0.6);
+                    transition: border 150ms $ease-in;
+                }
+
+                &:focus{
+                    border-color: $primary !important;
+
+                    & + label{
+                        color: $primary;
+                    }
+                }
+            }
+
+            .-secondary-background & {
+                border-color: contrast($secondary-background-color, 0.3);
+                color: $font-base;
+
+                @include hover{
+                    border-color: contrast($secondary-background-color, 0.6);
+                    transition: border 150ms $ease-in;
+                }
+
+                &:focus{
+                    border-color: $primary !important;
+
+                    & + label{
+                        color: $primary;
+                    }
+                }
+            }
+
+            .-dark-background & {
+                border-color: contrast($dark-background-color, 0.3);
+                color: $font-alt;
+
+                @include hover{
+                    border-color: contrast($dark-background-color, 0.6);
+                    transition: border 150ms $ease-in;
+                }
+
+                &:focus{
+                    border-color: $primary-alt !important;
+
+                    & + label{
+                        color: $primary-alt;
+                    }
+                }
+            }
+
+            .-brand-background & {
+                border-color: contrast($brand-background-color, 0.3);
+                color: contrast($brand-background-color);
+
+                @include hover{
+                    border-color: contrast($brand-background-color, 0.6);
+                    transition: border 150ms $ease-in;
+                }
+
+                &:focus{
+                    border-color: $primary-alt !important;
+
+                    & + label{
+                        color: $primary-alt;
+                    }
+                }
+            }
+        }
+    }
+
+    .o-input{
+        input,
+        select{
+            .-base-background & {
+                color: $font-base;
+            }
+
+            .-secondary-background & {
+                color: $font-base;
+            }
+
+            .-dark-background & {
+                color: $font-alt;
+            }
+
+            .-brand-background & {
+                color: contrast($brand-background-color);
+            }
+        }
+    }
+}
+
+// Form Object Config
 // ==========================================================================
 
 // Switch (styled single checkbox) Input
@@ -543,9 +665,17 @@
             }
 
             textarea{
-                border: 2px solid $error;
+                border-color: rgba($error, 0.87) !important;
                 padding: 31px 15px 15px;
                 transition: border 150ms $ease, padding 150ms $ease;
+
+                &:focus{
+                    border-color: rgba($error, 0.87) !important;
+
+                    & + label{
+                        color: rgba($error, 0.87) !important;
+                    }
+                }
 
                 & + label{
                     top: 12px;
@@ -569,19 +699,10 @@
             border-radius: 4px;
             width: 100%;
             min-height: 106px;
-            color: $font-base;
             background: transparent;
             transition: border 75ms $ease-sharp, padding 75ms $ease-sharp;
-            border: 2px solid rgba($black, 0.3);
-
-            section.-dark-background & {
-                border: 2px solid rgba($white, 0.3);
-                color: $font-alt;
-
-                @include hover{
-                    border: 2px solid rgba($white, 0.6);
-                }
-            }
+            border-width: 2px;
+            border-style: solid;
 
             & + label{
                 position: absolute;
@@ -595,22 +716,12 @@
             }
 
             &:focus{
-                border: 2px solid $primary;
                 padding: 31px 15px 15px;
                 transition: border 150ms $ease-in, padding 150ms $ease-in;
-
-                section.-dark-background & {
-                    border-color: $primary-alt;
-                }
 
                 & + label{
                     top: 12px;
                     font-size: 12px !important;
-                    color: $primary !important;
-
-                    section.-dark-background & {
-                        color: $primary-alt !important;
-                    }
                 }
             }
         }
@@ -751,16 +862,11 @@
         padding: $unit-small;
         @include position(absolute, 100% null null 0);
         width: 100%;
-        color: $helper-dark;
         font-size: 12px;
         text-overflow: ellipsis;
         white-space: nowrap;
         max-width: 100%;
         overflow: hidden;
-
-        section.-dark-background & {
-            color: $helper-light;
-        }
 
         svg{
             margin-right: $unit-small;
@@ -769,7 +875,7 @@
 
     // Error object
     .o-error{
-        color: $error !important;
+        color: rgba($error, 0.87) !important;
         opacity: 0;
         transform: translateY(5px);
         transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;

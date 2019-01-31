@@ -63,13 +63,8 @@ fieldset{
 input,
 select{
     background: transparent;
-    color: rgba($font-base, 0.87);
     white-space: nowrap;
     text-overflow: ellipsis;
-
-    section.-dark-background & {
-        color: rgba($font-alt, 0.87);
-    }
 }
 
 input[type=radio],

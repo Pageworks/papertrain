@@ -222,12 +222,8 @@ fieldset {
 input,
 select {
   background: transparent;
-  color: rgba(65, 65, 65, 0.87);
   white-space: nowrap;
   text-overflow: ellipsis; }
-  section.-dark-background input, section.-dark-background
-  select {
-    color: rgba(255, 255, 255, 0.87); }
 
 input[type=radio],
 input[type=checkbox] {
@@ -284,13 +280,13 @@ hr {
   opacity: 0.12;
   margin: 0;
   display: block; }
-  section.-dark-background hr {
+  .-dark-background hr {
     border-color: #ffffff; }
 
 a {
   color: #414141;
   text-decoration: none; }
-  section.-dark-background a {
+  .-dark-background a {
     color: #ffffff; }
 
 ol {
@@ -351,35 +347,6 @@ p {
         transform: scaleY(1);
         transition: transform 225ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms 0ms cubic-bezier(0.4, 0, 0.2, 1); }
 
-code {
-  background: #eeeeee;
-  border-radius: 4px;
-  font-family: "Share Tech Mono", monospace;
-  font-size: 1rem;
-  margin: 0;
-  padding: 0.5rem 1rem;
-  white-space: nowrap;
-  overflow-x: auto;
-  max-width: 100%;
-  display: inline-block; }
-
-blockquote {
-  border-left: solid 3px rgba(69, 173, 168, 0.15);
-  font-family: "Circular", "Montserrat", cursive;
-  margin: 0 0 0 -1rem !important;
-  padding: 0 0 0 1rem;
-  quotes: none;
-  font-size: 1.25rem;
-  letter-spacing: 0.0125rem;
-  line-height: 2rem;
-  text-align: justify;
-  color: rgba(69, 173, 168, 0.87); }
-  section.-dark-background blockquote,
-  section.has-image blockquote,
-  section.has-video blockquote {
-    color: rgba(255, 255, 255, 0.87);
-    border-left-color: rgba(255, 255, 255, 0.15); }
-
 html {
   font-family: "Circular", "Montserrat", sans-serif;
   line-height: normal;
@@ -416,11 +383,13 @@ body {
 
 section.-base-background,
 article.-base-background {
-  background: #ffffff; }
+  background: #ffffff;
+  color: #414141; }
 
 section.-secondary-background,
 article.-secondary-background {
-  background: #fafafa; }
+  background: #fafafa;
+  color: #414141; }
 
 section.-brand-background,
 article.-brand-background {
@@ -760,6 +729,79 @@ table {
     .o-layout.-gutter-large > .o-layout_item {
       padding-left: 1rem;
       padding-right: 1rem; } }
+
+/* stylelint-disable */
+.-base-background .o-form .o-help {
+  color: rgba(0, 0, 0, 0.5); }
+
+.-secondary-background .o-form .o-help {
+  color: rgba(0, 0, 0, 0.5); }
+
+.-dark-background .o-form .o-help {
+  color: rgba(255, 255, 255, 0.5); }
+
+.-brand-background .o-form .o-help {
+  color: rgba(255, 255, 255, 0.5); }
+
+.-base-background .o-form .o-textarea textarea {
+  border-color: rgba(0, 0, 0, 0.3);
+  color: #414141; }
+  html.has-no-touch .-base-background .o-form .o-textarea textarea:hover {
+    border-color: rgba(0, 0, 0, 0.6);
+    transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
+  .-base-background .o-form .o-textarea textarea:focus {
+    border-color: #45ADA8 !important; }
+    .-base-background .o-form .o-textarea textarea:focus + label {
+      color: #45ADA8; }
+
+.-secondary-background .o-form .o-textarea textarea {
+  border-color: rgba(0, 0, 0, 0.3);
+  color: #414141; }
+  html.has-no-touch .-secondary-background .o-form .o-textarea textarea:hover {
+    border-color: rgba(0, 0, 0, 0.6);
+    transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
+  .-secondary-background .o-form .o-textarea textarea:focus {
+    border-color: #45ADA8 !important; }
+    .-secondary-background .o-form .o-textarea textarea:focus + label {
+      color: #45ADA8; }
+
+.-dark-background .o-form .o-textarea textarea {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff; }
+  html.has-no-touch .-dark-background .o-form .o-textarea textarea:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
+  .-dark-background .o-form .o-textarea textarea:focus {
+    border-color: #E5FCC2 !important; }
+    .-dark-background .o-form .o-textarea textarea:focus + label {
+      color: #E5FCC2; }
+
+.-brand-background .o-form .o-textarea textarea {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white; }
+  html.has-no-touch .-brand-background .o-form .o-textarea textarea:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
+  .-brand-background .o-form .o-textarea textarea:focus {
+    border-color: #E5FCC2 !important; }
+    .-brand-background .o-form .o-textarea textarea:focus + label {
+      color: #E5FCC2; }
+
+.-base-background .o-form .o-input input, .-base-background
+.o-form .o-input select {
+  color: #414141; }
+
+.-secondary-background .o-form .o-input input, .-secondary-background
+.o-form .o-input select {
+  color: #414141; }
+
+.-dark-background .o-form .o-input input, .-dark-background
+.o-form .o-input select {
+  color: #ffffff; }
+
+.-brand-background .o-form .o-input input, .-brand-background
+.o-form .o-input select {
+  color: white; }
 
 .o-switch {
   height: 48px !important;
@@ -1116,9 +1158,13 @@ table {
         transform: translateY(0);
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 25ms cubic-bezier(0, 0, 0.2, 1); }
       .o-form .o-textarea.is-invalid textarea {
-        border: 2px solid #ff715b;
+        border-color: rgba(255, 113, 91, 0.87) !important;
         padding: 31px 15px 15px;
         transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1), padding 150ms cubic-bezier(0.4, 0, 0.2, 1); }
+        .o-form .o-textarea.is-invalid textarea:focus {
+          border-color: rgba(255, 113, 91, 0.87) !important; }
+          .o-form .o-textarea.is-invalid textarea:focus + label {
+            color: rgba(255, 113, 91, 0.87) !important; }
         .o-form .o-textarea.is-invalid textarea + label {
           top: 12px;
           font-size: 12px;
@@ -1131,15 +1177,10 @@ table {
       border-radius: 4px;
       width: 100%;
       min-height: 106px;
-      color: #414141;
       background: transparent;
       transition: border 75ms cubic-bezier(0.4, 0, 0.6, 1), padding 75ms cubic-bezier(0.4, 0, 0.6, 1);
-      border: 2px solid rgba(0, 0, 0, 0.3); }
-      section.-dark-background .o-form .o-textarea textarea {
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        color: #ffffff; }
-        html.has-no-touch section.-dark-background .o-form .o-textarea textarea:hover {
-          border: 2px solid rgba(255, 255, 255, 0.6); }
+      border-width: 2px;
+      border-style: solid; }
       .o-form .o-textarea textarea + label {
         position: absolute;
         top: 20px;
@@ -1148,17 +1189,11 @@ table {
         border: 2px solid rgba(65, 65, 65, 0.6);
         transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
       .o-form .o-textarea textarea:focus {
-        border: 2px solid #45ADA8;
         padding: 31px 15px 15px;
         transition: border 150ms cubic-bezier(0, 0, 0.2, 1), padding 150ms cubic-bezier(0, 0, 0.2, 1); }
-        section.-dark-background .o-form .o-textarea textarea:focus {
-          border-color: #E5FCC2; }
         .o-form .o-textarea textarea:focus + label {
           top: 12px;
-          font-size: 12px !important;
-          color: #45ADA8 !important; }
-          section.-dark-background .o-form .o-textarea textarea:focus + label {
-            color: #E5FCC2 !important; }
+          font-size: 12px !important; }
   .o-form .o-input {
     height: 56px;
     width: 100%;
@@ -1251,20 +1286,16 @@ table {
     top: 100%;
     left: 0;
     width: 100%;
-    color: rgba(0, 0, 0, 0.5);
     font-size: 12px;
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 100%;
     overflow: hidden; }
-    section.-dark-background .o-form .o-error, section.-dark-background
-    .o-form .o-help {
-      color: rgba(255, 255, 255, 0.5); }
     .o-form .o-error svg,
     .o-form .o-help svg {
       margin-right: 0.5rem; }
   .o-form .o-error {
-    color: #ff715b !important;
+    color: rgba(255, 113, 91, 0.87) !important;
     opacity: 0;
     transform: translateY(5px);
     transition: transform 125ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 100ms cubic-bezier(0.4, 0, 1, 1); }
@@ -1360,7 +1391,7 @@ table {
     padding: 11px 15px 9px;
     transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1); }
     .o-form.-outline .o-input.is-invalid input + label {
-      color: #ff715b;
+      color: rgba(255, 113, 91, 0.87) !important;
       font-size: 12px;
       bottom: 48px;
       left: 16px; }

@@ -1,5 +1,7 @@
 /* stylelint-disable */
+
 // Background Colors Config
+// ==========================================================================
 &.-outline{
     label{
         .-base-background & {
@@ -95,7 +97,8 @@
     }
 }
 
-// General Style Config
+// Outline Style Config
+// ==========================================================================
 &.-outline{
     .o-input{
         &:after{
@@ -109,7 +112,7 @@
                 transition: all 150ms $ease;
 
                 & + label{
-                    color: $error;
+                    color: rgba($error, 0.87) !important;
                     font-size: 12px;
                     bottom: 48px;
                     left: 16px;
