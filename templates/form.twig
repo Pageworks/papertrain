@@ -24,7 +24,7 @@
                 </div>
                 <div class="o-wrapper u-align-top u-padding-horizontal u-1/1 js-color-wrapper">
                     <div class="js-input o-color">
-                        <input type="color"  name="customColor" id="customColor" class="js-custom-color-input" value="#547980" />
+                        <input type="color"  name="customColor" id="customColor" class="js-custom-color-input" value="#9787CA" />
                         <label for="customColor">Custom Background Color</label>
                     </div>
                 </div>
@@ -93,14 +93,15 @@
 
         selected = backgroundInput.value;
 
-        page.classList.remove('-base-background', '-secondary-background', '-dark-background', '-custom-background', '-brand-background');
-        page.classList.add(selected);
+        page.classList.remove('-base-background', '-secondary-background', '-dark-background', '-brand-background');
 
         if(selected === '-custom-background'){
-            colorWrapper.classList.remove('is-hidden');
-            colorWrapper.classList.add('is-visible');
+            page.classList.add('-brand-background');
             selectedColor = colorInput.value;
             page.style.cssText = `background-color:${selectedColor}`;
+        }else{
+            page.classList.add(selected);
+            page.style.cssText = '';
         }
     });
 
