@@ -2,7 +2,6 @@
 
 // Background Colors Config
 // ==========================================================================
-
 .o-form{
     label{
         .-base-background & {
@@ -37,6 +36,24 @@
 
         .-brand-background & {
             color: contrast($brand-background-color, 0.5);
+        }
+    }
+
+    .o-arrow{
+        .-base-background & {
+            color: contrast($base-background-color, 0.6);
+        }
+
+        .-secondary-background & {
+            color: contrast($secondary-background-color, 0.6);
+        }
+
+        .-dark-background & {
+            color: contrast($dark-background-color, 0.6);
+        }
+
+        .-brand-background & {
+            color: contrast($brand-background-color, 0.6);
         }
     }
 
@@ -133,6 +150,45 @@
 
             .-brand-background & {
                 color: contrast($brand-background-color);
+            }
+        }
+
+        .-visible,
+        .-hidden{
+            .-base-background & {
+                color: contrast($base-background-color);
+
+                &:before,
+                &:after{
+                    background-color: $primary;
+                }
+            }
+
+            .-secondary-background & {
+                color: contrast($secondary-background-color);
+
+                &:before,
+                &:after{
+                    background-color: $primary;
+                }
+            }
+
+            .-dark-background & {
+                color: contrast($dark-background-color);
+
+                &:before,
+                &:after{
+                    background-color: $primary-alt;
+                }
+            }
+
+            .-brand-background & {
+                color: contrast($brand-background-color);
+
+                &:before,
+                &:after{
+                    background-color: $primary-alt;
+                }
             }
         }
     }
@@ -295,8 +351,6 @@
 
 // Form Object Config
 // ==========================================================================
-
-// Switch (styled single checkbox) Input
 .o-switch{
     height: 48px !important;
     width: 100% !important;
@@ -364,7 +418,7 @@
                     opacity: 0.3;
                     border-radius: 7px;
                     @include size(30px, 12px);
-                    transition: background 75ms $ease;
+                    transition: background-color 150ms $ease;
                 }
 
                 .o-switch_handle{
@@ -385,7 +439,7 @@
                         border-radius: 100%;
                         position: absolute;
                         z-index: 5;
-                        transition: border-color 75ms $ease;
+                        transition: border-color 150ms $ease;
                     }
 
                     &::before{
@@ -409,7 +463,7 @@
                         transform: scale(0);
                         opacity: 0;
                         z-index: 2;
-                        transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+                        transition: transform 150ms $ease-sharp, opacity 25ms 50ms $ease-out;
                     }
                 }
             }
@@ -427,7 +481,6 @@
     }
 }
 
-// Radio Input
 .o-radio{
     position: relative !important;
     padding: $unit 0 0 !important;
@@ -507,7 +560,7 @@
                 @include size(32px, 32px);
                 transform: scale(0);
                 opacity: 0;
-                transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+                transition: transform 150ms $ease-sharp, opacity 25ms 50ms $ease-out;
             }
 
             .o-radio_outter{
@@ -557,7 +610,6 @@
     }
 }
 
-// Checkbox Input
 .o-checkbox{
     position: relative !important;
     padding: $unit 0 0 !important;
@@ -635,7 +687,7 @@
                 @include size(32px, 32px);
                 transform: scale(0);
                 opacity: 0;
-                transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
+                transition: transform 150ms $ease-sharp, opacity 25ms 50ms $ease-out;
             }
 
             .o-checkbox_box{
@@ -645,7 +697,7 @@
                 border-width: 2px;
                 border-style: solid;
                 background: transparent;
-                transition: background 75ms $ease-sharp;
+                transition: background-color 150ms $ease-sharp;
             }
 
             .o-checkbox_check{
@@ -657,7 +709,7 @@
                     stroke-linecap: round;
                     stroke-dasharray: 30;
                     stroke-dashoffset: 30;
-                    transition: stroke-dashoffset 75ms $ease-sharp;
+                    transition: stroke-dashoffset 150ms $ease-sharp;
                 }
             }
         }
@@ -697,7 +749,6 @@
     }
 }
 
-// Color Input
 .o-color{
     display: flex;
     justify-content: flex-start;
@@ -734,7 +785,6 @@
     }
 }
 
-// Form Object / Wrapper
 .o-form{
     &.-square{
         input,
@@ -802,8 +852,7 @@
             border-radius: 4px;
             width: 100%;
             min-height: 106px;
-            background: transparent;
-            transition: border 75ms $ease-sharp, padding 75ms $ease-sharp;
+            transition: border-color 150ms $ease-sharp, padding 150ms $ease-sharp;
             border-width: 2px;
             border-style: solid;
 
@@ -849,9 +898,21 @@
         &.is-invalid{
             margin-bottom: $unit*2;
 
+            input{
+                & + label{
+                    color: rgba($error, 0.87) !important;
+                }
+            }
+
             .o-help{
                 opacity: 0;
                 transition: opacity 25ms $ease-sharp;
+            }
+
+            .o-error{
+                opacity: 1;
+                transform: translateY(0);
+                transition: transform 150ms $ease-in, opacity 25ms $ease-in;
             }
         }
 
@@ -862,15 +923,15 @@
         .-visible,
         .-hidden{
             @include position(absolute, null 12px 18px null);
-            color: $off-black;
             cursor: pointer;
             display: inline-flex;
             justify-content: center;
             align-items: center;
+            opacity: 0.3;
+            transition: all 150ms $ease;
 
             &::before{
                 content:"";
-                background: $primary;
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
@@ -879,29 +940,22 @@
                 transform-origin: center;
                 opacity: 0;
                 transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
-
-                section.-dark-background & {
-                    background: $white;
-                }
             }
 
             &::after{
                 content:"";
-                background: $primary;
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
                 @include size(32px, 32px);
                 transform: scale(0);
                 opacity: 0;
-                transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
-
-                section.-dark-background & {
-                    background: $white;
-                }
+                transition: transform 150ms $ease-sharp, opacity 25ms 50ms $ease-out;
             }
 
             @include hover{
+                opacity: 0.87 !important;
+
                 &:before{
                     transform: scale(1);
                     opacity: $primary-hover-opacity;
@@ -910,20 +964,11 @@
             }
 
             @include active{
-                &:before{
-                    opacity: 0;
-                    transition: opacity 75ms $ease-out;
-                }
-
                 &:after{
                     transform: scale(1);
                     opacity: $primary-active-opacity;
                     transition: transform 150ms $ease-in, opacity 75ms $ease-in;
                 }
-            }
-
-            section.-dark-background & {
-                color: $font-alt;
             }
         }
 
@@ -957,6 +1002,13 @@
                 display: none;
             }
         }
+
+        @include hover{
+            .-visible,
+            .-hidden{
+                opacity: 0.6;
+            }
+        }
     }
 
     // Text objects
@@ -981,7 +1033,7 @@
         color: rgba($error, 0.87) !important;
         opacity: 0;
         transform: translateY(5px);
-        transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+        transition: transform 150ms $ease-sharp, opacity 150ms $ease-out;
     }
 
     // Helper object
@@ -994,11 +1046,8 @@
     .o-arrow{
         @include position(absolute, 50% 12px null null);
         transform: translateY(-60%);
-        color: $off-black;
-
-        section.-dark-background & {
-            color: $font-alt;
-        }
+        user-select: none;
+        pointer-events: none;
     }
 
     // General input
@@ -1019,6 +1068,8 @@
         left: 17px;
         bottom: 17px;
         font-size: 22px;
+        user-select: none;
+        pointer-events: none;
     }
 
     // Outline Input Style

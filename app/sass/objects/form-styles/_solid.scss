@@ -1,57 +1,240 @@
+/* stylelint-disable */
+
+// Background Colors Config
+// ==========================================================================
 &.-solid{
+    .o-input{
+        &:after{
+            .-base-background & {
+                background-color: $primary;
+            }
+
+            .-secondary-background & {
+                background-color: $primary;
+            }
+
+            .-dark-background & {
+                background-color: $primary-alt;
+            }
+
+            .-brand-background & {
+                background-color: $primary-alt;
+            }
+        }
+
+        &:before{
+            .-base-background & {
+                background-color: contrast($base-background-color);
+            }
+
+            .-secondary-background & {
+                background-color: contrast($secondary-background-color);
+            }
+
+            .-dark-background & {
+                background-color: contrast($dark-background-color);
+            }
+
+            .-brand-background & {
+                background-color: contrast($brand-background-color);
+            }
+        }
+
+        input,
+        select{
+            .-base-background & {
+                border-color: contrast($base-background-color, 0.3);
+
+                @include hover{
+                    border-color: contrast($base-background-color, 0.6);
+                }
+
+                &:focus{
+                    html.has-no-js & {
+                        border-color: $primary;
+                    }
+
+                    & + label{
+                        color: $primary;
+                    }
+                }
+            }
+
+            .-secondary-background & {
+                border-color: contrast($secondary-background-color, 0.3);
+
+                @include hover{
+                    border-color: contrast($secondary-background-color, 0.6);
+                }
+
+                &:focus{
+                    html.has-no-js & {
+                        border-color: $primary;
+                    }
+
+                    & + label{
+                        color: $primary;
+                    }
+                }
+            }
+
+            .-dark-background & {
+                border-color: contrast($dark-background-color, 0.3);
+
+                @include hover{
+                    border-color: contrast($dark-background-color, 0.6);
+                }
+
+                &:focus{
+                    html.has-no-js & {
+                        border-color: $primary-alt;
+                    }
+
+                    & + label{
+                        color: $primary-alt;
+                    }
+                }
+            }
+
+            .-brand-background & {
+                border-color: contrast($brand-background-color, 0.3);
+
+                @include hover{
+                    border-color: contrast($brand-background-color, 0.6);
+                }
+
+                &:focus{
+                    html.has-no-js & {
+                        border-color: $primary-alt;
+                    }
+
+                    & + label{
+                        color: $primary-alt;
+                    }
+                }
+            }
+        }
+    }
+
+    input,
+    select,
+    textarea{
+        .-base-background & {
+            background-color: contrast($base-background-color, 0.03) !important;
+
+            @include hover{
+                background-color: contrast($base-background-color, 0.05) !important;
+            }
+
+            @include active{
+                background-color: contrast($base-background-color, 0.07) !important;
+            }
+        }
+
+        .-secondary-background & {
+            background-color: contrast($secondary-background-color, 0.03) !important;
+
+            @include hover{
+                background-color: contrast($secondary-background-color, 0.05) !important;
+            }
+
+            @include active{
+                background-color: contrast($secondary-background-color, 0.07) !important;
+            }
+        }
+
+        .-dark-background & {
+            background-color: contrast($dark-background-color, 0.07) !important;
+
+            @include hover{
+                background-color: contrast($dark-background-color, 0.1) !important;
+            }
+
+            @include active{
+                background-color: contrast($dark-background-color, 0.13) !important;
+            }
+        }
+
+        .-brand-background & {
+            background-color: contrast($brand-background-color, 0.07) !important;
+
+            @include hover{
+                background-color: contrast($brand-background-color, 0.1) !important;
+            }
+
+            @include active{
+                background-color: contrast($brand-background-color, 0.13) !important;
+            }
+        }
+    }
+}
+
+// Solid Style Config
+// ==========================================================================
+&.-solid{
+    input,
+    select,
+    textarea{
+        border-radius: 8px 8px 0 0;
+    }
+
     .o-input{
         &.is-invalid{
             input{
                 & + label{
-                    color: $error;
                     font-size: 12px;
                     bottom: 34px;
                 }
             }
         }
 
-        html.has-js & {
-            &::after{
-                content: "";
-                @include size(100%, 2px);
-                @include position(absolute, null null 0 0);
-                transform: scaleX(0);
-                display: inline-block;
-                transition: transform 75ms $ease-out;
-                background: $primary;
-                transform-origin: center;
+        &::before{
+            content: "";
+            @include size(100%, 2px);
+            @include position(absolute, null null 0 0);
+            display: inline-block;
+            transition: all 150ms $ease-out;
+            transform-origin: center;
+            z-index: 1;
+            opacity: 0.3;
+        }
 
-                section.-dark-background & {
-                    background: $primary-alt;
-                }
+        &::after{
+            content: "";
+            @include size(100%, 2px);
+            @include position(absolute, null null 0 0);
+            transform: scaleX(0);
+            display: inline-block;
+            transition: all 150ms $ease-out;
+            transform-origin: center;
+            z-index: 2;
+        }
+
+        &.has-focus{
+            &:after{
+                transform: scaleX(1);
+                transition: transform 150ms $ease-in;
             }
+        }
 
-            &.has-focus{
-                &:after{
-                    transform: scaleX(1);
-                    transition: transform 150ms $ease-in;
-                }
+        &.has-value{
+            label{
+                font-size: 12px;
+                bottom: 35px;
             }
+        }
 
-            &.has-value{
-                label{
-                    font-size: 12px;
-                    bottom: 35px;
-                }
+        &.is-invalid{
+            &:after{
+                transform: scaleX(1);
+                background-color: rgba($error, 0.87) !important;
+                transition: background-color 150ms $ease;
             }
+        }
 
-            &.is-invalid{
-                &:after{
-                    transform: scaleX(1);
-                    background: $error;
-                    transition: background 75ms $ease;
-                }
-
-                .o-error{
-                    opacity: 1;
-                    transform: translateY(0);
-                    transition: transform 150ms $ease-in, opacity 25ms $ease-in;
-                }
+        @include hover{
+            &:before{
+                opacity: 0.6;
             }
         }
 
@@ -71,14 +254,9 @@
     }
 
     label{
-        color: rgba($black, 0.6);
         pointer-events: none;
         font-size: 16px;
-        transition: all 75ms $ease-out;
-
-        section.-dark-background & {
-            color: rgba($white, 0.6);
-        }
+        transition: all 150ms $ease-out;
     }
 
     input{
@@ -93,50 +271,19 @@
     select{
         height: 100%;
         padding: 20px 12px 6px;
-        background: $off-white;
-        border-radius: 4px 4px 0 0;
-        border-bottom: 1px solid rgba($black, 0.42);
-        transition: border-bottom-color 75ms $ease-out, background 150ms $ease;
-
-        section.-dark-background & {
-            border-bottom: 1px solid rgba($white, 0.42);
-            background: darken($dark-background-color, 2);
-        }
-
-        &:hover{
-            background: darken($off-white, 3);
-
-            section.-dark-background & {
-                background: darken($dark-background-color, 3);
-            }
-        }
+        transition: all 150ms $ease;
 
         &:focus{
-            background: darken($off-white, 5);
-
-            section.-dark-background & {
-                background: darken($dark-background-color, 5);
-            }
-
-            html.has-no-js & {
-                border-bottom-color: $primary;
-                transition: border-bottom-color 150ms $ease-in;
-
-                section.-dark-background & {
-                    border-bottom-color: $primary-alt;
-                }
-            }
-
             & + label{
-                color: $primary;
                 font-size: 12px;
                 bottom: 35px;
                 transition: all 150ms $ease-in;
-
-                section.-dark-background & {
-                    color: $primary-alt;
-                }
             }
         }
+    }
+
+    fieldset{
+        padding-top: $unit;
+        padding-bottom: 0;
     }
 }

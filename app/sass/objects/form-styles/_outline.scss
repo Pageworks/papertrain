@@ -3,6 +3,24 @@
 // Background Colors Config
 // ==========================================================================
 &.-outline{
+    label{
+        .-base-background & {
+            background-color: $base-background-color;
+        }
+
+        .-secondary-background & {
+            background-color: $secondary-background-color;
+        }
+
+        .-dark-background & {
+            background-color: $dark-background-color;
+        }
+
+        .-brand-background & {
+            background-color: $brand-background-color;
+        }
+    }
+
     input,
     select{
         .-base-background & {
@@ -78,6 +96,12 @@
 // Outline Style Config
 // ==========================================================================
 &.-outline{
+    input,
+    select,
+    textarea{
+        border-radius: 4px;
+    }
+
     .o-input{
         &:after{
             display: none !important;
@@ -90,7 +114,6 @@
                 transition: all 150ms $ease;
 
                 & + label{
-                    color: rgba($error, 0.87) !important;
                     font-size: 12px;
                     bottom: 48px;
                     left: 16px;
@@ -109,14 +132,6 @@
                     font-size: 12px;
                     bottom: 48px;
                     left: 16px;
-                }
-            }
-
-            &.is-invalid{
-                .o-error{
-                    opacity: 1;
-                    transform: translateY(0);
-                    transition: transform 150ms $ease-in, opacity 25ms $ease-in;
                 }
             }
         }
