@@ -731,6 +731,18 @@ table {
       padding-right: 1rem; } }
 
 /* stylelint-disable */
+.-base-background .o-form label {
+  color: rgba(0, 0, 0, 0.6); }
+
+.-secondary-background .o-form label {
+  color: rgba(0, 0, 0, 0.6); }
+
+.-dark-background .o-form label {
+  color: rgba(255, 255, 255, 0.6); }
+
+.-brand-background .o-form label {
+  color: rgba(255, 255, 255, 0.6); }
+
 .-base-background .o-form .o-help {
   color: rgba(0, 0, 0, 0.5); }
 
@@ -1451,18 +1463,6 @@ table {
     left: 17px;
     bottom: 17px;
     font-size: 22px; }
-  .-base-background .o-form.-outline label {
-    color: rgba(0, 0, 0, 0.6);
-    background: #ffffff; }
-  .-secondary-background .o-form.-outline label {
-    color: rgba(0, 0, 0, 0.6);
-    background: #fafafa; }
-  .-dark-background .o-form.-outline label {
-    color: rgba(255, 255, 255, 0.6);
-    background: #414141; }
-  .-brand-background .o-form.-outline label {
-    color: rgba(255, 255, 255, 0.6);
-    background: #547980; }
   .-base-background .o-form.-outline input, .-base-background
   .o-form.-outline select {
     border-color: rgba(0, 0, 0, 0.3); }
@@ -1712,12 +1712,9 @@ table {
       font-size: 12px;
       bottom: 35px; }
   .o-form.-underline label {
-    color: rgba(0, 0, 0, 0.6);
     pointer-events: none;
     font-size: 16px;
     transition: all 75ms cubic-bezier(0.4, 0, 1, 1); }
-    section.-dark-background .o-form.-underline label {
-      color: rgba(255, 255, 255, 0.6); }
   .o-form.-underline input.has-icon + label {
     left: 48px; }
   .o-form.-underline input,

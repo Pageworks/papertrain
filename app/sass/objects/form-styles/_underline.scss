@@ -73,14 +73,9 @@
     }
 
     label{
-        color: rgba($black, 0.6);
         pointer-events: none;
         font-size: 16px;
         transition: all 75ms $ease-out;
-
-        section.-dark-background & {
-            color: rgba($white, 0.6);
-        }
     }
 
     input{

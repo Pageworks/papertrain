@@ -3,28 +3,6 @@
 // Background Colors Config
 // ==========================================================================
 &.-outline{
-    label{
-        .-base-background & {
-            color: contrast($base-background-color, 0.6);
-            background: $base-background-color;
-        }
-
-        .-secondary-background & {
-            color: contrast($secondary-background-color, 0.6);
-            background: $secondary-background-color;
-        }
-
-        .-dark-background & {
-            color: contrast($dark-background-color, 0.6);
-            background: $dark-background-color;
-        }
-
-        .-brand-background & {
-            color: contrast($brand-background-color, 0.6);
-            background: $brand-background-color;
-        }
-    }
-
     input,
     select{
         .-base-background & {
