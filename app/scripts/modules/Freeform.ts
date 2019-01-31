@@ -1,26 +1,43 @@
 import { isDebug } from '../env';
 import AbstractModule from './AbstractModule';
 
-export default class BasicForm extends AbstractModule{
+export default class Freeform extends AbstractModule{
 
-    public static MODULE_NAME:string = 'BasicForm';
+    public static MODULE_NAME:string = 'Freeform';
 
+    // Form Elements
     private _inputs:            Array<HTMLInputElement>;
     private _passwordToggles:   Array<Element>;
     private _selects:           Array<HTMLSelectElement>;
     private _textareas:         Array<HTMLTextAreaElement>;
     private _switches:          Array<Element>;
 
+    // General Elements
+    private _tabs:              Array<Element>;
+    private _pages:             Array<Element>;
+    private _button:            Element;
+
+    // Variables
+    private _active:            number;
+
     constructor(el:Element, app:App){
         super(el, app);
-        if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicForm.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        if(isDebug) console.log('%c[module] '+`%cBuilding: ${Freeform.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
-        // Elements
-        this._inputs            = Array.from(this.el.querySelectorAll('input'));
-        this._selects           = Array.from(this.el.querySelectorAll('select'));
-        this._textareas         = Array.from(this.el.querySelectorAll('textarea'));
-        this._passwordToggles   = Array.from(this.el.querySelectorAll('.js-password-toggle'));
-        this._switches          = Array.from(this.el.querySelectorAll('.js-switch'));
+        // Form Elements
+        this._inputs            = null;
+        this._selects           = null;
+        this._textareas         = null;
+        this._passwordToggles   = null;
+        this._switches          = null;
+
+        // General Elements
+        this._tabs              = Array.from(this.el.querySelectorAll('.js-tab'));
+        this._pages             = Array.from(this.el.querySelectorAll('.js-page'));
+        this._button            = null;
+
+        // Variables
+        this._active            = 0;
     }
 
     /**
@@ -29,6 +46,53 @@ export default class BasicForm extends AbstractModule{
      * register any initial event listeners
      */
     public init(): void{
+        this.getPageElements();
+        this.addEvents();
+        this.handlePrefills();
+        this.checkForRequired();
+    }
+
+    private submitForm(): void{
+
+    }
+
+    private getPageElements(): void{
+        this._inputs            = Array.from(this._pages[this._active].querySelectorAll('input'));
+        this._selects           = Array.from(this._pages[this._active].querySelectorAll('select'));
+        this._textareas         = Array.from(this._pages[this._active].querySelectorAll('textarea'));
+        this._passwordToggles   = Array.from(this._pages[this._active].querySelectorAll('.js-password-toggle'));
+        this._switches          = Array.from(this._pages[this._active].querySelectorAll('.js-switch'));
+
+        if(this._pages.length > 1){
+            this._button = this._pages[this._active].querySelector('.js-next-button');
+        }
+        else{
+            this._button = this._pages[this._active].querySelector('.js-submit-button');
+        }
+    }
+
+    private removeEvents(): void{
+        this._inputs.forEach((el)=>{ el.removeEventListener('focus', e => this.handleFocus(e) ); });
+        this._inputs.forEach((el)=>{ el.removeEventListener('blur', e => this.handleBlur(e) ); });
+        this._inputs.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleKeystroke(e) ); });
+
+        this._selects.forEach((el)=>{ el.removeEventListener('change', e => this.handleSelection(e) ); });
+
+        this._textareas.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleTextarea(e) ); });
+        this._textareas.forEach((el)=>{ el.removeEventListener('blur', e => this.handleTextarea(e) ); });
+
+        this._passwordToggles.forEach((el)=>{ el.removeEventListener('click', e => this.handleToggle(e) ); });
+
+        this._switches.forEach((el)=>{ el.removeEventListener('CheckboxStateChange', e => this.handleSwitch(e) ); });
+
+        if(this._pages.length > 1){
+            this._button.removeEventListener('click', e => this.nextPage() );
+        }else{
+            this._button.removeEventListener('click', e => this.submitForm() );
+        }
+    }
+
+    private addEvents(): void{
         this._inputs.forEach((el)=>{ el.addEventListener('focus', e => this.handleFocus(e) ); });
         this._inputs.forEach((el)=>{ el.addEventListener('blur', e => this.handleBlur(e) ); });
         this._inputs.forEach((el)=>{ el.addEventListener('keyup', e => this.handleKeystroke(e) ); });
@@ -40,8 +104,16 @@ export default class BasicForm extends AbstractModule{
 
         this._passwordToggles.forEach((el)=>{ el.addEventListener('click', e => this.handleToggle(e) ); });
 
-        this._switches.forEach((el)=>{ el.addEventListener('CheckboxStateChange', e => this.handleSwitch(e) ); });
+        this._switches.forEach((el)=>{ el.addEventListener('change', e => this.handleSwitch(e) ); });
 
+        if(this._pages.length > 1){
+            this._button.addEventListener('click', e => this.nextPage() );
+        }else{
+            this._button.addEventListener('click', e => this.submitForm() );
+        }
+    }
+
+    private handlePrefills(): void{
         // Handle input status for prefilled elements
         this._inputs.forEach((el)=>{
             if(el.value !== '' || el.innerText !== ''){
@@ -59,6 +131,45 @@ export default class BasicForm extends AbstractModule{
                 }
             }
         });
+    }
+
+    private checkForRequired(): void{
+        const requiredElements = this._pages[this._active].querySelectorAll('[required]');
+        if(requiredElements.length === 0){
+            this._button.classList.remove('is-disabled');
+        }
+    }
+
+    private pageInit(): void{
+        this.removeEvents();
+        this.getPageElements();
+        this.addEvents();
+        this.handlePrefills();
+        this.checkForRequired();
+    }
+
+    private nextPage(): void{
+        console.log('User clicked');
+    }
+
+    private validatePage(): void{
+        let isInvalid = true;
+
+        const required = Array.from(this._pages[this._active].querySelectorAll('[required]'));
+
+        required.forEach((el)=>{
+            if(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement ){
+                if(!el.validity.valid || el.value === ''){
+                    isInvalid = false;
+                }
+            }
+        });
+
+        if(isInvalid){
+            this._button.classList.remove('is-disabled');
+        }else{
+            this._button.classList.add('is-disabled');
+        }
     }
 
     /**
@@ -80,7 +191,22 @@ export default class BasicForm extends AbstractModule{
     }
 
     private handleSwitch(e:Event): void{
-        const target = <Element>e.currentTarget;
+        const el = <HTMLInputElement>e.currentTarget;
+        const inputWrapper = el.parentElement;
+        const parent = inputWrapper.parentElement;
+        parent.classList.remove('is-valid', 'is-invalid');
+
+        if(this.validityCheck(el)){
+            parent.classList.add('is-valid');
+        }else{
+            parent.classList.add('is-invalid');
+            const errorObject = inputWrapper.querySelector('.js-error');
+            if(errorObject){
+                errorObject.innerHTML = el.validationMessage;
+            }
+        }
+
+        this.validatePage();
     }
 
     /**
@@ -135,6 +261,7 @@ export default class BasicForm extends AbstractModule{
                 inputWrapper.classList.remove('is-invalid');
             }
         }
+        this.validatePage();
     }
 
     private handleInputStatus(el:HTMLInputElement): void{
@@ -152,6 +279,8 @@ export default class BasicForm extends AbstractModule{
                 errorObject.innerHTML = el.validationMessage;
             }
         }
+
+        this.validatePage();
     }
 
     private handleBlur(e:Event): void{
@@ -183,6 +312,6 @@ export default class BasicForm extends AbstractModule{
     }
 
     public destroy(): void{
-        super.destroy(isDebug, BasicForm.MODULE_NAME);
+        super.destroy(isDebug, Freeform.MODULE_NAME);
     }
 }

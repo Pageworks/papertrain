@@ -1037,6 +1037,13 @@ table {
   margin-bottom: 1rem !important;
   position: relative !important;
   padding: 0 0.5rem !important; }
+  .o-switch.is-invalid .o-help {
+    opacity: 0;
+    transition: opacity 25ms cubic-bezier(0.4, 0, 0.6, 1); }
+  .o-switch.is-invalid .o-error {
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 25ms cubic-bezier(0, 0, 0.2, 1); }
   .o-switch .o-switch_item {
     width: 100% !important;
     height: 100% !important;
@@ -1119,6 +1126,11 @@ table {
       position: relative;
       padding: 0;
       margin-top: 4px; }
+    .o-switch .o-switch_item .o-error {
+      padding: 0;
+      padding-left: 4px;
+      bottom: 2px;
+      top: auto; }
 
 .o-radio {
   position: relative !important;
@@ -1409,8 +1421,9 @@ table {
     .o-form .o-input .-visible,
     .o-form .o-input .-hidden {
       position: absolute;
+      top: 50%;
       right: 0;
-      bottom: 0;
+      transform: translateY(-50%);
       cursor: pointer;
       display: inline-flex;
       justify-content: center;
@@ -1482,7 +1495,7 @@ table {
     overflow: hidden; }
     .o-form .o-error svg,
     .o-form .o-help svg {
-      margin-right: 0.5rem; }
+      margin-right: 4px; }
   .o-form .o-error {
     color: rgba(255, 113, 91, 0.87) !important;
     opacity: 0;
@@ -2806,6 +2819,44 @@ button,
       margin-top: 0; }
     .o-list .o-list_list .o-list_item:last-child {
       margin-bottom: 0; }
+
+.o-freeform .o-freeform_page {
+  opacity: 0;
+  display: none; }
+  .o-freeform .o-freeform_page.is-active-page {
+    opacity: 1;
+    display: inline-block; }
+
+.o-freeform .o-freeform_steps.-list {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem; }
+  .o-freeform .o-freeform_steps.-list .o-freeform_steps_item {
+    list-style-type: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    width: 48px;
+    margin: 0 0.5rem;
+    cursor: default;
+    user-select: none;
+    pointer-events: none; }
+    .o-freeform .o-freeform_steps.-list .o-freeform_steps_item::after {
+      content: "";
+      background-color: #45ADA8;
+      height: 32px;
+      width: 32px;
+      border-radius: 100%;
+      position: absolute;
+      transform: scale(0);
+      transition: transform 150ms cubic-bezier(0.4, 0, 0.6, 1), opacity 75ms cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0; }
+    .o-freeform .o-freeform_steps.-list .o-freeform_steps_item.is-active-page:after {
+      opacity: 0.11;
+      transform: scale(1); }
 
 .u-float-left {
   float: left !important; }

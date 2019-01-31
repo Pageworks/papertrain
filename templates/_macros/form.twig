@@ -194,9 +194,9 @@
 
 {# Switch Form Input #}
 {% macro switch(label, name, required, help, checked, value) %}
-    <div class="js-input o-switch  {% if help|length %}has-helper{% endif %}">
+    <div class="o-switch  {% if help|length %}has-helper{% endif %}">
         <div class="o-switch_item">
-            <input type="checkbox" id="id-{{name}}" name="{{name}}" value="{{value}}" {% if checked %}checked="checked"{% endif %} {% if required %}required{% endif %} />
+            <input class="js-switch" type="checkbox" id="id-{{name}}" name="{{name}}" value="{{value}}" {% if checked %}checked="checked"{% endif %} {% if required %}required{% endif %} />
             <label for="id-{{name}}">
                 <span>
                     {{label}}
@@ -205,6 +205,10 @@
                             <span class="o-help_message">{{help}}</span>
                         </div>
                     {% endif %}
+                    <div class="o-error">
+                        <i class="far fa-exclamation-circle"></i>
+                        <span class="js-error o-error_message">Something went wrong.</span>
+                    </div>
                 </span>
                 <div class="o-switch_icon">
                     <div class="o-switch_track"></div>

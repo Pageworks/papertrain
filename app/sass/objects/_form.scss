@@ -358,6 +358,19 @@
     position: relative !important;
     padding: 0 $unit-small !important;
 
+    &.is-invalid{
+        .o-help{
+            opacity: 0;
+            transition: opacity 25ms $ease-sharp;
+        }
+
+        .o-error{
+            opacity: 1;
+            transform: translateY(0);
+            transition: transform 150ms $ease-in, opacity 25ms $ease-in;
+        }
+    }
+
     .o-switch_item{
         width: 100% !important;
         height: 100% !important;
@@ -473,10 +486,17 @@
             }
         }
 
-        .o-help{
+        .o-help,{
             position: relative;
             padding: 0;
             margin-top: 4px;
+        }
+
+        .o-error{
+            padding: 0;
+            padding-left: 4px;
+            bottom: 2px;
+            top: auto;
         }
     }
 }
@@ -922,7 +942,8 @@
 
         .-visible,
         .-hidden{
-            @include position(absolute, null 0 0 null);
+            @include position(absolute, 50% 0 null null);
+            transform: translateY(-50%);
             cursor: pointer;
             display: inline-flex;
             justify-content: center;
@@ -1025,7 +1046,7 @@
         overflow: hidden;
 
         svg{
-            margin-right: $unit-small;
+            margin-right: 4px;
         }
     }
 

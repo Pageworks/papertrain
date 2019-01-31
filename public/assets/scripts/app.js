@@ -389,6 +389,8 @@ var BasicGallery_1 = __webpack_require__(/*! ./modules/BasicGallery */ "./app/sc
 exports.BasicGallery = BasicGallery_1.default;
 var BasicAccordion_1 = __webpack_require__(/*! ./modules/BasicAccordion */ "./app/scripts/modules/BasicAccordion.ts");
 exports.BasicAccordion = BasicAccordion_1.default;
+var Freeform_1 = __webpack_require__(/*! ./modules/Freeform */ "./app/scripts/modules/Freeform.ts");
+exports.Freeform = Freeform_1.default;
 
 
 /***/ }),
@@ -608,7 +610,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var env_1 = __webpack_require__(/*! ../env */ "./app/scripts/env.ts");
 var AbstractModule_1 = __importDefault(__webpack_require__(/*! ./AbstractModule */ "./app/scripts/modules/AbstractModule.ts"));
-var getParent_1 = __webpack_require__(/*! ../utils/getParent */ "./app/scripts/utils/getParent.ts");
 var BasicForm = /** @class */ (function (_super) {
     __extends(BasicForm, _super);
     function BasicForm(el, app) {
@@ -620,7 +621,7 @@ var BasicForm = /** @class */ (function (_super) {
         _this._selects = Array.from(_this.el.querySelectorAll('select'));
         _this._textareas = Array.from(_this.el.querySelectorAll('textarea'));
         _this._passwordToggles = Array.from(_this.el.querySelectorAll('.js-password-toggle'));
-        _this._formType = _this.el.getAttribute('data-type');
+        _this._switches = Array.from(_this.el.querySelectorAll('.js-switch'));
         return _this;
     }
     /**
@@ -637,18 +638,18 @@ var BasicForm = /** @class */ (function (_super) {
         this._textareas.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleTextarea(e); }); });
         this._textareas.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleTextarea(e); }); });
         this._passwordToggles.forEach(function (el) { el.addEventListener('click', function (e) { return _this.handleToggle(e); }); });
+        this._switches.forEach(function (el) { el.addEventListener('CheckboxStateChange', function (e) { return _this.handleSwitch(e); }); });
         // Handle input status for prefilled elements
         this._inputs.forEach(function (el) {
-            if (el instanceof HTMLInputElement) {
-                if (el.value !== '' || el.innerText !== '')
-                    _this.handleInputStatus(el);
+            if (el.value !== '' || el.innerText !== '') {
+                _this.handleInputStatus(el);
             }
         });
-        // Handle input status for prefilled elements
+        // Handle input status for select elements
         this._selects.forEach(function (el) {
             if (el instanceof HTMLSelectElement) {
                 if (el.value !== 'any') {
-                    var inputWrapper = getParent_1.getParent(el, 'js-input');
+                    var inputWrapper = el.parentElement;
                     inputWrapper.classList.add('has-value');
                     inputWrapper.classList.add('is-valid');
                 }
@@ -656,61 +657,40 @@ var BasicForm = /** @class */ (function (_super) {
         });
     };
     /**
-     * Loops through all inputs to make sure they pass our `validityCheck` method.
-     * If everything passes remove the `is-disabled` status class from the
-     * submit buttonb. If an input fails add the `is-disabled` status class.
+     * Called when we need to make sure an input is valid.
+     * If the input has innerText and a value and is valid return true.
+     * @param {HTMLInputElement} el input element
      */
-    BasicForm.prototype.activeSubmitButton = function () {
-        var _this = this;
-        var hasInvalidInput = false;
-        this._inputs.forEach(function (el) {
-            if (!_this.validityCheck(el)) {
-                hasInvalidInput = true;
-            }
-        });
-        if (!hasInvalidInput) {
-            var submitButton = this.el.querySelector('.js-submit-button');
-            submitButton.classList.remove('is-disabled');
+    BasicForm.prototype.validityCheck = function (el) {
+        var isValid = true;
+        if (el.innerText === '' && el.value === '' && el.getAttribute('required') !== null) {
+            isValid = false;
         }
-        else {
-            var submitButton = this.el.querySelector('.js-submit-button');
-            submitButton.classList.add('is-disabled');
+        else if (!el.validity.valid) {
+            isValid = false;
         }
+        return isValid;
+    };
+    BasicForm.prototype.handleSwitch = function (e) {
+        var target = e.currentTarget;
     };
     /**
      * Called when a user releases a key while a textarea element has focus.
      * @param {Event} e
      */
     BasicForm.prototype.handleTextarea = function (e) {
-        if (e.target instanceof HTMLTextAreaElement) {
-            var inputWrapper = getParent_1.getParent(e.target, 'js-input');
-            inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
-            if (e.target.validity.valid && e.target.value !== '') {
-                inputWrapper.classList.add('has-value');
-                inputWrapper.classList.add('is-valid');
-            }
-            else if (!e.target.validity.valid) {
-                inputWrapper.classList.add('is-invalid');
-                var errorObject = inputWrapper.querySelector('.js-error');
-                if (errorObject)
-                    errorObject.innerHTML = e.target.validationMessage;
-            }
+        var target = e.currentTarget;
+        var inputWrapper = target.parentElement;
+        inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+        if (target.validity.valid && target.value !== '') {
+            inputWrapper.classList.add('has-value');
+            inputWrapper.classList.add('is-valid');
         }
-    };
-    /**
-     * Called when a user selects a different option in the selection dropdown.
-     * If the selected option isn't `any` set the `has-value` status class.
-     * @param {Event} e
-     */
-    BasicForm.prototype.handleSelection = function (e) {
-        if (e.target instanceof HTMLSelectElement) {
-            var inputWrapper = getParent_1.getParent(e.target, 'js-input');
-            if (e.target.value === 'any') {
-                inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
-            }
-            else {
-                inputWrapper.classList.add('has-value');
-                inputWrapper.classList.add('is-valid');
+        else if (!target.validity.valid) {
+            inputWrapper.classList.add('is-invalid');
+            var errorObject = inputWrapper.querySelector('.js-error');
+            if (errorObject) {
+                errorObject.innerHTML = target.validationMessage;
             }
         }
     };
@@ -721,62 +701,32 @@ var BasicForm = /** @class */ (function (_super) {
      * @param {Event} e
      */
     BasicForm.prototype.handleToggle = function (e) {
-        if (e.target instanceof Element) {
-            var inputWrapper = getParent_1.getParent(e.target, 'js-input');
-            var input = inputWrapper.querySelector('input');
-            if (inputWrapper.classList.contains('has-content-hidden')) {
-                inputWrapper.classList.remove('has-content-hidden');
-                inputWrapper.classList.add('has-content-visible');
-                input.setAttribute('type', 'text');
-            }
-            else {
-                inputWrapper.classList.add('has-content-hidden');
-                inputWrapper.classList.remove('has-content-visible');
-                input.setAttribute('type', 'password');
-            }
+        var target = e.currentTarget;
+        var inputWrapper = target.parentElement;
+        var input = inputWrapper.querySelector('input');
+        if (inputWrapper.classList.contains('has-content-hidden')) {
+            inputWrapper.classList.remove('has-content-hidden');
+            inputWrapper.classList.add('has-content-visible');
+            input.setAttribute('type', 'text');
+        }
+        else {
+            inputWrapper.classList.add('has-content-hidden');
+            inputWrapper.classList.remove('has-content-visible');
+            input.setAttribute('type', 'password');
         }
     };
-    /**
-     * Called when we need to make sure an input is valid.
-     * If the input has innerText and a value and is valid return true.
-     * @param {HTMLInputElement} el input element
-     */
-    BasicForm.prototype.validityCheck = function (el) {
-        var isValid = true;
-        if (el.innerText === '' && el.value === '' && el.getAttribute('required') !== null)
-            isValid = false;
-        else if (!el.validity.valid)
-            isValid = false;
-        return isValid;
-    };
-    /**
-     * Called whenever a user releases a key while an input is in focus.
-     * If the target is an input element and the input was marked as `is-invalid` on the previous blur event
-     * we should check if the issue has been fixed. If it has add our `is-valid` class, otherwise, do nothing.
-     * @param {Event} e
-     */
     BasicForm.prototype.handleKeystroke = function (e) {
-        if (e.target instanceof HTMLInputElement) {
-            var inputWrapper = getParent_1.getParent(e.target, 'js-input');
-            if (inputWrapper.classList.contains('is-invalid')) {
-                if (this.validityCheck(e.target)) {
-                    inputWrapper.classList.add('is-valid');
-                    inputWrapper.classList.remove('is-invalid');
-                }
+        var target = e.currentTarget;
+        var inputWrapper = target.parentElement;
+        if (inputWrapper.classList.contains('is-invalid')) {
+            if (this.validityCheck(target)) {
+                inputWrapper.classList.add('is-valid');
+                inputWrapper.classList.remove('is-invalid');
             }
         }
     };
-    /**
-     * Starts by getting the inputs wrapper element.
-     * Then resets the wrappers status classes.
-     * If the element passes our `validityCheck` method add the `is-valid`
-     * status class to the elements wrapper.
-     * If the element fails the check add the `is-invalid` status class.
-     * Also grab the error object and apply the error message.
-     * @param { HTMLInputElement } el
-     */
     BasicForm.prototype.handleInputStatus = function (el) {
-        var inputWrapper = getParent_1.getParent(el, 'js-input');
+        var inputWrapper = el.parentElement;
         inputWrapper.classList.remove('has-focus');
         inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
         if (this.validityCheck(el)) {
@@ -787,47 +737,37 @@ var BasicForm = /** @class */ (function (_super) {
         else {
             inputWrapper.classList.add('is-invalid');
             var errorObject = inputWrapper.querySelector('.js-error');
-            if (errorObject)
+            if (errorObject) {
                 errorObject.innerHTML = el.validationMessage;
+            }
         }
     };
-    /**
-     * Sets the status classes for the input wrapper based on the inputs validity
-     * @todo Call on init to check prefilled inputs
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/ValidityState
-     * @param {Event} e
-     */
     BasicForm.prototype.handleBlur = function (e) {
-        if (e.target instanceof HTMLInputElement)
-            this.handleInputStatus(e.target);
-        switch (this._formType) {
-            case 'login':
-                this.activeSubmitButton();
-                break;
-        }
+        var target = e.currentTarget;
+        this.handleInputStatus(target);
     };
-    /**
-     * Sets the `has-focus` status class to the inputs wrapper
-     * @param {Event} e
-     */
     BasicForm.prototype.handleFocus = function (e) {
         var target = e.currentTarget;
         var parent = target.parentElement;
         parent.classList.add('has-focus');
     };
     /**
-     * Called when the module is destroyed
-     * Remove all event listners before calling super.destory()
+     * Called when a user selects a different option in the selection dropdown.
+     * If the selected option isn't `any` set the `has-value` status class.
+     * @param {Event} e
      */
+    BasicForm.prototype.handleSelection = function (e) {
+        var target = e.currentTarget;
+        var inputWrapper = target.parentElement;
+        if (target.value === 'any') {
+            inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+        }
+        else {
+            inputWrapper.classList.add('has-value');
+            inputWrapper.classList.add('is-valid');
+        }
+    };
     BasicForm.prototype.destroy = function () {
-        var _this = this;
-        this._inputs.forEach(function (el) { el.removeEventListener('focus', function (e) { return _this.handleFocus(e); }); });
-        this._inputs.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleBlur(e); }); });
-        this._inputs.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
-        this._selects.forEach(function (el) { el.removeEventListener('change', function (e) { return _this.handleSelection(e); }); });
-        this._textareas.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleTextarea(e); }); });
-        this._textareas.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleTextarea(e); }); });
-        this._passwordToggles.forEach(function (el) { el.removeEventListener('click', function (e) { return _this.handleToggle(e); }); });
         _super.prototype.destroy.call(this, env_1.isDebug, BasicForm.MODULE_NAME);
     };
     BasicForm.MODULE_NAME = 'BasicForm';
@@ -1138,6 +1078,304 @@ var BasicGallery = /** @class */ (function (_super) {
     return BasicGallery;
 }(AbstractModule_1.default));
 exports.default = BasicGallery;
+
+
+/***/ }),
+
+/***/ "./app/scripts/modules/Freeform.ts":
+/*!*****************************************!*\
+  !*** ./app/scripts/modules/Freeform.ts ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var env_1 = __webpack_require__(/*! ../env */ "./app/scripts/env.ts");
+var AbstractModule_1 = __importDefault(__webpack_require__(/*! ./AbstractModule */ "./app/scripts/modules/AbstractModule.ts"));
+var Freeform = /** @class */ (function (_super) {
+    __extends(Freeform, _super);
+    function Freeform(el, app) {
+        var _this = _super.call(this, el, app) || this;
+        if (env_1.isDebug)
+            console.log('%c[module] ' + ("%cBuilding: " + Freeform.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
+        // Form Elements
+        _this._inputs = null;
+        _this._selects = null;
+        _this._textareas = null;
+        _this._passwordToggles = null;
+        _this._switches = null;
+        // General Elements
+        _this._tabs = Array.from(_this.el.querySelectorAll('.js-tab'));
+        _this._pages = Array.from(_this.el.querySelectorAll('.js-page'));
+        _this._button = null;
+        // Variables
+        _this._active = 0;
+        return _this;
+    }
+    /**
+     * Called when the module is created
+     * Used to call any initial methods or to
+     * register any initial event listeners
+     */
+    Freeform.prototype.init = function () {
+        this.getPageElements();
+        this.addEvents();
+        this.handlePrefills();
+        this.checkForRequired();
+    };
+    Freeform.prototype.submitForm = function () {
+    };
+    Freeform.prototype.getPageElements = function () {
+        this._inputs = Array.from(this._pages[this._active].querySelectorAll('input'));
+        this._selects = Array.from(this._pages[this._active].querySelectorAll('select'));
+        this._textareas = Array.from(this._pages[this._active].querySelectorAll('textarea'));
+        this._passwordToggles = Array.from(this._pages[this._active].querySelectorAll('.js-password-toggle'));
+        this._switches = Array.from(this._pages[this._active].querySelectorAll('.js-switch'));
+        if (this._pages.length > 1) {
+            this._button = this._pages[this._active].querySelector('.js-next-button');
+        }
+        else {
+            this._button = this._pages[this._active].querySelector('.js-submit-button');
+        }
+    };
+    Freeform.prototype.removeEvents = function () {
+        var _this = this;
+        this._inputs.forEach(function (el) { el.removeEventListener('focus', function (e) { return _this.handleFocus(e); }); });
+        this._inputs.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleBlur(e); }); });
+        this._inputs.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
+        this._selects.forEach(function (el) { el.removeEventListener('change', function (e) { return _this.handleSelection(e); }); });
+        this._textareas.forEach(function (el) { el.removeEventListener('keyup', function (e) { return _this.handleTextarea(e); }); });
+        this._textareas.forEach(function (el) { el.removeEventListener('blur', function (e) { return _this.handleTextarea(e); }); });
+        this._passwordToggles.forEach(function (el) { el.removeEventListener('click', function (e) { return _this.handleToggle(e); }); });
+        this._switches.forEach(function (el) { el.removeEventListener('CheckboxStateChange', function (e) { return _this.handleSwitch(e); }); });
+        if (this._pages.length > 1) {
+            this._button.removeEventListener('click', function (e) { return _this.nextPage(); });
+        }
+        else {
+            this._button.removeEventListener('click', function (e) { return _this.submitForm(); });
+        }
+    };
+    Freeform.prototype.addEvents = function () {
+        var _this = this;
+        this._inputs.forEach(function (el) { el.addEventListener('focus', function (e) { return _this.handleFocus(e); }); });
+        this._inputs.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleBlur(e); }); });
+        this._inputs.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleKeystroke(e); }); });
+        this._selects.forEach(function (el) { el.addEventListener('change', function (e) { return _this.handleSelection(e); }); });
+        this._textareas.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleTextarea(e); }); });
+        this._textareas.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleTextarea(e); }); });
+        this._passwordToggles.forEach(function (el) { el.addEventListener('click', function (e) { return _this.handleToggle(e); }); });
+        this._switches.forEach(function (el) { el.addEventListener('change', function (e) { return _this.handleSwitch(e); }); });
+        if (this._pages.length > 1) {
+            this._button.addEventListener('click', function (e) { return _this.nextPage(); });
+        }
+        else {
+            this._button.addEventListener('click', function (e) { return _this.submitForm(); });
+        }
+    };
+    Freeform.prototype.handlePrefills = function () {
+        var _this = this;
+        // Handle input status for prefilled elements
+        this._inputs.forEach(function (el) {
+            if (el.value !== '' || el.innerText !== '') {
+                _this.handleInputStatus(el);
+            }
+        });
+        // Handle input status for select elements
+        this._selects.forEach(function (el) {
+            if (el instanceof HTMLSelectElement) {
+                if (el.value !== 'any') {
+                    var inputWrapper = el.parentElement;
+                    inputWrapper.classList.add('has-value');
+                    inputWrapper.classList.add('is-valid');
+                }
+            }
+        });
+    };
+    Freeform.prototype.checkForRequired = function () {
+        var requiredElements = this._pages[this._active].querySelectorAll('[required]');
+        if (requiredElements.length === 0) {
+            this._button.classList.remove('is-disabled');
+        }
+    };
+    Freeform.prototype.pageInit = function () {
+        this.removeEvents();
+        this.getPageElements();
+        this.addEvents();
+        this.handlePrefills();
+        this.checkForRequired();
+    };
+    Freeform.prototype.nextPage = function () {
+        console.log('User clicked');
+    };
+    Freeform.prototype.validatePage = function () {
+        var isInvalid = true;
+        var required = Array.from(this._pages[this._active].querySelectorAll('[required]'));
+        required.forEach(function (el) {
+            if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) {
+                if (!el.validity.valid || el.value === '') {
+                    isInvalid = false;
+                }
+            }
+        });
+        if (isInvalid) {
+            this._button.classList.remove('is-disabled');
+        }
+        else {
+            this._button.classList.add('is-disabled');
+        }
+    };
+    /**
+     * Called when we need to make sure an input is valid.
+     * If the input has innerText and a value and is valid return true.
+     * @param {HTMLInputElement} el input element
+     */
+    Freeform.prototype.validityCheck = function (el) {
+        var isValid = true;
+        if (el.innerText === '' && el.value === '' && el.getAttribute('required') !== null) {
+            isValid = false;
+        }
+        else if (!el.validity.valid) {
+            isValid = false;
+        }
+        return isValid;
+    };
+    Freeform.prototype.handleSwitch = function (e) {
+        var el = e.currentTarget;
+        var inputWrapper = el.parentElement;
+        var parent = inputWrapper.parentElement;
+        parent.classList.remove('is-valid', 'is-invalid');
+        if (this.validityCheck(el)) {
+            parent.classList.add('is-valid');
+        }
+        else {
+            parent.classList.add('is-invalid');
+            var errorObject = inputWrapper.querySelector('.js-error');
+            if (errorObject) {
+                errorObject.innerHTML = el.validationMessage;
+            }
+        }
+        this.validatePage();
+    };
+    /**
+     * Called when a user releases a key while a textarea element has focus.
+     * @param {Event} e
+     */
+    Freeform.prototype.handleTextarea = function (e) {
+        var target = e.currentTarget;
+        var inputWrapper = target.parentElement;
+        inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+        if (target.validity.valid && target.value !== '') {
+            inputWrapper.classList.add('has-value');
+            inputWrapper.classList.add('is-valid');
+        }
+        else if (!target.validity.valid) {
+            inputWrapper.classList.add('is-invalid');
+            var errorObject = inputWrapper.querySelector('.js-error');
+            if (errorObject) {
+                errorObject.innerHTML = target.validationMessage;
+            }
+        }
+    };
+    /**
+     * Called when a user clicks on the eye icon for a password or pin input.
+     * If the content is hidden we set the inputs type to `text`.
+     * If the content isn't hidden we set the inputs type to `password`.
+     * @param {Event} e
+     */
+    Freeform.prototype.handleToggle = function (e) {
+        var target = e.currentTarget;
+        var inputWrapper = target.parentElement;
+        var input = inputWrapper.querySelector('input');
+        if (inputWrapper.classList.contains('has-content-hidden')) {
+            inputWrapper.classList.remove('has-content-hidden');
+            inputWrapper.classList.add('has-content-visible');
+            input.setAttribute('type', 'text');
+        }
+        else {
+            inputWrapper.classList.add('has-content-hidden');
+            inputWrapper.classList.remove('has-content-visible');
+            input.setAttribute('type', 'password');
+        }
+    };
+    Freeform.prototype.handleKeystroke = function (e) {
+        var target = e.currentTarget;
+        var inputWrapper = target.parentElement;
+        if (inputWrapper.classList.contains('is-invalid')) {
+            if (this.validityCheck(target)) {
+                inputWrapper.classList.add('is-valid');
+                inputWrapper.classList.remove('is-invalid');
+            }
+        }
+        this.validatePage();
+    };
+    Freeform.prototype.handleInputStatus = function (el) {
+        var inputWrapper = el.parentElement;
+        inputWrapper.classList.remove('has-focus');
+        inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+        if (this.validityCheck(el)) {
+            if (el.value !== '' || el.innerText !== '')
+                inputWrapper.classList.add('has-value');
+            inputWrapper.classList.add('is-valid');
+        }
+        else {
+            inputWrapper.classList.add('is-invalid');
+            var errorObject = inputWrapper.querySelector('.js-error');
+            if (errorObject) {
+                errorObject.innerHTML = el.validationMessage;
+            }
+        }
+        this.validatePage();
+    };
+    Freeform.prototype.handleBlur = function (e) {
+        var target = e.currentTarget;
+        this.handleInputStatus(target);
+    };
+    Freeform.prototype.handleFocus = function (e) {
+        var target = e.currentTarget;
+        var parent = target.parentElement;
+        parent.classList.add('has-focus');
+    };
+    /**
+     * Called when a user selects a different option in the selection dropdown.
+     * If the selected option isn't `any` set the `has-value` status class.
+     * @param {Event} e
+     */
+    Freeform.prototype.handleSelection = function (e) {
+        var target = e.currentTarget;
+        var inputWrapper = target.parentElement;
+        if (target.value === 'any') {
+            inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
+        }
+        else {
+            inputWrapper.classList.add('has-value');
+            inputWrapper.classList.add('is-valid');
+        }
+    };
+    Freeform.prototype.destroy = function () {
+        _super.prototype.destroy.call(this, env_1.isDebug, Freeform.MODULE_NAME);
+    };
+    Freeform.MODULE_NAME = 'Freeform';
+    return Freeform;
+}(AbstractModule_1.default));
+exports.default = Freeform;
 
 
 /***/ }),

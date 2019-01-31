@@ -1,0 +1,51 @@
+.o-freeform{
+    .o-freeform_page{
+        opacity: 0;
+        display: none;
+
+        &.is-active-page{
+            opacity: 1;
+            display: inline-block;
+        }
+    }
+
+    .o-freeform_steps{
+        &.-list{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: $unit*2;
+
+            .o-freeform_steps_item{
+                list-style-type: none;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                @include size(48px, 48px);
+                margin: 0 $unit-small;
+                cursor: default;
+                user-select: none;
+                pointer-events: none;
+
+                &::after{
+                    content:"";
+                    background-color: $primary;
+                    @include size(32px, 32px);
+                    border-radius: 100%;
+                    position: absolute;
+                    transform: scale(0);
+                    transition: transform 150ms $ease-sharp, opacity 75ms $ease;
+                    opacity: 0;
+                }
+
+                &.is-active-page{
+                    &:after{
+                        opacity: $primary-active-opacity;
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+    }
+}

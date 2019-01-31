@@ -1,0 +1,6 @@
+{% if block.selectedForm|length %}
+	<div class="o-freeform o-form {{ block.formStyle }} o-wrapper u-1/1" data-module="Freeform">
+		{% set form = craft.freeform.form(block.selectedForm.handle) %}
+        {{ form.render() }}
+	</div>
+{% endif %}
