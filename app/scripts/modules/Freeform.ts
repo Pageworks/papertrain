@@ -20,8 +20,8 @@ export default class Freeform extends AbstractModule{
     // Variables
     private _active:            number;
 
-    constructor(el:Element, app:App){
-        super(el, app);
+    constructor(el:Element, uuid:string, app:App){
+        super(el, uuid, app);
         if(isDebug) console.log('%c[module] '+`%cBuilding: ${Freeform.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
         // Form Elements

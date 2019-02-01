@@ -1,16 +1,15 @@
-import uuid from 'uuid/v4';
-
 export default class AbstractModule{
     public el:      Element;
     public uuid:    string;
     private _app:   App;
 
-    constructor(el:Element, app:App){
-        this.el     = el; // Sets initial reference to the element that generated the module
-        this.uuid   = uuid(); // Generates a UUID using UUID v4
-        this._app    = app;
+    constructor(el:Element, uuid:string, app:App){
+        this.el     = el;
+        this.uuid   = uuid;
+        this._app   = app;
 
-        this.el.setAttribute('data-uuid', this.uuid); // Sets modules UUID to be used later when handling modules destruction
+        // Sets modules UUID to be used later when handling modules destruction
+        this.el.setAttribute('data-uuid', this.uuid);
     }
 
     public init(): void{

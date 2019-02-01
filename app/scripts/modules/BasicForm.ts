@@ -11,8 +11,8 @@ export default class BasicForm extends AbstractModule{
     private _textareas:         Array<HTMLTextAreaElement>;
     private _switches:          Array<Element>;
 
-    constructor(el:Element, app:App){
-        super(el, app);
+    constructor(el:Element, uuid:string, app:App){
+        super(el, uuid, app);
         if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicForm.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 
         // Elements

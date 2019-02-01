@@ -5,8 +5,8 @@ export default class Example extends AbstractModule{
 
     public static MODULE_NAME:string = 'Example';
 
-    constructor(el:Element, app:App){
-        super(el, app);
+    constructor(el:Element, uuid:string, app:App){
+        super(el, uuid, app);
         if(isDebug){
             console.log('%c[module] '+`%cBuilding: ${Example.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
         }

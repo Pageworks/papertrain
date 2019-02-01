@@ -121,6 +121,7 @@ var env_1 = __webpack_require__(/*! ./env */ "./app/scripts/env.ts");
 var modules = __importStar(__webpack_require__(/*! ./modules */ "./app/scripts/modules.ts"));
 var TransitionManager_1 = __importDefault(__webpack_require__(/*! ./transitions/TransitionManager */ "./app/scripts/transitions/TransitionManager.ts"));
 var polyfill_1 = __importDefault(__webpack_require__(/*! ./polyfill */ "./app/scripts/polyfill.ts"));
+var v4_1 = __importDefault(__webpack_require__(/*! uuid/v4 */ "./node_modules/uuid/v4.js"));
 var App = /** @class */ (function () {
     function App() {
         this._modules = modules;
@@ -152,7 +153,6 @@ var App = /** @class */ (function () {
         }
         window.addEventListener('load', function (e) { env_1.html.classList.add('has-loaded'); });
         window.addEventListener('scroll', function (e) { return _this.handleScroll(); });
-        document.addEventListener('seppuku', function (e) { return _this.deleteModule(e); }); // Listen for our custom events
         this.initModules(); // Get initial modules
         this.handleStatus(); // Check the users visitor status
         this._transitionManager = new TransitionManager_1.default(this);
@@ -160,6 +160,10 @@ var App = /** @class */ (function () {
             this.createEasterEgg();
         }
     };
+    /**
+     * Called on a production build of the application.
+     * Displays the Pageworks logo in ASCII along with a link to the company website.
+     */
     App.prototype.createEasterEgg = function () {
         var lines = [
             '',
@@ -203,11 +207,7 @@ var App = /** @class */ (function () {
     };
     /**
      * Called when the user scrolls.
-     * If the user is scrolling down the page add the scroll delta to
-     * the total tracked scroll distance. If the distance passes the
-     * trigger distance add the `has-scrolled` status class.
-     * If the user scrolled up reset the scroll distance and remove
-     * the `has-scrolled` status class.
+     * Manages the `has-scrolled` status class attached to the document.
      */
     App.prototype.handleScroll = function () {
         var currentScroll = window.scrollY;
@@ -224,11 +224,9 @@ var App = /** @class */ (function () {
         this._prevScroll = currentScroll;
     };
     /**
-     * Sets relevant classes based on the users visitor status
-     * Uses local storage to store status trackers
-     * If the user has not visited in 24 hours add a first of day class
-     * Always reset the daily visit time on every visit
-     * @todo Check if we need permision to set these trackers
+     * Sets relevant classes based on the users visitor status.
+     * Uses local storage to store status trackers.
+     * @todo Check if we need permision to set these trackers.
      */
     App.prototype.handleStatus = function () {
         // Handle unique visitor status
@@ -246,6 +244,20 @@ var App = /** @class */ (function () {
         window.localStorage.setItem(env_1.APP_NAME + "_DailyVisit", Date.now().toString()); // Always update daily visit status
     };
     /**
+     * Parses supplied string and returns an array of module names.
+     * @returns `string[]`
+     * @param { string } data - a string taken from an elements `data-modules` attribute
+     */
+    App.prototype.getModuleNames = function (data) {
+        // Trim whitespace and spit the string by whitespace
+        var modules = data.trim().split(/\s+/gi);
+        // Fixes array for empty `data-module` attributes
+        if (modules.length === 1 && modules[0] === '') {
+            modules = [];
+        }
+        return modules;
+    };
+    /**
      * Gets all module references in the document and creates a new module
      * If a module already has a UUID we won't do anything since it already
      * has a module associated with the HTML element
@@ -254,70 +266,101 @@ var App = /** @class */ (function () {
         var _this = this;
         var modules = Array.from(document.querySelectorAll('[data-module]'));
         modules.forEach(function (module) {
-            var moduleType = module.getAttribute('data-module');
-            var moduleUUID = module.getAttribute('data-uuid');
-            if (_this._modules[moduleType] !== undefined && moduleUUID === null) {
-                var newModule = new _this._modules[moduleType].prototype.constructor(module, _this);
-                _this._currentModules.push(newModule);
-                newModule.init();
-            }
-            else if (_this._modules[moduleType] === undefined) {
+            var requestedModules = module.getAttribute('data-module');
+            var modules = _this.getModuleNames(requestedModules);
+            if (modules.length === 0) {
                 if (env_1.isDebug) {
-                    console.log('%cUndefined Module: ' + ("%c" + moduleType), 'color:#ff6e6e', 'color:#eee');
+                    console.log('%cEmpty Module Attribute Detected', 'color:#ff6e6e');
+                }
+                return;
+            }
+            var existingUUID = module.getAttribute('data-uuid');
+            var newUUID = v4_1.default();
+            for (var i = 0; i < modules.length; i++) {
+                if (_this._modules[modules[i]] !== undefined && existingUUID === null) {
+                    var newModule = new _this._modules[modules[i]].prototype.constructor(module, newUUID, _this);
+                    _this._currentModules.push(newModule);
+                    newModule.init();
+                }
+                else if (_this._modules[modules[i]] === undefined) {
+                    if (env_1.isDebug) {
+                        console.log('%cUndefined Module: ' + ("%c" + modules[i]), 'color:#ff6e6e', 'color:#eee');
+                    }
                 }
             }
         });
     };
     /**
-     * Get all elements on the screen using the `data-module` attribute
-     * If an element already has a UUID it's an element that survived the page transition
-     * Remove (and trigger destory()) any elements module in the current modules list that didn't survive the transition
+     * Get all elements on the screen using the `data-module` attribute.
+     * If an element already has a UUID it's an element that survived the page transition.
+     * Remove (and trigger destory()) any elements module in the current modules list that didn't survive the transition.
      */
     App.prototype.deleteModules = function () {
         var _this = this;
         var modules = Array.from(document.querySelectorAll('[data-module]'));
         var survivingModules = [];
         var deadModules = [];
-        modules.forEach(function (module) { if (module.getAttribute('data-uuid') !== null)
-            survivingModules.push(module); });
+        // Grab all modules that have a UUID attribute
+        modules.forEach(function (module) {
+            // If the module has a UUID the element survived the page transition
+            if (module.getAttribute('data-uuid') !== null) {
+                survivingModules.push(module);
+            }
+        });
+        // Loop through all current modules
         this._currentModules.map(function (currModule) {
             var survived = false;
+            // Loop through all surviving modules
             survivingModules.map(function (survivingModule) {
+                // If the element with a UUID attribute matches the UUID of the current module don't remove the module
                 if (survivingModule.getAttribute('data-uuid') === currModule.uuid) {
                     survived = true;
                 }
             });
+            // If the current module doesn't match up with any UUIDs avialable on the surviving elements mark the module for destruction
             if (!survived) {
                 deadModules.push(currModule);
             }
         });
+        // Verify we have modules to destroy
         if (deadModules.length) {
+            // Loop though all the modules we need to destroy
             deadModules.map(function (deadModule) {
+                // Loop through all the current modules
                 for (var i = 0; i < _this._currentModules.length; i++) {
+                    // Check if the currend modules UUID matches the UUID of our module marked for destruction
                     if (_this._currentModules[i].uuid === deadModule.uuid) {
+                        // Trigger module destruction
                         _this._currentModules[i].destroy();
-                        _this._currentModules.splice(i);
+                        // Get the modules index in our current module array
+                        var index = _this._currentModules.indexOf(_this._currentModules[i]);
+                        // Splice the array at the index and shift the remaining modules
+                        _this._currentModules.splice(index, 1);
                     }
                 }
             });
         }
     };
     /**
-     * Delete a module based on the modules UUID
-     * @param {CustomEvent} e
+     * Delete a module based on the modules UUID.
+     * @param { string } uuid - provided by the `AbstractModule` class
      */
-    App.prototype.deleteModule = function (e) {
-        var moduleID = e.detail.id;
-        if (!moduleID) {
+    App.prototype.deleteModule = function (uuid) {
+        if (!uuid) {
             if (env_1.isDebug) {
                 console.log('%cDelete Module Error: ' + '%cmodule UUID was not sent in the custom event', 'color:#ff6e6e', 'color:#eee');
             }
             return;
         }
+        // Loop through all the current modules
         for (var i = 0; i < this._currentModules.length; i++) {
-            if (this._currentModules[i].uuid === moduleID) {
+            // Check if the current modules UUID matches the UUID of the module we're destroying
+            if (this._currentModules[i].uuid === uuid) {
+                // Trigger module destruciton
                 this._currentModules[i].destroy();
+                // Get the modules index in our current module array
                 var index = this._currentModules.indexOf(this._currentModules[i]);
+                // Splice the array at the index and shift the remaining modules
                 this._currentModules.splice(index, 1);
             }
         }
@@ -404,17 +447,14 @@ exports.Freeform = Freeform_1.default;
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var v4_1 = __importDefault(__webpack_require__(/*! uuid/v4 */ "./node_modules/uuid/v4.js"));
 var AbstractModule = /** @class */ (function () {
-    function AbstractModule(el, app) {
-        this.el = el; // Sets initial reference to the element that generated the module
-        this.uuid = v4_1.default(); // Generates a UUID using UUID v4
+    function AbstractModule(el, uuid, app) {
+        this.el = el;
+        this.uuid = uuid;
         this._app = app;
-        this.el.setAttribute('data-uuid', this.uuid); // Sets modules UUID to be used later when handling modules destruction
+        // Sets modules UUID to be used later when handling modules destruction
+        this.el.setAttribute('data-uuid', this.uuid);
     }
     AbstractModule.prototype.init = function () {
     };
@@ -476,8 +516,8 @@ var AbstractModule_1 = __importDefault(__webpack_require__(/*! ./AbstractModule 
 var animejs_1 = __importDefault(__webpack_require__(/*! animejs */ "./node_modules/animejs/anime.min.js"));
 var BasicAccordion = /** @class */ (function (_super) {
     __extends(BasicAccordion, _super);
-    function BasicAccordion(el, app) {
-        var _this = _super.call(this, el, app) || this;
+    function BasicAccordion(el, uuid, app) {
+        var _this = _super.call(this, el, uuid, app) || this;
         if (env_1.isDebug) {
             console.log('%c[module] ' + ("%cBuilding: " + BasicAccordion.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
         }
@@ -612,8 +652,8 @@ var env_1 = __webpack_require__(/*! ../env */ "./app/scripts/env.ts");
 var AbstractModule_1 = __importDefault(__webpack_require__(/*! ./AbstractModule */ "./app/scripts/modules/AbstractModule.ts"));
 var BasicForm = /** @class */ (function (_super) {
     __extends(BasicForm, _super);
-    function BasicForm(el, app) {
-        var _this = _super.call(this, el, app) || this;
+    function BasicForm(el, uuid, app) {
+        var _this = _super.call(this, el, uuid, app) || this;
         if (env_1.isDebug)
             console.log('%c[module] ' + ("%cBuilding: " + BasicForm.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
         // Elements
@@ -810,8 +850,8 @@ var animejs_1 = __importDefault(__webpack_require__(/*! animejs */ "./node_modul
 var getParent_1 = __webpack_require__(/*! ../utils/getParent */ "./app/scripts/utils/getParent.ts");
 var BasicGallery = /** @class */ (function (_super) {
     __extends(BasicGallery, _super);
-    function BasicGallery(el, app) {
-        var _this = _super.call(this, el, app) || this;
+    function BasicGallery(el, uuid, app) {
+        var _this = _super.call(this, el, uuid, app) || this;
         if (env_1.isDebug)
             console.log('%c[module] ' + ("%cBuilding: " + BasicGallery.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
         // CMS Input Data
@@ -1112,8 +1152,8 @@ var env_1 = __webpack_require__(/*! ../env */ "./app/scripts/env.ts");
 var AbstractModule_1 = __importDefault(__webpack_require__(/*! ./AbstractModule */ "./app/scripts/modules/AbstractModule.ts"));
 var Freeform = /** @class */ (function (_super) {
     __extends(Freeform, _super);
-    function Freeform(el, app) {
-        var _this = _super.call(this, el, app) || this;
+    function Freeform(el, uuid, app) {
+        var _this = _super.call(this, el, uuid, app) || this;
         if (env_1.isDebug)
             console.log('%c[module] ' + ("%cBuilding: " + Freeform.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
         // Form Elements

@@ -1,10 +1,17 @@
 # Unreleased Changes
 
+### Adds
+
+- Adds: `data-module` attribute can now create multiple modules from one attribute [#107](https://github.com/Pageworks/papertrain/issues/107)
+
 ### Fixes
+
 - Fixes: flips auto generated page titles [#91](https://github.com/Pageworks/papertrain/issues/91)
 - Fixes: module names switched from `private` to `public` [#86](https://github.com/Pageworks/papertrain/issues/86)
 - Fixes: `getTemplateName` method in `TransitionManager` [#90](https://github.com/Pageworks/papertrain/issues/90)
 - Fixes: moves `/vendor` in the `.gitignore` file to the top of the file so it's easier to find [#89](https://github.com/Pageworks/papertrain/issues/89)
+- Fixes: updates base scripts [#102](https://github.com/Pageworks/papertrain/issues/102)
+- Fixes: removes webkit highlight colour [#85](https://github.com/Pageworks/papertrain/issues/85)
 
 # 1.0.3 - 2019-01-10
 
