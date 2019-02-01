@@ -29,6 +29,7 @@ button,
 
     display: inline-block;
     user-select: none;
+    cursor: pointer;
     overflow: hidden;
     border-radius: 4px;
     background: transparent;
@@ -71,7 +72,6 @@ button,
     // Modifier Classes
     &.is-disabled{
         color: rgba($black,0.26);
-        pointer-events: none;
 
         section.-dark-background & {
             color: rgba($white, 0.3);
@@ -166,14 +166,18 @@ button,
         }
 
         &.is-disabled{
-            background: rgba($black,0.04);
-            color: rgba($black,0.26);
-            border-color: rgba($black, 0.1);
+            background: rgba($black,0.04) !important;
+            color: rgba($black,0.26) !important;
+            border-color: rgba($black, 0.1) !important;
+
+            &:before{
+                opacity: 0 !important;
+            }
 
             section.-dark-background & {
-                background: rgba($white,0.05);
-                color: rgba($white, 0.3);
-                border-color: rgba($white, 0.04);
+                background: rgba($white,0.05) !important;
+                color: rgba($white, 0.3) !important;
+                border-color: rgba($white, 0.04) !important;
             }
         }
     }

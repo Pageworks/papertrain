@@ -494,7 +494,6 @@
 
         .o-error{
             padding: 0;
-            padding-left: 4px;
             bottom: 2px;
             top: auto;
         }
@@ -918,7 +917,8 @@
         &.is-invalid{
             margin-bottom: $unit*2;
 
-            input{
+            input,
+            select{
                 & + label{
                     color: rgba($error, 0.87) !important;
                 }

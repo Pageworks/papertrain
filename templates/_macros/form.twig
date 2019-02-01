@@ -1,7 +1,7 @@
 {# Basic Form Input #}
-{% macro input(label, name, required, type = 'text', help, icon, pattern, autocomplete) %}
+{% macro input(label, name, required, type = 'text', help, maxLength = 254, icon, pattern, autocomplete) %}
     <div class="js-input o-input {% if help|length %}has-helper{% endif %}">
-        <input {% if icon %}class="has-icon"{% endif %} type="{{type}}" {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern != '' %}pattern="{{pattern}}"{% elseif type == 'email' %}pattern=".+@.+\..+"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+        <input {% if icon %}class="has-icon"{% endif %} type="{{type}}" maxlength="{{ maxLength }}"  {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern != '' %}pattern="{{pattern}}"{% elseif type == 'email' %}pattern=".+@.+\..+"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
         <label>{{label}}</label>
         {% if icon %}<i class="o-icon {{icon}}"></i>{% endif %}
         <div class="o-error">
@@ -17,9 +17,9 @@
 {% endmacro %}
 
 {# Number Form Input #}
-{% macro number(label, name, required, help, icon, min = 0, max, step) %}
+{% macro number(label, name, required, help, min = 0, max, step, icon) %}
     <div class="js-input o-input {% if help|length %}has-helper{% endif %}">
-        <input {% if icon %}class="has-icon"{% endif %} type="number" min="{{min}}" inputmode="numeric" {% if max %}max="{{max}}"{% endif %} {% if step %}step="{{step}}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+        <input {% if icon %}class="has-icon"{% endif %} type="number" min="{{min}}" inputmode="numeric" {% if max %}max="{{max}}"{% endif %} {% if step %}step="0.{% for i in 1..step %}{% if not loop.last %}0{% else %}1{% endif %}{% endfor  %}"{% endif %} name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
         <label>{{label}}</label>
         {% if icon %}<i class="o-icon {{icon}}"></i>{% endif %}
         <div class="o-error">
@@ -47,12 +47,12 @@
         </span>
         <div class="o-error">
             <i class="far fa-exclamation-circle"></i>
-            <span class="o-error_message">Minimum of 8 characters with 1 letter and number.</span>
+            <span class="o-error_message">Minimum of 8 characters with 1 letter and 1 number.</span>
         </div>
         <div class="o-help">
             <span class="o-help_message">
                 {% if help|length == null %}
-                    Minimum of 8 characters with 1 letter and number.
+                    Minimum of 8 characters with 1 letter and 1 number.
                 {% else %}
                     {{help}}
                 {% endif %}
@@ -90,15 +90,19 @@
 
 {# Select Form Input #}
 {% macro select(label, name, required, help, options) %}
-    <div class="js-input o-input {% if help|length %}has-helper{% endif %}">
-        <select id="{{name}}" name="{{name}}" >
-            {% if not required %}<option value="any">&nbsp;</option>{% endif %}
+    <div class="js-select o-input {% if help|length %}has-helper{% endif %}">
+        <select id="{{name}}" name="{{name}}" {% if required %}required{% endif %}>
+            <option value="any">&nbsp;</option>
             {% for option in options %}
                 <option value="{{option.value}}">{{option.label}}</option>
             {% endfor %}
         </select>
         <label>{{label}}</label>
         <i class="o-arrow fas fa-sort-down"></i>
+        <div class="o-error">
+            <i class="far fa-exclamation-circle"></i>
+            <span class="js-error o-error_message">Something went wrong.</span>
+        </div>
         {% if help|length %}
             <div class="o-help">
                 <span class="o-help_message">{{help}}</span>
@@ -109,7 +113,7 @@
 
 {# Textarea Input #}
 {% macro textarea(label, name, required, help) %}
-    <div class="js-input o-textarea {% if help|length %}has-helper{% endif %}">
+    <div class="js-textarea o-textarea {% if help|length %}has-helper{% endif %}">
         <textarea id="{{name}}" name="{{name}}" {% if required %}required{% endif %}></textarea>
         <label>{{label}}</label>
         <div class="o-error">
@@ -126,10 +130,10 @@
 
 {# Radio Button Form Input #}
 {% macro radio(label, name, help, options) %}
-    <fieldset class="js-input o-radio {% if help|length %}has-helper{% endif %}">
+    <fieldset class="js-radio o-radio {% if help|length %}has-helper{% endif %}">
         {% for option in options %}
             <div class="o-radio_item">
-                <input type="radio" id="{{option.value}}" name="{{name}}" value="{{option.value}}" {% if loop.first %}checked="checked"{% endif %}  />
+                <input type="radio" id="{{option.value}}" name="{{name}}[]" value="{{option.value}}" {% if loop.first %}checked="checked"{% endif %}  />
                 <label for="{{option.value}}">
                     <div class="o-radio_icon">
                         <div class="o-radio_outter"></div>
@@ -150,10 +154,10 @@
 
 {# Checkbox Form Input #}
 {% macro checkbox(label, name, help, options) %}
-    <fieldset class="js-input o-checkbox {% if help|length %}has-helper{% endif %}">
+    <fieldset class="js-checkbox o-checkbox {% if help|length %}has-helper{% endif %}">
         {% for option in options %}
             <div class="o-checkbox_item">
-                <input type="checkbox" id="{{option.value}}" name="{{name}}" value="{{option.value}}" />
+                <input type="checkbox" id="{{option.value}}" name="{{name}}[]" value="{{option.value}}" />
                 <label for="{{option.value}}">
                     <div class="o-checkbox_icon">
                         <div class="o-checkbox_box"></div>
@@ -171,6 +175,10 @@
                 <span class="o-help_message">{{help}}</span>
             </div>
         {% endif %}
+        <div class="o-error">
+            <i class="far fa-exclamation-circle"></i>
+            <span class="js-error o-error_message">Something went wrong.</span>
+        </div>
     </fieldset>
 {% endmacro %}
 
@@ -194,9 +202,9 @@
 
 {# Switch Form Input #}
 {% macro switch(label, name, required, help, checked, value) %}
-    <div class="o-switch  {% if help|length %}has-helper{% endif %}">
+    <div class="js-switch o-switch  {% if help|length %}has-helper{% endif %}">
         <div class="o-switch_item">
-            <input class="js-switch" type="checkbox" id="id-{{name}}" name="{{name}}" value="{{value}}" {% if checked %}checked="checked"{% endif %} {% if required %}required{% endif %} />
+            <input type="checkbox" id="id-{{name}}" name="{{name}}" value="{{value}}" {% if checked %}checked="checked"{% endif %} {% if required %}required{% endif %} />
             <label for="id-{{name}}">
                 <span>
                     {{label}}
@@ -222,9 +230,9 @@
 {% endmacro %}
 
 {# File Form Input #}
-{% macro file(label, name, required, help) %}
+{% macro file(label, name, required, help, count = 1, kinds) %}
     <div class="js-input o-input has-helper">
-        <input type="file" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} />
+        <input type="file" name="{{name}}" id="{{name}}" {% if required %}required{% endif %} {% if count > 1 %}multiple{% endif %} {% if kinds %}accept="{% for kind in kinds %}{{ kind }}{% if not loop.last %},{% endif %}{% endfor %}"{% endif %} />
         <div class="o-error">
             <i class="far fa-exclamation-circle"></i>
             <span class="js-error o-error_message">Something went wrong.</span>

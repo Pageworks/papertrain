@@ -6,8 +6,8 @@
     {% if form.pages|length > 1 %}
         <ul class="o-freeform_steps -list">
             {% for page in form.pages %}
-                <li class="o-freeform_steps_item {% if loop.index0 == 0  %}is-active-page{% endif %}">
-                    <a href="javascript:void(0);"  class="js-tab" data-page="{{ loop.index0 }}">
+                <li class="o-freeform_steps_item js-tab {% if loop.index0 == 0  %}is-active-page{% endif %}" data-page="{{ loop.index0 }}">
+                    <a href="javascript:void(0);">
                         {{ loop.index }}
                     </a>
                 </li>
@@ -33,14 +33,18 @@
             {% for row in page %}
                 <div class="o-wrapper u-1/1">
                     {% for field in row %}
-                        <div class="o-wrapper u-align-top u-padding-horizontal-thin  u-1/1 {% if row|length > 1 %}u-1/{{row|length}}@medium{% endif %} {% if field.type == 'submit' %}u-text-right{% endif %}">
+                        <div class="o-wrapper u-align-top u-padding-horizontal-thin  u-1/1 {% if row|length > 1 %}u-1/{{row|length}}@medium{% endif %}">
                             {% if field.type == 'text' or field.type == 'email' %}
-                                {{ formMacro.input(field.label, field.handle, field.required, field.type, field.instructions) }}
+                                {% set maxLength = 254 %}
+                                {% if field.maxLength is defined and field.maxLength|length %}
+                                    {% set maxLength = field.maxLength %}
+                                {% endif %}
+                                {{ formMacro.input(field.label, field.handle, field.required, field.type, field.instructions, maxLength) }}
                             {% elseif field.type == 'number' %}
                                 {% if field.handle == 'pinNumber' %}
                                     {{ formMacro.pin(field.label, field.handle, field.required, field.instructions, field.minLength, field.maxLength) }}
                                 {% else %}
-                                    {{ formMacro.number(field.label, field.handle, field.required, field.instructions, '', field.minValue, field.maxValue) }}
+                                    {{ formMacro.number(field.label, field.handle, field.required, field.instructions, field.minValue, field.maxValue, field.decimalCount) }}
                                 {% endif %}
                             {% elseif field.type == 'textarea' %}
                                 {{ formMacro.textarea(field.label, field.handle, field.required, field.instructions) }}
@@ -55,25 +59,27 @@
                             {% elseif field.type == 'password' %}
                                 {{ formMacro.password(field.label, field.handle, field.required, field.instructions) }}
                             {% elseif field.type == 'file' %}
-                                {{ formMacro.file(field.label, field.handle, field.required, field.instructions) }}
-                            {% elseif field.type == 'submit' %}
-                                {% set hasSubmitButton = true %}
-                                <button class="o-button -outline -alt is-disabled js-submit-button">Submit</button>
+                                {{ formMacro.file(field.label, field.handle, field.required, field.instructions, field.fileCount, field.fileKinds) }}
                             {% else %}
                                 {% if currentUser|length and currentUser.admin %}
                                     <span style="font-size:26px;color:#ff715b;text-align:center;margin:2rem 0;display:block;">"{{ field.type }}" is not one of the types this form supports.</span>
+                                    {% if field.type == 'submit' %}<span>you do not need to add your own submit button, one will be created for you</span>{% endif %}
                                 {% endif %}
                             {% endif %}
                         </div>
                     {% endfor %}
                 </div>
             {% endfor %}
-            {% if form.pages > 1 and not hasSubmitButton %}
+            {% if form.pages > 1 and loop.index != form.pages|length %}
                 <div class="o-wrapper u-1/1 u-text-right u-margin-top">
-                    {% if page.index >= 1 %}
-                        <a href="javascript:void(0);" class="o-button -outline -alt js-back-button">Back</a>
+                    {% if loop.index > 1 %}
+                        <a href="javascript:void(0);" class="o-button -outline -alt js-back-button" data-type="back">Back</a>
                     {% endif %}
-                    <a href="javascript:void(0);" class="o-button -outline -alt is-disabled js-next-button u-margin-left-thin">Next</a>
+                    <a href="javascript:void(0);" class="o-button -outline -alt is-disabled js-next-button u-margin-left-thin" data-type="next">Next</a>
+                </div>
+            {% elseif loop.index == form.pages|length %}
+                <div class="o-wrapper u-1/1 u-text-right u-margin-top">
+                    <button data-type="submit"  class="o-button -outline -alt is-disabled js-submit-button">Submit</button>
                 </div>
             {% endif %}
         </div>

@@ -1128,7 +1128,6 @@ table {
       margin-top: 4px; }
     .o-switch .o-switch_item .o-error {
       padding: 0;
-      padding-left: 4px;
       bottom: 2px;
       top: auto; }
 
@@ -1407,7 +1406,8 @@ table {
       border-radius: 0 !important; }
     .o-form .o-input.is-invalid {
       margin-bottom: 2rem; }
-      .o-form .o-input.is-invalid input + label {
+      .o-form .o-input.is-invalid input + label,
+      .o-form .o-input.is-invalid select + label {
         color: rgba(255, 113, 91, 0.87) !important; }
       .o-form .o-input.is-invalid .o-help {
         opacity: 0;
@@ -1979,6 +1979,7 @@ button,
   margin: 0;
   display: inline-block;
   user-select: none;
+  cursor: pointer;
   overflow: hidden;
   border-radius: 4px;
   background: transparent;
@@ -2011,8 +2012,7 @@ button,
     transition: opacity 75ms cubic-bezier(0.4, 0, 0.6, 1); }
   button.is-disabled,
   .o-button.is-disabled {
-    color: rgba(0, 0, 0, 0.26);
-    pointer-events: none; }
+    color: rgba(0, 0, 0, 0.26); }
     section.-dark-background button.is-disabled, section.-dark-background
     .o-button.is-disabled {
       color: rgba(255, 255, 255, 0.3); }
@@ -2083,14 +2083,17 @@ button,
         border-color: #45ADA8; }
     button.-outline.is-disabled,
     .o-button.-outline.is-disabled {
-      background: rgba(0, 0, 0, 0.04);
-      color: rgba(0, 0, 0, 0.26);
-      border-color: rgba(0, 0, 0, 0.1); }
+      background: rgba(0, 0, 0, 0.04) !important;
+      color: rgba(0, 0, 0, 0.26) !important;
+      border-color: rgba(0, 0, 0, 0.1) !important; }
+      button.-outline.is-disabled:before,
+      .o-button.-outline.is-disabled:before {
+        opacity: 0 !important; }
       section.-dark-background button.-outline.is-disabled, section.-dark-background
       .o-button.-outline.is-disabled {
-        background: rgba(255, 255, 255, 0.05);
-        color: rgba(255, 255, 255, 0.3);
-        border-color: rgba(255, 255, 255, 0.04); }
+        background: rgba(255, 255, 255, 0.05) !important;
+        color: rgba(255, 255, 255, 0.3) !important;
+        border-color: rgba(255, 255, 255, 0.04) !important; }
   button.-raised,
   .o-button.-raised {
     padding: 0 1rem;

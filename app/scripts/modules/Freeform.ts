@@ -1,43 +1,48 @@
 import { isDebug } from '../env';
 import AbstractModule from './AbstractModule';
+import { customEvent } from '../utils/customEvent';
 
 export default class Freeform extends AbstractModule{
 
     public static MODULE_NAME:string = 'Freeform';
 
     // Form Elements
-    private _inputs:            Array<HTMLInputElement>;
-    private _passwordToggles:   Array<Element>;
-    private _selects:           Array<HTMLSelectElement>;
-    private _textareas:         Array<HTMLTextAreaElement>;
-    private _switches:          Array<Element>;
+    private _inputs:    Array<HTMLInputElement>;
+    private _textareas: Array<HTMLTextAreaElement>;
+    private _selects:   Array<HTMLSelectElement>;
+    private _switches:  Array<HTMLInputElement>;
 
     // General Elements
-    private _tabs:              Array<Element>;
-    private _pages:             Array<Element>;
-    private _button:            Element;
+    private _tabs:          Array<Element>;
+    private _pages:         Array<Element>;
+    private _nextButton:    Element;
+    private _backButton:    Element;
+    private _submitButton:  Element;
 
     // Variables
-    private _active:            number;
+    private _active:    number;
 
     constructor(el:Element, uuid:string, app:App){
         super(el, uuid, app);
-        if(isDebug) console.log('%c[module] '+`%cBuilding: ${Freeform.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        if(isDebug){
+            console.log('%c[module] '+`%cBuilding: ${Freeform.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        }
 
         // Form Elements
-        this._inputs            = null;
-        this._selects           = null;
-        this._textareas         = null;
-        this._passwordToggles   = null;
-        this._switches          = null;
+        this._inputs    = null;
+        this._textareas = null;
+        this._selects   = null;
+        this._switches  = null;
 
         // General Elements
-        this._tabs              = Array.from(this.el.querySelectorAll('.js-tab'));
-        this._pages             = Array.from(this.el.querySelectorAll('.js-page'));
-        this._button            = null;
+        this._tabs          = Array.from(this.el.querySelectorAll('.js-tab'));
+        this._pages         = Array.from(this.el.querySelectorAll('.js-page'));
+        this._backButton    = null;
+        this._nextButton    = null;
+        this._submitButton  = null;
 
         // Variables
-        this._active            = 0;
+        this._active    = 0;
     }
 
     /**
@@ -48,266 +53,243 @@ export default class Freeform extends AbstractModule{
     public init(): void{
         this.getPageElements();
         this.addEvents();
-        this.handlePrefills();
         this.checkForRequired();
     }
 
-    private submitForm(): void{
-
-    }
-
     private getPageElements(): void{
-        this._inputs            = Array.from(this._pages[this._active].querySelectorAll('input'));
-        this._selects           = Array.from(this._pages[this._active].querySelectorAll('select'));
-        this._textareas         = Array.from(this._pages[this._active].querySelectorAll('textarea'));
-        this._passwordToggles   = Array.from(this._pages[this._active].querySelectorAll('.js-password-toggle'));
-        this._switches          = Array.from(this._pages[this._active].querySelectorAll('.js-switch'));
+        this._inputs    = Array.from(this._pages[this._active].querySelectorAll('.js-input input[required]'));
+        this._textareas = Array.from(this._pages[this._active].querySelectorAll('.js-textarea textarea[required]'));
+        this._selects   = Array.from(this._pages[this._active].querySelectorAll('.js-select select[required]'));
+        this._switches  = Array.from(this._pages[this._active].querySelectorAll('.js-switch input[required]'));
 
-        if(this._pages.length > 1){
-            this._button = this._pages[this._active].querySelector('.js-next-button');
-        }
-        else{
-            this._button = this._pages[this._active].querySelector('.js-submit-button');
-        }
+        this._nextButton    = this._pages[this._active].querySelector('.js-next-button');
+        this._backButton    = this._pages[this._active].querySelector('.js-back-button');
+        this._submitButton  = this._pages[this._active].querySelector('.js-submit-button');
     }
 
     private removeEvents(): void{
-        this._inputs.forEach((el)=>{ el.removeEventListener('focus', e => this.handleFocus(e) ); });
-        this._inputs.forEach((el)=>{ el.removeEventListener('blur', e => this.handleBlur(e) ); });
-        this._inputs.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleKeystroke(e) ); });
+        this._inputs.forEach((el)=>{ el.removeEventListener('blur', this.validatePage ); });
+        this._inputs.forEach((el)=>{ el.removeEventListener('keyup', this.validatePage ); });
+        this._inputs.forEach((el)=>{ el.removeEventListener('change', this.validatePage ); });
 
-        this._selects.forEach((el)=>{ el.removeEventListener('change', e => this.handleSelection(e) ); });
+        this._textareas.forEach((el)=>{ el.removeEventListener('keyup', this.validatePage ); });
+        this._textareas.forEach((el)=>{ el.removeEventListener('blur', this.validatePage ); });
 
-        this._textareas.forEach((el)=>{ el.removeEventListener('keyup', e => this.handleTextarea(e) ); });
-        this._textareas.forEach((el)=>{ el.removeEventListener('blur', e => this.handleTextarea(e) ); });
+        this._selects.forEach((el)=>{ el.removeEventListener('change', this.validatePage ) });
 
-        this._passwordToggles.forEach((el)=>{ el.removeEventListener('click', e => this.handleToggle(e) ); });
+        this._switches.forEach((el)=>{ el.removeEventListener('change', this.validatePage ) });
 
-        this._switches.forEach((el)=>{ el.removeEventListener('CheckboxStateChange', e => this.handleSwitch(e) ); });
-
-        if(this._pages.length > 1){
-            this._button.removeEventListener('click', e => this.nextPage() );
-        }else{
-            this._button.removeEventListener('click', e => this.submitForm() );
+        if(this._nextButton){
+            this._nextButton.removeEventListener('click', this.checkButton );
+        }
+        if(this._backButton){
+            this._backButton.removeEventListener('click', this.checkButton );
+        }
+        if(this._submitButton){
+            this._submitButton.removeEventListener('click', this.checkButton );
         }
     }
 
     private addEvents(): void{
-        this._inputs.forEach((el)=>{ el.addEventListener('focus', e => this.handleFocus(e) ); });
-        this._inputs.forEach((el)=>{ el.addEventListener('blur', e => this.handleBlur(e) ); });
-        this._inputs.forEach((el)=>{ el.addEventListener('keyup', e => this.handleKeystroke(e) ); });
+        this._inputs.forEach((el)=>{ el.addEventListener('blur', this.validatePage ); });
+        this._inputs.forEach((el)=>{ el.addEventListener('keyup', this.validatePage ); });
+        this._inputs.forEach((el)=>{ el.addEventListener('change', this.validatePage ); });
 
-        this._selects.forEach((el)=>{ el.addEventListener('change', e => this.handleSelection(e) ); });
+        this._textareas.forEach((el)=>{ el.addEventListener('keyup', this.validatePage ); });
+        this._textareas.forEach((el)=>{ el.addEventListener('blur', this.validatePage ); });
 
-        this._textareas.forEach((el)=>{ el.addEventListener('keyup', e => this.handleTextarea(e) ); });
-        this._textareas.forEach((el)=>{ el.addEventListener('blur', e => this.handleTextarea(e) ); });
+        this._selects.forEach((el)=>{ el.addEventListener('change', this.validatePage ) });
 
-        this._passwordToggles.forEach((el)=>{ el.addEventListener('click', e => this.handleToggle(e) ); });
+        this._switches.forEach((el)=>{ el.addEventListener('change', this.validatePage ) });
 
-        this._switches.forEach((el)=>{ el.addEventListener('change', e => this.handleSwitch(e) ); });
-
-        if(this._pages.length > 1){
-            this._button.addEventListener('click', e => this.nextPage() );
-        }else{
-            this._button.addEventListener('click', e => this.submitForm() );
+        if(this._nextButton){
+            this._nextButton.addEventListener('click', this.checkButton );
         }
-    }
-
-    private handlePrefills(): void{
-        // Handle input status for prefilled elements
-        this._inputs.forEach((el)=>{
-            if(el.value !== '' || el.innerText !== ''){
-                this.handleInputStatus(el);
-            }
-        });
-
-        // Handle input status for select elements
-        this._selects.forEach((el)=>{
-            if (el instanceof HTMLSelectElement){
-                if(el.value !== 'any'){
-                    const inputWrapper  = el.parentElement;
-                    inputWrapper.classList.add('has-value');
-                    inputWrapper.classList.add('is-valid');
-                }
-            }
-        });
+        if(this._backButton){
+            this._backButton.addEventListener('click', this.checkButton );
+        }
+        if(this._submitButton){
+            this._submitButton.addEventListener('click', this.checkButton );
+        }
     }
 
     private checkForRequired(): void{
         const requiredElements = this._pages[this._active].querySelectorAll('[required]');
         if(requiredElements.length === 0){
-            this._button.classList.remove('is-disabled');
+            if(this._nextButton){
+                this._nextButton.classList.remove('is-disabled');
+            }
+            if(this._submitButton){
+                this._submitButton.classList.remove('is-disabled');
+            }
         }
     }
 
-    private pageInit(): void{
-        this.removeEvents();
-        this.getPageElements();
-        this.addEvents();
-        this.handlePrefills();
-        this.checkForRequired();
-    }
+    private hardValidation(): boolean{
+        let passedAllValidation = true;
 
-    private nextPage(): void{
-        console.log('User clicked');
-    }
+        this._inputs.forEach((el)=>{
+            const parent = el.parentElement;
 
-    private validatePage(): void{
-        let isInvalid = true;
+            if(el.validity.valid){
+                parent.classList.add('is-valid');
+                parent.classList.remove('is-invalid');
+            }else{
+                parent.classList.remove('is-valid');
+                parent.classList.add('is-invalid');
+                passedAllValidation = false;
 
-        const required = Array.from(this._pages[this._active].querySelectorAll('[required]'));
-
-        required.forEach((el)=>{
-            if(el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement ){
-                if(!el.validity.valid || el.value === ''){
-                    isInvalid = false;
+                const errorEl = parent.querySelector('.js-error');
+                if(errorEl){
+                    errorEl.innerHTML = el.validationMessage;
                 }
             }
         });
 
-        if(isInvalid){
-            this._button.classList.remove('is-disabled');
-        }else{
-            this._button.classList.add('is-disabled');
-        }
+        this._selects.forEach((el)=>{
+            const parent = el.parentElement;
+            const isRequried = (el.getAttribute('required') === null) ? false : true;
+
+            if(isRequried && el.value === 'any'){
+                parent.classList.add('is-invalid');
+                parent.classList.remove('is-valid');
+                passedAllValidation = false;
+
+                const errorEl = parent.querySelector('.js-error');
+                if(errorEl){
+                    errorEl.innerHTML = 'Please fill out this field.';
+                }
+            }else{
+                parent.classList.remove('is-invalid');
+                parent.classList.add('is-valid');
+            }
+        });
+
+        this._textareas.forEach((el)=>{
+            const parent = el.parentElement;
+
+            if(el.validity.valid){
+                parent.classList.add('is-valid');
+                parent.classList.remove('is-invalid');
+            }else{
+                parent.classList.remove('is-valid');
+                parent.classList.add('is-invalid');
+                passedAllValidation = false;
+
+                const errorEl = parent.querySelector('.js-error');
+                if(errorEl){
+                    errorEl.innerHTML = el.validationMessage;
+                }
+            }
+        });
+
+        this._switches.forEach((el)=>{
+            const inputWrapper = el.parentElement;
+            const parent = inputWrapper.parentElement;
+            parent.classList.remove('is-valid', 'is-invalid');
+
+            if(el.validity.valid){
+                parent.classList.add('is-valid');
+            }else{
+                parent.classList.add('is-invalid');
+                passedAllValidation = false;
+
+                const errorObject = inputWrapper.querySelector('.js-error');
+                if(errorObject){
+                    errorObject.innerHTML = el.validationMessage;
+                }
+            }
+        });
+
+        return passedAllValidation;
     }
 
-    /**
-     * Called when we need to make sure an input is valid.
-     * If the input has innerText and a value and is valid return true.
-     * @param {HTMLInputElement} el input element
-     */
-    private validityCheck(el:HTMLInputElement): boolean{
+    private validatePage:EventListener = ()=>{
         let isValid = true;
 
-        if(el.innerText === '' && el.value === '' && el.getAttribute('required') !== null){
-            isValid = false;
+        this._inputs.forEach((el)=>{
+            if(!el.validity.valid || el.value === ''){
+                isValid = false;
+            }
+        });
+
+        if(isValid){
+            this._textareas.forEach((el)=>{
+                if(!el.validity.valid || el.value === ''){
+                    isValid = false;
+                }
+            });
         }
-        else if(!el.validity.valid){
-            isValid = false;
+
+        if(isValid){
+            this._selects.forEach((el)=>{
+                if(el.value === 'any'){
+                    isValid = false;
+                }
+            });
         }
 
-        return isValid;
-    }
+        if(isValid){
+            this._switches.forEach((el)=>{
+                if(!el.validity.valid){
+                    isValid = false;
+                }
+            });
+        }
 
-    private handleSwitch(e:Event): void{
-        const el = <HTMLInputElement>e.currentTarget;
-        const inputWrapper = el.parentElement;
-        const parent = inputWrapper.parentElement;
-        parent.classList.remove('is-valid', 'is-invalid');
-
-        if(this.validityCheck(el)){
-            parent.classList.add('is-valid');
+        if(isValid){
+            if(this._nextButton){
+                this._nextButton.classList.remove('is-disabled');
+            }
+            if(this._submitButton){
+                this._submitButton.classList.remove('is-disabled');
+            }
         }else{
-            parent.classList.add('is-invalid');
-            const errorObject = inputWrapper.querySelector('.js-error');
-            if(errorObject){
-                errorObject.innerHTML = el.validationMessage;
+            if(this._nextButton){
+                this._nextButton.classList.add('is-disabled');
             }
-        }
-
-        this.validatePage();
-    }
-
-    /**
-     * Called when a user releases a key while a textarea element has focus.
-     * @param {Event} e
-     */
-    private handleTextarea(e:Event): void{
-        const target = <HTMLTextAreaElement>e.currentTarget;
-        const inputWrapper  = target.parentElement;
-        inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
-
-        if(target.validity.valid && target.value !== ''){
-            inputWrapper.classList.add('has-value');
-            inputWrapper.classList.add('is-valid');
-        }else if(!target.validity.valid){
-            inputWrapper.classList.add('is-invalid');
-            const errorObject = inputWrapper.querySelector('.js-error');
-            if(errorObject){
-                errorObject.innerHTML = target.validationMessage;
+            if(this._submitButton){
+                this._submitButton.classList.add('is-disabled');
             }
         }
     }
 
-    /**
-     * Called when a user clicks on the eye icon for a password or pin input.
-     * If the content is hidden we set the inputs type to `text`.
-     * If the content isn't hidden we set the inputs type to `password`.
-     * @param {Event} e
-     */
-    private handleToggle(e:Event): void{
-        const target        = <Element>e.currentTarget;
-        const inputWrapper  = target.parentElement;
-        const input         = inputWrapper.querySelector('input');
+    private switchPage(direction:number = -1): void{
+        this.removeEvents();
+        this._pages[this._active].classList.remove('is-active-page');
+        this._tabs[this._active].classList.remove('is-active-page');
 
-        if(inputWrapper.classList.contains('has-content-hidden')){
-            inputWrapper.classList.remove('has-content-hidden');
-            inputWrapper.classList.add('has-content-visible');
-            input.setAttribute('type', 'text');
-        }else{
-            inputWrapper.classList.add('has-content-hidden');
-            inputWrapper.classList.remove('has-content-visible');
-            input.setAttribute('type', 'password');
-        }
+        this._active += direction;
+        this._pages[this._active].classList.add('is-active-page');
+        this._tabs[this._active].classList.add('is-active-page');
+
+        this.getPageElements();
+        this.addEvents();
+        this.checkForRequired();
     }
 
-    private handleKeystroke(e:Event): void{
-        const target = <HTMLInputElement>e.currentTarget;
-        const inputWrapper = target.parentElement;
-        if(inputWrapper.classList.contains('is-invalid')){
-            if(this.validityCheck(target)){
-                inputWrapper.classList.add('is-valid');
-                inputWrapper.classList.remove('is-invalid');
-            }
-        }
-        this.validatePage();
+    private submitForm(): void{
+        console.log('Submit!');
     }
 
-    private handleInputStatus(el:HTMLInputElement): void{
-        const inputWrapper = el.parentElement;
-        inputWrapper.classList.remove('has-focus');
-        inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
-
-        if(this.validityCheck(el)){
-            if(el.value !== '' || el.innerText !== '') inputWrapper.classList.add('has-value');
-            inputWrapper.classList.add('is-valid');
-        }else{
-            inputWrapper.classList.add('is-invalid');
-            const errorObject = inputWrapper.querySelector('.js-error');
-            if(errorObject){
-                errorObject.innerHTML = el.validationMessage;
-            }
-        }
-
-        this.validatePage();
-    }
-
-    private handleBlur(e:Event): void{
-        const target = <HTMLInputElement>e.currentTarget;
-        this.handleInputStatus(target);
-    }
-
-    private handleFocus(e:Event): void{
+    private checkButton:EventListener = (e:Event)=>{
+        e.preventDefault();
+        e.stopImmediatePropagation();
         const target = <Element>e.currentTarget;
-        const parent = target.parentElement;
-        parent.classList.add('has-focus');
-    }
+        const type = target.getAttribute('data-type');
 
-    /**
-     * Called when a user selects a different option in the selection dropdown.
-     * If the selected option isn't `any` set the `has-value` status class.
-     * @param {Event} e
-     */
-    private handleSelection(e:Event): void{
-        const target = <HTMLSelectElement>e.currentTarget;
-        const inputWrapper  = target.parentElement;
+        if(type === 'back'){
+            this.switchPage();
+            return;
+        }
 
-        if(target.value === 'any'){
-            inputWrapper.classList.remove('has-value', 'is-valid', 'is-invalid');
-        }else{
-            inputWrapper.classList.add('has-value');
-            inputWrapper.classList.add('is-valid');
+        if(this.hardValidation()){
+            if(type === 'next'){
+                this.switchPage(1);
+            }
+            else if(type === 'submit'){
+                this.submitForm();
+            }
         }
     }
 
