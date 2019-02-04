@@ -4,6 +4,8 @@
 
 - Adds: `data-module` attribute can now create multiple modules from one attribute [#107](https://github.com/Pageworks/papertrain/issues/107)
 - Adds: `data-csrf` attribute has been added the the `html` document for a non-cached global use of users CSRF token provided by Craft
+- Adds: updates `fuel-pjax` to use `@codewithkyle/fuel-pjax` [#97](https://github.com/Pageworks/papertrain/issues/97)
+- Adds: updates `animejs` to version 3 [#104](https://github.com/Pageworks/papertrain/issues/104)
 
 ### Fixes
 
@@ -13,6 +15,11 @@
 - Fixes: moves `/vendor` in the `.gitignore` file to the top of the file so it's easier to find [#89](https://github.com/Pageworks/papertrain/issues/89)
 - Fixes: updates base scripts [#102](https://github.com/Pageworks/papertrain/issues/102)
 - Fixes: removes webkit highlight colour [#85](https://github.com/Pageworks/papertrain/issues/85)
+
+### Removes
+
+- Removes: `@types/animejs` npm package
+- Removes: `webpack-dev-server` npm package and script
 
 # 1.0.3 - 2019-01-10
 

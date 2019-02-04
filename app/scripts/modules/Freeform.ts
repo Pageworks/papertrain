@@ -1,6 +1,6 @@
-import { isDebug } from '../env';
+import { isDebug, html, easing } from '../env';
 import AbstractModule from './AbstractModule';
-import { customEvent } from '../utils/customEvent';
+import anime from 'animejs';
 
 export default class Freeform extends AbstractModule{
 
@@ -141,7 +141,7 @@ export default class Freeform extends AbstractModule{
 
         this._inputs.forEach((el)=>{
             const parent = el.parentElement;
-
+            el.setAttribute('data-touched', 'true');
             if(el.validity.valid){
                 parent.classList.add('is-valid');
                 parent.classList.remove('is-invalid');
@@ -178,6 +178,7 @@ export default class Freeform extends AbstractModule{
 
         this._textareas.forEach((el)=>{
             const parent = el.parentElement;
+            el.setAttribute('data-touched', 'true');
 
             if(el.validity.valid){
                 parent.classList.add('is-valid');
@@ -215,7 +216,7 @@ export default class Freeform extends AbstractModule{
         this._passwords.forEach((el)=>{
             const parent = el.parentElement;
             const forEl = <HTMLInputElement>this._pages[this._active].querySelector(`.js-password input[name="${parent.getAttribute('data-for')}"]`);
-
+            el.setAttribute('data-touched', 'true');
             parent.classList.remove('is-valid', 'is-invalid');
 
             if(el.validity.valid && forEl.value === el.value){
@@ -301,21 +302,83 @@ export default class Freeform extends AbstractModule{
     }
 
     private switchPage(direction:number = -1): void{
-        this.removeEvents();
-        this._pages[this._active].classList.remove('is-active-page');
-        this._tabs[this._active].classList.remove('is-active-page');
+        const rows = Array.from(this._pages[this._active].querySelectorAll('.js-row'));
 
-        this._active += direction;
-        this._pages[this._active].classList.add('is-active-page');
-        this._tabs[this._active].classList.add('is-active-page');
+        anime({
+            targets: rows,
+            opacity: [1, 0],
+            translateY: [0, '-25px'],
+            duration: 450,
+            easeing: easing.sharp,
+            delay: anime.stagger(50),
+            complete: ()=>{
+                this.removeEvents();
+                this._pages[this._active].classList.remove('is-active-page');
+                this._tabs[this._active].classList.remove('is-active-page');
 
-        this.getPageElements();
-        this.addEvents();
-        this.checkForRequired();
+                this._active += direction;
+                this._pages[this._active].classList.add('is-active-page');
+                this._tabs[this._active].classList.add('is-active-page');
+
+                const newRows = Array.from(this._pages[this._active].querySelectorAll('.js-row'));
+                anime({
+                    targets: newRows,
+                    opacity: [0, 1],
+                    translateY: ['25px', 0],
+                    duration: 300,
+                    easing: easing.in,
+                    delay: anime.stagger(50),
+                    complete: ()=>{
+                        this.getPageElements();
+                        this.addEvents();
+                        this.checkForRequired();
+                    }
+                });
+            }
+        });
     }
 
     private submitForm(): void{
-        console.log('Submit!');
+        const form = this.el.querySelector('form');
+        const csrfToken = <HTMLInputElement>form.querySelector('input[name="CRAFT_CSRF_TOKEN"]');
+        csrfToken.value = html.getAttribute('data-csrf');
+        const data = new FormData(form);
+        const method = form.getAttribute("method");
+        const action = <HTMLInputElement>form.querySelector('input[name="action"]');
+
+        const request = new XMLHttpRequest();
+
+        request.open(method, `${window.location.origin}/actions/${action.value}`, true);
+        request.setRequestHeader("Cache-Control", "no-cache");
+        request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        request.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest");
+        request.onload = (e:ProgressEvent)=>{
+            const request = <XMLHttpRequest>e.currentTarget;
+            const response = JSON.parse(request.responseText);
+            console.log(response);
+        }
+        request.send(data);
+
+        const rows = Array.from(this._pages[this._active].querySelectorAll('.js-row'));
+        const tabs = this.el.querySelector('.js-tabs');
+
+        if(tabs){
+            anime({
+                targets: tabs,
+                opacity: [1, 0],
+                duration: 150,
+                easeing: easing.ease
+            });
+        }
+
+        anime({
+            targets: rows,
+            opacity: [1, 0],
+            translateY: [0, '-25px'],
+            duration: 450,
+            easeing: easing.sharp,
+            delay: anime.stagger(50)
+        });
     }
 
     private checkButton:EventListener = (e:Event)=>{

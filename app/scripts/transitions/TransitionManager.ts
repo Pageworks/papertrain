@@ -1,6 +1,6 @@
 import { APP_NAME, pjaxContainer, html, isDebug } from '../env';
 import * as transitions from './transitions';
-import Pjax from 'fuel-pjax';
+import Pjax from '@codewithkyle/fuel-pjax';
 
 export default class TransitionManager {
 

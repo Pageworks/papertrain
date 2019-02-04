@@ -8,10 +8,10 @@ const pjaxWrapper       = '.js-pjax-wrapper';
 
 const scrollTrigger     = 100; // in pixels
 const easing            = {
-                            ease: [0.4, 0.0, 0.2, 1],
-                            in: [0.0, 0.0, 0.2, 1],
-                            out: [0.4, 0.0, 1, 1],
-                            sharp: [0.4, 0.0, 0.6, 1]
+                            ease: 'cubicBezier(0.4, 0.0, 0.2, 1)',
+                            in: 'cubicBezier(0.0, 0.0, 0.2, 1)',
+                            out: 'cubicBezier(0.4, 0.0, 1, 1)',
+                            sharp: 'cubicBezier(0.4, 0.0, 0.6, 1)'
                         }
 
 export { APP_NAME, html, body, pjaxWrapper, pjaxContainer, isDebug, easing, scrollTrigger };
