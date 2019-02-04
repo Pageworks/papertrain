@@ -658,6 +658,7 @@ var BasicForm = /** @class */ (function (_super) {
             console.log('%c[module] ' + ("%cBuilding: " + BasicForm.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
         // Elements
         _this._inputs = Array.from(_this.el.querySelectorAll('.js-input input'));
+        _this._passwordInputs = Array.from(_this.el.querySelectorAll('.js-password-checker input'));
         _this._selects = Array.from(_this.el.querySelectorAll('.js-select select'));
         _this._textareas = Array.from(_this.el.querySelectorAll('.js-textarea textarea'));
         _this._passwordToggles = Array.from(_this.el.querySelectorAll('.js-password-toggle'));
@@ -672,6 +673,9 @@ var BasicForm = /** @class */ (function (_super) {
         this._inputs.forEach(function (el) { el.addEventListener('focus', function (e) { return _this.handleInput(e); }); });
         this._inputs.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleInput(e); }); });
         this._inputs.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handleInput(e); }); });
+        this._passwordInputs.forEach(function (el) { el.addEventListener('focus', function (e) { return _this.handlePasswordInput(e); }); });
+        this._passwordInputs.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handlePasswordInput(e); }); });
+        this._passwordInputs.forEach(function (el) { el.addEventListener('keyup', function (e) { return _this.handlePasswordInput(e); }); });
         this._selects.forEach(function (el) { el.addEventListener('focus', function (e) { return _this.handleSelect(e); }); });
         this._selects.forEach(function (el) { el.addEventListener('blur', function (e) { return _this.handleSelect(e); }); });
         this._selects.forEach(function (el) { el.addEventListener('change', function (e) { return _this.handleSelect(e); }); });
@@ -694,6 +698,10 @@ var BasicForm = /** @class */ (function (_super) {
             }
         });
     };
+    /**
+     * Called when the user interacts with a `textarea` element
+     * @param { Event } e
+     */
     BasicForm.prototype.handleTextarea = function (e) {
         var target = e.currentTarget;
         var parent = target.parentElement;
@@ -783,44 +791,37 @@ var BasicForm = /** @class */ (function (_super) {
         }
     };
     /**
-     * Called when the user interacts with a `input` element.
-     * Not called on `checkbox` or `radio` input types.
-     * @param { Event } e
+     * Called by the `validateInput` method.
+     * Handles the status classes for `input` elements.
+     * @param { HTMLInputElement } target - the `input` element
+     * @param { Element } parent - the `input` elements wrapper
+     * @param { HTMLInputElement } relatedEl - optional companion element
      */
-    BasicForm.prototype.handleInput = function (e) {
-        var target = e.currentTarget;
-        var parent = target.parentElement;
-        // Handle events
-        if (e.type === 'focus') {
-            parent.classList.add('has-focus');
-        }
-        else if (e.type === 'blur') {
-            parent.classList.remove('has-focus');
-            // Check if the input is valid
-            if (target.validity.valid) {
-                parent.classList.add('is-valid');
-                parent.classList.remove('is-invalid');
+    BasicForm.prototype.checkForValidInput = function (target, parent, relatedEl) {
+        if (relatedEl === void 0) { relatedEl = null; }
+        var isValid = true;
+        if (relatedEl) {
+            if (relatedEl.value !== target.value && parent.classList.contains('js-password-checker')) {
+                isValid = false;
             }
-            else {
-                parent.classList.remove('is-valid');
-                parent.classList.add('is-invalid');
-                var errorEl = parent.querySelector('.js-error');
-                if (errorEl) {
+        }
+        if (!target.validity.valid) {
+            isValid = false;
+        }
+        if (isValid) {
+            parent.classList.add('is-valid');
+            parent.classList.remove('is-invalid');
+        }
+        else {
+            parent.classList.remove('is-valid');
+            parent.classList.add('is-invalid');
+            var errorEl = parent.querySelector('.js-error');
+            if (errorEl) {
+                if (!target.validity.valid) {
                     errorEl.innerHTML = target.validationMessage;
                 }
-            }
-        }
-        else if (e.type === 'keyup') {
-            // Only run valditiy check on `keyup` if the input has already been marked as invalid
-            if (parent.classList.contains('is-invalid')) {
-                // Check if the input is valid
-                if (target.validity.valid) {
-                    parent.classList.add('is-valid');
-                    parent.classList.remove('is-invalid');
-                }
                 else {
-                    parent.classList.remove('is-valid');
-                    parent.classList.add('is-invalid');
+                    errorEl.innerHTML = 'Passwords don\'t match.';
                 }
             }
         }
@@ -830,6 +831,62 @@ var BasicForm = /** @class */ (function (_super) {
         }
         else {
             parent.classList.remove('has-value');
+        }
+    };
+    /**
+     * Called when we need to validate a `input` element after the user interacted with it.
+     * @param { string } eventType - `Event.type` string
+     * @param { HTMLInputElement } target - the `input` element the user interacted with
+     * @param { Element } parent - the `input` elements wrapper
+     * @param { HTMLInputElement } relatedEl - optional companion element
+     */
+    BasicForm.prototype.validateInput = function (eventType, target, parent, relatedEl) {
+        if (relatedEl === void 0) { relatedEl = null; }
+        if (eventType === 'focus') {
+            parent.classList.add('has-focus');
+        }
+        else if (eventType === 'blur') {
+            parent.classList.remove('has-focus');
+            target.setAttribute('data-touched', 'true');
+            this.checkForValidInput(target, parent, relatedEl);
+        }
+        else if (eventType === 'keyup' && target.getAttribute('data-touched') !== null) {
+            this.checkForValidInput(target, parent, relatedEl);
+        }
+    };
+    /**
+     * Called when the user interacts with a `input` that is labeled as a password checker.
+     * @param { Event } e
+     */
+    BasicForm.prototype.handlePasswordInput = function (e) {
+        var target = e.currentTarget;
+        var parent = target.parentElement;
+        var forEl = this.el.querySelector(".js-password input[name=\"" + parent.getAttribute('data-for') + "\"]");
+        // Make sure the input has it's password field companion
+        if (!forEl) {
+            if (env_1.isDebug) {
+                console.log('%cUndefined Password Element: ' + ("%c" + parent.getAttribute('data-for')), 'color:#ff6e6e', 'color:#eee');
+            }
+        }
+        else {
+            this.validateInput(e.type, target, parent, forEl);
+        }
+    };
+    /**
+     * Called when the user interacts with a `input` element.
+     * Not called on `checkbox` or `radio` input types.
+     * @param { Event } e
+     */
+    BasicForm.prototype.handleInput = function (e) {
+        var target = e.currentTarget;
+        var parent = target.parentElement;
+        // If the input is a password get the password checker companion element
+        if (parent.classList.contains('js-password')) {
+            var checkerInput = this.el.querySelector(".js-password-checker input[name=\"" + target.getAttribute('name') + "-check\"]");
+            this.validateInput(e.type, target, parent, checkerInput);
+        }
+        else {
+            this.validateInput(e.type, target, parent);
         }
     };
     /**
@@ -1247,6 +1304,15 @@ var Freeform = /** @class */ (function (_super) {
                 });
             }
             if (isValid) {
+                _this._passwords.forEach(function (el) {
+                    var parent = el.parentElement;
+                    var forEl = _this._pages[_this._active].querySelector(".js-password input[name=\"" + parent.getAttribute('data-for') + "\"]");
+                    if (!el.validity.valid || forEl.value !== el.value) {
+                        isValid = false;
+                    }
+                });
+            }
+            if (isValid) {
                 if (_this._nextButton) {
                     _this._nextButton.classList.remove('is-disabled');
                 }
@@ -1286,6 +1352,7 @@ var Freeform = /** @class */ (function (_super) {
         }
         // Form Elements
         _this._inputs = null;
+        _this._passwords = null;
         _this._textareas = null;
         _this._selects = null;
         _this._switches = null;
@@ -1311,6 +1378,7 @@ var Freeform = /** @class */ (function (_super) {
     };
     Freeform.prototype.getPageElements = function () {
         this._inputs = Array.from(this._pages[this._active].querySelectorAll('.js-input input[required]'));
+        this._passwords = Array.from(this._pages[this._active].querySelectorAll('.js-password-checker input[required]'));
         this._textareas = Array.from(this._pages[this._active].querySelectorAll('.js-textarea textarea[required]'));
         this._selects = Array.from(this._pages[this._active].querySelectorAll('.js-select select[required]'));
         this._switches = Array.from(this._pages[this._active].querySelectorAll('.js-switch input[required]'));
@@ -1323,6 +1391,9 @@ var Freeform = /** @class */ (function (_super) {
         this._inputs.forEach(function (el) { el.removeEventListener('blur', _this.validatePage); });
         this._inputs.forEach(function (el) { el.removeEventListener('keyup', _this.validatePage); });
         this._inputs.forEach(function (el) { el.removeEventListener('change', _this.validatePage); });
+        this._passwords.forEach(function (el) { el.removeEventListener('blur', _this.validatePage); });
+        this._passwords.forEach(function (el) { el.removeEventListener('keyup', _this.validatePage); });
+        this._passwords.forEach(function (el) { el.removeEventListener('change', _this.validatePage); });
         this._textareas.forEach(function (el) { el.removeEventListener('keyup', _this.validatePage); });
         this._textareas.forEach(function (el) { el.removeEventListener('blur', _this.validatePage); });
         this._selects.forEach(function (el) { el.removeEventListener('change', _this.validatePage); });
@@ -1342,6 +1413,9 @@ var Freeform = /** @class */ (function (_super) {
         this._inputs.forEach(function (el) { el.addEventListener('blur', _this.validatePage); });
         this._inputs.forEach(function (el) { el.addEventListener('keyup', _this.validatePage); });
         this._inputs.forEach(function (el) { el.addEventListener('change', _this.validatePage); });
+        this._passwords.forEach(function (el) { el.addEventListener('blur', _this.validatePage); });
+        this._passwords.forEach(function (el) { el.addEventListener('keyup', _this.validatePage); });
+        this._passwords.forEach(function (el) { el.addEventListener('change', _this.validatePage); });
         this._textareas.forEach(function (el) { el.addEventListener('keyup', _this.validatePage); });
         this._textareas.forEach(function (el) { el.addEventListener('blur', _this.validatePage); });
         this._selects.forEach(function (el) { el.addEventListener('change', _this.validatePage); });
@@ -1368,6 +1442,7 @@ var Freeform = /** @class */ (function (_super) {
         }
     };
     Freeform.prototype.hardValidation = function () {
+        var _this = this;
         var passedAllValidation = true;
         this._inputs.forEach(function (el) {
             var parent = el.parentElement;
@@ -1431,6 +1506,27 @@ var Freeform = /** @class */ (function (_super) {
                 var errorObject = inputWrapper.querySelector('.js-error');
                 if (errorObject) {
                     errorObject.innerHTML = el.validationMessage;
+                }
+            }
+        });
+        this._passwords.forEach(function (el) {
+            var parent = el.parentElement;
+            var forEl = _this._pages[_this._active].querySelector(".js-password input[name=\"" + parent.getAttribute('data-for') + "\"]");
+            parent.classList.remove('is-valid', 'is-invalid');
+            if (el.validity.valid && forEl.value === el.value) {
+                parent.classList.add('is-valid');
+            }
+            else {
+                parent.classList.add('is-invalid');
+                passedAllValidation = false;
+                var errorEl = parent.querySelector('.js-error');
+                if (errorEl) {
+                    if (!el.validity.valid) {
+                        errorEl.innerHTML = el.validationMessage;
+                    }
+                    else {
+                        errorEl.innerHTML = 'Passwords don\'t match.';
+                    }
                 }
             }
         });

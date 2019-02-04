@@ -6,6 +6,7 @@ export default class BasicForm extends AbstractModule{
     public static MODULE_NAME:string = 'BasicForm';
 
     private _inputs:            Array<HTMLInputElement>;
+    private _passwordInputs:    Array<HTMLInputElement>;
     private _passwordToggles:   Array<Element>;
     private _selects:           Array<HTMLSelectElement>;
     private _textareas:         Array<HTMLTextAreaElement>;
@@ -17,6 +18,7 @@ export default class BasicForm extends AbstractModule{
 
         // Elements
         this._inputs            = Array.from(this.el.querySelectorAll('.js-input input'));
+        this._passwordInputs    = Array.from(this.el.querySelectorAll('.js-password-checker input'));
         this._selects           = Array.from(this.el.querySelectorAll('.js-select select'));
         this._textareas         = Array.from(this.el.querySelectorAll('.js-textarea textarea'));
         this._passwordToggles   = Array.from(this.el.querySelectorAll('.js-password-toggle'));
@@ -30,6 +32,10 @@ export default class BasicForm extends AbstractModule{
         this._inputs.forEach((el)=>{ el.addEventListener('focus', e => this.handleInput(e) ); });
         this._inputs.forEach((el)=>{ el.addEventListener('blur', e => this.handleInput(e) ); });
         this._inputs.forEach((el)=>{ el.addEventListener('keyup', e => this.handleInput(e) ); });
+
+        this._passwordInputs.forEach((el)=>{ el.addEventListener('focus', e => this.handlePasswordInput(e) ); });
+        this._passwordInputs.forEach((el)=>{ el.addEventListener('blur', e => this.handlePasswordInput(e) ); });
+        this._passwordInputs.forEach((el)=>{ el.addEventListener('keyup', e => this.handlePasswordInput(e) ); });
 
         this._selects.forEach((el)=>{ el.addEventListener('focus', e => this.handleSelect(e) ); });
         this._selects.forEach((el)=>{ el.addEventListener('blur', e => this.handleSelect(e) ); });
@@ -59,6 +65,10 @@ export default class BasicForm extends AbstractModule{
         });
     }
 
+    /**
+     * Called when the user interacts with a `textarea` element
+     * @param { Event } e
+     */
     private handleTextarea(e:Event): void{
         const target = <HTMLTextAreaElement>e.currentTarget;
         const parent = target.parentElement;
@@ -152,45 +162,40 @@ export default class BasicForm extends AbstractModule{
     }
 
     /**
-     * Called when the user interacts with a `input` element.
-     * Not called on `checkbox` or `radio` input types.
-     * @param { Event } e
+     * Called by the `validateInput` method.
+     * Handles the status classes for `input` elements.
+     * @param { HTMLInputElement } target - the `input` element
+     * @param { Element } parent - the `input` elements wrapper
+     * @param { HTMLInputElement } relatedEl - optional companion element
      */
-    private handleInput(e:Event): void{
-        const target = <HTMLInputElement>e.currentTarget;
-        const parent = target.parentElement;
+    private checkForValidInput(target:HTMLInputElement, parent:Element, relatedEl:HTMLInputElement = null): void{
+        let isValid = true;
 
-        // Handle events
-        if(e.type === 'focus'){
-            parent.classList.add('has-focus');
-        }
-        else if(e.type === 'blur'){
-            parent.classList.remove('has-focus');
-
-            // Check if the input is valid
-            if(target.validity.valid){
-                parent.classList.add('is-valid');
-                parent.classList.remove('is-invalid');
-            }else{
-                parent.classList.remove('is-valid');
-                parent.classList.add('is-invalid');
-
-                const errorEl = parent.querySelector('.js-error');
-                if(errorEl){
-                    errorEl.innerHTML = target.validationMessage;
-                }
+        if(relatedEl){
+            if(relatedEl.value !== target.value && parent.classList.contains('js-password-checker')){
+                isValid = false;
             }
         }
-        else if(e.type === 'keyup'){
-            // Only run valditiy check on `keyup` if the input has already been marked as invalid
-            if(parent.classList.contains('is-invalid')){
-                // Check if the input is valid
-                if(target.validity.valid){
-                    parent.classList.add('is-valid');
-                    parent.classList.remove('is-invalid');
-                }else{
-                    parent.classList.remove('is-valid');
-                    parent.classList.add('is-invalid');
+
+        if(!target.validity.valid){
+            isValid = false;
+        }
+
+        if(isValid){
+            parent.classList.add('is-valid');
+            parent.classList.remove('is-invalid');
+        }
+        else{
+            parent.classList.remove('is-valid');
+            parent.classList.add('is-invalid');
+
+            const errorEl = parent.querySelector('.js-error');
+            if(errorEl){
+                if(!target.validity.valid){
+                    errorEl.innerHTML = target.validationMessage;
+                }
+                else{
+                    errorEl.innerHTML = 'Passwords don\'t match.';
                 }
             }
         }
@@ -200,6 +205,64 @@ export default class BasicForm extends AbstractModule{
             parent.classList.add('has-value');
         }else{
             parent.classList.remove('has-value');
+        }
+    }
+
+    /**
+     * Called when we need to validate a `input` element after the user interacted with it.
+     * @param { string } eventType - `Event.type` string
+     * @param { HTMLInputElement } target - the `input` element the user interacted with
+     * @param { Element } parent - the `input` elements wrapper
+     * @param { HTMLInputElement } relatedEl - optional companion element
+     */
+    private validateInput(eventType:string, target:HTMLInputElement, parent:Element, relatedEl:HTMLInputElement = null): void{
+        if(eventType === 'focus'){
+            parent.classList.add('has-focus');
+        }
+        else if(eventType === 'blur'){
+            parent.classList.remove('has-focus');
+            target.setAttribute('data-touched', 'true');
+            this.checkForValidInput(target, parent, relatedEl);
+        }
+        else if(eventType === 'keyup' && target.getAttribute('data-touched') !== null){
+            this.checkForValidInput(target, parent, relatedEl);
+        }
+    }
+
+    /**
+     * Called when the user interacts with a `input` that is labeled as a password checker.
+     * @param { Event } e
+     */
+    private handlePasswordInput(e:Event): void{
+        const target = <HTMLInputElement>e.currentTarget;
+        const parent = target.parentElement;
+        const forEl = <HTMLInputElement>this.el.querySelector(`.js-password input[name="${parent.getAttribute('data-for')}"]`);
+
+        // Make sure the input has it's password field companion
+        if(!forEl){
+            if(isDebug){
+                console.log('%cUndefined Password Element: '+`%c${parent.getAttribute('data-for')}`,'color:#ff6e6e','color:#eee');
+            }
+        }else{
+            this.validateInput(e.type, target, parent, forEl);
+        }
+    }
+
+    /**
+     * Called when the user interacts with a `input` element.
+     * Not called on `checkbox` or `radio` input types.
+     * @param { Event } e
+     */
+    private handleInput(e:Event): void{
+        const target = <HTMLInputElement>e.currentTarget;
+        const parent = target.parentElement;
+
+        // If the input is a password get the password checker companion element
+        if(parent.classList.contains('js-password')){
+            const checkerInput = <HTMLInputElement>this.el.querySelector(`.js-password-checker input[name="${target.getAttribute('name')}-check"]`);
+            this.validateInput(e.type, target, parent, checkerInput);
+        }else{
+            this.validateInput(e.type, target, parent);
         }
     }
 

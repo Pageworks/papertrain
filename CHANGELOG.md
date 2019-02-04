@@ -3,6 +3,7 @@
 ### Adds
 
 - Adds: `data-module` attribute can now create multiple modules from one attribute [#107](https://github.com/Pageworks/papertrain/issues/107)
+- Adds: `data-csrf` attribute has been added the the `html` document for a non-cached global use of users CSRF token provided by Craft
 
 ### Fixes
 

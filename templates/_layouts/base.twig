@@ -8,7 +8,7 @@
 
 {% set isDebug = craft.app.request.getParam('debug') %}
 <!doctype html>
-<html lang="en-US" class="has-no-js has-no-touch" {% if isDebug|length and currentUser|length and currentUser.admin %}data-debug="true"{% endif %}>
+<html lang="en-US" class="has-no-js has-no-touch" {% if isDebug|length and currentUser|length and currentUser.admin %}data-debug="true"{% endif %} data-csrf="{{ craft.app.request.getCsrfToken() }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">

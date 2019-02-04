@@ -108,6 +108,10 @@
         }
 
         &.is-invalid{
+            select{
+                border-color: rgba($error, 0.87) !important;
+            }
+
             input{
                 border-color: rgba($error, 0.87) !important;
                 padding: 11px 15px 9px;

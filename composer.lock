@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "079590e5bbbf346513acc021979099ec",
+    "content-hash": "c39eba5adc5c6c4fdaeb0669110b4940",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -416,11 +416,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.1.6.1",
+            "version": "3.1.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/12bf72bc73e0905a5c8a2bf74096046eb07ee075",
-                "reference": "12bf72bc73e0905a5c8a2bf74096046eb07ee075",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/d7d9166144138f7794510f816b776bb1ff6761b3",
+                "reference": "d7d9166144138f7794510f816b776bb1ff6761b3",
                 "shasum": ""
             },
             "require": {
@@ -496,7 +496,7 @@
                 "docs": "https://github.com/craftcms/docs",
                 "rss": "https://github.com/craftcms/cms/releases.atom"
             },
-            "time": "2019-01-29T22:06:25+00:00"
+            "time": "2019-01-31T20:49:25+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -582,11 +582,11 @@
         },
         {
             "name": "craftcms/redactor",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/redactor/zipball/f96f9ce6c94b2c7a443939d244e99ad7317d7a23",
-                "reference": "f96f9ce6c94b2c7a443939d244e99ad7317d7a23",
+                "url": "https://api.github.com/repos/craftcms/redactor/zipball/1f561397bab4700f36b1393e11aa17c72c3bca0b",
+                "reference": "1f561397bab4700f36b1393e11aa17c72c3bca0b",
                 "shasum": ""
             },
             "require": {
@@ -625,7 +625,7 @@
                 "source": "https://github.com/craftcms/redactor",
                 "docs": "https://github.com/craftcms/redactor"
             },
-            "time": "2019-01-22T21:41:57+00:00"
+            "time": "2019-01-30T21:53:19+00:00"
         },
         {
             "name": "craftcms/server-check",
@@ -2955,11 +2955,11 @@
         },
         {
             "name": "solspace/craft3-freeform",
-            "version": "2.5.10",
+            "version": "2.5.11",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solspace/craft3-freeform/zipball/173db6b2378d7b7738b6438515abffe4dc517b27",
-                "reference": "173db6b2378d7b7738b6438515abffe4dc517b27",
+                "url": "https://api.github.com/repos/solspace/craft3-freeform/zipball/a7cd84481101282f0cbf61342ad199d7eeb12cee",
+                "reference": "a7cd84481101282f0cbf61342ad199d7eeb12cee",
                 "shasum": ""
             },
             "require": {
@@ -2998,7 +2998,7 @@
                 }
             ],
             "description": "The most intuitive and powerful form builder for Craft.",
-            "time": "2019-01-24T21:15:24+00:00"
+            "time": "2019-01-30T17:59:12+00:00"
         },
         {
             "name": "ssnepenthe/color-utils",
@@ -3881,11 +3881,11 @@
         },
         {
             "name": "verbb/super-table",
-            "version": "2.1.5.3",
+            "version": "2.1.6",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/verbb/super-table/zipball/28522a79ebfbe7e967da96ffebbc5045fc56ee36",
-                "reference": "28522a79ebfbe7e967da96ffebbc5045fc56ee36",
+                "url": "https://api.github.com/repos/verbb/super-table/zipball/d48678885cc114abdd5b341a860ecf668461a7c8",
+                "reference": "d48678885cc114abdd5b341a860ecf668461a7c8",
                 "shasum": ""
             },
             "require": {
@@ -3929,7 +3929,7 @@
                 "docs": "https://github.com/verbb/super-table",
                 "rss": "https://github.com/verbb/super-table/commits/v2.atom"
             },
-            "time": "2019-01-22T20:26:17+00:00"
+            "time": "2019-01-31T02:18:45+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

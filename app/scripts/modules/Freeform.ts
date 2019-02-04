@@ -8,6 +8,7 @@ export default class Freeform extends AbstractModule{
 
     // Form Elements
     private _inputs:    Array<HTMLInputElement>;
+    private _passwords: Array<HTMLInputElement>;
     private _textareas: Array<HTMLTextAreaElement>;
     private _selects:   Array<HTMLSelectElement>;
     private _switches:  Array<HTMLInputElement>;
@@ -30,6 +31,7 @@ export default class Freeform extends AbstractModule{
 
         // Form Elements
         this._inputs    = null;
+        this._passwords = null;
         this._textareas = null;
         this._selects   = null;
         this._switches  = null;
@@ -58,6 +60,7 @@ export default class Freeform extends AbstractModule{
 
     private getPageElements(): void{
         this._inputs    = Array.from(this._pages[this._active].querySelectorAll('.js-input input[required]'));
+        this._passwords = Array.from(this._pages[this._active].querySelectorAll('.js-password-checker input[required]'));
         this._textareas = Array.from(this._pages[this._active].querySelectorAll('.js-textarea textarea[required]'));
         this._selects   = Array.from(this._pages[this._active].querySelectorAll('.js-select select[required]'));
         this._switches  = Array.from(this._pages[this._active].querySelectorAll('.js-switch input[required]'));
@@ -71,6 +74,10 @@ export default class Freeform extends AbstractModule{
         this._inputs.forEach((el)=>{ el.removeEventListener('blur', this.validatePage ); });
         this._inputs.forEach((el)=>{ el.removeEventListener('keyup', this.validatePage ); });
         this._inputs.forEach((el)=>{ el.removeEventListener('change', this.validatePage ); });
+
+        this._passwords.forEach((el)=>{ el.removeEventListener('blur', this.validatePage ); });
+        this._passwords.forEach((el)=>{ el.removeEventListener('keyup', this.validatePage ); });
+        this._passwords.forEach((el)=>{ el.removeEventListener('change', this.validatePage ); });
 
         this._textareas.forEach((el)=>{ el.removeEventListener('keyup', this.validatePage ); });
         this._textareas.forEach((el)=>{ el.removeEventListener('blur', this.validatePage ); });
@@ -94,6 +101,10 @@ export default class Freeform extends AbstractModule{
         this._inputs.forEach((el)=>{ el.addEventListener('blur', this.validatePage ); });
         this._inputs.forEach((el)=>{ el.addEventListener('keyup', this.validatePage ); });
         this._inputs.forEach((el)=>{ el.addEventListener('change', this.validatePage ); });
+
+        this._passwords.forEach((el)=>{ el.addEventListener('blur', this.validatePage ); });
+        this._passwords.forEach((el)=>{ el.addEventListener('keyup', this.validatePage ); });
+        this._passwords.forEach((el)=>{ el.addEventListener('change', this.validatePage ); });
 
         this._textareas.forEach((el)=>{ el.addEventListener('keyup', this.validatePage ); });
         this._textareas.forEach((el)=>{ el.addEventListener('blur', this.validatePage ); });
@@ -201,6 +212,30 @@ export default class Freeform extends AbstractModule{
             }
         });
 
+        this._passwords.forEach((el)=>{
+            const parent = el.parentElement;
+            const forEl = <HTMLInputElement>this._pages[this._active].querySelector(`.js-password input[name="${parent.getAttribute('data-for')}"]`);
+
+            parent.classList.remove('is-valid', 'is-invalid');
+
+            if(el.validity.valid && forEl.value === el.value){
+                parent.classList.add('is-valid');
+            }else{
+                parent.classList.add('is-invalid');
+                passedAllValidation = false;
+
+                const errorEl = parent.querySelector('.js-error');
+                if(errorEl){
+                    if(!el.validity.valid){
+                        errorEl.innerHTML = el.validationMessage;
+                    }
+                    else{
+                        errorEl.innerHTML = 'Passwords don\'t match.';
+                    }
+                }
+            }
+        });
+
         return passedAllValidation;
     }
 
@@ -232,6 +267,17 @@ export default class Freeform extends AbstractModule{
         if(isValid){
             this._switches.forEach((el)=>{
                 if(!el.validity.valid){
+                    isValid = false;
+                }
+            });
+        }
+
+        if(isValid){
+            this._passwords.forEach((el)=>{
+                const parent = el.parentElement;
+                const forEl = <HTMLInputElement>this._pages[this._active].querySelector(`.js-password input[name="${parent.getAttribute('data-for')}"]`);
+
+                if(!el.validity.valid || forEl.value !== el.value){
                     isValid = false;
                 }
             });
