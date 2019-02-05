@@ -124,6 +124,12 @@ var polyfill_1 = __importDefault(__webpack_require__(/*! ./polyfill */ "./app/sc
 var v4_1 = __importDefault(__webpack_require__(/*! uuid/v4 */ "./node_modules/uuid/v4.js"));
 var App = /** @class */ (function () {
     function App() {
+        var _this = this;
+        this.userTouched = function () {
+            document.body.removeEventListener('touchstart', _this.userTouched);
+            env_1.html.classList.add('has-touched');
+            env_1.html.classList.remove('has-not-touched');
+        };
         this._modules = modules;
         this._currentModules = [];
         this._transitionManager = null;
@@ -148,8 +154,9 @@ var App = /** @class */ (function () {
             env_1.setDebug(true);
         }
         if (this._touchSupport) {
-            env_1.html.classList.add('has-touch');
-            env_1.html.classList.remove('has-no-touch');
+            env_1.html.classList.add('is-touch-device');
+            env_1.html.classList.remove('is-not-touch-device');
+            document.body.addEventListener('touchstart', this.userTouched);
         }
         window.addEventListener('load', function (e) { env_1.html.classList.add('has-loaded'); });
         window.addEventListener('scroll', function (e) { return _this.handleScroll(); });
@@ -804,6 +811,10 @@ var BasicForm = /** @class */ (function (_super) {
             if (relatedEl.value !== target.value && parent.classList.contains('js-password-checker')) {
                 isValid = false;
             }
+            else if (relatedEl.value === target.value) {
+                relatedEl.parentElement.classList.add('is-valid');
+                relatedEl.parentElement.classList.remove('is-invalid');
+            }
         }
         if (!target.validity.valid) {
             isValid = false;
@@ -1276,59 +1287,54 @@ var Freeform = /** @class */ (function (_super) {
     __extends(Freeform, _super);
     function Freeform(el, uuid, app) {
         var _this = _super.call(this, el, uuid, app) || this;
+        _this.handleTabInput = function (e) {
+            var target = e.currentTarget;
+            if (target.classList.contains('has-seen')) {
+                _this.switchPage(parseInt(target.getAttribute('data-page')));
+            }
+        };
         _this.validatePage = function () {
-            var isValid = true;
-            _this._inputs.forEach(function (el) {
-                if (!el.validity.valid || el.value === '') {
-                    isValid = false;
+            _this.handleValidation();
+        };
+        _this.resetForm = function () {
+            animejs_1.default({
+                targets: _this._success,
+                duration: 150,
+                opacity: [1, 0],
+                easing: env_1.easing.sharp,
+                complete: function () {
+                    _this._form.reset();
+                    _this._success.classList.remove('is-visible');
+                    _this._pages.forEach(function (el) { el.classList.remove('is-active-page'); });
+                    _this._tabs.forEach(function (el) { el.classList.remove('is-active-page'); });
+                    _this._active = 0;
+                    _this._pages[_this._active].classList.add('is-active-page');
+                    _this._tabs[_this._active].classList.add('is-active-page');
+                    _this.removeEvents();
+                    var rows = Array.from(_this._pages[_this._active].querySelectorAll('.js-row'));
+                    animejs_1.default({
+                        targets: rows,
+                        opacity: [0, 1],
+                        translateY: ['25px', 0],
+                        duration: 150,
+                        easing: env_1.easing.in,
+                        delay: animejs_1.default.stagger(35),
+                        complete: function () {
+                            _this.getPageElements();
+                            _this.addEvents();
+                            _this.handleValidation();
+                        }
+                    });
+                    if (_this._tabWrapper) {
+                        animejs_1.default({
+                            targets: _this._tabWrapper,
+                            opacity: [0, 1],
+                            duration: 150,
+                            easing: env_1.easing.in
+                        });
+                    }
                 }
             });
-            if (isValid) {
-                _this._textareas.forEach(function (el) {
-                    if (!el.validity.valid || el.value === '') {
-                        isValid = false;
-                    }
-                });
-            }
-            if (isValid) {
-                _this._selects.forEach(function (el) {
-                    if (el.value === 'any') {
-                        isValid = false;
-                    }
-                });
-            }
-            if (isValid) {
-                _this._switches.forEach(function (el) {
-                    if (!el.validity.valid) {
-                        isValid = false;
-                    }
-                });
-            }
-            if (isValid) {
-                _this._passwords.forEach(function (el) {
-                    var parent = el.parentElement;
-                    var forEl = _this._pages[_this._active].querySelector(".js-password input[name=\"" + parent.getAttribute('data-for') + "\"]");
-                    if (!el.validity.valid || forEl.value !== el.value) {
-                        isValid = false;
-                    }
-                });
-            }
-            if (isValid) {
-                if (_this._nextButton) {
-                    _this._nextButton.classList.remove('is-disabled');
-                }
-                if (_this._submitButton) {
-                    _this._submitButton.classList.remove('is-disabled');
-                }
-            }
-            else {
-                if (_this._nextButton) {
-                    _this._nextButton.classList.add('is-disabled');
-                }
-                if (_this._submitButton) {
-                    _this._submitButton.classList.add('is-disabled');
-                }
-            }
         };
         _this.checkButton = function (e) {
             e.preventDefault();
@@ -1336,12 +1342,12 @@ var Freeform = /** @class */ (function (_super) {
             var target = e.currentTarget;
             var type = target.getAttribute('data-type');
             if (type === 'back') {
-                _this.switchPage();
+                _this.switchPage(_this._active - 1);
                 return;
             }
             if (_this.hardValidation()) {
                 if (type === 'next') {
-                    _this.switchPage(1);
+                    _this.switchPage(_this._active + 1);
                 }
                 else if (type === 'submit') {
                     _this.submitForm();
@@ -1363,6 +1369,11 @@ var Freeform = /** @class */ (function (_super) {
         _this._backButton = null;
         _this._nextButton = null;
         _this._submitButton = null;
+        _this._spinner = _this.el.querySelector('.js-spinner');
+        _this._success = _this.el.querySelector('.js-success');
+        _this._resetButton = _this.el.querySelector('.js-reset');
+        _this._form = _this.el.querySelector('form');
+        _this._tabWrapper = _this.el.querySelector('.js-tabs');
         // Variables
         _this._active = 0;
         return _this;
@@ -1373,9 +1384,14 @@ var Freeform = /** @class */ (function (_super) {
      * register any initial event listeners
      */
     Freeform.prototype.init = function () {
+        var _this = this;
         this.getPageElements();
         this.addEvents();
-        this.checkForRequired();
+        this.handleValidation();
+        // this._resetButton.addEventListener('click', this.resetForm );
+        this._tabs.forEach(function (el) {
+            el.addEventListener('click', _this.handleTabInput);
+        });
     };
     Freeform.prototype.getPageElements = function () {
         this._inputs = Array.from(this._pages[this._active].querySelectorAll('.js-input input[required]'));
@@ -1429,17 +1445,6 @@ var Freeform = /** @class */ (function (_super) {
         }
         if (this._submitButton) {
             this._submitButton.addEventListener('click', this.checkButton);
-        }
-    };
-    Freeform.prototype.checkForRequired = function () {
-        var requiredElements = this._pages[this._active].querySelectorAll('[required]');
-        if (requiredElements.length === 0) {
-            if (this._nextButton) {
-                this._nextButton.classList.remove('is-disabled');
-            }
-            if (this._submitButton) {
-                this._submitButton.classList.remove('is-disabled');
-            }
         }
     };
     Freeform.prototype.hardValidation = function () {
@@ -1536,22 +1541,96 @@ var Freeform = /** @class */ (function (_super) {
         });
         return passedAllValidation;
     };
-    Freeform.prototype.switchPage = function (direction) {
+    Freeform.prototype.getValidation = function () {
         var _this = this;
-        if (direction === void 0) { direction = -1; }
+        var isValid = true;
+        this._inputs.forEach(function (el) {
+            if (!el.validity.valid || el.value === '') {
+                isValid = false;
+            }
+        });
+        if (isValid) {
+            this._textareas.forEach(function (el) {
+                if (!el.validity.valid || el.value === '') {
+                    isValid = false;
+                }
+            });
+        }
+        if (isValid) {
+            this._selects.forEach(function (el) {
+                if (el.value === 'any') {
+                    isValid = false;
+                }
+            });
+        }
+        if (isValid) {
+            this._switches.forEach(function (el) {
+                if (!el.validity.valid) {
+                    isValid = false;
+                }
+            });
+        }
+        if (isValid) {
+            this._passwords.forEach(function (el) {
+                var parent = el.parentElement;
+                var forEl = _this._pages[_this._active].querySelector(".js-password input[name=\"" + parent.getAttribute('data-for') + "\"]");
+                if (!el.validity.valid || forEl.value !== el.value) {
+                    isValid = false;
+                }
+            });
+        }
+        return isValid;
+    };
+    Freeform.prototype.handleValidation = function () {
+        if (this.getValidation()) {
+            if (this._nextButton) {
+                this._nextButton.classList.remove('is-disabled');
+            }
+            if (this._submitButton) {
+                this._submitButton.classList.remove('is-disabled');
+            }
+        }
+        else {
+            if (this._nextButton) {
+                this._nextButton.classList.add('is-disabled');
+            }
+            if (this._submitButton) {
+                this._submitButton.classList.add('is-disabled');
+            }
+        }
+    };
+    Freeform.prototype.ajustFormPosition = function () {
+        var formOffset = this._form.getBoundingClientRect();
+        var newScrollY = Math.round(window.scrollY + formOffset.top - (window.innerHeight * (Freeform.MOBILE_OFFSET / 100)));
+        window.scroll(0, newScrollY);
+    };
+    Freeform.prototype.switchPage = function (newPageNumber) {
+        var _this = this;
+        var formOffset = this._form.getBoundingClientRect();
+        if (formOffset.top < Math.round(window.innerHeight * (Freeform.MOBILE_OFFSET / 100))) {
+            this.ajustFormPosition();
+        }
+        if (newPageNumber === this._active) {
+            return;
+        }
+        if (!this.getValidation() && newPageNumber > this._active) {
+            this.hardValidation();
+            return;
+        }
         var rows = Array.from(this._pages[this._active].querySelectorAll('.js-row'));
         animejs_1.default({
             targets: rows,
             opacity: [1, 0],
             translateY: [0, '-25px'],
-            duration: 450,
-            easeing: env_1.easing.sharp,
-            delay: animejs_1.default.stagger(50),
+            duration: 150,
+            easing: env_1.easing.sharp,
+            delay: animejs_1.default.stagger(35),
             complete: function () {
                 _this.removeEvents();
                 _this._pages[_this._active].classList.remove('is-active-page');
                 _this._tabs[_this._active].classList.remove('is-active-page');
-                _this._active += direction;
+                _this._tabs[_this._active].classList.add('has-seen');
+                _this._active = newPageNumber;
                 _this._pages[_this._active].classList.add('is-active-page');
                 _this._tabs[_this._active].classList.add('is-active-page');
                 var newRows = Array.from(_this._pages[_this._active].querySelectorAll('.js-row'));
@@ -1559,25 +1638,52 @@ var Freeform = /** @class */ (function (_super) {
                     targets: newRows,
                     opacity: [0, 1],
                     translateY: ['25px', 0],
-                    duration: 300,
+                    duration: 150,
                     easing: env_1.easing.in,
-                    delay: animejs_1.default.stagger(50),
+                    delay: animejs_1.default.stagger(35),
                     complete: function () {
                         _this.getPageElements();
                         _this.addEvents();
-                        _this.checkForRequired();
+                        _this.handleValidation();
                     }
                 });
             }
         });
     };
+    Freeform.prototype.handleFreeformResponse = function (response) {
+        var _this = this;
+        if (env_1.isDebug) {
+            console.log('%c[Freeform] ' + ("%cResponse Status: " + ((response.success) ? 'succcess' : 'failed')), 'color:#46f287', 'color:#eee');
+            if (response.errors) {
+                console.log(response);
+            }
+        }
+        if (response.finished && response.success) {
+            animejs_1.default({
+                targets: this._spinner,
+                opacity: [0, 1],
+                duration: 150,
+                easing: env_1.easing.out,
+                complete: function () {
+                    _this._spinner.classList.remove('is-visible');
+                    _this._success.classList.add('is-visible');
+                    animejs_1.default({
+                        targets: _this._success,
+                        duration: 150,
+                        opacity: [0, 1],
+                        easing: env_1.easing.in
+                    });
+                }
+            });
+        }
+    };
     Freeform.prototype.submitForm = function () {
-        var form = this.el.querySelector('form');
-        var csrfToken = form.querySelector('input[name="CRAFT_CSRF_TOKEN"]');
+        var _this = this;
+        var csrfToken = this._form.querySelector('input[name="CRAFT_CSRF_TOKEN"]');
         csrfToken.value = env_1.html.getAttribute('data-csrf');
-        var data = new FormData(form);
-        var method = form.getAttribute("method");
-        var action = form.querySelector('input[name="action"]');
+        var data = new FormData(this._form);
+        var method = this._form.getAttribute("method");
+        var action = this._form.querySelector('input[name="action"]');
         var request = new XMLHttpRequest();
         request.open(method, window.location.origin + "/actions/" + action.value, true);
         request.setRequestHeader("Cache-Control", "no-cache");
@@ -1586,32 +1692,43 @@ var Freeform = /** @class */ (function (_super) {
         request.onload = function (e) {
             var request = e.currentTarget;
             var response = JSON.parse(request.responseText);
-            console.log(response);
+            _this.handleFreeformResponse(response);
         };
         request.send(data);
         var rows = Array.from(this._pages[this._active].querySelectorAll('.js-row'));
-        var tabs = this.el.querySelector('.js-tabs');
-        if (tabs) {
+        if (this._tabWrapper) {
             animejs_1.default({
-                targets: tabs,
+                targets: this._tabWrapper,
                 opacity: [1, 0],
                 duration: 150,
-                easeing: env_1.easing.ease
+                easing: env_1.easing.sharp
             });
         }
         animejs_1.default({
             targets: rows,
             opacity: [1, 0],
             translateY: [0, '-25px'],
-            duration: 450,
-            easeing: env_1.easing.sharp,
-            delay: animejs_1.default.stagger(50)
+            duration: 150,
+            easing: env_1.easing.sharp,
+            delay: animejs_1.default.stagger(35),
+            complete: function () {
+                _this._pages[_this._active].classList.remove('is-active-page');
+                _this._spinner.classList.add('is-visible');
+                _this._form.style.display = 'none';
+                animejs_1.default({
+                    targets: _this._spinner,
+                    duration: 300,
+                    easing: env_1.easing.in,
+                    opacity: [0, 1]
+                });
+            }
         });
     };
     Freeform.prototype.destroy = function () {
         _super.prototype.destroy.call(this, env_1.isDebug, Freeform.MODULE_NAME);
     };
     Freeform.MODULE_NAME = 'Freeform';
+    Freeform.MOBILE_OFFSET = 5; // % of vertical viewport height
     return Freeform;
 }(AbstractModule_1.default));
 exports.default = Freeform;

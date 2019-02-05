@@ -22,7 +22,7 @@ html
     min-height: 100vh; /* [3] */
     text-align: left;
     position: relative;
-
+    scroll-behavior: smooth;
 
     *{
         box-sizing: border-box;

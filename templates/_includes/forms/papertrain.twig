@@ -25,6 +25,8 @@
     {% endif %}
 </div>
 
+{% set buttonStyle = '-outline -alt' %}
+
 {% set currentPage = 1 %}
 {% set pageClosed = false %}
 <div class="o-wrapper u-1/1 o-freeform_page js-page {% if currentPage == 1 %}is-active-page{% endif %}">
@@ -63,11 +65,11 @@
                         {{ formMacro.file(field.label, field.handle, field.required, field.instructions, field.fileCount, field.fileKinds) }}
                     {% elseif field.type == 'submit' %}
                         {% if currentPage < pages %}
-                            <div class="o-wrapper u-1/1 u-text-right">
+                            <div class="o-wrapper u-1/1 u-text-right u-margin-top">
                                 {% if currentPage > 1 %}
-                                    <button data-type="back" class="o-button -outline -alt js-back-button u-margin-right">Back</button>
+                                    <button data-type="back" class="o-button {{ buttonStyle }} js-back-button u-margin-right">Back</button>
                                 {% endif %}
-                                <button data-type="next" class="o-button -outline -alt is-disabled js-next-button">Next</button>
+                                <button data-type="next" class="o-button {{ buttonStyle }} is-disabled js-next-button">Next</button>
                             </div>
                             {% set currentPage = currentPage + 1 %}
                             {% set pageClosed = true %}
@@ -86,8 +88,11 @@
             <div class="o-wrapper u-1/1 o-freeform_page js-page">
         {% endif %}
     {% endfor %}
-    <div class="js-row o-wrapper u-1/1 u-text-right" {% if currentPage == 1 and pages > 1 %}style="opacity:1;"{% elseif currentPage != 1 and pages > 1 %}style="opacity:0;"{% endif %}>
-        <button data-type="submit" class="o-button -outline -alt is-disabled js-submit-button">Submit</button>
+    <div class="js-row o-wrapper u-1/1 u-text-right u-margin-top" {% if currentPage == 1 and pages > 1 %}style="opacity:1;"{% elseif currentPage != 1 and pages > 1 %}style="opacity:0;"{% endif %}>
+        {% if currentPage > 1 %}
+            <button data-type="back" class="o-button {{ buttonStyle }} js-back-button u-margin-right">Back</button>
+        {% endif %}
+        <button data-type="submit" class="o-button  {{ buttonStyle }} is-disabled js-submit-button">Submit</button>
     </div>
 </div>
 

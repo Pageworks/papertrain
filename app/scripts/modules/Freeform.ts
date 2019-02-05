@@ -1,10 +1,27 @@
 import { isDebug, html, easing } from '../env';
 import AbstractModule from './AbstractModule';
 import anime from 'animejs';
+import { finished } from 'stream';
+
+interface FreeformResponse{
+    success: boolean;
+    finished: boolean;
+    returnUrl: string;
+    submissionId: string;
+    honeypot: {
+        name: string;
+        hash: string;
+    };
+    formErrors: string[];
+    errors: {
+        error: string[];
+    };
+}
 
 export default class Freeform extends AbstractModule{
 
     public static MODULE_NAME:string = 'Freeform';
+    private static MOBILE_OFFSET:number = 5; // % of vertical viewport height
 
     // Form Elements
     private _inputs:    Array<HTMLInputElement>;
@@ -19,6 +36,11 @@ export default class Freeform extends AbstractModule{
     private _nextButton:    Element;
     private _backButton:    Element;
     private _submitButton:  Element;
+    private _spinner:       HTMLElement;
+    private _success:       HTMLElement;
+    private _resetButton:   HTMLButtonElement;
+    private _form:          HTMLFormElement;
+    private _tabWrapper:    HTMLElement;
 
     // Variables
     private _active:    number;
@@ -42,6 +64,11 @@ export default class Freeform extends AbstractModule{
         this._backButton    = null;
         this._nextButton    = null;
         this._submitButton  = null;
+        this._spinner       = this.el.querySelector('.js-spinner');
+        this._success       = this.el.querySelector('.js-success');
+        this._resetButton   = this.el.querySelector('.js-reset');
+        this._form          = this.el.querySelector('form');
+        this._tabWrapper    = this.el.querySelector('.js-tabs')
 
         // Variables
         this._active    = 0;
@@ -55,7 +82,20 @@ export default class Freeform extends AbstractModule{
     public init(): void{
         this.getPageElements();
         this.addEvents();
-        this.checkForRequired();
+        this.handleValidation();
+
+        // this._resetButton.addEventListener('click', this.resetForm );
+
+        this._tabs.forEach((el)=>{
+            el.addEventListener('click', this.handleTabInput);
+        });
+    }
+
+    private handleTabInput:EventListener = (e)=>{
+        const target = <HTMLElement>e.currentTarget;
+        if(target.classList.contains('has-seen')){
+            this.switchPage(parseInt(target.getAttribute('data-page')));
+        }
     }
 
     private getPageElements(): void{
@@ -121,18 +161,6 @@ export default class Freeform extends AbstractModule{
         }
         if(this._submitButton){
             this._submitButton.addEventListener('click', this.checkButton );
-        }
-    }
-
-    private checkForRequired(): void{
-        const requiredElements = this._pages[this._active].querySelectorAll('[required]');
-        if(requiredElements.length === 0){
-            if(this._nextButton){
-                this._nextButton.classList.remove('is-disabled');
-            }
-            if(this._submitButton){
-                this._submitButton.classList.remove('is-disabled');
-            }
         }
     }
 
@@ -240,7 +268,7 @@ export default class Freeform extends AbstractModule{
         return passedAllValidation;
     }
 
-    private validatePage:EventListener = ()=>{
+    private getValidation(): boolean{
         let isValid = true;
 
         this._inputs.forEach((el)=>{
@@ -284,7 +312,11 @@ export default class Freeform extends AbstractModule{
             });
         }
 
-        if(isValid){
+        return isValid;
+    }
+
+    private handleValidation(): void{
+        if(this.getValidation()){
             if(this._nextButton){
                 this._nextButton.classList.remove('is-disabled');
             }
@@ -301,22 +333,91 @@ export default class Freeform extends AbstractModule{
         }
     }
 
-    private switchPage(direction:number = -1): void{
-        const rows = Array.from(this._pages[this._active].querySelectorAll('.js-row'));
+    private validatePage:EventListener = ()=>{
+        this.handleValidation();
+    }
 
+    private resetForm:EventListener = ()=>{
+        anime({
+            targets: this._success,
+            duration: 150,
+            opacity: [1,0],
+            easing: easing.sharp,
+            complete: ()=>{
+                this._form.reset();
+                this._success.classList.remove('is-visible');
+                this._pages.forEach((el)=>{ el.classList.remove('is-active-page'); });
+                this._tabs.forEach((el)=>{ el.classList.remove('is-active-page'); });
+
+                this._active = 0;
+                this._pages[this._active].classList.add('is-active-page');
+                this._tabs[this._active].classList.add('is-active-page');
+                this.removeEvents();
+
+                const rows = Array.from(this._pages[this._active].querySelectorAll('.js-row'));
+
+                anime({
+                    targets: rows,
+                    opacity: [0, 1],
+                    translateY: ['25px', 0],
+                    duration: 150,
+                    easing: easing.in,
+                    delay: anime.stagger(35),
+                    complete: ()=>{
+                        this.getPageElements();
+                        this.addEvents();
+                        this.handleValidation();
+                    }
+                });
+
+                if(this._tabWrapper){
+                    anime({
+                        targets: this._tabWrapper,
+                        opacity: [0, 1],
+                        duration: 150,
+                        easing: easing.in
+                    });
+                }
+            }
+        });
+    }
+
+    private ajustFormPosition(): void{
+        const formOffset = this._form.getBoundingClientRect();
+        const newScrollY = Math.round(window.scrollY + formOffset.top - (window.innerHeight * (Freeform.MOBILE_OFFSET / 100)));
+        window.scroll(0, newScrollY);
+    }
+
+    private switchPage(newPageNumber:number): void{
+        const formOffset = this._form.getBoundingClientRect();
+        if(formOffset.top < Math.round(window.innerHeight * (Freeform.MOBILE_OFFSET / 100))){
+            this.ajustFormPosition();
+        }
+
+        if(newPageNumber === this._active){
+            return;
+        }
+
+        if(!this.getValidation() && newPageNumber > this._active){
+            this.hardValidation();
+            return;
+        }
+
+        const rows = Array.from(this._pages[this._active].querySelectorAll('.js-row'));
         anime({
             targets: rows,
             opacity: [1, 0],
             translateY: [0, '-25px'],
-            duration: 450,
-            easeing: easing.sharp,
-            delay: anime.stagger(50),
+            duration: 150,
+            easing: easing.sharp,
+            delay: anime.stagger(35),
             complete: ()=>{
                 this.removeEvents();
                 this._pages[this._active].classList.remove('is-active-page');
                 this._tabs[this._active].classList.remove('is-active-page');
+                this._tabs[this._active].classList.add('has-seen');
 
-                this._active += direction;
+                this._active = newPageNumber;
                 this._pages[this._active].classList.add('is-active-page');
                 this._tabs[this._active].classList.add('is-active-page');
 
@@ -325,29 +426,56 @@ export default class Freeform extends AbstractModule{
                     targets: newRows,
                     opacity: [0, 1],
                     translateY: ['25px', 0],
-                    duration: 300,
+                    duration: 150,
                     easing: easing.in,
-                    delay: anime.stagger(50),
+                    delay: anime.stagger(35),
                     complete: ()=>{
                         this.getPageElements();
                         this.addEvents();
-                        this.checkForRequired();
+                        this.handleValidation();
                     }
                 });
             }
         });
     }
 
+    private handleFreeformResponse(response:FreeformResponse): void{
+        if(isDebug){
+            console.log('%c[Freeform] '+`%cResponse Status: ${(response.success) ? 'succcess' : 'failed'}`,'color:#46f287','color:#eee');
+            if(response.errors){
+                console.log(response);
+            }
+        }
+
+        if(response.finished && response.success){
+            anime({
+                targets: this._spinner,
+                opacity: [0, 1],
+                duration: 150,
+                easing: easing.out,
+                complete: ()=>{
+                    this._spinner.classList.remove('is-visible');
+                    this._success.classList.add('is-visible');
+
+                    anime({
+                        targets: this._success,
+                        duration: 150,
+                        opacity: [0,1],
+                        easing: easing.in
+                    });
+                }
+            });
+        }
+    }
+
     private submitForm(): void{
-        const form = this.el.querySelector('form');
-        const csrfToken = <HTMLInputElement>form.querySelector('input[name="CRAFT_CSRF_TOKEN"]');
+        const csrfToken = <HTMLInputElement>this._form.querySelector('input[name="CRAFT_CSRF_TOKEN"]');
         csrfToken.value = html.getAttribute('data-csrf');
-        const data = new FormData(form);
-        const method = form.getAttribute("method");
-        const action = <HTMLInputElement>form.querySelector('input[name="action"]');
+        const data = new FormData(this._form);
+        const method = this._form.getAttribute("method");
+        const action = <HTMLInputElement>this._form.querySelector('input[name="action"]');
 
         const request = new XMLHttpRequest();
-
         request.open(method, `${window.location.origin}/actions/${action.value}`, true);
         request.setRequestHeader("Cache-Control", "no-cache");
         request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -355,19 +483,18 @@ export default class Freeform extends AbstractModule{
         request.onload = (e:ProgressEvent)=>{
             const request = <XMLHttpRequest>e.currentTarget;
             const response = JSON.parse(request.responseText);
-            console.log(response);
+            this.handleFreeformResponse(response);
         }
         request.send(data);
 
         const rows = Array.from(this._pages[this._active].querySelectorAll('.js-row'));
-        const tabs = this.el.querySelector('.js-tabs');
 
-        if(tabs){
+        if(this._tabWrapper){
             anime({
-                targets: tabs,
+                targets: this._tabWrapper,
                 opacity: [1, 0],
                 duration: 150,
-                easeing: easing.ease
+                easing: easing.sharp
             });
         }
 
@@ -375,9 +502,20 @@ export default class Freeform extends AbstractModule{
             targets: rows,
             opacity: [1, 0],
             translateY: [0, '-25px'],
-            duration: 450,
-            easeing: easing.sharp,
-            delay: anime.stagger(50)
+            duration: 150,
+            easing: easing.sharp,
+            delay: anime.stagger(35),
+            complete: ()=>{
+                this._pages[this._active].classList.remove('is-active-page');
+                this._spinner.classList.add('is-visible');
+                this._form.style.display = 'none';
+                anime({
+                    targets: this._spinner,
+                    duration: 300,
+                    easing: easing.in,
+                    opacity: [0, 1]
+                });
+            }
         });
     }
 
@@ -388,13 +526,13 @@ export default class Freeform extends AbstractModule{
         const type = target.getAttribute('data-type');
 
         if(type === 'back'){
-            this.switchPage();
+            this.switchPage(this._active - 1);
             return;
         }
 
         if(this.hardValidation()){
             if(type === 'next'){
-                this.switchPage(1);
+                this.switchPage(this._active + 1);
             }
             else if(type === 'submit'){
                 this.submitForm();

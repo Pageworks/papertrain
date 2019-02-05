@@ -1,4 +1,42 @@
 .o-freeform{
+    .o-freeform_spinner{
+        width: 100%;
+        text-align: center;
+        display: none;
+        margin: $unit 0;
+
+        &.is-visible{
+            display: inline-block;
+        }
+
+        .o-freeform_spinner_message{
+            display: block;
+            margin-top: $unit;
+        }
+    }
+
+    .o-freeform_success{
+        width: 100%;
+        text-align: center;
+        display: none;
+
+        &.is-visible{
+            display: inline-block;
+        }
+
+        .o-freeform_success_message{
+            display: block;
+            margin: $unit 0;
+            color: $success;
+
+            p{
+                &:last-of-type{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
     .o-freeform_page{
         opacity: 0;
         display: none;
@@ -41,8 +79,27 @@
 
                 &.is-active-page{
                     &:after{
-                        opacity: $primary-active-opacity;
+                        opacity: $primary-hover-opacity;
                         transform: scale(1);
+                    }
+                }
+
+                &.has-seen{
+                    pointer-events: all;
+                    cursor: pointer;
+
+                    @include hover{
+                        &:after{
+                            opacity: $primary-hover-opacity;
+                            transform: scale(1);
+                        }
+                    }
+
+                    @include active{
+                        &:after{
+                            opacity: $primary-active-opacity;
+                            transform: scale(1);
+                        }
                     }
                 }
             }

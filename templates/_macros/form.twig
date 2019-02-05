@@ -1,8 +1,8 @@
 {# Basic Form Input #}
 {% macro input(label, name, required, type = 'text', help, maxLength = 254, icon, pattern, autocomplete) %}
     <div class="js-input o-input {% if help|length %}has-helper{% endif %}">
-        <input {% if icon %}class="has-icon"{% endif %} type="{{type}}" maxlength="{{ maxLength }}"  {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern != '' %}pattern="{{pattern}}"{% elseif type == 'email' %}pattern=".+@.+\..+"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" {% if required %}required{% endif %} />
-        <label>{{label}}</label>
+        <input id="{{ name }}-id" {% if icon %}class="has-icon"{% endif %} type="{{type}}" maxlength="{{ maxLength }}"  {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern != '' %}pattern="{{pattern}}"{% elseif type == 'email' %}pattern=".+@.+\..+"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" {% if required %}required{% endif %} />
+        <label for="{{ name }}-id" >{{label}}</label>
         {% if icon %}
             <span class="o-icon">
                 {{icon}}
@@ -23,8 +23,8 @@
 {# Number Form Input #}
 {% macro number(label, name, required, help, min = 0, max, step, icon) %}
     <div class="js-input o-input {% if help|length %}has-helper{% endif %}">
-        <input {% if icon %}class="has-icon"{% endif %} type="number" min="{{min}}" inputmode="numeric" {% if max %}max="{{max}}"{% endif %} {% if step %}step="0.{% for i in 1..step %}{% if not loop.last %}0{% else %}1{% endif %}{% endfor  %}"{% endif %} name="{{name}}" {% if required %}required{% endif %} />
-        <label>{{label}}</label>
+        <input id="{{ name }}-id" {% if icon %}class="has-icon"{% endif %} type="number" min="{{min}}" inputmode="numeric" {% if max %}max="{{max}}"{% endif %} {% if step %}step="0.{% for i in 1..step %}{% if not loop.last %}0{% else %}1{% endif %}{% endfor  %}"{% endif %} name="{{name}}" {% if required %}required{% endif %} />
+        <label for="{{ name }}-id">{{label}}</label>
         {% if icon %}
             <span class="o-icon">
                 {{icon}}
@@ -45,8 +45,8 @@
 {# Password Form Input #}
 {% macro password(label, name, required, help, pattern) %}
     <div class="js-input js-password  o-input has-content-hidden has-helper">
-        <input type="password" pattern="{% if not pattern %}^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}${% else %}{{pattern}}{% endif %}" name="{{name}}" {% if required %}required{% endif %} />
-        <label>{{label}}</label>
+        <input id="{{ name }}-id" type="password" pattern="{% if not pattern %}^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}${% else %}{{pattern}}{% endif %}" name="{{name}}" {% if required %}required{% endif %} />
+        <label for="{{ name }}-id">{{label}}</label>
         <span class="js-password-toggle -hidden">
             {% include '_svgs/eye-solid.svg' %}
         </span>
@@ -70,8 +70,8 @@
 {% endmacro %}
 {% macro passwordCheck(label, name, required) %}
     <div class="o-input js-password-checker has-content-hidden" data-for="{{ name }}">
-        <input type="password" name="{{name}}-check" {% if required %}required{% endif %} />
-        <label>{{label}}</label>
+        <input id="{{ name }}-checker-id" type="password" name="{{name}}-check" {% if required %}required{% endif %} />
+        <label for="{{ name }}-checker-id">{{label}}</label>
         <span class="js-password-toggle -hidden">
             {% include '_svgs/eye-solid.svg' %}
         </span>
@@ -93,8 +93,8 @@
 {# Pin Form Input #}
 {% macro pin(label, name, required, help,  min = 4, max = 8, pattern = '^[0-9]*') %}
     <div class="js-input o-input has-content-hidden has-helper">
-        <input type="password" inputmode="numeric" minlength="{{min}}" maxlength="{{max}}" pattern="{{pattern}}" name="{{name}}" {% if required %}required{% endif %} />
-        <label>{{label}}</label>
+        <input id="{{ name }}-id" type="password" inputmode="numeric" minlength="{{min}}" maxlength="{{max}}" pattern="{{pattern}}" name="{{name}}" {% if required %}required{% endif %} />
+        <label for="{{ name }}-id">{{label}}</label>
         <span class="js-password-toggle -hidden">
             {% include '_svgs/eye-solid.svg' %}
         </span>
@@ -120,13 +120,13 @@
 {# Select Form Input #}
 {% macro select(label, name, required, help, options) %}
     <div class="js-select o-input {% if help|length %}has-helper{% endif %}">
-        <select name="{{name}}" {% if required %}required{% endif %}>
+        <select id="{{ name }}-id" name="{{name}}" {% if required %}required{% endif %}>
             <option value="any">&nbsp;</option>
             {% for option in options %}
                 <option value="{{option.value}}">{{option.label}}</option>
             {% endfor %}
         </select>
-        <label>{{label}}</label>
+        <label for="{{ name }}-id">{{label}}</label>
         <span class="o-arrow">
             {% include '_svgs/sort-down-solid.svg' %}
         </span>
@@ -145,8 +145,8 @@
 {# Textarea Input #}
 {% macro textarea(label, name, required, help) %}
     <div class="js-textarea o-textarea {% if help|length %}has-helper{% endif %}">
-        <textarea name="{{name}}" {% if required %}required{% endif %}></textarea>
-        <label>{{label}}</label>
+        <textarea id="{{ name }}-id" name="{{name}}" {% if required %}required{% endif %}></textarea>
+        <label for="{{ name }}-id">{{label}}</label>
         <div class="o-error">
             {% include '_svgs/exclamation-circle-regular.svg' %}
             <span class="js-error o-error_message">Something went wrong.</span>
@@ -164,7 +164,7 @@
     <fieldset class="js-radio o-radio {% if help|length %}has-helper{% endif %}">
         {% for option in options %}
             <div class="o-radio_item">
-                <input type="radio" id="{{option.value}}" name="{{name}}[]" value="{{option.value}}" {% if loop.first %}checked="checked"{% endif %}  />
+                <input type="radio" id="{{option.value}}" name="{{name}}" value="{{option.value}}" {% if loop.first %}checked="checked"{% endif %}  />
                 <label for="{{option.value}}">
                     <div class="o-radio_icon">
                         <div class="o-radio_outter"></div>
@@ -216,8 +216,8 @@
 {# Date Form Input #}
 {% macro date(label, name, required, help, startDate, minDate, maxDate, icon = 'far fa-calendar-alt') %}
     <div class="js-input o-input {% if help|length %}has-helper{% endif %}">
-        <input {% if icon %}class="has-icon"{% endif %} type="date" name="{{name}}" {% if required %}required{% endif %} value="{% if startDate %}{{startDate}}{% else %}{{now|date('Y-m-d')}}{% endif %}" {% if minDate %}min="{{minDate}}"{% endif %} {% if maxDate %}max="{{maxDate}}"{% endif %} pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" />
-        <label>{{label}}</label>
+        <input id="{{ name }}-id" {% if icon %}class="has-icon"{% endif %} type="date" name="{{name}}" {% if required %}required{% endif %} value="{% if startDate %}{{startDate}}{% else %}{{now|date('Y-m-d')}}{% endif %}" {% if minDate %}min="{{minDate}}"{% endif %} {% if maxDate %}max="{{maxDate}}"{% endif %} pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" />
+        <label for="{{ name }}-id">{{label}}</label>
         {% if icon %}
             <span class="o-icon">
                 {{icon}}

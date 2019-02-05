@@ -201,8 +201,7 @@ fieldset {
   width: 100%;
   border: none;
   outline: none;
-  font-size: 16px;
-  line-height: 16px; }
+  font-size: 16px; }
   input:focus, input:active,
   select:focus,
   select:active,
@@ -339,10 +338,10 @@ p {
       display: inline-block;
       transform-origin: bottom;
       transition: transform 175ms cubic-bezier(0.4, 0, 0.6, 1), opacity 75ms 100ms cubic-bezier(0.4, 0, 0.2, 1); }
-    html.has-no-touch p a:hover {
+    html.is-not-touch-device p a:hover {
       color: #45ADA8;
       transition: color 150ms cubic-bezier(0, 0, 0.2, 1), text-decoration 150ms cubic-bezier(0, 0, 0.2, 1); }
-      html.has-no-touch p a:hover:after {
+      html.is-not-touch-device p a:hover:after {
         opacity: 0.87;
         transform: scaleY(1);
         transition: transform 225ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms 0ms cubic-bezier(0.4, 0, 0.2, 1); }
@@ -360,7 +359,8 @@ html {
   min-height: 100vh;
   /* [3] */
   text-align: left;
-  position: relative; }
+  position: relative;
+  scroll-behavior: smooth; }
   html * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent; }
@@ -771,7 +771,7 @@ table {
 .-base-background .o-form .o-textarea textarea {
   border-color: rgba(0, 0, 0, 0.3);
   color: #414141; }
-  html.has-no-touch .-base-background .o-form .o-textarea textarea:hover {
+  html.is-not-touch-device .-base-background .o-form .o-textarea textarea:hover {
     border-color: rgba(0, 0, 0, 0.6);
     transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
   .-base-background .o-form .o-textarea textarea:focus {
@@ -782,7 +782,7 @@ table {
 .-secondary-background .o-form .o-textarea textarea {
   border-color: rgba(0, 0, 0, 0.3);
   color: #414141; }
-  html.has-no-touch .-secondary-background .o-form .o-textarea textarea:hover {
+  html.is-not-touch-device .-secondary-background .o-form .o-textarea textarea:hover {
     border-color: rgba(0, 0, 0, 0.6);
     transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
   .-secondary-background .o-form .o-textarea textarea:focus {
@@ -793,7 +793,7 @@ table {
 .-dark-background .o-form .o-textarea textarea {
   border-color: rgba(255, 255, 255, 0.3);
   color: #ffffff; }
-  html.has-no-touch .-dark-background .o-form .o-textarea textarea:hover {
+  html.is-not-touch-device .-dark-background .o-form .o-textarea textarea:hover {
     border-color: rgba(255, 255, 255, 0.6);
     transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
   .-dark-background .o-form .o-textarea textarea:focus {
@@ -804,7 +804,7 @@ table {
 .-brand-background .o-form .o-textarea textarea {
   border-color: rgba(255, 255, 255, 0.3);
   color: white; }
-  html.has-no-touch .-brand-background .o-form .o-textarea textarea:hover {
+  html.is-not-touch-device .-brand-background .o-form .o-textarea textarea:hover {
     border-color: rgba(255, 255, 255, 0.6);
     transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
   .-brand-background .o-form .o-textarea textarea:focus {
@@ -1035,8 +1035,7 @@ table {
   height: 48px !important;
   width: 100% !important;
   margin-bottom: 1rem !important;
-  position: relative !important;
-  padding: 0 0.5rem !important; }
+  position: relative !important; }
   .o-switch.is-invalid .o-help {
     opacity: 0;
     transition: opacity 25ms cubic-bezier(0.4, 0, 0.6, 1); }
@@ -1065,11 +1064,11 @@ table {
         display: inline-flex !important;
         align-items: center !important;
         cursor: pointer !important; }
-        html.has-no-touch .o-switch .o-switch_item label .o-switch_icon:active .o-switch_handle:after {
+        html.is-not-touch-device .o-switch .o-switch_item label .o-switch_icon:active .o-switch_handle:after {
           transform: scale(1);
           opacity: 0.11;
           transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-        html.has-no-touch .o-switch .o-switch_item label .o-switch_icon:hover .o-switch_handle:before {
+        html.is-not-touch-device .o-switch .o-switch_item label .o-switch_icon:hover .o-switch_handle:before {
           transform: scale(1);
           opacity: 0.07;
           transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1151,13 +1150,13 @@ table {
     .o-radio .o-radio_item label {
       display: flex !important;
       align-items: center !important; }
-    html.has-no-touch .o-radio .o-radio_item:hover {
+    html.is-not-touch-device .o-radio .o-radio_item:hover {
       cursor: pointer !important; }
-      html.has-no-touch .o-radio .o-radio_item:hover .o-radio_icon:before {
+      html.is-not-touch-device .o-radio .o-radio_item:hover .o-radio_icon:before {
         transform: scale(1);
         opacity: 0.07;
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-    html.has-no-touch .o-radio .o-radio_item:active .o-radio_icon:after {
+    html.is-not-touch-device .o-radio .o-radio_item:active .o-radio_icon:after {
       transform: scale(1);
       opacity: 0.11;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1238,13 +1237,13 @@ table {
     display: flex !important;
     align-items: center !important;
     margin: 1rem !important; }
-  html.has-no-touch .o-checkbox .o-checkbox_item:hover {
+  html.is-not-touch-device .o-checkbox .o-checkbox_item:hover {
     cursor: pointer !important; }
-    html.has-no-touch .o-checkbox .o-checkbox_item:hover .o-checkbox_icon:before {
+    html.is-not-touch-device .o-checkbox .o-checkbox_item:hover .o-checkbox_icon:before {
       transform: scale(1);
       opacity: 0.07;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-  html.has-no-touch .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
+  html.is-not-touch-device .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
     transform: scale(1);
     opacity: 0.11;
     transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1384,7 +1383,7 @@ table {
         position: absolute;
         top: 20px;
         left: 16px !important; }
-      html.has-no-touch .o-form .o-textarea textarea:hover {
+      html.is-not-touch-device .o-form .o-textarea textarea:hover {
         border: 2px solid rgba(65, 65, 65, 0.6);
         transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
       .o-form .o-textarea textarea:focus {
@@ -1454,15 +1453,15 @@ table {
         transform: scale(0);
         opacity: 0;
         transition: transform 150ms cubic-bezier(0.4, 0, 0.6, 1), opacity 25ms 50ms cubic-bezier(0.4, 0, 1, 1); }
-      html.has-no-touch .o-form .o-input .-visible:hover, html.has-no-touch
+      html.is-not-touch-device .o-form .o-input .-visible:hover, html.is-not-touch-device
       .o-form .o-input .-hidden:hover {
         opacity: 0.87 !important; }
-        html.has-no-touch .o-form .o-input .-visible:hover:before, html.has-no-touch
+        html.is-not-touch-device .o-form .o-input .-visible:hover:before, html.is-not-touch-device
         .o-form .o-input .-hidden:hover:before {
           transform: scale(1);
           opacity: 0.07;
           transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
-      html.has-no-touch .o-form .o-input .-visible:active:after, html.has-no-touch
+      html.is-not-touch-device .o-form .o-input .-visible:active:after, html.is-not-touch-device
       .o-form .o-input .-hidden:active:after {
         transform: scale(1);
         opacity: 0.11;
@@ -1477,8 +1476,8 @@ table {
       display: inline-flex; }
     .o-form .o-input.has-content-visible .-hidden {
       display: none; }
-    html.has-no-touch .o-form .o-input:hover .-visible,
-    html.has-no-touch .o-form .o-input:hover .-hidden {
+    html.is-not-touch-device .o-form .o-input:hover .-visible,
+    html.is-not-touch-device .o-form .o-input:hover .-hidden {
       opacity: 0.6; }
   .o-form .o-error,
   .o-form .o-help {
@@ -1533,7 +1532,7 @@ table {
   .-base-background .o-form.-outline input, .-base-background
   .o-form.-outline select {
     border-color: rgba(0, 0, 0, 0.3); }
-    html.has-no-touch .-base-background .o-form.-outline input:hover, html.has-no-touch .-base-background
+    html.is-not-touch-device .-base-background .o-form.-outline input:hover, html.is-not-touch-device .-base-background
     .o-form.-outline select:hover {
       border-color: rgba(0, 0, 0, 0.6);
       transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1546,7 +1545,7 @@ table {
   .-secondary-background .o-form.-outline input, .-secondary-background
   .o-form.-outline select {
     border-color: rgba(0, 0, 0, 0.3); }
-    html.has-no-touch .-secondary-background .o-form.-outline input:hover, html.has-no-touch .-secondary-background
+    html.is-not-touch-device .-secondary-background .o-form.-outline input:hover, html.is-not-touch-device .-secondary-background
     .o-form.-outline select:hover {
       border-color: rgba(0, 0, 0, 0.6);
       transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1559,7 +1558,7 @@ table {
   .-dark-background .o-form.-outline input, .-dark-background
   .o-form.-outline select {
     border-color: rgba(255, 255, 255, 0.3); }
-    html.has-no-touch .-dark-background .o-form.-outline input:hover, html.has-no-touch .-dark-background
+    html.is-not-touch-device .-dark-background .o-form.-outline input:hover, html.is-not-touch-device .-dark-background
     .o-form.-outline select:hover {
       border-color: rgba(255, 255, 255, 0.6);
       transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1572,7 +1571,7 @@ table {
   .-brand-background .o-form.-outline input, .-brand-background
   .o-form.-outline select {
     border-color: rgba(255, 255, 255, 0.3); }
-    html.has-no-touch .-brand-background .o-form.-outline input:hover, html.has-no-touch .-brand-background
+    html.is-not-touch-device .-brand-background .o-form.-outline input:hover, html.is-not-touch-device .-brand-background
     .o-form.-outline select:hover {
       border-color: rgba(255, 255, 255, 0.6);
       transition: border 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1667,7 +1666,7 @@ table {
   .-base-background .o-form.-solid .o-input input, .-base-background
   .o-form.-solid .o-input select {
     border-color: rgba(0, 0, 0, 0.3); }
-    html.has-no-touch .-base-background .o-form.-solid .o-input input:hover, html.has-no-touch .-base-background
+    html.is-not-touch-device .-base-background .o-form.-solid .o-input input:hover, html.is-not-touch-device .-base-background
     .o-form.-solid .o-input select:hover {
       border-color: rgba(0, 0, 0, 0.6); }
     html.has-no-js .-base-background .o-form.-solid .o-input input:focus, html.has-no-js .-base-background
@@ -1679,7 +1678,7 @@ table {
   .-secondary-background .o-form.-solid .o-input input, .-secondary-background
   .o-form.-solid .o-input select {
     border-color: rgba(0, 0, 0, 0.3); }
-    html.has-no-touch .-secondary-background .o-form.-solid .o-input input:hover, html.has-no-touch .-secondary-background
+    html.is-not-touch-device .-secondary-background .o-form.-solid .o-input input:hover, html.is-not-touch-device .-secondary-background
     .o-form.-solid .o-input select:hover {
       border-color: rgba(0, 0, 0, 0.6); }
     html.has-no-js .-secondary-background .o-form.-solid .o-input input:focus, html.has-no-js .-secondary-background
@@ -1691,7 +1690,7 @@ table {
   .-dark-background .o-form.-solid .o-input input, .-dark-background
   .o-form.-solid .o-input select {
     border-color: rgba(255, 255, 255, 0.3); }
-    html.has-no-touch .-dark-background .o-form.-solid .o-input input:hover, html.has-no-touch .-dark-background
+    html.is-not-touch-device .-dark-background .o-form.-solid .o-input input:hover, html.is-not-touch-device .-dark-background
     .o-form.-solid .o-input select:hover {
       border-color: rgba(255, 255, 255, 0.6); }
     html.has-no-js .-dark-background .o-form.-solid .o-input input:focus, html.has-no-js .-dark-background
@@ -1703,7 +1702,7 @@ table {
   .-brand-background .o-form.-solid .o-input input, .-brand-background
   .o-form.-solid .o-input select {
     border-color: rgba(255, 255, 255, 0.3); }
-    html.has-no-touch .-brand-background .o-form.-solid .o-input input:hover, html.has-no-touch .-brand-background
+    html.is-not-touch-device .-brand-background .o-form.-solid .o-input input:hover, html.is-not-touch-device .-brand-background
     .o-form.-solid .o-input select:hover {
       border-color: rgba(255, 255, 255, 0.6); }
     html.has-no-js .-brand-background .o-form.-solid .o-input input:focus, html.has-no-js .-brand-background
@@ -1716,48 +1715,48 @@ table {
   .o-form.-solid select, .-base-background
   .o-form.-solid textarea {
     background-color: rgba(0, 0, 0, 0.03) !important; }
-    html.has-no-touch .-base-background .o-form.-solid input:hover, html.has-no-touch .-base-background
-    .o-form.-solid select:hover, html.has-no-touch .-base-background
+    html.is-not-touch-device .-base-background .o-form.-solid input:hover, html.is-not-touch-device .-base-background
+    .o-form.-solid select:hover, html.is-not-touch-device .-base-background
     .o-form.-solid textarea:hover {
       background-color: rgba(0, 0, 0, 0.05) !important; }
-    html.has-no-touch .-base-background .o-form.-solid input:active, html.has-no-touch .-base-background
-    .o-form.-solid select:active, html.has-no-touch .-base-background
+    html.is-not-touch-device .-base-background .o-form.-solid input:active, html.is-not-touch-device .-base-background
+    .o-form.-solid select:active, html.is-not-touch-device .-base-background
     .o-form.-solid textarea:active {
       background-color: rgba(0, 0, 0, 0.07) !important; }
   .-secondary-background .o-form.-solid input, .-secondary-background
   .o-form.-solid select, .-secondary-background
   .o-form.-solid textarea {
     background-color: rgba(0, 0, 0, 0.03) !important; }
-    html.has-no-touch .-secondary-background .o-form.-solid input:hover, html.has-no-touch .-secondary-background
-    .o-form.-solid select:hover, html.has-no-touch .-secondary-background
+    html.is-not-touch-device .-secondary-background .o-form.-solid input:hover, html.is-not-touch-device .-secondary-background
+    .o-form.-solid select:hover, html.is-not-touch-device .-secondary-background
     .o-form.-solid textarea:hover {
       background-color: rgba(0, 0, 0, 0.05) !important; }
-    html.has-no-touch .-secondary-background .o-form.-solid input:active, html.has-no-touch .-secondary-background
-    .o-form.-solid select:active, html.has-no-touch .-secondary-background
+    html.is-not-touch-device .-secondary-background .o-form.-solid input:active, html.is-not-touch-device .-secondary-background
+    .o-form.-solid select:active, html.is-not-touch-device .-secondary-background
     .o-form.-solid textarea:active {
       background-color: rgba(0, 0, 0, 0.07) !important; }
   .-dark-background .o-form.-solid input, .-dark-background
   .o-form.-solid select, .-dark-background
   .o-form.-solid textarea {
     background-color: rgba(255, 255, 255, 0.07) !important; }
-    html.has-no-touch .-dark-background .o-form.-solid input:hover, html.has-no-touch .-dark-background
-    .o-form.-solid select:hover, html.has-no-touch .-dark-background
+    html.is-not-touch-device .-dark-background .o-form.-solid input:hover, html.is-not-touch-device .-dark-background
+    .o-form.-solid select:hover, html.is-not-touch-device .-dark-background
     .o-form.-solid textarea:hover {
       background-color: rgba(255, 255, 255, 0.1) !important; }
-    html.has-no-touch .-dark-background .o-form.-solid input:active, html.has-no-touch .-dark-background
-    .o-form.-solid select:active, html.has-no-touch .-dark-background
+    html.is-not-touch-device .-dark-background .o-form.-solid input:active, html.is-not-touch-device .-dark-background
+    .o-form.-solid select:active, html.is-not-touch-device .-dark-background
     .o-form.-solid textarea:active {
       background-color: rgba(255, 255, 255, 0.13) !important; }
   .-brand-background .o-form.-solid input, .-brand-background
   .o-form.-solid select, .-brand-background
   .o-form.-solid textarea {
     background-color: rgba(255, 255, 255, 0.07) !important; }
-    html.has-no-touch .-brand-background .o-form.-solid input:hover, html.has-no-touch .-brand-background
-    .o-form.-solid select:hover, html.has-no-touch .-brand-background
+    html.is-not-touch-device .-brand-background .o-form.-solid input:hover, html.is-not-touch-device .-brand-background
+    .o-form.-solid select:hover, html.is-not-touch-device .-brand-background
     .o-form.-solid textarea:hover {
       background-color: rgba(255, 255, 255, 0.1) !important; }
-    html.has-no-touch .-brand-background .o-form.-solid input:active, html.has-no-touch .-brand-background
-    .o-form.-solid select:active, html.has-no-touch .-brand-background
+    html.is-not-touch-device .-brand-background .o-form.-solid input:active, html.is-not-touch-device .-brand-background
+    .o-form.-solid select:active, html.is-not-touch-device .-brand-background
     .o-form.-solid textarea:active {
       background-color: rgba(255, 255, 255, 0.13) !important; }
   .o-form.-solid input,
@@ -1802,7 +1801,7 @@ table {
     transform: scaleX(1);
     background-color: rgba(255, 113, 91, 0.87) !important;
     transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1); }
-  html.has-no-touch .o-form.-solid .o-input:hover:before {
+  html.is-not-touch-device .o-form.-solid .o-input:hover:before {
     opacity: 0.6; }
   .o-form.-solid .o-input input + label,
   .o-form.-solid .o-input select + label {
@@ -1851,7 +1850,7 @@ table {
   .-base-background .o-form.-underline .o-input input, .-base-background
   .o-form.-underline .o-input select {
     border-color: rgba(0, 0, 0, 0.3); }
-    html.has-no-touch .-base-background .o-form.-underline .o-input input:hover, html.has-no-touch .-base-background
+    html.is-not-touch-device .-base-background .o-form.-underline .o-input input:hover, html.is-not-touch-device .-base-background
     .o-form.-underline .o-input select:hover {
       border-color: rgba(0, 0, 0, 0.6); }
     html.has-no-js .-base-background .o-form.-underline .o-input input:focus, html.has-no-js .-base-background
@@ -1863,7 +1862,7 @@ table {
   .-secondary-background .o-form.-underline .o-input input, .-secondary-background
   .o-form.-underline .o-input select {
     border-color: rgba(0, 0, 0, 0.3); }
-    html.has-no-touch .-secondary-background .o-form.-underline .o-input input:hover, html.has-no-touch .-secondary-background
+    html.is-not-touch-device .-secondary-background .o-form.-underline .o-input input:hover, html.is-not-touch-device .-secondary-background
     .o-form.-underline .o-input select:hover {
       border-color: rgba(0, 0, 0, 0.6); }
     html.has-no-js .-secondary-background .o-form.-underline .o-input input:focus, html.has-no-js .-secondary-background
@@ -1875,7 +1874,7 @@ table {
   .-dark-background .o-form.-underline .o-input input, .-dark-background
   .o-form.-underline .o-input select {
     border-color: rgba(255, 255, 255, 0.3); }
-    html.has-no-touch .-dark-background .o-form.-underline .o-input input:hover, html.has-no-touch .-dark-background
+    html.is-not-touch-device .-dark-background .o-form.-underline .o-input input:hover, html.is-not-touch-device .-dark-background
     .o-form.-underline .o-input select:hover {
       border-color: rgba(255, 255, 255, 0.6); }
     html.has-no-js .-dark-background .o-form.-underline .o-input input:focus, html.has-no-js .-dark-background
@@ -1887,7 +1886,7 @@ table {
   .-brand-background .o-form.-underline .o-input input, .-brand-background
   .o-form.-underline .o-input select {
     border-color: rgba(255, 255, 255, 0.3); }
-    html.has-no-touch .-brand-background .o-form.-underline .o-input input:hover, html.has-no-touch .-brand-background
+    html.is-not-touch-device .-brand-background .o-form.-underline .o-input input:hover, html.is-not-touch-device .-brand-background
     .o-form.-underline .o-input select:hover {
       border-color: rgba(255, 255, 255, 0.6); }
     html.has-no-js .-brand-background .o-form.-underline .o-input input:focus, html.has-no-js .-brand-background
@@ -1933,7 +1932,7 @@ table {
     transform: scaleX(1);
     background-color: rgba(255, 113, 91, 0.87) !important;
     transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1); }
-  html.has-no-touch .o-form.-underline .o-input:hover:before {
+  html.is-not-touch-device .o-form.-underline .o-input:hover:before {
     opacity: 0.6; }
   .o-form.-underline .o-input input + label,
   .o-form.-underline .o-input select + label {
@@ -2005,11 +2004,11 @@ button,
     section.-dark-background button:not(.-icon)::before, section.-dark-background
     .o-button:not(.-icon)::before {
       background-color: #E5FCC2; }
-  html.has-no-touch button:hover:before, html.has-no-touch
+  html.is-not-touch-device button:hover:before, html.is-not-touch-device
   .o-button:hover:before {
     opacity: 0.07;
     transition: opacity 150ms cubic-bezier(0, 0, 0.2, 1); }
-  html.has-no-touch button:active:before, html.has-no-touch
+  html.is-not-touch-device button:active:before, html.is-not-touch-device
   .o-button:active:before {
     opacity: 0.11;
     transition: opacity 75ms cubic-bezier(0.4, 0, 0.6, 1); }
@@ -2049,10 +2048,10 @@ button,
     button.-solid:before,
     .o-button.-solid:before {
       background-color: black; }
-    html.has-no-touch button.-solid:hover:before, html.has-no-touch
+    html.is-not-touch-device button.-solid:hover:before, html.is-not-touch-device
     .o-button.-solid:hover:before {
       opacity: 0.1; }
-    html.has-no-touch button.-solid:active:before, html.has-no-touch
+    html.is-not-touch-device button.-solid:active:before, html.is-not-touch-device
     .o-button.-solid:active:before {
       opacity: 0.2; }
     button.-solid.is-disabled,
@@ -2078,10 +2077,10 @@ button,
       section.-dark-background button.-outline.-alt, section.-dark-background
       .o-button.-outline.-alt {
         border-color: rgba(255, 255, 255, 0.1); }
-        html.has-no-touch section.-dark-background button.-outline.-alt:hover, html.has-no-touch section.-dark-background
+        html.is-not-touch-device section.-dark-background button.-outline.-alt:hover, html.is-not-touch-device section.-dark-background
         .o-button.-outline.-alt:hover {
           border-color: #E5FCC2; }
-      html.has-no-touch button.-outline.-alt:hover, html.has-no-touch
+      html.is-not-touch-device button.-outline.-alt:hover, html.is-not-touch-device
       .o-button.-outline.-alt:hover {
         border-color: #45ADA8; }
     button.-outline.is-disabled,
@@ -2107,14 +2106,14 @@ button,
     button.-raised:before,
     .o-button.-raised:before {
       background-color: #ffffff; }
-    html.has-no-touch button.-raised:hover, html.has-no-touch
+    html.is-not-touch-device button.-raised:hover, html.is-not-touch-device
     .o-button.-raised:hover {
       box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
       transition: box-shadow 150ms cubic-bezier(0, 0, 0.2, 1); }
-      html.has-no-touch button.-raised:hover:before, html.has-no-touch
+      html.is-not-touch-device button.-raised:hover:before, html.is-not-touch-device
       .o-button.-raised:hover:before {
         opacity: 0.08; }
-    html.has-no-touch button.-raised:active:before, html.has-no-touch
+    html.is-not-touch-device button.-raised:active:before, html.is-not-touch-device
     .o-button.-raised:active:before {
       opacity: 0.33; }
     button.-raised.is-disabled,
@@ -2509,6 +2508,125 @@ button,
   100% {
     transform: scaleX(0.08); } }
 
+/* stylelint-disable */
+.-base-background .c-progress-spinner.-circle .c-progress-spinner_spinner {
+  border-color: #3b83f9 #3b83f9 transparent; }
+
+.-secondary-background .c-progress-spinner.-circle .c-progress-spinner_spinner {
+  border-color: #3b83f9 #3b83f9 transparent; }
+
+.-dark-background .c-progress-spinner.-circle .c-progress-spinner_spinner {
+  border-color: #3b83f9 #3b83f9 transparent; }
+
+.-brand-background .c-progress-spinner.-circle .c-progress-spinner_spinner {
+  border-color: #3b83f9 #3b83f9 transparent; }
+
+.-base-background .c-progress-spinner.-circle .c-progress-spinner_gap {
+  border-color: #3b83f9; }
+
+.-secondary-background .c-progress-spinner.-circle .c-progress-spinner_gap {
+  border-color: #3b83f9; }
+
+.-dark-background .c-progress-spinner.-circle .c-progress-spinner_gap {
+  border-color: #3b83f9; }
+
+.-brand-background .c-progress-spinner.-circle .c-progress-spinner_gap {
+  border-color: #3b83f9; }
+
+.c-progress-spinner.-circle {
+  height: 40px;
+  width: 40px;
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block; }
+  .c-progress-spinner.-circle .c-progress-spinner_wrapper {
+    animation: infiniteCircleWrapper 2666ms linear infinite;
+    box-sizing: border-box;
+    display: block;
+    height: 100%;
+    width: 100%; }
+    .c-progress-spinner.-circle .c-progress-spinner_wrapper .c-progress-spinner_inner {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      box-sizing: border-box;
+      animation: infiniteCircleInner 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+      .c-progress-spinner.-circle .c-progress-spinner_wrapper .c-progress-spinner_inner .c-progress-spinner_left,
+      .c-progress-spinner.-circle .c-progress-spinner_wrapper .c-progress-spinner_inner .c-progress-spinner_right {
+        position: absolute;
+        height: 100%;
+        width: 50%;
+        overflow: hidden;
+        box-sizing: border-box;
+        top: 0; }
+        .c-progress-spinner.-circle .c-progress-spinner_wrapper .c-progress-spinner_inner .c-progress-spinner_left .c-progress-spinner_spinner,
+        .c-progress-spinner.-circle .c-progress-spinner_wrapper .c-progress-spinner_inner .c-progress-spinner_right .c-progress-spinner_spinner {
+          position: absolute;
+          height: 40px;
+          width: 40px;
+          border-width: 4px;
+          border-style: solid;
+          border-radius: 50%;
+          box-sizing: border-box;
+          top: 0; }
+      .c-progress-spinner.-circle .c-progress-spinner_wrapper .c-progress-spinner_inner .c-progress-spinner_left {
+        left: 0; }
+        .c-progress-spinner.-circle .c-progress-spinner_wrapper .c-progress-spinner_inner .c-progress-spinner_left .c-progress-spinner_spinner {
+          left: 0;
+          border-right-color: transparent;
+          animation: infiniteCircleSpinnerLeft 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+      .c-progress-spinner.-circle .c-progress-spinner_wrapper .c-progress-spinner_inner .c-progress-spinner_right {
+        right: 0; }
+        .c-progress-spinner.-circle .c-progress-spinner_wrapper .c-progress-spinner_inner .c-progress-spinner_right .c-progress-spinner_spinner {
+          right: 0;
+          border-left-color: transparent;
+          animation: infiniteCircleSpinnerRight 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+      .c-progress-spinner.-circle .c-progress-spinner_wrapper .c-progress-spinner_inner .c-progress-spinner_gap {
+        border-width: 0;
+        border-top-width: 2px;
+        border-style: solid;
+        position: absolute;
+        top: 0;
+        right: 1.1875rem;
+        bottom: 0;
+        left: 1.1875rem; }
+
+@keyframes infiniteCircleSpinnerRight {
+  0%,
+  100% {
+    transform: rotate(-130deg); }
+  50% {
+    transform: rotate(5deg); } }
+
+@keyframes infiniteCircleSpinnerLeft {
+  0%,
+  100% {
+    transform: rotate(130deg); }
+  50% {
+    transform: rotate(-5deg); } }
+
+@keyframes infiniteCircleInner {
+  12.5% {
+    transform: rotate(135deg); }
+  25% {
+    transform: rotate(270deg); }
+  37.5% {
+    transform: rotate(405deg); }
+  50% {
+    transform: rotate(540deg); }
+  62.5% {
+    transform: rotate(675deg); }
+  75% {
+    transform: rotate(810deg); }
+  87.5% {
+    transform: rotate(945deg); }
+  100% {
+    transform: rotate(1080deg); } }
+
+@keyframes infiniteCircleWrapper {
+  100% {
+    transform: rotate(360deg); } }
+
 .c-complex-content .c-complex-content_section {
   position: relative; }
   .c-complex-content .c-complex-content_section.has-image .c-complex-content_overlay, .c-complex-content .c-complex-content_section.has-video .c-complex-content_overlay {
@@ -2826,6 +2944,30 @@ button,
     .o-list .o-list_list .o-list_item:last-child {
       margin-bottom: 0; }
 
+.o-freeform .o-freeform_spinner {
+  width: 100%;
+  text-align: center;
+  display: none;
+  margin: 1rem 0; }
+  .o-freeform .o-freeform_spinner.is-visible {
+    display: inline-block; }
+  .o-freeform .o-freeform_spinner .o-freeform_spinner_message {
+    display: block;
+    margin-top: 1rem; }
+
+.o-freeform .o-freeform_success {
+  width: 100%;
+  text-align: center;
+  display: none; }
+  .o-freeform .o-freeform_success.is-visible {
+    display: inline-block; }
+  .o-freeform .o-freeform_success .o-freeform_success_message {
+    display: block;
+    margin: 1rem 0;
+    color: #4de07e; }
+    .o-freeform .o-freeform_success .o-freeform_success_message p:last-of-type {
+      margin-bottom: 0; }
+
 .o-freeform .o-freeform_page {
   opacity: 0;
   display: none; }
@@ -2861,8 +3003,17 @@ button,
       transition: transform 150ms cubic-bezier(0.4, 0, 0.6, 1), opacity 75ms cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 0; }
     .o-freeform .o-freeform_steps.-list .o-freeform_steps_item.is-active-page:after {
-      opacity: 0.11;
+      opacity: 0.07;
       transform: scale(1); }
+    .o-freeform .o-freeform_steps.-list .o-freeform_steps_item.has-seen {
+      pointer-events: all;
+      cursor: pointer; }
+      html.is-not-touch-device .o-freeform .o-freeform_steps.-list .o-freeform_steps_item.has-seen:hover:after {
+        opacity: 0.07;
+        transform: scale(1); }
+      html.is-not-touch-device .o-freeform .o-freeform_steps.-list .o-freeform_steps_item.has-seen:active:after {
+        opacity: 0.11;
+        transform: scale(1); }
 
 .u-float-left {
   float: left !important; }
@@ -2905,14 +3056,6 @@ button,
   text-overflow: ellipsis;
   word-wrap: normal;
   max-width: 100%; }
-
-.u-block {
-  display: block; }
-
-.u-hidden {
-  display: none;
-  visibility: hidden;
-  opacity: 0; }
 
 .u-lowercase {
   text-transform: lowercase !important; }
@@ -3497,17 +3640,6 @@ button,
 @media (min-width: 1280px) {
   .u-3\/3\@container {
     width: 100% !important; } }
-
-/**
- * Control visibility without affecting flow.
- */
-.is-visible {
-  visibility: visible !important;
-  opacity: 1 !important; }
-
-.is-hidden {
-  visibility: hidden !important;
-  opacity: 0 !important; }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   svg {

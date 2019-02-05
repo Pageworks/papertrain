@@ -15,17 +15,6 @@
     @include u-truncate;
 }
 
-.u-block
-{
-    display: block;
-}
-
-.u-hidden{
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-}
-
 .u-lowercase{
     text-transform: lowercase !important;
 }

@@ -175,6 +175,10 @@ export default class BasicForm extends AbstractModule{
             if(relatedEl.value !== target.value && parent.classList.contains('js-password-checker')){
                 isValid = false;
             }
+            else if(relatedEl.value === target.value){
+                relatedEl.parentElement.classList.add('is-valid');
+                relatedEl.parentElement.classList.remove('is-invalid');
+            }
         }
 
         if(!target.validity.valid){

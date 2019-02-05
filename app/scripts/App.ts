@@ -43,8 +43,9 @@ class App{
         }
 
         if(this._touchSupport){
-            html.classList.add('has-touch');
-            html.classList.remove('has-no-touch');
+            html.classList.add('is-touch-device');
+            html.classList.remove('is-not-touch-device');
+            document.body.addEventListener('touchstart', this.userTouched);
         }
 
         window.addEventListener('load', e => { html.classList.add('has-loaded') });
@@ -58,6 +59,12 @@ class App{
         if(!isDebug){
             this.createEasterEgg();
         }
+    }
+
+    private userTouched: EventListener = ()=>{
+        document.body.removeEventListener('touchstart', this.userTouched);
+        html.classList.add('has-touched');
+        html.classList.remove('has-not-touched');
     }
 
     /**
