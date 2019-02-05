@@ -41,9 +41,17 @@
         opacity: 0;
         display: none;
 
+        *{
+            user-select: none;
+        }
+
         &.is-active-page{
             display: inline-block;
             opacity: 1;
+
+            *{
+                user-select: all;
+            }
         }
     }
 

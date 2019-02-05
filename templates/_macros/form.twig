@@ -1,5 +1,5 @@
 {# Basic Form Input #}
-{% macro input(label, name, required, type = 'text', help, maxLength = 254, icon, pattern, autocomplete) %}
+{% macro input(label, name, required, type = 'text', help, maxLength = 254, icon, pattern, autocomplete = 'new-password') %}
     <div class="js-input o-input {% if help|length %}has-helper{% endif %}">
         <input id="{{ name }}-id" {% if icon %}class="has-icon"{% endif %} type="{{type}}" maxlength="{{ maxLength }}"  {% if type == 'email' %}inputmode="email"{% elseif type == 'tel' %}inputmode="tel"{% endif %} {% if pattern != '' %}pattern="{{pattern}}"{% elseif type == 'email' %}pattern=".+@.+\..+"{% endif %} {% if autocomplete %}autocomplete="{{autocomplete}}"{% endif %} name="{{name}}" {% if required %}required{% endif %} />
         <label for="{{ name }}-id" >{{label}}</label>

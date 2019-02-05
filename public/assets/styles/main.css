@@ -2971,9 +2971,13 @@ button,
 .o-freeform .o-freeform_page {
   opacity: 0;
   display: none; }
+  .o-freeform .o-freeform_page * {
+    user-select: none; }
   .o-freeform .o-freeform_page.is-active-page {
     display: inline-block;
     opacity: 1; }
+    .o-freeform .o-freeform_page.is-active-page * {
+      user-select: all; }
 
 .o-freeform .o-freeform_steps.-list {
   display: inline-flex;
