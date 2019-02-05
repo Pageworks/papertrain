@@ -6,6 +6,8 @@
 - Adds: `data-csrf` attribute has been added the the `html` document for a non-cached global use of users CSRF token provided by Craft
 - Adds: updates `fuel-pjax` to use `@codewithkyle/fuel-pjax` [#97](https://github.com/Pageworks/papertrain/issues/97)
 - Adds: updates `animejs` to version 3 [#104](https://github.com/Pageworks/papertrain/issues/104)
+- Adds: custom Freeform template [#73](https://github.com/Pageworks/papertrain/issues/73)
+- Adds: new Freeform Complex Content block
 
 ### Fixes
 
