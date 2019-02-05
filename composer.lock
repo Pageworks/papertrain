@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c39eba5adc5c6c4fdaeb0669110b4940",
+    "content-hash": "567dbceaf13fd86da2c61f78137199bf",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -416,11 +416,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.1.7",
+            "version": "3.1.8",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/d7d9166144138f7794510f816b776bb1ff6761b3",
-                "reference": "d7d9166144138f7794510f816b776bb1ff6761b3",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/ba226f463efce722ddfbcbf726fed851fff37277",
+                "reference": "ba226f463efce722ddfbcbf726fed851fff37277",
                 "shasum": ""
             },
             "require": {
@@ -496,7 +496,7 @@
                 "docs": "https://github.com/craftcms/docs",
                 "rss": "https://github.com/craftcms/cms/releases.atom"
             },
-            "time": "2019-01-31T20:49:25+00:00"
+            "time": "2019-02-04T19:38:51+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -2774,11 +2774,11 @@
         },
         {
             "name": "sebastianlenz/linkfield",
-            "version": "1.0.16",
+            "version": "1.0.17",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastian-lenz/craft-linkfield/zipball/7040a829c6f8cf5b85cea39b5c36e1fbc762c7cd",
-                "reference": "7040a829c6f8cf5b85cea39b5c36e1fbc762c7cd",
+                "url": "https://api.github.com/repos/sebastian-lenz/craft-linkfield/zipball/fe676cdf3d667df646adfab5963e8f6e38e4c6de",
+                "reference": "fe676cdf3d667df646adfab5963e8f6e38e4c6de",
                 "shasum": ""
             },
             "require": {
@@ -2801,7 +2801,7 @@
                 "MIT"
             ],
             "description": "A Craft field type for selecting links",
-            "time": "2019-01-21T11:15:08+00:00"
+            "time": "2019-02-05T13:00:26+00:00"
         },
         {
             "name": "seld/cli-prompt",
