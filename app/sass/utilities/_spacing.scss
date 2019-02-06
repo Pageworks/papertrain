@@ -27,9 +27,9 @@ $spacing-properties: (
 
 $spacing-sizes: (
     null        :   $unit,
+    '-quarter'  :   $unit-quarter,
+    '-half'     :   $unit-half,
     '-none'     :   0,
-    '-tiny'     :   $unit-tiny,
-    '-thin'     :   $unit-small,
     '-x2'       :   $unit*2,
     '-x4'       :   $unit*4,
     '-x6'       :   $unit*6,

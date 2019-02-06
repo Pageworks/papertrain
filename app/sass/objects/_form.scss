@@ -4,10 +4,10 @@
 // ==========================================================================
 
 /* Used for all inputs  */
-$base-margin-bottom: $unit + $unit-small;
+$base-margin-bottom: $unit + $unit-half;
 
 /* Used when an input has a helper or error  */
-$expanded-margin-bottom: $unit*2 + $unit-small;
+$expanded-margin-bottom: $unit*2 + $unit-half;
 
 // Background Colors Config
 // ==========================================================================
@@ -523,7 +523,7 @@ $expanded-margin-bottom: $unit*2 + $unit-small;
     label{
         position: absolute !important;
         top: 0 !important;
-        left: $unit-small !important;
+        left: $unit-half !important;
     }
 
     .o-radio_item{
@@ -633,7 +633,7 @@ $expanded-margin-bottom: $unit*2 + $unit-small;
 
     .o-help,
     .o-error{
-        padding: 0 0 0 $unit-small !important;
+        padding: 0 0 0 $unit-half !important;
     }
 }
 
@@ -651,7 +651,7 @@ $expanded-margin-bottom: $unit*2 + $unit-small;
     label{
         position: absolute !important;
         top: 0 !important;
-        left: $unit-small !important;
+        left: $unit-half !important;
     }
 
     .o-checkbox_item{
@@ -772,7 +772,7 @@ $expanded-margin-bottom: $unit*2 + $unit-small;
 
     .o-help,
     .o-error{
-        padding: 0 0 0 $unit-small !important;
+        padding: 0 0 0 $unit-half !important;
     }
 }
 
@@ -781,7 +781,7 @@ $expanded-margin-bottom: $unit*2 + $unit-small;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: $base-margin-bottom;
-    padding: $unit-small;
+    padding: $unit-half;
 
     input{
         padding: 0 !important;
@@ -1043,7 +1043,7 @@ $expanded-margin-bottom: $unit*2 + $unit-small;
     // Text objects
     .o-error,
     .o-help{
-        padding: $unit-small;
+        padding: $unit-half;
         @include position(absolute, 100% null null 0);
         width: 100%;
         font-size: 12px;

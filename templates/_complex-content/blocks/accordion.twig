@@ -1,5 +1,5 @@
 {% if block.rows|length %}
-	<div class="o-accordion o-wrapper u-1/1 {{ block.padding }}{{ block.paddingSize }}" data-module="BasicAccordion" data-single-open="{{ block.multiRow|length ? 'ture' : 'false' }}">
+	<div class="o-accordion o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}" data-module="BasicAccordion" data-single-open="{{ block.multiRow|length ? 'ture' : 'false' }}">
 		{% for row in block.rows %}
             <div class="js-row o-accordion_row">
                 <a href="javascript:void(0);" class="js-headline o-accordion_headline">
@@ -12,14 +12,14 @@
                 </a>
                 <div class="js-body o-accordion_body {% if row.splitList|length and row.body|length and row.list|length %}-split{% endif %}">
                     {% if row.body|length %}
-                        <div class="o-wrapper u-align-top u-1/1 {% if row.splitList|length and row.list|length %}u-1/2@medium u-padding-horizontal{% endif %}">
+                        <div class="o-wrapper u-align-top u-1/1 {% if row.splitList|length and row.list|length %}u-1/2@medium u-paddingType-horizontal{% endif %}">
                             <div class="o-accordion_copy o-wrapper u-1/1">
                                 {{ row.body }}
                             </div>
                         </div>
                     {% endif %}
                     {% if row.list|length %}
-                        <div class="o-wrapper u-align-top u-1/1 {% if row.splitList|length and row.body|length %}u-1/2@medium u-padding-horizontal{% endif %}">
+                        <div class="o-wrapper u-align-top u-1/1 {% if row.splitList|length and row.body|length %}u-1/2@medium u-paddingType-horizontal{% endif %}">
                             {% set listCount = 0 %}
                             {% set numOfList = row.list|length / 6 %}
                             {% set numOfList = numOfList|round(0, 'ceil') %}

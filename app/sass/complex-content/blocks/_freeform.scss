@@ -69,7 +69,7 @@
                 justify-content: center;
                 align-items: center;
                 @include size(48px, 48px);
-                margin: 0 $unit-small;
+                margin: 0 $unit-half;
                 cursor: default;
                 user-select: none;
                 pointer-events: none;

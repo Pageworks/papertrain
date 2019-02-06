@@ -1,5 +1,5 @@
 {% if block.slides|length %}
-	<div class="o-gallery o-wrapper u-1/1 {{ block.padding }}{{ block.paddingSize }}" data-module="BasicGallery" data-style="{{ block.style }}" data-timing="{{ block.slideTransition }}">
+	<div class="o-gallery o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}" data-module="BasicGallery" data-style="{{ block.style }}" data-timing="{{ block.slideTransition }}">
         {% switch block.aspectRatio %}
             {% case 'u-ratio-1/1' %}
                 {% set selectedRatio = "1/1" %}
@@ -17,9 +17,9 @@
                 {% switch block.style %}
                     {% case 'slide' %}
                         {% if loop.first %}
-                            {% set slideStyle = 'style="transform:translate3d(0,0,0);"' %}
+                            {% set slideStyle = 'style="transform:translateX(0);"' %}
                         {% else %}
-                            {% set slideStyle = 'style="transform:translate3d(100%,0,0);"' %}
+                            {% set slideStyle = 'style="transform:translateX(100%);"' %}
                         {% endif %}
                     {% case 'fade' %}
                         {% if loop.first %}
@@ -29,19 +29,25 @@
                         {% endif %}
                     {% case 'stack' %}
                         {% if loop.first %}
-                            {% set slideStyle = 'style="transform:translate3d(0,0,0);z-index:2;"' %}
+                            {% set slideStyle = 'style="transform:translateX(0);z-index:2;"' %}
                         {% else %}
-                            {% set slideStyle = 'style="transform:translate3d(100%,0,0);z-index:1;"' %}
+                            {% set slideStyle = 'style="transform:translateX(100%);z-index:1;"' %}
                         {% endif %}
                     {% case 'parallax' %}
                         {% if loop.first %}
-                            {% set slideStyle = 'style="transform:translate3d(0,0,0);"' %}
+                            {% set slideStyle = 'style="transform:translateX(0);"' %}
                         {% else %}
-                            {% set slideStyle = 'style="transform:translate3d(100%,0,0);"' %}
+                            {% set slideStyle = 'style="transform:translateX(100%);"' %}
                         {% endif %}
                 {% endswitch %}
+                {% set backgroundPosition = ' background-position: 50% 50%' %}
+                {% if slide.hasFocalPoint %}
+                    {% set x = slide.focalPoint|first * 100 ~ '%' %}
+                    {% set y = slide.focalPoint|last * 100 ~ '%' %}
+                    {% set backgroundPosition = ' background-position: ' ~ [x, y]|join(' ') ~ ' !important;' %}
+                {% endif %}
                 <div class="js-slide o-gallery_slide" {{ slideStyle|raw }} data-id="{{ loop.index0 }}">
-                    <div class="js-img o-gallery_image" style="background-image:url({{ transformedImage.url }});background-size:cover;"></div>
+                    <div class="js-img o-gallery_image" style="background-image:url({{ transformedImage.url }});background-size:cover;{{ backgroundPosition }}"></div>
                 </div>
             {% endfor %}
             <div class="o-gallery_controls">

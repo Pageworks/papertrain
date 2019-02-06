@@ -24,7 +24,7 @@
 
     @include u-flexbox;        //Adds flexbox modifiers from  tools/_mixins.scss
     @include u-fullscreen;     //Adds height modifiers from tools/_mixins.scss
-    @include u-mobile-padding; //Adds default padding on mobile sizes from tools/_mixins.scss, configured from $unit-small in settings/_config.scss
+    @include u-mobile-padding; //Adds default padding on mobile sizes from tools/_mixins.scss, configured from $unit-half in settings/_config.scss
 }
 
 // Full width (typically fullscreen) container
@@ -33,7 +33,7 @@
 
     @include u-flexbox;    //Adds flexbox modifiers from  tools/_mixins.scss
     @include u-fullscreen; //Adds height modifiers from tools/_mixins.scss
-    @include u-mobile-padding; //Adds default padding on mobile sizes from tools/_mixins.scss, configured from $unit-small in settings/_config.scss
+    @include u-mobile-padding; //Adds default padding on mobile sizes from tools/_mixins.scss, configured from $unit-half in settings/_config.scss
 }
 
 // Narrow width container
@@ -47,7 +47,7 @@
 
     @include u-flexbox;    //Adds flexbox modifiers from  tools/_mixins.scss
     @include u-fullscreen; //Adds height modifiers from tools/_mixins.scss
-    @include u-mobile-padding; //Adds default padding on mobile sizes from tools/_mixins.scss, configured from $unit-small in settings/_config.scss
+    @include u-mobile-padding; //Adds default padding on mobile sizes from tools/_mixins.scss, configured from $unit-half in settings/_config.scss
 }
 
 // Wraper object used to block and contain content.

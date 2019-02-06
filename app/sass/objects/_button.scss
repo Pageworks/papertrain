@@ -22,7 +22,7 @@ button,
     text-align: center;
     line-height: 37px;
 
-    padding: 0 $unit-small;
+    padding: 0 $unit-half;
     min-width: 64px;
     height: 36px;
     margin: 0;
@@ -92,7 +92,7 @@ button,
         svg{
             @include size(18px, 18px);
             transform: translateY(3px);
-            margin-right: $unit-small;
+            margin-right: $unit-half;
         }
     }
 

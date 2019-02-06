@@ -1,6 +1,6 @@
 {% if block.selectedForm|length %}
     {% set form = craft.freeform.form(block.selectedForm.handle) %}
-	<div class="o-freeform o-form {{ block.formStyle }} {{ block.padding }}{{ block.paddingSize }} o-wrapper u-1/1" data-module="Freeform BasicForm">
+	<div class="o-freeform o-form {{ block.formStyle }} {{ block.paddingType }}{{ block.paddingSize }} o-wrapper u-1/1" data-module="Freeform BasicForm">
         {{ form.render() }}
         <div class="js-spinner o-freeform_spinner" style="opacity:0;">
             {% include '_includes/components/infinite-circle-progress-spinner' %}
