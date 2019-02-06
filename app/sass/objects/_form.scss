@@ -1,5 +1,10 @@
 /* stylelint-disable */
 
+// Form Variables
+// ==========================================================================
+$base-margin-bottom: $unit + $unit-small;
+$expanded-margin-bottom: $unit*2 + $unit-small;
+
 // Background Colors Config
 // ==========================================================================
 .o-form{
@@ -354,7 +359,7 @@
 .o-switch{
     height: 48px !important;
     width: 100% !important;
-    margin-bottom: $unit !important;
+    margin-bottom: $base-margin-bottom !important;
     position: relative !important;
 
     &.is-invalid{
@@ -504,11 +509,11 @@
     padding: $unit 0 0 !important;
     text-align: left !important;
     width: 100% !important;
-    margin-bottom: $unit !important;
-    margin-top: $unit !important;
+    margin-bottom: $base-margin-bottom !important;
+    margin-top: $base-margin-bottom !important;
 
     &.has-helper{
-        margin-bottom: $unit*2;
+        margin-bottom: $expanded-margin-bottom;
     }
 
     label{
@@ -632,11 +637,11 @@
     position: relative !important;
     padding: $unit 0 0 !important;
     width: 100% !important;
-    margin-bottom: $unit !important;
-    margin-top: $unit !important;
+    margin-bottom: $base-margin-bottom !important;
+    margin-top: $base-margin-bottom !important;
 
     &.has-helper{
-        margin-bottom: $unit*2;
+        margin-bottom: $expanded-margin-bottom;
     }
 
     label{
@@ -771,7 +776,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: $unit;
+    margin-bottom: $base-margin-bottom;
     padding: $unit-small;
 
     input{
@@ -816,15 +821,15 @@
     .o-textarea{
         position: relative;
         width: 100%;
-        margin-bottom: $unit;
+        margin-bottom: $base-margin-bottom;
         transition: all 150ms $ease;
 
         &.has-helper{
-            margin-bottom: $unit*2;
+            margin-bottom: $expanded-margin-bottom;
         }
 
         &.is-invalid{
-            margin-bottom: $unit*2;
+            margin-bottom: $expanded-margin-bottom;
 
             html.has-js & {
                 .o-error{
@@ -901,7 +906,7 @@
         height: 56px;
         width: 100%;
         position: relative;
-        margin-bottom: $unit;
+        margin-bottom: $base-margin-bottom;
         transition: all 150ms $ease;
 
         &.-square{
@@ -913,7 +918,7 @@
         }
 
         &.is-invalid{
-            margin-bottom: $unit*2;
+            margin-bottom: $expanded-margin-bottom;
 
             input,
             select{
@@ -935,7 +940,7 @@
         }
 
         &.has-helper{
-            margin-bottom: $unit*2;
+            margin-bottom: $expanded-margin-bottom;
         }
 
         .-visible,

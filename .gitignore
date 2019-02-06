@@ -19,7 +19,8 @@ license.key
 !/public/uploads/.gitkeep
 /public/imager/*
 !/public/imager/.gitkeep
-
+/user-uploads/*
+!/user-uploads/.gitkeep
 
 # Logging
 # -------
@@ -34,3 +35,4 @@ logs/
 .DS_Store
 .stylelintcache
 _compiled
+.editorconfig

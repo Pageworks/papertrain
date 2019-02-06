@@ -8,6 +8,7 @@
 - Adds: updates `animejs` to version 3 [#104](https://github.com/Pageworks/papertrain/issues/104)
 - Adds: custom Freeform template [#73](https://github.com/Pageworks/papertrain/issues/73)
 - Adds: new Freeform Complex Content block
+- Adds: better form input margin control [#94](https://github.com/Pageworks/papertrain/issues/94)
 
 ### Fixes
 
@@ -17,6 +18,7 @@
 - Fixes: moves `/vendor` in the `.gitignore` file to the top of the file so it's easier to find [#89](https://github.com/Pageworks/papertrain/issues/89)
 - Fixes: updates base scripts [#102](https://github.com/Pageworks/papertrain/issues/102)
 - Fixes: removes webkit highlight colour [#85](https://github.com/Pageworks/papertrain/issues/85)
+- Fixes: form macro input values have been re-structured [#94](https://github.com/Pageworks/papertrain/issues/94)
 
 ### Removes
 
