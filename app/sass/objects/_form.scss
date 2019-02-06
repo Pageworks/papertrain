@@ -2,7 +2,11 @@
 
 // Form Variables
 // ==========================================================================
+
+/* Used for all inputs  */
 $base-margin-bottom: $unit + $unit-small;
+
+/* Used when an input has a helper or error  */
 $expanded-margin-bottom: $unit*2 + $unit-small;
 
 // Background Colors Config
