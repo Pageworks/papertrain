@@ -225,7 +225,7 @@ button,
         background: rgba($black,0);
         color: $primary;
 
-        html.has-js.has-no-touch & {
+        html.has-js.is-not-touch-device & {
             display: inline-flex;
             justify-content: center;
             align-items: center;

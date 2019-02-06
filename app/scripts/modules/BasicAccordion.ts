@@ -1,4 +1,4 @@
-import { isDebug } from '../env';
+import { isDebug, easing } from '../env';
 import AbstractModule from './AbstractModule';
 import anime from 'animejs';
 
@@ -45,7 +45,7 @@ export default class BasicAccordion extends AbstractModule{
         anime({
             targets: body,
             duration: 300,
-            easing: [0.4, 0.0, 1, 1],
+            easing: easing.out,
             height: [`${body.scrollHeight}px`, 0]
         });
 
@@ -53,7 +53,7 @@ export default class BasicAccordion extends AbstractModule{
         anime({
             targets: bodyEls,
             duration: 75,
-            easing: [0.4, 0.0, 1, 1],
+            easing: easing.out,
             opacity: [1, 0]
         });
     }
@@ -72,7 +72,7 @@ export default class BasicAccordion extends AbstractModule{
             anime({
                 targets: body,
                 duration: 300,
-                easing: [0.4, 0.0, 1, 1],
+                easing: easing.out,
                 height: [`${body.scrollHeight}px`, 0]
             });
 
@@ -80,7 +80,7 @@ export default class BasicAccordion extends AbstractModule{
             anime({
                 targets: bodyEls,
                 duration: 75,
-                easing: [0.4, 0.0, 1, 1],
+                easing: easing.out,
                 opacity: [1, 0]
             });
         }else{
@@ -95,7 +95,7 @@ export default class BasicAccordion extends AbstractModule{
             anime({
                 targets: body,
                 duration: 300,
-                easing: [0.0, 0.0, 0.2, 1],
+                easing: easing.in,
                 height: [0, `${body.scrollHeight}px`],
             });
 
@@ -103,7 +103,7 @@ export default class BasicAccordion extends AbstractModule{
             anime({
                 targets: bodyEls,
                 duration: 150,
-                easing: [0.4, 0.0, 1, 1],
+                easing: easing.out,
                 delay: (el:Element, i:number)=>{
                     return i * 75 + 150;
                 },

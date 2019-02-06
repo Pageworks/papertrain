@@ -19,6 +19,8 @@
 - Fixes: updates base scripts [#102](https://github.com/Pageworks/papertrain/issues/102)
 - Fixes: removes webkit highlight colour [#85](https://github.com/Pageworks/papertrain/issues/85)
 - Fixes: form macro input values have been re-structured [#94](https://github.com/Pageworks/papertrain/issues/94)
+- Fixes: all `easing` inputs for `animejs` have been updated to use the new format [#104](https://github.com/Pageworks/papertrain/issues/104)
+- Fixes: the gallery block has been updated to use the new `animejs` format [#104](https://github.com/Pageworks/papertrain/issues/104)
 
 ### Removes
 
