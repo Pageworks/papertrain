@@ -150,12 +150,12 @@
 @mixin u-mobile-padding{
     &.u-mobile-padding{
         @media (max-width: $screen-xsmall){
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-        }
-        @media (min-width: $screen-xsmall) and (max-width: $screen-container){
             padding-left: 24px !important;
             padding-right: 24px !important;
+        }
+        @media (min-width: $screen-xsmall) and (max-width: $screen-container){
+            padding-left: 32px !important;
+            padding-right: 32px !important;
         }
     }
 }
