@@ -10,11 +10,8 @@
  */
 
 @mixin  base-heading {
-    padding: 0;
-    margin: 0;
     text-transform: capitalize;
     width: 100%;
-
     color: contrast($base-background-color);
 
     section.-dark-background &,

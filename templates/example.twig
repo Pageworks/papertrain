@@ -1,376 +1,60 @@
 {% extends '_layouts/base' %}
 {% import '_macros/form' as form %}
 
-{% css %}
-    @media (max-width: 1400px){
-        #dark-mode-toggle-wrapper{
-            background: #fff;
-            box-shadow: 0 0 8px rgba(35,35,35,0.2);
-            padding: 0px 8px !important;
-        }
-
-        section.-dark-background #dark-mode-toggle-wrapper{
-            background: #353535;
-            box-shadow: 0 0 8px rgba(35,35,35,0.8);
-        }
-    }
-{% endcss %}
-
 {% block content %}
-    <section data-template="Example Page" class="js-section o-container-full u-padding-vertical-x4 u-mobile-padding">
-        <div id="dark-mode-toggle-wrapper" class="o-wrapper" style="position:fixed;top:0;right:0;padding:16px 32px 0 0;z-index:1000;">
-            <div class="js-dark-mode-input o-switch">
-                <div class="o-switch_item">
-                    <input type="checkbox" id="id-dark-mode" value="1" />
-                    <label for="id-dark-mode">
-                        <span class="u-margin-right-x2">Dark Mode</span>
-                        <div class="o-switch_icon">
-                            <div class="o-switch_track"></div>
-                            <div class="o-switch_handle">
-                                <div class="o-switch_circle"></div>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <h1 class="o-h1 u-text-center u-margin-bottom-x2">Base Elements</h1>
-        <p class="u-text-center o-container-narrow">Please use this page to style the basic elements. It should be used to test font sizes, action/primary colours, and font colour contrasting on the various background colours for your project. If you notice anything isn't normalized or any basic elements are missing please <a href="https://github.com/Pageworks/papertrain/issues">create a new issue ticket</a> so we can keep this page up to date.</p>
-        <hr class="u-margin-vertical-x4"/>
-        <div class="o-container">
-            <div class="o-layout -gutter">
-                <div class="o-layout_item u-1/1 u-1/2@large u-margin-bottom-x4">
-                    <h1 class="o-h1">Heading 1</h1>
-                    <p>
-                        Lorem ipsum dolor amet normcore beard umami kogi. Kinfolk fanny pack put a bird on it farm-to-table, drinking vinegar PBR&B glossier trust fund tacos craft beer etsy salvia raclette. Mlkshk readymade intelligentsia, literally live-edge PBR&B pork belly seitan roof party. Kinfolk vice bitters deep v single-origin coffee roof party adaptogen la croix lo-fi hot chicken freegan. Truffaut retro skateboard hashtag tote bag actually. Next level cold-pressed fanny pack, vexillologist hoodie organic beard vice. Art party butcher slow-carb kickstarter, migas hot chicken taiyaki tofu.
-                    </p>
-                </div>
-                <div class="o-layout_item u-1/1 u-1/2@large u-margin-bottom-x4">
-                    <h2 class="o-h2">Heading 2</h2>
-                    <p>
-                        Pitchfork shaman palo santo bicycle rights ennui small batch YOLO kitsch wolf. Deep v tofu copper mug live-edge tattooed. Hell of tbh farm-to-table, lyft mlkshk readymade vexillologist air plant narwhal palo santo truffaut mustache gluten-free hella letterpress. Vinyl pork belly try-hard, irony keffiyeh plaid XOXO seitan.
-                    </p>
-                </div>
-                <div class="o-layout_item u-1/1 u-1/2@large u-margin-bottom-x4">
-                    <h3 class="o-h3">Heading 3</h3>
-                    <p>
-                        XOXO brunch tattooed put a bird on it listicle four dollar toast. Gastropub raclette letterpress, scenester beard tacos kitsch messenger bag retro. Leggings edison bulb enamel pin, gochujang pabst pop-up banjo flannel readymade. Chambray etsy fashion axe skateboard coloring book blog williamsburg poke chia cloud bread lo-fi. Gastropub disrupt pork belly swag post-ironic poutine 8-bit chillwave shabby chic vexillologist pinterest tousled irony mlkshk. Cornhole synth pinterest hell of, lumbersexual authentic cold-pressed master cleanse next level flexitarian green juice beard swag.
-                    </p>
-                </div>
-                <div class="o-layout_item u-1/1 u-1/2@large u-margin-bottom-x4">
-                    <h4 class="o-h4">Heading 4</h4>
-                    <p>
-                        Chambray food truck af wayfarers four loko, scenester bitters everyday carry truffaut you probably haven't heard of them blue bottle lyft small batch. Raw denim mixtape viral hexagon yuccie mlkshk, ethical semiotics pitchfork brooklyn lumbersexual. Tumblr hexagon try-hard listicle yr keffiyeh VHS cliche meh taiyaki copper mug waistcoat vaporware vegan hammock. Heirloom mlkshk single-origin coffee, occupy taxidermy air plant kinfolk marfa woke yuccie listicle pour-over shabby chic.
-                    </p>
-                </div>
-                <div class="o-layout_item u-1/1 u-1/2@large u-margin-bottom-x4">
-                    <h5 class="o-h5">Heading 5 / Headline</h5>
-                    <p>
-                        Tacos scenester iceland freegan. Four loko schlitz godard waistcoat, twee thundercats craft beer copper mug gastropub master cleanse. Shoreditch chartreuse poutine fanny pack tote bag synth, woke scenester activated charcoal waistcoat pour-over cliche. 3 wolf moon tattooed four loko mixtape actually deep v try-hard retro offal sustainable semiotics shabby chic austin. Fashion axe selvage butcher coloring book. Meggings lumbersexual sartorial XOXO narwhal typewriter, vegan synth everyday carry pug kombucha. Selfies trust fund shoreditch twee.
-                    </p>
-                </div>
-                <div class="o-layout_item u-1/1 u-1/2@large u-margin-bottom-x4">
-                    <h6 class="o-h6">Heading 6 / Title</h6>
-                    <p>
-                        Brunch meggings yuccie, raclette cray 3 wolf moon meditation hashtag occupy. Yr try-hard locavore pabst tattooed wayfarers fashion axe chartreuse. Echo park green juice asymmetrical venmo skateboard pinterest jean shorts tbh swag waistcoat pitchfork cliche activated charcoal. Paleo tbh blue bottle, ugh vinyl man bun 8-bit slow-carb unicorn photo booth hashtag actually locavore yuccie.
-                    </p>
-                </div>
-                <div class="o-layout_item u-1/1 u-1/2@large u-margin-bottom-x4">
-                    <h4 class="o-h4">Heading 4</h4>
-                    <h6 class="o-subtitle">With a subtitle</h6>
-                    <p>
-                        Austin tousled unicorn distillery fingerstache offal 3 wolf moon raclette health goth biodiesel. Af williamsburg +1 marfa hammock freegan. Quinoa thundercats activated charcoal, blog iceland dreamcatcher selvage pork belly adaptogen succulents cliche kale chips tumeric poke. Art party selvage lyft ugh letterpress literally kitsch four loko woke brooklyn shaman gentrify meh slow-carb.
-                    </p>
-                </div>
-                <div class="o-layout_item u-1/1 u-1/2@large u-margin-bottom-x4">
-                    <h6 class="o-subtitle">With a subtitle above</h6>
-                    <h4 class="o-h4">Heading 4</h4>
-                    <p>
-                        Pour-over crucifix chia actually. Taiyaki keytar kitsch microdosing before they sold out mustache kale chips pour-over. VHS selvage try-hard, 3 wolf moon pinterest occupy yuccie unicorn keytar everyday carry small batch synth ennui. Fixie crucifix occupy palo santo ennui lyft disrupt. Cloud bread mlkshk knausgaard, enamel pin ramps chambray glossier four dollar toast occupy four loko.
-                    </p>
-                </div>
-                <hr class="u-margin-bottom-x4"/>
-                <div class="o-layout_item u-1/1 u-text-center">
-                    <a href="javascript:void(0);" class="u-margin-right u-margin-bottom-x2 o-button"><span>Button</span></a>
-                    <a href="javascript:void(0);" class="u-margin-right u-margin-bottom-x2 o-button -solid"><span>Button</span></a>
-                    <a href="javascript:void(0);" class="u-margin-right u-margin-bottom-x2 o-button -outline"><span>Button</span></a>
-                    <a href="javascript:void(0);" class="u-margin-right u-margin-bottom-x2 o-button -outline -alt"><span>Button</span></a>
-                    <a href="javascript:void(0);" class="u-margin-right u-margin-bottom-x2 o-button is-disabled"><span>Disabled</span></a>
-                    <a href="javascript:void(0);" class="u-margin-right u-margin-bottom-x2 o-button -solid is-disabled"><span>Button</span></a>
-                    <a href="javascript:void(0);" class="u-margin-right u-margin-bottom-x2 o-button -outline is-disabled"><span>Button</span></a>
-                    <a href="javascript:void(0);" class="u-margin-right u-margin-bottom-x2 o-button is-active -icon o-tooltip">
-                        <i class="-active far fa-bell"></i>
-                        <i class="-inactive far fa-bell-slash"></i>
-                        <span class="-alt">Notify</span>
-                        <span class="o-tip">Notifications</span>
-                    </a>
-                    <a href="javascript:void(0);" class="u-margin-right u-margin-bottom-x2 o-button -solid has-icon">
-                        <i class="far fa-cart-plus"></i>
-                        <span>Button</span>
-                    </a>
-                    <a href="javascript:void(0);" class="u-margin-bottom-x2 o-button -solid -wide"><span>Button</span></a>
-                </div>
-                <hr class="u-margin-vertical-x4"/>
-                <div class="o-layout_item u-1/1 u-text-center">
-                    <table class="o-table">
-                        <thead>
-                            <tr>
-                                <th>The table header</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Dessert (100g serving)</td>
-                                <td>Calories</td>
-                                <td>Fat (g)</td>
-                                <td>Carbs (g)</td>
-                                <td>Protein (g)</td>
-                            </tr>
-                            <tr>
-                                <td>Frozen yogurt</td>
-                                <td class="-number">159</td>
-                                <td class="-number">6.0</td>
-                                <td class="-number">24</td>
-                                <td class="-number">4.0</td>
-                            </tr>
-                            <tr>
-                                <td>Ice cream sandwich</td>
-                                <td class="-number">237</td>
-                                <td class="-number">9.0</td>
-                                <td class="-number">37</td>
-                                <td class="-number">4.3</td>
-                            </tr>
-                            <tr>
-                                <td>Eclair</td>
-                                <td class="-number">262</td>
-                                <td class="-number">16.0</td>
-                                <td class="-number">24</td>
-                                <td class="-number">4.3</td>
-                            </tr>
-                            <tr>
-                                <td>Cupcake</td>
-                                <td class="-number">305</td>
-                                <td class="-number">3.7</td>
-                                <td class="-number">67</td>
-                                <td class="-number">4.3</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <hr class="u-margin-vertical-x4"/>
-                <div class="o-layout_item u-1/1 u-1/2@medium u-text-center">
-                    <ul class="o-wrapper">
-                        <li><span>Single-line item</span></li>
-                        <li><span>Single-line item</span></li>
-                        <li><span>Secondary list</span>
-                            <ul class="-circle">
-                                <li><span>Single-line item</span></li>
-                                <li><span>Single-line item</span></li>
-                                <li><span>Single-line item</span></li>
-                                <li><span>Third list</span>
-                                    <ul class="-square">
-                                        <li><span>Single-line item</span></li>
-                                        <li><span>Single-line item</span></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><span>Single-line item</span></li>
-                        <li><span>Single-line item</span></li>
-                        <li><span>Single-line item</span></li>
-                    </ul>
-                </div>
-                <div class="o-layout_item u-1/1 u-1/2@medium u-text-center">
-                    <ol class="o-wrapper">
-                        <li><span>Single-line item</span></li>
-                        <li><span>Single-line item</span></li>
-                        <li><span>Secondary list</span>
-                            <ul>
-                                <li><span>Single-line item</span></li>
-                                <li><span>Single-line item</span></li>
-                                <li><span>Single-line item</span></li>
-                            </ul>
-                        </li>
-                        <li><span>Single-line item</span></li>
-                        <li><span>Single-line item</span></li>
-                        <li><span>Single-line item</span></li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="u-margin-vertical-x4" />
-        </div>
-        <div class="o-container-narrow">
-            <h3 class="u-text-center u-margin-bottom-x4 o-h3">Form Style Example</h3>
-            <div class="o-wrapper">
-                <div class="js-form-style-input o-switch">
-                    <div class="o-switch_item">
-                        <input type="checkbox" id="id-form-style" value="1" />
-                        <label for="id-form-style">
-                            <span class="u-margin-right-x2">Outline Style</span>
-                            <div class="o-switch_icon">
-                                <div class="o-switch_track"></div>
-                                <div class="o-switch_handle">
-                                    <div class="o-switch_circle"></div>
-                                </div>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="u-margin-left-x4 o-wrapper">
-                <div class="js-form-square-input o-switch">
-                    <div class="o-switch_item">
-                        <input type="checkbox" id="id-form-square" value="1" />
-                        <label for="id-form-square">
-                            <span class="u-margin-right-x2">Square Style</span>
-                            <div class="o-switch_icon">
-                                <div class="o-switch_track"></div>
-                                <div class="o-switch_handle">
-                                    <div class="o-switch_circle"></div>
-                                </div>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            {# <form class="js-form o-layout -gutter -solid" data-module="BasicForm">
-                {{ form.input('Full Name', 'fullName', 'text', 'u-1/1', true, 'name', 'fas fa-user', 'Please provide your first and last name.') }}
-
-                {{ form.input('Email Address', 'email', 'email', 'u-1/1', true, 'email') }}
-
-                {{ form.number('Age', 'age', 'u-1/1 u-1/2@medium') }}
-
-                {{ form.number('Weight', 'weight', 'u-1/1 u-1/2@medium', false, 'fal fa-weight') }}
-
-                {{ form.password('Password', 'password', 'u-1/1 u-1/2@medium') }}
-
-                {{ form.pin('Pin', 'pin', 'u-1/1 u-1/2@medium', true) }}
-
-                {% set options = [
-                    {
-                        title: 'Orange',
-                        value: 'orange'
-                    },
-                    {
-                        title: 'Cat',
-                        value: 'cat'
-                    },
-                    {
-                        title: 'Spider',
-                        value: 'spider'
-                    },
-                ] %}
-                {{ form.select('Favorite Thing', 'favThing', options, true, null, 'u-1/1 u-1/2@medium') }}
-
-                {{ form.textarea('Description', 'desc', false, 'Please describe something you see.') }}
-
-                {% set flavors = [
-                    {
-                        title: 'Cookie Dough',
-                        value: 'cookieDough'
-                    },
-                    {
-                        title: 'Candy Bar',
-                        value: 'candyBar'
-                    },
-                    {
-                        title: 'Birthday Cake',
-                        value: 'birthdayCake'
-                    },
-                    {
-                        title: 'Chocolate',
-                        value: 'chocolate'
-                    },
-                    {
-                        title: 'Lemon Cake',
-                        value: 'lemonCake'
-                    },
-                ] %}
-
-                {{ form.radio('Favorite Flavor', 'favFlavor', flavors) }}
-
-                {% set otherFlavors = [
-                    {
-                        title: 'Mint Chip',
-                        value: 'mintChip'
-                    },
-                    {
-                        title: 'Chocolate Moca Chip',
-                        value: 'chocolateMocaChip'
-                    },
-                    {
-                        title: 'S\'mores',
-                        value: 'smores'
-                    },
-                    {
-                        title: 'Peanut Butter Cup',
-                        value: 'peanutButterCup'
-                    },
-                    {
-                        title: 'Cookies & Cream',
-                        value: 'cookiesAndCream'
-                    },
-                ] %}
-
-                {{ form.checkbox('Backup Favorites', 'otherFlavors', otherFlavors) }}
-
-                {{ form.date('Birthday', 'birthday', false, 'test') }}
-
-                {{ form.switch('Are You Happy?', 'isHappy', true, 'u-1/1', null) }}
-
-                {{ form.switch('Are Sure?', 'isSure', false) }}
-            </form> #}
-        </div>
-    </section>
-<!-- Content -->
+    <article data-template="Example Page" class="o-container-full u-mobile-padding u-padding-vertical-x4 -base-background">
+        <section class="o-container u-padding-vertical-x4">
+            <h1 class="o-h1 u-text-center u-margin-bottom">Example Page</h1>
+            <p>Use this page to style the base objects provided by Papertrain. To style the basic Complex Content blocks please checkout the <a href="{{ siteUrl }}example-page">example page here</a>. If you're unfamiliar with the SASS setup for Papertrain we suggest you <a href="http://papertrain.io/sass" target="_blank">click here</a> to learn about the basics of, components, objects and transparent namespaces.</p>
+        </section>
+        <hr>
+        <section class="o-container u-padding-vertical-x4">
+            <h2 class="o-h2 u-text-center u-margin-bottom">Raw Elements</h1>
+            <p class="u-margin-bottom-x4">
+                The following elements have been normalized. You should <strong>NOT</strong> style these elements directly. Please create custom object classes when styling elements for global use or style them within the context of the component you're building.
+            </p>
+            <!-- BEGIN RAW HTML ELEMENTS -->
+            <p>Base text for reference.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>table header</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>column one</td>
+                        <td>column two</td>
+                    </tr>
+                </tbody>
+            </table>
+            <sup>superscript</sup>
+            <sub>subscript</sub>
+            <code>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</code>
+            <cite>Lorem ipsum dolor sit amet.</cite>
+            <pre>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</pre>
+            <ol>
+                <li>List item</li>
+                <li>List item</li>
+                <li>List item</li>
+                <li>List item</li>
+            </ol>
+            <ul>
+                <li>List item</li>
+                <li>List item</li>
+                <li>List item</li>
+                <li>List item</li>
+            </ul>
+            <a href="#">Link</a>
+            <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</blockquote>
+            <button>Button</button>
+            <h1>Headine 1</h1>
+            <h2>Headine 2</h2>
+            <h3>Headine 3</h3>
+            <h4>Headine 4</h4>
+            <h5>Headine 5</h5>
+            <h6>Headine 6</h6>
+            <!-- END RAW HTML ELEMENTS -->
+        </section>
+    </article>
 {% endblock %}
-
-{% js %}
-    // Dark Mode Toggle
-    var darkModeToggle = document.body.querySelector('.js-dark-mode-input');
-    var darkModeInput = darkModeToggle.querySelector('input');
-    var section = document.body.querySelector('.js-section');
-    if(darkModeToggle && section && darkModeInput) darkModeToggle.addEventListener('click', function(e){
-        e.preventDefault();
-        if(section.classList.contains('-dark-background')){
-            section.classList.remove('-dark-background');
-            darkModeInput.removeAttribute('checked');
-        }else{
-            section.classList.add('-dark-background');
-            darkModeInput.setAttribute('checked', true);
-        }
-    });
-
-    // Form Style Toggle
-    var formStyleToggle = document.body.querySelector('.js-form-style-input');
-    var formStyleInput = formStyleToggle.querySelector('input');
-    var formEl = document.body.querySelector('.js-form');
-
-    if(formStyleToggle && formEl) formStyleInput.addEventListener('change', function(e){
-        e.preventDefault();
-        if(formEl.classList.contains('-solid')){
-            formEl.classList.remove('-solid');
-            formEl.classList.add('-outline');
-            formStyleInput.setAttribute('checked', true);
-        }else{
-            formEl.classList.add('-solid');
-            formEl.classList.remove('-outline');
-            formStyleInput.removeAttribute('checked');
-        }
-    });
-
-    // Square Style Toggle
-    var formSquareToggle = document.body.querySelector('.js-form-square-input');
-    var formSquareInput = formSquareToggle.querySelector('input');
-
-    if(formSquareToggle && formEl) formSquareInput.addEventListener('change', function(e){
-        e.preventDefault();
-        if(formEl.classList.contains('-square')){
-            formEl.classList.remove('-square');
-            formSquareInput.setAttribute('checked', true);
-        }else{
-            formEl.classList.add('-square');
-            formSquareInput.removeAttribute('checked');
-        }
-    });
-{% endjs %}

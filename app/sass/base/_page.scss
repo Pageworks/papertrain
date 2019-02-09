@@ -14,9 +14,10 @@
 html
 {
     font-family: $font-family;
-    line-height: normal; /* [1] */
+    line-height: 1.618; /* [1] */
     font-weight: $font-weight;
     color: $font-base; /* [1] */
+    font-size: $base-font-size;
     overflow-y: scroll; /* [2] */
     overflow-x: hidden;
     min-height: 100vh; /* [3] */

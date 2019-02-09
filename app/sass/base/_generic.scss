@@ -1,109 +1,96 @@
-// Generic
-// ==========================================================================
+// // Generic
+// // ==========================================================================
 
-hr
-{
-    border: 0;
-    border-bottom: solid 1px $black;
-    opacity: 0.12;
-    margin: 0;
-    display: block;
+// a
+// {
+//     color: $font-base;
+//     text-decoration: none;
 
-    .-dark-background & {
-        border-color: $white;
-    }
-}
+//     .-dark-background & {
+//         color: $font-alt;
+//     }
+// }
 
-a
-{
-    color: $font-base;
-    text-decoration: none;
+// ol{
+//     padding: 8px 0 0 16px;
+//     margin: 0;
+//     font-size: 16px;
+//     text-align: left;
 
-    .-dark-background & {
-        color: $font-alt;
-    }
-}
+//     ul,ol{
+//         padding-bottom: 2px;
+//     }
 
-ol{
-    padding: 8px 0 0 16px;
-    margin: 0;
-    font-size: 16px;
-    text-align: left;
+//     li ul li{
+//         list-style-type: disc;
+//     }
+// }
 
-    ul,ol{
-        padding-bottom: 2px;
-    }
+// ul{
+//     padding: 8px 0 0 16px;
+//     margin: 0;
+//     font-size: 16px;
+//     text-align: left;
 
-    li ul li{
-        list-style-type: disc;
-    }
-}
+//     ul,ol{
+//         padding-bottom: 2px;
+//     }
 
-ul{
-    padding: 8px 0 0 16px;
-    margin: 0;
-    font-size: 16px;
-    text-align: left;
+//     li{
+//         list-style-type: disc;
+//         min-height: 24px;
+//     }
 
-    ul,ol{
-        padding-bottom: 2px;
-    }
+//     &.-circle,
+//     li ul{
+//         li{
+//             list-style-type: circle;
+//         }
+//     }
 
-    li{
-        list-style-type: disc;
-        min-height: 24px;
-    }
+//     &.-square,
+//     li ul li ul{
+//         li{
+//             list-style-type: square;
+//         }
+//     }
+// }
 
-    &.-circle,
-    li ul{
-        li{
-            list-style-type: circle;
-        }
-    }
+// p{
+//     margin: $base-p-margin;
 
-    &.-square,
-    li ul li ul{
-        li{
-            list-style-type: square;
-        }
-    }
-}
+//     @include u-base-font;
 
-p{
-    margin: $base-p-margin;
+//     a{
+//         color: $primary;
+//         text-decoration-skip-ink: none;
+//         transition: color 150ms $ease;
+//         position: relative;
+//         display: inline-block;
 
-    @include u-base-font;
+//         &::after{
+//             content:"";
+//             background-color: $primary;
+//             @include size(100%, 2px);
+//             transform: scaleY(0);
+//             position: absolute;
+//             bottom: 2px;
+//             left: 0;
+//             opacity: 0;
+//             display: inline-block;
+//             transform-origin: bottom;
+//             transition: transform 175ms $ease-sharp, opacity 75ms 100ms $ease;
+//         }
 
-    a{
-        color: $primary;
-        text-decoration-skip-ink: none;
-        transition: color 150ms $ease;
-        position: relative;
-        display: inline-block;
+//         @include hover{
+//             color: $primary;
+//             transition: color 150ms $ease-in, text-decoration 150ms $ease-in;
 
-        &::after{
-            content:"";
-            background-color: $primary;
-            @include size(100%, 2px);
-            transform: scaleY(0);
-            position: absolute;
-            bottom: 2px;
-            left: 0;
-            opacity: 0;
-            display: inline-block;
-            transform-origin: bottom;
-            transition: transform 175ms $ease-sharp, opacity 75ms 100ms $ease;
-        }
-
-        @include hover{
-            color: $primary;
-            transition: color 150ms $ease-in, text-decoration 150ms $ease-in;
-
-            &:after{
-                opacity: 0.87;
-                transform: scaleY(1);
-                transition: transform 225ms $ease-in, opacity 75ms 0ms $ease;
-            }
-        }
-    }
-}
+//             &:after{
+//                 opacity: 0.87;
+//                 transform: scaleY(1);
+//                 transition: transform 225ms $ease-in, opacity 75ms 0ms $ease;
+//             }
+//         }
+//     }
+// }
