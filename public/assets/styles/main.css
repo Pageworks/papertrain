@@ -2704,8 +2704,25 @@ html.is-not-touch-device .o-form.-underline .o-input:hover:before {
   .o-image .o-image_shim img {
     max-width: 100%; }
 
-.o-copy p:last-of-type {
-  margin-bottom: 0; }
+.-base-background .o-copy p a {
+  color: #45ADA8; }
+  .-base-background .o-copy p a:after {
+    background-color: #45ADA8; }
+
+.-secondary-background .o-copy p a {
+  color: #45ADA8; }
+  .-secondary-background .o-copy p a:after {
+    background-color: #45ADA8; }
+
+.-dark-background .o-copy p a {
+  color: #E5FCC2; }
+  .-dark-background .o-copy p a:after {
+    background-color: #E5FCC2; }
+
+.-brand-background .o-copy p a {
+  color: #E5FCC2; }
+  .-brand-background .o-copy p a:after {
+    background-color: #E5FCC2; }
 
 .o-copy.-single-column {
   column-count: 1; }
@@ -2715,6 +2732,64 @@ html.is-not-touch-device .o-form.-underline .o-input:hover:before {
 
 .o-copy.-tripple-column {
   column-count: 3; }
+
+.o-copy p {
+  font-size: 16px;
+  line-height: 26px;
+  margin: 0 0 1rem; }
+  .o-copy p:last-of-type {
+    margin-bottom: 0; }
+  .o-copy p a {
+    text-decoration-skip-ink: none;
+    transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: inline-block; }
+    .o-copy p a::after {
+      content: "";
+      height: 2px;
+      width: 100%;
+      transform: scaleY(0);
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      opacity: 0;
+      display: inline-block;
+      transform-origin: bottom;
+      transition: transform 175ms cubic-bezier(0.4, 0, 0.6, 1), opacity 75ms 100ms cubic-bezier(0.4, 0, 0.2, 1); }
+    html.is-not-touch-device .o-copy p a:hover {
+      transition: color 150ms cubic-bezier(0, 0, 0.2, 1), text-decoration 150ms cubic-bezier(0, 0, 0.2, 1); }
+      html.is-not-touch-device .o-copy p a:hover:after {
+        opacity: 0.87;
+        transform: scaleY(1);
+        transition: transform 225ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms 0ms cubic-bezier(0.4, 0, 0.2, 1); }
+
+.o-copy ol {
+  padding: 8px 0 0 16px;
+  margin: 0;
+  text-align: left; }
+  .o-copy ol ul, .o-copy ol ol {
+    padding-bottom: 2px; }
+  .o-copy ol li ul li {
+    list-style-type: disc; }
+    .o-copy ol li ul li ul li {
+      list-style-type: circle; }
+      .o-copy ol li ul li ul li ul li {
+        list-style-type: square; }
+
+.o-copy ul {
+  padding: 8px 0 0 16px;
+  margin: 0;
+  font-size: 16px;
+  text-align: left; }
+  .o-copy ul ul, .o-copy ul ol {
+    padding-bottom: 2px; }
+  .o-copy ul li {
+    list-style-type: disc;
+    min-height: 24px; }
+    .o-copy ul li ul li {
+      list-style-type: circle; }
+      .o-copy ul li ul li ul li {
+        list-style-type: square; }
 
 .o-buttons .o-button:first-child {
   margin-left: 0; }

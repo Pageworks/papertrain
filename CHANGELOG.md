@@ -14,6 +14,7 @@
 - Adds: Spoon plugin and updates Complex Content layout [#112](https://github.com/Pageworks/papertrain/issues/112)
 - Adds: Relabel plugin [#99](https://github.com/Pageworks/papertrain/issues/99)
 - Adds: `dom-is-animated` status class with custom timer input [#100](https://github.com/Pageworks/papertrain/issues/100)
+- Adds: normalzied all basic raw HTML elements [#103](https://github.com/Pageworks/papertrain/issues/103)
 
 ### Fixes
 
@@ -27,6 +28,7 @@
 - Fixes: all `easing` inputs for `animejs` have been updated to use the new format [#104](https://github.com/Pageworks/papertrain/issues/104)
 - Fixes: the gallery block has been updated to use the new `animejs` format [#104](https://github.com/Pageworks/papertrain/issues/104)
 - Fixes: normalizes button element and removes button element from custom button styles [#98](https://github.com/Pageworks/papertrain/issues/98)
+- Fixes: normalized list elements except within copy block [#101](https://github.com/Pageworks/papertrain/issues/101)
 
 ### Removes
 
