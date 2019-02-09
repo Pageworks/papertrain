@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "567dbceaf13fd86da2c61f78137199bf",
+    "content-hash": "4bf64c07589dea4f65fcd1dff5f2e9e5",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -69,6 +69,108 @@
                 "issues": "https://github.com/aelvan/Imager-Craft/issues"
             },
             "time": "2019-01-08T10:53:14+00:00"
+        },
+        {
+            "name": "angellco/spoon",
+            "version": "3.2.7",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/angell-co/Spoon/zipball/ee9e992022a48ae7b3e68aebf1c97d2a61d225b8",
+                "reference": "ee9e992022a48ae7b3e68aebf1c97d2a61d225b8",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.1.0"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Spoon",
+                "handle": "spoon",
+                "hasCpSettings": true,
+                "hasCpSection": false,
+                "changelogUrl": "https://raw.githubusercontent.com/angell-co/spoon/master/CHANGELOG.md",
+                "components": {
+                    "fields": "angellco\\spoon\\services\\Fields",
+                    "blockTypes": "angellco\\spoon\\services\\BlockTypes",
+                    "loader": "angellco\\spoon\\services\\Loader"
+                },
+                "class": "angellco\\spoon\\Spoon",
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "angellco\\spoon\\": "src/"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Angell & Co",
+                    "homepage": "https://angell.io"
+                }
+            ],
+            "description": "A plugin for Craft to enhance your Matrix fields with groups, tabs and more!",
+            "keywords": [
+                "cms",
+                "craft",
+                "craft-plugin",
+                "craftcms",
+                "matrix",
+                "spoon"
+            ],
+            "support": {
+                "docs": "https://github.com/angell-co/spoon/blob/master/README.md",
+                "issues": "https://github.com/angell-co/spoon/issues"
+            },
+            "time": "2019-01-28T11:04:18+00:00"
+        },
+        {
+            "name": "anubarak/craft-relabel",
+            "version": "1.2.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Anubarak/craft-relabel/zipball/350e7c30f747721565f1e187201af2c1819e021e",
+                "reference": "350e7c30f747721565f1e187201af2c1819e021e",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.1.0"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Relabel",
+                "handle": "relabel",
+                "hasCpSettings": false,
+                "hasCpSection": false,
+                "class": "anubarak\\relabel\\Relabel"
+            },
+            "autoload": {
+                "psr-4": {
+                    "anubarak\\relabel\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin Schambach",
+                    "homepage": "https://github.com/Anubarak"
+                }
+            ],
+            "description": "Relabel Plugin Craft",
+            "keywords": [
+                "cms",
+                "craft",
+                "craft-plugin",
+                "craftcms",
+                "relabel"
+            ],
+            "time": "2019-01-31T08:18:36+00:00"
         },
         {
             "name": "aws/aws-sdk-php",

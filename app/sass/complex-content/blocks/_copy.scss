@@ -4,4 +4,16 @@
             margin-bottom: 0;
         }
     }
+
+    &.-single-column{
+        column-count: 1;
+    }
+
+    &.-double-column{
+        column-count: 2;
+    }
+
+    &.-tripple-column{
+        column-count: 3;
+    }
 }

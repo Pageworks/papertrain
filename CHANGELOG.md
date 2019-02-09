@@ -9,6 +9,10 @@
 - Adds: custom Freeform template [#73](https://github.com/Pageworks/papertrain/issues/73)
 - Adds: new Freeform Complex Content block
 - Adds: better form input margin control [#94](https://github.com/Pageworks/papertrain/issues/94)
+- Adds: generic field inputs to Craft [#109](https://github.com/Pageworks/papertrain/issues/109)
+- Adds: new column split option to CC copy block [#110](https://github.com/Pageworks/papertrain/issues/110)
+- Adds: Spoon plugin and updates Complex Content layout [#112](https://github.com/Pageworks/papertrain/issues/112)
+- Adds: Relabel plugin [#99](https://github.com/Pageworks/papertrain/issues/99)
 
 ### Fixes
 
