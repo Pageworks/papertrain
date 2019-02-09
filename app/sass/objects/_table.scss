@@ -1,5 +1,52 @@
+// Background Color Config
 // ==========================================================================
-// Objects / Tables
+.o-table{
+    tbody{
+        tr{
+            .-base-background & {
+                border-color: darken($base-background-color, 5);
+
+                @include hover{
+                    &:not(:first-of-type){
+                        background: darken($base-background-color, 3);
+                    }
+                }
+            }
+        
+            .-secondary-background & {
+                border-color: darken($secondary-background-color, 5);
+
+                @include hover{
+                    &:not(:first-of-type){
+                        background: darken($secondary-background-color, 3);
+                    }
+                }
+            }
+        
+            .-dark-background & {
+                border-color: lighten($dark-background-color, 5);
+
+                @include hover{
+                    &:not(:first-of-type){
+                        background: lighten($dark-background-color, 3);
+                    }
+                }
+            }
+        
+            .-brand-background & {
+                border-color: lighten($brand-background-color, 5);
+
+                @include hover{
+                    &:not(:first-of-type){
+                        background: lighten($brand-background-color, 3);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Tables
 // ==========================================================================
 .o-table{
     display: inline-block;
@@ -40,14 +87,9 @@
             font-size: 13px;
             height: 48px;
             background: transparent;
-            border-bottom: 2px solid darken($base-background-color, 5);
+            border-width: 0 0 2px 0;
+            border-style: solid;
             transition: background 150ms $ease;
-
-            @include hover{
-                &:not(:first-of-type){
-                    background: darken($base-background-color, 3);
-                }
-            }
 
             td{
                 padding: 0;

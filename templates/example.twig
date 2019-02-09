@@ -2,10 +2,24 @@
 {% import '_macros/form' as form %}
 
 {% block content %}
-    <article data-template="Example Page" class="o-container-full u-mobile-padding u-padding-bottom-x8 -base-background">
+    <article data-template="Example Page" class="js-section o-container-full u-mobile-padding u-padding-bottom-x8 -base-background">
         <section class="o-container u-padding-vertical-x4">
             <h1 class="o-h1 u-text-center u-margin-bottom">Example Page</h1>
             <p>Use this page to style the base objects provided by Papertrain. To style the basic Complex Content blocks please checkout the <a href="{{ siteUrl }}example-page">example page here</a>. If you're unfamiliar with the SASS setup for Papertrain we suggest you <a href="http://papertrain.io/sass" target="_blank">click here</a> to learn about the basics of, components, objects and transparent namespaces.</p>
+            <form class="u-1/1 o-form -outline u-margin-top-x2 js-example-form-controller">
+                <div class="o-wrapper u-align-top u-padding-horizontal u-1/1">
+                    <div class="js-input o-input has-value">
+                    <select id="id-form-color" name="form-style" class="js-background-input" >
+                        <option value="-base-background">Primary</option>
+                        <option value="-secondary-background">Secondary</option>
+                        <option value="-dark-background">Dark</option>
+                        <option value="-brand-background">Brand</option>
+                    </select>
+                    <label>Background Color</label>
+                    <i class="o-arrow fas fa-sort-down"></i>
+                    </div>
+                </div>
+            </form>
         </section>
         <hr>
         <section class="o-container u-padding-vertical-x4">
@@ -205,3 +219,18 @@
         </section>
     </article>
 {% endblock %}
+
+{% js %}
+    // Background Input
+    var backgroundInput = document.body.querySelector('.js-background-input');
+    var page = document.body.querySelector('.js-section');
+    var selected = null;
+
+    backgroundInput.addEventListener('change', function(e){
+        e.preventDefault();
+
+        selected = backgroundInput.value;
+        page.classList.remove('-base-background', '-secondary-background', '-dark-background', '-brand-background');
+        page.classList.add(selected);
+    });
+{% endjs %}
