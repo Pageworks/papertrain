@@ -15,6 +15,8 @@
 - Adds: Relabel plugin [#99](https://github.com/Pageworks/papertrain/issues/99)
 - Adds: `dom-is-animated` status class with custom timer input [#100](https://github.com/Pageworks/papertrain/issues/100)
 - Adds: normalzied all basic raw HTML elements [#103](https://github.com/Pageworks/papertrain/issues/103)
+- Adds: 404 page uses custom single and Complex Content builder
+- Adds: chrome viewport height fix [#87](https://github.com/Pageworks/papertrain/issues/87)
 
 ### Fixes
 

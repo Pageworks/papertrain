@@ -18,7 +18,7 @@ export default class BasicGallery extends AbstractModule{
     private slideID:    number
     private isDirty:    boolean
 
-    constructor(el:Element, uuid:string, app:App){
+    constructor(el:HTMLElement, uuid:string, app:App){
         super(el, uuid, app);
         if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicGallery.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
 

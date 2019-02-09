@@ -1,9 +1,9 @@
 export default class AbstractModule{
-    public el:      Element;
+    public el:      HTMLElement;
     public uuid:    string;
     private _app:   App;
 
-    constructor(el:Element, uuid:string, app:App){
+    constructor(el:HTMLElement, uuid:string, app:App){
         this.el     = el;
         this.uuid   = uuid;
         this._app   = app;

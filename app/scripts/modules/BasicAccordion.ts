@@ -10,7 +10,7 @@ export default class BasicAccordion extends AbstractModule{
     private _headlines:  Array<HTMLAnchorElement>;
     private _multiRow:   boolean;
 
-    constructor(el:Element, uuid:string, app:App){
+    constructor(el:HTMLElement, uuid:string, app:App){
         super(el, uuid, app);
         if(isDebug){
             console.log('%c[module] '+`%cBuilding: ${BasicAccordion.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
@@ -104,7 +104,7 @@ export default class BasicAccordion extends AbstractModule{
                 targets: bodyEls,
                 duration: 150,
                 easing: easing.out,
-                delay: (el:Element, i:number)=>{
+                delay: (el:HTMLElement, i:number)=>{
                     return i * 75 + 150;
                 },
                 opacity: [0, 1]

@@ -443,6 +443,8 @@ var BasicAccordion_1 = __webpack_require__(/*! ./modules/BasicAccordion */ "./ap
 exports.BasicAccordion = BasicAccordion_1.default;
 var Freeform_1 = __webpack_require__(/*! ./modules/Freeform */ "./app/scripts/modules/Freeform.ts");
 exports.Freeform = Freeform_1.default;
+var ViewportFix_1 = __webpack_require__(/*! ./modules/ViewportFix */ "./app/scripts/modules/ViewportFix.ts");
+exports.ViewportFix = ViewportFix_1.default;
 
 
 /***/ }),
@@ -1734,6 +1736,86 @@ var Freeform = /** @class */ (function (_super) {
     return Freeform;
 }(AbstractModule_1.default));
 exports.default = Freeform;
+
+
+/***/ }),
+
+/***/ "./app/scripts/modules/ViewportFix.ts":
+/*!********************************************!*\
+  !*** ./app/scripts/modules/ViewportFix.ts ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var env_1 = __webpack_require__(/*! ../env */ "./app/scripts/env.ts");
+var AbstractModule_1 = __importDefault(__webpack_require__(/*! ./AbstractModule */ "./app/scripts/modules/AbstractModule.ts"));
+var ViewportFix = /** @class */ (function (_super) {
+    __extends(ViewportFix, _super);
+    function ViewportFix(el, uuid, app) {
+        var _this = _super.call(this, el, uuid, app) || this;
+        /**
+         * Called when the window resizes
+         */
+        _this.windowResize = function () {
+            _this.handleResize();
+        };
+        if (env_1.isDebug) {
+            console.log('%c[module] ' + ("%cBuilding: " + ViewportFix.MODULE_NAME + " - " + _this.uuid), 'color:#4688f2', 'color:#eee');
+        }
+        _this._vh = window.innerHeight * 0.01;
+        return _this;
+    }
+    /**
+     * Called when the module is created
+     * Used to call any initial methods or to
+     * register any initial event listeners
+     */
+    ViewportFix.prototype.init = function () {
+        if (env_1.html.classList.contains('is-touch-device')) {
+            this.el.style.setProperty('--vh', this._vh + "px");
+            window.addEventListener('resize', this.windowResize);
+        }
+    };
+    /**
+     * Fixes viewport height value for chrome
+     */
+    ViewportFix.prototype.handleResize = function () {
+        if (env_1.html.classList.contains('is-touch-device')) {
+            this._vh = window.innerHeight * 0.01;
+            this.el.style.setProperty('--vh', this._vh + "px");
+        }
+    };
+    /**
+     * Called when the module is destroyed
+     * Remove all event listners before calling super.destory()
+     */
+    ViewportFix.prototype.destroy = function () {
+        window.removeEventListener('resize', this.windowResize);
+        _super.prototype.destroy.call(this, env_1.isDebug, ViewportFix.MODULE_NAME);
+    };
+    ViewportFix.MODULE_NAME = 'ViewportFix';
+    return ViewportFix;
+}(AbstractModule_1.default));
+exports.default = ViewportFix;
 
 
 /***/ }),
