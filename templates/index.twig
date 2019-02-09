@@ -1,17 +1,24 @@
 {% extends '_layouts/base.twig' %}
 
 {% block content %}
-    <section data-template="home">
+    <section data-template="home" class="-base-background">
         {# Remove Below #}
             <div class="o-container-narrow u-padding-vertical-x8">
                 <h1 class="o-h1">Success!</h1>
-                <p>Use the information below to get started with this framework.</p>
-                <h2 class="o-h5 u-margin-bottom-half">Login</h2>
-                <code class="u-margin-bottom" style="background:#fafafa;border-radius:4px;line-height:42px;padding:0 1rem;heigth:42px;display:inline-block;">kylea@page.works</code>
-                <h2 class="o-h5 u-margin-bottom-half">Password</h2>
-                <code class="u-margin-bottom-x2" style="background:#fafafa;border-radius:4px;line-height:42px;padding:0 1rem;heigth:42px;display:inline-block;">boilerplate</code>
+                <p class="u-margin-bottom-x2">Use the information below to get started with this framework.</p>
+                <div class="o-wrapper u-margin-bottom">
+                    <h2 class="o-h5 u-margin-bottom-half">Login</h2>
+                    <code  style="background:#eeeeee;border-radius:4px;line-height:42px;padding:0 1rem;heigth:42px;display:inline-block;">kylea@page.works</code>
+                </div>
+                <div class="o-wrapper u-margin-bottom">
+                    <h2 class="o-h5 u-margin-bottom-half">Password</h2>
+                    <code style="background:#eeeeee;border-radius:4px;line-height:42px;padding:0 1rem;heigth:42px;display:inline-block;">boilerplate</code>
+                </div>
+                <div class="o-wrapper u-1/1 u-margin-bottom-x2">
+                    <a href="{{ siteUrl }}webmaster" class="o-button -outline">Login</a>
+                </div>
+                <p class="u-margin-bottom">Use the links below to modify the bootstrap objects.</p>
                 <div class="o-wrapper u-1/1" style="margin:0 -8px;">
-                    <a href="{{ siteUrl }}webmaster" class="o-button -outline u-margin-horizontal-half">Login</a>
                     <a target="_blank"  href="{{ siteUrl }}example" class="o-button -outline u-margin-horizontal-half">Example Objects</a>
                     <a target="_blank"  href="{{ siteUrl }}example-page" class="o-button -outline u-margin-horizontal-half">Example Page</a>
                     <a target="_blank"  href="{{ siteUrl }}form" class="o-button -outline u-margin-horizontal-half">Form Styles</a>
