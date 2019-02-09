@@ -31,33 +31,6 @@ a{
     margin: 0;
 }
 
-table{
-    display: block;
-    border-collapse: collapse;
-    border-spacing: 0;
-
-    thead,
-    tbody,
-    tfoot{
-        vertical-align: baseline;
-        display: block;
-    }
-
-    th{
-        font-weight: 400;
-    }
-
-    tr{
-        vertical-align: baseline;
-        display: block;
-    }
-
-    td{
-        vertical-align: baseline;
-        display: inline-block;
-    }
-}
-
 sup,
 sub{
     vertical-align: baseline;
@@ -113,7 +86,7 @@ blockquote{
 }
 
 p{
-    display: inline-block;
+    display: block;
 }
 
 h1,

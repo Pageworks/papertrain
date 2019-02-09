@@ -14,13 +14,11 @@
     width: 100%;
     color: contrast($base-background-color);
 
-    section.-dark-background &,
-    section.has-image &,
-    section.has-video & {
+    .-dark-background & {
         color: contrast($dark-background-color);
     }
 
-    section.-brand-background & {
+    .-brand-background & {
         color: contrast($brand-background-color);
     }
 }
