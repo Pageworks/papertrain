@@ -15,6 +15,9 @@ export default class App{
     private _touchSupport:      boolean;
     private _scrollDistance:    number;
     private _prevScroll:        number;
+    
+    // Elements
+    private _trackedTouches:    Array<Element>;
 
     constructor(){
         this._modules            = modules;
@@ -24,6 +27,8 @@ export default class App{
 
         this._prevScroll        = 0;
         this._scrollDistance    = 0;
+
+        this._trackedTouches    = [];
 
         this.init();
     }
@@ -59,6 +64,8 @@ export default class App{
 
         this._transitionManager = new TransitionManager(this);
 
+        this.getTouchElements();
+
         if(!isDebug){
             this.createEasterEgg();
         }
@@ -68,6 +75,86 @@ export default class App{
         document.body.removeEventListener('touchstart', this.userTouched);
         html.classList.add('has-touched');
         html.classList.remove('has-not-touched');
+    }
+
+    private userTouchedElement: EventListener = (e:Event)=>{
+        const target = <HTMLElement>e.currentTarget;
+        target.classList.add('has-touch');
+    }
+
+    private userReleasedTouchedElement: EventListener = (e:Event)=>{
+        const target = <HTMLElement>e.currentTarget;
+        target.classList.remove('has-touch');
+    }
+
+    private purgeTouchElements(): void{
+        const currentElements = Array.from(document.body.querySelectorAll('.js-touch'));
+        const deadElements = [];
+        
+        if(currentElements.length === 0 && this._trackedTouches.length === 0){
+            return;
+        }
+
+        // Loop through all tracked touch elements
+        for(let i = 0; i < this._trackedTouches.length; i++){
+            let survived = false;
+
+            // Compare aginst all current touch elements
+            for(let k = 0; k < currentElements.length; k++){
+                if(this._trackedTouches[i] === currentElements[k]){
+                    survived = true;
+                }
+            }
+
+            if(!survived){
+                deadElements.push(this._trackedTouches[i]);
+            }
+        }
+
+        // Verify we have modules to destroy
+        if(deadElements.length){
+
+            // Loop though all the modules we need to destroy
+            deadElements.map((deadEl)=>{
+
+                // Loop through all the current modules
+                for(let i = 0; i < this._trackedTouches.length; i++){
+
+                    // Check if the currend modules UUID matches the UUID of our module marked for destruction
+                    if(this._trackedTouches[i] === deadEl){
+                        // Remove event listeners
+                        deadEl.removeEventListener('touchstart', this.userTouchedElement );
+                        deadEl.removeEventListener('touchend', this.userReleasedTouchedElement );
+                        deadEl.removeEventListener('touchleave', this.userReleasedTouchedElement );
+                        deadEl.removeEventListener('touchcancel', this.userReleasedTouchedElement );
+
+                        // Get the elements index
+                        const index = this._trackedTouches.indexOf(this._trackedTouches[i]);
+
+                        // Splice the array at the index and shift the remaining elements
+                        this._trackedTouches.splice(index, 1);
+                    }
+                }
+            });
+        }
+    }
+
+    private getTouchElements(): void{
+        const elements = Array.from(document.body.querySelectorAll('.js-touch:not(.is-touch-tracked)'));
+
+        elements.forEach((el)=>{
+            el.classList.add('is-touch-tracked');
+            el.addEventListener('touchstart', this.userTouchedElement );
+            el.addEventListener('touchend', this.userReleasedTouchedElement );
+            el.addEventListener('touchleave', this.userReleasedTouchedElement );
+            el.addEventListener('touchcancel', this.userReleasedTouchedElement );
+            this._trackedTouches.push(el);
+        });
+    }
+
+    public updateTouchElements(): void{
+        this.purgeTouchElements();
+        this.getTouchElements();
     }
 
     /**
@@ -219,26 +306,17 @@ export default class App{
      * Remove (and trigger destory()) any elements module in the current modules list that didn't survive the transition.
      */
     public deleteModules(): void{
-        const modules = Array.from(document.querySelectorAll('[data-module]'));
-        const survivingModules:Array<Element> = [];
+        const modules = Array.from(document.body.querySelectorAll('[data-module]'));
         const deadModules:Array<any> = [];
 
-        // Grab all modules that have a UUID attribute
-        modules.forEach((module)=>{
-            // If the module has a UUID the element survived the page transition
-            if(module.getAttribute('data-uuid') !== null){
-                survivingModules.push(module);
-            }
-        });
-
-        // Loop through all current modules
+        // Loop through all currently tracked modules
         this._currentModules.map((currModule)=>{
             let survived:boolean = false;
 
-            // Loop through all surviving modules
-            survivingModules.map((survivingModule)=>{
-                // If the element with a UUID attribute matches the UUID of the current module don't remove the module
-                if(survivingModule.getAttribute('data-uuid') === currModule.uuid){
+            // Loop through all the modules on the page
+            modules.forEach((module)=>{
+                // If the module has a UUID the element survived the page transition
+                if(module.getAttribute('data-uuid') === currModule.uuid){
                     survived = true;
                 }
             });

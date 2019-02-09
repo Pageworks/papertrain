@@ -20,8 +20,9 @@ interface Module{
 }
 
 declare class App{
-    ANIMATION_DELAY:    number;
-    initModules:        Function;
-    deleteModules:      Function;
-    deleteModule:       Function;
+    ANIMATION_DELAY:        number;
+    initModules:            Function;
+    deleteModules:          Function;
+    deleteModule:           Function;
+    updateTouchElements:    Function;
 }

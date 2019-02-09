@@ -20,6 +20,15 @@
     }
 }
 
+@mixin touch
+{
+    &.has-touch{
+        html.is-touch-device & {
+            @content;
+        }
+    }
+}
+
 @mixin hover
 {
     &:hover
@@ -35,6 +44,12 @@
     &:active
     {
         html.is-not-touch-device & {
+            @content;
+        }
+    }
+
+    &.has-touch{
+        html.is-touch-device & {
             @content;
         }
     }

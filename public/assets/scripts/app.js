@@ -130,12 +130,21 @@ var App = /** @class */ (function () {
             env_1.html.classList.add('has-touched');
             env_1.html.classList.remove('has-not-touched');
         };
+        this.userTouchedElement = function (e) {
+            var target = e.currentTarget;
+            target.classList.add('has-touch');
+        };
+        this.userReleasedTouchedElement = function (e) {
+            var target = e.currentTarget;
+            target.classList.remove('has-touch');
+        };
         this._modules = modules;
         this._currentModules = [];
         this._transitionManager = null;
         this._touchSupport = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
         this._prevScroll = 0;
         this._scrollDistance = 0;
+        this._trackedTouches = [];
         this.init();
     }
     /**
@@ -163,9 +172,68 @@ var App = /** @class */ (function () {
         this.initModules(); // Get initial modules
         this.handleStatus(); // Check the users visitor status
         this._transitionManager = new TransitionManager_1.default(this);
+        this.getTouchElements();
         if (!env_1.isDebug) {
             this.createEasterEgg();
         }
+    };
+    App.prototype.purgeTouchElements = function () {
+        var _this = this;
+        var currentElements = Array.from(document.body.querySelectorAll('.js-touch'));
+        var deadElements = [];
+        if (currentElements.length === 0 && this._trackedTouches.length === 0) {
+            return;
+        }
+        // Loop through all tracked touch elements
+        for (var i = 0; i < this._trackedTouches.length; i++) {
+            var survived = false;
+            // Compare aginst all current touch elements
+            for (var k = 0; k < currentElements.length; k++) {
+                if (this._trackedTouches[i] === currentElements[k]) {
+                    survived = true;
+                }
+            }
+            if (!survived) {
+                deadElements.push(this._trackedTouches[i]);
+            }
+        }
+        // Verify we have modules to destroy
+        if (deadElements.length) {
+            // Loop though all the modules we need to destroy
+            deadElements.map(function (deadEl) {
+                // Loop through all the current modules
+                for (var i = 0; i < _this._trackedTouches.length; i++) {
+                    // Check if the currend modules UUID matches the UUID of our module marked for destruction
+                    if (_this._trackedTouches[i] === deadEl) {
+                        // Remove event listeners
+                        deadEl.removeEventListener('touchstart', _this.userTouchedElement);
+                        deadEl.removeEventListener('touchend', _this.userReleasedTouchedElement);
+                        deadEl.removeEventListener('touchleave', _this.userReleasedTouchedElement);
+                        deadEl.removeEventListener('touchcancel', _this.userReleasedTouchedElement);
+                        // Get the elements index
+                        var index = _this._trackedTouches.indexOf(_this._trackedTouches[i]);
+                        // Splice the array at the index and shift the remaining elements
+                        _this._trackedTouches.splice(index, 1);
+                    }
+                }
+            });
+        }
+    };
+    App.prototype.getTouchElements = function () {
+        var _this = this;
+        var elements = Array.from(document.body.querySelectorAll('.js-touch:not(.is-touch-tracked)'));
+        elements.forEach(function (el) {
+            el.classList.add('is-touch-tracked');
+            el.addEventListener('touchstart', _this.userTouchedElement);
+            el.addEventListener('touchend', _this.userReleasedTouchedElement);
+            el.addEventListener('touchleave', _this.userReleasedTouchedElement);
+            el.addEventListener('touchcancel', _this.userReleasedTouchedElement);
+            _this._trackedTouches.push(el);
+        });
+    };
+    App.prototype.updateTouchElements = function () {
+        this.purgeTouchElements();
+        this.getTouchElements();
     };
     /**
      * Called on a production build of the application.
@@ -304,23 +372,15 @@ var App = /** @class */ (function () {
      */
     App.prototype.deleteModules = function () {
         var _this = this;
-        var modules = Array.from(document.querySelectorAll('[data-module]'));
-        var survivingModules = [];
+        var modules = Array.from(document.body.querySelectorAll('[data-module]'));
         var deadModules = [];
-        // Grab all modules that have a UUID attribute
-        modules.forEach(function (module) {
-            // If the module has a UUID the element survived the page transition
-            if (module.getAttribute('data-uuid') !== null) {
-                survivingModules.push(module);
-            }
-        });
-        // Loop through all current modules
+        // Loop through all currently tracked modules
         this._currentModules.map(function (currModule) {
             var survived = false;
-            // Loop through all surviving modules
-            survivingModules.map(function (survivingModule) {
-                // If the element with a UUID attribute matches the UUID of the current module don't remove the module
-                if (survivingModule.getAttribute('data-uuid') === currModule.uuid) {
+            // Loop through all the modules on the page
+            modules.forEach(function (module) {
+                // If the module has a UUID the element survived the page transition
+                if (module.getAttribute('data-uuid') === currModule.uuid) {
                     survived = true;
                 }
             });
@@ -2068,6 +2128,8 @@ var TransitionManager = /** @class */ (function () {
         this._app.initModules();
         // Tell our main applicaiton it can delete any old modules
         this._app.deleteModules();
+        // Tell our main application it can update touch elements
+        this._app.updateTouchElements();
         // Reset for next transition
         this.reinit();
     };

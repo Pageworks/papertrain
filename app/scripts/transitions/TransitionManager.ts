@@ -112,6 +112,9 @@ export default class TransitionManager {
         // Tell our main applicaiton it can delete any old modules
         this._app.deleteModules();
 
+        // Tell our main application it can update touch elements
+        this._app.updateTouchElements();
+
         // Reset for next transition
         this.reinit();
     }

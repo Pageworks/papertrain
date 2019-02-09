@@ -1067,6 +1067,10 @@ article.has-video {
           transform: scale(1);
           opacity: 0.15;
           transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+        html.is-touch-device .o-switch .o-switch_item label .o-switch_icon.has-touch .o-switch_handle:after {
+          transform: scale(1);
+          opacity: 0.15;
+          transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
         html.is-not-touch-device .o-switch .o-switch_item label .o-switch_icon:hover .o-switch_handle:before {
           transform: scale(1);
           opacity: 0.1;
@@ -1159,6 +1163,10 @@ article.has-video {
       transform: scale(1);
       opacity: 0.15;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+    html.is-touch-device .o-radio .o-radio_item.has-touch .o-radio_icon:after {
+      transform: scale(1);
+      opacity: 0.15;
+      transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
     .o-radio .o-radio_item .o-radio_icon {
       height: 20px;
       width: 20px;
@@ -1243,6 +1251,10 @@ article.has-video {
       opacity: 0.1;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
   html.is-not-touch-device .o-checkbox .o-checkbox_item:active .o-checkbox_icon:after {
+    transform: scale(1);
+    opacity: 0.15;
+    transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+  html.is-touch-device .o-checkbox .o-checkbox_item.has-touch .o-checkbox_icon:after {
     transform: scale(1);
     opacity: 0.15;
     transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1460,6 +1472,11 @@ article.has-video {
         transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
     html.is-not-touch-device .o-form .o-input .-visible:active:after, html.is-not-touch-device
     .o-form .o-input .-hidden:active:after {
+      transform: scale(1);
+      opacity: 0.15;
+      transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
+    html.is-touch-device .o-form .o-input .-visible.has-touch:after, html.is-touch-device
+    .o-form .o-input .-hidden.has-touch:after {
       transform: scale(1);
       opacity: 0.15;
       transition: transform 150ms cubic-bezier(0, 0, 0.2, 1), opacity 75ms cubic-bezier(0, 0, 0.2, 1); }
@@ -1758,6 +1775,10 @@ html.has-js .o-form.-outline .o-input.has-value label {
   .o-form.-solid select:active, html.is-not-touch-device .-base-background
   .o-form.-solid textarea:active {
     background-color: rgba(0, 0, 0, 0.07) !important; }
+  html.is-touch-device .-base-background .o-form.-solid input.has-touch, html.is-touch-device .-base-background
+  .o-form.-solid select.has-touch, html.is-touch-device .-base-background
+  .o-form.-solid textarea.has-touch {
+    background-color: rgba(0, 0, 0, 0.07) !important; }
 
 .-secondary-background .o-form.-solid input, .-secondary-background
 .o-form.-solid select, .-secondary-background
@@ -1770,6 +1791,10 @@ html.has-js .o-form.-outline .o-input.has-value label {
   html.is-not-touch-device .-secondary-background .o-form.-solid input:active, html.is-not-touch-device .-secondary-background
   .o-form.-solid select:active, html.is-not-touch-device .-secondary-background
   .o-form.-solid textarea:active {
+    background-color: rgba(0, 0, 0, 0.07) !important; }
+  html.is-touch-device .-secondary-background .o-form.-solid input.has-touch, html.is-touch-device .-secondary-background
+  .o-form.-solid select.has-touch, html.is-touch-device .-secondary-background
+  .o-form.-solid textarea.has-touch {
     background-color: rgba(0, 0, 0, 0.07) !important; }
 
 .-dark-background .o-form.-solid input, .-dark-background
@@ -1784,6 +1809,10 @@ html.has-js .o-form.-outline .o-input.has-value label {
   .o-form.-solid select:active, html.is-not-touch-device .-dark-background
   .o-form.-solid textarea:active {
     background-color: rgba(255, 255, 255, 0.13) !important; }
+  html.is-touch-device .-dark-background .o-form.-solid input.has-touch, html.is-touch-device .-dark-background
+  .o-form.-solid select.has-touch, html.is-touch-device .-dark-background
+  .o-form.-solid textarea.has-touch {
+    background-color: rgba(255, 255, 255, 0.13) !important; }
 
 .-brand-background .o-form.-solid input, .-brand-background
 .o-form.-solid select, .-brand-background
@@ -1796,6 +1825,10 @@ html.has-js .o-form.-outline .o-input.has-value label {
   html.is-not-touch-device .-brand-background .o-form.-solid input:active, html.is-not-touch-device .-brand-background
   .o-form.-solid select:active, html.is-not-touch-device .-brand-background
   .o-form.-solid textarea:active {
+    background-color: rgba(255, 255, 255, 0.13) !important; }
+  html.is-touch-device .-brand-background .o-form.-solid input.has-touch, html.is-touch-device .-brand-background
+  .o-form.-solid select.has-touch, html.is-touch-device .-brand-background
+  .o-form.-solid textarea.has-touch {
     background-color: rgba(255, 255, 255, 0.13) !important; }
 
 .o-form.-solid input,
@@ -2170,6 +2203,9 @@ html.is-not-touch-device .o-form.-underline .o-input:hover:before {
   html.is-not-touch-device .o-button:active:before {
     opacity: 0.15;
     transition: opacity 75ms cubic-bezier(0.4, 0, 0.6, 1); }
+  html.is-touch-device .o-button.has-touch:before {
+    opacity: 0.15;
+    transition: opacity 75ms cubic-bezier(0.4, 0, 0.6, 1); }
   .o-button.is-disabled {
     background: rgba(0, 0, 0, 0.1) !important;
     color: rgba(0, 0, 0, 0.26) !important;
@@ -2198,6 +2234,8 @@ html.is-not-touch-device .o-form.-underline .o-input:hover:before {
       opacity: 0.1; }
     html.is-not-touch-device .o-button.-solid:active:before {
       opacity: 0.15; }
+    html.is-touch-device .o-button.-solid.has-touch:before {
+      opacity: 0.15; }
   .o-button.-outline {
     padding: 0 1rem;
     border-width: 2px;
@@ -2213,6 +2251,8 @@ html.is-not-touch-device .o-form.-underline .o-input:hover:before {
       html.is-not-touch-device .o-button.-raised:hover:before {
         opacity: 0.1; }
     html.is-not-touch-device .o-button.-raised:active:before {
+      opacity: 0.15; }
+    html.is-touch-device .o-button.-raised.has-touch:before {
       opacity: 0.15; }
 
 .o-tooltip {
@@ -2416,6 +2456,10 @@ html.is-not-touch-device .o-form.-underline .o-input:hover:before {
     opacity: 0.1;
     transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
   html.is-not-touch-device .o-icon:active:after {
+    transform: scale(1);
+    opacity: 0.15;
+    transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
+  html.is-touch-device .o-icon.has-touch:after {
     transform: scale(1);
     opacity: 0.15;
     transition: all 150ms cubic-bezier(0, 0, 0.2, 1); }
@@ -3110,6 +3154,9 @@ html.is-not-touch-device .o-form.-underline .o-input:hover:before {
         opacity: 0.1;
         transform: scale(1); }
       html.is-not-touch-device .o-freeform .o-freeform_steps.-list .o-freeform_steps_item.has-seen:active:after {
+        opacity: 0.15;
+        transform: scale(1); }
+      html.is-touch-device .o-freeform .o-freeform_steps.-list .o-freeform_steps_item.has-seen.has-touch:after {
         opacity: 0.15;
         transform: scale(1); }
 
