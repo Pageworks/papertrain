@@ -13,6 +13,7 @@
 - Adds: new column split option to CC copy block [#110](https://github.com/Pageworks/papertrain/issues/110)
 - Adds: Spoon plugin and updates Complex Content layout [#112](https://github.com/Pageworks/papertrain/issues/112)
 - Adds: Relabel plugin [#99](https://github.com/Pageworks/papertrain/issues/99)
+- Adds: `dom-is-animated` status class with custom timer input [#100](https://github.com/Pageworks/papertrain/issues/100)
 
 ### Fixes
 

@@ -5,7 +5,10 @@ import TransitionManager from './transitions/TransitionManager';
 import polyfill from './polyfill';
 import uuid from 'uuid/v4';
 
-class App{
+export default class App{
+    
+    public static ANIMATION_DELAY = 1000;
+    
     private _modules:           { [index:string] : Function };
     private _currentModules:    Array<Module>;
     private _transitionManager: TransitionManager;

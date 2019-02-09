@@ -1,6 +1,7 @@
 import { APP_NAME, pjaxContainer, html, isDebug } from '../env';
 import * as transitions from './transitions';
 import Pjax from '@codewithkyle/fuel-pjax';
+import App from '../App';
 
 export default class TransitionManager {
 
@@ -8,15 +9,12 @@ export default class TransitionManager {
     private _transitions:            { [index:string] : Function };
     private _transition:             Transition;
     private _pjax:                   Pjax;
-    private _initialAnimationDelay:  number;
 
     constructor(app:App){
         this._app                    = app;
         this._transitions            = transitions;
         this._transition             = null;
         this._pjax                   = new Pjax({ debug: isDebug, selectors: [`${pjaxContainer}`] });
-
-        this._initialAnimationDelay  = 1000;
 
         this.init();
     }
@@ -43,7 +41,7 @@ export default class TransitionManager {
         html.classList.add('dom-is-loaded');
         html.classList.remove('dom-is-loading');
 
-        setTimeout(()=>{ html.classList.add('dom-is-animated') }, this._initialAnimationDelay);
+        setTimeout(()=>{ html.classList.add('dom-is-animated') }, App.ANIMATION_DELAY);
     }
 
     /**
@@ -92,7 +90,7 @@ export default class TransitionManager {
         html.classList.add('dom-is-loaded');
         html.classList.remove('dom-is-loading');
 
-        setTimeout(()=>{ html.classList.add('dom-is-animated') }, this._initialAnimationDelay);
+        setTimeout(()=>{ html.classList.add('dom-is-animated') }, App.ANIMATION_DELAY);
 
         if(templateName === 'home'){
             html.classList.add('is-homepage');

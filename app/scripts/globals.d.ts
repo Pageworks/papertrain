@@ -2,25 +2,26 @@ declare module 'uuid/v4';
 declare module 'animejs';
 
 interface TransitionManager{
-    remove: Function
-    reinit: Function
+    remove: Function;
+    reinit: Function;
 }
 
 interface Transition{
-    launch: Function
-    hide: Function
+    launch: Function;
+    hide:   Function;
 }
 
 
 interface Module{
-    index: string
-    destroy: Function
-    init: Function
-    uuid: string
+    index:      string;
+    destroy:    Function;
+    init:       Function;
+    uuid:       string;
 }
 
 declare class App{
-    initModules:    Function
-    deleteModules:  Function
-    deleteModule:   Function
+    ANIMATION_DELAY:    number;
+    initModules:        Function;
+    deleteModules:      Function;
+    deleteModule:       Function;
 }
