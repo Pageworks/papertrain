@@ -18,6 +18,7 @@
 - Adds: 404 page uses custom single and Complex Content builder
 - Adds: chrome viewport height fix [#87](https://github.com/Pageworks/papertrain/issues/87)
 - Adds: application now tracks touch elements for custom `has-touch` status class [#84](https://github.com/Pageworks/papertrain/issues/84)
+- Adds: `main.css` is always cached busted [#75](https://github.com/Pageworks/papertrain/issues/75)
 
 ### Fixes
 
