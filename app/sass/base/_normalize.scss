@@ -1,125 +1,19 @@
-/**
-* Remove the margin in all browsers (opinionated).
-*/
-
-body{
-    margin: 0;
-}
-
-/**
-* Correct the font size and margin on `h1` elements within `section` and
-* `article` contexts in Chrome, Firefox, and Safari.
-*/
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6{
-    line-height: normal;
-    margin: 0;
-    padding: 0;
-    font-weight: 400;
-}
-
-/**
-* Removes the basic style from the button element.
-*/
-
 button{
-    outline: none;
-    border: none;
-    margin: 0;
+    display: inline-block;
     padding: 0;
-}
-
-/**
-* Removes the basic styles from generic form elements.
-*/
-
-input,
-select,
-textarea,
-fieldset{
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 16px;
-
-    &:focus,
-    &:active{
-        box-shadow: none;
-        border: none;
-        outline: none;
-    }
-
-    &:invalid{
-        box-shadow: none;
-    }
-}
-
-input,
-select{
-    background: transparent;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-input[type=radio],
-input[type=checkbox]{
-    @include size(0px,0px);
-    position: absolute;
+    margin: 0;
     border: none;
     outline: none;
     background: transparent;
-    opacity: 0;
-    visibility: hidden;
-}
+    color: $font-base;
 
-input[type=date]{
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-}
-
-input[type=number] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-    margin: 0;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-}
-
-input[type="color"]{
-	-webkit-appearance: none;
-	border: none;
-}
-input[type="color"]::-webkit-color-swatch-wrapper {
-	padding: 0;
-}
-input[type="color"]::-webkit-color-swatch {
-	border: none;
-}
-
-::placeholder{
-    display: none;
-    color: transparent;
-}
-
-select{
-    html.has-js & {
-        appearance: none;
-        -moz-appearance: none;
-        -webkit-appearance: none;
+    .-dark-background &,
+    .has-image &,
+    .has-video & {
+        color: $font-alt;
     }
-}
 
-fieldset{
-    margin: 0;
-    padding: 0;
+    .-brand-background & {
+        color: contrast($brand-background-color);
+    }
 }
