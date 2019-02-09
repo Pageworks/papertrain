@@ -1,5 +1,17 @@
 {% extends '_layouts/base' %}
 
+{% do eagerLoadElements(entry, [
+    'cc',
+    'cc.sectionSetings:backgroundImage',
+    'cc.image:image',
+    'cc.buttons:buttons',
+    'cc.gallery:slides',
+    'cc.accordion',
+    'cc.accordion:rows',
+    'cc.list',
+    'cc.list:listItems'
+]) %}
+
 {% block content %}
     {% include '_complex-content/index' %}
 {% endblock %}
