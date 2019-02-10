@@ -5,7 +5,7 @@ module.exports = {
     ],
     defaultSeverity: 'error',
     rules: {
-      'no-debugger': process.env.NODE_ENV === 'production' ? true : false,
+      'no-debugger': true,
       'prefer-array-literal': [ true, { 'allow-type-parameters': true } ],
       'variable-name': [ true, 'ban-keywords', 'check-format', 'allow-pascal-case', 'allow-leading-underscore'],
       'max-line-length': false,

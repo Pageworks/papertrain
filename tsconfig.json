@@ -1,19 +1,23 @@
 {
-  "compilerOptions": {
-      "outDir": "./_compiled/",
-      "esModuleInterop": true,
-      "sourceMap": true,
-      "noImplicitAny": true,
-      "module": "commonjs",
-      "target": "es5",
-      "lib": [
-            "es5",
-            "es2015",
+    "compilerOptions": {
+        "outDir": "./_compiled",
+        "rootDir": "./app/typescript",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "target": "es5",
+        "module": "commonjs",
+        "lib": [
             "dom",
-            "scripthost"
-        ],
-  },
-  "include": [
-      "./app/scripts/**/*"
-  ]
+            "ScriptHost",
+            "ES2015",
+            "ES2016",
+            "ES2017",
+            "ES2018",
+            "ESNext",
+        ]
+    },
+    "exclude": [
+        "./vendor/*"
+    ]
 }

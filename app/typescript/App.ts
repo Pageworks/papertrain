@@ -3,7 +3,7 @@ import { APP_NAME, html, isDebug, setDebug, scrollTrigger } from './env';
 import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
 import polyfill from './polyfill';
-import uuid from 'uuid/v4';
+import * as v4 from 'uuid/v4';
 
 export default class App{
     
@@ -54,6 +54,7 @@ export default class App{
             html.classList.add('is-touch-device');
             html.classList.remove('is-not-touch-device');
             document.body.addEventListener('touchstart', this.userTouched);
+            this.getTouchElements();
         }
 
         window.addEventListener('load', e => { html.classList.add('has-loaded') });
@@ -64,34 +65,53 @@ export default class App{
 
         this._transitionManager = new TransitionManager(this);
 
-        this.getTouchElements();
-
         if(!isDebug){
             this.createEasterEgg();
         }
     }
 
+    /**
+     * Called when the `touchstart` event fires on the documents body.
+     */
     private userTouched: EventListener = ()=>{
         document.body.removeEventListener('touchstart', this.userTouched);
         html.classList.add('has-touched');
         html.classList.remove('has-not-touched');
     }
 
+    /**
+     * Called when the `touchstart` event fires on an element that has a `js-touch` class.
+     */
     private userTouchedElement: EventListener = (e:Event)=>{
         const target = <HTMLElement>e.currentTarget;
         target.classList.add('has-touch');
     }
 
+    /**
+     * Called when the `touchend` or `touchcancel` or `touchleave` event(s) fire on
+     * an element with the `js-touch` class.
+     */
     private userReleasedTouchedElement: EventListener = (e:Event)=>{
         const target = <HTMLElement>e.currentTarget;
         target.classList.remove('has-touch');
     }
 
+    /**
+     * Grabs all the current touch elements and removes any missing elements
+     * event listeners.
+     */
     private purgeTouchElements(): void{
+        
+        // Do nothing on non-touch devices
+        if(!this._touchSupport){
+            return;
+        }
+        
         const currentElements = Array.from(document.body.querySelectorAll('.js-touch'));
         const deadElements = [];
         
-        if(currentElements.length === 0 && this._trackedTouches.length === 0){
+        // Check if there are elements to check
+        if(this._trackedTouches.length === 0){
             return;
         }
 
@@ -111,16 +131,16 @@ export default class App{
             }
         }
 
-        // Verify we have modules to destroy
+        // Verify we have elements to remove
         if(deadElements.length){
 
-            // Loop though all the modules we need to destroy
+            // Loop though all the elements we need to remove
             deadElements.map((deadEl)=>{
 
-                // Loop through all the current modules
+                // Loop through all the current elements
                 for(let i = 0; i < this._trackedTouches.length; i++){
 
-                    // Check if the currend modules UUID matches the UUID of our module marked for destruction
+                    // Check if the current element matches the element marked for death
                     if(this._trackedTouches[i] === deadEl){
                         // Remove event listeners
                         deadEl.removeEventListener('touchstart', this.userTouchedElement );
@@ -139,7 +159,16 @@ export default class App{
         }
     }
 
+    /**
+     * Gets all the un-touched touch elements and adds touch event listeners
+     */
     private getTouchElements(): void{
+        
+        // Do nothing on non-touch devices
+        if(!this._touchSupport){
+            return;
+        }
+
         const elements = Array.from(document.body.querySelectorAll('.js-touch:not(.is-touch-tracked)'));
 
         elements.forEach((el)=>{
@@ -152,7 +181,16 @@ export default class App{
         });
     }
 
+    /**
+     * Called by the `TransitionManager` class
+     */
     public updateTouchElements(): void{
+        
+        // Do nothing on non-touch devices
+        if(!this._touchSupport){
+            return;
+        }
+        
         this.purgeTouchElements();
         this.getTouchElements();
     }
@@ -283,7 +321,7 @@ export default class App{
             }
 
             const existingUUID = module.getAttribute('data-uuid');
-            const newUUID = uuid();
+            const newUUID = v4();
 
             for(let i = 0; i < modules.length; i++){
                 if(this._modules[modules[i]] !== undefined && existingUUID === null){

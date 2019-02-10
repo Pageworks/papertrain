@@ -44,21 +44,18 @@
 @import 'components/footer';
 @import 'components/transition';
 @import 'components/progress-spinner';
-
-// Complex Content
-// ==========================================================================
-@import 'complex-content/complex-content';
+@import 'components/complex-content';
 
 // Complex Content Blocks
 // ==========================================================================
-@import 'complex-content/blocks/image';
-@import 'complex-content/blocks/copy';
-@import 'complex-content/blocks/buttons';
-@import 'complex-content/blocks/pull-quote';
-@import 'complex-content/blocks/gallery';
-@import 'complex-content/blocks/accordion';
-@import 'complex-content/blocks/list';
-@import 'complex-content/blocks/freeform';
+@import 'blocks/image';
+@import 'blocks/copy';
+@import 'blocks/buttons';
+@import 'blocks/pull-quote';
+@import 'blocks/gallery';
+@import 'blocks/accordion';
+@import 'blocks/list';
+@import 'blocks/freeform';
 
 // Templates
 // ==========================================================================

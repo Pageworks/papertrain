@@ -17,24 +17,31 @@
         "url": "https://github.com/Pageworks/papertrain/issues",
         "email": "kylea@page.works"
     },
+    "typings": "./app/typescript/global.d.ts",
+    "main": "./app/typescript/App.ts",
     "scripts": {
-        "tsc": "tsc",
-        "lint:css": "stylelint app/sass/**/*.scss --cache",
-        "lint:ts": "cross-env NODE_ENV=development tslint app/scripts/**/*.ts -c .tslintrc.js -p tsconfig.json -t verbose",
-        "lint": "npm-run-all lint:*",
         "precommit": "lint-staged",
-        "compile": "cross-env NODE_ENV=production webpack --config build-tools/config/webpack.config.js",
-        "dev": "cross-env NODE_ENV=development webpack --config build-tools/config/webpack.config.dev.js --watch",
-        "preview": "http-server --p 9001 -s -o"
+        "preview": "http-server --p 9001 -s -o",
+        "lint": "npm-run-all lint:*",
+        "lint:sass": "stylelint app/sass/**/*.scss --cache",
+        "lint:typescript": "tslint app/scripts/**/*.ts -c .tslintrc.js -p tsconfig.json -t verbose",
+        "build": "npm-run-all compile:*",
+        "compile": "npm-run-all compile:*",
+        "compile:typescript": "tsc",
+        "compile:webpack": "cross-env NODE_ENV=production webpack",
+        "compile:scss": "node-sass ./app/sass/main.scss ./public/assets/styles/main.css --output-style compressed",
+        "compile:linter": "npm run lint",
+        "dev": "run-p watch:*",
+        "dev:typescript": "tsc && npm run dev:webpack",
+        "dev:webpack": "cross-env NODE_ENV=development webpack",
+        "dev:sass": "node-sass ./app/sass/main.scss ./public/assets/styles/main.css",
+        "watch:typescript": "onchange ./app/typescript/**/*.ts -- npm run dev:typescript",
+        "watch:scss": "onchange ./app/sass/**/*.scss -- npm run dev:sass"
     },
     "lint-staged": {
         "linters": {
-            "app/scripts/**/*.ts": [
-                "cross-env NODE_ENV=production tslint -c .tslintrc.js -p tsconfig.json -t verbose"
-            ],
-            "app/sass/**/*.scss": [
-                "stylelint --cache"
-            ]
+            "*.ts": "npm run lint:typescript",
+            "*.scss": "npm run lint:sass"
         }
     },
     "dependencies": {
@@ -45,36 +52,24 @@
         "webpack": "^4.29.1"
     },
     "devDependencies": {
-        "@types/dotenv": "^6.1.0",
-        "autoprefixer": "^9.4.7",
-        "awesome-typescript-loader": "^5.2.1",
         "browser-sync": "^2.26.3",
-        "browser-sync-webpack-plugin": "^2.2.2",
         "chalk": "^2.4.2",
         "cross-env": "^5.2.0",
-        "css-loader": "^1.0.1",
-        "cssnano": "^4.1.8",
-        "dotenv": "^6.2.0",
         "friendly-errors-webpack-plugin": "^1.7.0",
         "http-server": "^0.11.1",
-        "husky": "^0.14.3",
+        "husky": "^1.3.1",
         "lint-staged": "^7.3.0",
-        "mini-css-extract-plugin": "^0.4.5",
         "node-sass": "^4.11.0",
         "npm-run-all": "^4.1.5",
+        "onchange": "^5.2.0",
         "ora": "^3.0.0",
-        "postcss-loader": "^3.0.0",
-        "sass-loader": "^7.1.0",
-        "source-map-loader": "^0.2.4",
         "stylelint": "^9.10.1",
         "stylelint-config-recommended-scss": "^3.2.0",
         "stylelint-scss": "^3.5.2",
-        "stylelint-webpack-plugin": "^0.10.5",
         "tslint": "^5.12.1",
         "tslint-config-airbnb": "^5.11.1",
         "tslint-config-prettier": "^1.18.0",
         "typescript": "^3.3.1",
-        "uglifyjs-webpack-plugin": "^1.3.0",
         "webpack-cli": "^3.2.1"
     }
 }
