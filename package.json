@@ -28,14 +28,14 @@
         "compile": "npm-run-all compile:*",
         "compile:typescript": "tsc",
         "compile:webpack": "cross-env NODE_ENV=production webpack",
-        "compile:scss": "node-sass ./app/sass/main.scss ./public/assets/styles/main.css --output-style compressed",
+        "compile:sass": "node-sass ./app/sass/main.scss ./public/assets/styles/main.css --output-style compressed",
         "compile:linter": "npm run lint",
         "dev": "run-p watch:*",
         "dev:typescript": "tsc && npm run dev:webpack",
         "dev:webpack": "cross-env NODE_ENV=development webpack",
         "dev:sass": "node-sass ./app/sass/main.scss ./public/assets/styles/main.css",
         "watch:typescript": "onchange ./app/typescript/**/*.ts -- npm run dev:typescript",
-        "watch:scss": "onchange ./app/sass/**/*.scss -- npm run dev:sass",
+        "watch:sass": "onchange ./app/sass/**/*.scss -- npm run dev:sass",
         "watch:sync": "node ./sync.js"
     },
     "lint-staged": {
