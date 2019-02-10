@@ -1,4 +1,3 @@
-import { isDebug, easing } from '../env';
 import AbstractModule from './AbstractModule';
 import anime from 'animejs';
 
@@ -12,7 +11,7 @@ export default class BasicAccordion extends AbstractModule{
 
     constructor(el:HTMLElement, uuid:string, app:App){
         super(el, uuid, app);
-        if(isDebug){
+        if(this.isDebug){
             console.log('%c[module] '+`%cBuilding: ${BasicAccordion.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
         }
 
@@ -45,7 +44,7 @@ export default class BasicAccordion extends AbstractModule{
         anime({
             targets: body,
             duration: 300,
-            easing: easing.out,
+            easing: this.env.EASING.out,
             height: [`${body.scrollHeight}px`, 0]
         });
 
@@ -53,7 +52,7 @@ export default class BasicAccordion extends AbstractModule{
         anime({
             targets: bodyEls,
             duration: 75,
-            easing: easing.out,
+            easing: this.env.EASING.out,
             opacity: [1, 0]
         });
     }
@@ -72,7 +71,7 @@ export default class BasicAccordion extends AbstractModule{
             anime({
                 targets: body,
                 duration: 300,
-                easing: easing.out,
+                easing: this.env.EASING.out,
                 height: [`${body.scrollHeight}px`, 0]
             });
 
@@ -80,7 +79,7 @@ export default class BasicAccordion extends AbstractModule{
             anime({
                 targets: bodyEls,
                 duration: 75,
-                easing: easing.out,
+                easing: this.env.EASING.out,
                 opacity: [1, 0]
             });
         }else{
@@ -95,7 +94,7 @@ export default class BasicAccordion extends AbstractModule{
             anime({
                 targets: body,
                 duration: 300,
-                easing: easing.in,
+                easing: this.env.EASING.in,
                 height: [0, `${body.scrollHeight}px`],
             });
 
@@ -103,7 +102,7 @@ export default class BasicAccordion extends AbstractModule{
             anime({
                 targets: bodyEls,
                 duration: 150,
-                easing: easing.out,
+                easing: this.env.EASING.out,
                 delay: (el:HTMLElement, i:number)=>{
                     return i * 75 + 150;
                 },
@@ -117,6 +116,6 @@ export default class BasicAccordion extends AbstractModule{
      * Remove all event listners before calling super.destory()
      */
     public destroy(): void{
-        super.destroy(isDebug, BasicAccordion.MODULE_NAME);
+        super.destroy(BasicAccordion.MODULE_NAME);
     }
 }

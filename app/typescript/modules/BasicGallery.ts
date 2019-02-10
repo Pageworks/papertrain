@@ -1,4 +1,3 @@
-import { isDebug, easing } from '../env';
 import AbstractModule from './AbstractModule';
 import anime from 'animejs';
 import { getParent } from '../utils/getParent';
@@ -20,7 +19,9 @@ export default class BasicGallery extends AbstractModule{
 
     constructor(el:HTMLElement, uuid:string, app:App){
         super(el, uuid, app);
-        if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicGallery.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        if(this.isDebug){
+            console.log('%c[module] '+`%cBuilding: ${BasicGallery.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        }
 
         // CMS Input Data
         this.style      = this.el.getAttribute('data-style');
@@ -77,7 +78,7 @@ export default class BasicGallery extends AbstractModule{
         anime({
             targets: currSlide,
             duration: (this.transition * 1000),
-            easing: easing.ease,
+            easing: this.env.EASING.ease,
             translateX: [0, `${100 * -direction}%`]
         });
 
@@ -85,7 +86,7 @@ export default class BasicGallery extends AbstractModule{
         anime({
             targets: newSlide,
             duration: (this.transition * 1000),
-            easing: easing.ease,
+            easing: this.env.EASING.ease,
             translateX: [`${100 * direction}%`, 0],
             complete: ()=>{
                 this.cleanGallery();
@@ -108,7 +109,7 @@ export default class BasicGallery extends AbstractModule{
         anime({
             targets: currSlide,
             duration: (this.transition * 1000),
-            easing: easing.ease,
+            easing: this.env.EASING.ease,
             opacity: [1,0],
             zIndex: 1
         });
@@ -117,7 +118,7 @@ export default class BasicGallery extends AbstractModule{
         anime({
             targets: newSlide,
             duration: (this.transition * 1000),
-            easing: easing.ease,
+            easing: this.env.EASING.ease,
             opacity: [0,1],
             zIndex: 2,
             complete: ()=>{
@@ -148,7 +149,7 @@ export default class BasicGallery extends AbstractModule{
         anime({
             targets: newSlide,
             duration: (this.transition * 1000),
-            easing: easing.ease,
+            easing: this.env.EASING.ease,
             translateX: [`${100 * direction}%`, 0],
             complete: ()=>{
                 // Hide slide
@@ -183,7 +184,7 @@ export default class BasicGallery extends AbstractModule{
         anime({
             targets: newSlide,
             duration: (this.transition * 2000),
-            easing: easing.ease,
+            easing: this.env.EASING.ease,
             translateX: [`${100 * direction}%`, 0],
         });
 
@@ -191,7 +192,7 @@ export default class BasicGallery extends AbstractModule{
         anime({
             targets: newSlideImg,
             duration: (this.transition * 2000),
-            easing: easing.ease,
+            easing: this.env.EASING.ease,
             translateX: [`${50 * -direction}%`, 0],
         });
 
@@ -199,7 +200,7 @@ export default class BasicGallery extends AbstractModule{
         anime({
             targets: currSlide,
             duration: (this.transition * 2000),
-            easing: easing.ease,
+            easing: this.env.EASING.ease,
             translateX: [0, `${100 * -direction}%`],
             complete: ()=>{
                 this.cleanGallery();
@@ -210,7 +211,7 @@ export default class BasicGallery extends AbstractModule{
         anime({
             targets: currSlideImg,
             duration: (this.transition * 2000),
-            easing: easing.ease,
+            easing: this.env.EASING.ease,
             translateX: [0, `${50 * direction}%`],
         });
     }
@@ -297,6 +298,6 @@ export default class BasicGallery extends AbstractModule{
     public destroy(): void{
         this.actionsEls.forEach((el)=>{ el.removeEventListener('click', e => this.handleActionButton(e) ); });
         this.callbackLoop = ()=>{};
-        super.destroy(isDebug, BasicGallery.MODULE_NAME);
+        super.destroy(BasicGallery.MODULE_NAME);
     }
 }

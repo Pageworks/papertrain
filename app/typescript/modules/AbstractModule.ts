@@ -1,12 +1,16 @@
 export default class AbstractModule{
     public el:      HTMLElement;
     public uuid:    string;
+    public isDebug: boolean;
+    public env:     Env;
     private _app:   App;
 
     constructor(el:HTMLElement, uuid:string, app:App){
-        this.el     = el;
-        this.uuid   = uuid;
-        this._app   = app;
+        this.el         = el;
+        this.uuid       = uuid;
+        this._app       = app;
+        this.env        = this._app.env;
+        this.isDebug    = this.env.getDebugStatus();
 
         // Sets modules UUID to be used later when handling modules destruction
         this.el.setAttribute('data-uuid', this.uuid);
@@ -31,9 +35,9 @@ export default class AbstractModule{
      * @param {boolean} isDebug
      * @param {string} MODULE_NAME
      */
-    public destroy(isDebug: boolean, MODULE_NAME: string): void{
+    public destroy(MODULE_NAME: string): void{
         this.el.removeAttribute('data-uuid');
-        if(isDebug){
+        if(this.isDebug){
             console.log('%c[module] '+`%cDestroying ${MODULE_NAME} - ${this.uuid}`,'color:#ff6e6e','color:#eee');
         }
     }

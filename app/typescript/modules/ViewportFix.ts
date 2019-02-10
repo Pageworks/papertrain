@@ -1,4 +1,3 @@
-import { isDebug,html } from '../env';
 import AbstractModule from './AbstractModule';
 
 export default class ViewportFix extends AbstractModule{
@@ -9,7 +8,7 @@ export default class ViewportFix extends AbstractModule{
 
     constructor(el:HTMLElement, uuid:string, app:App){
         super(el, uuid, app);
-        if(isDebug){
+        if(this.isDebug){
             console.log('%c[module] '+`%cBuilding: ${ViewportFix.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
         }
 
@@ -22,7 +21,7 @@ export default class ViewportFix extends AbstractModule{
      * register any initial event listeners
      */
     init(){
-        if(html.classList.contains('is-touch-device')){
+        if(this.env.HTML.classList.contains('is-touch-device')){
             this.el.style.setProperty('--vh', `${this._vh}px`);
             window.addEventListener('resize', this.windowResize );
         }
@@ -39,7 +38,7 @@ export default class ViewportFix extends AbstractModule{
      * Fixes viewport height value for chrome
      */
     private handleResize(): void{
-        if(html.classList.contains('is-touch-device')){
+        if(this.env.HTML.classList.contains('is-touch-device')){
             this._vh = window.innerHeight * 0.01;
             this.el.style.setProperty('--vh', `${this._vh}px`);
         }
@@ -51,6 +50,6 @@ export default class ViewportFix extends AbstractModule{
      */
     destroy(){
         window.removeEventListener('resize', this.windowResize );
-        super.destroy(isDebug, ViewportFix.MODULE_NAME);
+        super.destroy(ViewportFix.MODULE_NAME);
     }
 }

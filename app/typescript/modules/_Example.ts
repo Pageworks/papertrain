@@ -1,4 +1,3 @@
-import { isDebug } from '../env';
 import AbstractModule from './AbstractModule';
 
 export default class Example extends AbstractModule{
@@ -7,7 +6,7 @@ export default class Example extends AbstractModule{
 
     constructor(el:HTMLElement, uuid:string, app:App){
         super(el, uuid, app);
-        if(isDebug){
+        if(this.isDebug){
             console.log('%c[module] '+`%cBuilding: ${Example.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
         }
     }
@@ -18,7 +17,7 @@ export default class Example extends AbstractModule{
      * register any initial event listeners
      */
     init(){
-
+        
     }
 
     /**
@@ -26,6 +25,6 @@ export default class Example extends AbstractModule{
      * Remove all event listners before calling super.destory()
      */
     destroy(){
-        super.destroy(isDebug, Example.MODULE_NAME);
+        super.destroy(Example.MODULE_NAME);
     }
 }

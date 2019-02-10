@@ -11,6 +11,12 @@ interface Transition{
     hide:   Function;
 }
 
+interface EasingObject{
+    ease:   string;
+    in:     string;
+    out:    string;
+    sharp:  string;
+}
 
 interface Module{
     index:      string;
@@ -25,4 +31,16 @@ declare class App{
     deleteModules:          Function;
     deleteModule:           Function;
     updateTouchElements:    Function;
+    env:                    Env;
+}
+
+declare class Env{
+    setDebug:       Function;
+    getDebugStatus: Function;
+    HTML:           HTMLElement;
+    BODY:           HTMLElement;
+    PJAX_CONTAINER: string;
+    SCROLL_TRIGGER: number;
+    APP_NAME:       string;
+    EASING:         EasingObject;
 }

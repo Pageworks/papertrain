@@ -1,4 +1,3 @@
-import { isDebug } from '../env';
 import AbstractModule from './AbstractModule';
 
 export default class BasicForm extends AbstractModule{
@@ -14,7 +13,9 @@ export default class BasicForm extends AbstractModule{
 
     constructor(el:HTMLElement, uuid:string, app:App){
         super(el, uuid, app);
-        if(isDebug) console.log('%c[module] '+`%cBuilding: ${BasicForm.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        if(this.isDebug){
+            console.log('%c[module] '+`%cBuilding: ${BasicForm.MODULE_NAME} - ${this.uuid}`,'color:#4688f2','color:#eee');
+        }
 
         // Elements
         this._inputs            = Array.from(this.el.querySelectorAll('.js-input input'));
@@ -244,7 +245,7 @@ export default class BasicForm extends AbstractModule{
 
         // Make sure the input has it's password field companion
         if(!forEl){
-            if(isDebug){
+            if(this.isDebug){
                 console.log('%cUndefined Password Element: '+`%c${parent.getAttribute('data-for')}`,'color:#ff6e6e','color:#eee');
             }
         }else{
@@ -312,6 +313,6 @@ export default class BasicForm extends AbstractModule{
     }
 
     public destroy(): void{
-        super.destroy(isDebug, BasicForm.MODULE_NAME);
+        super.destroy(BasicForm.MODULE_NAME);
     }
 }

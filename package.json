@@ -21,7 +21,6 @@
     "main": "./app/typescript/App.ts",
     "scripts": {
         "precommit": "lint-staged",
-        "preview": "http-server --p 9001 -s -o",
         "lint": "npm-run-all lint:*",
         "lint:sass": "stylelint app/sass/**/*.scss --cache",
         "lint:typescript": "tslint app/scripts/**/*.ts -c .tslintrc.js -p tsconfig.json -t verbose",
@@ -36,7 +35,8 @@
         "dev:webpack": "cross-env NODE_ENV=development webpack",
         "dev:sass": "node-sass ./app/sass/main.scss ./public/assets/styles/main.css",
         "watch:typescript": "onchange ./app/typescript/**/*.ts -- npm run dev:typescript",
-        "watch:scss": "onchange ./app/sass/**/*.scss -- npm run dev:sass"
+        "watch:scss": "onchange ./app/sass/**/*.scss -- npm run dev:sass",
+        "watch:sync": "node ./sync.js"
     },
     "lint-staged": {
         "linters": {
@@ -55,8 +55,8 @@
         "browser-sync": "^2.26.3",
         "chalk": "^2.4.2",
         "cross-env": "^5.2.0",
+        "dotenv": "^6.2.0",
         "friendly-errors-webpack-plugin": "^1.7.0",
-        "http-server": "^0.11.1",
         "husky": "^1.3.1",
         "lint-staged": "^7.3.0",
         "node-sass": "^4.11.0",

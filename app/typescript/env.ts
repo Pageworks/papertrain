@@ -1,21 +1,27 @@
-const APP_NAME          = 'REPLACE_ME';
-let isDebug             = true;
+export default class Env {
+    public static HTML:HTMLElement      = document.documentElement;
+    public static BODY:HTMLElement      = document.body;
+    public static PJAX_CONTAINER:string = '.js-pjax-container';
+    public static SCROLL_TRIGGER:number = 100;
+    public static APP_NAME:string       = 'REPLACE_ME';
+    public static EASING:EasingObject   = {
+        ease: 'cubicBezier(0.4, 0.0, 0.2, 1)',
+        in: 'cubicBezier(0.0, 0.0, 0.2, 1)',
+        out: 'cubicBezier(0.4, 0.0, 1, 1)',
+        sharp: 'cubicBezier(0.4, 0.0, 0.6, 1)'
+    };
 
-const html              = document.documentElement;
-const body              = document.body;
-const pjaxContainer     = '.js-pjax-container';
-const pjaxWrapper       = '.js-pjax-wrapper';
+    private _isDebug:   boolean;
 
-const scrollTrigger     = 100; // in pixels
-const easing            = {
-                            ease: 'cubicBezier(0.4, 0.0, 0.2, 1)',
-                            in: 'cubicBezier(0.0, 0.0, 0.2, 1)',
-                            out: 'cubicBezier(0.4, 0.0, 1, 1)',
-                            sharp: 'cubicBezier(0.4, 0.0, 0.6, 1)'
-                        }
+    constructor(){
+        this._isDebug   = true;
+    }
 
-export { APP_NAME, html, body, pjaxWrapper, pjaxContainer, isDebug, easing, scrollTrigger };
+    public setDebug(status:boolean): void{
+        this._isDebug = status;
+    }
 
-export function setDebug(status:boolean){
-    isDebug = status;
+    public getDebugStatus(): boolean{
+        return this._isDebug;
+    }
 }

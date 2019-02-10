@@ -1,5 +1,4 @@
-import { APP_NAME, html, isDebug, setDebug, scrollTrigger } from './env';
-
+import Env from './env';
 import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
 import polyfill from './polyfill';
@@ -15,6 +14,8 @@ export default class App{
     private _touchSupport:      boolean;
     private _scrollDistance:    number;
     private _prevScroll:        number;
+    private _socket:            any;
+    public  env:                Env;
     
     // Elements
     private _trackedTouches:    Array<Element>;
@@ -30,6 +31,8 @@ export default class App{
 
         this._trackedTouches    = [];
 
+        this.env                = new Env();
+
         this.init();
     }
 
@@ -37,27 +40,26 @@ export default class App{
      * Used to call any methods needed when the application initially loads
      */
     private init(): void{
-        html.classList.remove('has-no-js');
-        html.classList.add('has-js');
-
+        Env.HTML.classList.remove('has-no-js');
+        Env.HTML.classList.add('has-js');
         // If user is using IE 11 load the polyfill
         if('-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style){
             polyfill();
         }
 
         // Check for production debug status
-        if(html.getAttribute('data-debug') !== null){
-            setDebug(true);
+        if(Env.HTML.getAttribute('data-debug') !== null){
+            this.env.setDebug(true);
         }
 
         if(this._touchSupport){
-            html.classList.add('is-touch-device');
-            html.classList.remove('is-not-touch-device');
+            Env.HTML.classList.add('is-touch-device');
+            Env.HTML.classList.remove('is-not-touch-device');
             document.body.addEventListener('touchstart', this.userTouched);
             this.getTouchElements();
         }
 
-        window.addEventListener('load', e => { html.classList.add('has-loaded') });
+        window.addEventListener('load', e => { Env.HTML.classList.add('has-loaded') });
         window.addEventListener('scroll', e => this.handleScroll() );
 
         this.initModules(); // Get initial modules
@@ -65,7 +67,7 @@ export default class App{
 
         this._transitionManager = new TransitionManager(this);
 
-        if(!isDebug){
+        if(!this.env.getDebugStatus()){
             this.createEasterEgg();
         }
     }
@@ -75,8 +77,8 @@ export default class App{
      */
     private userTouched: EventListener = ()=>{
         document.body.removeEventListener('touchstart', this.userTouched);
-        html.classList.add('has-touched');
-        html.classList.remove('has-not-touched');
+        Env.HTML.classList.add('has-touched');
+        Env.HTML.classList.remove('has-not-touched');
     }
 
     /**
@@ -248,15 +250,15 @@ export default class App{
     private handleScroll(): void{
         const currentScroll:number = window.scrollY;
 
-        if(!html.classList.contains('has-scrolled') && currentScroll >= this._prevScroll){
+        if(!Env.HTML.classList.contains('has-scrolled') && currentScroll >= this._prevScroll){
             this._scrollDistance += currentScroll - this._prevScroll;
 
-            if(this._scrollDistance >= scrollTrigger){
-                html.classList.add('has-scrolled');
+            if(this._scrollDistance >= Env.SCROLL_TRIGGER){
+                Env.HTML.classList.add('has-scrolled');
             }
         }
-        else if(html.classList.contains('has-scrolled') && currentScroll < this._prevScroll){
-            html.classList.remove('has-scrolled');
+        else if(Env.HTML.classList.contains('has-scrolled') && currentScroll < this._prevScroll){
+            Env.HTML.classList.remove('has-scrolled');
             this._scrollDistance = 0;
         }
 
@@ -270,18 +272,18 @@ export default class App{
      */
     private handleStatus(): void{
         // Handle unique visitor status
-        if(window.localStorage.getItem(`${APP_NAME}_UniqueVisit`) === null){
-            html.classList.add('is-unique-visitor');
-            window.localStorage.setItem(`${APP_NAME}_UniqueVisit`, 'visited');
+        if(window.localStorage.getItem(`${Env.APP_NAME}_UniqueVisit`) === null){
+            Env.HTML.classList.add('is-unique-visitor');
+            window.localStorage.setItem(`${Env.APP_NAME}_UniqueVisit`, 'visited');
         }
 
         // Handle first visit of the day (in 24 hours) status
-        if(window.localStorage.getItem(`${APP_NAME}_DailyVisit`) === null || (Date.now() - parseInt(window.localStorage.getItem(`${APP_NAME}_UniqueVisit`)) > 86400000)){
-            html.classList.add('is-first-of-day');
+        if(window.localStorage.getItem(`${Env.APP_NAME}_DailyVisit`) === null || (Date.now() - parseInt(window.localStorage.getItem(`${Env.APP_NAME}_UniqueVisit`)) > 86400000)){
+            Env.HTML.classList.add('is-first-of-day');
         } else {
-            html.classList.add('is-returning');
+            Env.HTML.classList.add('is-returning');
         }
-        window.localStorage.setItem(`${APP_NAME}_DailyVisit`, Date.now().toString()); // Always update daily visit status
+        window.localStorage.setItem(`${Env.APP_NAME}_DailyVisit`, Date.now().toString()); // Always update daily visit status
     }
 
     /**
@@ -314,7 +316,7 @@ export default class App{
             const modules = this.getModuleNames(requestedModules);
 
             if(modules.length === 0){
-                if(isDebug){
+                if(this.env.getDebugStatus()){
                     console.log('%cEmpty Module Attribute Detected','color:#ff6e6e');
                 }
                 return;
@@ -330,7 +332,7 @@ export default class App{
                     newModule.init();
                 }
                 else if(this._modules[modules[i]] === undefined){
-                    if(isDebug){
+                    if(this.env.getDebugStatus()){
                         console.log('%cUndefined Module: '+`%c${modules[i]}`,'color:#ff6e6e','color:#eee');
                     }
                 }
@@ -397,7 +399,7 @@ export default class App{
      */
     public deleteModule(uuid:string): void{
         if(!uuid){
-            if(isDebug){
+            if(this.env.getDebugStatus()){
                 console.log('%cDelete Module Error: '+'%cmodule UUID was not sent in the custom event','color:#ff6e6e','color:#eee');
             }
             return;

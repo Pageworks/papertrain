@@ -1,20 +1,24 @@
-import { APP_NAME, pjaxContainer, html, isDebug } from '../env';
+import Env from '../env';
 import * as transitions from './transitions';
 import Pjax from '@codewithkyle/fuel-pjax';
 import App from '../App';
 
 export default class TransitionManager {
 
-    private _app:                    App;
-    private _transitions:            { [index:string] : Function };
-    private _transition:             Transition;
-    private _pjax:                   Pjax;
+    private _app:                   App;
+    private _env:                   Env;
+    private _transitions:           { [index:string] : Function };
+    private _transition:            Transition;
+    private _pjax:                  Pjax;
+    private _isDebug:               boolean;
 
     constructor(app:App){
-        this._app                    = app;
-        this._transitions            = transitions;
-        this._transition             = null;
-        this._pjax                   = new Pjax({ debug: isDebug, selectors: [`${pjaxContainer}`] });
+        this._app           = app;
+        this._env           = new Env();
+        this._isDebug       = this._env.getDebugStatus();
+        this._transitions   = transitions;
+        this._transition    = null;
+        this._pjax          = new Pjax({ debug: this._isDebug, selectors: [`${Env.PJAX_CONTAINER}`] });
 
         this.init();
     }
@@ -38,10 +42,10 @@ export default class TransitionManager {
      * Sets the base DOM status classes
      */
     private load(): void{
-        html.classList.add('dom-is-loaded');
-        html.classList.remove('dom-is-loading');
+        Env.HTML.classList.add('dom-is-loaded');
+        Env.HTML.classList.remove('dom-is-loading');
 
-        setTimeout(()=>{ html.classList.add('dom-is-animated') }, App.ANIMATION_DELAY);
+        setTimeout(()=>{ Env.HTML.classList.add('dom-is-animated') }, App.ANIMATION_DELAY);
     }
 
     /**
@@ -61,12 +65,12 @@ export default class TransitionManager {
             transition  = (el.getAttribute('data-transition') !== null) ? el.getAttribute('data-transition') : 'BaseTransition';
         }
 
-        html.setAttribute('data-transition', transition);
+        Env.HTML.setAttribute('data-transition', transition);
 
         this._transition = new this._transitions[transition].prototype.constructor();
 
-        html.classList.remove('dom-is-loaded', 'dom-is-animated');
-        html.classList.add('dom-is-loading');
+        Env.HTML.classList.remove('dom-is-loaded', 'dom-is-animated');
+        Env.HTML.classList.add('dom-is-loading');
 
         this._transition.launch();
     }
@@ -83,20 +87,20 @@ export default class TransitionManager {
     private endTransition(e:Event): void{
         const templateName = this.getTemplateName();
 
-        if(isDebug){
+        if(this._isDebug){
             console.log('%c[view] '+`%cDisplaying: ${templateName}`,'color:#ecc653','color:#eee');
         }
 
-        html.classList.add('dom-is-loaded');
-        html.classList.remove('dom-is-loading');
+        Env.HTML.classList.add('dom-is-loaded');
+        Env.HTML.classList.remove('dom-is-loading');
 
-        setTimeout(()=>{ html.classList.add('dom-is-animated') }, App.ANIMATION_DELAY);
+        setTimeout(()=>{ Env.HTML.classList.add('dom-is-animated') }, App.ANIMATION_DELAY);
 
         if(templateName === 'home'){
-            html.classList.add('is-homepage');
+            Env.HTML.classList.add('is-homepage');
         }
         else{
-            html.classList.remove('is-homepage');
+            Env.HTML.classList.remove('is-homepage');
         }
 
         if(this._transition === null){
@@ -128,7 +132,7 @@ export default class TransitionManager {
     private getTemplateName(): string{
         let templateName = 'MISSING_TEMPLATE_NAME';
 
-        const templateEl = html.querySelector('[data-template]');
+        const templateEl = Env.HTML.querySelector('[data-template]');
 
         if(templateEl){
             templateName = templateEl.getAttribute('data-template');
@@ -142,7 +146,7 @@ export default class TransitionManager {
      * Resets our transition object and the DOM's `data-transition` attribute
      */
     private reinit(): void{
-        html.setAttribute('data-transition', '');
+        Env.HTML.setAttribute('data-transition', '');
         this._transition = null;
         console.log('Transition renit');
     }
