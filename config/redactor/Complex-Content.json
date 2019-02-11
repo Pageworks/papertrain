@@ -6,5 +6,6 @@
         "orderedlist",
         "link"
     ],
-    "toolbarFixed": true
+    "toolbarFixed": true,
+    "linkNewTab": true
 }

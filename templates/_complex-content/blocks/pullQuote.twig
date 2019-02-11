@@ -1,15 +1,14 @@
 {% if block.body|length %}
 	<div class="b-quote o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}">
 		<div class="b-quote_shim o-wrapper">
-            {% switch block.quoteStyle %}
-                {% case '-large' %}
+            <blockquote class="b-quote_blockquote {{ block.quoteStyle }}">
+                {% if block.quoteStyle == '-large' %}
                     <span class="b-quote_icon">&ldquo;</span>
-                    <p class="b-quote_body">{{ block.body }}</p>
-                {% case '-block' %}
-                    <blockquote class="b-quote_body">{{ block.body }}</blockquote>
-            {% endswitch %}
+                {% endif %}
+                <p class="b-quote_body">{{ block.body }}</p>
+            </blockquote>
             {% if block.source %}
-                <cite class="b-quote_source">
+                <cite class="b-quote_source {{ block.quoteStyle }}">
                     - {{ block.source }}
                 </cite>
             {% endif %}

@@ -1,0 +1,17 @@
+.b-ctas{
+    position: relative;
+
+    .o-layout{
+        display: inline-flex;
+        flex-wrap: wrap;
+    }
+
+    .b-ctas_shim{
+        width: 100%;
+        display: inline-flex;
+        flex: 0px auto;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-bottom: $unit;
+    }
+}

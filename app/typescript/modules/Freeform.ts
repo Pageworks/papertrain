@@ -1,3 +1,4 @@
+import Env from '../env';
 import AbstractModule from './AbstractModule';
 import anime from 'animejs';
 import { finished } from 'stream';
@@ -341,7 +342,7 @@ export default class Freeform extends AbstractModule{
             targets: this._success,
             duration: 150,
             opacity: [1,0],
-            easing: this.env.EASING.sharp,
+            easing: Env.EASING.sharp,
             complete: ()=>{
                 this._form.reset();
                 this._success.classList.remove('is-visible');
@@ -360,7 +361,7 @@ export default class Freeform extends AbstractModule{
                     opacity: [0, 1],
                     translateY: ['25px', 0],
                     duration: 150,
-                    easing: this.env.EASING.in,
+                    easing: Env.EASING.in,
                     delay: anime.stagger(35),
                     complete: ()=>{
                         this.getPageElements();
@@ -374,7 +375,7 @@ export default class Freeform extends AbstractModule{
                         targets: this._tabWrapper,
                         opacity: [0, 1],
                         duration: 150,
-                        easing: this.env.EASING.in
+                        easing: Env.EASING.in
                     });
                 }
             }
@@ -408,7 +409,7 @@ export default class Freeform extends AbstractModule{
             opacity: [1, 0],
             translateY: [0, '-25px'],
             duration: 150,
-            easing: this.env.EASING.sharp,
+            easing: Env.EASING.sharp,
             delay: anime.stagger(35),
             complete: ()=>{
                 this.removeEvents();
@@ -426,7 +427,7 @@ export default class Freeform extends AbstractModule{
                     opacity: [0, 1],
                     translateY: ['25px', 0],
                     duration: 150,
-                    easing: this.env.EASING.in,
+                    easing: Env.EASING.in,
                     delay: anime.stagger(35),
                     complete: ()=>{
                         this.getPageElements();
@@ -451,7 +452,7 @@ export default class Freeform extends AbstractModule{
                 targets: this._spinner,
                 opacity: [0, 1],
                 duration: 150,
-                easing: this.env.EASING.out,
+                easing: Env.EASING.out,
                 complete: ()=>{
                     this._spinner.classList.remove('is-visible');
                     this._success.classList.add('is-visible');
@@ -460,7 +461,7 @@ export default class Freeform extends AbstractModule{
                         targets: this._success,
                         duration: 150,
                         opacity: [0,1],
-                        easing: this.env.EASING.in
+                        easing: Env.EASING.in
                     });
                 }
             });
@@ -493,7 +494,7 @@ export default class Freeform extends AbstractModule{
                 targets: this._tabWrapper,
                 opacity: [1, 0],
                 duration: 150,
-                easing: this.env.EASING.sharp
+                easing: Env.EASING.sharp
             });
         }
 
@@ -502,7 +503,7 @@ export default class Freeform extends AbstractModule{
             opacity: [1, 0],
             translateY: [0, '-25px'],
             duration: 150,
-            easing: this.env.EASING.sharp,
+            easing: Env.EASING.sharp,
             delay: anime.stagger(35),
             complete: ()=>{
                 this._pages[this._active].classList.remove('is-active-page');
@@ -511,7 +512,7 @@ export default class Freeform extends AbstractModule{
                 anime({
                     targets: this._spinner,
                     duration: 300,
-                    easing: this.env.EASING.in,
+                    easing: Env.EASING.in,
                     opacity: [0, 1]
                 });
             }

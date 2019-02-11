@@ -1,72 +1,100 @@
 .b-quote{
-    text-align: center;
-    font-size: 2.0625rem;
-    letter-spacing: -0.015rem;
-    font-weight: $medium;
-
-    // Color Settings
-    color: contrast($base-background-color, 0.87);
-
-    section.-dark-background &,
-    section.has-image &,
-    section.has-video & {
-        color: contrast($dark-background-color, 0.87);
-    }
-
     .b-quote_shim{
-        position: relative;
-        max-width: 640px;
+        display: block;
+        margin: 0 auto;
 
-        .b-quote_icon{
-            font-size: 6rem;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            opacity: 0.06;
-            line-height: 0;
-            transform: translateY(2.35rem);
-            display: inline-block;
+        .b-quote_blockquote{
+            &.-large{
+                text-align: center;
+                font-size: 2.0625rem;
+                letter-spacing: -0.015rem;
+                font-weight: $medium;
+                max-width: 640px;
+                display: block;
+                margin: 0 auto;
 
-            section.-dark-background &,
-            section.has-image &,
-            section.has-video & {
-                opacity: 0.15;
+                // Color Settings
+                color: contrast($base-background-color, 0.87);
+
+                section.-dark-background &,
+                section.has-image &,
+                section.has-video & {
+                    color: contrast($dark-background-color, 0.87);
+                }
+
+                .b-quote_icon{
+                    font-size: 6rem;
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                    opacity: 0.06;
+                    line-height: 0;
+                    transform: translateY(2.35rem);
+                    display: inline-block;
+
+                    section.-dark-background &,
+                    section.has-image &,
+                    section.has-video & {
+                        opacity: 0.15;
+                    }
+                }
+
+                .b-quote_body{
+                    margin: 0;
+
+                    // Readability Settings
+                    line-height: 3.1875rem;
+
+                    @media (min-width: $screen-xsmall){
+                        line-height: 3.25rem;
+                    }
+
+                    @media (min-width: $screen-small){
+                        line-height: 3.375rem;
+                    }
+
+                    @media (min-width: $screen-medium){
+                        line-height: 3.4375rem;
+                    }
+                }
             }
-        }
 
-        .b-quote_body{
-            margin: 0;
-
-            // Readability Settings
-            line-height: 3.1875rem;
-
-            @media (min-width: $screen-xsmall){
-                line-height: 3.25rem;
-            }
-
-            @media (min-width: $screen-small){
-                line-height: 3.375rem;
-            }
-
-            @media (min-width: $screen-medium){
-                line-height: 3.4375rem;
+            &.-block{
+                padding: $unit $unit $unit*3 $unit*2;
+                border-left: 2px solid $primary;
+                line-height: 1.618;
+                font-size: $base-font-size * 1.618;
+                background-color: rgba($primary, 0.05);
             }
         }
 
         .b-quote_source{
-            font-family: $font-heading;
-            font-weight: $medium;
-            font-size: 1.25rem;
-            letter-spacing: 0.0125rem;
-            line-height: 2rem;
-            text-transform: capitalize;
-            font-style: normal;
+            &.-large{
+                font-family: $font-heading;
+                font-weight: $medium;
+                font-size: 1.25rem;
+                letter-spacing: 0.0125rem;
+                line-height: 2rem;
+                text-transform: capitalize;
+                font-style: normal;
+                text-align: center;
+                margin-top: $unit;
+                display: block;
 
-            // Color Settings
-            color: contrast($base-background-color, 0.6);
+                // Color Settings
+                color: contrast($base-background-color, 0.6);
 
-            section.-dark-background &,
-            section.has-image &,
-            section.has-video & {
-                color: contrast($dark-background-color, 0.6);
+                section.-dark-background &,
+                section.has-image &,
+                section.has-video & {
+                    color: contrast($dark-background-color, 0.6);
+                }
+            }
+
+            &.-block{
+                color: contrast($base-background-color, 0.6);
+                padding-left: $unit*2 + $unit-half;
+                transform: translateY(-150%);
+                position: relative;
+                display: inline-block;
             }
         }
     }

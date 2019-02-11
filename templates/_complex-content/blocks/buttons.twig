@@ -1,7 +1,17 @@
 {% if block.buttons|length %}
 	<div class="b-buttons o-wrapper -flexbox u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{block.alignment}}">
-		{% for button in block.buttons %}
-            <a href="{{ button.buttonLink.url }}" class="o-button {{ button.buttonStyle }}" target="{{ button.buttonLink.target }}">
+        {% for button in block.buttons %}
+            <a href="{{ button.buttonLink.url }}" class="
+            {% if block.buttons|length > 1 %}
+                {% if loop.first %}
+                    u-margin-right-half
+                {% elseif loop.last %}
+                    u-margin-left-half
+                {% else %}
+                    u-margin-horizontal-half
+                {% endif %}
+            {% endif %}
+            o-button {{ button.buttonStyle }} {{ button.secondaryButtonStyle }}" target="{{ button.buttonLink.target }}">
                 <span>{{ button.buttonLink.text }}</span>
             </a>
         {% endfor %}

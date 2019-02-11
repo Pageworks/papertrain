@@ -1,18 +1,17 @@
 .b-list{
     .b-list_list{
-        padding-left: 1.5rem;
+        padding-left: $unit*2;
         display: inline-block;
-        max-width: 420px;
+        max-width: 840px;
 
+        // List Icons
         &.-default{
             .b-list_item{
                 &::before{
                     content:"";
                     @include size(0.75rem, 2px);
                     background-color: $primary;
-                    @include position(absolute, 50% null null -1.5rem);
-                    transform: translateY(-50%);
-                    opacity: 0.6;
+                    @include position(absolute, 21px null null -1.5rem);
                 }
             }
         }
@@ -23,27 +22,63 @@
                     content:"";
                     @include size(0.75rem, 2px);
                     background-color: $primary;
-                    @include position(absolute, 50% null null -1.5rem);
-                    transform: translateY(-50%);
-                    opacity: 0.6;
+                    @include position(absolute, 21px null null -1.5rem);
+                    // transform: translateY(-50%);
                 }
 
                 &::after{
                     content:"";
                     @include size(2px, 0.75rem);
                     background-color: $primary;
-                    @include position(absolute, 50% null null -1.2rem);
-                    transform: translateY(-50%);
-                    opacity: 0.6;
+                    @include position(absolute, $unit null null -1.2rem);
+                    // transform: translateY(-50%);
                 }
             }
         }
 
+        &.-square{
+            .b-list_item{
+                &::before{
+                    content:"";
+                    @include size(9px, 9px);
+                    background-color: $primary;
+                    @include position(absolute, 17px null null -1.5rem);
+                }
+            }
+        }
+
+        &.-circle{
+            .b-list_item{
+                &::before{
+                    content:"";
+                    @include size($unit-half, $unit-half);
+                    border: 2px solid $primary;
+                    border-radius: 100%;
+                    @include position(absolute, $unit null null -1.5rem);
+                }
+            }
+        }
+
+        &.-disc{
+            .b-list_item{
+                &::before{
+                    content:"";
+                    @include size(9px, 9px);
+                    background-color: $primary;
+                    border-radius: 100%;
+                    @include position(absolute, 17px null null -1.5rem);
+                }
+            }
+        }
+
+        // List Item
         .b-list_item{
             list-style: none;
             position: relative;
-            margin: 1rem 0;
-            font-size: 1.25rem;
+            margin: $unit 0;
+            font-size: $base-font-size * 1.618;
+            text-align: left;
+            display: block;
 
             &:first-child{
                 margin-top: 0;

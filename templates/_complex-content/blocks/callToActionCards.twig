@@ -1,0 +1,11 @@
+{% if block.selectedCards|length %}
+	<div class="b-ctas o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}">
+        <div class="o-layout {{ block.gridSpacing }}  u-1/1">
+            {% for card in block.selectedCards %}
+                <div class="b-ctas_shim  o-layout_item u-1/1 u-1/2@medium u-1/3@container">
+                    {% include '_includes/objects/card' ~ block.cardStyle %}
+                </div>
+            {% endfor %}
+        </div>
+	</div>
+{% endif %}

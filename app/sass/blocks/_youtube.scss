@@ -1,0 +1,13 @@
+.b-youtube{
+    .b-youtube_shim{
+        display: inline-block;
+        position: relative;
+        width: 100%;
+
+        .b-youtube_video{
+            @include size(100%, 100%);
+            @include position(absolute, 0 null null 0);
+            display: inline-block;
+        }
+    }
+}

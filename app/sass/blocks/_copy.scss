@@ -49,10 +49,12 @@
 
     &.-double-column{
         column-count: 2;
+        column-gap: $unit*2;
     }
 
     &.-tripple-column{
         column-count: 3;
+        column-gap: $unit*2;
     }
 
     p{

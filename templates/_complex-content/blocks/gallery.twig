@@ -10,6 +10,9 @@
             {% case 'u-ratio-2/3' %}
                 {% set selectedRatio = "2/3" %}
                 {% set width = 1280 %}
+            {% default %}
+                {% set selectedRatio = "16/9" %}
+                {% set width = 1920 %}
         {% endswitch %}
         <div class="b-gallery_shim {{ block.aspectRatio }}">
             {% for slide in block.slides %}
@@ -52,10 +55,10 @@
             {% endfor %}
             <div class="b-gallery_controls">
                 <a href="javascript:void(0);" class="b-gallery_button js-button" data-direction="-1">
-                    <i class="far fa-angle-left"></i>
+                    {% include '_svgs/angle-left-regular.svg' %}
                 </a>
                 <a href="javascript:void(0);" class="b-gallery_button js-button" data-direction="1">
-                    <i class="far fa-angle-right"></i>
+                    {% include '_svgs/angle-right-regular.svg' %}
                 </a>
             </div>
         </div>

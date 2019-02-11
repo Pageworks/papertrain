@@ -38,7 +38,7 @@
         .b-accordion_headline{
             position: relative;
             display: block;
-            height: 64px;
+            height: 32px;
             cursor: pointer;
             margin-bottom: 24px;
 
@@ -50,7 +50,7 @@
                 background-color: contrast($base-background-color, 0.1);
                 @include size(100%, 2px);
                 position: absolute;
-                top: calc(64px + 8px);
+                top: calc(32px + 8px);
                 left: 0;
                 transition: transform 300ms $ease-out, opacity 75ms 225ms $ease-out;
 
@@ -62,9 +62,9 @@
             }
 
             h3{
-                font-size: 3rem;
+                font-size: $base-font-size*1.618;
                 color: contrast($base-background-color, 0.6);
-                line-height: 64px;
+                line-height: 32px;
                 pointer-events: none;
 
                 section.-dark-background &,
@@ -86,7 +86,7 @@
                 .b-accordion_line{
                     display: inline-block;
                     position: absolute;
-                    background-color: lighten($primary, 13%);
+                    background-color: $primary;
                     transition: all $speed $ease;
 
                     &.-vertical{
@@ -121,10 +121,22 @@
             overflow: hidden;
             height: 0;
             padding: 0 $unit;
+            text-align: justify;
 
-            &.-split{
-                margin-left: -$unit;
-                margin-right: -$unit;
+            .b-accordion_copy{
+                &.-single-column{
+                    column-count: 1;
+                }
+
+                &.-double-column{
+                    column-count: 2;
+                    column-gap: $unit*2;
+                }
+
+                &.-tripple-column{
+                    column-count: 3;
+                    column-gap: $unit*2;
+                }
             }
         }
     }

@@ -32,7 +32,7 @@
             cursor: pointer;
 
             .b-gallery_button{
-                @include size(32px, 48px);
+                @include size(48px, 48px);
                 background-color: rgba($primary, 0.87);
                 color: contrast($primary, 1);
                 display: inline-flex;

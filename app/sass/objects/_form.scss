@@ -1061,6 +1061,11 @@ $expanded-margin-bottom: $unit*2 + $unit-half;
         opacity: 0;
         transform: translateY(5px);
         transition: transform 150ms $ease-sharp, opacity 150ms $ease-out;
+
+        svg{
+            @include size(12px, 12px);
+            transform: translateY(1px);
+        }
     }
 
     // Helper object
