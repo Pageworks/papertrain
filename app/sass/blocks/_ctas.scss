@@ -4,6 +4,24 @@
     .o-layout{
         display: inline-flex;
         flex-wrap: wrap;
+
+        &.-gutter-small{
+            .b-ctas_shim{
+                margin-bottom: $unit-half;
+            }
+        }
+
+        &.-gutter{
+            .b-ctas_shim{
+                margin-bottom: $unit;
+            }
+        }
+
+        &.-gutter-large{
+            .b-ctas_shim{
+                margin-bottom: $unit*2;
+            }
+        }
     }
 
     .b-ctas_shim{
