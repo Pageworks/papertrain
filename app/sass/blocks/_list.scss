@@ -1,11 +1,11 @@
-.o-list{
-    .o-list_list{
+.b-list{
+    .b-list_list{
         padding-left: 1.5rem;
         display: inline-block;
         max-width: 420px;
 
         &.-default{
-            .o-list_item{
+            .b-list_item{
                 &::before{
                     content:"";
                     @include size(0.75rem, 2px);
@@ -18,7 +18,7 @@
         }
 
         &.-plus{
-            .o-list_item{
+            .b-list_item{
                 &::before{
                     content:"";
                     @include size(0.75rem, 2px);
@@ -39,7 +39,7 @@
             }
         }
 
-        .o-list_item{
+        .b-list_item{
             list-style: none;
             position: relative;
             margin: 1rem 0;

@@ -1,36 +1,36 @@
 // Background Color Config
 // ==========================================================================
 
-.o-copy{
+.b-copy{
     p{
         a{
             .-base-background & {
                 color: $primary;
-    
+
                 &:after{
                     background-color: $primary;
                 }
             }
-    
+
             .-secondary-background & {
                 color: $primary;
-    
+
                 &:after{
                     background-color: $primary;
                 }
             }
-    
+
             .-dark-background & {
                 color: $primary-alt;
-    
+
                 &:after{
                     background-color: $primary-alt;
                 }
             }
-    
+
             .-brand-background & {
                 color: $primary-alt;
-    
+
                 &:after{
                     background-color: $primary-alt;
                 }
@@ -42,7 +42,7 @@
 // Copy Block Config
 // ==========================================================================
 
-.o-copy{
+.b-copy{
     &.-single-column{
         column-count: 1;
     }
@@ -58,17 +58,17 @@
     p{
         @include u-base-font;
         margin: $base-p-margin;
-    
+
         &:last-of-type{
             margin-bottom: 0;
         }
-    
+
         a{
             text-decoration-skip-ink: none;
             transition: color 150ms $ease;
             position: relative;
             display: inline-block;
-    
+
             &::after{
                 content:"";
                 @include size(100%, 2px);
@@ -81,10 +81,10 @@
                 transform-origin: bottom;
                 transition: transform 175ms $ease-sharp, opacity 75ms 100ms $ease;
             }
-    
+
             @include hover{
                 transition: color 150ms $ease-in, text-decoration 150ms $ease-in;
-    
+
                 &:after{
                     opacity: 0.87;
                     transform: scaleY(1);
@@ -120,7 +120,7 @@
                         }
                     }
                 }
-            }  
+            }
         }
     }
 

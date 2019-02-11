@@ -1,8 +1,8 @@
 {% if block.listItems|length %}
-	<div class="o-list o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{ block.alignment }}">
-		<ul class="o-list_list {{ block.listStyle }}">
+	<div class="b-list o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{ block.alignment }}">
+		<ul class="b-list_list {{ block.listStyle }}">
         {% for item in block.listItems %}
-            <li class="o-list_item">
+            <li class="b-list_item">
                 {{ item.item|striptags('<strong><a><em>')|raw }}
             </li>
         {% endfor %}

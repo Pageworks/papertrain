@@ -1,5 +1,5 @@
-.o-accordion{
-    .o-accordion_row{
+.b-accordion{
+    .b-accordion_row{
         display: block;
         margin: 0;
         transition: margin-bottom $speed $ease;
@@ -7,15 +7,15 @@
         &.is-open{
             margin-bottom: $unit*2;
 
-            .o-accordion_headline{
+            .b-accordion_headline{
                 &:after{
                     transform: scaleX(1);
                     opacity: 1;
                     transition: transform 300ms $ease-in, opacity 75ms 0ms $ease-in;
                 }
 
-                .o-accordion_icon{
-                    .o-accordion_line{
+                .b-accordion_icon{
+                    .b-accordion_line{
                         &.-vertical{
                             transform: scaleY(0);
                             opacity: 0;
@@ -25,7 +25,7 @@
                             transform: translateX(1px)  translateY(4px) rotate(-45deg);
                             width: 15px;
                         }
-    
+
                         &.-left{
                             width: 10px;
                             transform: translateX(-100%) rotate(45deg);
@@ -35,7 +35,7 @@
             }
         }
 
-        .o-accordion_headline{
+        .b-accordion_headline{
             position: relative;
             display: block;
             height: 64px;
@@ -72,9 +72,9 @@
                 section.has-video & {
                     color: contrast($dark-background-color, 0.6);
                 }
-                
+
             }
-            .o-accordion_icon{
+            .b-accordion_icon{
                 @include position(absolute, 50% 0 null null);
                 transform: translateY(-50%);
                 @include size(20px, 64px);
@@ -83,7 +83,7 @@
                 justify-items: center;
                 pointer-events: none;
 
-                .o-accordion_line{
+                .b-accordion_line{
                     display: inline-block;
                     position: absolute;
                     background-color: lighten($primary, 13%);
@@ -117,7 +117,7 @@
             }
         }
 
-        .o-accordion_body{
+        .b-accordion_body{
             overflow: hidden;
             height: 0;
             padding: 0 $unit;

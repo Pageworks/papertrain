@@ -1,10 +1,10 @@
 {% if block.image|length %}
-	<div class="o-image o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{block.alignment}}">
+	<div class="b-image o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{block.alignment}}">
         {% set grayscale = block.grayscale %}
         {% set imageWidth = block.imageWidth %}
         {% set image = block.image[0] %}
         {% if block.aspectRatio != 'none' %}
-            <div class="o-image_shim {{ block.aspectRatio }}">
+            <div class="b-image_shim {{ block.aspectRatio }}">
                 {% set selectedRatio = "16/9" %}
                 {% switch block.aspectRatio %}
                     {% case 'u-ratio-1/1' %}
@@ -28,8 +28,8 @@
                     {% set y = image.focalPoint|last * 100 ~ '%' %}
                     {% set backgroundPosition = ' background-position: ' ~ [x, y]|join(' ') ~ ' !important;' %}
                 {% endif %}
-                <div class="o-image_image" style="background-image:url({{ transformedImage.url }});background-size:cover;{{ backgroundPosition }}"></div>
-                {% if block.overlay != 'none' %}<div class="o-image_overlay" style="background-color:rgba({{ block.overlay }});"></div>{% endif %}
+                <div class="b-image_image" style="background-image:url({{ transformedImage.url }});background-size:cover;{{ backgroundPosition }}"></div>
+                {% if block.overlay != 'none' %}<div class="b-image_overlay" style="background-color:rgba({{ block.overlay }});"></div>{% endif %}
             </div>
         {% else %}
             {% if grayscale %}
@@ -37,9 +37,9 @@
             {% else %}
                 {% set transformedImage = craft.imager.transformImage(image, { width: imageWidth, mode: 'fit', position: image.getFocalPoint() }) %}
             {% endif %}
-            <div class="o-image_shim {{ block.imageAlignment }}">
+            <div class="b-image_shim {{ block.imageAlignment }}">
                 <img src="{{ transformedImage.url }}" alt="{{ image.title }}" />
-                {% if block.overlay != 'none' %}<div class="o-image_overlay" style="background-color:rgba({{ block.overlay }});"></div>{% endif %}
+                {% if block.overlay != 'none' %}<div class="b-image_overlay" style="background-color:rgba({{ block.overlay }});"></div>{% endif %}
             </div>
         {% endif %}
 	</div>

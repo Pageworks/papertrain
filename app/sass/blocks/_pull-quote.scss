@@ -1,4 +1,4 @@
-.o-quote{
+.b-quote{
     text-align: center;
     font-size: 2.0625rem;
     letter-spacing: -0.015rem;
@@ -13,11 +13,11 @@
         color: contrast($dark-background-color, 0.87);
     }
 
-    .o-quote_shim{
+    .b-quote_shim{
         position: relative;
         max-width: 640px;
 
-        .o-quote_icon{
+        .b-quote_icon{
             font-size: 6rem;
             font-family: Georgia, 'Times New Roman', Times, serif;
             opacity: 0.06;
@@ -32,7 +32,7 @@
             }
         }
 
-        .o-quote_body{
+        .b-quote_body{
             margin: 0;
 
             // Readability Settings
@@ -51,7 +51,7 @@
             }
         }
 
-        .o-quote_source{
+        .b-quote_source{
             font-family: $font-heading;
             font-weight: $medium;
             font-size: 1.25rem;
@@ -59,7 +59,7 @@
             line-height: 2rem;
             text-transform: capitalize;
             font-style: normal;
-            
+
             // Color Settings
             color: contrast($base-background-color, 0.6);
 
