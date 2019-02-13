@@ -9,7 +9,7 @@
 </p>
 
 # Papertrain - A Craft 3 Boilerplate
-Papertrain is a frameworks for [Craft 3](https://craftcms.com/3) using a modern webpack setup. It includes SASS snippets from [Intuit](https://github.com/intuit) and grid system concepts by [Harry Roberts](https://csswizardry.com/2011/08/building-better-grid-systems/). Learn more about the project or how to get started at [papertrain.io/getting-started](http://papertrain.io/getting-started).
+Papertrain is a framework for [Craft 3](https://craftcms.com/3) using a modern webpack setup. It includes SASS snippets from [Intuit](https://github.com/intuit) and grid system concepts by [Harry Roberts](https://csswizardry.com/2011/08/building-better-grid-systems/). Learn more about the project or how to get started at [papertrain.io/getting-started](http://papertrain.io/getting-started).
 
 ## CSS
 - Using [SASS](https://sass-lang.com/) as our CSS preprocessor
@@ -19,13 +19,13 @@ Papertrain is a frameworks for [Craft 3](https://craftcms.com/3) using a modern 
 - Using [Transparent UI Namespaces](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
 
 ### Grid
-Uses a inline-flex gird system based on the inline-block system by [Intuit](https://github.com/intuit).
+Uses an inline-flex gird system based on the inline-block system by [Intuit](https://github.com/intuit).
 
 Start by inserting a `.o-layout` block and add a `.o-layout_item` element within the block. Initial blocks are `width: 100%`, additional values are avialable using `.u-1/2 .u-1/3 .u-2/3 ect...`. Additional fractions can be generated from `app/sass/tools/utilities/widths.scss`, currently using `1 2 3` as the base values.
 
 Create responsive elements using `@size` on the `.u-1/x` classes. If you wanted a block to start at full width but switch to 1/2 at a medium screen use `u-1/2@medium`. You can adjust the generated breakpoints in `app/sass/tools/utilities/widths.scss` by adding or removing `@include widths($widths-fractions, $size-variable-from-config, desired-@-name)`.
 
-## Typescirpt
+## Typescript
 - Uses a Typescript module structure. Add Typescript modules via HTML data attributes: `data-module="example"`
 - All DOM related JavaScript is hooked to `js-` prefixed classes
 - jQuery is **NOT** included and should be avoided whenever possible
