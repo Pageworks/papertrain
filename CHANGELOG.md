@@ -21,6 +21,7 @@
 - Adds: `main.css` is always cached busted [#75](https://github.com/Pageworks/papertrain/issues/75)
 - Adds: updated npm scripts and new dev/production build process
 - Adds: adds custom browser-sync script to reload after webpack bundle/scss compile or when a twig file changes
+- Adds: Updates base login account information [#114](https://github.com/Pageworks/papertrain/issues/114)
 
 ### Fixes
 

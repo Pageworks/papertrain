@@ -1,5 +1,5 @@
 import Env from '../env';
-import AbstractModule from './AbstractModule';
+import AbstractModule from '../AbstractModule';
 
 export default class Example extends AbstractModule{
 

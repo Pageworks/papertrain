@@ -1,5 +1,5 @@
 import Env from '../env';
-import AbstractModule from './AbstractModule';
+import AbstractModule from '../AbstractModule';
 import anime from 'animejs';
 import { getParent } from '../utils/getParent';
 

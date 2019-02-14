@@ -1,4 +1,4 @@
-import AbstractModule from './AbstractModule';
+import AbstractModule from '../AbstractModule';
 
 export default class ViewportFix extends AbstractModule{
 
