@@ -1,7 +1,14 @@
 {% if block.copy|length %}
 	<div class="b-heading o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{block.alignment}}">
 		<h3 class="{{block.fontSize}}">
-			{{ block.copy }}
+			{% if block.pageJumpLink|length %}
+                {% set name = block.pageJumpLink|trim %}
+                <a name="{{ name|replace(' ', '-') }}">
+            {% endif %}
+            {{ block.copy }}
+            {% if block.pageJumpLink|length %}
+                </a>
+            {% endif %}
 		</h3>
 	</div>
 {% endif %}
