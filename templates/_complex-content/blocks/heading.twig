@@ -1,6 +1,16 @@
+{% switch numberOfHeadings %}
+    {% case '1' %}
+        {% set headingType = '1' %}
+    {% case '2' %}
+        {% set headingType = '2' %}
+    {% case '3' %}
+        {% set headingType = '3' %}
+    {% default %}
+        {% set headingType = '4' %}
+{% endswitch %}
 {% if block.copy|length %}
 	<div class="b-heading o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{block.alignment}}">
-		<h3 class="{{block.fontSize}}">
+		<h{{ headingType }} class="{{block.fontSize}}">
 			{% if block.pageJumpLink|length %}
                 {% set name = block.pageJumpLink|trim %}
                 <a name="{{ name|replace(' ', '-') }}">
@@ -9,6 +19,6 @@
             {% if block.pageJumpLink|length %}
                 </a>
             {% endif %}
-		</h3>
+		</h{{ headingType }}>
 	</div>
 {% endif %}

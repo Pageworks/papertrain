@@ -3,6 +3,7 @@
 {% set columnLayout = 1 %}
 {% set currentColumn = 1 %}
 {% set columnOpen = false %}
+{% set numberOfHeadings = 0 %}
 
 {% cache %}
     <article data-template="{{entry.slug}}" class="o-container-full c-complex-content">
@@ -78,6 +79,9 @@
                 {% endif %}
 
                 {# Include the content for the block #}
+                {% if block.type == 'heading' %}
+                    {% set numberOfHeadings = numberOfHeadings + 1 %}
+                {% endif %}
                 {% include '_complex-content/blocks/' ~ block.type %}
             {% endif %}
 
