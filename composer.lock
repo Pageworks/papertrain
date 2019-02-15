@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4bf64c07589dea4f65fcd1dff5f2e9e5",
+    "content-hash": "80d2d1717309188f0fc7dc949a65f367",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -72,11 +72,11 @@
         },
         {
             "name": "angellco/spoon",
-            "version": "3.2.7",
+            "version": "3.3.0",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/angell-co/Spoon/zipball/ee9e992022a48ae7b3e68aebf1c97d2a61d225b8",
-                "reference": "ee9e992022a48ae7b3e68aebf1c97d2a61d225b8",
+                "url": "https://api.github.com/repos/angell-co/Spoon/zipball/8a350caac09be54e5f40e3d6768b1369811f2584",
+                "reference": "8a350caac09be54e5f40e3d6768b1369811f2584",
                 "shasum": ""
             },
             "require": {
@@ -126,7 +126,7 @@
                 "docs": "https://github.com/angell-co/spoon/blob/master/README.md",
                 "issues": "https://github.com/angell-co/spoon/issues"
             },
-            "time": "2019-01-28T11:04:18+00:00"
+            "time": "2019-02-14T16:05:23+00:00"
         },
         {
             "name": "anubarak/craft-relabel",
@@ -518,11 +518,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.1.8",
+            "version": "3.1.11",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/ba226f463efce722ddfbcbf726fed851fff37277",
-                "reference": "ba226f463efce722ddfbcbf726fed851fff37277",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/9378d5f9951f81ee361a7e19c03dc1bc69d78a5e",
+                "reference": "9378d5f9951f81ee361a7e19c03dc1bc69d78a5e",
                 "shasum": ""
             },
             "require": {
@@ -598,7 +598,7 @@
                 "docs": "https://github.com/craftcms/docs",
                 "rss": "https://github.com/craftcms/cms/releases.atom"
             },
-            "time": "2019-02-04T19:38:51+00:00"
+            "time": "2019-02-14T18:31:32+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -3983,11 +3983,11 @@
         },
         {
             "name": "verbb/super-table",
-            "version": "2.1.6",
+            "version": "2.1.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/verbb/super-table/zipball/d48678885cc114abdd5b341a860ecf668461a7c8",
-                "reference": "d48678885cc114abdd5b341a860ecf668461a7c8",
+                "url": "https://api.github.com/repos/verbb/super-table/zipball/b03a289a943d2fbcb7570816f1a9a720d3edb6e4",
+                "reference": "b03a289a943d2fbcb7570816f1a9a720d3edb6e4",
                 "shasum": ""
             },
             "require": {
@@ -4031,7 +4031,7 @@
                 "docs": "https://github.com/verbb/super-table",
                 "rss": "https://github.com/verbb/super-table/commits/v2.atom"
             },
-            "time": "2019-01-31T02:18:45+00:00"
+            "time": "2019-02-10T11:12:07+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

@@ -1,5 +1,4 @@
-// ==========================================================================
-// Utilities / Spacing
+// Spacing
 // ==========================================================================
 
 ////
@@ -45,5 +44,19 @@ $spacing-sizes: (
                 }
             }
         }
+    }
+}
+
+// Mobile Padding
+// ==========================================================================
+
+.u-mobile-padding{
+    @media (max-width: $screen-xsmall){
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+    @media (min-width: $screen-xsmall) and (max-width: $screen-large){
+        padding-left: 32px !important;
+        padding-right: 32px !important;
     }
 }

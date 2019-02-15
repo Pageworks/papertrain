@@ -48,13 +48,23 @@
     }
 
     &.-double-column{
-        column-count: 2;
-        column-gap: $unit*2;
+
+        @media (min-width: $screen-small){
+            column-count: 2;
+            column-gap: $unit*2;
+        }
     }
 
     &.-tripple-column{
-        column-count: 3;
-        column-gap: $unit*2;
+        @media (min-width: $screen-small){
+            column-count: 2;
+            column-gap: $unit*2;
+        }
+
+        @media (min-width: $screen-medium){
+            column-count: 3;
+            column-gap: $unit*2;
+        }
     }
 
     p{

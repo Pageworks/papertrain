@@ -145,32 +145,3 @@
         }
     }
 }
-
-//
-// Sets elements height to be 100%. Typically used on container and warpper objects
-// to convert them to be fullscreen.
-//
-// @output .-full and .-fullscreen
-//
-@mixin u-fullscreen{
-    &.-full{
-        height: 100%;
-    }
-
-    &.-fullscreen{
-        height: 100vh;
-    }
-}
-
-@mixin u-mobile-padding{
-    &.u-mobile-padding{
-        @media (max-width: $screen-xsmall){
-            padding-left: 24px !important;
-            padding-right: 24px !important;
-        }
-        @media (min-width: $screen-xsmall) and (max-width: $screen-container){
-            padding-left: 32px !important;
-            padding-right: 32px !important;
-        }
-    }
-}

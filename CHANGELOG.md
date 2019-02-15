@@ -36,6 +36,7 @@
 - Fixes: the gallery block has been updated to use the new `animejs` format [#104](https://github.com/Pageworks/papertrain/issues/104)
 - Fixes: normalizes button element and removes button element from custom button styles [#98](https://github.com/Pageworks/papertrain/issues/98)
 - Fixes: normalized list elements except within copy block [#101](https://github.com/Pageworks/papertrain/issues/101)
+- Fixes: cleans up container objects and reworks layout for both the complex content grid and general layout object use [#115](https://github.com/Pageworks/papertrain/issues/115)
 
 ### Removes
 
