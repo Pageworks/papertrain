@@ -14,7 +14,7 @@ export default class Env {
     private _isDebug:   boolean;
 
     constructor(){
-        this._isDebug   = true;
+        this._isDebug   = false;
     }
 
     public setDebug(status:boolean): void{

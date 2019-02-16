@@ -5,9 +5,9 @@ import polyfill from './polyfill';
 import * as v4 from 'uuid/v4';
 
 export default class App{
-    
+
     public static ANIMATION_DELAY = 1000;
-    
+
     private _modules:           { [index:string] : Function };
     private _currentModules:    Array<Module>;
     private _transitionManager: TransitionManager;
@@ -16,7 +16,7 @@ export default class App{
     private _prevScroll:        number;
     private _socket:            any;
     public  env:                Env;
-    
+
     // Elements
     private _trackedTouches:    Array<Element>;
 
@@ -103,15 +103,15 @@ export default class App{
      * event listeners.
      */
     private purgeTouchElements(): void{
-        
+
         // Do nothing on non-touch devices
         if(!this._touchSupport){
             return;
         }
-        
+
         const currentElements = Array.from(document.body.querySelectorAll('.js-touch'));
         const deadElements = [];
-        
+
         // Check if there are elements to check
         if(this._trackedTouches.length === 0){
             return;
@@ -165,7 +165,7 @@ export default class App{
      * Gets all the un-touched touch elements and adds touch event listeners
      */
     private getTouchElements(): void{
-        
+
         // Do nothing on non-touch devices
         if(!this._touchSupport){
             return;
@@ -187,12 +187,12 @@ export default class App{
      * Called by the `TransitionManager` class
      */
     public updateTouchElements(): void{
-        
+
         // Do nothing on non-touch devices
         if(!this._touchSupport){
             return;
         }
-        
+
         this.purgeTouchElements();
         this.getTouchElements();
     }

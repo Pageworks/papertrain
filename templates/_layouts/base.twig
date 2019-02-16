@@ -8,12 +8,12 @@
 
 {% set isDebug = craft.app.request.getParam('debug') %}
 <!doctype html>
-<html lang="en-US" class="has-no-js is-not-touch-device has-not-touched" {% if isDebug|length and currentUser|length and currentUser.admin %}data-debug="true"{% endif %} data-csrf="{{ craft.app.request.getCsrfToken() }}">
+<html lang="en-US" class="has-no-js is-not-touch-device has-not-touched" {% if isDebug|length or settings.debugMode %}data-debug="true"{% endif %} data-csrf="{{ craft.app.request.getCsrfToken() }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block head %}
             <title>{{pageTitle}}</title>
         {% endblock %}

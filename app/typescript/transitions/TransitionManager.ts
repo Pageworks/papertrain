@@ -14,10 +14,11 @@ export default class TransitionManager {
 
     constructor(app:App){
         this._app           = app;
-        this._env           = new Env();
+        this._env           = this._app.env;
         this._isDebug       = this._env.getDebugStatus();
         this._transitions   = transitions;
         this._transition    = null;
+
         this._pjax          = new Pjax({ debug: this._isDebug, selectors: [`${Env.PJAX_CONTAINER}`] });
 
         this.init();

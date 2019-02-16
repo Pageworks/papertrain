@@ -24,6 +24,7 @@
 - Adds: Updates base login account information [#114](https://github.com/Pageworks/papertrain/issues/114)
 - Adds: heading block supports the generation of page jump links [#118](https://github.com/Pageworks/papertrain/issues/118)
 - Adds: heading block elements now use SEO friendly heading elements [#117](https://github.com/Pageworks/papertrain/issues/117)
+- Adds: debug starts `false` and can be enabled with the `?debug=true` query param or by enabling the global Debug Mode in the `Globals > Settings` section of the CP
 
 ### Fixes
 
