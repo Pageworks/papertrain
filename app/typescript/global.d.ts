@@ -44,3 +44,8 @@ declare class Env{
     APP_NAME:       string;
     EASING:         EasingObject;
 }
+
+declare class ComplexContent{
+    init:                       Function;
+    getComplexContentElement:   Function;
+}

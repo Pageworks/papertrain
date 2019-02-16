@@ -13,12 +13,11 @@
 		<h{{ headingType }} class="{{block.fontSize}}">
 			{% if block.pageJumpLink|length %}
                 {% set name = block.pageJumpLink|trim %}
-                <a name="{{ name|replace(' ', '-') }}">
+            {% else %}
+                {% set name = block.copy|trim %}
             {% endif %}
-            {{ block.copy }}
-            {% if block.pageJumpLink|length %}
-                </a>
-            {% endif %}
+            {% set name = name|replace(' ', '-') %}
+            <a {% if block.fontSize == 'o-h1' %}primary-heading{% endif %} name="{{ name | url_encode | lower }}">{{ block.copy }}</a>
 		</h{{ headingType }}>
 	</div>
 {% endif %}

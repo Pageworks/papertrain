@@ -3,6 +3,7 @@ import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
 import polyfill from './polyfill';
 import * as v4 from 'uuid/v4';
+import ComplexContent from './ComplexContent';
 
 export default class App{
 
@@ -14,24 +15,21 @@ export default class App{
     private _touchSupport:      boolean;
     private _scrollDistance:    number;
     private _prevScroll:        number;
-    private _socket:            any;
-    public  env:                Env;
-
-    // Elements
     private _trackedTouches:    Array<Element>;
+
+    public  env:                Env;
+    public  complexContent:     ComplexContent;
 
     constructor(){
         this._modules            = modules;
         this._currentModules     = [];
         this._transitionManager  = null;
         this._touchSupport       = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
-
         this._prevScroll        = 0;
         this._scrollDistance    = 0;
-
         this._trackedTouches    = [];
-
         this.env                = new Env();
+        this.complexContent     = null;
 
         this.init();
     }
@@ -66,6 +64,7 @@ export default class App{
         this.handleStatus(); // Check the users visitor status
 
         this._transitionManager = new TransitionManager(this);
+        this.complexContent = new ComplexContent(this);
 
         if(!this.env.getDebugStatus()){
             this.createEasterEgg();
