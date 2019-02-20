@@ -1,33 +1,7 @@
 .b-ctas{
     position: relative;
 
-    .o-layout{
-        justify-content: center !important;
-
-        &.-gutter-small{
-            .b-ctas_shim{
-                margin-bottom: $gutter-small*2;
-            }
-        }
-
-        &.-gutter{
-            .b-ctas_shim{
-                margin-bottom: $gutter*2;
-            }
-        }
-
-        &.-gutter-large{
-            .b-ctas_shim{
-                margin-bottom: $gutter-large*2;
-            }
-        }
-    }
-
     .b-ctas_shim{
         width: 100%;
-        display: inline-flex;
-        flex: 0px auto;
-        flex-direction: column;
-        flex-wrap: wrap;
     }
 }
