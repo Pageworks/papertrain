@@ -27,29 +27,7 @@ export default class ComplexContent{
     }
 
     private replaceState():void{
-        if(this._hash === null){
-            window.history.replaceState(
-                {
-                    url: `${ window.location.origin }${ window.location.pathname }`,
-                    title: document.title,
-                    uuid: Date.now().toString(),
-                    scrollPos: [0,0]
-                },
-                document.title,
-                `${ window.location.origin }${ window.location.pathname }`
-            );
-        }else{
-            window.history.replaceState(
-                {
-                    url: `${ window.location.origin }${ window.location.pathname }#${ this._hash }`,
-                    title: document.title,
-                    uuid: Date.now().toString(),
-                    scrollPos: [0,0]
-                },
-                document.title,
-                `${ window.location.origin }${ window.location.pathname }#${ this._hash }`
-            );
-        }
+
     }
 
     private getVisibleHeading(): string{

@@ -8,21 +8,21 @@
 
                 @include hover{
                     &:not(:first-of-type){
-                        background: darken($base-background-color, 3);
+                        background: darken($base-background-color, 2);
                     }
                 }
             }
-        
+
             .-secondary-background & {
                 border-color: darken($secondary-background-color, 5);
 
                 @include hover{
                     &:not(:first-of-type){
-                        background: darken($secondary-background-color, 3);
+                        background: darken($secondary-background-color, 2);
                     }
                 }
             }
-        
+
             .-dark-background & {
                 border-color: lighten($dark-background-color, 5);
 
@@ -32,7 +32,7 @@
                     }
                 }
             }
-        
+
             .-brand-background & {
                 border-color: lighten($brand-background-color, 5);
 
@@ -49,12 +49,14 @@
 // Tables
 // ==========================================================================
 .o-table{
-    display: inline-block;
-    width: 100%;
+    display: block;
     border-collapse: collapse;
     border-spacing: 0;
     overflow-x: auto;
     white-space: nowrap;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba($cool-black, 0.15);
 
     /**
      * Force all cells within a table to occupy the same width as each other.
@@ -75,9 +77,9 @@
     }
 
     tbody{
-        margin: 0;
+        margin: 0 auto;
         border: 0;
-        display: inline-block;
+        display: block;
         vertical-align: baseline;
 
         tr{
@@ -96,7 +98,7 @@
                 margin: 0;
                 border: 0;
                 vertical-align: middle;
-                text-align: left;
+                text-align: right;
                 padding-left: 56px;
 
                 &.-number{
@@ -106,10 +108,11 @@
                 &:first-of-type{
                     padding-left: 24px;
                     padding-right: 24px;
+                    text-align: left;
                 }
 
                 &:last-of-type{
-                    padding-right: 24px;
+                    width: 100%;
                 }
             }
 
