@@ -6,24 +6,29 @@
 // @source https://github.com/inuitcss/inuitcss/blob/0420ba8/objects/_objects.layout.scss
 
 .o-layout{
-    display: flex;
+    display: inline-flex;
+    width: 100%;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
     margin: 0;
     padding: 0;
 
     // Gutter modifiers
     &.-gutter{
-        margin-left: -$gutter;
+        .o-layout_item{
+            padding: 0 $gutter/2;
+        }
     }
 
     &.-gutter-small{
-        margin-left: -$gutter-small;
+        .o-layout_item{
+            padding: 0 $gutter-small/2;
+        }
     }
 
     &.-gutter-large{
-        margin-left: -$gutter-large;
+        .o-layout_item{
+            padding: 0 $gutter-large/2;
+        }
     }
 }
 
@@ -35,24 +40,10 @@
 .o-layout_item
 {
     display: inline-flex; // [1]
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
+    flex: 0 0 auto;
     width: 100%; // [2]
     vertical-align: top; // [3]
     position: relative;
     box-sizing: border-box;
-
-    // Gutter modifiers
-    .o-layout.-gutter > & {
-        padding-left: $gutter;
-    }
-
-    .o-layout.-gutter-small > & {
-        padding-left: $gutter-small;
-    }
-
-    .o-layout.-gutter-large > & {
-        padding-left: $gutter-large;
-    }
 }

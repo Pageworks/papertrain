@@ -2,24 +2,23 @@
     position: relative;
 
     .o-layout{
-        display: inline-flex;
-        flex-wrap: wrap;
+        justify-content: center !important;
 
         &.-gutter-small{
             .b-ctas_shim{
-                margin-bottom: $unit-half;
+                margin-bottom: $gutter-small*2;
             }
         }
 
         &.-gutter{
             .b-ctas_shim{
-                margin-bottom: $unit;
+                margin-bottom: $gutter*2;
             }
         }
 
         &.-gutter-large{
             .b-ctas_shim{
-                margin-bottom: $unit*2;
+                margin-bottom: $gutter-large*2;
             }
         }
     }
@@ -30,6 +29,5 @@
         flex: 0px auto;
         flex-direction: column;
         flex-wrap: wrap;
-        margin-bottom: $unit;
     }
 }

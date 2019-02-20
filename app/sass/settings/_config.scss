@@ -47,9 +47,9 @@ $narrow-container-width:    680px;
 
 // Layout
 // =============================================================================
-$gutter:        1rem;
-$gutter-small:  0.5rem;
-$gutter-large:  2rem;
+$gutter:        $unit;
+$gutter-small:  $unit-half;
+$gutter-large:  $unit*2;
 
 // Screen Breakpoints
 // =============================================================================

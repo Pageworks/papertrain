@@ -1,13 +1,10 @@
-<div class="o-card -standard">
-    <div class="o-card_top">
-        <h4 class="o-card_headline o-h4">{{ card.headline1 }}</h4>
-        {% if card.subheadline1|length %}<h5 class="o-card_subheadline o-subtitle">{{ card.subheadline1 }}</h5>{% endif %}
-    </div>
+<div class="o-card -compact {% if card.thumbnail1|length %}has-image{% endif %}">
     {% if card.thumbnail1|length %}
-        <div class="o-card_media u-ratio-16/9">
+        <div class="o-card_media u-ratio-1/1">
             <img src="{{ card.thumbnail1[0].url }}" alt="{{ card.thumbnail1.title }}" />
         </div>
     {% endif %}
+    <h4 class="o-card_headline o-h4">{{ card.headline1 }}</h4>
     {% if card.copy1|length %}
         <div class="o-card_copy">
             {{ card.copy1 }}
