@@ -1,3 +1,65 @@
+// Cards Background Config
+// ==========================================================================
+.o-card{
+    &.-standard,
+    &.-showcase-image,
+    &.-compact{
+        .-base-background & {
+            background-color: $white;
+            box-shadow: 0 2px 8px rgba($black, 0.15);
+
+            .o-card_copy{
+                color: rgba($off-black, 0.6);
+            }
+
+            .o-card_headline{
+                color: $primary;
+            }
+        }
+
+        .-secondary-background & {
+            background-color: $white;
+            box-shadow: 0 2px 8px rgba($black, 0.15);
+
+            .o-card_copy{
+                color: rgba($off-black, 0.6);
+            }
+
+            .o-card_headline{
+                color: $primary;
+            }
+        }
+
+        .-dark-background & {
+            background-color: lighten($off-black, 3);
+            box-shadow: 0 2px 8px rgba($black, 0.3);
+
+            .o-card_copy{
+                color: rgba($off-white, 0.87);
+            }
+
+            .o-card_headline{
+                color: $primary-alt;
+            }
+        }
+
+        .-brand-background & {
+            background-color: lighten($brand-background-color, 5);
+            box-shadow: 0 2px 8px rgba($black, 0.3);
+
+            .o-card_copy{
+                color: rgba(contrast($brand-background-color), 0.87);
+            }
+
+            .o-card_headline{
+                color: $primary-alt;
+            }
+        }
+    }
+}
+
+// Cards Style Config
+// ==========================================================================
 .o-card{
 
     &.-standard{
@@ -7,7 +69,6 @@
         height: 100%;
         border-radius: 4px;
         background-color: $white;
-        box-shadow: 0 2px 8px rgba($cool-black, 0.3);
         padding-bottom: 52px;
         overflow: hidden;
 
@@ -16,12 +77,8 @@
             padding: $unit;
         }
 
-        .o-card_headline{
-            color: $primary;
-        }
-
         .o-card_subheadline{
-            opacity: 0.6;
+            opacity: 0.87;
         }
 
         .o-card_media{
@@ -52,7 +109,6 @@
             padding: 0 $unit $unit;
             line-height: 1.618;
             font-size: 14px;
-            color: rgba($off-black, 0.6);
         }
 
         .o-card_actions{
@@ -68,8 +124,6 @@
         position: relative;
         height: 100%;
         border-radius: 4px;
-        background-color: $white;
-        box-shadow: 0 2px 8px rgba($cool-black, 0.3);
         padding-bottom: 52px;
         overflow: hidden;
 
@@ -78,12 +132,8 @@
             padding: $unit;
         }
 
-        .o-card_headline{
-            color: $primary;
-        }
-
         .o-card_subheadline{
-            opacity: 0.6;
+            opacity: 0.87;
         }
 
         .o-card_media{
@@ -113,7 +163,6 @@
             padding: 0 $unit $unit;
             line-height: 1.618;
             font-size: 14px;
-            color: rgba($off-black, 0.6);
         }
 
         .o-card_actions{
@@ -129,8 +178,6 @@
         position: relative;
         height: 100%;
         border-radius: 4px;
-        background-color: $white;
-        box-shadow: 0 2px 8px rgba($cool-black, 0.3);
         padding: $unit;
         padding-bottom: 60px;
         overflow: hidden;
@@ -165,7 +212,6 @@
             padding: 0;
             line-height: 1.618;
             font-size: 14px;
-            color: rgba($off-black, 0.6);
             width: 100%;
         }
 

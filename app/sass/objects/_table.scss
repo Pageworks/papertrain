@@ -1,6 +1,23 @@
 // Background Color Config
 // ==========================================================================
 .o-table{
+    .-base-background & {
+        box-shadow: 0 2px 8px rgba($black, 0.15);
+    }
+
+    .-secondary-background & {
+        box-shadow: 0 2px 8px rgba($black, 0.15);
+        background-color: $white;
+    }
+
+    .-dark-background & {
+        box-shadow: 0 2px 8px rgba($black, 0.3);
+    }
+
+    .-brand-background & {
+        box-shadow: 0 2px 8px rgba($black, 0.3);
+    }
+
     tbody{
         tr{
             .-base-background & {
@@ -14,11 +31,11 @@
             }
 
             .-secondary-background & {
-                border-color: darken($secondary-background-color, 5);
+                border-color: darken($white, 5);
 
                 @include hover{
                     &:not(:first-of-type){
-                        background: darken($secondary-background-color, 2);
+                        background: darken($white, 2);
                     }
                 }
             }
@@ -55,8 +72,7 @@
     overflow-x: auto;
     white-space: nowrap;
     margin: 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba($cool-black, 0.15);
+    border-radius: 4px;
 
     /**
      * Force all cells within a table to occupy the same width as each other.
@@ -134,6 +150,10 @@
                         padding-right: 24px;
                     }
                 }
+            }
+
+            &:last-of-type{
+                border-width: 0;
             }
         }
     }

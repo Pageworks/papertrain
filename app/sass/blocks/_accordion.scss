@@ -1,3 +1,81 @@
+// Accordion Background Config
+// ==========================================================================
+.b-accordion{
+    .-base-background & {
+        .b-accordion_headline{
+            h3{
+                color: contrast($base-background-color, 0.87);
+            }
+
+            .b-accordion_icon{
+                .b-accordion_line{
+                    background-color: $primary;
+                }
+            }
+
+            &:after{
+                background-color: contrast($base-background-color, 0.1);
+            }
+        }
+    }
+
+    .-secondary-background & {
+        .b-accordion_headline{
+            h3{
+                color: contrast($base-background-color, 0.87);
+            }
+
+            .b-accordion_icon{
+                .b-accordion_line{
+                    background-color: $primary;
+                }
+            }
+
+            &:after{
+                background-color: contrast($base-background-color, 0.1);
+            }
+        }
+    }
+
+    .-dark-background & {
+        .b-accordion_headline{
+            h3{
+                color: contrast($dark-background-color, 0.87);
+            }
+
+            .b-accordion_icon{
+                .b-accordion_line{
+                    background-color: $primary-alt;
+                }
+            }
+
+            &:after{
+                background-color: contrast($dark-background-color, 0.15);
+            }
+        }
+    }
+
+    .-brand-background & {
+        .b-accordion_headline{
+            h3{
+                color: contrast($brand-background-color, 0.87);
+            }
+
+            .b-accordion_icon{
+                .b-accordion_line{
+                    background-color: $primary-alt;
+                }
+            }
+
+            &:after{
+                background-color: contrast($brand-background-color, 0.15);
+            }
+        }
+    }
+}
+
+// Accordion Config
+// ==========================================================================
 .b-accordion{
     .b-accordion_row{
         display: block;
@@ -47,33 +125,19 @@
                 transform-origin: center;
                 transform: scaleX(0);
                 opacity: 0;
-                background-color: contrast($base-background-color, 0.1);
                 @include size(100%, 2px);
                 position: absolute;
                 top: calc(32px + 8px);
                 left: 0;
                 transition: transform 300ms $ease-out, opacity 75ms 225ms $ease-out;
-
-                section.-dark-background &,
-                section.has-image &,
-                section.has-video & {
-                    background-color: contrast($dark-background-color, 0.15);
-                }
             }
 
             h3{
                 font-size: $base-font-size*1.618;
-                color: contrast($base-background-color, 0.6);
                 line-height: 32px;
                 pointer-events: none;
-
-                section.-dark-background &,
-                section.has-image &,
-                section.has-video & {
-                    color: contrast($dark-background-color, 0.6);
-                }
-
             }
+
             .b-accordion_icon{
                 @include position(absolute, 50% 0 null null);
                 transform: translateY(-50%);
@@ -86,7 +150,6 @@
                 .b-accordion_line{
                     display: inline-block;
                     position: absolute;
-                    background-color: $primary;
                     transition: all $speed $ease;
 
                     &.-vertical{

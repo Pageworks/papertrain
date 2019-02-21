@@ -1,3 +1,60 @@
+// List Background Config
+// ==========================================================================
+.b-list{
+    .b-list_list{
+        &.-default,
+        &.-plus,
+        &.-square,
+        &.-disc{
+            .b-list_item{
+                &:before,
+                &:after{
+                    .-base-background & {
+                        background-color: $primary;
+                    }
+
+                    .-secondary-background & {
+                        background-color: $primary;
+                    }
+
+                    .-dark-background & {
+                        background-color: $primary-alt;
+                    }
+
+                    .-brand-background & {
+                        background-color: $primary-alt;
+                    }
+
+                }
+            }
+        }
+
+        &.-circle{
+            .b-list_item{
+                &:before{
+                    .-base-background & {
+                        border-color: $primary;
+                    }
+
+                    .-secondary-background & {
+                        border-color: $primary;
+                    }
+
+                    .-dark-background & {
+                        border-color: $primary-alt;
+                    }
+
+                    .-brand-background & {
+                        border-color: $primary-alt;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// List Style Config
+// ==========================================================================
 .b-list{
     .b-list_list{
         padding-left: $unit*2;
@@ -10,7 +67,6 @@
                 &::before{
                     content:"";
                     @include size(0.75rem, 2px);
-                    background-color: $primary;
                     @include position(absolute, 21px null null -1.5rem);
                 }
             }
@@ -21,7 +77,6 @@
                 &::before{
                     content:"";
                     @include size(0.75rem, 2px);
-                    background-color: $primary;
                     @include position(absolute, 21px null null -1.5rem);
                     // transform: translateY(-50%);
                 }
@@ -29,7 +84,6 @@
                 &::after{
                     content:"";
                     @include size(2px, 0.75rem);
-                    background-color: $primary;
                     @include position(absolute, $unit null null -1.2rem);
                     // transform: translateY(-50%);
                 }
@@ -41,7 +95,6 @@
                 &::before{
                     content:"";
                     @include size(9px, 9px);
-                    background-color: $primary;
                     @include position(absolute, 17px null null -1.5rem);
                 }
             }
@@ -52,7 +105,8 @@
                 &::before{
                     content:"";
                     @include size($unit-half, $unit-half);
-                    border: 2px solid $primary;
+                    border-width: 2px;
+                    border-style: solid;
                     border-radius: 100%;
                     @include position(absolute, $unit null null -1.5rem);
                 }
@@ -64,7 +118,6 @@
                 &::before{
                     content:"";
                     @include size(9px, 9px);
-                    background-color: $primary;
                     border-radius: 100%;
                     @include position(absolute, 17px null null -1.5rem);
                 }
