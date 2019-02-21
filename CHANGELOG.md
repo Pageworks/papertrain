@@ -26,6 +26,7 @@
 - Adds: heading block elements now use SEO friendly heading elements [#117](https://github.com/Pageworks/papertrain/issues/117)
 - Adds: debug starts `false` and can be enabled with the `?debug=true` query param or by enabling the global Debug Mode in the `Globals > Settings` section of the CP
 - Adds: basic table block to Complex Content [#119](https://github.com/Pageworks/papertrain/issues/119)
+- Adds: breaks out block layout CSS into `o-layout` for column management and `o-grid` for layouts within layouts (such as a CTA card grid)
 
 ### Fixes
 
@@ -42,6 +43,7 @@
 - Fixes: normalized list elements except within copy block [#101](https://github.com/Pageworks/papertrain/issues/101)
 - Fixes: cleans up container objects and reworks layout for both the complex content grid and general layout object use [#115](https://github.com/Pageworks/papertrain/issues/115)
 - Fixes: removes several options from the image block to make it more generic
+- Fixes: live preview bug caused by eager loading elements [#113](https://github.com/Pageworks/papertrain/issues/113)
 
 ### Removes
 
