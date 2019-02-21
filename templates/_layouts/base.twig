@@ -21,7 +21,7 @@
         <link rel="apple-touch-icon" href="{{siteUrl}}assets/images/apple-touch-icon.png">
         <link rel="icon" href="{{siteUrl}}assets/images/favicon.png">
 
-        <link rel="stylesheet" type="text/css" href="{{siteUrl}}assets/styles/main.css?cacheBust={{ now|date('c') }}">
+        <link rel="stylesheet" type="text/css" href="{{siteUrl}}assets/styles/main.css{% if settings.cacheBust|length %}?cacheBust={{ settings.cacheBust }}{% endif %}">
 
         <script defer src="{{siteUrl}}assets/scripts/app.js"></script>
     </head>
