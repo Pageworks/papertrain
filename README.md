@@ -35,7 +35,7 @@ Projects should be optimized for the best user experience across all platforms. 
 - SASS snippets from [Intuit](https://github.com/intuit)
 - Using [Transparent UI Namespaces](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/)
 
-#### Grid
+## Grid System
 Uses a inline-flex gird system based on the inline-block system by [Intuit](https://github.com/intuit). See how we've implemented their grid system concept at the Papertrains [grid documentation](http://papertrain.io/components/grid).
 
 # Typescirpt
