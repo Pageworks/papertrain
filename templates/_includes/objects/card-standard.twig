@@ -1,4 +1,8 @@
-<div class="o-card -standard">
+{% set squared = false %}
+{% if block is defined and block.squareCorners|length %}
+    {% set squared = true %}
+{% endif %}
+<div class="o-card -standard {{ (squared) ? '-square' }}">
     <div class="o-card_top">
         <h4 class="o-card_headline o-h4">{{ card.headline1 }}</h4>
         {% if card.subheadline1|length %}<h5 class="o-card_subheadline o-subtitle">{{ card.subheadline1 }}</h5>{% endif %}

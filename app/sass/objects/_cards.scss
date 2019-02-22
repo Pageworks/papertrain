@@ -62,13 +62,21 @@
 // ==========================================================================
 .o-card{
 
+    &.-standard,
+    &.-showcase-image,
+    &.-compact{
+        &.-square{
+            border-radius: 0 !important;
+        }
+    }
+
+
     &.-standard{
         display: inline-block;
         width: 100%;
         position: relative;
         height: 100%;
         border-radius: 4px;
-        background-color: $white;
         padding-bottom: 52px;
         overflow: hidden;
 
