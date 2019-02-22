@@ -44,6 +44,7 @@
 - Fixes: cleans up container objects and reworks layout for both the complex content grid and general layout object use [#115](https://github.com/Pageworks/papertrain/issues/115)
 - Fixes: removes several options from the image block to make it more generic
 - Fixes: live preview bug caused by eager loading elements [#113](https://github.com/Pageworks/papertrain/issues/113)
+- Fixes: updates `readme.md` for 1.1.0 release
 
 ### Removes
 
