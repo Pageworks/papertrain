@@ -40,11 +40,6 @@ export default class BasicGallery extends AbstractModule{
         this.slideID    = 0;
     }
 
-    /**
-     * Called when the module is created
-     * Used to call any initial methods or to
-     * register any initial event listeners
-     */
     public init(): void{
         this.actionsEls.forEach((el)=>{ el.addEventListener('click', e => this.handleActionButton(e) ); });
 
@@ -292,10 +287,6 @@ export default class BasicGallery extends AbstractModule{
         }
     }
 
-    /**
-     * Called when the module is destroyed
-     * Remove all event listners before calling super.destory()
-     */
     public destroy(): void{
         this.actionsEls.forEach((el)=>{ el.removeEventListener('click', e => this.handleActionButton(e) ); });
         this.callbackLoop = ()=>{};

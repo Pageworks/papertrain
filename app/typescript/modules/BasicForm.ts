@@ -312,6 +312,9 @@ export default class BasicForm extends AbstractModule{
         }
     }
 
+    /**
+     * Called when the module is destroyed.
+     */
     public destroy(): void{
         super.destroy(BasicForm.MODULE_NAME);
     }

@@ -13,17 +13,14 @@ export default class Example extends AbstractModule{
     }
 
     /**
-     * Called when the module is created
-     * Used to call any initial methods or to
-     * register any initial event listeners
+     * Called when the module is created.
      */
     init(){
 
     }
 
     /**
-     * Called when the module is destroyed
-     * Remove all event listners before calling super.destory()
+     * Called when the module is destroyed.
      */
     destroy(){
         super.destroy(Example.MODULE_NAME);

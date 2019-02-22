@@ -15,11 +15,6 @@ export default class ViewportFix extends AbstractModule{
         this._vh    = window.innerHeight * 0.01;
     }
 
-    /**
-     * Called when the module is created
-     * Used to call any initial methods or to
-     * register any initial event listeners
-     */
     init(){
         if(this.env.HTML.classList.contains('is-touch-device')){
             this.el.style.setProperty('--vh', `${this._vh}px`);
@@ -44,10 +39,6 @@ export default class ViewportFix extends AbstractModule{
         }
     }
 
-    /**
-     * Called when the module is destroyed
-     * Remove all event listners before calling super.destory()
-     */
     destroy(){
         window.removeEventListener('resize', this.windowResize );
         super.destroy(ViewportFix.MODULE_NAME);
