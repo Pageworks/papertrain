@@ -27,6 +27,10 @@
 - Adds: debug starts `false` and can be enabled with the `?debug=true` query param or by enabling the global Debug Mode in the `Globals > Settings` section of the CP
 - Adds: basic table block to Complex Content [#119](https://github.com/Pageworks/papertrain/issues/119)
 - Adds: breaks out block layout CSS into `o-layout` for column management and `o-grid` for layouts within layouts (such as a CTA card grid)
+- Adds: new `StateManager` package for managing the windows history
+- Adds: new `ComplexContent` class for managing custom page builder functionality
+- Adds: huge heading blocks are linkable as `#heading-title-text`
+- Adds: replaces the pages URI as user scrolls past huge heading blocks
 
 ### Fixes
 

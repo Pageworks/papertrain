@@ -1,6 +1,6 @@
 {
     "name": "papertrain-craft-boilerplate",
-    "description": "Papertrain is a Craft 3 Boilerplate - Updated 2019/02/09",
+    "description": "Papertrain is a Craft 3 Boilerplate - Updated 2019/02/23",
     "version": "1.1.0",
     "author": "Kyle Andrews <kylea@page.works> (https://page.works/)",
     "license": "MIT",
@@ -11,7 +11,10 @@
     "keywords": [
         "craft cms",
         "craft 3",
-        "boilerplate"
+        "framework",
+        "webpack",
+        "typescript",
+        "page transitions"
     ],
     "bugs": {
         "url": "https://github.com/Pageworks/papertrain/issues",
@@ -45,11 +48,12 @@
         }
     },
     "dependencies": {
-        "@codewithkyle/fuel-pjax": "^1.0.9",
         "animejs": "^3.0.1",
+        "fuel-pjax": "^1.1.0",
+        "fuel-state-manager": "^1.0.0",
         "modernizr": "^3.6.0",
         "uuid": "^3.3.2",
-        "webpack": "^4.29.1"
+        "webpack": "^4.29.5"
     },
     "devDependencies": {
         "browser-sync": "^2.26.3",
@@ -61,15 +65,15 @@
         "lint-staged": "^7.3.0",
         "node-sass": "^4.11.0",
         "npm-run-all": "^4.1.5",
-        "ora": "^3.0.0",
+        "ora": "^3.1.0",
         "stylelint": "^9.10.1",
         "stylelint-config-recommended-scss": "^3.2.0",
-        "stylelint-scss": "^3.5.2",
-        "tslint": "^5.12.1",
+        "stylelint-scss": "^3.5.4",
+        "tslint": "^5.13.0",
         "tslint-config-airbnb": "^5.11.1",
         "tslint-config-prettier": "^1.18.0",
-        "typescript": "^3.3.1",
+        "typescript": "^3.3.3333",
         "watch": "^1.0.2",
-        "webpack-cli": "^3.2.1"
+        "webpack-cli": "^3.2.3"
     }
 }

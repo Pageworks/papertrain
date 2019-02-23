@@ -1,6 +1,7 @@
 import Env from './env';
 import App from './App';
 import { isInView } from './utils/isInView';
+import StateManager from 'fuel-state-manager';
 
 export default class ComplexContent{
     private _app:       App;
@@ -11,6 +12,8 @@ export default class ComplexContent{
     private _headings:  Array<Element>;
     private _hash:      string;
 
+    private _stateManager:  StateManager;
+
     constructor(application:App){
         this._app       = application;
         this._isDebug   = this._app.env.getDebugStatus();
@@ -20,22 +23,20 @@ export default class ComplexContent{
         this._headings;
         this._hash = null;
 
+        this._stateManager = new StateManager(this._isDebug, false);
+
         document.addEventListener('pjax:complete', this.handlePageLoad );
         window.addEventListener('scroll', this.handleScroll, { passive: true });
 
         this.getComplexContentElement();
     }
 
-    private replaceState():void{
-
-    }
-
-    private getVisibleHeading(): string{
-        let headingName = null;
+    private getVisibleHeading(): Element{
+        let heading = null;
         const headingInView = [];
 
         for(let i = 0; i < this._headings.length; i++){
-            if(headingName === null){
+            if(heading === null){
                 if(isInView(this._headings[i])){
                     const bounds = this._headings[i].getBoundingClientRect();
                     const centerPos = bounds.top + (bounds.height / 2);
@@ -65,30 +66,47 @@ export default class ComplexContent{
                 }
             }
 
-            headingName = closestElToCenter.getAttribute('name');
+            heading = closestElToCenter;
         }
         else if(headingInView.length === 1){
-            headingName = headingInView[0].getAttribute('name');
+            heading = headingInView[0];
         }
 
-        return headingName;
+        return heading;
     }
 
     private manageUrl():void{
         if(window.scrollY <= Env.SCROLL_TRIGGER && this._hash !== null){
             this._hash = null;
-            this.replaceState();
+            const scrollOffset = {
+                x: 0,
+                y: -window.scrollY
+            }
+            this._stateManager.doReplace(`${ window.location.origin }${ window.location.pathname }`, document.title, scrollOffset);
         }
         else if(window.scrollY > Env.SCROLL_TRIGGER){
-            const newHash = this.getVisibleHeading();
+            const heading = this.getVisibleHeading();
+
+            if(heading === null){
+                return;
+            }
+
+            const newHash = heading.getAttribute('name');
             if(newHash !== this._hash && newHash){
                 this._hash = newHash;
-                this.replaceState();
+
+                const headingBounds = heading.getBoundingClientRect();
+                const scrollOffset = {
+                    x: 0,
+                    y: (window.innerHeight - headingBounds.height)
+                }
+                this._stateManager.doReplace(`${ window.location.origin }${ window.location.pathname }#${ this._hash }`, document.title, scrollOffset);
             }
         }
     }
 
     private handleScroll:EventListener = (e:Event)=>{
+
         if(!this.el){
             return;
         }
