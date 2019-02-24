@@ -4,7 +4,7 @@
     .-base-background & {
         .b-accordion_headline{
             h3{
-                color: contrast($base-background-color, 0.87);
+                color: $font-base;
             }
 
             .b-accordion_icon{
@@ -22,7 +22,7 @@
     .-secondary-background & {
         .b-accordion_headline{
             h3{
-                color: contrast($base-background-color, 0.87);
+                color: $font-base;
             }
 
             .b-accordion_icon{
@@ -40,7 +40,7 @@
     .-dark-background & {
         .b-accordion_headline{
             h3{
-                color: contrast($dark-background-color, 0.87);
+                color: $font-alt;
             }
 
             .b-accordion_icon{

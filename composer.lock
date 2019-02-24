@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b1e5ba3e2be9cbc70b70245e7053076",
+    "content-hash": "998978e11e7e9b7f7c00e74db74b46b4",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -72,11 +72,11 @@
         },
         {
             "name": "angellco/spoon",
-            "version": "3.3.0",
+            "version": "3.3.3",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/angell-co/Spoon/zipball/8a350caac09be54e5f40e3d6768b1369811f2584",
-                "reference": "8a350caac09be54e5f40e3d6768b1369811f2584",
+                "url": "https://api.github.com/repos/angell-co/Spoon/zipball/e82f5bb0c61dc66effaf4faf02638d83cffcdc02",
+                "reference": "e82f5bb0c61dc66effaf4faf02638d83cffcdc02",
                 "shasum": ""
             },
             "require": {
@@ -86,8 +86,8 @@
             "extra": {
                 "name": "Spoon",
                 "handle": "spoon",
-                "hasCpSettings": true,
-                "hasCpSection": false,
+                "hasCpSettings": false,
+                "hasCpSection": true,
                 "changelogUrl": "https://raw.githubusercontent.com/angell-co/spoon/master/CHANGELOG.md",
                 "components": {
                     "fields": "angellco\\spoon\\services\\Fields",
@@ -126,7 +126,7 @@
                 "docs": "https://github.com/angell-co/spoon/blob/master/README.md",
                 "issues": "https://github.com/angell-co/spoon/issues"
             },
-            "time": "2019-02-14T16:05:23+00:00"
+            "time": "2019-02-22T14:02:09+00:00"
         },
         {
             "name": "anubarak/craft-relabel",
@@ -518,11 +518,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.1.13",
+            "version": "3.1.14",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/3d4b97d20b34afd023be54dee39520e6514f531b",
-                "reference": "3d4b97d20b34afd023be54dee39520e6514f531b",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/c917b9dab1e79911d82ed5933f89058bdc9ffc76",
+                "reference": "c917b9dab1e79911d82ed5933f89058bdc9ffc76",
                 "shasum": ""
             },
             "require": {
@@ -598,7 +598,7 @@
                 "docs": "https://github.com/craftcms/docs",
                 "rss": "https://github.com/craftcms/cms/releases.atom"
             },
-            "time": "2019-02-20T22:22:57+00:00"
+            "time": "2019-02-21T23:18:32+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -2328,32 +2328,27 @@
         },
         {
             "name": "pixel418/markdownify",
-            "version": "v2.1.11",
+            "version": "v2.3.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Elephant418/Markdownify/zipball/17143885c32d195b885d36e4b556f16377afa096",
-                "reference": "17143885c32d195b885d36e4b556f16377afa096",
+                "url": "https://api.github.com/repos/Elephant418/Markdownify/zipball/891be2176858712c6c4581da410e96fc2019e3f0",
+                "reference": "891be2176858712c6c4581da410e96fc2019e3f0",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=5.4.0"
             },
             "type": "lib",
             "autoload": {
-                "psr-0": {
-                    "Markdownify": "src",
-                    "Test\\Markdownify": "test"
+                "psr-4": {
+                    "Markdownify\\": "src",
+                    "Test\\Markdownify\\": "test"
                 }
             },
             "license": [
                 "MIT"
             ],
             "authors": [
-                {
-                    "name": "Peter Kruithof",
-                    "email": "pkruithof@gmail.com",
-                    "homepage": "http://pkruithof.tumblr.com/"
-                },
                 {
                     "name": "Milian Wolff",
                     "email": "mail@milianw.de",
@@ -2362,16 +2357,18 @@
                 {
                     "name": "Thomas Zilliox",
                     "email": "hello@tzi.fr",
-                    "homepage": "http://tzi.fr"
+                    "homepage": "https://tzi.fr"
                 }
             ],
             "description": "The HTML to Markdown converter for PHP ",
             "homepage": "https://github.com/elephant418/Markdownify",
             "keywords": [
+                "converter",
+                "html",
                 "markdown",
                 "markdownify"
             ],
-            "time": "2016-02-19T09:56:23+00:00"
+            "time": "2019-01-22T16:33:43+00:00"
         },
         {
             "name": "pixelandtonic/imagine",
@@ -3057,11 +3054,11 @@
         },
         {
             "name": "solspace/craft3-freeform",
-            "version": "2.5.11",
+            "version": "2.5.12",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solspace/craft3-freeform/zipball/a7cd84481101282f0cbf61342ad199d7eeb12cee",
-                "reference": "a7cd84481101282f0cbf61342ad199d7eeb12cee",
+                "url": "https://api.github.com/repos/solspace/craft3-freeform/zipball/1b23b69ac3bec19dbda006a05facd5b60f4d0ea9",
+                "reference": "1b23b69ac3bec19dbda006a05facd5b60f4d0ea9",
                 "shasum": ""
             },
             "require": {
@@ -3069,7 +3066,7 @@
                 "egulias/email-validator": "^2.1",
                 "hashids/hashids": "^2.0",
                 "nesbot/carbon": "^1.22.1",
-                "pixel418/markdownify": "2.1.11",
+                "pixel418/markdownify": "^2.3.1",
                 "solspace/craft3-commons": "^1.0.17",
                 "symfony/filesystem": "^2.8|^3.0|^4.0",
                 "symfony/finder": "^2.8|^3.0|^4.0",
@@ -3100,7 +3097,7 @@
                 }
             ],
             "description": "The most intuitive and powerful form builder for Craft.",
-            "time": "2019-01-30T17:59:12+00:00"
+            "time": "2019-02-21T19:31:02+00:00"
         },
         {
             "name": "ssnepenthe/color-utils",
@@ -3983,11 +3980,11 @@
         },
         {
             "name": "verbb/super-table",
-            "version": "2.1.10",
+            "version": "2.1.11",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/verbb/super-table/zipball/4110a51a40e2acf04c219698d27c1a11afe9f1cf",
-                "reference": "4110a51a40e2acf04c219698d27c1a11afe9f1cf",
+                "url": "https://api.github.com/repos/verbb/super-table/zipball/5d3f47201e08ddad68feab81945e793a7912bdfe",
+                "reference": "5d3f47201e08ddad68feab81945e793a7912bdfe",
                 "shasum": ""
             },
             "require": {
@@ -4031,7 +4028,7 @@
                 "docs": "https://github.com/verbb/super-table",
                 "rss": "https://github.com/verbb/super-table/commits/v2.atom"
             },
-            "time": "2019-02-21T13:44:06+00:00"
+            "time": "2019-02-21T22:51:35+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

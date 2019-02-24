@@ -142,59 +142,6 @@
         </section>
         <hr>
         <section class="o-container u-text-center u-padding-vertical-x4">
-            <h1 class="o-h2 u-margin-bottom">Table Object</h1>
-            <p class="u-margin-bottom-x4 o-wrapper u-1/1">
-                Use the following section to style the base table object. The SCSS for these objects is located in the sass/objects/table file.
-            </p>
-            <div class="o-wrapper">
-                <table class="o-table">
-                    <thead>
-                        <tr>
-                            <th>The table header</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Dessert (100g serving)</td>
-                            <td>Calories</td>
-                            <td>Fat (g)</td>
-                            <td>Carbs (g)</td>
-                            <td>Protein (g)</td>
-                        </tr>
-                        <tr>
-                            <td>Frozen yogurt</td>
-                            <td class="-number">159</td>
-                            <td class="-number">6.0</td>
-                            <td class="-number">24</td>
-                            <td class="-number">4.0</td>
-                        </tr>
-                        <tr>
-                            <td>Ice cream sandwich</td>
-                            <td class="-number">237</td>
-                            <td class="-number">9.0</td>
-                            <td class="-number">37</td>
-                            <td class="-number">4.3</td>
-                        </tr>
-                        <tr>
-                            <td>Eclair</td>
-                            <td class="-number">262</td>
-                            <td class="-number">16.0</td>
-                            <td class="-number">24</td>
-                            <td class="-number">4.3</td>
-                        </tr>
-                        <tr>
-                            <td>Cupcake</td>
-                            <td class="-number">305</td>
-                            <td class="-number">3.7</td>
-                            <td class="-number">67</td>
-                            <td class="-number">4.3</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-        <hr>
-        <section class="o-container u-text-center u-padding-vertical-x4">
             <h1 class="o-h2 u-margin-bottom">Icon Buttons</h1>
             <p class="u-margin-bottom o-wrapper u-1/1">
                 Use the following section to style the base icon button object. The SCSS for these objects is located in the sass/objects/icon-button file.
@@ -218,19 +165,18 @@
             </div>
         </section>
     </article>
+    <script type="text/javascript">
+        // Background Input
+        var backgroundInput = document.body.querySelector('.js-background-input');
+        var page = document.body.querySelector('.js-section');
+        var selected = null;
+
+        backgroundInput.addEventListener('change', function(e){
+            e.preventDefault();
+
+            selected = backgroundInput.value;
+            page.classList.remove('-base-background', '-secondary-background', '-dark-background', '-brand-background');
+            page.classList.add(selected);
+        });
+    </script>
 {% endblock %}
-
-{% js %}
-    // Background Input
-    var backgroundInput = document.body.querySelector('.js-background-input');
-    var page = document.body.querySelector('.js-section');
-    var selected = null;
-
-    backgroundInput.addEventListener('change', function(e){
-        e.preventDefault();
-
-        selected = backgroundInput.value;
-        page.classList.remove('-base-background', '-secondary-background', '-dark-background', '-brand-background');
-        page.classList.add(selected);
-    });
-{% endjs %}

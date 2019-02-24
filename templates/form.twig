@@ -58,15 +58,13 @@
         <div class="o-container-narrow">
             {% set form = craft.freeform.form('sampleForm') %}
             <h2 class="o-h3 u-text-center u-margin-bottom">{{ form.name }}</h2>
-            <div class="o-freeform o-form -underline js-form" data-module="BasicForm">
+            <div class="b-freeform o-form -underline js-form" data-module="BasicForm">
                 {{ form.render() }}
             </div>
         </div>
     </section>
-{% endblock %}
-
-{% js %}
-    // Form
+    <script type="text/javascript">
+        // Form
     var formEl = document.body.querySelector('.js-form');
 
     // Style Input
@@ -126,4 +124,5 @@
             formSquareInput.removeAttribute('checked');
         }
     });
-{% endjs %}
+    </script>
+{% endblock %}
