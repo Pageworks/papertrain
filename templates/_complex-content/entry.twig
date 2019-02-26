@@ -19,5 +19,8 @@
 {% endif %}
 
 {% block content %}
+    {% if currentUser and currentUser.admin and entry.bool1|length %}
+        {% include '_includes/components/complex-content-panel' %}
+    {% endif %}
     {% include '_complex-content/index' %}
 {% endblock %}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "998978e11e7e9b7f7c00e74db74b46b4",
+    "content-hash": "d7394daa4a73268fa6a5aa5170dabf9d",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -3980,11 +3980,11 @@
         },
         {
             "name": "verbb/super-table",
-            "version": "2.1.11",
+            "version": "2.1.12",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/verbb/super-table/zipball/5d3f47201e08ddad68feab81945e793a7912bdfe",
-                "reference": "5d3f47201e08ddad68feab81945e793a7912bdfe",
+                "url": "https://api.github.com/repos/verbb/super-table/zipball/9f03453711854882d09312967e050a169fd3791c",
+                "reference": "9f03453711854882d09312967e050a169fd3791c",
                 "shasum": ""
             },
             "require": {
@@ -4028,7 +4028,7 @@
                 "docs": "https://github.com/verbb/super-table",
                 "rss": "https://github.com/verbb/super-table/commits/v2.atom"
             },
-            "time": "2019-02-21T22:51:35+00:00"
+            "time": "2019-02-25T11:24:26+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

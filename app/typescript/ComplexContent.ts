@@ -8,9 +8,13 @@ export default class ComplexContent{
     private el:         Element;
     private _isDebug:   boolean;
 
-    private _blocks:    Array<Element>;
-    private _headings:  Array<Element>;
-    private _hash:      string;
+    private _blocks:        Array<Element>;
+    private _headings:      Array<Element>;
+    private _hash:          string;
+
+    private _debugButton:   Element;
+    private _debugPanel:    Element;
+    private _debugBackdrop: Element;
 
     private _stateManager:  StateManager;
 
@@ -22,6 +26,10 @@ export default class ComplexContent{
         this._blocks;
         this._headings;
         this._hash = null;
+
+        this._debugButton;
+        this._debugPanel;
+        this._debugBackdrop;
 
         this._stateManager = new StateManager(this._isDebug, false);
 
@@ -130,6 +138,33 @@ export default class ComplexContent{
         }
     }
 
+    private toggleDebugModal:EventListener = (e:Event)=>{
+        if(this._debugPanel.classList.contains('is-open')){
+            this._debugPanel.classList.remove('is-open');
+            this._debugButton.classList.remove('is-open');
+            this._debugButton.querySelector('.js-tip').innerHTML = 'Settings';
+        }else{
+            this._debugPanel.classList.add('is-open');
+            this._debugButton.classList.add('is-open');
+            this._debugButton.querySelector('.js-tip').innerHTML = 'Close';
+        }
+    }
+
+    private debugPanelInit():void{
+        this._isDebug = true;
+
+        if(this._isDebug){
+            console.log('%c[Complex Content] '+`%cEntry is in debug mode. To disable debug mode uncheck the lightswitch in the Admin tab for the entry.`,'color:#c36eff','color:#eee');
+        }
+
+        this._debugButton = document.body.querySelector('.js-debug-button');
+        this._debugPanel = document.body.querySelector('.js-debug-panel');
+        this._debugButton.addEventListener('click', this.toggleDebugModal);
+
+        this._debugBackdrop = this._debugPanel.querySelector('.js-backdrop');
+        this._debugBackdrop.addEventListener('click', this.toggleDebugModal);
+    }
+
     public init(): void{
         if(this._isDebug){
             console.log('%c[Complex Content] '+`%cEntry: %c${ this.el.getAttribute('data-template') } ${ this.el.getAttribute('data-entry') }`,'color:#c36eff','color:#eee','color:#46d4f2');
@@ -137,5 +172,8 @@ export default class ComplexContent{
 
         this._blocks = Array.from(this.el.querySelectorAll('.js-block'));
         this._headings = Array.from(this.el.querySelectorAll('[primary-heading]'));
+        if(this.el.getAttribute('complex-content-debug') !== null){
+            this.debugPanelInit();
+        }
     }
 }
