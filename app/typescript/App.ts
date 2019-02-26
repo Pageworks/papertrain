@@ -3,7 +3,7 @@ import * as modules from './modules';
 import TransitionManager from './transitions/TransitionManager';
 import polyfill from './polyfill';
 import * as v4 from 'uuid/v4';
-import ComplexContent from './ComplexContent';
+import ComplexContent from './complex-content/ComplexContent';
 
 export default class App{
 
