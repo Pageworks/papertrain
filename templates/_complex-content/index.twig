@@ -6,7 +6,7 @@
 {% set numberOfHeadings = 0 %}
 
 {% cache %}
-    <article data-entry="{{ entry.cpEditUrl }}" data-template="{{entry.slug}}" class="o-container-full c-complex-content" complex-content {% if currentUser and currentUser.admin and entry.bool1|length %}complex-content-debug{% endif %}>
+    <article data-entry="{{ entry.cpEditUrl }}" data-template="{{entry.slug}}" class="o-container -full c-complex-content" complex-content {% if currentUser and currentUser.admin and entry.bool1|length %}complex-content-debug{% endif %}>
         {% for block in entry.cc %}
             {# Determine if we need to grab a utility block or a content block #}
             {% if block.type == "sectionSettings" or block.type == "container" or block.type == "endColumn" %}

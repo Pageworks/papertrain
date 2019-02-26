@@ -18,36 +18,36 @@
     width: 100%;
     @include u-flexbox;
 
-    @media (max-width: $screen-xsmall){
-        padding-left: 24px !important;
-        padding-right: 24px !important;
+    &:not(.-full){
+        @media (max-width: $screen-xsmall){
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+        }
+        @media (min-width: $screen-xsmall) and (max-width: $container-width + 32px){
+            padding-left: 32px !important;
+            padding-right: 32px !important;
+        }
     }
-    @media (min-width: $screen-xsmall) and (max-width: $container-width + 32px){
-        padding-left: 32px !important;
-        padding-right: 32px !important;
-    }
-}
 
-.o-container-narrow{
-    max-width: $narrow-container-width;
-    margin-right: auto !important;
-    margin-left: auto !important;
-    width: 100%;
-    @include u-flexbox;
-
-    @media (max-width: $screen-xsmall){
-        padding-left: 24px !important;
-        padding-right: 24px !important;
+    &.-full{
+        max-width: none;
+        margin: 0;
     }
-    @media (min-width: $screen-xsmall) and (max-width: $narrow-container-width + 32px){
-        padding-left: 32px !important;
-        padding-right: 32px !important;
-    }
-}
 
-.o-container-full{
-    width: 100%;
-    @include u-flexbox;
+    &.-narrow{
+        max-width: $narrow-container-width;
+        margin-right: auto !important;
+        margin-left: auto !important;
+
+        @media (max-width: $screen-xsmall){
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+        }
+        @media (min-width: $screen-xsmall) and (max-width: $narrow-container-width + 32px){
+            padding-left: 32px !important;
+            padding-right: 32px !important;
+        }
+    }
 }
 
 .o-wrapper{
