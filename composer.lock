@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7394daa4a73268fa6a5aa5170dabf9d",
+    "content-hash": "1d2cd72f7d1fbb37aafd683c639edecf",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -518,11 +518,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.1.14",
+            "version": "3.1.15",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/c917b9dab1e79911d82ed5933f89058bdc9ffc76",
-                "reference": "c917b9dab1e79911d82ed5933f89058bdc9ffc76",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/81e712ccf8f1a9b0a65426c70769229f20dc6b26",
+                "reference": "81e712ccf8f1a9b0a65426c70769229f20dc6b26",
                 "shasum": ""
             },
             "require": {
@@ -598,7 +598,7 @@
                 "docs": "https://github.com/craftcms/docs",
                 "rss": "https://github.com/craftcms/cms/releases.atom"
             },
-            "time": "2019-02-21T23:18:32+00:00"
+            "time": "2019-02-26T20:13:43+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -3054,11 +3054,11 @@
         },
         {
             "name": "solspace/craft3-freeform",
-            "version": "2.5.12",
+            "version": "2.5.13",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solspace/craft3-freeform/zipball/1b23b69ac3bec19dbda006a05facd5b60f4d0ea9",
-                "reference": "1b23b69ac3bec19dbda006a05facd5b60f4d0ea9",
+                "url": "https://api.github.com/repos/solspace/craft3-freeform/zipball/b95f239fe6e59c19de1f8408b69d4cf304ae0d5c",
+                "reference": "b95f239fe6e59c19de1f8408b69d4cf304ae0d5c",
                 "shasum": ""
             },
             "require": {
@@ -3097,7 +3097,7 @@
                 }
             ],
             "description": "The most intuitive and powerful form builder for Craft.",
-            "time": "2019-02-21T19:31:02+00:00"
+            "time": "2019-02-26T17:36:00+00:00"
         },
         {
             "name": "ssnepenthe/color-utils",
