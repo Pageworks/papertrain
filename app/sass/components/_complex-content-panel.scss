@@ -46,10 +46,6 @@
         transform: scale(0.87) translateY(25px);
         transform-origin: center top;
         transition: transform 0ms 150ms $ease-sharp, opacity 150ms 0ms $ease;
-
-        .o-switch{
-            margin-bottom: 0 !important;
-        }
     }
 }
 

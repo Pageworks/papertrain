@@ -819,6 +819,16 @@ $expanded-margin-bottom: $unit*2 + $unit-half;
         }
     }
 
+    &.-no-margins{
+        .o-textarea,
+        .o-input,
+        .o-switch,
+        .o-radio,
+        .o-checkbox{
+            margin-bottom: 0 !important;
+        }
+    }
+
     // Textarea Input
     .o-textarea{
         position: relative;
