@@ -11,8 +11,6 @@
 .env
 license.key
 /.idea
-/craft
-/craft.bat
 /storage/*
 !/storage/.gitkeep
 /public/uploads/*
