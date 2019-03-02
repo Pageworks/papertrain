@@ -4,20 +4,26 @@
         "rootDir": "./app/typescript",
         "sourceMap": true,
         "noImplicitAny": true,
-        "removeComments": true,
-        "target": "es5",
-        "module": "commonjs",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "removeComments": false,
+        "isolatedModules": true,
+        "target": "es6",
+        "module": "esnext",
+        "moduleResolution": "node",
         "lib": [
             "dom",
-            "ScriptHost",
-            "ES2015",
-            "ES2016",
-            "ES2017",
-            "ES2018",
-            "ESNext",
+            "scripthost",
+            "es2015",
+            "es2016",
+            "es2017",
+            "es2018",
+            "esnext",
         ]
     },
     "exclude": [
-        "./vendor/*"
+        "./vendor",
+        "./node_modules",
+        "./_compiled"
     ]
 }

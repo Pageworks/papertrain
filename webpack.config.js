@@ -5,8 +5,7 @@ module.exports = {
     mode:  process.env.NODE_ENV === 'production' ? "production" : "development",
     optimization: {
         removeAvailableModules: false,
-        removeEmptyChunks: false,
-        splitChunks: false,
+        removeEmptyChunks: false
     },
     resolve: {
         extensions: ['.js']
