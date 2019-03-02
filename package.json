@@ -39,7 +39,8 @@
         "dev:sass": "node-sass ./app/sass/main.scss ./public/assets/styles/main.css",
         "watch:typescript": "watch 'npm run dev:typescript' ./app/typescript",
         "watch:sass": "watch 'npm run dev:sass' ./app/sass",
-        "watch:sync": "node ./sync.js"
+        "watch:sync": "node ./sync.js",
+        "update": "npm update typescript && npm update fuel-pjax && npm update fuel-state-manager && npm run compile"
     },
     "lint-staged": {
         "linters": {
@@ -49,7 +50,7 @@
     },
     "dependencies": {
         "animejs": "^3.0.1",
-        "fuel-pjax": "^1.1.3",
+        "fuel-pjax": "^1.1.4",
         "fuel-state-manager": "^1.0.0",
         "modernizr": "^3.6.0",
         "uuid": "^3.3.2",

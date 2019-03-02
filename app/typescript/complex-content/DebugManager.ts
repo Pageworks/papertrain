@@ -5,7 +5,6 @@ import BasicBlock from './BasicBlock';
 export default class DebugManager{
     public el:      HTMLElement;
     public cc:      Element;
-    private _isDebug:   boolean;
 
     private _debugButton:   Element;
     private _debugBackdrop: Element;
@@ -13,14 +12,13 @@ export default class DebugManager{
     private _blocks:        Array<Element>;
     private _basicBlocks:   Array<BasicBlock>;
 
-    constructor(el:HTMLElement, debug:boolean, complexContent:Element){
-        if(debug){
-            console.log('%c[Debug Manager] '+`%cEntry is in debug mode. To disable debug mode uncheck the lightswitch in the Admin tab for the entry.`,'color:#edc035','color:#eee');
-        }
+    private _switches:      Array<HTMLInputElement>;
 
-        this.el         = el;
-        this.cc         = complexContent;
-        this._isDebug   = debug;
+    constructor(el:HTMLElement, complexContent:Element){
+        console.log('%c[Debug Manager] '+`%cEntry is in debug mode. To disable debug mode uncheck the lightswitch in the Admin tab for the entry.`,'color:#edc035','color:#eee');
+
+        this.el = el;
+        this.cc = complexContent;
 
         this._debugButton = document.body.querySelector('.js-debug-button');
         this._debugButton.addEventListener('click', this.toggleDebugModal);
@@ -31,29 +29,77 @@ export default class DebugManager{
         this._blocks        = Array.from(this.cc.querySelectorAll('.js-complex-content-block'));
         this._basicBlocks   = [];
 
+        this._switches  = Array.from(this.el.querySelectorAll('.js-switch input'));
+
         this.init();
     }
 
     public init(): void{
-        if(this._isDebug){
-            console.log('%c[Debug Manager] '+`%cBuilding basic block modules.`,'color:#edc035','color:#eee');
-        }
+        console.log('%c[Debug Manager] '+`%cBuilding basic block modules.`,'color:#edc035','color:#eee');
 
         if(this._blocks.length){
             this.buildBasicModules();
         }
 
+        for(let i = 0; i < this._switches.length; i++){
+            this._switches[i].addEventListener('change', this.handleToggleInput);
+        }
+    }
+
+    private shiftBlockBackgrounds():void{
+
+    }
+
+    private highlightEmptyContainers():void{
+
+    }
+
+    private showBlockType():void{
+        for(let i = 0; i < this._basicBlocks.length; i++){
+            this._basicBlocks[i].toggleTypeDetails();
+        }
+    }
+
+    private showBlockId():void{
+        for(let i = 0; i < this._basicBlocks.length; i++){
+            this._basicBlocks[i].toggleIdDetails();
+        }
+    }
+
+    private showBlockSize():void{
+        for(let i = 0; i < this._basicBlocks.length; i++){
+            this._basicBlocks[i].toggleSizeDetails();
+        }
+    }
+
+    private handleToggleInput:EventListener = (e:Event)=>{
+        const target = <HTMLInputElement>e.currentTarget;
+
+        switch(target.name){
+            case 'shiftBlockBackground':
+                this.shiftBlockBackgrounds();
+                break;
+            case 'highlightEmptyContainers':
+                this.highlightEmptyContainers();
+                break;
+            case 'showBlockType':
+                this.showBlockType();
+                break;
+            case 'showBlockId':
+                this.showBlockId();
+                break;
+            case 'showBlockSize':
+                this.showBlockSize();
+                break;
+        }
     }
 
     private buildBasicModules():void{
         for(let i = 0; i < this._blocks.length; i++){
-            const newBaiscBlock = new BasicBlock(this._blocks[i], this._isDebug);
-            newBaiscBlock.init();
+            const newBaiscBlock = new BasicBlock(this._blocks[i]);
             this._basicBlocks.push(newBaiscBlock);
         }
-        if(this._isDebug){
-            console.log('%c[Debug Manager] '+`%cSuccessfully built %c${ this._basicBlocks.length } %cbasic block modules.`,'color:#edc035','color:#eee','color:#46d4f2','color:#eee');
-        }
+        console.log('%c[Debug Manager] '+`%cSuccessfully built %c${ this._basicBlocks.length } %cbasic block modules.`,'color:#edc035','color:#eee','color:#46d4f2','color:#eee');
     }
 
     private toggleDebugModal:EventListener = (e:Event)=>{

@@ -31,6 +31,7 @@
 - Adds: new `ComplexContent` class for managing custom page builder functionality
 - Adds: huge heading blocks are linkable as `#heading-title-text`
 - Adds: replaces the pages URI as user scrolls past huge heading blocks
+- Adds: custom update script that only updates TypeScript, fuel-pjax, and fuel-state-manager before recompiling [#126](https://github.com/Pageworks/papertrain/issues/126)
 
 ### Fixes
 

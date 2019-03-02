@@ -141,8 +141,7 @@ export default class ComplexContent{
         this._blocks = Array.from(this.el.querySelectorAll('.js-block'));
         this._headings = Array.from(this.el.querySelectorAll('[primary-heading]'));
         if(this.el.getAttribute('complex-content-debug') !== null){
-            this._isDebug = true;
-            this._debugManager = new DebugManager(document.body.querySelector('.js-debug-panel'), this._isDebug, this.el);
+            this._debugManager = new DebugManager(document.body.querySelector('.js-debug-panel'), this.el);
         }else{
             this._debugManager = null;
         }
