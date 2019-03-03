@@ -967,6 +967,10 @@ $expanded-margin-bottom: $unit*2 + $unit-half;
             transition: all 150ms $ease;
             @include size(48px, 48px);
 
+            svg{
+                @include size(22px, 22px);
+            }
+
             &::before{
                 content:"";
                 position: absolute;
@@ -1090,6 +1094,10 @@ $expanded-margin-bottom: $unit*2 + $unit-half;
         transform: translateY(-60%);
         user-select: none;
         pointer-events: none;
+
+        svg{
+            @include size(22px, 22px);
+        }
     }
 
     // General input
