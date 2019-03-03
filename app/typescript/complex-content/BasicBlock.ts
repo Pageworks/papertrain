@@ -29,7 +29,7 @@ export default class BasicBlock{
     private displayBlockInformation(bounds:DOMRect, blockType:string, blockId:number):void{
         if(!this._hasInfoBlock){
             this._infoBlock = document.createElement('div');
-            this._infoBlock.style.cssText = 'position:absolute;top:0;left:0;padding:16px;border-radius:4px;background-color:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.15);z-index:1500;transition:opacity 150ms ease;';
+            this._infoBlock.style.cssText = 'position:absolute;top:8px;left:8px;padding:16px;border-radius:4px;background-color:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.15);z-index:1500;transition:opacity 150ms ease;';
         }else{
             this._infoBlock.style.opacity = '1';
         }
@@ -37,14 +37,14 @@ export default class BasicBlock{
         let innerHTML = '<ul>';
 
         if(this._showingIdDetails){
-            innerHTML += `<li style="display:block;"><strong>Block ID:</strong> ${ blockId }</li>`;
+            innerHTML += `<li style="display:block;line-height:32px;"><strong>Block ID:</strong> ${ blockId }</li>`;
         }
         if(this._showingTypeDetails){
-            innerHTML += `<li style="display:block;"><strong>Block Type:</strong> ${ blockType }</li>`;
+            innerHTML += `<li style="display:block;line-height:32px;"><strong>Block Type:</strong> ${ blockType }</li>`;
         }
         if(this._showingSizeDetails){
-            innerHTML += `<li style="display:block;"><strong>Width:</strong> ${ bounds.width }</li>`;
-            innerHTML += `<li style="display:block;"><strong>Height:</strong> ${ bounds.height }</li>`;
+            innerHTML += `<li style="display:block;line-height:32px;"><strong>Width:</strong> ${ bounds.width }</li>`;
+            innerHTML += `<li style="display:block;line-height:32px;"><strong>Height:</strong> ${ bounds.height }</li>`;
         }
 
         innerHTML += '</ul>';
