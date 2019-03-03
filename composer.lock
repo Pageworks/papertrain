@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d2cd72f7d1fbb37aafd683c639edecf",
+    "content-hash": "d021e2ae89ed1413513860b62809fb44",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -72,11 +72,11 @@
         },
         {
             "name": "angellco/spoon",
-            "version": "3.3.3",
+            "version": "3.3.4",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/angell-co/Spoon/zipball/e82f5bb0c61dc66effaf4faf02638d83cffcdc02",
-                "reference": "e82f5bb0c61dc66effaf4faf02638d83cffcdc02",
+                "url": "https://api.github.com/repos/angell-co/Spoon/zipball/0f201ee4424551c0e60d2febaf1f0b0ffe51dfdb",
+                "reference": "0f201ee4424551c0e60d2febaf1f0b0ffe51dfdb",
                 "shasum": ""
             },
             "require": {
@@ -126,7 +126,7 @@
                 "docs": "https://github.com/angell-co/spoon/blob/master/README.md",
                 "issues": "https://github.com/angell-co/spoon/issues"
             },
-            "time": "2019-02-22T14:02:09+00:00"
+            "time": "2019-03-01T16:04:38+00:00"
         },
         {
             "name": "anubarak/craft-relabel",
@@ -3980,11 +3980,11 @@
         },
         {
             "name": "verbb/super-table",
-            "version": "2.1.12",
+            "version": "2.1.15",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/verbb/super-table/zipball/9f03453711854882d09312967e050a169fd3791c",
-                "reference": "9f03453711854882d09312967e050a169fd3791c",
+                "url": "https://api.github.com/repos/verbb/super-table/zipball/0d028038afaf1c7e27bc4669b2a840981a480f1e",
+                "reference": "0d028038afaf1c7e27bc4669b2a840981a480f1e",
                 "shasum": ""
             },
             "require": {
@@ -4028,7 +4028,7 @@
                 "docs": "https://github.com/verbb/super-table",
                 "rss": "https://github.com/verbb/super-table/commits/v2.atom"
             },
-            "time": "2019-02-25T11:24:26+00:00"
+            "time": "2019-03-01T23:43:18+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
