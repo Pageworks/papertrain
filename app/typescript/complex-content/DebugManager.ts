@@ -1,6 +1,8 @@
 import Env from '../env';
 import { isInView } from '../utils/isInView';
 import BasicBlock from './BasicBlock';
+import ContainerBlock from './ContainerBlock';
+import SectionBlock from './SectionBlock';
 
 export default class DebugManager{
     public el:      HTMLElement;
@@ -11,6 +13,12 @@ export default class DebugManager{
 
     private _blocks:        Array<Element>;
     private _basicBlocks:   Array<BasicBlock>;
+
+    private _containers:        Array<Element>;
+    private _containerBlocks:   Array<ContainerBlock>;
+
+    private _sections:        Array<Element>;
+    private _sectionBlocks:   Array<SectionBlock>;
 
     private _switches:      Array<HTMLInputElement>;
 
@@ -29,6 +37,12 @@ export default class DebugManager{
         this._blocks        = Array.from(this.cc.querySelectorAll('.js-complex-content-block'));
         this._basicBlocks   = [];
 
+        this._containers        = Array.from(this.cc.querySelectorAll('.js-complex-content-container'));
+        this._containerBlocks   = [];
+
+        this._sections        = Array.from(this.cc.querySelectorAll('.js-complex-content-section'));
+        this._sectionBlocks   = [];
+
         this._switches  = Array.from(this.el.querySelectorAll('.js-switch input'));
 
         this.init();
@@ -41,17 +55,35 @@ export default class DebugManager{
             this.buildBasicModules();
         }
 
+        if(this._containers.length){
+            this.buildContainerModules();
+        }
+
+        if(this._sections.length){
+            this.buildSectionModules();
+        }
+
         for(let i = 0; i < this._switches.length; i++){
             this._switches[i].addEventListener('change', this.handleToggleInput);
         }
     }
 
     private shiftBlockBackgrounds():void{
-
+        for(let i = 0; i < this._containerBlocks.length; i++){
+            this._containerBlocks[i].toggleBackgroundColor();
+        }
     }
 
     private highlightEmptyContainers():void{
+        for(let i = 0; i < this._containerBlocks.length; i++){
+            this._containerBlocks[i].toggleEmptyContainerHighlight();
+        }
+    }
 
+    private highlightEmptySections():void{
+        for(let i = 0; i < this._sectionBlocks.length; i++){
+            this._sectionBlocks[i].toggleEmptySectionHighlight();
+        }
     }
 
     private showBlockType():void{
@@ -72,12 +104,23 @@ export default class DebugManager{
         }
     }
 
+    private showBlockBorder():void{
+        for(let i = 0; i < this._basicBlocks.length; i++){
+            this._basicBlocks[i].toggleBlockBorder();
+        }
+    }
+
     private handleToggleInput:EventListener = (e:Event)=>{
         const target = <HTMLInputElement>e.currentTarget;
+
+        console.log(target.name);
 
         switch(target.name){
             case 'shiftBlockBackground':
                 this.shiftBlockBackgrounds();
+                break;
+            case 'highlightEmptySections':
+                this.highlightEmptySections();
                 break;
             case 'highlightEmptyContainers':
                 this.highlightEmptyContainers();
@@ -91,6 +134,9 @@ export default class DebugManager{
             case 'showBlockSize':
                 this.showBlockSize();
                 break;
+            case 'showBlockBorders':
+                this.showBlockBorder();
+                break;
         }
     }
 
@@ -100,6 +146,22 @@ export default class DebugManager{
             this._basicBlocks.push(newBaiscBlock);
         }
         console.log('%c[Debug Manager] '+`%cSuccessfully built %c${ this._basicBlocks.length } %cbasic block modules.`,'color:#edc035','color:#eee','color:#46d4f2','color:#eee');
+    }
+
+    private buildContainerModules():void{
+        for(let i = 0; i < this._containers.length; i++){
+            const newContainerBlock = new ContainerBlock(this._containers[i]);
+            this._containerBlocks.push(newContainerBlock);
+        }
+        console.log('%c[Debug Manager] '+`%cSuccessfully built %c${ this._containerBlocks.length } %ccontainer block modules.`,'color:#edc035','color:#eee','color:#46d4f2','color:#eee');
+    }
+
+    private buildSectionModules():void{
+        for(let i = 0; i < this._containers.length; i++){
+            const newSectionBlock = new SectionBlock(this._sections[i]);
+            this._sectionBlocks.push(newSectionBlock);
+        }
+        console.log('%c[Debug Manager] '+`%cSuccessfully built %c${ this._sectionBlocks.length } %ccontainer block modules.`,'color:#edc035','color:#eee','color:#46d4f2','color:#eee');
     }
 
     private toggleDebugModal:EventListener = (e:Event)=>{

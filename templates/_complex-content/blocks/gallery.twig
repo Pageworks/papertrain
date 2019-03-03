@@ -1,5 +1,5 @@
 {% if block.slides|length %}
-	<div class="js-complex-content-block b-gallery o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}" data-module="BasicGallery" data-style="{{ block.style }}" data-timing="{{ block.slideTransition }}">
+	<div class="b-gallery o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}" data-module="BasicGallery" data-style="{{ block.style }}" data-timing="{{ block.slideTransition }}">
         {% switch block.aspectRatio %}
             {% case 'u-ratio-1/1' %}
                 {% set selectedRatio = "1/1" %}

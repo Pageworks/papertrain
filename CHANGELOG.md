@@ -32,6 +32,7 @@
 - Adds: huge heading blocks are linkable as `#heading-title-text`
 - Adds: replaces the pages URI as user scrolls past huge heading blocks
 - Adds: custom update script that only updates TypeScript, fuel-pjax, and fuel-state-manager before recompiling [#126](https://github.com/Pageworks/papertrain/issues/126)
+- Adds: initial admin debug tools for Complex Content [#123](https://github.com/Pageworks/papertrain/issues/123)
 
 ### Fixes
 

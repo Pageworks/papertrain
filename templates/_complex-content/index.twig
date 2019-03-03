@@ -82,7 +82,7 @@
                 {% if block.type == 'heading' %}
                     {% set numberOfHeadings = numberOfHeadings + 1 %}
                 {% endif %}
-                <div class="js-block o-wrapper u-1/1">
+                <div class="js-complex-content-block o-wrapper u-1/1" data-block-type="{{ block.type }}" data-block-id="{{ block.id }}">
                     {% include '_complex-content/blocks/' ~ block.type %}
                 </div>
             {% endif %}

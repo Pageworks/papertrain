@@ -1,5 +1,5 @@
 {% if block.buttons|length %}
-	<div class="js-complex-content-block b-buttons o-container -full -flexbox u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{block.alignment}}">
+	<div class="b-buttons o-container -full -flexbox u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{block.alignment}}">
         {% for button in block.buttons %}
             <a href="{{ button.buttonLink.url }}" class="
             {% if block.buttons|length > 1 %}

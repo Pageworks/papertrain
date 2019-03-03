@@ -9,7 +9,7 @@
         {% set headingType = '4' %}
 {% endswitch %}
 {% if block.copy|length %}
-	<div class="js-complex-content-block b-heading o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{block.alignment}}">
+	<div class="b-heading o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }} {{block.alignment}}">
 		<h{{ headingType }} class="{{block.fontSize}}">
 			{% if block.pageJumpLink|length %}
                 {% set name = block.pageJumpLink|trim %}

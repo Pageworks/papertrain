@@ -138,7 +138,7 @@ export default class ComplexContent{
             console.log('%c[Complex Content] '+`%cEntry: %c${ this.el.getAttribute('data-template') } ${ this.el.getAttribute('data-entry') }`,'color:#c36eff','color:#eee','color:#46d4f2');
         }
 
-        this._blocks = Array.from(this.el.querySelectorAll('.js-block'));
+        this._blocks = Array.from(this.el.querySelectorAll('.js-complex-content-block'));
         this._headings = Array.from(this.el.querySelectorAll('[primary-heading]'));
         if(this.el.getAttribute('complex-content-debug') !== null){
             this._debugManager = new DebugManager(document.body.querySelector('.js-debug-panel'), this.el);

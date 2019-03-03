@@ -1,5 +1,5 @@
 {% if block.rows|length %}
-	<div class="js-complex-content-block b-accordion o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}" data-module="BasicAccordion" data-single-open="{{ block.multiRow ? 'true' : 'false' }}">
+	<div class="b-accordion o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}" data-module="BasicAccordion" data-single-open="{{ block.multiRow ? 'true' : 'false' }}">
 		{% for row in block.rows %}
             <div class="js-row b-accordion_row">
                 <a href="javascript:void(0);" class="js-headline b-accordion_headline">
