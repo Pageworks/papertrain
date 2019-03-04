@@ -1,5 +1,4 @@
-// ==========================================================================
-// Objects / Container
+// Containers
 // ==========================================================================
 
 //
@@ -12,71 +11,52 @@
 // @link http://stackoverflow.com/a/13202141/140357
 //
 
-// Base container
-.o-container
-{
+.o-container{
     max-width: $container-width;
     margin-right: auto !important;
     margin-left: auto !important;
-    padding-right: $padding;
-    padding-left: $padding;
     width: 100%;
+    @include u-flexbox;
 
-    @include u-flexbox;        //Adds flexbox modifiers from  tools/_mixins.scss
-    @include u-fullscreen;     //Adds height modifiers from tools/_mixins.scss
-    @include u-mobile-padding; //Adds default padding on mobile sizes from tools/_mixins.scss, configured from $unit-small in settings/_config.scss
+    &:not(.-full){
+        @media (max-width: $screen-xsmall){
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+        }
+        @media (min-width: $screen-xsmall) and (max-width: $container-width + 32px){
+            padding-left: 32px !important;
+            padding-right: 32px !important;
+        }
+    }
+
+    &.-full{
+        max-width: none;
+        margin: 0;
+    }
+
+    &.-narrow{
+        max-width: $narrow-container-width;
+        margin-right: auto !important;
+        margin-left: auto !important;
+
+        @media (max-width: $screen-xsmall){
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+        }
+        @media (min-width: $screen-xsmall) and (max-width: $narrow-container-width + 32px){
+            padding-left: 32px !important;
+            padding-right: 32px !important;
+        }
+    }
 }
 
-// Full width (typically fullscreen) container
-.o-container-full{
-    width: 100%;
-
-    @include u-flexbox;    //Adds flexbox modifiers from  tools/_mixins.scss
-    @include u-fullscreen; //Adds height modifiers from tools/_mixins.scss
-    @include u-mobile-padding; //Adds default padding on mobile sizes from tools/_mixins.scss, configured from $unit-small in settings/_config.scss
-}
-
-// Narrow width container
-.o-container-narrow{
-    max-width: $narrow-container-width;
-    margin-right: auto !important;
-    margin-left: auto !important;
-    padding-right: $padding;
-    padding-left: $padding;
-    width: 100%;
-
-    @include u-flexbox;    //Adds flexbox modifiers from  tools/_mixins.scss
-    @include u-fullscreen; //Adds height modifiers from tools/_mixins.scss
-    @include u-mobile-padding; //Adds default padding on mobile sizes from tools/_mixins.scss, configured from $unit-small in settings/_config.scss
-}
-
-// Wraper object used to block and contain content.
-// Typically used within a flexbox container.
-.o-wrapper
-{
+.o-wrapper{
     position: relative;
     display: inline-block;
 
-    @include u-flexbox;    //Adds flexbox modifiers from  tools/_mixins.scss
-    @include u-fullscreen; //Adds height modifiers from tools/_mixins.scss
-
-    &.-top{
-        vertical-align: top;
-    }
-
-    &.-middle{
-        vertical-align: middle;
-    }
-
-    &.-center
-    {
+    &.-center{
         display: block;
         text-align: center;
         margin: 0 auto;
-    }
-
-    &.-right
-    {
-        text-align: right;
     }
 }

@@ -1,0 +1,166 @@
+// Background Color Config
+// ==========================================================================
+
+.o-copy{
+    p{
+        a{
+            .-base-background & {
+                color: $primary;
+
+                &:after{
+                    background-color: $primary;
+                }
+            }
+
+            .-secondary-background & {
+                color: $primary;
+
+                &:after{
+                    background-color: $primary;
+                }
+            }
+
+            .-dark-background & {
+                color: $primary-alt;
+
+                &:after{
+                    background-color: $primary-alt;
+                }
+            }
+
+            .-brand-background & {
+                color: $primary-alt;
+
+                &:after{
+                    background-color: $primary-alt;
+                }
+            }
+        }
+    }
+}
+
+// Copy Block Config
+// ==========================================================================
+
+.o-copy{
+    &.-single-column{
+        column-count: 1;
+    }
+
+    &.-double-column{
+
+        @media (min-width: $screen-small){
+            column-count: 2;
+            column-gap: $unit*2;
+        }
+    }
+
+    &.-tripple-column{
+        @media (min-width: $screen-small){
+            column-count: 2;
+            column-gap: $unit*2;
+        }
+
+        @media (min-width: $screen-medium){
+            column-count: 3;
+            column-gap: $unit*2;
+        }
+    }
+
+    p{
+        @include u-base-font;
+        margin: $base-p-margin;
+
+        &:last-of-type{
+            margin-bottom: 0;
+        }
+
+        a{
+            text-decoration-skip-ink: none;
+            transition: color 150ms $ease;
+            position: relative;
+            display: inline-block;
+
+            &::after{
+                content:"";
+                @include size(100%, 2px);
+                transform: scaleY(0);
+                position: absolute;
+                bottom: 2px;
+                left: 0;
+                opacity: 0;
+                display: inline-block;
+                transform-origin: bottom;
+                transition: transform 175ms $ease-sharp, opacity 75ms 100ms $ease;
+            }
+
+            @include hover{
+                transition: color 150ms $ease-in, text-decoration 150ms $ease-in;
+
+                &:after{
+                    opacity: 0.87;
+                    transform: scaleY(1);
+                    transition: transform 225ms $ease-in, opacity 75ms 0ms $ease;
+                }
+            }
+        }
+    }
+
+    ol{
+        padding: 8px 0 0 16px;
+        margin: 0;
+        text-align: left;
+
+        ul,ol{
+            padding-bottom: 2px;
+        }
+
+        li{
+            ul{
+                li{
+                    list-style-type: disc;
+
+                    ul{
+                        li{
+                            list-style-type: circle;
+
+                            ul{
+                                li{
+                                    list-style-type: square;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    ul{
+        padding: 8px 0 0 16px;
+        margin: 0;
+        font-size: 16px;
+        text-align: left;
+
+        ul,ol{
+            padding-bottom: 2px;
+        }
+
+        li{
+            list-style-type: disc;
+            min-height: 24px;
+
+            ul{
+                li{
+                    list-style-type: circle;
+
+                    ul{
+                        li{
+                            list-style-type: square;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

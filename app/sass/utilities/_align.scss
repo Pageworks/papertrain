@@ -52,3 +52,17 @@
 {
     vertical-align: top !important;
 }
+
+// Flex
+// ==========================================================================
+.u-justify-left{
+    justify-content: flex-start;
+}
+
+.u-justify-center{
+    justify-content: center;
+}
+
+.u-justify-right{
+    justify-content: flex-end;
+}

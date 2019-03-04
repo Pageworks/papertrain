@@ -1,49 +1,31 @@
 {% if block.rows|length %}
-	<div class="o-accordion o-wrapper u-1/1 {{ block.padding }}{{ block.paddingSize }}" data-module="BasicAccordion" data-single-open="{{ block.multiRow|length ? 'ture' : 'false' }}">
-		{% for row in block.rows %}
-            <div class="js-row o-accordion_row">
-                <a href="javascript:void(0);" class="js-headline o-accordion_headline">
-                    <h3>{{ row.heading }}</h3>
-                    <div class="o-accordion_icon">
-                        <div class="o-accordion_line -vertical"></div>
-                        <div class="o-accordion_line -left"></div>
-                        <div class="o-accordion_line -right"></div>
-                    </div>
-                </a>
-                <div class="js-body o-accordion_body {% if row.splitList|length and row.body|length and row.list|length %}-split{% endif %}">
-                    {% if row.body|length %}
-                        <div class="o-wrapper u-align-top u-1/1 {% if row.splitList|length and row.list|length %}u-1/2@medium u-padding-horizontal{% endif %}">
-                            <div class="o-accordion_copy o-wrapper u-1/1">
+	<div class="b-accordion o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}">
+		<div class="o-wrapper u-1/1 o-accordion -{{ block.style }}" data-module="BasicAccordion" data-single-open="{{ block.multiRow ? 'true' : 'false' }}" data-style="{{ block.style }}">
+            {% for row in block.rows %}
+                <div class="js-row o-accordion_row">
+                    <a href="javascript:void(0);" class="js-headline o-accordion_headline">
+                        <h3>{{ row.heading }}</h3>
+                        <div class="o-accordion_icon">
+                            {% switch block.style %}
+                                {% case 'default' %}
+                                    <div class="o-accordion_line -vertical"></div>
+                                    <div class="o-accordion_line -left"></div>
+                                    <div class="o-accordion_line -right"></div>
+                                {% case 'grounded' %}
+                                    <div class="o-accordion_line -vertical"></div>
+                                    <div class="o-accordion_line -horizontal"></div>
+                            {% endswitch %}
+                        </div>
+                    </a>
+                    <div class="js-body o-accordion_body">
+                        {% if row.body|length %}
+                            <div class="o-copy {{ row.columnLayout }} o-wrapper u-1/1">
                                 {{ row.body }}
                             </div>
-                        </div>
-                    {% endif %}
-                    {% if row.list|length %}
-                        <div class="o-wrapper u-align-top u-1/1 {% if row.splitList|length and row.body|length %}u-1/2@medium u-padding-horizontal{% endif %}">
-                            {% set listCount = 0 %}
-                            {% set numOfList = row.list|length / 6 %}
-                            {% set numOfList = numOfList|round(0, 'ceil') %}
-                            <div class="o-list o-wrapper u-1/{{numOfList}}  u-align-top">
-                                <ul class="o-list_list  {{ row.listStyle }}">
-                                {% for item in row.list %}
-                                    {% set listCount = listCount + 1 %}
-                                    {% if listCount > 6 %}
-                                        {% set listCount = 0 %}
-                                            </ul>
-                                        </div>
-                                        <div class="o-list o-wrapper u-1/{{numOfList}}  u-align-top">
-                                            <ul class="o-list_list  {{ row.listStyle }}">
-                                    {% endif %}
-                                    <li class="o-list_item">
-                                        {{ item.listItem|striptags('<strong><a><em>')|raw }}
-                                    </li>
-                                {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
 	</div>
 {% endif %}

@@ -1,0 +1,20 @@
+{% import '_macros/form' as formMacro %}
+<div class="js-debug-panel c-complex-content-panel -base-background">
+    <div class="js-backdrop c-complex-content-panel_backdrop"></div>
+    <div class="c-complex-content-panel_modal o-form -no-margins">
+        <h5 class="o-h3 u-margin-bottom u-text-center u-padding-horizontal">Complex Content Debug Options</h5>
+        {{ formMacro.switch('Background Shift', 'shiftBlockBackground') }}
+        {{ formMacro.switch('Block Border', 'showBlockBorders') }}
+        {{ formMacro.switch('Highlight Empty Container', 'highlightEmptyContainers') }}
+        {{ formMacro.switch('Highlight Empty Sections', 'highlightEmptySections') }}
+        {{ formMacro.switch('Show Block Type', 'showBlockType') }}
+        {{ formMacro.switch('Show Block ID', 'showBlockId') }}
+        {{ formMacro.switch('Show Block Size', 'showBlockSize') }}
+    </div>
+</div>
+<div class="c-complex-content-panel_button">
+    <button class="js-debug-button o-tooltip">
+        {% include '_svgs/cog-light.svg' %}
+        <span class="js-tip o-tooltip_tip">Settings</span>
+    </button>
+</div>

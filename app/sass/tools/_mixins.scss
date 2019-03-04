@@ -20,11 +20,20 @@
     }
 }
 
+@mixin touch
+{
+    &.has-touch{
+        html.is-touch-device & {
+            @content;
+        }
+    }
+}
+
 @mixin hover
 {
     &:hover
     {
-        html.has-no-touch & {
+        html.is-not-touch-device & {
             @content;
         }
     }
@@ -34,7 +43,13 @@
 {
     &:active
     {
-        html.has-no-touch & {
+        html.is-not-touch-device & {
+            @content;
+        }
+    }
+
+    &.has-touch{
+        html.is-touch-device & {
             @content;
         }
     }
@@ -77,7 +92,7 @@
     &.-flexbox{
         display: flex;
     }
-    
+
     &.-flex,
     &.-flexbox{
         flex-wrap: wrap;
@@ -105,7 +120,7 @@
         &.-justify-center{
             justify-content: center;
         }
-    
+
         &.-space-between{
             justify-content: space-between;
         }
@@ -127,35 +142,6 @@
 
         &.-row-reverse{
             flex-direction: row-reverse;
-        }
-    }
-}
-
-//
-// Sets elements height to be 100%. Typically used on container and warpper objects
-// to convert them to be fullscreen.
-//
-// @output .-full and .-fullscreen
-//
-@mixin u-fullscreen{
-    &.-full{
-        height: 100%;
-    }
-
-    &.-fullscreen{
-        height: 100vh;
-    }
-}
-
-@mixin u-mobile-padding{
-    &.u-mobile-padding{
-        @media (max-width: $screen-xsmall){
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-        }
-        @media (min-width: $screen-xsmall) and (max-width: $screen-container){
-            padding-left: 24px !important;
-            padding-right: 24px !important;
         }
     }
 }

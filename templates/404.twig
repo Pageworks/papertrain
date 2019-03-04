@@ -1,7 +1,23 @@
 {% extends '_layouts/base.twig' %}
 
 {% block content %}
-    <section data-template="404">
-        404 Error Page
-    </section>
+    {% set entry = craft.entries({
+        section: 'missingPage',
+        with: [
+            'cc',
+            'cc.sectionSetings:backgroundImage',
+            'cc.image:image',
+            'cc.buttons:buttons',
+            'cc.gallery:slides',
+            'cc.accordion',
+            'cc.accordion:rows',
+            'cc.list',
+            'cc.list:listItems',
+            'cc.callToActionCards',
+            'cc.callToActionCards:selectedCards',
+            'cc.table',
+            'cc.table:tableContent'
+        ]
+    }).one() %}
+    {% include '_complex-content/index' %}
 {% endblock %}

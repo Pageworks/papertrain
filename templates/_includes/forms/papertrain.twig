@@ -1,0 +1,99 @@
+{% import '_macros/form' as formMacro %}
+
+{{ form.renderTag }}
+
+{% set pages = 1 %}
+{% for row in form %}
+    {% for field in row %}
+        {% if field.type == 'submit' %}
+            {% set pages = pages + 1 %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+<div class="o-wrapper u-1/1">
+    {% if pages > 1 %}
+        <ul class="js-tabs o-freeform_steps -list">
+            {% for page in 1..pages %}
+                <li class="o-freeform_steps_item js-tab {% if loop.index0 == 0  %}is-active-page{% endif %}" data-page="{{ loop.index0 }}">
+                    <a href="javascript:void(0);">
+                        {{ loop.index }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+{% set buttonStyle = '-outline -alt' %}
+
+{% set currentPage = 1 %}
+{% set pageClosed = false %}
+<div class="o-wrapper u-1/1 o-freeform_page js-page {% if currentPage == 1 %}is-active-page{% endif %}">
+    {% for row in form %}
+        <div class="js-row o-freeform_row o-wrapper u-1/1" {% if currentPage == 1 and pages > 1 %}style="opacity:1;"{% elseif currentPage != 1 and pages > 1 %}style="opacity:0;"{% endif %}>
+            {% for field in row %}
+                <div class="o-wrapper u-align-top u-padding-horizontal-half u-1/1 {% if field.type == 'password' %}u-1/2@medium{% else %}{% if row|length > 1 %}u-1/{{row|length}}@medium{% endif %}{% endif %}">
+                    {% if field.type == 'text' or field.type == 'email' %}
+                        {% set maxLength = 254 %}
+                        {% if field.maxLength is defined and field.maxLength|length %}
+                            {% set maxLength = field.maxLength %}
+                        {% endif %}
+                        {{ formMacro.input(field.label, field.handle, field.required, field.type, field.instructions, maxLength) }}
+                    {% elseif field.type == 'number' %}
+                        {% if field.handle == 'pinNumber' %}
+                            {{ formMacro.pin(field.label, field.handle, field.required, field.instructions, field.minLength, field.maxLength) }}
+                        {% else %}
+                            {{ formMacro.number(field.label, field.handle, field.required, field.instructions, field.minValue, field.maxValue, field.decimalCount) }}
+                        {% endif %}
+                    {% elseif field.type == 'textarea' %}
+                        {{ formMacro.textarea(field.label, field.handle, field.required, field.instructions) }}
+                    {% elseif field.type == 'select' %}
+                        {{ formMacro.select(field.label, field.handle, field.required, field.instructions, field.options) }}
+                    {% elseif field.type == 'radio_group' %}
+                        {{ formMacro.radio(field.label, field.handle, field.instructions, field.options) }}
+                    {% elseif field.type == 'checkbox_group' %}
+                        {{ formMacro.checkbox(field.label, field.handle, field.instructions, field.options) }}
+                    {% elseif field.type == 'checkbox' %}
+                        {{ formMacro.switch(field.label, field.handle, field.required, field.instructions, field.checked, field.value) }}
+                    {% elseif field.type == 'password' %}
+                            {{ formMacro.password(field.label, field.handle, field.required, field.instructions) }}
+                        </div>
+                        <div class="o-wrapper u-align-top u-padding-horizontal-half u-1/1 u-1/2@medium">
+                            {{ formMacro.passwordCheck('Confirm ' ~ field.label, field.handle, field.required) }}
+                    {% elseif field.type == 'file' %}
+                        {{ formMacro.file(field.label, field.handle, field.required, field.instructions, field.fileCount, field.fileKinds) }}
+                    {% elseif field.type == 'submit' %}
+                        {% if currentPage < pages %}
+                            <div class="o-wrapper u-1/1 u-text-right u-margin-top">
+                                {% if currentPage > 1 %}
+                                    <button data-type="back" class="o-button {{ buttonStyle }} js-back-button u-margin-right">Back</button>
+                                {% endif %}
+                                <button data-type="next" class="o-button {{ buttonStyle }} is-disabled js-next-button">Next</button>
+                            </div>
+                            {% set currentPage = currentPage + 1 %}
+                            {% set pageClosed = true %}
+                        {% endif %}
+                    {% else %}
+                        {% if currentUser|length and currentUser.admin %}
+                            <span style="font-size:26px;color:#ff715b;text-align:center;margin:2rem 0;display:block;">"{{ field.type }}" is not one of the types this form supports.</span>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        {% if pageClosed %}
+            {% set pageClosed = false %}
+            </div>
+            <div class="o-wrapper u-1/1 o-freeform_page js-page">
+        {% endif %}
+    {% endfor %}
+    <div class="js-row o-wrapper u-1/1 u-text-right u-margin-top" {% if currentPage == 1 and pages > 1 %}style="opacity:1;"{% elseif currentPage != 1 and pages > 1 %}style="opacity:0;"{% endif %}>
+        {% if currentPage > 1 %}
+            <button data-type="back" class="o-button {{ buttonStyle }} js-back-button u-margin-right">Back</button>
+        {% endif %}
+        <button data-type="submit" class="o-button  {{ buttonStyle }} is-disabled js-submit-button">Submit</button>
+    </div>
+</div>
+
+{{ form.renderClosingTag }}

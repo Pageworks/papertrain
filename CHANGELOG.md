@@ -1,10 +1,62 @@
 # Unreleased Changes
 
+### Adds
+
+- Adds: `data-module` attribute can now create multiple modules from one attribute [#107](https://github.com/Pageworks/papertrain/issues/107)
+- Adds: `data-csrf` attribute has been added the the `html` document for a non-cached global use of users CSRF token provided by Craft
+- Adds: updates `fuel-pjax` to use `@codewithkyle/fuel-pjax` [#97](https://github.com/Pageworks/papertrain/issues/97)
+- Adds: updates `animejs` to version 3 [#104](https://github.com/Pageworks/papertrain/issues/104)
+- Adds: custom Freeform template [#73](https://github.com/Pageworks/papertrain/issues/73)
+- Adds: new Freeform Complex Content block
+- Adds: better form input margin control [#94](https://github.com/Pageworks/papertrain/issues/94)
+- Adds: generic field inputs to Craft [#109](https://github.com/Pageworks/papertrain/issues/109)
+- Adds: new column split option to CC copy block [#110](https://github.com/Pageworks/papertrain/issues/110)
+- Adds: Spoon plugin and updates Complex Content layout [#112](https://github.com/Pageworks/papertrain/issues/112)
+- Adds: Relabel plugin [#99](https://github.com/Pageworks/papertrain/issues/99)
+- Adds: `dom-is-animated` status class with custom timer input [#100](https://github.com/Pageworks/papertrain/issues/100)
+- Adds: normalzied all basic raw HTML elements [#103](https://github.com/Pageworks/papertrain/issues/103)
+- Adds: 404 page uses custom single and Complex Content builder
+- Adds: chrome viewport height fix [#87](https://github.com/Pageworks/papertrain/issues/87)
+- Adds: application now tracks touch elements for custom `has-touch` status class [#84](https://github.com/Pageworks/papertrain/issues/84)
+- Adds: `main.css` is always cached busted [#75](https://github.com/Pageworks/papertrain/issues/75)
+- Adds: updated npm scripts and new dev/production build process
+- Adds: adds custom browser-sync script to reload after webpack bundle/scss compile or when a twig file changes
+- Adds: Updates base login account information [#114](https://github.com/Pageworks/papertrain/issues/114)
+- Adds: heading block supports the generation of page jump links [#118](https://github.com/Pageworks/papertrain/issues/118)
+- Adds: heading block elements now use SEO friendly heading elements [#117](https://github.com/Pageworks/papertrain/issues/117)
+- Adds: debug starts `false` and can be enabled with the `?debug=true` query param or by enabling the global Debug Mode in the `Globals > Settings` section of the CP
+- Adds: basic table block to Complex Content [#119](https://github.com/Pageworks/papertrain/issues/119)
+- Adds: breaks out block layout CSS into `o-layout` for column management and `o-grid` for layouts within layouts (such as a CTA card grid)
+- Adds: new `StateManager` package for managing the windows history
+- Adds: new `ComplexContent` class for managing custom page builder functionality
+- Adds: huge heading blocks are linkable as `#heading-title-text`
+- Adds: replaces the pages URI as user scrolls past huge heading blocks
+- Adds: custom update script that only updates TypeScript, fuel-pjax, and fuel-state-manager before recompiling [#126](https://github.com/Pageworks/papertrain/issues/126)
+- Adds: initial admin debug tools for Complex Content [#123](https://github.com/Pageworks/papertrain/issues/123)
+
 ### Fixes
+
 - Fixes: flips auto generated page titles [#91](https://github.com/Pageworks/papertrain/issues/91)
 - Fixes: module names switched from `private` to `public` [#86](https://github.com/Pageworks/papertrain/issues/86)
 - Fixes: `getTemplateName` method in `TransitionManager` [#90](https://github.com/Pageworks/papertrain/issues/90)
 - Fixes: moves `/vendor` in the `.gitignore` file to the top of the file so it's easier to find [#89](https://github.com/Pageworks/papertrain/issues/89)
+- Fixes: updates base scripts [#102](https://github.com/Pageworks/papertrain/issues/102)
+- Fixes: removes webkit highlight colour [#85](https://github.com/Pageworks/papertrain/issues/85)
+- Fixes: form macro input values have been re-structured [#94](https://github.com/Pageworks/papertrain/issues/94)
+- Fixes: all `easing` inputs for `animejs` have been updated to use the new format [#104](https://github.com/Pageworks/papertrain/issues/104)
+- Fixes: the gallery block has been updated to use the new `animejs` format [#104](https://github.com/Pageworks/papertrain/issues/104)
+- Fixes: normalizes button element and removes button element from custom button styles [#98](https://github.com/Pageworks/papertrain/issues/98)
+- Fixes: normalized list elements except within copy block [#101](https://github.com/Pageworks/papertrain/issues/101)
+- Fixes: cleans up container objects and reworks layout for both the complex content grid and general layout object use [#115](https://github.com/Pageworks/papertrain/issues/115)
+- Fixes: removes several options from the image block to make it more generic
+- Fixes: live preview bug caused by eager loading elements [#113](https://github.com/Pageworks/papertrain/issues/113)
+- Fixes: updates `readme.md` for 1.1.0 release
+- Fixes: switches blocks to use object oriented SCSS [#125](https://github.com/Pageworks/papertrain/issues/125)
+
+### Removes
+
+- Removes: `@types/animejs` npm package
+- Removes: `webpack-dev-server` npm package and script
 
 # 1.0.3 - 2019-01-10
 

@@ -1,0 +1,35 @@
+{% set rowIndex = 0 %}
+{% set maxIndex = 0 %}
+{% for column in block.tableContent %}
+    {% if column.columnRows|length > maxIndex %}
+        {% set maxIndex = column.columnRows|length %}
+    {% endif %}
+{% endfor %}
+
+{% if block.tableContent|length %}
+	<div class="b-table o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}">
+		<table class="o-table">
+            <tbody>
+                <tr>
+                    {% for column in block.tableContent %}
+                        <td>{{ column.columnHeading }}</td>
+                    {% endfor %}
+                    <td>&nbsp;</td>
+                </tr>
+                {% for i in 1..maxIndex %}
+                    <tr>
+                        {% for column in block.tableContent %}
+                            {% for row in column.columnRows %}
+                                {% if loop.index0 == rowIndex %}
+                                    <td>{{ row.rows }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        {% set rowIndex = rowIndex + 1 %}
+                        <td>&nbsp;</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+	</div>
+{% endif %}

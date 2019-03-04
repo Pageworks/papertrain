@@ -1,0 +1,232 @@
+// Cards Background Config
+// ==========================================================================
+.o-card{
+    &.-standard,
+    &.-showcase-image,
+    &.-compact{
+        .-base-background & {
+            background-color: $white;
+            box-shadow: 0 2px 8px rgba($black, 0.15);
+
+            .o-card_copy{
+                color: rgba($off-black, 0.6);
+            }
+
+            .o-card_headline{
+                color: $primary;
+            }
+        }
+
+        .-secondary-background & {
+            background-color: $white;
+            box-shadow: 0 2px 8px rgba($black, 0.15);
+
+            .o-card_copy{
+                color: rgba($off-black, 0.6);
+            }
+
+            .o-card_headline{
+                color: $primary;
+            }
+        }
+
+        .-dark-background & {
+            background-color: lighten($off-black, 3);
+            box-shadow: 0 2px 8px rgba($black, 0.3);
+
+            .o-card_copy{
+                color: rgba($off-white, 0.87);
+            }
+
+            .o-card_headline{
+                color: $primary-alt;
+            }
+        }
+
+        .-brand-background & {
+            background-color: lighten($brand-background-color, 5);
+            box-shadow: 0 2px 8px rgba($black, 0.3);
+
+            .o-card_copy{
+                color: rgba(contrast($brand-background-color), 0.87);
+            }
+
+            .o-card_headline{
+                color: $primary-alt;
+            }
+        }
+    }
+}
+
+// Cards Style Config
+// ==========================================================================
+.o-card{
+
+    &.-standard,
+    &.-showcase-image,
+    &.-compact{
+        &.-square{
+            border-radius: 0 !important;
+        }
+    }
+
+
+    &.-standard{
+        display: inline-block;
+        width: 100%;
+        position: relative;
+        height: 100%;
+        border-radius: 4px;
+        padding-bottom: 52px;
+        overflow: hidden;
+
+        .o-card_top{
+            display: block;
+            padding: $unit;
+        }
+
+        .o-card_subheadline{
+            opacity: 0.87;
+        }
+
+        .o-card_media{
+            display: inline-block;
+            width: 100%;
+            position: relative;
+            margin-bottom: $unit;
+
+            &::after{
+                content:"";
+                display: inline-block;
+                z-index: 2;
+                @include size(100%, 100%);
+                @include position(absolute, 0 null null 0);
+                box-shadow: inset 0 0 2px rgba($cool-black, 0.3);
+            }
+
+            img{
+                display: inline-block;
+                object-fit: cover;
+                @include size(100%, 100%);
+                @include position(absolute, 0 null null 0);
+                z-index: 1;
+            }
+        }
+
+        .o-card_copy{
+            padding: 0 $unit $unit;
+            line-height: 1.618;
+            font-size: 14px;
+        }
+
+        .o-card_actions{
+            display: block;
+            padding: 0 $unit-half $unit-half;
+            @include position(absolute, null null 0 0);
+        }
+    }
+
+    &.-showcase-image{
+        display: inline-block;
+        width: 100%;
+        position: relative;
+        height: 100%;
+        border-radius: 4px;
+        padding-bottom: 52px;
+        overflow: hidden;
+
+        .o-card_top{
+            display: block;
+            padding: $unit;
+        }
+
+        .o-card_subheadline{
+            opacity: 0.87;
+        }
+
+        .o-card_media{
+            display: inline-block;
+            width: 100%;
+            position: relative;
+
+            &::after{
+                content:"";
+                display: inline-block;
+                z-index: 2;
+                @include size(100%, 100%);
+                @include position(absolute, 0 null null 0);
+                box-shadow: inset 0 0 2px rgba($cool-black, 0.3);
+            }
+
+            img{
+                display: inline-block;
+                object-fit: cover;
+                @include size(100%, 100%);
+                @include position(absolute, 0 null null 0);
+                z-index: 1;
+            }
+        }
+
+        .o-card_copy{
+            padding: 0 $unit $unit;
+            line-height: 1.618;
+            font-size: 14px;
+        }
+
+        .o-card_actions{
+            display: block;
+            padding: 0 $unit-half $unit-half;
+            @include position(absolute, null null 0 0);
+        }
+    }
+
+    &.-compact{
+        display: inline-block;
+        width: 100%;
+        position: relative;
+        height: 100%;
+        border-radius: 4px;
+        padding: $unit;
+        padding-bottom: 60px;
+        overflow: hidden;
+
+        &.has-image{
+            .o-card_headline,
+            .o-card_copy{
+                max-width: calc(100% - 96px);
+            }
+        }
+
+        .o-card_media{
+            width: 80px;
+            overflow: hidden;
+            @include position(absolute, $unit $unit null null);
+
+            img{
+                display: inline-block;
+                object-fit: cover;
+                @include size(100%, 100%);
+                @include position(absolute, 0 null null 0);
+                z-index: 1;
+            }
+        }
+
+        .o-card_headline{
+            position: relative;
+            width: 100%;
+        }
+
+        .o-card_copy{
+            padding: 0;
+            line-height: 1.618;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .o-card_actions{
+            display: block;
+            padding: 0 $unit-half $unit-half;
+            @include position(absolute, null null 0 0);
+        }
+    }
+}

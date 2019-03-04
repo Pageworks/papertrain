@@ -19,22 +19,23 @@ $cool-black:#4b4e6d;
 
 // Brand Palette
 // =============================================================================
-$primary:       #c1bf0a;
-$secondary:     #c2418f;
-$primary-alt:   $primary;
-$secondary-alt: $secondary;
+
+// Action Palette
+// =============================================================================
+$primary:       #45ADA8;
+$secondary:     #547980;
+$primary-alt:   #E5FCC2;
+$secondary-alt: #9DE0AD;
 
 // Interaction Settings
 // =============================================================================
-$primary-hover-opacity: 0.15;
-$primary-active-opacity: 0.3;
+$primary-hover-opacity: 0.1;
+$primary-active-opacity: 0.15;
 
 // Font Palette
 // =============================================================================
 $font-base:     $off-black;
 $font-alt:      $white;
-$helper-light:  rgba(255,255,255,0.5);
-$helper-dark:   rgba(0,0,0,0.5);
 
 // Selection
 // =============================================================================
@@ -46,6 +47,7 @@ $selection-background-color: $light-gray;
 $base-background-color:         $white;
 $secondary-background-color:    $off-white;
 $dark-background-color:         $off-black;
+$brand-background-color:        $secondary;
 
 // Alert Colors
 // =============================================================================

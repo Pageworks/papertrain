@@ -13,5 +13,6 @@
         "fullscreen",
         "video"
     ],
-    "toolbarFixed": true
+    "toolbarFixed": true,
+    "linkNewTab": true
 }

@@ -23,7 +23,7 @@ $font-weight: $regular;
 $font-family: $font-sans-serif;
 $color: $font-base;
 
-$base-font-size: 16; // In pixels
+$base-font-size: 16px; // In pixels
 
 // Transitions
 // =============================================================================
@@ -36,31 +36,30 @@ $ease-out:      cubic-bezier(0.4, 0.0, 1, 1);
 // Spacing Units
 // =============================================================================
 $unit:          1rem;
-$unit-small:    0.5rem;
-$unit-tiny:     0.25rem;
+$unit-half:     $unit/2;
+$unit-quarter:  $unit/4;
 $base-p-margin: 0 0 $unit;
 
 // Container
 // ==========================================================================
-$container-width:           1280px;
-$narrow-container-width:    840px;
-$padding:                   0;
+$container-width:           1024px;
+$narrow-container-width:    680px;
 
 // Layout
 // =============================================================================
-$gutter:        1rem;
-$gutter-small:  0.5rem;
-$gutter-large:  2rem;
+$gutter:        $unit;
+$gutter-small:  $unit-half;
+$gutter-large:  $unit*2;
 
 // Screen Breakpoints
 // =============================================================================
-$screen-xsmall:     600px;
-$screen-small:      840px;
-$screen-medium:     960px;
-$screen-large:      1280px;
-$screen-xlarge:     1440px;
-$screen-xxlarge:    1600px;
-$screen-xxxlarge:   1920px;
+$screen-xsmall:     600px - 1;
+$screen-small:      840px - 1;
+$screen-medium:     960px - 1;
+$screen-large:      1280px - 1;
+$screen-xlarge:     1440px - 1;
+$screen-xxlarge:    1600px - 1;
+$screen-xxxlarge:   1920px - 1;
 
 // Custom Breakpoints
 // =============================================================================

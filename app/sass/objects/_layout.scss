@@ -5,25 +5,34 @@
 // with width utilities
 // @source https://github.com/inuitcss/inuitcss/blob/0420ba8/objects/_objects.layout.scss
 
-.o-layout
-{
-    @include u-flexbox;
+.o-layout{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 
     // Gutter modifiers
-    @media (min-width: $screen-container){
-        &.-gutter{
-            margin-left: -$gutter / 2;
-            margin-right: -$gutter / 2;
-        }
+    &.-gutter{
+        margin-left: -$gutter;
 
-        &.-gutter-small{
-            margin-left: -$gutter-small / 2;
-            margin-right: -$gutter-small / 2;
+        .o-layout_item{
+            padding-left: $gutter;
         }
+    }
 
-        &.-gutter-large{
-            margin-left: -$gutter-large / 2;
-            margin-right: -$gutter-large / 2;
+    &.-gutter-small{
+        margin-left: -$gutter-small;
+
+        .o-layout_item{
+            padding-left: $gutter-small;
+        }
+    }
+
+    &.-gutter-large{
+        margin-left: -$gutter-large;
+
+        .o-layout_item{
+            padding-left: $gutter-large;
         }
     }
 }
@@ -36,31 +45,10 @@
 .o-layout_item
 {
     display: inline-flex; // [1]
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
+    flex: 0 0 auto;
     width: 100%; // [2]
     vertical-align: top; // [3]
     position: relative;
-
-    // Gutter modifiers
-    @media (min-width: $screen-container){
-        .o-layout.-gutter > &
-        {
-            padding-left: $gutter / 2;
-            padding-right: $gutter / 2;
-        }
-
-        .o-layout.-gutter-small > &
-        {
-            padding-left: $gutter-small / 2;
-            padding-right: $gutter-small / 2;
-        }
-
-        .o-layout.-gutter-large > &
-        {
-            padding-left: $gutter-large / 2;
-            padding-right: $gutter-large / 2;
-        }
-    }
+    box-sizing: border-box;
 }

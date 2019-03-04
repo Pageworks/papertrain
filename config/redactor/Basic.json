@@ -2,7 +2,9 @@
     "buttons": [
         "bold",
         "italic",
-        "link"
+        "link",
+        "file"
     ],
-    "toolbarFixed": true
+    "toolbarFixed": true,
+    "linkNewTab": true
 }

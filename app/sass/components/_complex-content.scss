@@ -1,0 +1,32 @@
+.c-complex-content{
+    .c-complex-content_section{
+        position: relative;
+
+        &.has-image,
+        &.has-video{
+            .c-complex-content_overlay{
+                @include size(100%, 100%);
+                @include position(absolute, 0 null null 0);
+            }
+        }
+
+        &.has-image{
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+        }
+
+        &.has-video{
+            .c-complex-content_video{
+                @include size(100%, 100%);
+                @include position(absolute, 0 null null 0);
+
+                video{
+                    @include size(100%, 100%);
+                    @include position(absolute, 0 null null 0);
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}

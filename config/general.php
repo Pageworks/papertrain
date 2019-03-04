@@ -32,20 +32,29 @@ return [
         'allowUpdates'          => true,
         'devMode'               => true,
         'testToEmailAddress'    => 'REPLACE_ME',
-        'enableTemplateCaching' => false
+        'enableTemplateCaching' => false,
+        'aliases' => [
+            '@rootUrl' => getenv('DEV_URL'),
+        ],
     ],
 
     // Staging environment settings
     'staging' => [
         // Base site URL
-        'siteUrl'       => null,
-        'allowUpdates'  => false
+        'siteUrl'       => getenv('STAGING_URL'),
+        'allowUpdates'  => false,
+        'aliases' => [
+            '@rootUrl' => getenv('STAGING_URL'),
+        ],
     ],
 
     // Production environment settings
     'production' => [
         // Base site URL
-        'siteUrl'       => null,
-        'allowUpdates'  => false
+        'siteUrl'           => getenv('PRODUCTION_URL'),
+        'allowAdminChanges' => false,
+        'aliases' => [
+            '@rootUrl' => getenv('PRODUCTION_URL'),
+        ],
     ],
 ];

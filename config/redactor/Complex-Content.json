@@ -4,7 +4,9 @@
         "italic",
         "unorderedlist",
         "orderedlist",
-        "link"
+        "link",
+        "file"
     ],
-    "toolbarFixed": true
+    "toolbarFixed": true,
+    "linkNewTab": true
 }

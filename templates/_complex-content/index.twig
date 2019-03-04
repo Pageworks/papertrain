@@ -3,20 +3,10 @@
 {% set columnLayout = 1 %}
 {% set currentColumn = 1 %}
 {% set columnOpen = false %}
+{% set numberOfHeadings = 0 %}
 
-{% do eagerLoadElements(entry, [
-    'cc',
-    'cc.sectionSetings:backgroundImage',
-    'cc.image:image',
-    'cc.buttons:buttons',
-    'cc.gallery:slides',
-    'cc.accordion',
-    'cc.accordion:rows',
-    'cc.list',
-    'cc.list:listItems'
-]) %}
 {% cache %}
-    <article data-template="{{entry.slug}}" class="o-container-full c-complex-content">
+    <article data-entry="{{ entry.cpEditUrl }}" data-template="{{entry.slug}}" class="o-container -full c-complex-content" complex-content {% if currentUser and currentUser.admin and entry.bool1|length %}complex-content-debug{% endif %}>
         {% for block in entry.cc %}
             {# Determine if we need to grab a utility block or a content block #}
             {% if block.type == "sectionSettings" or block.type == "container" or block.type == "endColumn" %}
@@ -89,7 +79,12 @@
                 {% endif %}
 
                 {# Include the content for the block #}
-                {% include '_complex-content/blocks/' ~ block.type %}
+                {% if block.type == 'heading' %}
+                    {% set numberOfHeadings = numberOfHeadings + 1 %}
+                {% endif %}
+                <div class="js-complex-content-block o-wrapper u-1/1" data-block-type="{{ block.type }}" data-block-id="{{ block.id }}">
+                    {% include '_complex-content/blocks/' ~ block.type %}
+                </div>
             {% endif %}
 
             {# When we run out of blocks close any open elements #}

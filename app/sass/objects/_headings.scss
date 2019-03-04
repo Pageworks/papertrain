@@ -1,0 +1,81 @@
+// Headings
+// ==========================================================================
+
+@mixin  base-heading {
+    text-transform: capitalize;
+    width: 100%;
+    color: contrast($base-background-color);
+
+    .-dark-background & {
+        color: contrast($dark-background-color);
+    }
+
+    .-brand-background & {
+        color: contrast($brand-background-color);
+    }
+}
+
+.o-h1
+{
+    @include base-heading;
+    @include u-h1;
+
+    font-weight: $light;
+    font-family: $font-heading;
+    opacity: 0.87;
+}
+
+.o-h2
+{
+    @include base-heading;
+    @include u-h2;
+
+    font-weight: $light;
+    font-family: $font-heading;
+    opacity: 0.87;
+}
+
+.o-h3
+{
+    @include base-heading;
+    @include u-h3;
+
+    font-weight: $regular;
+    font-family: $font-heading;
+    opacity: 0.87;
+}
+
+.o-h4
+{
+    @include base-heading;
+    @include u-h4;
+
+    font-weight: $regular;
+    font-family: $font-heading;
+    opacity: 0.87;
+}
+
+.o-h5,
+.o-headline,
+.o-title
+{
+    @include base-heading;
+    @include u-base-font;
+
+    font-weight: $heavy;
+    font-family: $font-heading;
+    @include base-heading;
+    opacity: 0.87;
+}
+
+.o-h6,
+.o-subtitle
+{
+    @include base-heading;
+    @include u-h6;
+
+    font-weight: $regular;
+    font-family: $font-heading;
+    @include base-heading;
+    opacity: 0.87;
+}

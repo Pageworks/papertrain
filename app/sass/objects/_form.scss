@@ -1,62 +1,420 @@
-// Forms
+// Form Variables
 // ==========================================================================
 
-// Switch (styled single checkbox) input wrapper
-// Switch inputs have a universal style
-// Styled outside of the form element since they are not always form elements
+/* Used for all inputs  */
+$base-margin-bottom: $unit + $unit-half;
+
+/* Used when an input has a helper or error  */
+$expanded-margin-bottom: $unit*2 + $unit-half;
+
+// Background Colors Config
+// ==========================================================================
+.o-form{
+    label{
+        .-base-background & {
+            color: contrast($base-background-color, 0.6);
+        }
+
+        .-secondary-background & {
+            color: contrast($secondary-background-color, 0.6);
+        }
+
+        .-dark-background & {
+            color: contrast($dark-background-color, 0.6);
+        }
+
+        .-brand-background & {
+            color: contrast($brand-background-color, 0.6);
+        }
+    }
+
+    .o-help{
+        .-base-background & {
+            color: contrast($base-background-color, 0.5);
+        }
+
+        .-secondary-background & {
+            color: contrast($secondary-background-color, 0.5);
+        }
+
+        .-dark-background & {
+            color: contrast($dark-background-color, 0.5);
+        }
+
+        .-brand-background & {
+            color: contrast($brand-background-color, 0.5);
+        }
+    }
+
+    .o-arrow{
+        .-base-background & {
+            color: contrast($base-background-color, 0.6);
+        }
+
+        .-secondary-background & {
+            color: contrast($secondary-background-color, 0.6);
+        }
+
+        .-dark-background & {
+            color: contrast($dark-background-color, 0.6);
+        }
+
+        .-brand-background & {
+            color: contrast($brand-background-color, 0.6);
+        }
+    }
+
+    .o-textarea{
+        textarea{
+            .-base-background & {
+                border-color: contrast($base-background-color, 0.3);
+                color: $font-base;
+
+                @include hover{
+                    border-color: contrast($base-background-color, 0.6);
+                    transition: border 150ms $ease-in;
+                }
+
+                &:focus{
+                    border-color: $primary !important;
+
+                    & + label{
+                        color: $primary;
+                    }
+                }
+            }
+
+            .-secondary-background & {
+                border-color: contrast($secondary-background-color, 0.3);
+                color: $font-base;
+
+                @include hover{
+                    border-color: contrast($secondary-background-color, 0.6);
+                    transition: border 150ms $ease-in;
+                }
+
+                &:focus{
+                    border-color: $primary !important;
+
+                    & + label{
+                        color: $primary;
+                    }
+                }
+            }
+
+            .-dark-background & {
+                border-color: contrast($dark-background-color, 0.3);
+                color: $font-alt;
+
+                @include hover{
+                    border-color: contrast($dark-background-color, 0.6);
+                    transition: border 150ms $ease-in;
+                }
+
+                &:focus{
+                    border-color: $primary-alt !important;
+
+                    & + label{
+                        color: $primary-alt;
+                    }
+                }
+            }
+
+            .-brand-background & {
+                border-color: contrast($brand-background-color, 0.3);
+                color: contrast($brand-background-color);
+
+                @include hover{
+                    border-color: contrast($brand-background-color, 0.6);
+                    transition: border 150ms $ease-in;
+                }
+
+                &:focus{
+                    border-color: $primary-alt !important;
+
+                    & + label{
+                        color: $primary-alt;
+                    }
+                }
+            }
+        }
+    }
+
+    .o-input{
+        input,
+        select{
+            .-base-background & {
+                color: $font-base;
+            }
+
+            .-secondary-background & {
+                color: $font-base;
+            }
+
+            .-dark-background & {
+                color: $font-alt;
+            }
+
+            .-brand-background & {
+                color: contrast($brand-background-color);
+            }
+        }
+
+        .-visible,
+        .-hidden{
+            .-base-background & {
+                color: contrast($base-background-color);
+
+                &:before,
+                &:after{
+                    background-color: $primary;
+                }
+            }
+
+            .-secondary-background & {
+                color: contrast($secondary-background-color);
+
+                &:before,
+                &:after{
+                    background-color: $primary;
+                }
+            }
+
+            .-dark-background & {
+                color: contrast($dark-background-color);
+
+                &:before,
+                &:after{
+                    background-color: $primary-alt;
+                }
+            }
+
+            .-brand-background & {
+                color: contrast($brand-background-color);
+
+                &:before,
+                &:after{
+                    background-color: $primary-alt;
+                }
+            }
+        }
+    }
+
+    .o-radio,
+    .o-checkbox,
+    .o-switch{
+        .o-checkbox_icon,
+        .o-radio_icon,
+        .o-switch_icon .o-switch_handle{
+            &:before,
+            &:after{
+                .-base-background & {
+                    background-color: $primary;
+                }
+
+                .-secondary-background & {
+                    background-color: $primary;
+                }
+
+                .-dark-background & {
+                    background-color: $primary-alt;
+                }
+
+                .-brand-background & {
+                    background-color: $primary-alt;
+                }
+            }
+        }
+
+        .o-radio_outter,
+        .o-radio_inner,
+        .o-checkbox_box{
+            .-base-background & {
+                border-color: $primary;
+            }
+
+            .-secondary-background & {
+                border-color: $primary;
+            }
+
+            .-dark-background & {
+                border-color: $primary-alt;
+            }
+
+            .-brand-background & {
+                border-color: $primary-alt;
+            }
+        }
+    }
+
+    .o-checkbox{
+        .o-checkbox_item{
+            .o-checkbox_check{
+                path{
+                    .-base-background & {
+                        stroke: contrast($primary, 0.87) !important;
+                    }
+
+                    .-secondary-background & {
+                        stroke: contrast($primary, 0.87) !important;
+                    }
+
+                    .-dark-background & {
+                        stroke: contrast($primary-alt, 0.87) !important;
+                    }
+
+                    .-brand-background & {
+                        stroke: contrast($primary-alt, 0.87) !important;
+                    }
+                }
+            }
+
+            input{
+                &:checked{
+                    & + label{
+                        .o-checkbox_icon{
+                            .o-checkbox_box{
+                                .-base-background & {
+                                    background-color: $primary;
+                                }
+
+                                .-secondary-background & {
+                                    background-color: $primary;
+                                }
+
+                                .-dark-background & {
+                                    background-color: $primary-alt;
+                                }
+
+                                .-brand-background & {
+                                    background-color: $primary-alt;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .o-switch{
+        .o-switch_item{
+            input{
+                &:checked{
+                    & + label{
+                        .o-switch_icon{
+                            .o-switch_handle{
+                                .o-switch_circle{
+                                    .-base-background & {
+                                        border-color: $primary;
+                                    }
+
+                                    .-secondary-background & {
+                                        border-color: $primary;
+                                    }
+
+                                    .-dark-background & {
+                                        border-color: $primary-alt;
+                                    }
+
+                                    .-brand-background & {
+                                        border-color: $primary-alt;
+                                    }
+                                }
+                            }
+
+                            .o-switch_track{
+                                .-base-background & {
+                                    background-color: $primary;
+                                }
+
+                                .-secondary-background & {
+                                    background-color: $primary;
+                                }
+
+                                .-dark-background & {
+                                    background-color: $primary-alt;
+                                }
+
+                                .-brand-background & {
+                                    background-color: $primary-alt;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            label{
+                .o-switch_icon{
+                    .o-switch_track{
+                        background-color: $black;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Form Object Config
+// ==========================================================================
 .o-switch{
-    height: 48px;
-    width: 100%;
+    height: 48px !important;
+    width: 100% !important;
+    margin-bottom: $base-margin-bottom !important;
+    position: relative !important;
+
+    &.is-invalid{
+        .o-help{
+            opacity: 0;
+            transition: opacity 25ms $ease-sharp;
+        }
+
+        .o-error{
+            opacity: 1;
+            transform: translateY(0);
+            transition: transform 150ms $ease-in, opacity 25ms $ease-in;
+        }
+    }
 
     .o-switch_item{
-        width: 100%;
-        height: 100%;
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
 
         input{
             &:checked{
                 & + label{
                     .o-switch_icon{
                         .o-switch_handle{
-                            transform: translateX(20px);
-
-                            .o-switch_circle{
-                                border-color: $primary;
-
-                                section.-dark-background & {
-                                    border-color: $primary-alt;
-                                }
-                            }
+                            transform: translateX(20px) !important;
                         }
 
                         .o-switch_track{
-                            // background: $primary;
-                            // opacity: 0.54;
+                            opacity: 0.54;
                         }
                     }
                 }
             }
         }
-        
+
         label{
-            @include size(100%, 100%);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            pointer-events: all;
+            width: 100%  !important;
+            height: 100%  !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            pointer-events: all !important;
+            left: 0 !important;
+            bottom: 0 !important;
 
             .o-switch_icon{
-                // pointer-events: none;
-                display: inline-flex;
-                align-items: center;
-                cursor: pointer;
+                display: inline-flex !important;
+                align-items: center !important;
+                cursor: pointer !important;
 
-                &:active{
+                @include active{
                     .o-switch_handle{
-                        &:before{
-                            opacity: 0;
-                            transition: opacity 75ms $ease-out;
-                        }
-    
                         &:after{
                             transform: scale(1);
                             opacity: $primary-active-opacity;
@@ -65,7 +423,7 @@
                     }
                 }
 
-                &:hover{
+                @include hover{
                     .o-switch_handle{
                         &:before{
                             transform: scale(1);
@@ -79,8 +437,7 @@
                     opacity: 0.3;
                     border-radius: 7px;
                     @include size(30px, 12px);
-                    background: $black;
-                    transition: background 75ms $ease;
+                    transition: background-color 150ms $ease;
                 }
 
                 .o-switch_handle{
@@ -94,17 +451,18 @@
                     transition: transform 150ms $ease;
 
                     .o-switch_circle{
-                        border: 10px solid $white;
+                        border-width: 10px;
+                        border-style: solid;
+                        border-color: $white;
                         box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
                         border-radius: 100%;
                         position: absolute;
                         z-index: 5;
-                        transition: border-color 75ms $ease;
+                        transition: border-color 150ms $ease;
                     }
 
                     &::before{
                         content:"";
-                        background: $primary;
                         position: absolute;
                         display: inline-block;
                         border-radius: 100%;
@@ -113,15 +471,10 @@
                         opacity: 0;
                         z-index: 1;
                         transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
-
-                        section.-dark-background & {
-                            background: $white;
-                        }
                     }
-    
+
                     &::after{
                         content:"";
-                        background: $primary;
                         position: absolute;
                         display: inline-block;
                         border-radius: 100%;
@@ -129,47 +482,59 @@
                         transform: scale(0);
                         opacity: 0;
                         z-index: 2;
-                        transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
-
-                        section.-dark-background & {
-                            background: $white;
-                        }
+                        transition: transform 150ms $ease-sharp, opacity 25ms 50ms $ease-out;
                     }
                 }
             }
+
+            span{
+                cursor: pointer !important;
+            }
+        }
+
+        .o-help,{
+            position: relative;
+            padding: 0;
+            margin-top: 4px;
+        }
+
+        .o-error{
+            padding: 0;
+            bottom: 2px;
+            top: auto;
         }
     }
 }
 
-// Radio input wrapper
-// Radio buttons have a universal style
 .o-radio{
-    position: relative;
-    padding: 32px 0 6px;
-    text-align: left;
-    width: 100%;
+    position: relative !important;
+    padding: $unit 0 0 !important;
+    text-align: left !important;
+    width: 100% !important;
+    margin-bottom: $base-margin-bottom !important;
+    margin-top: $base-margin-bottom !important;
+
+    &.has-helper{
+        margin-bottom: $expanded-margin-bottom;
+    }
 
     label{
-        position: absolute;
-        top: 0;
-        left: 12px;
+        position: absolute !important;
+        top: 0 !important;
+        left: $unit-half !important;
     }
 
     .o-radio_item{
-        display: flex;
-        align-items: center;
-        margin: $unit $unit*2;
-
-        @media (min-width: $screen-medium){
-            display: inline-flex;
-        }
+        display: flex !important;
+        align-items: center !important;
+        margin: $unit !important;
 
         label{
-            display: flex;
-            align-items: center;
+            display: flex !important;
+            align-items: center !important;
         }
 
-        &:hover{
+        @include hover{
             cursor: pointer !important;
 
             .o-radio_icon{
@@ -177,17 +542,12 @@
                     transform: scale(1);
                     opacity: $primary-hover-opacity;
                     transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                }   
+                }
             }
         }
 
-        &:active{
+        @include active{
             .o-radio_icon{
-                &:before{
-                    opacity: 0;
-                    transition: opacity 75ms $ease-out;
-                }
-
                 &:after{
                     transform: scale(1);
                     opacity: $primary-active-opacity;
@@ -208,7 +568,6 @@
 
             &::before{
                 content:"";
-                background: $primary;
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
@@ -216,50 +575,35 @@
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
-
-                section.-dark-background & {
-                    background: $white;
-                }
             }
 
             &::after{
                 content:"";
-                background: $primary;
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
                 @include size(32px, 32px);
                 transform: scale(0);
                 opacity: 0;
-                transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
-
-                section.-dark-background & {
-                    background: $white;
-                }
+                transition: transform 150ms $ease-sharp, opacity 25ms 50ms $ease-out;
             }
 
             .o-radio_outter{
                 @include size(16px, 16px);
                 border-radius: 100%;
-                border: 2px solid $primary;
+                border-width: 2px;
+                border-style: solid;
                 position: absolute;
-
-                section.-dark-background & {
-                    border-color: $primary-alt;
-                }
             }
 
             .o-radio_inner{
                 transform: scale(0);
                 @include size(100%, 100%);
-                border: solid 10px $primary;
+                border-width: 10px;
+                border-style: solid;
                 border-radius: 100%;
                 position: absolute;
                 transition: transform 125ms $ease-sharp;
-
-                section.-dark-background & {
-                    border-color: $primary-alt;
-                }
             }
         }
 
@@ -268,7 +612,7 @@
                 & + label{
                     .o-radio_icon{
                         .o-radio_inner{
-                            transform: scale(0.4);
+                            transform: scale(0.4) !important;
                             transition: transform 150ms $ease-in;
                         }
                     }
@@ -276,40 +620,48 @@
             }
 
             & + label{
-                vertical-align: middle;
-                position: relative;
-                left: 0;
-                pointer-events: all;
-                cursor: pointer;
+                vertical-align: middle !important;
+                position: relative !important;
+                left: 0 !important;
+                pointer-events: all !important;
+                cursor: pointer !important;
             }
         }
     }
+
+    .o-help,
+    .o-error{
+        padding: 0 0 0 $unit-half !important;
+    }
 }
 
-// Checkbox input wrapper
-// Checkbox inputs have a universal style
 .o-checkbox{
-    position: relative;
-    padding: 32px 0 6px;
-    width: 100%;
+    position: relative !important;
+    padding: $unit 0 0 !important;
+    width: 100% !important;
+    margin-bottom: $base-margin-bottom !important;
+    margin-top: $base-margin-bottom !important;
+
+    &.has-helper{
+        margin-bottom: $expanded-margin-bottom;
+    }
 
     label{
-        position: absolute;
-        top: 0;
-        left: 12px;
+        position: absolute !important;
+        top: 0 !important;
+        left: $unit-half !important;
     }
 
     .o-checkbox_item{
-
         label{
-            height: 24px;
-            line-height: 24px;
-            display: flex;
-            align-items: center;
-            margin: $unit $unit*2;
+            height: 24px !important;
+            line-height: 24px !important;
+            display: flex !important;
+            align-items: center !important;
+            margin: $unit !important;
         }
 
-        &:hover{
+        @include hover{
             cursor: pointer !important;
 
             .o-checkbox_icon{
@@ -317,17 +669,12 @@
                     transform: scale(1);
                     opacity: $primary-hover-opacity;
                     transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                }   
+                }
             }
         }
 
-        &:active{
+        @include active{
             .o-checkbox_icon{
-                &:before{
-                    opacity: 0;
-                    transition: opacity 75ms $ease-out;
-                }
-
                 &:after{
                     transform: scale(1);
                     opacity: $primary-active-opacity;
@@ -348,7 +695,6 @@
 
             &::before{
                 content:"";
-                background: $primary;
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
@@ -356,55 +702,39 @@
                 transform: scale(0);
                 opacity: 0;
                 transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
-
-                section.-dark-background & {
-                    background: $white;
-                }
             }
 
             &::after{
                 content:"";
-                background: $primary;
                 position: absolute;
                 display: inline-block;
                 border-radius: 100%;
                 @include size(32px, 32px);
                 transform: scale(0);
                 opacity: 0;
-                transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
-
-                section.-dark-background & {
-                    background: $white;
-                }
+                transition: transform 150ms $ease-sharp, opacity 25ms 50ms $ease-out;
             }
 
             .o-checkbox_box{
                 position: absolute;
                 @include size(16px, 16px);
                 border-radius: 2px;
-                border: 2px solid $primary;
+                border-width: 2px;
+                border-style: solid;
                 background: transparent;
-                transition: background 75ms $ease-sharp;
-
-                section.-dark-background & {
-                    border-color: $primary-alt;
-                }
+                transition: background-color 150ms $ease-sharp;
             }
 
             .o-checkbox_check{
                 position: absolute;
-                transform: scale(0.5);                    
+                transform: scale(0.5);
+
                 path{
-                    stroke: contrast($primary);
                     stroke-width: 3px;
                     stroke-linecap: round;
                     stroke-dasharray: 30;
                     stroke-dashoffset: 30;
-                    transition: stroke-dashoffset 75ms $ease-sharp;
-
-                    section.-dark-background & {
-                        stroke: contrast($primary-alt);
-                    }
+                    transition: stroke-dashoffset 150ms $ease-sharp;
                 }
             }
         }
@@ -414,12 +744,8 @@
                 & + label{
                     .o-checkbox_icon{
                         .o-checkbox_box{
-                            background: $primary;
+                            // background: $primary !important;
                             transition: background 150ms $ease-in;
-
-                            section.-dark-background & {
-                                background: $primary-alt;
-                            }
                         }
 
                         .o-checkbox_check{
@@ -433,141 +759,58 @@
             }
 
             & ~ label{
-                vertical-align: middle;
-                position: relative;
-                left: 0;
-                pointer-events: all;
-                cursor: pointer;
+                vertical-align: middle !important;
+                position: relative !important;
+                left: 0 !important;
+                pointer-events: all !important;
+                cursor: pointer !important;
             }
         }
     }
+
+    .o-help,
+    .o-error{
+        padding: 0 0 0 $unit-half !important;
+    }
 }
 
-// Base input wrapper
-.o-input{
-    height: 56px;
-    width: 100%;
-    position: relative;
+.o-color{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: $base-margin-bottom;
+    padding: $unit-half;
 
-    &.-square{
-        input,
-        select,
-        textarea{
-            border-radius: 0 !important;
-        }
-    }
-
-    &.is-invalid{
-        .o-help{
-            opacity: 0;
-            transition: opacity 25ms $ease-sharp;
-        }
-    }
-
-    .-visible,
-    .-hidden{
-        @include position(absolute, null 12px 18px null);
-        color: $off-black;
+    input{
+        padding: 0 !important;
+        width: 32px !important;
+        height: 32px !important;
+        border: 0 !important;
+        box-shadow: 0 2px 4px rgba($black, 0.2);
         cursor: pointer;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
 
-        &::before{
-            content:"";
-            background: $primary;
-            position: absolute;
-            display: inline-block;
-            border-radius: 100%;
-            @include size(32px, 32px);
-            transform: scale(0);
-            transform-origin: center;
-            opacity: 0;
-            transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+        &:focus{
+            & + label{
+                color: rgba($black, 0.6) !important;
+                bottom: auto !important;
+                transition: all 150ms $ease-in;
+                font-size: 16px !important;
 
-            section.-dark-background & {
-                background: $white;
+                section.-dark-background & {
+                    color: rgba($white, 0.6) !important;
+                }
             }
-        }
-
-        &::after{
-            content:"";
-            background: $primary;
-            position: absolute;
-            display: inline-block;
-            border-radius: 100%;
-            @include size(32px, 32px);
-            transform: scale(0);
-            opacity: 0;
-            transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
-
-            section.-dark-background & {
-                background: $white;
-            }
-        }
-
-        &:hover{
-            &:before{
-                transform: scale(1);
-                opacity: $primary-hover-opacity;
-                transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-            }
-        }
-
-        &:active{
-            &:before{
-                opacity: 0;
-                transition: opacity 75ms $ease-out;
-            }
-
-            &:after{
-                transform: scale(1);
-                opacity: $primary-active-opacity;
-                transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-            }
-        }
-
-        section.-dark-background & {
-            color: $font-alt;
         }
     }
 
-    &.has-content-hidden,
-    &.has-content-visible{
-        input{
-            padding-right: 34px !important;
-        }
-    }
-
-    // Used for password and pin inputs
-    // The password field is hidden (default)
-    &.has-content-hidden{
-        .-visible{
-            display: none;
-        }
-
-        .-hidden{
-            display: inline-flex;
-        }
-    }
-
-    // Used for password and pin inputs
-    // The password field is visible
-    &.has-content-visible{
-        .-visible{
-            display: inline-flex;
-        }
-
-        .-hidden{
-            display: none;
-        }
+    label{
+        pointer-events: all !important;
+        margin-left: $unit;
+        cursor: pointer;
     }
 }
 
-form{
-    padding: 0;
-    margin: 0;
-
+.o-form{
     &.-square{
         input,
         select,
@@ -576,12 +819,30 @@ form{
         }
     }
 
-    // Text area input wrapper
+    &.-no-margins{
+        .o-textarea,
+        .o-input,
+        .o-switch,
+        .o-radio,
+        .o-checkbox{
+            margin-bottom: 0 !important;
+        }
+    }
+
+    // Textarea Input
     .o-textarea{
         position: relative;
         width: 100%;
+        margin-bottom: $base-margin-bottom;
+        transition: all 150ms $ease;
+
+        &.has-helper{
+            margin-bottom: $expanded-margin-bottom;
+        }
 
         &.is-invalid{
+            margin-bottom: $expanded-margin-bottom;
+
             html.has-js & {
                 .o-error{
                     opacity: 1;
@@ -591,9 +852,17 @@ form{
             }
 
             textarea{
-                border: 2px solid $error;
+                border-color: rgba($error, 0.87) !important;
                 padding: 31px 15px 15px;
                 transition: border 150ms $ease, padding 150ms $ease;
+
+                &:focus{
+                    border-color: rgba($error, 0.87) !important;
+
+                    & + label{
+                        color: rgba($error, 0.87) !important;
+                    }
+                }
 
                 & + label{
                     top: 12px;
@@ -611,32 +880,206 @@ form{
                 }
             }
         }
+
+        textarea{
+            padding: 32px 16px 16px;
+            border-radius: 4px;
+            width: 100%;
+            min-height: 106px;
+            transition: border-color 150ms $ease-sharp, padding 150ms $ease-sharp;
+            border-width: 2px;
+            border-style: solid;
+
+            & + label{
+                position: absolute;
+                top: 20px;
+                left: 16px !important;
+            }
+
+            @include hover{
+                border: 2px solid rgba($off-black, 0.6);
+                transition: border 150ms $ease-in;
+            }
+
+            &:focus{
+                padding: 31px 15px 15px;
+                transition: border 150ms $ease-in, padding 150ms $ease-in;
+
+                & + label{
+                    top: 12px;
+                    font-size: 12px !important;
+                }
+            }
+        }
+    }
+
+    // Input
+    .o-input{
+        height: 56px;
+        width: 100%;
+        position: relative;
+        margin-bottom: $base-margin-bottom;
+        transition: all 150ms $ease;
+
+        &.-square{
+            input,
+            select,
+            textarea{
+                border-radius: 0 !important;
+            }
+        }
+
+        &.is-invalid{
+            margin-bottom: $expanded-margin-bottom;
+
+            input,
+            select{
+                & + label{
+                    color: rgba($error, 0.87) !important;
+                }
+            }
+
+            .o-help{
+                opacity: 0;
+                transition: opacity 25ms $ease-sharp;
+            }
+
+            .o-error{
+                opacity: 1;
+                transform: translateY(0);
+                transition: transform 150ms $ease-in, opacity 25ms $ease-in;
+            }
+        }
+
+        &.has-helper{
+            margin-bottom: $expanded-margin-bottom;
+        }
+
+        .-visible,
+        .-hidden{
+            @include position(absolute, 50% 0 null null);
+            transform: translateY(-50%);
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.3;
+            transition: all 150ms $ease;
+            @include size(48px, 48px);
+
+            svg{
+                @include size(22px, 22px);
+            }
+
+            &::before{
+                content:"";
+                position: absolute;
+                display: inline-block;
+                border-radius: 100%;
+                @include size(32px, 32px);
+                transform: scale(0);
+                transform-origin: center;
+                opacity: 0;
+                transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+            }
+
+            &::after{
+                content:"";
+                position: absolute;
+                display: inline-block;
+                border-radius: 100%;
+                @include size(32px, 32px);
+                transform: scale(0);
+                opacity: 0;
+                transition: transform 150ms $ease-sharp, opacity 25ms 50ms $ease-out;
+            }
+
+            @include hover{
+                opacity: 0.87 !important;
+
+                &:before{
+                    transform: scale(1);
+                    opacity: $primary-hover-opacity;
+                    transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                }
+            }
+
+            @include active{
+                &:after{
+                    transform: scale(1);
+                    opacity: $primary-active-opacity;
+                    transition: transform 150ms $ease-in, opacity 75ms $ease-in;
+                }
+            }
+        }
+
+        &.has-content-hidden,
+        &.has-content-visible{
+            input{
+                padding-right: 48px !important;
+            }
+        }
+
+        // Used for password and pin inputs
+        // The password field is hidden (default)
+        &.has-content-hidden{
+            .-visible{
+                display: none;
+            }
+
+            .-hidden{
+                display: inline-flex;
+            }
+        }
+
+        // Used for password and pin inputs
+        // The password field is visible
+        &.has-content-visible{
+            .-visible{
+                display: inline-flex;
+            }
+
+            .-hidden{
+                display: none;
+            }
+        }
+
+        @include hover{
+            .-visible,
+            .-hidden{
+                opacity: 0.6;
+            }
+        }
     }
 
     // Text objects
     .o-error,
     .o-help{
-        padding: $unit $unit-small 0;
+        padding: $unit-half;
         @include position(absolute, 100% null null 0);
         width: 100%;
-        color: $helper-dark;
         font-size: 12px;
-
-        section.-dark-background & {
-            color: $helper-light;
-        }
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
 
         svg{
-            margin-right: $unit-small;
+            margin-right: 4px;
         }
     }
 
     // Error object
     .o-error{
-        color: $error !important;
+        color: rgba($error, 0.87) !important;
         opacity: 0;
         transform: translateY(5px);
-        transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
+        transition: transform 150ms $ease-sharp, opacity 150ms $ease-out;
+
+        svg{
+            @include size(12px, 12px);
+            transform: translateY(1px);
+        }
     }
 
     // Helper object
@@ -649,57 +1092,15 @@ form{
     .o-arrow{
         @include position(absolute, 50% 12px null null);
         transform: translateY(-60%);
-        color: $off-black;
+        user-select: none;
+        pointer-events: none;
 
-        section.-dark-background & {
-            color: $font-alt;
+        svg{
+            @include size(22px, 22px);
         }
     }
 
-    // Text area has a universal style
-    textarea{
-        padding: 32px 16px 16px;
-        border-radius: 4px;
-        border: 1px solid $off-black;
-        width: 100%;
-        min-height: 106px;
-        color: $font-base;
-        background: transparent;
-        transition: border 75ms $ease-sharp, padding 75ms $ease-sharp;
-
-        section.-dark-background & {
-            border: 1px solid rgba($off-white, 0.3);
-            color: $font-alt;
-        }
-
-        & + label{
-            position: absolute;
-            top: 20px;
-            left: 16px !important;
-        }
-
-        &:focus{
-            border: 2px solid $primary;
-            padding: 31px 15px 15px;
-            transition: border 150ms $ease-in, padding 150ms $ease-in;
-
-            section.-dark-background & {
-                border-color: $primary-alt;
-            }
-
-            & + label{
-                top: 12px;
-                font-size: 12px !important;
-                color: $primary !important;
-
-                section.-dark-background & {
-                    color: $primary-alt !important;
-                }
-            }
-        }
-    }
-
-    // General input settings
+    // General input
     input{
         &.has-icon{
             padding-left: 48px !important;
@@ -707,11 +1108,18 @@ form{
         }
     }
 
+    // General label
+    label{
+        user-select: none;
+    }
+
     .o-icon{
         position: absolute;
         left: 17px;
         bottom: 17px;
         font-size: 22px;
+        user-select: none;
+        pointer-events: none;
     }
 
     // Outline Input Style
@@ -721,97 +1129,5 @@ form{
     @import './form-styles/solid';
 
     // Base Style
-    @import './form-styles/base';
-}
-
-// Normalize Inputs
-// ==========================================================================
-
-input,
-select,
-textarea,
-fieldset{
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    line-height: 16px;
-
-    &:focus,
-    &:active{
-        box-shadow: none;
-        border: none;
-        outline: none;
-    }
-
-    &:invalid{
-        box-shadow: none;
-    }
-}
-
-input,
-select{
-    background: transparent;
-    color: rgba($black, 0.87);
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    section.-dark-background & {
-        color: rgba($font-alt, 0.87);
-    }
-}
-
-input[type=radio],
-input[type=checkbox]{
-    @include size(0px,0px);
-    position: absolute;
-    border: none;
-    outline: none;
-    background: transparent;
-    opacity: 0;
-    visibility: hidden;
-}
-
-input,
-textarea{
-    section.-dark-background & {
-        ::placeholder{
-            color: rgba($font-alt, 0.87);
-        }
-    }
-
-    ::placeholder{
-        color: rgba($black, 0.87);
-    }
-}
-
-input[type=date]{
-    text-indent: -1px;
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-}
-
-select{
-    @media (min-width: $screen-large){
-        text-indent: -1px;
-    }
-
-    html.has-js & {
-        appearance: none;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-    }
-}
-
-input[type=number] { 
-    -moz-appearance: textfield;
-    appearance: textfield;
-    margin: 0; 
-}
-
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-      -webkit-appearance: none; 
-      margin: 0; 
+    @import './form-styles/underline';
 }

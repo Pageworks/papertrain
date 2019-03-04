@@ -1,0 +1,30 @@
+// Background Color Config Options
+// ==========================================================================
+//
+// Set background colors in settings/_colors.scss
+//
+
+section,
+article{
+    &.-base-background{
+        background: $base-background-color;
+        color: $font-base;
+    }
+
+    &.-secondary-background{
+        background: $secondary-background-color;
+        color: $font-base;
+    }
+
+    &.-brand-background{
+        background: $brand-background-color;
+        color: contrast($brand-background-color);
+    }
+
+    &.-dark-background,
+    &.has-image,
+    &.has-video{
+        background: $dark-background-color;
+        color: $font-alt;
+    }
+}

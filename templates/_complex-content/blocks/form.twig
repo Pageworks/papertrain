@@ -1,0 +1,20 @@
+{% if block.selectedForm|length %}
+    {% set form = craft.freeform.form(block.selectedForm.handle) %}
+	<div class="b-freeform o-freeform o-form {{ block.formStyle }} {{ (block.squareInputs|length) ? '-square'  }} {{ block.paddingType }}{{ block.paddingSize }} o-wrapper u-1/1" data-module="Freeform BasicForm">
+        {{ form.render() }}
+        <div class="js-spinner o-freeform_spinner" style="opacity:0;">
+            {% include '_includes/components/infinite-circle-progress-spinner' %}
+            <span class="o-freeform_spinner_message">Submitting form...</span>
+        </div>
+        <div class="js-success o-freeform_success" style="opacity:0;">
+            <div class="o-freeform_success_message o-wrapper u-text-center">
+                {% if block.submissionMessage|length %}
+                    {{ block.submissionMessage }}
+                {% else %}
+                    <span>The form has been submitted.</span>
+                {% endif %}
+            </div>
+            {# <button class="js-reset o-button -outline -alt"><span>Start again</span></button> #}
+        </div>
+	</div>
+{% endif %}

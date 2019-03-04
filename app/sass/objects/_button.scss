@@ -1,57 +1,212 @@
+// Background Color Config
 // ==========================================================================
-// Objects / Buttons
+.o-button{
+    .-base-background & {
+        color: $primary;
+
+        &:before{
+            background-color: $primary;
+        }
+
+        &.-solid{
+            color: contrast($primary);
+            background: $primary;
+
+            &:before{
+                background-color: contrast($primary);
+            }
+        }
+
+        &.-outline{
+            border-color: $primary;
+
+            &.-alt{
+                border-color: rgba(contrast($base-background-color), 0.1);
+
+                @include hover{
+                    border-color: $primary;
+                }
+            }
+        }
+
+        &.-raised{
+            background-color: $primary;
+            color: contrast($primary);
+            box-shadow: 0 2px 8px rgba($black, 0.3);
+
+            @include hover{
+                box-shadow: 0 2px 8px rgba($black, 0.6);
+            }
+
+            &:before{
+                background-color: contrast($primary);
+            }
+        }
+    }
+
+    .-secondary-background & {
+        color: $primary;
+
+        &:before{
+            background-color: $primary;
+        }
+
+        &.-solid{
+            color: contrast($primary);
+            background: $primary;
+
+            &:before{
+                background-color: contrast($primary);
+            }
+        }
+
+        &.-outline{
+            border-color: $primary;
+
+            &.-alt{
+                border-color: rgba(contrast($secondary-background-color), 0.1);
+
+                @include hover{
+                    border-color: $primary;
+                }
+            }
+        }
+
+        &.-raised{
+            background-color: $primary;
+            color: contrast($primary);
+            box-shadow: 0 2px 8px rgba($black, 0.3);
+
+            @include hover{
+                box-shadow: 0 2px 8px rgba($black, 0.6);
+            }
+
+            &:before{
+                background-color: contrast($primary);
+            }
+        }
+    }
+
+    .-dark-background & {
+        color: $primary-alt;
+
+        &:before{
+            background-color: $primary-alt;
+        }
+
+        &.-solid{
+            color: contrast($primary-alt);
+            background: $primary-alt;
+
+            &:before{
+                background-color: contrast($primary-alt);
+            }
+        }
+
+        &.-outline{
+            border-color: $primary-alt;
+
+            &.-alt{
+                border-color: rgba(contrast($dark-background-color), 0.1);
+
+                @include hover{
+                    border-color: $primary-alt;
+                }
+            }
+        }
+
+        &.-raised{
+            background-color: $primary-alt;
+            color: contrast($primary-alt);
+            box-shadow: 0 2px 8px rgba($black, 0.3);
+
+            @include hover{
+                box-shadow: 0 2px 8px rgba($black, 0.6);
+            }
+
+            &:before{
+                background-color: contrast($primary-alt);
+            }
+        }
+    }
+
+    .-brand-background & {
+        color: $primary-alt;
+
+        &:before{
+            background-color: $primary-alt;
+        }
+
+        &.-solid{
+            color: contrast($primary-alt);
+            background: $primary-alt;
+
+            &:before{
+                background-color: contrast($primary-alt);
+            }
+        }
+
+        &.-outline{
+            border-color: $primary-alt;
+
+            &.-alt{
+                border-color: rgba(contrast($brand-background-color), 0.1);
+
+                @include hover{
+                    border-color: $primary-alt;
+                }
+            }
+        }
+
+        &.-raised{
+            background-color: $primary-alt;
+            color: contrast($primary-alt);
+            box-shadow: 0 2px 8px rgba($black, 0.3);
+
+            @include hover{
+                box-shadow: 0 2px 8px rgba($black, 0.6);
+            }
+
+            &:before{
+                background-color: contrast($primary-alt);
+            }
+        }
+    }
+}
+
+// Buttons Style Config
 // ==========================================================================
 
-//
-// 1. Allow us to style box model properties.
-// 2. Fixes odd inner spacing in IE7.
-// 3. Line different sized buttons up a little nicer.
-// 4. Force all button-styled elements to appear clickable.
-//
-button,
-.o-button
-{
-    // Base
-    color: $primary;
-    letter-spacing: 1px;
+.o-button{
+    // Font
     font-weight: $medium;
     font-size: 14px;
-    text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;
     text-align: center;
-    line-height: 37px;
+    line-height: 38px;
+    opacity: 0.87;
 
-    padding: 0 $unit-small;
-    min-width: 64px;
+    // Size
+    padding: 0 $unit-half;
     height: 36px;
-    margin: 0;
 
+    // Base
+    margin: 0;
     display: inline-block;
     user-select: none;
     overflow: hidden;
-    border-radius: 4px;
     background: transparent;
     position: relative;
-    opacity: 0.87;
+    border-radius: 4px;
 
-    section.-dark-background & {
-        color: $primary-alt;
-    }
-
-    &:not(.-icon){
-        &::before{
-            content:"";
-            @include size(100%, 100%);
-            @include position(absolute, 0 null null 0);
-            background-color: $primary;
-            opacity: 0;
-            transition: opacity 125ms $ease-out;
-
-            section.-dark-background & {
-                background-color: $primary-alt;
-            }
-        }
+    &::before{
+        content:"";
+        display: inline-block;
+        opacity: 0;
+        @include position(absolute, 0 null null 0);
+        @include size(100%, 100%);
+        pointer-events: none;
     }
 
     @include hover{
@@ -70,11 +225,14 @@ button,
 
     // Modifier Classes
     &.is-disabled{
-        color: rgba($black,0.26);
-        pointer-events: none;
+        background: rgba($black,0.1) !important;
+        color: rgba($black,0.26) !important;
+        border: 2px solid rgba($black, 0.1) !important;
+        line-height: 34px !important;
+        box-shadow: none !important;
 
-        section.-dark-background & {
-            color: rgba($white, 0.3);
+        &:before{
+            display: none;
         }
     }
 
@@ -82,58 +240,38 @@ button,
         display: block;
     }
 
+    &.-square{
+        border-radius: 0;
+    }
+
     &.-round{
         border-radius: 17px;
+        padding: 0 $unit !important;
     }
 
     &.has-icon{
-        padding: 0 $unit;
+        padding: 0 $unit 0 $unit - $unit-quarter !important;
 
         svg{
             @include size(18px, 18px);
             transform: translateY(3px);
-            margin-right: $unit-small;
+            margin-right: $unit-half;
         }
     }
 
     // Solid
     &.-solid{
         padding: 0 $unit;
-        background: $primary;
-        color: contrast($primary);
-
-        section.-dark-background & {
-            background: $primary-alt;
-            color: contrast($primary-alt);
-
-            &:before{
-                background-color: contrast($primary-alt);
-            }
-        }
-
-        &:before{
-            background-color: contrast($primary);
-        }
 
         @include hover{
             &:before{
-                opacity: 0.1;
+                opacity: $primary-hover-opacity;
             }
         }
 
         @include active{
             &:before{
-                opacity: 0.2;
-            }
-        }
-
-        &.is-disabled{
-            background: rgba($black,0.1);
-            color: rgba($black,0.26);
-
-            section.-dark-background & {
-                background: rgba($white,0.05);
-                color: rgba($white, 0.3);
+                opacity: $primary-active-opacity;
             }
         }
     }
@@ -141,165 +279,31 @@ button,
     // Outline
     &.-outline{
         padding: 0 $unit;
-        border: 2px solid $primary;
+        border-width: 2px;
+        border-style: solid;
         line-height: 34px;
 
-        section.-dark-background & {
-            border-color: $primary-alt;
-        }
-
         &.-alt{
-            border-color: rgba($black, 0.1);
             transition: border-color 150ms $ease;
-
-            section.-dark-background & {
-                border-color: rgba($white, 0.1);
-
-                @include hover{
-                    border-color: $primary-alt;
-                }
-            }
-
-            @include hover{
-                border-color: $primary;
-            }
-        }
-
-        &.is-disabled{
-            background: rgba($black,0.04);
-            color: rgba($black,0.26);
-            border-color: rgba($black, 0.1);
-
-            section.-dark-background & {
-                background: rgba($white,0.05);
-                color: rgba($white, 0.3);
-                border-color: rgba($white, 0.04);
-            }
         }
     }
 
     // Raised
     &.-raised{
         padding: 0 $unit;
-        background: $primary;
-        color: $white;
-        box-shadow: 0 3px 1px -2px rgba($black,.2),0 2px 2px 0 rgba($black,.14),0 1px 5px 0 rgba($black,.12);
         transition: box-shadow 150ms $ease-out;
 
-        &:before{
-            background-color: $white;
-        }
-
         @include hover{
-            box-shadow: 0 2px 4px -1px rgba($black,.2),0 4px 5px 0 rgba($black,.14),0 1px 10px 0 rgba($black,.12);
             transition: box-shadow 150ms $ease-in;
 
             &:before{
-                opacity: 0.08;
+                opacity: $primary-hover-opacity;
             }
         }
 
         @include active{
             &:before{
-                opacity: 0.33;
-            }
-        }
-
-        &.is-disabled{
-            background: rgba($black,0.1);
-            color: rgba($black,0.26);
-
-            section.-dark-background & {
-                background: rgba($white,0.05);
-                color: rgba($white, 0.3);
-            }
-        }
-    }
-
-    // Icon ONLY
-    &.-icon{
-        background: rgba($black,0);
-        color: $primary;
-
-        html.has-js.has-no-touch & {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-
-            .-active{
-                display: none;
-            }
-
-            &.is-active{
-                .-inactive{
-                    display: none;
-                }
-
-                .-active{
-                    display: initial;
-                }
-            }
-
-            &::before{
-                content:"";
-                background: $primary;
-                position: absolute;
-                display: inline-block;
-                border-radius: 100%;
-                @include size(32px, 32px);
-                transform: scale(0);
-                transform-origin: center;
-                opacity: 0;
-                transition: transform 125ms $ease-sharp, opacity 25ms 100ms $ease-out;
-            }
-
-            &::after{
-                content:"";
-                background: $primary;
-                position: absolute;
-                display: inline-block;
-                border-radius: 100%;
-                @include size(32px, 32px);
-                transform: scale(0);
-                opacity: 0;
-                transition: transform 75ms $ease-sharp, opacity 25ms 50ms $ease-out;
-            }
-
-            svg{
-                @include size(18px, 18px);
-            }
-
-            .-alt{
-                display: none !important;
-            }
-
-            &:hover{
-                &:before{
-                    transform: scale(1);
-                    opacity: $primary-hover-opacity;
-                    transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                }
-            }
-
-            &:active{
-                &:before{
-                    opacity: 0;
-                    transition: opacity 75ms $ease-out;
-                }
-
-                &:after{
-                    transform: scale(1);
-                    opacity: $primary-active-opacity;
-                    transition: transform 150ms $ease-in, opacity 75ms $ease-in;
-                }
-            }
-        }
-
-        &:before,
-        &:after{
-            section.-dark-background & {
-                background: $white !important;
+                opacity: $primary-active-opacity;
             }
         }
     }

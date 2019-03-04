@@ -1,0 +1,141 @@
+// List Background Config
+// ==========================================================================
+.o-list{
+    &.-default,
+    &.-plus,
+    &.-square,
+    &.-disc{
+        .o-list_item{
+            &:before,
+            &:after{
+                .-base-background & {
+                    background-color: $primary;
+                }
+
+                .-secondary-background & {
+                    background-color: $primary;
+                }
+
+                .-dark-background & {
+                    background-color: $primary-alt;
+                }
+
+                .-brand-background & {
+                    background-color: $primary-alt;
+                }
+
+            }
+        }
+    }
+
+    &.-circle{
+        .o-list_item{
+            &:before{
+                .-base-background & {
+                    border-color: $primary;
+                }
+
+                .-secondary-background & {
+                    border-color: $primary;
+                }
+
+                .-dark-background & {
+                    border-color: $primary-alt;
+                }
+
+                .-brand-background & {
+                    border-color: $primary-alt;
+                }
+            }
+        }
+    }
+}
+
+// List Style Config
+// ==========================================================================
+.o-list{
+    padding-left: $unit*2;
+    display: inline-block;
+    max-width: 840px;
+
+    // List Icons
+    &.-default{
+        .o-list_item{
+            &::before{
+                content:"";
+                @include size(0.75rem, 2px);
+                @include position(absolute, 21px null null -1.5rem);
+            }
+        }
+    }
+
+    &.-plus{
+        .o-list_item{
+            &::before{
+                content:"";
+                @include size(0.75rem, 2px);
+                @include position(absolute, 21px null null -1.5rem);
+                // transform: translateY(-50%);
+            }
+
+            &::after{
+                content:"";
+                @include size(2px, 0.75rem);
+                @include position(absolute, $unit null null -1.2rem);
+                // transform: translateY(-50%);
+            }
+        }
+    }
+
+    &.-square{
+        .o-list_item{
+            &::before{
+                content:"";
+                @include size(9px, 9px);
+                @include position(absolute, 17px null null -1.5rem);
+            }
+        }
+    }
+
+    &.-circle{
+        .o-list_item{
+            &::before{
+                content:"";
+                @include size($unit-half, $unit-half);
+                border-width: 2px;
+                border-style: solid;
+                border-radius: 100%;
+                @include position(absolute, $unit null null -1.5rem);
+            }
+        }
+    }
+
+    &.-disc{
+        .o-list_item{
+            &::before{
+                content:"";
+                @include size(9px, 9px);
+                border-radius: 100%;
+                @include position(absolute, 17px null null -1.5rem);
+            }
+        }
+    }
+
+    // List Item
+    .o-list_item{
+        list-style: none;
+        position: relative;
+        margin: $unit 0;
+        font-size: $base-font-size * 1.618;
+        text-align: left;
+        display: block;
+
+        &:first-child{
+            margin-top: 0;
+        }
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+}

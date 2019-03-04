@@ -1,0 +1,125 @@
+// Pull Quote Background Config
+// ==========================================================================
+.o-quote{
+    .o-quote_blockquote{
+        &.-large{
+            .o-quote_icon{
+                .-base-background & {
+                    opacity: 0.06;
+                }
+
+                .-secondary-background & {
+                    opacity: 0.06;
+                }
+
+                .-dark-background & {
+                    opacity: 0.15;
+                }
+
+                .-brand-background & {
+                    opacity: 0.15;
+                }
+            }
+        }
+
+        &.-block{
+            .-base-background & {
+                background-color: rgba($primary, 0.05);
+                border-left-color: $primary;
+            }
+
+            .-secondary-background & {
+                background-color: rgba($primary, 0.05);
+                border-left-color: $primary;
+            }
+
+            .-dark-background & {
+                background-color: rgba($primary-alt, 0.05);
+                border-left-color: $primary-alt;
+            }
+
+            .-brand-background & {
+                background-color: rgba($primary-alt, 0.05);
+                border-left-color: $primary-alt;
+            }
+        }
+    }
+}
+
+// Pull Quote Style Config
+// ==========================================================================
+.o-quote{
+    .o-quote_shim{
+        display: block;
+        margin: 0 auto;
+
+        .o-quote_blockquote{
+            &.-large{
+                text-align: center;
+                font-size: 2.0625rem;
+                letter-spacing: -0.015rem;
+                font-weight: $medium;
+                max-width: 640px;
+                display: block;
+                margin: 0 auto;
+
+                .o-quote_icon{
+                    font-size: 6rem;
+                    font-family: Georgia, 'Times New Roman', Times, serif;
+                    line-height: 0;
+                    transform: translateY(2.35rem);
+                    display: inline-block;
+                }
+
+                .o-quote_body{
+                    margin: 0;
+
+                    // Readability Settings
+                    line-height: 3.1875rem;
+
+                    @media (min-width: $screen-xsmall){
+                        line-height: 3.25rem;
+                    }
+
+                    @media (min-width: $screen-small){
+                        line-height: 3.375rem;
+                    }
+
+                    @media (min-width: $screen-medium){
+                        line-height: 3.4375rem;
+                    }
+                }
+            }
+
+            &.-block{
+                padding: $unit $unit $unit*3 $unit*2;
+                border-width: 0 0 0 2px;
+                border-style: solid;
+                line-height: 1.618;
+                font-size: $base-font-size * 1.618;
+            }
+        }
+
+        .o-quote_source{
+            &.-large{
+                font-family: $font-heading;
+                font-weight: $medium;
+                font-size: 1.25rem;
+                letter-spacing: 0.0125rem;
+                line-height: 2rem;
+                text-transform: capitalize;
+                font-style: normal;
+                text-align: center;
+                margin-top: $unit;
+                display: block;
+            }
+
+            &.-block{
+                padding-left: $unit*2 + $unit-half;
+                transform: translateY(-150%);
+                position: relative;
+                display: inline-block;
+            }
+        }
+    }
+}
