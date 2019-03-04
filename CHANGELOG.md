@@ -1,4 +1,4 @@
-# Unreleased Changes
+# 1.1.0 - 2019-03-03
 
 ### Adds
 
