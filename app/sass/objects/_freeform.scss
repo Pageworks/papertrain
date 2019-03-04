@@ -1,5 +1,5 @@
-.b-freeform{
-    .b-freeform_spinner{
+.o-freeform{
+    .o-freeform_spinner{
         width: 100%;
         text-align: center;
         display: none;
@@ -9,13 +9,13 @@
             display: inline-block;
         }
 
-        .b-freeform_spinner_message{
+        .o-freeform_spinner_message{
             display: block;
             margin-top: $unit;
         }
     }
 
-    .b-freeform_success{
+    .o-freeform_success{
         width: 100%;
         text-align: center;
         display: none;
@@ -24,7 +24,7 @@
             display: inline-block;
         }
 
-        .b-freeform_success_message{
+        .o-freeform_success_message{
             display: block;
             margin: $unit 0;
             color: $success;
@@ -37,7 +37,7 @@
         }
     }
 
-    .b-freeform_page{
+    .o-freeform_page{
         opacity: 0;
         display: none;
 
@@ -55,7 +55,7 @@
         }
     }
 
-    .b-freeform_steps{
+    .o-freeform_steps{
         &.-list{
             display: inline-flex;
             justify-content: center;
@@ -63,7 +63,7 @@
             width: 100%;
             margin-bottom: $unit*2;
 
-            .b-freeform_steps_item{
+            .o-freeform_steps_item{
                 list-style-type: none;
                 display: inline-flex;
                 justify-content: center;

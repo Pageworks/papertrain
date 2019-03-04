@@ -51,6 +51,7 @@
 - Fixes: removes several options from the image block to make it more generic
 - Fixes: live preview bug caused by eager loading elements [#113](https://github.com/Pageworks/papertrain/issues/113)
 - Fixes: updates `readme.md` for 1.1.0 release
+- Fixes: switches blocks to use object oriented SCSS [#125](https://github.com/Pageworks/papertrain/issues/125)
 
 ### Removes
 

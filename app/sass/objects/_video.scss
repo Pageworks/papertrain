@@ -1,10 +1,10 @@
-.b-video{
-    .b-video_shim{
+.o-video{
+    .o-video_shim{
         display: inline-block;
         position: relative;
         width: 100%;
 
-        .b-video_video{
+        .o-video_video{
             @include size(100%, 100%);
             @include position(absolute, 0 null null 0);
             display: inline-block;

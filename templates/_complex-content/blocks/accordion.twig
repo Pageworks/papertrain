@@ -1,23 +1,31 @@
 {% if block.rows|length %}
-	<div class="b-accordion o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}" data-module="BasicAccordion" data-single-open="{{ block.multiRow ? 'true' : 'false' }}">
-		{% for row in block.rows %}
-            <div class="js-row b-accordion_row">
-                <a href="javascript:void(0);" class="js-headline b-accordion_headline">
-                    <h3>{{ row.heading }}</h3>
-                    <div class="b-accordion_icon">
-                        <div class="b-accordion_line -vertical"></div>
-                        <div class="b-accordion_line -left"></div>
-                        <div class="b-accordion_line -right"></div>
-                    </div>
-                </a>
-                <div class="js-body b-accordion_body">
-                    {% if row.body|length %}
-                        <div class="b-copy {{ row.columnLayout }} o-wrapper u-1/1">
-                            {{ row.body }}
+	<div class="b-accordion o-wrapper u-1/1 {{ block.paddingType }}{{ block.paddingSize }}">
+		<div class="o-wrapper u-1/1 o-accordion -{{ block.style }}" data-module="BasicAccordion" data-single-open="{{ block.multiRow ? 'true' : 'false' }}" data-style="{{ block.style }}">
+            {% for row in block.rows %}
+                <div class="js-row o-accordion_row">
+                    <a href="javascript:void(0);" class="js-headline o-accordion_headline">
+                        <h3>{{ row.heading }}</h3>
+                        <div class="o-accordion_icon">
+                            {% switch block.style %}
+                                {% case 'default' %}
+                                    <div class="o-accordion_line -vertical"></div>
+                                    <div class="o-accordion_line -left"></div>
+                                    <div class="o-accordion_line -right"></div>
+                                {% case 'grounded' %}
+                                    <div class="o-accordion_line -vertical"></div>
+                                    <div class="o-accordion_line -horizontal"></div>
+                            {% endswitch %}
                         </div>
-                    {% endif %}
+                    </a>
+                    <div class="js-body o-accordion_body">
+                        {% if row.body|length %}
+                            <div class="o-copy {{ row.columnLayout }} o-wrapper u-1/1">
+                                {{ row.body }}
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
 	</div>
 {% endif %}

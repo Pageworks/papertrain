@@ -1,9 +1,9 @@
 // Pull Quote Background Config
 // ==========================================================================
-.b-quote{
-    .b-quote_blockquote{
+.o-quote{
+    .o-quote_blockquote{
         &.-large{
-            .b-quote_icon{
+            .o-quote_icon{
                 .-base-background & {
                     opacity: 0.06;
                 }
@@ -48,12 +48,12 @@
 
 // Pull Quote Style Config
 // ==========================================================================
-.b-quote{
-    .b-quote_shim{
+.o-quote{
+    .o-quote_shim{
         display: block;
         margin: 0 auto;
 
-        .b-quote_blockquote{
+        .o-quote_blockquote{
             &.-large{
                 text-align: center;
                 font-size: 2.0625rem;
@@ -63,7 +63,7 @@
                 display: block;
                 margin: 0 auto;
 
-                .b-quote_icon{
+                .o-quote_icon{
                     font-size: 6rem;
                     font-family: Georgia, 'Times New Roman', Times, serif;
                     line-height: 0;
@@ -71,7 +71,7 @@
                     display: inline-block;
                 }
 
-                .b-quote_body{
+                .o-quote_body{
                     margin: 0;
 
                     // Readability Settings
@@ -100,7 +100,7 @@
             }
         }
 
-        .b-quote_source{
+        .o-quote_source{
             &.-large{
                 font-family: $font-heading;
                 font-weight: $medium;
