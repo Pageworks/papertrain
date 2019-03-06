@@ -1,9 +1,11 @@
 import Env from './env';
 import * as modules from './modules';
+import ComplexContent from './complex-content/ComplexContent';
 import TransitionManager from './transitions/TransitionManager';
 import polyfill from './polyfill';
+
 import * as v4 from 'uuid/v4';
-import ComplexContent from './complex-content/ComplexContent';
+import DeviceManager from 'fuel-device-manager';
 
 export default class App{
 
@@ -12,22 +14,21 @@ export default class App{
     private _modules:           { [index:string] : Function };
     private _currentModules:    Array<Module>;
     private _transitionManager: TransitionManager;
-    private _touchSupport:      boolean;
     private _scrollDistance:    number;
     private _prevScroll:        number;
     private _trackedTouches:    Array<Element>;
 
-    public  env:                Env;
-    public  complexContent:     ComplexContent;
+    public env:                 Env;
+    public complexContent:      ComplexContent;
 
     constructor(){
         this._modules            = modules;
         this._currentModules     = [];
         this._transitionManager  = null;
-        this._touchSupport       = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
         this._prevScroll        = 0;
         this._scrollDistance    = 0;
         this._trackedTouches    = [];
+
         this.env                = new Env();
         this.complexContent     = null;
 
@@ -38,10 +39,8 @@ export default class App{
      * Used to call any methods needed when the application initially loads
      */
     private init(): void{
-        Env.HTML.classList.remove('has-no-js');
-        Env.HTML.classList.add('has-js');
         // If user is using IE 11 load the polyfill
-        if('-ms-scroll-limit' in document.documentElement.style && '-ms-ime-align' in document.documentElement.style){
+        if(DeviceManager.isIE){
             polyfill();
         }
 
@@ -50,15 +49,14 @@ export default class App{
             this.env.setDebug(true);
         }
 
-        if(this._touchSupport){
-            Env.HTML.classList.add('is-touch-device');
-            Env.HTML.classList.remove('is-not-touch-device');
-            document.body.addEventListener('touchstart', this.userTouched);
+        new DeviceManager(this.env.getDebugStatus(), true);
+
+        if(DeviceManager.supportsTouch){
             this.getTouchElements();
         }
 
         window.addEventListener('load', e => { Env.HTML.classList.add('has-loaded') });
-        window.addEventListener('scroll', e => this.handleScroll() );
+        window.addEventListener('scroll', this.handleScroll, { passive: true } );
 
         this.initModules(); // Get initial modules
         this.handleStatus(); // Check the users visitor status
@@ -104,7 +102,7 @@ export default class App{
     private purgeTouchElements(): void{
 
         // Do nothing on non-touch devices
-        if(!this._touchSupport){
+        if(!DeviceManager.supportsTouch){
             return;
         }
 
@@ -166,7 +164,7 @@ export default class App{
     private getTouchElements(): void{
 
         // Do nothing on non-touch devices
-        if(!this._touchSupport){
+        if(!DeviceManager.supportsTouch){
             return;
         }
 
@@ -188,7 +186,7 @@ export default class App{
     public updateTouchElements(): void{
 
         // Do nothing on non-touch devices
-        if(!this._touchSupport){
+        if(!DeviceManager.supportsTouch){
             return;
         }
 
@@ -246,7 +244,7 @@ export default class App{
      * Called when the user scrolls.
      * Manages the `has-scrolled` status class attached to the document.
      */
-    private handleScroll(): void{
+    private handleScroll:EventListener =()=>{
         const currentScroll:number = window.scrollY;
 
         if(!Env.HTML.classList.contains('has-scrolled') && currentScroll >= this._prevScroll){

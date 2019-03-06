@@ -1,7 +1,7 @@
 {
     "name": "papertrain-craft-boilerplate",
     "description": "Papertrain is a Craft 3 Boilerplate - Updated 2019/02/25",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "author": "Kyle Andrews <kylea@page.works> (https://page.works/)",
     "license": "MIT",
     "repository": {
@@ -39,8 +39,7 @@
         "dev:sass": "node-sass ./app/sass/main.scss ./public/assets/styles/main.css",
         "watch:typescript": "watch \"npm run dev:typescript\" ./app/typescript",
         "watch:sass": "watch \"npm run dev:sass\" ./app/sass",
-        "watch:sync": "node ./sync.js",
-        "update": "npm update typescript && npm update fuel-pjax && npm update fuel-state-manager && npm run compile"
+        "watch:sync": "node ./sync.js"
     },
     "lint-staged": {
         "linters": {
@@ -50,9 +49,9 @@
     },
     "dependencies": {
         "animejs": "^3.0.1",
+        "fuel-device-manager": "^1.0.0",
         "fuel-pjax": "^1.1.4",
         "fuel-state-manager": "^1.0.0",
-        "modernizr": "^3.7.0",
         "uuid": "^3.3.2",
         "webpack": "^4.29.6"
     },
