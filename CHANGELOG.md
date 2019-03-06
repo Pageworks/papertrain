@@ -1,3 +1,18 @@
+# 1.1.1 - 2019-03-06
+
+### Adds
+
+- Adds: [fuel-device-manager](https://github.com/Pageworks/fuel-device-manager) package
+
+### Fixes
+
+- Fixes: `package.json` switched from single quotes to double quotes due to windows issue
+
+### Removes
+
+- Removes: status class logic for pointer and touch devices
+- Removes: status class logic for setting `has-js`
+
 # 1.1.0 - 2019-03-03
 
 ### Adds
