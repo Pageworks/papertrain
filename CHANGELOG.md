@@ -1,3 +1,10 @@
+# 1.1.2 - 2019-03-10
+
+### Fixes
+
+- Fixes: removes extra margin-top from underline textarea element
+- Fixes: updates form sample page to use the new `o-freeform` class instead of `b-freeform`
+
 # 1.1.1 - 2019-03-06
 
 ### Adds
