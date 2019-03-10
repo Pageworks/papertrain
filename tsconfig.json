@@ -8,8 +8,8 @@
         "emitDecoratorMetadata": true,
         "removeComments": false,
         "isolatedModules": true,
-        "target": "es6",
-        "module": "esnext",
+        "target": "es5",
+        "module": "commonjs",
         "moduleResolution": "node",
         "lib": [
             "dom",

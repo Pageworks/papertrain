@@ -1,6 +1,12 @@
 // Grid
 // ==========================================================================
 
+//                              WARNING
+//
+// Any modificaitons made to the general grid layout must be recreated
+// in the browsers/microsoft.scss file. Gird does NOT work on IE 11 so a CSS
+// hack will need to be implemented for any additional layouts.
+
 .o-grid{
     display: grid;
 

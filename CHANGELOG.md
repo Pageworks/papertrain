@@ -4,6 +4,10 @@
 
 - Adds: updates flexbox to [CSS Grid](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids) for `o-layout` and `o-grid` [#129](https://github.com/Pageworks/papertrain/issues/129)
 
+### Fixes
+
+- Fixes: typescript config for IE 11 support
+
 # 1.1.2 - 2019-03-10
 
 ### Fixes
