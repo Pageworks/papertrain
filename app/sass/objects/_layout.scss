@@ -1,54 +1,64 @@
 // Layout
 // ==========================================================================
-// The layout object provides us with a column-style layout system. This file
-// contains the basic structural elements, but classes should be complemented
-// with width utilities
-// @source https://github.com/inuitcss/inuitcss/blob/0420ba8/objects/_objects.layout.scss
+
+//                              WARNING
+//
+// Any modificaitons made to the general column split values must be recreated
+// in the browsers/microsoft.scss file. Gird does NOT work on IE 11 so a CSS
+// hack will need to be implemented for any additional columns.
 
 .o-layout{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
+    display: grid;
+    row-gap: 0 !important;
+
+    // Layout modifiers
+    &.-split-50\/50{
+        @media (min-width: $screen-small){
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &.-split-33\/33\/33{
+        @media (min-width: $screen-small){
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (min-width: $screen-medium){
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    &.-split-33\/66{
+        @media (min-width: $screen-medium){
+            grid-template-columns: 1fr 2fr;
+        }
+    }
+
+    &.-split-66\/33{
+        @media (min-width: $screen-medium){
+            grid-template-columns: 2fr 1fr;
+        }
+    }
 
     // Gutter modifiers
     &.-gutter{
-        margin-left: -$gutter;
-
-        .o-layout_item{
-            padding-left: $gutter;
-        }
+        gap: $gutter;
     }
 
     &.-gutter-small{
-        margin-left: -$gutter-small;
-
-        .o-layout_item{
-            padding-left: $gutter-small;
-        }
+        gap: $gutter-small;
     }
 
     &.-gutter-large{
-        margin-left: -$gutter-large;
-
-        .o-layout_item{
-            padding-left: $gutter-large;
-        }
+        gap: $gutter-large;
     }
 }
 
 // Layout Item
 // ==========================================================================
-// 1. Required in order to combine fluid widths with fixed gutters.
-// 2. By default, all layout items are full-width (mobile first).
-// 3. Default item alignment is with the tops of each other, like most traditional grid/layout systems.
-.o-layout_item
-{
+.o-layout_item{
     display: inline-flex; // [1]
     flex-flow: column wrap;
-    flex: 0 0 auto;
-    width: 100%; // [2]
-    vertical-align: top; // [3]
     position: relative;
     box-sizing: border-box;
 }

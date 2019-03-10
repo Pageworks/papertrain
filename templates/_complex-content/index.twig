@@ -1,7 +1,6 @@
 {% set sectionOpen = false %}
 {% set containerOpen = false %}
 {% set columnLayout = 1 %}
-{% set currentColumn = 1 %}
 {% set columnOpen = false %}
 {% set numberOfHeadings = 0 %}
 
@@ -26,7 +25,6 @@
                             </section>
                         {% endif %}
                         {% set sectionOpen = true %}
-                        {% set currentColumn = 1 %}
                     {% case "container" %}
                         {# If we already have a container open close it #}
                         {% if containerOpen %}
@@ -39,33 +37,7 @@
                         {% endif %}
                         {% set containerOpen = true %}
                         {% set columnLayout = block.columnLayout.value %}
-                        {% set currentColumn = 1 %}
                     {% case "endColumn" %}
-                        {# Update our current column ID #}
-                        {% switch columnLayout %}
-                            {% case 2 %}
-                                {% set currentColumn = currentColumn + 1 %}
-                                {% if currentColumn > 2 %}
-                                    {% set currentColumn = 1 %}
-                                {% endif %}
-                            {% case 3 %}
-                                {% set currentColumn = currentColumn + 1 %}
-                                {% if currentColumn > 3 %}
-                                    {% set currentColumn = 1 %}
-                                {% endif %}
-                            {% case 4 %}
-                                {% set currentColumn = currentColumn + 1 %}
-                                {% if currentColumn > 2 %}
-                                    {% set currentColumn = 1 %}
-                                {% endif %}
-                            {% case 5 %}
-                                {% set currentColumn = currentColumn + 1 %}
-                                {% if currentColumn > 2 %}
-                                    {% set currentColumn = 1 %}
-                                {% endif %}
-                            {% default %}
-                                {% set currentColumn = 1 %}
-                        {% endswitch %}
                         {% set columnOpen = false %}
                 {% endswitch %}
 
