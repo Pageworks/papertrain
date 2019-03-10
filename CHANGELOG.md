@@ -1,8 +1,14 @@
+# 1.1.3 - 2019-03-10
+
+### Adds
+
+- Adds: updates flexbox to [CSS Grid](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids) for `o-layout` and `o-grid` [#129](https://github.com/Pageworks/papertrain/issues/129)
+
 # 1.1.2 - 2019-03-10
 
 ### Fixes
 
-- Fixes: removes extra margin-top from underline textarea element
+- Fixes: removes extra margin-top from underline textarea element[#131](https://github.com/Pageworks/papertrain/issues/131)
 - Fixes: updates form sample page to use the new `o-freeform` class instead of `b-freeform`
 
 # 1.1.1 - 2019-03-06

@@ -1,55 +1,58 @@
 // Grid
 // ==========================================================================
-// The grid object provides us the same functionality as a layout object with the
-// only difference being that it adds the gutter width to the bottom of the grid item.
 
 .o-grid{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
+    display: grid;
+
+    // Grid layout modifiers
+    &.-split-50\/50{
+        @media (min-width: $screen-small){
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &.-split-33\/33\/33{
+        @media (min-width: $screen-small){
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (min-width: $screen-medium){
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    &.-split-33\/66{
+        @media (min-width: $screen-medium){
+            grid-template-columns: 1fr 2fr;
+        }
+    }
+
+    &.-split-66\/33{
+        @media (min-width: $screen-medium){
+            grid-template-columns: 2fr 1fr;
+        }
+    }
 
     // Gutter modifiers
     &.-gutter{
-        margin-left: -$gutter;
-
-        .o-grid_item{
-            padding-left: $gutter;
-            padding-bottom: $gutter;
-        }
+        gap: $gutter;
     }
 
     &.-gutter-small{
-        margin-left: -$gutter-small;
-
-        .o-grid_item{
-            padding-left: $gutter-small;
-            padding-bottom: $gutter-small;
-        }
+        gap: $gutter-small;
     }
 
     &.-gutter-large{
-        margin-left: -$gutter-large;
-
-        .o-grid_item{
-            padding-left: $gutter-large;
-            padding-bottom: $gutter-large;
-        }
+        gap: $gutter-large;
     }
 }
 
 // Grid Item
 // ==========================================================================
-// 1. Required in order to combine fluid widths with fixed gutters.
-// 2. By default, all grid items are full-width (mobile first).
-// 3. Default item alignment is with the tops of each other, like most traditional grid/grid systems.
 .o-grid_item
 {
     display: inline-flex; // [1]
     flex-flow: column wrap;
-    flex: 0 0 auto;
-    width: 100%; // [2]
-    vertical-align: top; // [3]
     position: relative;
     box-sizing: border-box;
 }
