@@ -3,6 +3,7 @@
 ### Fixes
 
 - Fixes: form checkbox, radio, and switch `user-select` bug [#137](https://github.com/Pageworks/papertrain/issues/137)
+- Fixes: `window.scrollY` alias bug for IE 11 [#139](https://github.com/Pageworks/papertrain/issues/139)
 
 # 1.1.3 - 2019-03-10
 

@@ -245,7 +245,7 @@ export default class App{
      * Manages the `has-scrolled` status class attached to the document.
      */
     private handleScroll:EventListener =()=>{
-        const currentScroll:number = window.scrollY;
+        const currentScroll:number = window.pageYOffset;
 
         if(!Env.HTML.classList.contains('has-scrolled') && currentScroll >= this._prevScroll){
             this._scrollDistance += currentScroll - this._prevScroll;
