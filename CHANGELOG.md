@@ -1,3 +1,9 @@
+# 1.1.4 - 2019-03-22
+
+### Fixes
+
+- Fixes: form checkbox, radio, and switch `user-select` bug [#137](https://github.com/Pageworks/papertrain/issues/137)
+
 # 1.1.3 - 2019-03-10
 
 ### Adds
