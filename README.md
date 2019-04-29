@@ -43,6 +43,12 @@ Follow the Craft CMS installation guide.
 
 # Creating Elements
 
+Elements can be created using a CLI based generator, you can run the generation tool using:
+
+```
+npm run create
+```
+
 ## Globals
 
 A Global is a unique style for a [Basic HTML Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element). Globals will **NEVER** apply the style to the raw HTML element and they **DO NOT** inherently have any functionality but can be assigned functionality by a Component.
