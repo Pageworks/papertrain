@@ -110,6 +110,86 @@ Components are defined as a combination of following files:
 
 # CSS Namespaces
 
+Papertrain follows a simplified version of the [BEM](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) naming methodology.
+
+## Namespace Format
+
+The CSS namespace format will be as follows:
+
+```
+.p-primary-class-name_secondary_class_name -modifier -secondary-modifier
+```
+
+Classes always begin with a prefix followed by a hyphen.
+
+The primary class name will always be written in [kebab-case](http://wiki.c2.com/?KebabCase).
+
+The secondary class name will begin with an underscore and will always be written in [snake case](https://en.wikipedia.org/wiki/Snake_case).
+
+Modifiers will always be seperate additional/optional classes that begin with a hyphen and are written in kebab-case.
+
+## Prefixes
+
+Classes will use a prefix to declare what type of element is being used.
+
+- `g-` will be used for globals
+- `o-` will be used for objects
+- `c-` will be used for components
+- `u-` will be used for utility classes
+- `js-` will be used as a selector hook for JavaScript query selectors
+- `is-` when something is in a specific state such as `is-open`
+- `has-` when something has something such as `has-focus`
+
+
+## Example
+
+Some elements may contain other elements, in the example below the card will contain a heading, image, and link.
+
+```html
+<card class="o-card">
+    <img src="img.jpg" alt="Lorem ipsum">
+    <h3>Lorem Ipsum Dolor</h3>
+    <a href="#" class="o-card_button">Button 1</a>
+    <a href="#" class="o-card_button -alt">Button 2</a>
+</card>
+```
+
+```scss
+.o-card{
+    width: 256px;
+    height: 512px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(41,41,41,0.1);
+
+    img{
+        object-fit: cover;
+    }
+
+    h3{
+        font-size: 24px;
+        color: cyan;
+    }
+
+    .o-card_button{
+        height: 36px;
+        line-height: 36px;
+        font-size: 18px;
+        text-transform: uppercase;
+        padding: 0 16px;
+        border-radius: 2px;
+        background-color: cyan;
+        color: #ffffff;
+
+        &.-alt{
+            color: rgb(41,41,41);
+            background-color: transparent;
+            border: 2px solid cyan;
+        }
+    }
+}
+```
+
 # Feedback
 Feel free to [open an issue](https://github.com/Pageworks/papertrain/issues) to report bugs or request additional features.
 
