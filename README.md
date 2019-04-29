@@ -9,39 +9,40 @@
 </p>
 
 # Papertrain
-Papertrain is a framework designed to bring custom utilities and features to the Craft CMS platform. Papertrain is built upon the [Modular Design Pattern](https://github.com/Pageworks/modular-design-pattern), you can see an example of how modules work together by [clicking here](https://github.com/codewithkyle/modular-design-pattern-javascript-example).
+
+Papertrain is a framework designed to bring custom utilities and features to Craft CMS. Papertrain is built upon a [Modular Design Pattern](https://github.com/Pageworks/modular-design-pattern). [Click here](https://github.com/codewithkyle/modular-design-pattern-javascript-example) to see an example of how modules can work together.
 
 # Getting Started
 
-Start by downloading the [latest release](https://github.com/Pageworks/papertrain/releases) of Papertrain and extracting the project into your new projects root directory.
+Start by downloading the [latest release](https://github.com/Pageworks/papertrain/releases) of Papertrain and extracting the files into your projects root directory.
 
-Install the NPM dependencies (requires [Node.js](https://nodejs.org/en/)) by running the following command in your terminal:
+Install the NPM dependencies by running the following command in your terminal: (requires [Node.js](https://nodejs.org/en/))
 
 ```
 npm install
 ```
 
-Install Craft CMS along with the initial plugins (requires [composer](https://getcomposer.org/download/)) by running the following command in your terminal:
+Then install Craft CMS by running the following command in your terminal: (requires [composer](https://getcomposer.org/download/))
 
 ```
 composer install
 ```
 
-Setup your Apache server to point to the projects `/public` directory.
+Set your Apache server to point to the projects `/public` directory.
 
 Create a new empty database for the project.
 
-Run the Papertrain setup script by running the following command in your terminal:
+Run the setup script by running the following command in your terminal:
 
 ```
 npm run setup
 ```
 
-To finish the getting started process follow the Craft CMS installation guide in the browser that opens after the Papertrain setup is complete.
+To finish follow the Craft CMS installation in the browser. If the browser doesn't automatically open navigate to `http://your-project-url.local/webmaster`.
 
 # Creating Elements
 
-Elements can be created using a CLI based generator, you can run the generation tool using:
+New elements can easily be created by using the CLI based element generator. To run the generation tool enter the following command into your terminal:
 
 ```
 npm run create
@@ -129,13 +130,10 @@ The CSS namespace format will be as follows:
 .p-primary-class-name_secondary_class_name -modifier -secondary-modifier
 ```
 
-Classes always begin with a prefix followed by a hyphen.
-
-The primary class name will always be written in [kebab-case](http://wiki.c2.com/?KebabCase).
-
-The secondary class name will begin with an underscore and will always be written in [snake case](https://en.wikipedia.org/wiki/Snake_case).
-
-Modifiers will always be seperate additional/optional classes that begin with a hyphen and are written in kebab-case.
+1. Classes always begin with a prefix followed by a hyphen
+1. The primary class name will always be written in [kebab-case](http://wiki.c2.com/?KebabCase)
+1. The secondary class name will begin with an underscore and will always be written in [snake_case](https://en.wikipedia.org/wiki/Snake_case)
+1. Modifiers will always be additional/optional classes that begin with a hyphen and are written in kebab-case
 
 ## Prefixes
 
@@ -148,7 +146,6 @@ Classes will use a prefix to declare what type of element is being used.
 - `js-` will be used as a selector hook for JavaScript query selectors
 - `is-` when something is in a specific state such as `is-open`
 - `has-` when something has something such as `has-focus`
-
 
 ## Example
 
@@ -203,7 +200,9 @@ Some elements may contain other elements, in the example below the card will con
 ```
 
 # Feedback
-Feel free to [open an issue](https://github.com/Pageworks/papertrain/issues) to report bugs or request additional features.
+
+Feel free to [open an issue](https://github.com/Pageworks/papertrain/issues) and report any bugs or request additional features.
 
 # License
+
 Papertrain is licensed under the [MIT](https://github.com/Pageworks/papertrain/blob/master/LICENSE) license.
