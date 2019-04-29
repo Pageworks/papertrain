@@ -5,6 +5,7 @@
 - Adds: `pjax.twig` layout that requires `craft.app.request.isPjax`
 - Adds: `/templates/utils` directory
 - Adds: `/templates/lib` directory for storing Objects, Components, and Globals
+- Adds: CLI based object, component, single, and global generator `npm run create`
 
 ### Fixes
 
