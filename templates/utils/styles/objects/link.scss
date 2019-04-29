@@ -1,0 +1,40 @@
+@import 'settings';
+@import 'mixins';
+
+.g-link{
+    position: relative;
+    display: inline-block;
+
+    &::before,
+    &::after{
+        content: "";
+        @include size(100%, 2px);
+        display: inline-block;
+        @include position(absolute, null null 0 0);
+        background-color: $primary;
+    }
+
+    &:before{
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 300ms $ease;
+    }
+
+    &:after{
+        transform: scaleX(1);
+        transform-origin: right;
+        transition: transform 300ms 75ms $ease;
+    }
+
+    @include hover{
+        &:before{
+            transform: scaleX(1);
+            transition: transform 300ms 75ms $ease;
+        }
+
+        &:after{
+            transform: scaleX(0);
+            transition: transform 300ms $ease;
+        }
+    }
+}

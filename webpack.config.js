@@ -28,13 +28,6 @@ for(let i = 0; i < components.length; i++){
     entries[name] = components[i];
 }
 
-// Get the managers
-const managers = glob.sync('./_compiled/templates/lib/managers/**/*.js');
-for(let i = 0; i < managers.length; i++){
-    const name = managers[i].match(/[ \w-]+?(?=\.)/)[0];
-    entries[name] = managers[i];
-}
-
 // Bundle modules
 module.exports = {
     mode: (process.env.NODE_ENV === 'production') ? 'production' : 'none',

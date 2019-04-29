@@ -4,7 +4,6 @@ const glob = require("glob");
 const fs = require('fs');
 const rimraf = require("rimraf");
 const chalk = require('chalk');
-const ora = require('ora');
 
 if(process.env.NODE_ENV === 'watch'){
     console.log('Watching for SASS changes');
@@ -35,10 +34,8 @@ function compileSASS(){
     // Get all the SCSS files from the templates directory
     const templateFiles = glob.sync('./templates/**/*.scss');
 
-    const globalObjects = glob.sync('./utils/styles/objects/*.scss');
-
     // Concat the arrays
-    const files = [...globalFiles, ...templateFiles, ...globalObjects];
+    const files = [...globalFiles, ...templateFiles];
 
     if(fs.existsSync('./public/assets/styles')){
         rimraf.sync('./public/assets/styles');

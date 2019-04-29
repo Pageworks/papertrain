@@ -12,7 +12,7 @@
         "baseUrl": "./utils/scripts",
         "allowJs": true,
         "paths": {
-            "BaseModule": ["BaseModule"]
+            "Module": ["Module"]
         },
         "lib": [
             "dom",

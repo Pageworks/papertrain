@@ -1,0 +1,19 @@
+// Helpers
+// ==========================================================================
+
+.u-clearfix
+{
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.u-lowercase{
+    text-transform: lowercase !important;
+}
+
+.u-uppercase{
+    text-transform: uppercase !important;
+}
