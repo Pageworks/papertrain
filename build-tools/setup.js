@@ -13,7 +13,6 @@ figlet.text('Papertrain', {
 }, (err, data)=>{
     console.log(chalk.cyan(data));
     console.log(chalk.cyan('----------------------------------------'));
-    askQuestions();
 });
 
 askQuestions = (async ()=>{
@@ -165,3 +164,5 @@ if(fs.existsSync('./.gitignore')){
 }else{
     gitignore.stop();
 }
+
+askQuestions();

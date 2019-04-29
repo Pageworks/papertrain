@@ -13,6 +13,7 @@
 - Fixes: cleans up the base homepage
 - Fixes: webpack config
 - Fixes: typescript config
+- Fixes: updates `base.twig` layout
 
 ### Removes
 
