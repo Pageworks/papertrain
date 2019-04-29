@@ -29,7 +29,7 @@ function compileSASS(){
     console.log(chalk.white('Compiling SASS'));
 
     // Get all the base SCSS files from the base global scss directory
-    const globalFiles = glob.sync('./templates/utils/styles/*.scss');
+    const globalFiles = glob.sync('./utils/styles/*.scss');
 
     // Get all the SCSS files from the templates lib directory
     const libFiles = glob.sync('./templates/_lib/**/*.scss');
@@ -60,7 +60,7 @@ function compileSASS(){
             {
                 file: file,
                 outputStyle: 'compressed',
-                includePaths: ['templates/utils/styles/settings', 'templates/utils/styles/tools']
+                includePaths: ['utils/styles/settings', 'utils/styles/tools']
             },
             function(error, result){
                 if (error) {

@@ -9,7 +9,7 @@
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
-        "baseUrl": "./templates/utils/scripts",
+        "baseUrl": "./utils/scripts",
         "allowJs": true,
         "paths": {
             "Module": ["Module"],

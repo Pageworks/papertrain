@@ -43,7 +43,9 @@
     "lint-staged": {
         "linters": {
             "./templates/**/*.ts": "npm run lint:typescript",
-            "./templates/**/*.scss": "npm run lint:sass"
+            "./templates/**/*.scss": "npm run lint:sass",
+            "./utils/scripts/**/*.ts": "npm run lint:typescript",
+            "./utils/styles/**/*.scss": "npm run lint:sass"
         }
     },
     "dependencies": {
