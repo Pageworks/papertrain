@@ -1,16 +1,18 @@
 {
     "compilerOptions": {
         "outDir": "./_compiled",
-        "rootDir": "./app/typescript",
-        "sourceMap": true,
+        "sourceMap": false,
         "noImplicitAny": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "removeComments": false,
-        "isolatedModules": true,
+        "removeComments": true,
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
+        "baseUrl": "./utils/scripts",
+        "paths": {
+            "BaseModule": ["BaseModule"]
+        },
         "lib": [
             "dom",
             "scripthost",
@@ -18,12 +20,11 @@
             "es2016",
             "es2017",
             "es2018",
-            "esnext",
+            "esnext"
         ]
     },
     "exclude": [
         "./vendor",
-        "./node_modules",
-        "./_compiled"
+        "./node_modules"
     ]
 }

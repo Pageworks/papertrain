@@ -1,7 +1,3 @@
-# REMOVE ME AFTER COMPOSER INSTALL
-/vendor
-# -------
-
 # NPM
 # -------
 /node_modules
@@ -34,3 +30,5 @@ logs/
 .stylelintcache
 _compiled
 .editorconfig
+
+/vendor
