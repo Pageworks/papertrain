@@ -10,7 +10,7 @@
 
 # Papertrain
 
-Papertrain is a framework designed to bring custom utilities and features to Craft CMS. Papertrain is built upon a [Modular Design Pattern](https://github.com/Pageworks/modular-design-pattern). [Click here](https://github.com/codewithkyle/modular-design-pattern-javascript-example) to see an example of how modules can work together.
+Papertrain is a framework designed to bring custom utilities and features to Craft CMS. Papertrain is built upon a [Modular Design Pattern](https://github.com/Pageworks/modular-design-pattern). Checkout this [example](https://github.com/codewithkyle/modular-design-pattern-javascript-example) to see how the modules work.
 
 # Getting Started
 
