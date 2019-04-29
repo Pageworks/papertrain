@@ -47,6 +47,9 @@
         }
     },
     "dependencies": {
+        "@pageworks/device-manager": "^1.2.1",
+        "@pageworks/pjax": "^2.1.3",
+        "@pageworks/state-manager": "^1.0.2",
         "uuid": "^3.3.2",
         "webpack": "^4.30.0"
     },
