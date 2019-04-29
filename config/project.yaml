@@ -1,11 +1,56 @@
-dateModified: 1556556051
+dateModified: 1556556675
 email:
-  fromEmail: REPLACE ME
-  fromName: REPLACE ME
+  fromEmail: 'REPLACE ME'
+  fromName: 'REPLACE ME'
   transportType: craft\mail\transportadapters\Sendmail
 fieldGroups:
   80dde2a7-878d-491b-82ba-bb5261590762:
     name: Common
+plugins:
+  eager-beaver:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  image-resizer:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
+  imager:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
+  redactor:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.3.0
+  relabel:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.1.0
+  smith:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  splashing-images:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.2.0
+    settings:
+      destination: '1'
+      folder: ''
+      pluginLabel: ''
+  spoon:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.0
+  super-table:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.10
+  typedlinkfield:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
 siteGroups:
   7c028f52-0d4d-4794-8cfc-35974c34753b:
     name: Default
@@ -15,13 +60,13 @@ sites:
     handle: default
     hasUrls: true
     language: en-US
-    name: REPLACE ME
+    name: 'REPLACE ME'
     primary: true
     siteGroup: 7c028f52-0d4d-4794-8cfc-35974c34753b
     sortOrder: 1
 system:
   edition: solo
-  name: REPLACE ME
+  name: 'REPLACE ME'
   live: true
   schemaVersion: 3.1.27
   timeZone: America/Los_Angeles
@@ -31,3 +76,13 @@ users:
   defaultGroup: null
   photoVolumeUid: null
   photoSubpath: ''
+volumes:
+  734530b2-7176-44fe-9ff8-22d23df70ed0:
+    name: Images
+    handle: images
+    type: craft\volumes\Local
+    hasUrls: true
+    url: '@web/uploads/images'
+    settings:
+      path: '@webroot/uploads/images'
+    sortOrder: 1

@@ -3,6 +3,7 @@ const ora = require('ora');
 const clear = require('clear');
 const figlet = require('figlet');
 const chalk = require('chalk');
+const open = require('open');
 
 const questions = require('./startup-questions');
 const projectDetails = {};
@@ -167,4 +168,9 @@ function cleanupFiles(){
     }else{
         gitignore.stop();
     }
+
+    (async () => {
+        // Opens the url in the default browser
+        await open(`http://${ projectDetails.devUrl }/webmaster`);
+    })();
 }
