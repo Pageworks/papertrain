@@ -14,7 +14,7 @@
 html
 {
     font-family: $font-family;
-    line-height: 1.618; /* [1] */
+    line-height: 0; /* [1] */
     font-weight: $font-weight;
     color: $font-base; /* [1] */
     font-size: $base-font-size;
@@ -39,10 +39,10 @@ body{
     background: $base-background-color;
     font-size: 1rem; /* [1] */
     overflow-x: hidden;
-    padding-top: 96px;
 
     main{
         min-height: 80vh;
+        display: block;
     }
 }
 
