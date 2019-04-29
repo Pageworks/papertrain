@@ -9,9 +9,31 @@
 </p>
 
 # Papertrain
-Papertrain is a framework designed to bring custom utilities and features to the Craft CMS platform.
+Papertrain is a framework designed to bring custom utilities and features to the Craft CMS platform. Papertrain is built upon the [Modular Design Pattern](https://github.com/Pageworks/modular-design-pattern), you can see an example of how modules work together by [clicking here](https://github.com/codewithkyle/modular-design-pattern-javascript-example).
 
-# Usage
+# Getting Started
+
+Start by downloading the [latest release](https://github.com/Pageworks/papertrain/releases) of Papertrain and extracting the project into your new projects root directory.
+
+Install the NPM dependencies (requires [Node.js](https://nodejs.org/en/)) by running the following command in your terminal:
+
+```
+npm install
+```
+
+Then install Craft CMS along with the initial plugins (requires [composer](https://getcomposer.org/download/)) by running the following command in your terminal:
+
+```
+composer install
+```
+
+The final step is to run the Papertrain setup script by running the following command in your terminal:
+
+```
+npm run setup
+```
+
+# Creating Elements
 
 ## Globals
 
@@ -72,8 +94,10 @@ Components are defined as a combination of following files:
 - Style
 - Script
 
+# CSS Namespaces
+
 # Feedback
-Feel free to [open an issue](https://github.com/Pageworks/papertrain/issues).
+Feel free to [open an issue](https://github.com/Pageworks/papertrain/issues) to report bugs or request additional features.
 
 # License
-[MIT](https://github.com/Pageworks/papertrain/blob/master/LICENSE)
+Papertrain is licensed under the [MIT](https://github.com/Pageworks/papertrain/blob/master/LICENSE) license.
