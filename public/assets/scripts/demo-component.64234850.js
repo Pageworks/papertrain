@@ -1,5 +1,6 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],[
-/* 0 */
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
+
+/***/ 20:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18,9 +19,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Module_1 = __webpack_require__(1);
-var Application_1 = __webpack_require__(2);
-var Env_1 = __webpack_require__(3);
+var Module_1 = __webpack_require__(19);
+var Application_1 = __webpack_require__(0);
+var Env_1 = __webpack_require__(1);
 var DemoComponent = (function (_super) {
     __extends(DemoComponent, _super);
     function DemoComponent(view, uuid) {
@@ -46,4 +47,5 @@ Application_1.Application.mountModules();
 
 
 /***/ })
-],[[0,3,7,6,5]]]);
+
+},[[20,3,6,5,4]]]);

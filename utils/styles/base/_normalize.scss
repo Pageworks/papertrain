@@ -9,6 +9,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    line-height: 1.618;
+    vertical-align: baseline;
 }
 
 body{
@@ -17,9 +19,13 @@ body{
     }
 }
 
+div{
+    line-height: 0;
+}
+
 sup,
 sub{
-    vertical-align: baseline;
+    vertical-align: middle;
     font-size: $base-font-size;
 }
 
@@ -189,4 +195,12 @@ select{
 fieldset{
     margin: 0;
     padding: 0;
+}
+
+th{
+    font-weight: 400;
+}
+
+strong{
+    font-weight: 400;
 }

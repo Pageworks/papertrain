@@ -1,65 +1,15 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],[
-/* 0 */,
-/* 1 */
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Application_1 = __webpack_require__(2);
-var Module = (function () {
-    function Module(view, uuid) {
-        this.view = view;
-        this.uuid = uuid;
-        this.parent = null;
-        this.submodules = [];
-        this.futureParent = null;
-    }
-    Module.prototype.register = function (submodule) {
-        this.submodules.push(submodule);
-    };
-    Module.prototype.mount = function () {
-        this.view.dataset.uuid = this.uuid;
-        var parent = this.view.closest("[data-module]:not([data-uuid=\"" + this.uuid + "\"])");
-        if (parent) {
-            this.parent = Application_1.Application.getModuleByUUID(parent.getAttribute('data-uuid'));
-            if (this.parent) {
-                this.parent.register(this);
-            }
-            else {
-                this.futureParent = parent;
-            }
-        }
-    };
-    Module.prototype.afterMount = function () { };
-    Module.prototype.seppuku = function () {
-        Application_1.Application.destroyModule(this.uuid);
-    };
-    Module.prototype.beforeDestroy = function () { };
-    Module.prototype.destroy = function () {
-        if (this.submodules.length) {
-            for (var i = this.submodules.length - 1; i >= 0; i--) {
-                Application_1.Application.destroyModule(this.submodules[i].uuid);
-            }
-        }
-        this.view.remove();
-    };
-    return Module;
-}());
-exports.Module = Module;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Env_1 = __webpack_require__(3);
-var uuid = __webpack_require__(4);
-var device_manager_1 = __webpack_require__(7);
-var pjax_1 = __webpack_require__(8);
+var Env_1 = __webpack_require__(1);
+var uuid = __webpack_require__(2);
+var device_manager_1 = __webpack_require__(5);
+var pjax_1 = __webpack_require__(6);
 var Application = (function () {
     function Application() {
         new device_manager_1.default(Env_1.Env.isDebug, true);
@@ -140,7 +90,8 @@ Application.mountModules();
 
 
 /***/ }),
-/* 3 */
+
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -165,5 +116,57 @@ exports.Env = Env;
 new Env();
 
 
+/***/ }),
+
+/***/ 19:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Application_1 = __webpack_require__(0);
+var Module = (function () {
+    function Module(view, uuid) {
+        this.view = view;
+        this.uuid = uuid;
+        this.parent = null;
+        this.submodules = [];
+        this.futureParent = null;
+    }
+    Module.prototype.register = function (submodule) {
+        this.submodules.push(submodule);
+    };
+    Module.prototype.mount = function () {
+        this.view.dataset.uuid = this.uuid;
+        var parent = this.view.closest("[data-module]:not([data-uuid=\"" + this.uuid + "\"])");
+        if (parent) {
+            this.parent = Application_1.Application.getModuleByUUID(parent.getAttribute('data-uuid'));
+            if (this.parent) {
+                this.parent.register(this);
+            }
+            else {
+                this.futureParent = parent;
+            }
+        }
+    };
+    Module.prototype.afterMount = function () { };
+    Module.prototype.seppuku = function () {
+        Application_1.Application.destroyModule(this.uuid);
+    };
+    Module.prototype.beforeDestroy = function () { };
+    Module.prototype.destroy = function () {
+        if (this.submodules.length) {
+            for (var i = this.submodules.length - 1; i >= 0; i--) {
+                Application_1.Application.destroyModule(this.submodules[i].uuid);
+            }
+        }
+        this.view.remove();
+    };
+    return Module;
+}());
+exports.Module = Module;
+
+
 /***/ })
-]]);
+
+}]);

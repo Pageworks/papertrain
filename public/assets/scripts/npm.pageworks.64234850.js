@@ -1,12 +1,10 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],[
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],[
 /* 0 */,
 /* 1 */,
 /* 2 */,
 /* 3 */,
 /* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -335,7 +333,7 @@ exports.default = DeviceManager;
 //# sourceMappingURL=DeviceManager.js.map
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -376,13 +374,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var parse_options_1 = __webpack_require__(9);
-var trigger_1 = __webpack_require__(10);
-var parse_dom_1 = __webpack_require__(11);
-var scroll_1 = __webpack_require__(16);
-var clear_active_1 = __webpack_require__(17);
-var state_manager_1 = __webpack_require__(18);
-var device_manager_1 = __webpack_require__(20);
+var parse_options_1 = __webpack_require__(7);
+var trigger_1 = __webpack_require__(8);
+var parse_dom_1 = __webpack_require__(9);
+var scroll_1 = __webpack_require__(14);
+var clear_active_1 = __webpack_require__(15);
+var state_manager_1 = __webpack_require__(16);
+var device_manager_1 = __webpack_require__(18);
 var Pjax = (function () {
     function Pjax(options) {
         var _this = this;
@@ -915,7 +913,7 @@ exports.default = Pjax;
 //# sourceMappingURL=pjax.js.map
 
 /***/ }),
-/* 9 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -939,7 +937,7 @@ exports.default = (function (options) {
 //# sourceMappingURL=parse-options.js.map
 
 /***/ }),
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -965,14 +963,14 @@ exports.default = (function (el, events, target) {
 //# sourceMappingURL=trigger.js.map
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var get_elements_1 = __webpack_require__(12);
-var check_element_1 = __webpack_require__(13);
+var get_elements_1 = __webpack_require__(10);
+var check_element_1 = __webpack_require__(11);
 exports.default = (function (el, pjax) {
     var elements = get_elements_1.default(el, pjax);
     if (pjax.options.debug && elements.length === 0) {
@@ -986,7 +984,7 @@ exports.default = (function (el, pjax) {
 //# sourceMappingURL=parse-dom.js.map
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -999,13 +997,13 @@ exports.default = (function (el, pjax) {
 //# sourceMappingURL=get-elements.js.map
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var link_events_1 = __webpack_require__(14);
+var link_events_1 = __webpack_require__(12);
 exports.default = (function (el, pjax) {
     if (el.getAttribute('href')) {
         link_events_1.default(el, pjax);
@@ -1019,13 +1017,13 @@ exports.default = (function (el, pjax) {
 //# sourceMappingURL=check-element.js.map
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var on_1 = __webpack_require__(15);
+var on_1 = __webpack_require__(13);
 var attrState = 'data-pjax-state';
 var isDefaultPrevented = function (el, e, options) {
     var isPrevented = false;
@@ -1121,7 +1119,7 @@ exports.default = (function (el, pjax) {
 //# sourceMappingURL=link-events.js.map
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1133,7 +1131,7 @@ exports.default = (function (el, event, listener) {
 //# sourceMappingURL=on.js.map
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1145,7 +1143,7 @@ exports.default = (function (scrollTo) {
 //# sourceMappingURL=scroll.js.map
 
 /***/ }),
-/* 17 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1164,13 +1162,13 @@ exports.default = (function () {
 //# sourceMappingURL=clear-active.js.map
 
 /***/ }),
-/* 18 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var timestamp_1 = __webpack_require__(19);
+var timestamp_1 = __webpack_require__(17);
 var StateManager = /** @class */ (function () {
     function StateManager(debug, initialpushState) {
         this._doInitialPushState = (initialpushState) ? initialpushState : false;
@@ -1253,7 +1251,7 @@ exports.default = StateManager;
 //# sourceMappingURL=manager.js.map
 
 /***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1269,7 +1267,7 @@ exports.default = (function () {
 //# sourceMappingURL=timestamp.js.map
 
 /***/ }),
-/* 20 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
