@@ -10,6 +10,7 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "baseUrl": "./utils/scripts",
+        "allowJs": true,
         "paths": {
             "BaseModule": ["BaseModule"]
         },
@@ -24,7 +25,8 @@
         ]
     },
     "exclude": [
-        "./vendor",
-        "./node_modules"
+        "vendor",
+        "node_modules",
+        "_compiled"
     ]
 }
