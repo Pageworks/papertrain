@@ -29,13 +29,16 @@ function compileSASS(){
     console.log(chalk.white('Compiling SASS'));
 
     // Get all the base SCSS files from the base global scss directory
-    const globalFiles = glob.sync('./utils/styles/*.scss');
+    const globalFiles = glob.sync('./templates/utils/styles/*.scss');
 
-    // Get all the SCSS files from the templates directory
-    const templateFiles = glob.sync('./templates/**/*.scss');
+    // Get all the SCSS files from the templates lib directory
+    const libFiles = glob.sync('./templates/lib/**/*.scss');
+
+    // Get all the SCSS files from the templates singles directory
+    const singlesFiles = glob.sync('./templates/_singles/**/*.scss');
 
     // Concat the arrays
-    const files = [...globalFiles, ...templateFiles];
+    const files = [...globalFiles, ...libFiles, ...singlesFiles];
 
     if(fs.existsSync('./public/assets/styles')){
         rimraf.sync('./public/assets/styles');
@@ -57,7 +60,7 @@ function compileSASS(){
             {
                 file: file,
                 outputStyle: 'compressed',
-                includePaths: ['./utils/styles/settings', './utils/styles/tools']
+                includePaths: ['templates/utils/styles/settings', 'templates/utils/styles/tools']
             },
             function(error, result){
                 if (error) {

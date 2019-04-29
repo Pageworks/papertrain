@@ -27,6 +27,9 @@
     "exclude": [
         "vendor",
         "node_modules",
-        "_compiled"
+        "_compiled",
+        "build-tools",
+        "webpack.config.js",
+        "public"
     ]
 }

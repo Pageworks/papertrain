@@ -21,11 +21,22 @@ fs.writeFileSync('./config/general.php', newValue, 'utf-8');
 
 const entries = {};
 
+// Get the utility classes
+const utils = glob.sync('./_compiled/templates/utils/scripts/**/*.js');
+if(utils.length){
+    for(let i = 0; i < utils.length; i++){
+        const name = utils[i].match(/[ \w-]+?(?=\.)/)[0];
+        entries[name] = utils[i];
+    }
+}
+
 // Get the components
 const components = glob.sync('./_compiled/templates/lib/components/**/*.js');
-for(let i = 0; i < components.length; i++){
-    const name = components[i].match(/[ \w-]+?(?=\.)/)[0];
-    entries[name] = components[i];
+if(components.length){
+    for(let i = 0; i < components.length; i++){
+        const name = components[i].match(/[ \w-]+?(?=\.)/)[0];
+        entries[name] = components[i];
+    }
 }
 
 // Bundle modules

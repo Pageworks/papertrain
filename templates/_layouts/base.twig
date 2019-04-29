@@ -6,36 +6,216 @@
     {% set pageTitle = category.title ~ " | " ~ siteName %}
 {% endif %}
 
+{% set pageDescription = pageTitle %}
+{% if entry is defined %}
+    {% if entry.pageDescription is defined and entry.pageDescription|length  %}
+        {% set pageDescription = entry.pageDescription %}
+    {% elseif category.pageDescription is defined and category.pageDescription|length  %}
+        {% set pageDescription = category.pageDescription %}
+    {% endif %}
+{% endif %}
+
 {% set isDebug = craft.app.request.getParam('debug') %}
 <!doctype html>
-<html lang="en-US" class="has-no-js is-not-pointer-device is-not-touch-device" {% if isDebug|length or settings.debugMode %}data-debug="true"{% endif %} data-csrf="{{ craft.app.request.getCsrfToken() }}">
+<html lang="en-US" class="has-no-js is-not-pointer-device is-not-touch-device dom-is-loading" {% if isDebug|length %}debug="true"{% endif %}>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {# Android Navigaiton Bar Theme Colour #}
+        <meta name="theme-color" content="#1FB6FF">
+
         {% block head %}
-            <title>{{pageTitle}}</title>
+            <title>{{ pageTitle }}</title>
+            <meta name="description" content="{{ pageDescription }}">
         {% endblock %}
 
-        <link rel="apple-touch-icon" href="{{siteUrl}}assets/images/apple-touch-icon.png">
-        <link rel="icon" href="{{siteUrl}}assets/images/favicon.png">
+        {# Icons #}
+        <link rel="icon" sizes="192x192" href="{{ siteUrl|trim('/') }}/assets/images/icon-192.png">
+        <link rel="apple-touch-icon" href="{{ siteUrl|trim('/') }}/assets/images/ios-icon.png">
+        <meta name="msapplication-square310x310logo" content="{{ siteUrl|trim('/') }}/assets/images/icon-310.png">
 
-        <link rel="stylesheet" type="text/css" href="{{siteUrl}}assets/styles/main.css{% if settings.cacheBust|length %}?v={{ settings.cacheBust|date('Y-m-d') }}{% endif %}">
+        {# PWA Manifest #}
+        {# <link rel="manifest" href="{{ siteUrl|trim('/') }}/manifest.json"> #}
 
-        <script defer src="{{siteUrl}}assets/scripts/app.js{% if settings.cacheBust|length %}?v={{ settings.cacheBust|date('Y-m-d') }}{% endif %}"></script>
+        {# Stylesheets #}
+        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/main.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/fonts.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/utility.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/spacing.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/ratio.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/widths.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/layout.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+
+        {# Loading animation CSS #}
+        <style>
+            .c-transition{
+                width: 100vw;
+                height: 4px;
+                width: 100vw;
+                height: 4px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 999999;
+                transform: translate3d(0, -101%, 0);
+                transition: transform 125ms cubic-bezier(0.4, 0.0, 0.6, 1);
+                background: #fafafa;
+                overflow: hidden;
+                display: inline-block;
+                opacity: 0;
+                user-select: none;
+                pointer-events: none;
+            }
+
+            html.dom-is-loading *{
+                cursor: wait !important;
+            }
+
+            html.dom-is-loading .c-transition{
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+                transition: transform 150ms cubic-bezier(0.0, 0.0, 0.2, 1);
+            }
+
+            html.dom-is-loading .c-transition .c-transition_primary{
+                animation: primaryBar 2s infinite linear;
+            }
+
+            html.dom-is-loading .c-transition .c-transition_primary:before{
+                animation: primaryScale 2s infinite linear;
+            }
+
+            html.dom-is-loading .c-transition .c-transition_secondary{
+                animation: secondaryBar 2s infinite linear;
+            }
+
+            html.dom-is-loading .c-transition .c-transition_secondary:before{
+                animation: secondaryScale 2s infinite linear;
+            }
+
+            .c-transition .c-transition_primary{
+                left: -145%;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+            .c-transition .c-transition_primary::before{
+                content: "";
+                background: #3b83f9;
+                display: inline-block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+            .c-transition .c-transition_secondary{
+                left: -54%;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+            .c-transition .c-transition_secondary::before{
+                content: "";
+                background: #3b83f9;
+                display: inline-block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+            @keyframes primaryBar{
+                0%{
+                    transform: translateX(0);
+                }
+                20%{
+                    transform: translateX(0);
+                    animation-timing-function: cubic-bezier(.5,0,.70173,.49582);
+                }
+                59%{
+                    transform: translateX(83.67142%);
+                    animation-timing-function: cubic-bezier(.30244,.38135,.55,.95635);
+                }
+                100%{
+                    transform: translateX(200.61106%);
+                }
+            }
+
+            @keyframes secondaryBar{
+                0%{
+                    transform: translateX(0);
+                    animation-timing-function: cubic-bezier(.15,0,.51506,.40969);
+                }
+                25%{
+                    animation-timing-function: cubic-bezier(.31033,.28406,.8,.73371);
+                    transform: translateX(37.65191%);
+                }
+                48.35%{
+                    animation-timing-function: cubic-bezier(.4,.62704,.6,.90203);
+                    transform: translateX(84.38617%);
+                }
+                100%{
+                    transform: translateX(160.27778%);
+                }
+            }
+
+            @keyframes primaryScale{
+                0%{
+                    transform: scaleX(.08);
+                }
+                36%{
+                    animation-timing-function: cubic-bezier(.33473,.12482,.78584,1);
+                    transform: scaleX(.08);
+                }
+                69%{
+                    animation-timing-function: cubic-bezier(.06,.11,.6,1);
+                    transform: scaleX(.66148);
+                }
+                100%{
+                    transform: scaleX(.08);
+                }
+            }
+
+            @keyframes secondaryScale{
+                0%{
+                    animation-timing-function: cubic-bezier(.20503,.05705,.57661,.45397);
+                    transform: scaleX(.08);
+                }
+                19%{
+                    animation-timing-function: cubic-bezier(.15231,.19643,.64837,1.00432);
+                    transform: scaleX(.4571);
+                }
+                44%{
+                    animation-timing-function: cubic-bezier(.25776,-.00316,.21176,1.38179);
+                    transform: scaleX(.72796);
+                }
+                100%{
+                    transform: scaleX(.08);
+                }
+            }
+        </style>
+
+        <script>
+            modules = {};
+        </script>
     </head>
     <body>
+        {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/runtime.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+        {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/globals.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+        {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/npm.uuid.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
         {% spaceless %}
-            <div class="js-transition c-transition">
+            {# Page Transition Animation #}
+            <div class="c-transition">
                 <div class="c-transition_primary"></div>
                 <div class="c-transition_secondary"></div>
             </div>
-            {% include '_includes/header.twig' %}
-            <main role="main" class="js-pjax-container">
+            <main role="main" class="js-pjax">
                 {% block content %}{% endblock %}
             </main>
-            {% include '_includes/footer.twig' %}
+            {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/Application.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
         {% endspaceless %}
     </body>
 </html>
