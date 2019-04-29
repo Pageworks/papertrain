@@ -21,17 +21,6 @@ html
     min-height: 100vh; /* [3] */
     text-align: left;
     position: relative;
-
-    *{
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    &.dom-is-loading{
-        *{
-            cursor: wait !important;
-        }
-    }
 }
 
 body{

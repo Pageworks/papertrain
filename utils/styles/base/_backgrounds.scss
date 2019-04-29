@@ -5,7 +5,8 @@
 //
 
 section,
-article{
+article,
+.o-container{
     &.-base-background{
         background: $base-background-color;
         color: $font-base;
