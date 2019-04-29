@@ -106,6 +106,17 @@ Components are defined as a combination of following files:
 - Style
 - Script
 
+## Singles
+
+Singles are single template pages within Craft. They usually have a unique style, custom fields, or unique layout compared to the standard pages.
+
+Singles can be composed of Globals, Objects, and Components.
+
+Singles are defined as a combination of the following files:
+
+- HTML
+- Style
+
 # CSS Namespaces
 
 Papertrain follows a simplified version of the [BEM](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) naming methodology.
