@@ -1,0 +1,33 @@
+dateModified: 1556556051
+email:
+  fromEmail: REPLACE ME
+  fromName: REPLACE ME
+  transportType: craft\mail\transportadapters\Sendmail
+fieldGroups:
+  80dde2a7-878d-491b-82ba-bb5261590762:
+    name: Common
+siteGroups:
+  7c028f52-0d4d-4794-8cfc-35974c34753b:
+    name: Default
+sites:
+  471b5ebe-f553-47d6-aa58-d02e5076065c:
+    baseUrl: $DEFAULT_SITE_URL
+    handle: default
+    hasUrls: true
+    language: en-US
+    name: REPLACE ME
+    primary: true
+    siteGroup: 7c028f52-0d4d-4794-8cfc-35974c34753b
+    sortOrder: 1
+system:
+  edition: solo
+  name: REPLACE ME
+  live: true
+  schemaVersion: 3.1.27
+  timeZone: America/Los_Angeles
+users:
+  requireEmailVerification: true
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoVolumeUid: null
+  photoSubpath: ''
