@@ -21,17 +21,25 @@ Install the NPM dependencies (requires [Node.js](https://nodejs.org/en/)) by run
 npm install
 ```
 
-Then install Craft CMS along with the initial plugins (requires [composer](https://getcomposer.org/download/)) by running the following command in your terminal:
+Install Craft CMS along with the initial plugins (requires [composer](https://getcomposer.org/download/)) by running the following command in your terminal:
 
 ```
 composer install
 ```
 
-The final step is to run the Papertrain setup script by running the following command in your terminal:
+Setup your Apache server to point to the projects `/public` directory.
+
+Create a new empty database for the project.
+
+Run the Papertrain setup script by running the following command in your terminal:
 
 ```
 npm run setup
 ```
+
+Follow the Craft CMS installation guide.
+
+*Optional Final Step:* Create your initial commit your projects to a Git repository.
 
 # Creating Elements
 
