@@ -1,0 +1,4 @@
+{% do view.registerJsFile(siteUrl|trim('/') ~ '/assets/scripts/REPLACE_ME.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', { "async":"async" }) %}
+{% do view.registerCssFile(siteUrl|trim('/') ~ '/assets/styles/REPLACE_ME.' ~ craft.app.config.general.cssCacheBustTimestamp ~ '.css') %}
+
+<div class="c-REPLACE_ME" data-module="CLASS_INDEX"></div>

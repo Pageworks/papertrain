@@ -9,10 +9,12 @@
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
-        "baseUrl": "./utils/scripts",
+        "baseUrl": "./templates/utils/scripts",
         "allowJs": true,
         "paths": {
-            "Module": ["Module"]
+            "Module": ["Module"],
+            "Application": ["Application"],
+            "Env": ["Env"]
         },
         "lib": [
             "dom",

@@ -32,7 +32,7 @@ function compileSASS(){
     const globalFiles = glob.sync('./templates/utils/styles/*.scss');
 
     // Get all the SCSS files from the templates lib directory
-    const libFiles = glob.sync('./templates/lib/**/*.scss');
+    const libFiles = glob.sync('./templates/_lib/**/*.scss');
 
     // Get all the SCSS files from the templates singles directory
     const singlesFiles = glob.sync('./templates/_singles/**/*.scss');

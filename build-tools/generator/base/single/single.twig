@@ -1,0 +1,6 @@
+{% do view.registerCssFile(siteUrl|trim('/') ~ '/assets/styles/REPLACE_ME.' ~ craft.app.config.general.cssCacheBustTimestamp ~ '.css') %}
+
+<article id="REPLACE_ME" class="o-container -full" data-template="{{ (entry is defined) ? entry.slug : category.slug }}">
+    <section class="o-container">
+    </section>
+</article>
