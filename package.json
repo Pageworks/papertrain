@@ -37,7 +37,7 @@
         "watch:webpack": "webpack -w",
         "watch:sass": "cross-env NODE_ENV=watch node ./build-tools/sass.config.js",
         "watch:sync": "node ./build-tools/sync.js",
-        "create": "node ./build-tools/generate.js",
+        "create": "node ./build-tools/generator/generate.js",
         "setup": "node ./build-tools/setup.js"
     },
     "lint-staged": {
