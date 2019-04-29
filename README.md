@@ -18,13 +18,13 @@ Start by downloading the [latest release](https://github.com/Pageworks/papertrai
 
 Install the NPM dependencies by running the following command in your terminal: (requires [Node.js](https://nodejs.org/en/))
 
-```
+```script
 npm install
 ```
 
 Then install Craft CMS by running the following command in your terminal: (requires [composer](https://getcomposer.org/download/))
 
-```
+```script
 composer install
 ```
 
@@ -34,7 +34,7 @@ Create a new empty database for the project.
 
 Run the setup script by running the following command in your terminal:
 
-```
+```script
 npm run setup
 ```
 
@@ -44,7 +44,7 @@ To finish follow the Craft CMS installation in the browser. If the browser doesn
 
 New elements can easily be created by using the CLI based element generator. To run the generation tool enter the following command into your terminal:
 
-```
+```script
 npm run create
 ```
 
@@ -126,7 +126,7 @@ Papertrain follows a simplified version of the [BEM](https://csswizardry.com/201
 
 The CSS namespace format will be as follows:
 
-```
+```script
 .p-primary-class-name_secondary_class_name -modifier -secondary-modifier
 ```
 
