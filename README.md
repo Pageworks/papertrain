@@ -146,12 +146,12 @@ Classes will use a prefix to declare what type of element is being used.
 Some elements may contain other elements, in the example below the card will contain a heading, image, and link.
 
 ```html
-<card class="o-card">
+<div class="o-card">
     <img src="img.jpg" alt="Lorem ipsum">
     <h3>Lorem Ipsum Dolor</h3>
     <a href="#" class="o-card_button">Button 1</a>
     <a href="#" class="o-card_button -alt">Button 2</a>
-</card>
+</div>
 ```
 
 ```scss
@@ -161,9 +161,12 @@ Some elements may contain other elements, in the example below the card will con
     border-radius: 8px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(41,41,41,0.1);
+    padding: 16px;
 
     img{
         object-fit: cover;
+        width: 100%;
+        height: 158px;
     }
 
     h3{
