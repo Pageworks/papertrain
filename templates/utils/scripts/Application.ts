@@ -1,11 +1,17 @@
 import { Module } from './Module';
+import { Env } from './Env';
 import * as uuid from 'uuid/v4';
+import DeviceManager from '@pageworks/device-manager';
+import Pjax from '@pageworks/pjax';
 
 export class Application{
 
     public static modules:Array<Module> = [];
 
-    constructor(){ }
+    constructor(){
+        new DeviceManager(Env.isDebug, true);
+        new Pjax({ debug: Env.isDebug });
+    }
 
     /**
      * Called when the application must mount any pending modules

@@ -15,6 +15,7 @@
 - Fixes: webpack config
 - Fixes: typescript config
 - Fixes: updates `base.twig` layout
+- Fixes: switches from `@codewithkyle` dependencies to `@pageworks`
 
 ### Removes
 

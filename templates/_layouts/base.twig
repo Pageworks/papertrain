@@ -206,6 +206,7 @@
         {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/runtime.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
         {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/globals.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
         {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/npm.uuid.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+        {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/npm.pageworks.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
         {% spaceless %}
             {# Page Transition Animation #}
             <div class="c-transition">
