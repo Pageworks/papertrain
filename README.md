@@ -37,9 +37,7 @@ Run the Papertrain setup script by running the following command in your termina
 npm run setup
 ```
 
-Follow the Craft CMS installation guide.
-
-*Optional Final Step:* Create your initial commit your projects to a Git repository.
+To finish the getting started process follow the Craft CMS installation guide in the browser that opens after the Papertrain setup is complete.
 
 # Creating Elements
 
