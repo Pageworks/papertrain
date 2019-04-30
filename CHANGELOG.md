@@ -21,7 +21,7 @@
 
 ### Removes
 
-- Removes: base complex content directory
-- Removes: initial form SVGs
-- Removes: base form macros
-- Removes: app directory
+- Removes: base complex content layout & blocks
+- Removes: initial SVGs
+- Removes: form macros
+- Removes: `/app` directory
