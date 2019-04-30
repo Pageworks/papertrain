@@ -110,7 +110,7 @@ function cleanupFiles(){
             papertrainDir.succeed();
         });
     }else{
-        readme.stop();
+        papertrainDir.stop();
     }
 
     const readme = ora();
