@@ -30,5 +30,17 @@ module.exports = {
         ];
 
         return inquirer.prompt(questions);
+    },
+    askJs: ()=>{
+        const questions = [
+            {
+                name: 'requiredScriptFile',
+                type: 'confirm',
+                message: 'Generate TypeScript file?',
+                default: true
+            },
+        ];
+
+        return inquirer.prompt(questions);
     }
 }

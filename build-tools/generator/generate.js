@@ -23,6 +23,13 @@ function startGenerator(){
         (async ()=>{
             const genType = await questions.askType();
             generationType = genType.type;
+            hasJS = false;
+
+            if(genType.type === 'single'){
+                const askJsReponse = await questions.askJs();
+                hasJS = askJsReponse.requiredScriptFile;
+            }
+
             switch(genType.type){
                 case 'object':
                     generateObject(genType.handle);
@@ -34,7 +41,7 @@ function startGenerator(){
                     generateGlobal(genType.handle);
                     break;
                 case 'single':
-                    generateSingle(genType.handle);
+                    generateSingle(genType.handle, hasJS);
                     break;
                 default:
                     console.log(chalk.red('Something went wrong, sorry.'));
@@ -291,11 +298,13 @@ function generateGlobal(handle){
     }
 }
 
-function generateSingle(handle){
+function generateSingle(handle, generateScript){
     console.log(chalk.gray('=========================================='));
     console.log(`Generating new single: `, chalk.cyan(handle));
 
     handle = handle.replace(' ', '-').toLowerCase();
+
+    const className = toPascalCase(handle);
 
     spinner.start();
     spinner.text = 'Checking if object already exists';
@@ -329,7 +338,15 @@ function generateSingle(handle){
                         throw err;
                     }
 
-                    const modifiedFile = file.replace(/REPLACE_ME/g, handle);
+                    let modifiedFile = file.replace(/REPLACE_ME/g, handle);
+
+                    if(generateScript){
+                        let scriptInclude = `{% do view.registerJsFile(siteUrl|trim('/') ~ '/assets/scripts/${ handle }.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', { "async":"async" }) %}`;
+                        modifiedFile = modifiedFile.replace(/SCRIPT_PLACEHOLDER/g, scriptInclude);
+                    }else{
+                        modifiedFile = modifiedFile.replace(/SCRIPT_PLACEHOLDER/g, '');
+                    }
+
                     fs.writeFile(`templates/_singles/${ handle }/${ handle }.twig`, modifiedFile, 'utf-8', (err)=>{
                         if (err){
                             spinner.fail();
@@ -357,7 +374,8 @@ function generateSingle(handle){
                         throw err;
                     }
 
-                    const modifiedFile = file.replace(/REPLACE_ME/g, handle);
+                    let modifiedFile = file.replace(/REPLACE_ME/g, handle);
+
                     fs.writeFile(`templates/_singles/${ handle }/${ handle }.scss`, modifiedFile, 'utf-8', (err)=>{
                         if (err){
                             spinner.fail();
@@ -370,6 +388,35 @@ function generateSingle(handle){
                     });
                 });
             });
+
+            if(generateScript){
+                fs.copyFile(`${ __dirname }/base/single/single.ts`, `templates/_singles/${ handle }/${ handle }.ts`, (err) => {
+                    if (err){
+                        spinner.fail();
+                        spinner.text = 'Failed to create the typescript file';
+                        throw err;
+                    }
+
+                    fs.readFile(`templates/_singles/${ handle }/${ handle }.ts`, 'utf-8', (err, file)=>{
+                        if (err){
+                            spinner.fail();
+                            spinner.text = 'Failed to create the typescript file';
+                            throw err;
+                        }
+
+                        const modifiedFile = file.replace(/REPLACE_ME/g, className);
+                        fs.writeFile(`templates/_singles/${ handle }/${ handle }.ts`, modifiedFile, 'utf-8', (err)=>{
+                            if (err){
+                                spinner.fail();
+                                spinner.text = 'Failed to create the typescript file';
+                                throw err;
+                            }
+
+                            createdTs = true;
+                        });
+                    });
+                });
+            }
         });
     }
 }
