@@ -66,10 +66,10 @@ sites:
     sortOrder: 1
 system:
   edition: solo
-  name: 'REPLACE ME'
+  name: $SYSTEM_NAME
   live: true
   schemaVersion: 3.1.27
-  timeZone: America/Los_Angeles
+  timeZone: America/New_York
 users:
   requireEmailVerification: true
   allowPublicRegistration: false
