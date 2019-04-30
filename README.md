@@ -62,7 +62,7 @@ Don't forget to set your remote:
 git remote add origin <URL>
 ```
 
-Then push your commit:
+Then push your commit and master branch:
 
 ```script
 git push -u origin master
