@@ -216,7 +216,7 @@
             <main role="main" class="js-pjax">
                 {% block content %}{% endblock %}
             </main>
-            {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/Application.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+            {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/application.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
         {% endspaceless %}
     </body>
 </html>

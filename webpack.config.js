@@ -25,7 +25,7 @@ const entries = {};
 const entryFiles = glob.sync('./_compiled/**/*.js');
 if(entryFiles.length){
     for(let i = 0; i < entryFiles.length; i++){
-        const name = entryFiles[i].match(/[ \w-]+?(?=\.)/)[0];
+        const name = entryFiles[i].match(/[ \w-]+?(?=\.)/)[0].toLowerCase();
         entries[name] = entryFiles[i];
     }
 }else{

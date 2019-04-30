@@ -66,7 +66,7 @@ function compileSASS(){
                 if (error) {
                     console.log(chalk.hex('#f57b7b').bold(`SASS Compile Error:`), chalk.white(`${ error.message } at line`), chalk.yellow.bold(error.line), chalk.hex('#ffffff').bold(error.file));
                 }else{
-                    const fileName = result.stats.entry.match(/[ \w-]+?(?=\.)/gi)[0];
+                    const fileName = result.stats.entry.match(/[ \w-]+?(?=\.)/gi)[0].toLowerCase();
                     if(fileName){
                         const newFile = './public/assets/styles/' + fileName + '.' + timestamp + '.css';
                         console.log(chalk.hex('#ffffff').bold(file), chalk.hex('#8cf57b').bold(' [compiled]'));
