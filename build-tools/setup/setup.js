@@ -5,7 +5,7 @@ const figlet = require('figlet');
 const chalk = require('chalk');
 const open = require('open');
 
-const questions = require('./startup-questions');
+const questions = require('./questions');
 const projectDetails = {};
 
 clear();
@@ -13,8 +13,12 @@ figlet.text('Papertrain', {
     kerning: 'full'
 }, (err, data)=>{
     console.log(chalk.cyan(data));
-    console.log(chalk.cyan('----------------------------------------'));
-    askQuestions();
+    console.log(chalk.cyan('-----------------------------------------------------'));
+    if(fs.existsSync('.env')){
+        console.log(chalk.red('The env file already exists. Delete it and try again.'));
+    }else{
+        askQuestions();
+    }
 });
 
 askQuestions = (async ()=>{
@@ -34,65 +38,60 @@ askQuestions = (async ()=>{
 
     const envGenSpinner = ora();
     envGenSpinner.spinner = 'dots';
-    envGenSpinner.text = 'Generating enviroment file';
+    envGenSpinner.text = 'Generating env file';
     envGenSpinner.start();
 
-    if(fs.existsSync('.env')){
-        envGenSpinner.text = 'The enviroment file already exists';
-        envGenSpinner.fail();
-    }else{
-        fs.copyFile('.env.example', '.env', (err)=>{
+    fs.copyFile('.env.example', '.env', (err)=>{
+        if(err){
+            envGenSpinner.text = 'Failed to generate env file';
+            envGenSpinner.fail();
+        }
+
+        fs.readFile('.env', 'utf-8', (err, file)=>{
             if(err){
-                envGenSpinner.text = 'Failed to generate enviroment file';
+                envGenSpinner.text = 'Failed to open the env file';
                 envGenSpinner.fail();
             }
 
-            fs.readFile('.env', 'utf-8', (err, file)=>{
+            let modifiedFile = file.replace(/SECURITY_KEY=""/, 'SECURITY_KEY="supersecurekey123"');
+            modifiedFile = modifiedFile.replace(/DB_DRIVER="mysql"/, `DB_DRIVER="${ projectDetails.driver }"`);
+            modifiedFile = modifiedFile.replace(/DB_SERVER="localhost"/, `DB_SERVER="${ projectDetails.serverIp }"`);
+            modifiedFile = modifiedFile.replace(/DB_USER="root"/, `DB_USER="${ projectDetails.user }"`);
+            modifiedFile = modifiedFile.replace(/DB_PASSWORD=""/, `DB_PASSWORD="${ projectDetails.password }"`);
+            modifiedFile = modifiedFile.replace(/DB_DATABASE=""/, `DB_DATABASE="${ projectDetails.database }"`);
+
+            let port;
+            if(projectDetails.driver === 'mysql' && projectDetails.port === ''){
+                port = 3306;
+            }
+            else if(projectDetails.driver === 'mysql' && projectDetails.port !== ''){
+                port = projectDetails.port;
+            }
+            else if(projectDetails.driver === 'pgsql' && projectDetails.port === ''){
+                port = 5432;
+            }
+            else if(projectDetails.driver === 'pgsql' && projectDetails.port !== ''){
+                port = projectDetails.port;
+            }
+
+            modifiedFile = modifiedFile.replace(/DB_PORT=""/, `DB_PORT="${ port }"`);
+            modifiedFile = modifiedFile.replace(/DEV_URL=""/, `DEV_URL="http://${ projectDetails.devUrl }/"`);
+            modifiedFile = modifiedFile.replace(/SYSTEM_NAME="REPLACE_ME"/, `SYSTEM_NAME="${ projectDetails.projectName }"`);
+            modifiedFile = modifiedFile.replace(/SYSTEM_EMAIL_NAME="REPLACE_ME"/, `SYSTEM_EMAIL_NAME="${ projectDetails.projectName }"`);
+            modifiedFile = modifiedFile.replace(/SYSTEM_EMAIL_ADDRESS="REPLACE_ME"/, `SYSTEM_EMAIL_ADDRESS="no-reply@${ projectDetails.devUrl }"`);
+
+            fs.writeFile('.env', modifiedFile, (err)=>{
                 if(err){
-                    envGenSpinner.text = 'Failed to open the enviroment file';
+                    envGenSpinner.text = 'Failed to save the env file';
                     envGenSpinner.fail();
                 }
 
-                let modifiedFile = file.replace(/SECURITY_KEY=""/, 'SECURITY_KEY="supersecurekey123"');
-                modifiedFile = modifiedFile.replace(/DB_DRIVER="mysql"/, `DB_DRIVER="${ projectDetails.driver }"`);
-                modifiedFile = modifiedFile.replace(/DB_SERVER="localhost"/, `DB_SERVER="${ projectDetails.serverIp }"`);
-                modifiedFile = modifiedFile.replace(/DB_USER="root"/, `DB_USER="${ projectDetails.user }"`);
-                modifiedFile = modifiedFile.replace(/DB_PASSWORD=""/, `DB_PASSWORD="${ projectDetails.password }"`);
-                modifiedFile = modifiedFile.replace(/DB_DATABASE=""/, `DB_DATABASE="${ projectDetails.database }"`);
-
-                let port;
-                if(projectDetails.driver === 'mysql' && projectDetails.port === ''){
-                    port = 3306;
-                }
-                else if(projectDetails.driver === 'mysql' && projectDetails.port !== ''){
-                    port = projectDetails.port;
-                }
-                else if(projectDetails.driver === 'pgsql' && projectDetails.port === ''){
-                    port = 5432;
-                }
-                else if(projectDetails.driver === 'pgsql' && projectDetails.port !== ''){
-                    port = projectDetails.port;
-                }
-
-                modifiedFile = modifiedFile.replace(/DB_PORT=""/, `DB_PORT="${ port }"`);
-                modifiedFile = modifiedFile.replace(/DEV_URL=""/, `DEV_URL="http://${ projectDetails.devUrl }/"`);
-                modifiedFile = modifiedFile.replace(/SYSTEM_NAME="REPLACE_ME"/, `SYSTEM_NAME="${ projectDetails.projectName }"`);
-                modifiedFile = modifiedFile.replace(/SYSTEM_EMAIL_NAME="REPLACE_ME"/, `SYSTEM_EMAIL_NAME="${ projectDetails.projectName }"`);
-                modifiedFile = modifiedFile.replace(/SYSTEM_EMAIL_ADDRESS="REPLACE_ME"/, `SYSTEM_EMAIL_ADDRESS="no-reply@${ projectDetails.devUrl }"`);
-
-                fs.writeFile('.env', modifiedFile, (err)=>{
-                    if(err){
-                        envGenSpinner.text = 'Failed to save the enviroment file';
-                        envGenSpinner.fail();
-                    }
-
-                    envGenSpinner.text = 'Enviroment file successfully created';
-                    envGenSpinner.succeed();
-                    cleanupFiles();
-                });
+                envGenSpinner.text = 'env file successfully created';
+                envGenSpinner.succeed();
+                cleanupFiles();
             });
         });
-    }
+    });
 });
 
 function cleanupFiles(){

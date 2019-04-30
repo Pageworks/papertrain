@@ -6,6 +6,7 @@
 - Adds: `/templates/utils` directory
 - Adds: `/templates/lib` directory for storing Objects, Components, and Globals
 - Adds: CLI based object, component, single, and global generator `npm run create`
+- Adds: global `utils` directory for storing global scripts & SCSS files
 
 ### Fixes
 
@@ -15,7 +16,7 @@
 - Fixes: webpack config
 - Fixes: typescript config
 - Fixes: updates `base.twig` layout
-- Fixes: switches from `@codewithkyle` dependencies to `@pageworks`
+- Fixes: switches from [@codewithkyle](http://codewithkyle.com) dependencies to [@pageworks](https://github.com/Pageworks)
 
 ### Removes
 
