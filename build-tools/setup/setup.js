@@ -4,6 +4,7 @@ const clear = require('clear');
 const figlet = require('figlet');
 const chalk = require('chalk');
 const open = require('open');
+const rimraf = require("rimraf");
 
 const questions = require('./questions');
 const projectDetails = {};
@@ -95,6 +96,23 @@ askQuestions = (async ()=>{
 });
 
 function cleanupFiles(){
+    const papertrainDir = ora();
+    papertrainDir.spinner = 'dots';
+    papertrainDir.text = 'Removing _papertrain directory';
+    papertrainDir.start();
+    if(fs.existsSync(`/_papertrain`)){
+        rimraf('/_papertrain', (err)=>{
+            if(err){
+                papertrainDir.text = 'Failed to remove the _papertrain directory';
+                papertrainDir.fail();
+            }
+            papertrainDir.text = 'Papertrain directory has been removed';
+            papertrainDir.succeed();
+        });
+    }else{
+        readme.stop();
+    }
+
     const readme = ora();
     readme.spinner = 'dots';
     readme.text = 'Removing readme file';
