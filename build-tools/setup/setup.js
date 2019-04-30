@@ -100,8 +100,8 @@ function cleanupFiles(){
     papertrainDir.spinner = 'dots';
     papertrainDir.text = 'Removing _papertrain directory';
     papertrainDir.start();
-    if(fs.existsSync(`/_papertrain`)){
-        rimraf('/_papertrain', (err)=>{
+    if(fs.existsSync(`./_papertrain`)){
+        rimraf('./_papertrain', (err)=>{
             if(err){
                 papertrainDir.text = 'Failed to remove the _papertrain directory';
                 papertrainDir.fail();
