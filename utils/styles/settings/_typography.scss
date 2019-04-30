@@ -1,0 +1,22 @@
+// Typefaces
+// =============================================================================
+$font-sans-serif:   'Circular', 'Montserrat', sans-serif;
+$font-serif:        serif;
+$font-heading:      $font-sans-serif;
+$font-quote:        'Circular', 'Montserrat', cursive;
+$font-code:         'Share Tech Mono', monospace;
+
+// Weights
+// =============================================================================
+$light: 300;
+$regular: 400;
+$medium: 500;
+$heavy: 700;
+
+// Typography
+// =============================================================================
+$font-weight: $regular;
+$font-family: $font-sans-serif;
+$color: $font-base;
+
+$base-font-size: 16px; // In pixels

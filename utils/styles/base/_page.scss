@@ -1,0 +1,35 @@
+// Base / Page
+// ==========================================================================
+
+html
+{
+    font-family: $font-family;
+    font-weight: $font-weight;
+    color: $font-base;
+    font-size: $base-font-size;
+    overflow-y: scroll;
+    min-height: 100vh;
+    text-align: left;
+    position: relative;
+}
+
+body{
+    background: $base-background-color;
+    overflow-x: hidden;
+
+    main{
+        min-height: 80vh;
+        display: block;
+    }
+}
+
+::selection
+{
+    color: $selection-text-color;
+    background-color: $selection-background-color;
+    text-shadow: none;
+}
+
+:root{
+    font-size: 100%;
+}

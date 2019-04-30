@@ -1,0 +1,91 @@
+@import 'settings';
+@import 'mixins';
+
+// Layout
+// =============================================================================
+$gutter:        $unit;
+$gutter-small:  $unit-half;
+$gutter-large:  $unit*2;
+
+// Container
+// ==========================================================================
+$container-width:           1024px;
+$narrow-container-width:    680px;
+
+
+.o-container{
+    width: 100%;
+    max-width: $container-width;
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    &.-full{
+        max-width: 100vw;
+    }
+
+    &.-narrow{
+        max-width: $narrow-container-width;
+    }
+}
+
+.o-wrapper{
+    margin: auto;
+    display: inline-block;
+}
+
+.o-grid{
+    display: grid;
+
+    &.-gutter{
+        gap: $gutter;
+    }
+
+    &.-gutter-small{
+        gap: $gutter-small;
+    }
+
+    &.-gutter-large{
+        gap: $gutter-large;
+    }
+
+    &.-layout{
+        row-gap: 0 !important;
+    }
+
+     // Grid layout modifiers
+     &.-split-50\/50{
+        @media (min-width: $screen-small){
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &.-split-33\/33\/33{
+        @media (min-width: $screen-small){
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (min-width: $screen-medium){
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+
+    &.-split-33\/66{
+        @media (min-width: $screen-medium){
+            grid-template-columns: 1fr 2fr;
+        }
+    }
+
+    &.-split-66\/33{
+        @media (min-width: $screen-medium){
+            grid-template-columns: 2fr 1fr;
+        }
+    }
+
+    .o-grid_item{
+        display: inline-flex;
+        flex-flow: column wrap;
+        position: relative;
+        box-sizing: border-box;
+    }
+}

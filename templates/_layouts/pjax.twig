@@ -1,0 +1,5 @@
+{% if craft.app.request.isPjax %}
+    {% spaceless %}
+        {% block content %}{% endblock %}
+    {% endspaceless %}
+{% endif %}

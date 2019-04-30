@@ -22,7 +22,12 @@ return [
         'activateAccountSuccessPath'    => 'users/profile',
         'invalidUserTokenPath'          => 'users/invalid',
         'setPasswordPath'               => 'users/password',
-        'purgePendingUsersDuration'     => 'P1M'
+        'purgePendingUsersDuration'     => 'P1M',
+        'useProjectConfigFile'          => true,
+
+        // Leave at bottom of global settings
+        'jsCacheBustTimestamp' => '37385867',
+        'cssCacheBustTimestamp' => '37387073',
     ],
 
     // Dev environment settings
