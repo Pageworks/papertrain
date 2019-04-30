@@ -38,7 +38,35 @@ Run the setup script by running the following command in your terminal:
 npm run setup
 ```
 
-To finish follow the Craft CMS installation in the browser. If the browser doesn't automatically open navigate to `http://your-project-url.local/webmaster`.
+To finish follow the Craft CMS installation in the browser. If the browser doesn't automatically open navigate to the `/webmaster` route.
+
+### Additional Steps
+
+After Craft is installed you may need to navigate to the Utility -> Updates section and update Craft or any of the plugins.
+
+If you're using a Git repository run the following command in your terminal:
+
+```script
+git init
+```
+
+Followed by creating your first commit:
+
+```script
+git commit -m "Initial commit"
+```
+
+Don't forget to set your remote:
+
+```script
+git remote add origin <URL>
+```
+
+Then push your commit:
+
+```script
+git push -u origin master
+```
 
 # Creating Elements
 
