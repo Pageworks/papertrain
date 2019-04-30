@@ -1,4 +1,4 @@
-# 1.1.4 - 2019-03-22
+# Beta 1.1.4 - 2019-03-22
 
 ### Fixes
 
@@ -6,7 +6,7 @@
 - Fixes: `window.scrollY` alias bug for IE 11 [#139](https://github.com/Pageworks/papertrain/issues/139)
 - Fixes: updates custom `ajax` function to have better inline documentation [#135](https://github.com/Pageworks/papertrain/issues/135)
 
-# 1.1.3 - 2019-03-10
+# Beta 1.1.3 - 2019-03-10
 
 ### Adds
 
@@ -16,14 +16,14 @@
 
 - Fixes: typescript config for IE 11 support
 
-# 1.1.2 - 2019-03-10
+# Beta 1.1.2 - 2019-03-10
 
 ### Fixes
 
 - Fixes: removes extra margin-top from underline textarea element[#131](https://github.com/Pageworks/papertrain/issues/131)
 - Fixes: updates form sample page to use the new `o-freeform` class instead of `b-freeform`
 
-# 1.1.1 - 2019-03-06
+# Beta 1.1.1 - 2019-03-06
 
 ### Adds
 
@@ -38,7 +38,7 @@
 - Removes: status class logic for pointer and touch devices
 - Removes: status class logic for setting `has-js`
 
-# 1.1.0 - 2019-03-03
+# Beta 1.1.0 - 2019-03-03
 
 ### Adds
 
@@ -98,13 +98,13 @@
 - Removes: `@types/animejs` npm package
 - Removes: `webpack-dev-server` npm package and script
 
-# 1.0.3 - 2019-01-10
+# Beta 1.0.3 - 2019-01-10
 
 ### Fixes
 
 - Fixes: Incorrect database dump file
 
-# 1.0.2 - 2019-01-09
+# Beta 1.0.2 - 2019-01-09
 
 ### Adds
 
@@ -120,7 +120,7 @@
 
 - Removes: Removes site name override so we can support clean craft installs.
 
-# 1.0.1 - 2019-01-04
+# Beta 1.0.1 - 2019-01-04
 
 ### Adds
 
@@ -141,7 +141,7 @@
 - Removes: Demo entries from the Standard Pages section [#69](https://github.com/Pageworks/papertrain/issues/69)
 - Removes: Roboto as a base font [#76](https://github.com/Pageworks/papertrain/issues/67)
 
-# 1.0.0 - 2018-12-24
+# Beta 1.0.0 - 2018-12-24
 
 ### Adds
 - Adds: Initial project welcome message and success page
@@ -153,7 +153,7 @@
 
 ---
 
-# 0.1.2-beta - 2018-12-22
+# Beta 0.1.2.1 - 2018-12-22
 
 ### Adds
 - Adds: Basic lowercase text transform utility class
@@ -192,7 +192,7 @@
 
 ---
 
-#  0.1.1-beta - 2018-11-09
+# Beta 0.1.1-beta - 2018-11-09
 
 ### Adds
 - Adds: contrast SASS function
@@ -205,7 +205,7 @@
 
 ---
 
-#  0.1.0-beta - 2018-11-09
+# Beta 0.1.0-beta - 2018-11-09
 
 ### Adds
 - Adds: Webpack

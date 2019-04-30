@@ -7,6 +7,7 @@
 - Adds: `/templates/lib` directory for storing Objects, Components, and Globals
 - Adds: CLI based object, component, single, and global generator `npm run create`
 - Adds: global `utils` directory for storing global scripts & SCSS files
+- Adds: custom setup script (`npm run setup`) for cleaning up unneeded Papertrain files, directories, and generating the `.env` file
 
 ### Fixes
 
