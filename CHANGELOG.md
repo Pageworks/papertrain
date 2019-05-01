@@ -6,6 +6,7 @@
 - Fixes: singles `.twig` file has been renamed to `index.twig`
 - Fixes: missing `data-module` attribute on singles
 - Fixes: sass compiler now compiles all SCSS files within the `/templates` directory
+- Fixes: issue calling undefined variable on `entry` or `category`
 
 ### Removes
 

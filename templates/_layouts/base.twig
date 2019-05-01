@@ -8,9 +8,11 @@
 
 {% set pageDescription = pageTitle %}
 {% if entry is defined %}
-    {% if entry.pageDescription is defined and entry.pageDescription|length  %}
+    {% if entry['pageDescription'] is defined and entry['pageDescription'] is not null %}
         {% set pageDescription = entry.pageDescription %}
-    {% elseif category.pageDescription is defined and category.pageDescription|length  %}
+    {% endif %}
+{% elseif category is defined %}
+    {% if category['pageDescription'] is defined and category['pageDescription'] is not null %}
         {% set pageDescription = category.pageDescription %}
     {% endif %}
 {% endif %}
