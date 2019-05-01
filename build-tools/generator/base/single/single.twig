@@ -1,7 +1,11 @@
 {% do view.registerCssFile(siteUrl|trim('/') ~ '/assets/styles/REPLACE_ME.' ~ craft.app.config.general.cssCacheBustTimestamp ~ '.css') %}
 SCRIPT_PLACEHOLDER
 
-<article id="REPLACE_ME" class="o-container -full" data-template="REPLACE_ME">
-    <section class="o-container">
-    </section>
-</article>
+{% extends "_layouts/base" %}
+
+{% block content %}
+    <article id="REPLACE_ME" class="o-container -full" data-template="REPLACE_ME" MODULE_PLACEHOLDER>
+        <section class="o-container">
+        </section>
+    </article>
+{% endblock %}

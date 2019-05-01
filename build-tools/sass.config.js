@@ -31,14 +31,11 @@ function compileSASS(){
     // Get all the base SCSS files from the base global scss directory
     const globalFiles = glob.sync('./utils/styles/*.scss');
 
-    // Get all the SCSS files from the templates lib directory
-    const libFiles = glob.sync('./templates/_lib/**/*.scss');
-
-    // Get all the SCSS files from the templates singles directory
-    const singlesFiles = glob.sync('./templates/_singles/**/*.scss');
+    // Get all the SCSS files from the templates directory
+    const templateFiles = glob.sync('./templates/**/*.scss');
 
     // Concat the arrays
-    const files = [...globalFiles, ...libFiles, ...singlesFiles];
+    const files = [...globalFiles, ...templateFiles];
 
     if(fs.existsSync('./public/assets/styles')){
         rimraf.sync('./public/assets/styles');

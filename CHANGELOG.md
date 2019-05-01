@@ -1,4 +1,18 @@
-## 0.1.0
+## 0.1.1 - 2019-05-01
+
+### Fixes
+
+- Fixes: generator generates singles into their own public directory within `/templates`
+- Fixes: singles `.twig` file has been renamed to `index.twig`
+- Fixes: missing `data-module` attribute on singles
+- Fixes: sass compiler now compiles all SCSS files within the `/templates` directory
+- Fixes: issue calling undefined variable on `entry` or `category`
+
+### Removes
+
+- Removes: `templates/_singles` directory
+
+## 0.1.0 - 2019-04-30
 
 ### Adds
 

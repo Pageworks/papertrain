@@ -145,6 +145,7 @@ Singles are defined as a combination of the following files:
 
 - HTML
 - Style
+- Script (optional)
 
 # CSS Namespaces
 

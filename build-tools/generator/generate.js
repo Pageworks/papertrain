@@ -18,7 +18,7 @@ console.log(chalk.cyan('Starting the generator'));
 startGenerator();
 
 function startGenerator(){
-    if(files.directoryExists(`templates/_lib/Components`) && files.directoryExists(`templates/_lib/Globals`) && files.directoryExists(`templates/_lib/Objects`) && files.directoryExists(`templates/_singles`)){
+    if(files.directoryExists(`templates/_lib/Components`) && files.directoryExists(`templates/_lib/Globals`) && files.directoryExists(`templates/_lib/Objects`)){
         console.log(chalk.gray('=========================================='));
         (async ()=>{
             const genType = await questions.askType();
@@ -308,7 +308,7 @@ function generateSingle(handle, generateScript){
 
     spinner.start();
     spinner.text = 'Checking if object already exists';
-    if(files.directoryExists(`templates/_singles/${ handle }`)){
+    if(files.directoryExists(`templates/${ handle }`)){
         spinner.text = `The object already exists`;
         spinner.fail();
     }else{
@@ -317,21 +317,21 @@ function generateSingle(handle, generateScript){
 
         spinner.start();
         spinner.text = 'Creating object';
-        fs.mkdir(`templates/_singles/${ handle }`, (err)=>{
+        fs.mkdir(`templates/${ handle }`, (err)=>{
             if(err){
                 spinner.fail();
                 spinner.text = 'Something went wrong';
                 throw (err);
             }
 
-            fs.copyFile(`${ __dirname }/base/single/single.twig`, `templates/_singles/${ handle }/${ handle }.twig`, (err) => {
+            fs.copyFile(`${ __dirname }/base/single/single.twig`, `templates/${ handle }/index.twig`, (err) => {
                 if (err){
                     spinner.fail();
                     spinner.text = 'Failed to create the twig file';
                     throw err;
                 }
 
-                fs.readFile(`templates/_singles/${ handle }/${ handle }.twig`, 'utf-8', (err, file)=>{
+                fs.readFile(`templates/${ handle }/index.twig`, 'utf-8', (err, file)=>{
                     if (err){
                         spinner.fail();
                         spinner.text = 'Failed to create the twig file';
@@ -343,11 +343,13 @@ function generateSingle(handle, generateScript){
                     if(generateScript){
                         let scriptInclude = `{% do view.registerJsFile(siteUrl|trim('/') ~ '/assets/scripts/${ handle }.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', { "async":"async" }) %}`;
                         modifiedFile = modifiedFile.replace(/SCRIPT_PLACEHOLDER/g, scriptInclude);
+                        modifiedFile = modifiedFile.replace(/MODULE_PLACEHOLDER/g, `data-module="${ className }"`);
                     }else{
                         modifiedFile = modifiedFile.replace(/SCRIPT_PLACEHOLDER/g, '');
+                        modifiedFile = modifiedFile.replace(/MODULE_PLACEHOLDER/g, '');
                     }
 
-                    fs.writeFile(`templates/_singles/${ handle }/${ handle }.twig`, modifiedFile, 'utf-8', (err)=>{
+                    fs.writeFile(`templates/${ handle }/index.twig`, modifiedFile, 'utf-8', (err)=>{
                         if (err){
                             spinner.fail();
                             spinner.text = 'Failed to create the twig file';
@@ -360,14 +362,14 @@ function generateSingle(handle, generateScript){
                 });
             });
 
-            fs.copyFile(`${ __dirname }/base/single/single.scss`, `templates/_singles/${ handle }/${ handle }.scss`, (err) => {
+            fs.copyFile(`${ __dirname }/base/single/single.scss`, `templates/${ handle }/${ handle }.scss`, (err) => {
                 if (err){
                     spinner.fail();
                     spinner.text = 'Failed to create the scss file';
                     throw err;
                 }
 
-                fs.readFile(`templates/_singles/${ handle }/${ handle }.scss`, 'utf-8', (err, file)=>{
+                fs.readFile(`templates/${ handle }/${ handle }.scss`, 'utf-8', (err, file)=>{
                     if (err){
                         spinner.fail();
                         spinner.text = 'Failed to create the scss file';
@@ -376,7 +378,7 @@ function generateSingle(handle, generateScript){
 
                     let modifiedFile = file.replace(/REPLACE_ME/g, handle);
 
-                    fs.writeFile(`templates/_singles/${ handle }/${ handle }.scss`, modifiedFile, 'utf-8', (err)=>{
+                    fs.writeFile(`templates/${ handle }/${ handle }.scss`, modifiedFile, 'utf-8', (err)=>{
                         if (err){
                             spinner.fail();
                             spinner.text = 'Failed to create the scss file';
@@ -390,14 +392,14 @@ function generateSingle(handle, generateScript){
             });
 
             if(generateScript){
-                fs.copyFile(`${ __dirname }/base/single/single.ts`, `templates/_singles/${ handle }/${ handle }.ts`, (err) => {
+                fs.copyFile(`${ __dirname }/base/single/single.ts`, `templates/${ handle }/${ handle }.ts`, (err) => {
                     if (err){
                         spinner.fail();
                         spinner.text = 'Failed to create the typescript file';
                         throw err;
                     }
 
-                    fs.readFile(`templates/_singles/${ handle }/${ handle }.ts`, 'utf-8', (err, file)=>{
+                    fs.readFile(`templates/${ handle }/${ handle }.ts`, 'utf-8', (err, file)=>{
                         if (err){
                             spinner.fail();
                             spinner.text = 'Failed to create the typescript file';
@@ -405,7 +407,7 @@ function generateSingle(handle, generateScript){
                         }
 
                         const modifiedFile = file.replace(/REPLACE_ME/g, className);
-                        fs.writeFile(`templates/_singles/${ handle }/${ handle }.ts`, modifiedFile, 'utf-8', (err)=>{
+                        fs.writeFile(`templates/${ handle }/${ handle }.ts`, modifiedFile, 'utf-8', (err)=>{
                             if (err){
                                 spinner.fail();
                                 spinner.text = 'Failed to create the typescript file';
