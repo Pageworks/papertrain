@@ -27,7 +27,7 @@ return [
 
         // Leave at bottom of global settings
         'jsCacheBustTimestamp' => '03461311',
-        'cssCacheBustTimestamp' => '03462507',
+        'cssCacheBustTimestamp' => '13027188',
     ],
 
     // Dev environment settings
