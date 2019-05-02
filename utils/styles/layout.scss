@@ -1,17 +1,6 @@
 @import 'settings';
 @import 'mixins';
 
-// Layout
-// =============================================================================
-$gutter:        $unit;
-$gutter-small:  $unit-half;
-$gutter-large:  $unit*2;
-
-// Container
-// ==========================================================================
-$container-width:           1024px;
-$narrow-container-width:    680px;
-
 
 .u-container{
     width: 100%;
