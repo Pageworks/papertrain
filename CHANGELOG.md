@@ -1,3 +1,9 @@
+## 0.1.2 - Unreleased
+
+### Fixes
+
+- Fixes: namespacing issue where container, wrapper, and grid classes were prefixed as `o-` (objects) when they should be `u-` (utilities)
+
 ## 0.1.1 - 2019-05-01
 
 ### Fixes

@@ -13,7 +13,7 @@ $container-width:           1024px;
 $narrow-container-width:    680px;
 
 
-.o-container{
+.u-container{
     width: 100%;
     max-width: $container-width;
     display: block;
@@ -29,12 +29,12 @@ $narrow-container-width:    680px;
     }
 }
 
-.o-wrapper{
+.u-wrapper{
     margin: auto;
     display: inline-block;
 }
 
-.o-grid{
+.u-grid{
     display: grid;
 
     &.-gutter{
@@ -82,7 +82,7 @@ $narrow-container-width:    680px;
         }
     }
 
-    .o-grid_item{
+    .u-grid_item{
         display: inline-flex;
         flex-flow: column wrap;
         position: relative;
