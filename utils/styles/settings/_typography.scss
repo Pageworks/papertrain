@@ -1,10 +1,10 @@
 // Typefaces
 // =============================================================================
-$font-sans-serif:   'Circular', 'Montserrat', sans-serif;
-$font-serif:        serif;
-$font-heading:      $font-sans-serif;
-$font-quote:        'Circular', 'Montserrat', cursive;
-$font-code:         'Share Tech Mono', monospace;
+$font-sans-serif:   'Roboto', 'Circular', sans-serif;
+$font-serif:        'Roboto Slab', 'Circular', serif;
+$font-heading:      $font-serif;
+$font-quote:        'Roboto Slab', 'Circular', cursive;
+$font-code:         monospace;
 
 // Weights
 // =============================================================================
@@ -19,4 +19,4 @@ $font-weight: $regular;
 $font-family: $font-sans-serif;
 $color: $font-base;
 
-$base-font-size: 16px; // In pixels
+$base-font-size: 1rem;

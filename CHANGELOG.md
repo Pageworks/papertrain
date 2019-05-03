@@ -7,6 +7,7 @@
 - Fixes: `-secondary-background` is now `-snow-background`
 - Fixes: moves gutter and container unit configs into `settings/_units.scss`
 - Fixes: normalizes all elements to use `position: relative;`
+- Fixes: switches base sans-serif font to Roboto and serif font to Roboto Slab, moves Circular to the fallback font
 
 ## 0.1.1 - 2019-05-01
 
