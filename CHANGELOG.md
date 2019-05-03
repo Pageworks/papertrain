@@ -1,6 +1,6 @@
 ## 0.1.2 - Unreleased
 
-### Fixes
+### Fixed
 
 - Fixes: namespacing issue where container, wrapper, and grid classes were prefixed as `o-` (objects) when they should be `u-` (utilities)
 - Fixes: `-base-background` is now `-white-background`
@@ -8,6 +8,11 @@
 - Fixes: moves gutter and container unit configs into `settings/_units.scss`
 - Fixes: normalizes all elements to use `position: relative;`
 - Fixes: switches base sans-serif font to Roboto and serif font to Roboto Slab, moves Circular to the fallback font
+
+### Removed
+
+- Removes: `u-clearfix` mixin
+- Removes: `u-truncate` mixin
 
 ## 0.1.1 - 2019-05-01
 

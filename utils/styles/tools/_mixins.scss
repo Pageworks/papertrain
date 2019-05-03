@@ -1,24 +1,5 @@
+// Custom Mixins
 // ==========================================================================
-// Tools / Mixins
-// ==========================================================================
-
-//
-// Micro clearfix rules for containing floats.
-//
-// @link   http://www.cssmojo.com/the-very-latest-clearfix-reloaded/
-// @param  {List} $supports The type of clearfix to generate.
-// @output Injects `:::after` pseudo-element.
-//
-@mixin u-clearfix($supports...)
-{
-    &::after
-    {
-        display: if(list-contains($supports, table), table, block);
-        clear: both;
-
-        content: if(list-contains($supports, opera), ' ', '');
-    }
-}
 
 @mixin touch
 {
@@ -52,30 +33,6 @@
         html.is-touch-device & {
             @content;
         }
-    }
-}
-
-//
-// Prevent text from wrapping onto multiple lines for the current element.
-//
-// An ellipsis is appended to the end of the line.
-//
-// 1. Ensure that the node has a maximum width after which truncation can occur.
-// 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor nodes.
-//
-// @param  {Number} $width [100%] - The maximum width of element.
-// @output `max-width`, `word-wrap`, `white-space`, `overflow`, `text-overflow`
-//
-@mixin u-truncate($width: 100%)
-{
-    overflow: hidden;
-
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    word-wrap: normal;  // [2]
-    @if $width
-    {
-        max-width: $width; // [1]
     }
 }
 
