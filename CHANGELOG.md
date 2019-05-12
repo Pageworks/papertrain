@@ -8,6 +8,8 @@
 - Fixes: moves gutter and container unit configs into `settings/_units.scss`
 - Fixes: normalizes all elements to use `position: relative;`
 - Fixes: switches base sans-serif font to Roboto and serif font to Roboto Slab, moves Circular to the fallback font
+- Fixes: moves containers, grids, and wrapper to the `/globals` directory
+- Fixes: uses regex to replace spaces to `-` when generating files
 
 ### Removed
 

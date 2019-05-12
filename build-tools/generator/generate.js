@@ -58,7 +58,7 @@ function generateObject(handle){
     console.log(chalk.gray('=========================================='));
     console.log(`Generating new object: `, chalk.cyan(handle));
 
-    handle = handle.replace(' ', '-').toLowerCase();
+    handle = handle.replace(/\s/g, '-').toLowerCase();
 
     spinner.start();
     spinner.text = 'Checking if object already exists';
@@ -141,7 +141,7 @@ function generateComponent(handle){
     console.log(chalk.gray('=========================================='));
     console.log(`Generating new component: `, chalk.cyan(handle));
 
-    handle = handle.replace(' ', '-').toLowerCase();
+    handle = handle.replace(/\s/g, '-').toLowerCase();
 
     const className = toPascalCase(handle);
 
@@ -255,7 +255,7 @@ function generateGlobal(handle){
     console.log(chalk.gray('=========================================='));
     console.log(`Generating new global object: `, chalk.cyan(handle));
 
-    handle = handle.replace(' ', '-').toLowerCase();
+    handle = handle.replace(/\s/g, '-').toLowerCase();
 
     spinner.start();
     spinner.text = 'Checking if global object already exists';
@@ -302,7 +302,7 @@ function generateSingle(handle, generateScript){
     console.log(chalk.gray('=========================================='));
     console.log(`Generating new single: `, chalk.cyan(handle));
 
-    handle = handle.replace(' ', '-').toLowerCase();
+    handle = handle.replace(/\s/g, '-').toLowerCase();
 
     const className = toPascalCase(handle);
 
