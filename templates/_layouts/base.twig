@@ -207,7 +207,7 @@
         </script>
     </head>
     <body>
-        {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/runtime.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+        {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/runtime.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js') %}
         {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/globals.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
         {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/npm.uuid.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
         {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/npm.pageworks.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
@@ -220,7 +220,7 @@
             <main role="main" class="js-pjax">
                 {% block content %}{% endblock %}
             </main>
-            {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/application.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+            {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/application.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js') %}
         {% endspaceless %}
     </body>
 </html>

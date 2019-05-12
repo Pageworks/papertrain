@@ -1,4 +1,4 @@
-{% do view.registerCssFile(siteUrl|trim('/') ~ '/assets/styles/REPLACE_ME.' ~ craft.app.config.general.cssCacheBustTimestamp ~ '.css') %}
+{% do view.registerCssFile(alias('@rootUrl')|trim('/') ~ '/assets/styles/REPLACE_ME.' ~ craft.app.config.general.cssCacheBustTimestamp ~ '.css') %}
 SCRIPT_PLACEHOLDER
 
 {% extends "_layouts/base" %}

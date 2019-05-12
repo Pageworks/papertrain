@@ -12,6 +12,7 @@
 - Fixes: uses regex to replace spaces to `-` when generating files [#143](https://github.com/Pageworks/papertrain/issues/143)
 - Fixes: switches `siteUrl` to `alias('@rootUrl')`
 - Fixes: TypeScript compiling excludes [#149](https://github.com/Pageworks/papertrain/issues/149)
+- Fixes: Non-Chrome script order [#148](https://github.com/Pageworks/papertrain/issues/148)
 
 ### Removed
 
