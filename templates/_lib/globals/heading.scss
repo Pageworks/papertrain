@@ -1,0 +1,45 @@
+@import 'settings';
+@import 'mixins';
+@import '../../../utils/styles/tools/typography';
+
+.g-heading{
+    &.-h1{
+        @include u-h1;
+    }
+
+    &.-h2{
+        @include u-h2;
+    }
+
+    &.-h3{
+        @include u-h3;
+    }
+
+    &.-h4{
+        @include u-h4;
+    }
+
+    &.-h5{
+        @include u-h5;
+    }
+
+    &.-h6{
+        @include u-h6;
+    }
+
+    &.-light{
+        font-weight: $light;
+    }
+
+    &.-medium{
+        font-weight: $medium;
+    }
+
+    &.-heavy{
+        font-weight: $heavy;
+    }
+
+    &.-white{
+        color: $white;
+    }
+}

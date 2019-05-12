@@ -1,5 +1,10 @@
 ## 0.1.2 - Unreleased
 
+### Adds
+
+- Adds: global heading class [#145](https://github.com/Pageworks/papertrain/issues/145)
+- Adds: global button class [#144](https://github.com/Pageworks/papertrain/issues/144)
+
 ### Fixed
 
 - Fixes: namespacing issue where container, wrapper, and grid classes were prefixed as `o-` (objects) when they should be `u-` (utilities)

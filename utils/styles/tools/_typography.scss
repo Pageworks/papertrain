@@ -2,7 +2,7 @@
     @if type-of($number) == 'number' and not unitless($number) {
       @return $number / ($number * 0 + 1);
     }
-  
+
     @return $number;
 }
 
@@ -20,7 +20,7 @@ $h6-size: round($base-size / 1.272);
     line-height: round($h1-size * $golden-ratio) + px;
 }
 
-@mixin u-h2{    
+@mixin u-h2{
     font-size: $h2-size + px;
     line-height: round($h2-size * $golden-ratio) + px;
 }
@@ -35,7 +35,7 @@ $h6-size: round($base-size / 1.272);
     line-height: round($h4-size * $golden-ratio) + px;
 }
 
-@mixin u-base-font{
+@mixin u-h5{
     font-size: $base-size + px;
     line-height: round($base-size * $golden-ratio) + px;
 }
