@@ -8,8 +8,10 @@
 - Fixes: moves gutter and container unit configs into `settings/_units.scss`
 - Fixes: normalizes all elements to use `position: relative;`
 - Fixes: switches base sans-serif font to Roboto and serif font to Roboto Slab, moves Circular to the fallback font
-- Fixes: moves containers, grids, and wrapper to the `/globals` directory
-- Fixes: uses regex to replace spaces to `-` when generating files
+- Fixes: moves containers, grids, and wrapper to the `/globals` directory [#150](https://github.com/Pageworks/papertrain/issues/150)
+- Fixes: uses regex to replace spaces to `-` when generating files [#143](https://github.com/Pageworks/papertrain/issues/143)
+- Fixes: switches `siteUrl` to `alias('@rootUrl')`
+- Fixes: TypeScript compiling excludes [#149](https://github.com/Pageworks/papertrain/issues/149)
 
 ### Removed
 

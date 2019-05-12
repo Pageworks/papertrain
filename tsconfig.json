@@ -27,11 +27,12 @@
         ]
     },
     "exclude": [
-        "vendor",
-        "node_modules",
-        "_compiled",
-        "build-tools",
+        "./vendor",
+        "./node_modules",
+        "./_compiled",
+        "./build-tools",
         "webpack.config.js",
-        "public"
+        "./public",
+        "./modules"
     ]
 }

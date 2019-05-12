@@ -34,23 +34,23 @@
         {% endblock %}
 
         {# Icons #}
-        <link rel="icon" sizes="192x192" href="{{ siteUrl|trim('/') }}/assets/images/icon-192.png">
-        <link rel="apple-touch-icon" href="{{ siteUrl|trim('/') }}/assets/images/ios-icon.png">
-        <meta name="msapplication-square310x310logo" content="{{ siteUrl|trim('/') }}/assets/images/icon-310.png">
+        <link rel="icon" sizes="192x192" href="{{ alias('@rootUrl')|trim('/') }}/assets/images/icon-192.png">
+        <link rel="apple-touch-icon" href="{{ alias('@rootUrl')|trim('/') }}/assets/images/ios-icon.png">
+        <meta name="msapplication-square310x310logo" content="{{ alias('@rootUrl')|trim('/') }}/assets/images/icon-310.png">
 
         {# PWA Manifest #}
-        {# <link rel="manifest" href="{{ siteUrl|trim('/') }}/manifest.json"> #}
+        {# <link rel="manifest" href="{{ alias('@rootUrl')|trim('/') }}/manifest.json"> #}
 
         {# Stylesheets #}
-        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/main.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/fonts.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/utility.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/spacing.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/ratio.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/widths.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/container.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/wrapper.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ siteUrl|trim('/') }}/assets/styles/grid.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/main.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/fonts.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/utility.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/spacing.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/ratio.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/widths.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/container.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/wrapper.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/grid.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
 
         {# Loading animation CSS #}
         <style>
@@ -207,10 +207,10 @@
         </script>
     </head>
     <body>
-        {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/runtime.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
-        {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/globals.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
-        {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/npm.uuid.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
-        {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/npm.pageworks.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+        {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/runtime.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+        {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/globals.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+        {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/npm.uuid.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+        {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/npm.pageworks.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
         {% spaceless %}
             {# Page Transition Animation #}
             <div class="c-transition">
@@ -220,7 +220,7 @@
             <main role="main" class="js-pjax">
                 {% block content %}{% endblock %}
             </main>
-            {% do view.registerJsFile( siteUrl|trim('/') ~ '/assets/scripts/application.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+            {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/application.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
         {% endspaceless %}
     </body>
 </html>
