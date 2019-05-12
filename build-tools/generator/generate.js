@@ -25,7 +25,7 @@ function startGenerator(){
             generationType = genType.type;
             hasJS = false;
 
-            if(genType.type === 'single'){
+            if(genType.type === 'template'){
                 const askJsReponse = await questions.askJs();
                 hasJS = askJsReponse.requiredScriptFile;
             }
@@ -40,7 +40,7 @@ function startGenerator(){
                 case 'global':
                     generateGlobal(genType.handle);
                     break;
-                case 'single':
+                case 'template':
                     generateSingle(genType.handle, hasJS);
                     break;
                 default:
@@ -300,7 +300,7 @@ function generateGlobal(handle){
 
 function generateSingle(handle, generateScript){
     console.log(chalk.gray('=========================================='));
-    console.log(`Generating new single: `, chalk.cyan(handle));
+    console.log(`Generating new template: `, chalk.cyan(handle));
 
     handle = handle.replace(/\s/g, '-').toLowerCase();
 
@@ -316,7 +316,7 @@ function generateSingle(handle, generateScript){
         spinner.succeed();
 
         spinner.start();
-        spinner.text = 'Creating object';
+        spinner.text = 'Creating template';
         fs.mkdir(`templates/${ handle }`, (err)=>{
             if(err){
                 spinner.fail();
@@ -443,9 +443,9 @@ function complete(){
                 spinner.succeed();
             }
             break;
-        case 'single':
+        case 'template':
             if(createdScss && createdTwig){
-                spinner.text = 'Single successfully created';
+                spinner.text = 'New template successfully created';
                 spinner.succeed();
             }
             break;

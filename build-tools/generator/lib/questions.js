@@ -11,7 +11,7 @@ module.exports = {
                     'global',
                     'object',
                     'component',
-                    'single'
+                    'template'
                 ]
             },
             {

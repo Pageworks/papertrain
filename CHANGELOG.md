@@ -19,6 +19,7 @@
 - Fixes: TypeScript compiling excludes [#149](https://github.com/Pageworks/papertrain/issues/149)
 - Fixes: Non-Chrome script order [#148](https://github.com/Pageworks/papertrain/issues/148)
 - Fixes: stylelint rules [#147](https://github.com/Pageworks/papertrain/issues/147)
+- Fixes: changes `single` to `template` in the generator
 
 ### Removed
 
