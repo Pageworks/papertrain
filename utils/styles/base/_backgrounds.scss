@@ -6,19 +6,14 @@
 
 section,
 article,
-.o-container{
-    &.-base-background{
+.g-container{
+    &.-white-background{
         background: $base-background-color;
         color: $font-base;
     }
 
-    &.-secondary-background{
+    &.-snow-background{
         background: $secondary-background-color;
         color: $font-base;
-    }
-
-    &.-brand-background{
-        background: $brand-background-color;
-        color: contrast($brand-background-color);
     }
 }

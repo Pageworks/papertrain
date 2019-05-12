@@ -1,0 +1,47 @@
+@import 'settings';
+@import 'mixins';
+
+.g-button{
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    text-transform: uppercase;
+    height: 48px;
+    line-height: 45px;
+    font-weight: $medium;
+    padding: 0 $unit;
+    transition: all 150ms $ease;
+    white-space: nowrap;
+    max-width: 100%;
+    text-overflow: ellipsis;
+
+    &.-outline{
+        border-width: 2px;
+        border-style: solid;
+    }
+
+    &.-white{
+        &.-outline{
+            border-color: $white;
+            color: $white;
+            background-color: transparent;
+
+            @include hover{
+                background-color: rgba($white, 0.07);
+            }
+
+            @include active{
+                background-color: rgba($white, 0.15);
+            }
+        }
+
+        &.-solid{
+            background-color: $white;
+            color: $primary;
+        }
+    }
+
+    &.-wide{
+        padding: 0 $unit*2;
+    }
+}

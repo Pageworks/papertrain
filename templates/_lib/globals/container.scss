@@ -1,0 +1,18 @@
+@import 'settings';
+@import 'mixins';
+
+.g-container{
+    width: 100%;
+    max-width: $container-width;
+    display: block;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    &.-full{
+        max-width: 100vw;
+    }
+
+    &.-narrow{
+        max-width: $narrow-container-width;
+    }
+}

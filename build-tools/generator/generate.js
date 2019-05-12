@@ -25,7 +25,7 @@ function startGenerator(){
             generationType = genType.type;
             hasJS = false;
 
-            if(genType.type === 'single'){
+            if(genType.type === 'template'){
                 const askJsReponse = await questions.askJs();
                 hasJS = askJsReponse.requiredScriptFile;
             }
@@ -40,7 +40,7 @@ function startGenerator(){
                 case 'global':
                     generateGlobal(genType.handle);
                     break;
-                case 'single':
+                case 'template':
                     generateSingle(genType.handle, hasJS);
                     break;
                 default:
@@ -58,7 +58,7 @@ function generateObject(handle){
     console.log(chalk.gray('=========================================='));
     console.log(`Generating new object: `, chalk.cyan(handle));
 
-    handle = handle.replace(' ', '-').toLowerCase();
+    handle = handle.replace(/\s/g, '-').toLowerCase();
 
     spinner.start();
     spinner.text = 'Checking if object already exists';
@@ -141,7 +141,7 @@ function generateComponent(handle){
     console.log(chalk.gray('=========================================='));
     console.log(`Generating new component: `, chalk.cyan(handle));
 
-    handle = handle.replace(' ', '-').toLowerCase();
+    handle = handle.replace(/\s/g, '-').toLowerCase();
 
     const className = toPascalCase(handle);
 
@@ -255,7 +255,7 @@ function generateGlobal(handle){
     console.log(chalk.gray('=========================================='));
     console.log(`Generating new global object: `, chalk.cyan(handle));
 
-    handle = handle.replace(' ', '-').toLowerCase();
+    handle = handle.replace(/\s/g, '-').toLowerCase();
 
     spinner.start();
     spinner.text = 'Checking if global object already exists';
@@ -300,9 +300,9 @@ function generateGlobal(handle){
 
 function generateSingle(handle, generateScript){
     console.log(chalk.gray('=========================================='));
-    console.log(`Generating new single: `, chalk.cyan(handle));
+    console.log(`Generating new template: `, chalk.cyan(handle));
 
-    handle = handle.replace(' ', '-').toLowerCase();
+    handle = handle.replace(/\s/g, '-').toLowerCase();
 
     const className = toPascalCase(handle);
 
@@ -316,7 +316,7 @@ function generateSingle(handle, generateScript){
         spinner.succeed();
 
         spinner.start();
-        spinner.text = 'Creating object';
+        spinner.text = 'Creating template';
         fs.mkdir(`templates/${ handle }`, (err)=>{
             if(err){
                 spinner.fail();
@@ -443,9 +443,9 @@ function complete(){
                 spinner.succeed();
             }
             break;
-        case 'single':
+        case 'template':
             if(createdScss && createdTwig){
-                spinner.text = 'Single successfully created';
+                spinner.text = 'New template successfully created';
                 spinner.succeed();
             }
             break;

@@ -1,41 +1,9 @@
 @import 'settings';
 @import 'mixins';
 
-// Layout
-// =============================================================================
-$gutter:        $unit;
-$gutter-small:  $unit-half;
-$gutter-large:  $unit*2;
-
-// Container
-// ==========================================================================
-$container-width:           1024px;
-$narrow-container-width:    680px;
-
-
-.o-container{
-    width: 100%;
-    max-width: $container-width;
-    display: block;
-    margin-left: auto !important;
-    margin-right: auto !important;
-
-    &.-full{
-        max-width: 100vw;
-    }
-
-    &.-narrow{
-        max-width: $narrow-container-width;
-    }
-}
-
-.o-wrapper{
-    margin: auto;
-    display: inline-block;
-}
-
-.o-grid{
+.g-grid{
     display: grid;
+    grid-template-columns: minmax(320px, 1fr);
 
     &.-gutter{
         gap: $gutter;
@@ -82,7 +50,7 @@ $narrow-container-width:    680px;
         }
     }
 
-    .o-grid_item{
+    .u-grid_item{
         display: inline-flex;
         flex-flow: column wrap;
         position: relative;

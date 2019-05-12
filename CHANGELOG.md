@@ -1,3 +1,31 @@
+## 0.1.2 - 2019-05-12
+
+### Adds
+
+- Adds: global heading class [#145](https://github.com/Pageworks/papertrain/issues/145)
+- Adds: global button class [#144](https://github.com/Pageworks/papertrain/issues/144)
+
+### Fixed
+
+- Fixes: namespacing issue where container, wrapper, and grid classes were prefixed as `o-` (objects) when they should be `u-` (utilities)
+- Fixes: `-base-background` is now `-white-background`
+- Fixes: `-secondary-background` is now `-snow-background`
+- Fixes: moves gutter and container unit configs into `settings/_units.scss`
+- Fixes: normalizes all elements to use `position: relative;`
+- Fixes: switches base sans-serif font to Roboto and serif font to Roboto Slab, moves Circular to the fallback font
+- Fixes: moves containers, grids, and wrapper to the `/globals` directory [#150](https://github.com/Pageworks/papertrain/issues/150)
+- Fixes: uses regex to replace spaces to `-` when generating files [#143](https://github.com/Pageworks/papertrain/issues/143)
+- Fixes: switches `siteUrl` to `alias('@rootUrl')`
+- Fixes: TypeScript compiling excludes [#149](https://github.com/Pageworks/papertrain/issues/149)
+- Fixes: Non-Chrome script order [#148](https://github.com/Pageworks/papertrain/issues/148)
+- Fixes: stylelint rules [#147](https://github.com/Pageworks/papertrain/issues/147)
+- Fixes: changes `single` to `template` in the generator
+
+### Removed
+
+- Removes: `u-clearfix` mixin
+- Removes: `u-truncate` mixin
+
 ## 0.1.1 - 2019-05-01
 
 ### Fixes

@@ -12,6 +12,7 @@
     line-height: 1.618;
     vertical-align: baseline;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
 }
 
 body{
@@ -59,14 +60,6 @@ hr
     border-bottom: solid 1px $black;
     opacity: 0.15;
     display: block;
-
-    .-dark-background & {
-        border-color: $white;
-    }
-
-    .-brand-background & {
-        border-color: contrast($brand-background-color);
-    }
 }
 
 a{
