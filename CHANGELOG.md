@@ -6,10 +6,15 @@
 - Adds: `-raised` modifier class to the `g-button` global
 - Adds: `-rounded` modifier class to the `g-button` global
 - Adds: elevation variables to the `config.scss` file
+- Adds: [SEO](https://github.com/ethercreative/seo/blob/v3/README.md) plugin
+- Adds: initial Homepage single and template
 
 ### Fixed
 
 - Fixes: solid buttons line height appearing unaligned next to an outline button [#151](https://github.com/Pageworks/papertrain/issues/151)
+- Fixes: `page.scss` styles
+- Fixes: `normalize.scss` breaking `script` and `style` elements
+- Fixes: updates Craft
 
 ## 0.1.2 - 2019-05-12
 
