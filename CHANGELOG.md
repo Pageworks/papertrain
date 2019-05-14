@@ -1,3 +1,13 @@
+## 0.1.3.2 - 2019-05-14
+
+## Added
+
+- Adds: setup script requires the developers email address and sets it as the `testToEmailAddress` in `general.php`
+
+## Fixed
+
+- Fixes: outstanding merge conflict issue from the previous release
+
 ## 0.1.3.1 - 2019-05-14
 
 ### Added

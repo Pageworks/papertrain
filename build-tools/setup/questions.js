@@ -24,7 +24,7 @@ module.exports = {
                 name: 'defaultUrl',
                 type: 'input',
                 message: 'Site URL:',
-                default: `${ projectName.replace(' ', '-').toLowerCase() }.local`,
+                default: `${ projectName.replace(/\s/g, '-').toLowerCase() }.local`,
                 validate: (input)=>{
                     if(input !== ''){
                         if(input.match(/http:\/\//)){
@@ -34,6 +34,22 @@ module.exports = {
                         }
                     }
                     return 'Please enter a project URL.';
+                }
+            },
+            {
+                name: 'devEmailAddress',
+                type: 'input',
+                message: 'Your Email Address:',
+                default: `web@page.works`,
+                validate: (input)=>{
+                    if(input !== ''){
+                        if(input.match(/.+@.+\..+/)){
+                            return 'Please provide a valid email address.';
+                        }else{
+                            return true;
+                        }
+                    }
+                    return 'Please enter your email address.';
                 }
             }
         ];
@@ -96,7 +112,7 @@ module.exports = {
                 name: 'database',
                 type: 'input',
                 message: 'Database name:',
-                default: `craft_${ projectName.replace(' ', '-').toLowerCase() }`,
+                default: `craft_${ projectName.replace(/\s/g, '-').toLowerCase() }`,
                 validate: (input)=>{
                     if(input !== ''){
                         return true;

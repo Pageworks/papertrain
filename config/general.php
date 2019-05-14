@@ -26,13 +26,8 @@ return [
         'useProjectConfigFile'          => true,
 
         // Leave at bottom of global settings
-<<<<<<< HEAD
-        'jsCacheBustTimestamp' => '53210445',
-        'cssCacheBustTimestamp' => '53211169',
-=======
-        'jsCacheBustTimestamp' => '53210445',
-        'cssCacheBustTimestamp' => '53211169',
->>>>>>> develop
+        'jsCacheBustTimestamp' => '54654843',
+        'cssCacheBustTimestamp' => '54655693',
     ],
 
     // Dev environment settings
@@ -41,7 +36,7 @@ return [
         'siteUrl'               => getenv('DEV_URL'),
         'allowUpdates'          => true,
         'devMode'               => true,
-        'testToEmailAddress'    => 'REPLACE_ME',
+        'testToEmailAddress'    => getenv('TEST_EMAIL_ADDRESS'),
         'enableTemplateCaching' => false,
         'aliases' => [
             '@rootUrl' => getenv('DEV_URL'),
