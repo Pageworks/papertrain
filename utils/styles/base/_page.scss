@@ -16,10 +16,11 @@ html
 body{
     background: $base-background-color;
     overflow: hidden;
+    width: 100vw;
 
     main{
         min-height: 80vh;
-        display: block;
+        width: 100%;
         line-height: 0;
     }
 }

@@ -1,5 +1,9 @@
 ## 0.1.4 - Unreleased
 
+### Fixed
+
+- Fixes: `<main>` display broke after fixing `<style>` script
+
 ## 0.1.3 - 2019-05-14
 
 ### Added
