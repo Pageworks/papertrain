@@ -9,10 +9,10 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    line-height: 1.618;
     vertical-align: baseline;
     -webkit-tap-highlight-color: transparent;
     position: relative;
+    line-height: 0;
 }
 
 body{
@@ -23,6 +23,11 @@ body{
     }
 }
 
+script,
+style{
+    display: initial !important;
+}
+
 sup,
 sub{
     vertical-align: middle;
@@ -31,15 +36,18 @@ sub{
 
 code{
     font-family: $font-family;
+    line-height: 1.618;
 }
 
 cite{
     font-style: normal;
+    line-height: 1.618;
 }
 
 pre{
     display: inline-block;
     font-family: $font-family;
+    line-height: 1.618;
 }
 
 ol,
@@ -49,6 +57,7 @@ ul{
     li{
         list-style-type: none;
         display: inline-block;
+        line-height: 1.618;
     }
 }
 
@@ -63,15 +72,18 @@ hr
 a{
     text-decoration: none;
     color: inherit;
+    line-height: 1.618;
 }
 
 blockquote{
     display: inline-block;
+    line-height: 1.618;
 }
 
 p{
     display: block;
     color: inherit;
+    line-height: 1.618;
 }
 
 h1,
@@ -80,11 +92,11 @@ h3,
 h4,
 h5,
 h6{
-    line-height: normal;
     font-weight: 400;
     display: inline-block;
     font-size: $base-font-size;
     color: inherit;
+    line-height: 1.618;
 }
 
 button{
@@ -111,6 +123,7 @@ fieldset{
     border: none;
     outline: none;
     font-size: 16px;
+    line-height: 1.618;
 
     &:focus,
     &:active{
