@@ -27,11 +27,11 @@ return [
 
         // Leave at bottom of global settings
 <<<<<<< HEAD
-        'jsCacheBustTimestamp' => '53100426',
-        'cssCacheBustTimestamp' => '53101146',
+        'jsCacheBustTimestamp' => '53210445',
+        'cssCacheBustTimestamp' => '53211169',
 =======
-        'jsCacheBustTimestamp' => '53100426',
-        'cssCacheBustTimestamp' => '53101146',
+        'jsCacheBustTimestamp' => '53210445',
+        'cssCacheBustTimestamp' => '53211169',
 >>>>>>> develop
     ],
 
