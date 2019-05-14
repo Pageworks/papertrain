@@ -2,7 +2,7 @@
 
 ### Added
 
-- Adds: new grey pallet along with warm grey, cool grey, blue grey, primary, and secondary pallets
+- Adds: new grey pallet along with warm grey, cool grey, blue grey, primary, and secondary pallets [#152](https://github.com/Pageworks/papertrain/issues/152)
 
 ### Fixed
 
