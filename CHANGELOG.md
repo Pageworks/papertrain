@@ -1,3 +1,13 @@
+## 0.1.3 - Unreleased
+
+### Added
+
+- Adds: new grey pallet along with warm grey, cool grey, blue grey, primary, and secondary pallets
+
+### Fixed
+
+- Fixes: solid buttons line height appearing unaligned next to an outline button [#151](https://github.com/Pageworks/papertrain/issues/151)
+
 ## 0.1.2 - 2019-05-12
 
 ### Adds

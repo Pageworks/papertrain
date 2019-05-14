@@ -14,11 +14,8 @@
     white-space: nowrap;
     max-width: 100%;
     text-overflow: ellipsis;
-
-    &.-outline{
-        border-width: 2px;
-        border-style: solid;
-    }
+    border-width: 2px;
+    border-style: solid;
 
     &.-white{
         &.-outline{
@@ -37,7 +34,18 @@
 
         &.-solid{
             background-color: $white;
+            border-color: $white;
             color: $primary;
+
+            @include hover{
+                background-color: $grey-1;
+                border-color: $grey-1;
+            }
+
+            @include active{
+                background-color: $grey-2;
+                border-color: $grey-2;
+            }
         }
     }
 
