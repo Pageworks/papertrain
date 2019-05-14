@@ -5,6 +5,7 @@
 - Adds: new grey pallet along with warm grey, cool grey, blue grey, primary, and secondary pallets [#152](https://github.com/Pageworks/papertrain/issues/152)
 - Adds: `-raised` modifier class to the `g-button` global
 - Adds: `-rounded` modifier class to the `g-button` global
+- Adds: elevation variables to the `config.scss` file
 
 ### Fixed
 
