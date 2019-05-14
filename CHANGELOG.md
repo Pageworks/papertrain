@@ -1,3 +1,9 @@
+## 0.1.3.3 - 2019-05-14
+
+## Fixed
+
+- Fixes: setup test email address validation bug
+
 ## 0.1.3.2 - 2019-05-14
 
 ## Added

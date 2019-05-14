@@ -44,9 +44,9 @@ module.exports = {
                 validate: (input)=>{
                     if(input !== ''){
                         if(input.match(/.+@.+\..+/)){
-                            return 'Please provide a valid email address.';
-                        }else{
                             return true;
+                        }else{
+                            return 'Please provide a valid email address.';
                         }
                     }
                     return 'Please enter your email address.';
