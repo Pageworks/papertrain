@@ -1,5 +1,9 @@
 ## 0.1.4 - Unreleased
 
+### Added
+
+- Adds: notice, warning, success, and error pallet variables
+
 ### Fixed
 
 - Fixes: `<main>` display broke after fixing `<style>` script

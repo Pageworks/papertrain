@@ -121,10 +121,33 @@ $secondary-background-color:    $snow;
 
 // Alert Colors
 // =============================================================================
-$notice:    #3b83f9;
-$success:   #4de07e;
-$error:     #ff715b;
-$warning:   #ffa412;
+$error-1:   #ffe3e3;
+$error-2:   #ffbdbd;
+$error-3:   #ff9b9b;
+$error-4:   #f86a6a;
+$error-5:   #ef4e4e;
+$error:     $error-4;
+
+$warning-1: #fffbea;
+$warning-2: #fff3c4;
+$warning-3: #fce588;
+$warning-4: #fadb5f;
+$warning-5: #f7c948;
+$warning:   $warning-4;
+
+$success-1: #e3f9e5;
+$success-2: #c1f2c7;
+$success-3: #91e697;
+$success-4: #51ca58;
+$success-5: #31b237;
+$success:   $success-4;
+
+$notice-1: #e6f6ff;
+$notice-2: #bae3ff;
+$notice-3: #7cc4fa;
+$notice-4: #47a3f3;
+$notice-5: #2186eb;
+$notice:   $notice-4;
 
 // Social Media Colors
 // =============================================================================
