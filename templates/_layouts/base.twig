@@ -1,37 +1,64 @@
-{# SEO Settings #}
-{% set pageTitle = siteName %}
-{% if entry is defined %}
-    {% set pageTitle = entry.title ~ " | " ~ siteName %}
-{% elseif category is defined %}
-    {% set pageTitle = category.title ~ " | " ~ siteName %}
-{% endif %}
-
-{% set pageDescription = pageTitle %}
-{% if entry is defined %}
-    {% if entry['pageDescription'] is defined and entry['pageDescription'] is not null %}
-        {% set pageDescription = entry.pageDescription %}
-    {% endif %}
-{% elseif category is defined %}
-    {% if category['pageDescription'] is defined and category['pageDescription'] is not null %}
-        {% set pageDescription = category.pageDescription %}
-    {% endif %}
-{% endif %}
-
 {% set isDebug = craft.app.request.getParam('debug') %}
+{% set currentSite = craft.app.sites.currentSite %}
 <!doctype html>
-<html lang="en-US" class="has-no-js is-not-pointer-device is-not-touch-device dom-is-loading" {% if isDebug|length %}debug="true"{% endif %}>
+<html lang="{{ currentSite.language }}" class="has-no-js is-not-pointer-device is-not-touch-device dom-is-loading" {% if isDebug|length %}debug="true"{% endif %} data-csrf="{{ craft.app.request.csrfToken }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        {# SEO Start #}
+        {% set seo = getSeoField() %}
+        {% if seo is null or seo.title == '' %}
+            {% if entry is defined %}
+                {% set seo = craft.seo.custom(entry.title, '', false) %}
+            {% elseif category is defined %}
+                {% set seo = craft.seo.custom(category.title, '', false) %}
+            {% else %}
+                {% set seo = craft.seo.custom(siteName, '', false) %}
+            {% endif %}
+        {% endif -%}
+
+        {% set locale = craft.app.locale %}
+        {% set locales = craft.app.i18n.siteLocaleIds|without(locale) %}
+
+        <title>{{ seo.title }}</title>
+        <meta name="description" content="{{ seo.description }}" />
+
+        {% set fb = seo.social.facebook -%}
+        <meta property="fb:app_id" content="{{ fb.handle }}">
+        <meta property="og:url" content="{{ craft.app.request.absoluteUrl }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="{{ fb.title }}" />
+        <meta property="og:image" content="{{ craft.seo.facebookImage(fb.image) }}" />
+        <meta property="og:description" content="{{ fb.description }}" />
+        <meta property="og:site_name" content="{{ siteName }}" />
+        <meta property="og:locale" content="{{ locale|replace('-', '_') }}" />
+        {% for locale in locales -%}
+            <meta property="og:locale:alternate" content="{{ locale|replace('-', '_') }}" />
+        {% endfor %}
+
+        {% set tw = seo.social.twitter -%}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="{{ tw.handle }}" />
+        <meta name="twitter:url" content="{{ craft.app.request.absoluteUrl }}" />
+        <meta name="twitter:title" content="{{ tw.title }}" />
+        <meta name="twitter:description" content="{{ tw.description }}" />
+        <meta name="twitter:image" content="{{ craft.seo.twitterImage(tw.image) }}" />
+
+        {% if seo.robots -%}
+            <meta name="robots" content="{{ seo.robots }}" />
+        {% endif %}
+        {%- if seo.expiry -%}
+            <meta name="robots" content="unavailable_after: {{ seo.expiry }}" />
+        {% endif %}
+
+        <link rel="home" href="{{ alias('@rootUrl') }}" />
+        <link rel="canonical" href="{{ seo.canonical }}">
+        {# SEO End #}
+
         {# Android Navigaiton Bar Theme Colour #}
         <meta name="theme-color" content="#1FB6FF">
-
-        {% block head %}
-            <title>{{ pageTitle }}</title>
-            <meta name="description" content="{{ pageDescription }}">
-        {% endblock %}
 
         {# Icons #}
         <link rel="icon" sizes="192x192" href="{{ alias('@rootUrl')|trim('/') }}/assets/images/icon-192.png">

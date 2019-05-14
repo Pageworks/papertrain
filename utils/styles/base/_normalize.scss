@@ -17,12 +17,10 @@
 
 body{
     *{
-        display: inline-block;
+        &:not(script):not(style){
+            display: inline-block;
+        }
     }
-}
-
-div{
-    line-height: 0;
 }
 
 sup,

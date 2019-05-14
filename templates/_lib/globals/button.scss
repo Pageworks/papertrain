@@ -14,11 +14,8 @@
     white-space: nowrap;
     max-width: 100%;
     text-overflow: ellipsis;
-
-    &.-outline{
-        border-width: 2px;
-        border-style: solid;
-    }
+    border-width: 2px;
+    border-style: solid;
 
     &.-white{
         &.-outline{
@@ -37,11 +34,42 @@
 
         &.-solid{
             background-color: $white;
+            border-color: $white;
             color: $primary;
+
+            @include hover{
+                background-color: $grey-1;
+                border-color: $grey-1;
+            }
+
+            @include active{
+                background-color: $grey-2;
+                border-color: $grey-2;
+            }
         }
     }
 
     &.-wide{
         padding: 0 $unit*2;
+    }
+
+    &.-raised{
+        box-shadow: 0 4px 6px rgba($black, 0.2);
+
+        @include active{
+            box-shadow: 0 1px 3px rgba($black, 0.2);
+        }
+    }
+
+    &.-rounded{
+        border-radius: 4px;
+
+        &.-small{
+            border-radius: 2px;
+        }
+
+        &.-pill{
+            border-radius: 24px;
+        }
     }
 }

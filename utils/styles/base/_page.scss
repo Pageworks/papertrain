@@ -15,11 +15,12 @@ html
 
 body{
     background: $base-background-color;
-    overflow-x: hidden;
+    overflow: hidden;
 
     main{
         min-height: 80vh;
         display: block;
+        line-height: 0;
     }
 }
 

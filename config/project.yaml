@@ -1,4 +1,4 @@
-dateModified: 1556625602
+dateModified: 1557839731
 email:
   fromEmail: 'REPLACE ME'
   fromName: 'REPLACE ME'
@@ -413,18 +413,69 @@ plugins:
   super-table:
     edition: standard
     enabled: true
-    schemaVersion: 2.0.10
+    schemaVersion: 2.0.11
   typedlinkfield:
     edition: standard
     enabled: true
     schemaVersion: 1.0.0
+  seo:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.1.0
+    settings:
+      sitemapName: sitemap
+      sitemapLimit: '1000'
+      titleSuffix: null
+      title:
+        -
+          key: '1'
+          locked: '0'
+          template: '{title}'
+        -
+          key: '2'
+          locked: '1'
+          template: ' - REPLACE ME'
+      description: ''
+      socialImage: ''
+      metaTemplate: ''
+      robots:
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+        - ''
+      robotsTxt: "{# Sitemap URL #}\r\nSitemap: {{ url(seo.sitemapName ~ '.xml') }}\r\n\r\n{# Disallows #}\r\n{% if craft.app.config.env != 'production' %}\r\n\r\n{# Disallow access to everything when NOT in production #}\r\nUser-agent: *\r\nDisallow: /\r\n\r\n{% else %}\r\n\r\n{# Disallow access to cpresources/ when live #}\r\nUser-agent: *\r\nDisallow: /cpresources/\r\n\r\n{% endif %}"
+      facebookAppId: ''
+      twitterHandle: ''
+sections:
+  84857542-340f-495c-ab00-0099b0341efc:
+    name: Homepage
+    handle: homepage
+    type: single
+    enableVersioning: true
+    propagateEntries: true
+    siteSettings:
+      471b5ebe-f553-47d6-aa58-d02e5076065c:
+        enabledByDefault: true
+        hasUrls: true
+        uriFormat: __home__
+        template: homepage/index.twig
+    entryTypes:
+      773e89db-a0b1-4f68-b1eb-6e75d9cf9a1d:
+        name: Homepage
+        handle: homepage
+        hasTitleField: false
+        titleLabel: null
+        titleFormat: '{section.name|raw}'
+        sortOrder: 1
 siteGroups:
   7c028f52-0d4d-4794-8cfc-35974c34753b:
     name: Default
 sites:
   471b5ebe-f553-47d6-aa58-d02e5076065c:
     siteGroup: 7c028f52-0d4d-4794-8cfc-35974c34753b
-    name: 'REPLACE ME'
+    name: English
     handle: default
     language: en-US
     hasUrls: true
@@ -435,7 +486,7 @@ system:
   edition: solo
   name: $SYSTEM_NAME
   live: true
-  schemaVersion: 3.1.27
+  schemaVersion: 3.1.28
   timeZone: America/New_York
 users:
   requireEmailVerification: true
