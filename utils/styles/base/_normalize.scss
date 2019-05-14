@@ -17,7 +17,9 @@
 
 body{
     *{
-        display: inline-block;
+        &:not(script):not(style){
+            display: inline-block;
+        }
     }
 }
 
