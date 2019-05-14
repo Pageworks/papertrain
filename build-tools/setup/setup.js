@@ -28,6 +28,7 @@ askQuestions = (async ()=>{
 
     const question2 = await questions.getProjectURL(projectDetails.projectName);
     projectDetails.devUrl = `${ question2.defaultUrl }`;
+    projectDetails.devEmail = devEmailAddress;
 
     const question3 = await questions.getDatabaseDetails(projectDetails.projectName);
     projectDetails.driver = question3.driver;
@@ -80,6 +81,7 @@ askQuestions = (async ()=>{
             modifiedFile = modifiedFile.replace(/SYSTEM_NAME="REPLACE_ME"/, `SYSTEM_NAME="${ projectDetails.projectName }"`);
             modifiedFile = modifiedFile.replace(/SYSTEM_EMAIL_NAME="REPLACE_ME"/, `SYSTEM_EMAIL_NAME="${ projectDetails.projectName }"`);
             modifiedFile = modifiedFile.replace(/SYSTEM_EMAIL_ADDRESS="REPLACE_ME"/, `SYSTEM_EMAIL_ADDRESS="no-reply@${ projectDetails.devUrl }"`);
+            modifiedFile = modifiedFile.replace(/TEST_EMAIL_ADDRESS="REPLACE_ME"/, `TEST_EMAIL_ADDRESS="${ projectDetails.devEmail }"`);
 
             fs.writeFile('.env', modifiedFile, (err)=>{
                 if(err){
