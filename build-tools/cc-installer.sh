@@ -6,12 +6,11 @@ then
 else
     cd ../ && \
     mkdir ./cc-temp && \
-    curl -SL -X POST http://papertrain.io/actions/papertrain-module/default/complex-content-download | tar -xf - -C ./cc-temp && \
-    mv ./cc-temp/papertrain-0.1.1 ./modules && \
+    curl --request POST http://papertrain.io/actions/papertrain-module/default/complex-content-download -o ./cc-temp/build.zip && \
     mv ./cc-temp/_blocks ./templates && \
     mv ./cc-temp/_complex-content ./templates && \
     mv ./cc-temp/component-gallery ./templates && \
     mv ./cc-temp/complex-content.yaml ./ && \
     rm -rf ./cc-temp && \
-    echo Complex Content has been installed.
+    echo Complex Content has been installed
 fi
