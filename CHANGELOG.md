@@ -1,16 +1,24 @@
+## 0.1.4 - Unreleased
+
+### Fixed
+
+- Fixes: changelog heading sizes
+- Fixes: `normalize.scss` line heights and inline elements display values [#158](https://github.com/Pageworks/papertrain/issues/158)
+- Fixes: input border radius defaults to `0px` [#156](https://github.com/Pageworks/papertrain/issues/156)
+
 ## 0.1.3.3 - 2019-05-14
 
-## Fixed
+### Fixed
 
 - Fixes: setup test email address validation bug
 
 ## 0.1.3.2 - 2019-05-14
 
-## Added
+### Added
 
 - Adds: setup script requires the developers email address and sets it as the `testToEmailAddress` in `general.php`
 
-## Fixed
+### Fixed
 
 - Fixes: outstanding merge conflict issue from the previous release
 
