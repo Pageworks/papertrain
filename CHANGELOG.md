@@ -2,7 +2,7 @@
 
 ## 0.1.4 - 2019-06-05
 
-### Addd
+### Added
 
 - Adds: IE 11 (only) polyfill scripts [#163](https://github.com/Pageworks/papertrain/issues/163)
 - Adds: global "This site requires JavaScript" notice [#162](https://github.com/Pageworks/papertrain/issues/162)
