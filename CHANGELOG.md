@@ -1,16 +1,32 @@
+## 0.1.5 - Unreleased
+
+## 0.1.4 - 2019-06-05
+
+### Added
+
+- Adds: IE 11 (only) polyfill scripts [#163](https://github.com/Pageworks/papertrain/issues/163)
+- Adds: global "This site requires JavaScript" notice [#162](https://github.com/Pageworks/papertrain/issues/162)
+
+### Fixed
+
+- Fixes: changelog heading sizes
+- Fixes: `normalize.scss` line heights and inline elements display values [#158](https://github.com/Pageworks/papertrain/issues/158)
+- Fixes: input border radius defaults to `0px` [#156](https://github.com/Pageworks/papertrain/issues/156)
+- Fixes: relocates the global JavaScript & CSS [#161](https://github.com/Pageworks/papertrain/issues/161)
+
 ## 0.1.3.3 - 2019-05-14
 
-## Fixed
+### Fixed
 
 - Fixes: setup test email address validation bug
 
 ## 0.1.3.2 - 2019-05-14
 
-## Added
+### Added
 
 - Adds: setup script requires the developers email address and sets it as the `testToEmailAddress` in `general.php`
 
-## Fixed
+### Fixed
 
 - Fixes: outstanding merge conflict issue from the previous release
 

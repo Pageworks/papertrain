@@ -68,16 +68,8 @@
         {# PWA Manifest #}
         {# <link rel="manifest" href="{{ alias('@rootUrl')|trim('/') }}/manifest.json"> #}
 
-        {# Stylesheets #}
-        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/main.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/fonts.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/utility.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/spacing.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/ratio.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/widths.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/container.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/wrapper.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
-        <link rel="stylesheet" href="{{ alias('@rootUrl')|trim('/') }}/assets/styles/grid.{{ craft.app.config.general.cssCacheBustTimestamp }}.css">
+        <!-- Required CSS -->
+        {% inlucde "_layouts/global-css.twig" %}
 
         {# Loading animation CSS #}
         <style>
@@ -234,10 +226,10 @@
         </script>
     </head>
     <body>
-        {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/runtime.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js') %}
-        {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/globals.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
-        {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/npm.uuid.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
-        {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/npm.pageworks.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', {"async":"async"}) %}
+
+        <!-- Required Runtime JavaScript -->
+        {% include "_layouts/global-javascript.twig" %}
+
         {% spaceless %}
             {# Page Transition Animation #}
             <div class="c-transition">
@@ -249,5 +241,11 @@
             </main>
             {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/application.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js') %}
         {% endspaceless %}
+
+        <noscript>
+            <div style="position:fixed;bottom:0;left:0;padding:16px 32px;border-radius:8px 8px 0 0;text-align:center;background-color:#ffffff;box-shadow:0 -1px 3px rgba(0,0,0,0.15), 0 -4px 32px rgba(0,0,0,0.1);left:50%;transform:translateX(-50%);z-index:99999;">
+                <p>{{ "This website requires JavaScript to function propery. Please enable JavaScript and refresh the page."|t }}</p>
+            </div>
+        </noscript>
     </body>
 </html>
