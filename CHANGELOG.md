@@ -1,10 +1,16 @@
 ## 0.1.4 - Unreleased
 
+### Addd
+
+- Adds: IE 11 (only) polyfill scripts [#163](https://github.com/Pageworks/papertrain/issues/163)
+- Adds: global "This site requires JavaScript" notice [#162](https://github.com/Pageworks/papertrain/issues/162)
+
 ### Fixed
 
 - Fixes: changelog heading sizes
 - Fixes: `normalize.scss` line heights and inline elements display values [#158](https://github.com/Pageworks/papertrain/issues/158)
 - Fixes: input border radius defaults to `0px` [#156](https://github.com/Pageworks/papertrain/issues/156)
+- Fixes: relocates the global JavaScript & CSS [#161](https://github.com/Pageworks/papertrain/issues/161)
 
 ## 0.1.3.3 - 2019-05-14
 
