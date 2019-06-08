@@ -6,6 +6,7 @@
 - Adds: [Preparse](https://github.com/aelvan/Preparse-Field-Craft) plugin to the boilerplate[#169](https://github.com/Pageworks/papertrain/issues/169)
 - Adds: basic Imager config to the `/config` directory [#168](https://github.com/Pageworks/papertrain/issues/168)
 - Adds: Papertrain module and `craft.papertrain.getAssetPaths()` variable [#170](https://github.com/Pageworks/papertrain/issues/170)
+- Adds: server-side compiling [#171](https://github.com/Pageworks/papertrain/issues/171)
 
 ### Fixed
 
