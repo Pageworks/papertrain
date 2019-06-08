@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path');
 const glob = require("glob");
 const fs = require('fs');
 const rimraf = require("rimraf");

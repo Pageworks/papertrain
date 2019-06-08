@@ -7,10 +7,13 @@
 - Adds: basic Imager config to the `/config` directory [#168](https://github.com/Pageworks/papertrain/issues/168)
 - Adds: Papertrain module and `craft.papertrain.getAssetPaths()` variable [#170](https://github.com/Pageworks/papertrain/issues/170)
 - Adds: server-side compiling [#171](https://github.com/Pageworks/papertrain/issues/171)
+- Adds: Moves Env class instantiation to the Application class
+- Adds: Added a public static `Env.startLoading()` and `Env.stopLoading()` class to triggering the loading animation
 
 ### Fixed
 
 - Fixes: `.gitignore` file wasn't remove the leading `/` from the vendor directory line
+- Fixes: removes the Pjax class instantiation due to minor Pjax bugs (temporary fix)
 
 ### Removed
 

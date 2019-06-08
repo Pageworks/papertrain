@@ -10,7 +10,9 @@ export class Application{
 
     constructor(){
         new DeviceManager(Env.isDebug, true);
-        new Pjax({ debug: Env.isDebug });
+        // new Pjax({ debug: Env.isDebug });
+        new Env();
+        Env.stopLoading();
     }
 
     /**

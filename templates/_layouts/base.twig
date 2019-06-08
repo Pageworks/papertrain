@@ -69,7 +69,7 @@
         {# <link rel="manifest" href="{{ alias('@rootUrl')|trim('/') }}/manifest.json"> #}
 
         <!-- Required CSS -->
-        {% inlucde "_layouts/global-css.twig" %}
+        {% include "_layouts/global-css.twig" %}
 
         {# Loading animation CSS #}
         <style>
@@ -239,8 +239,10 @@
             <main role="main" class="js-pjax">
                 {% block content %}{% endblock %}
             </main>
-            {% do view.registerJsFile( alias('@rootUrl')|trim('/') ~ '/assets/scripts/application.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js') %}
         {% endspaceless %}
+
+        {% set applicationPaths = craft.papertrain.getAssetPaths(['application']) %}
+        {% do view.registerJsFile(applicationPaths['application'].module) %}
 
         <noscript>
             <div style="position:fixed;bottom:0;left:0;padding:16px 32px;border-radius:8px 8px 0 0;text-align:center;background-color:#ffffff;box-shadow:0 -1px 3px rgba(0,0,0,0.15), 0 -4px 32px rgba(0,0,0,0.1);left:50%;transform:translateX(-50%);z-index:99999;">

@@ -14,6 +14,7 @@ use modules\papertrainmodule\PapertrainModule;
 
 use Craft;
 use craft\base\Component;
+use craft\helpers\StringHelper;
 
 /**
  * @author    Kyle Andrews

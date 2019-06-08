@@ -38,3 +38,4 @@ logs/
 .stylelintcache
 _compiled
 .editorconfig
+/config/papertrain/automation.php

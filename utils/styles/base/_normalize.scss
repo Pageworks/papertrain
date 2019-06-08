@@ -36,7 +36,7 @@ var{
 
 script,
 style{
-    display: initial !important;
+    display: none !important;
 }
 
 sup,
@@ -136,6 +136,7 @@ fieldset{
     font-size: 16px;
     line-height: 1.618;
     border-radius: 0;
+    color: inherit;
 
     &:focus,
     &:active{
@@ -202,9 +203,11 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 select{
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
+    html.has-js & {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+    }
 }
 
 fieldset{

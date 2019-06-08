@@ -1,5 +1,5 @@
-{% do view.registerCssFile(alias('@rootUrl')|trim('/') ~ '/assets/styles/homepage.' ~ craft.app.config.general.cssCacheBustTimestamp ~ '.css') %}
-
+{% set homepageAssets = craft.papertrain.getAssetPaths(['homepage']) %}
+{% do view.registerCssFile(homepageAssets['homepage'].css) %}
 
 {% extends "_layouts/base" %}
 

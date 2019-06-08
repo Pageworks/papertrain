@@ -6,7 +6,7 @@
  * list of the available settings in vendor/craftcms/cms/src/config/GeneralConfig.php.
  */
 
-return [
+$customConfig =  [
     // Global settings
     '*' => [
         'defaultWeekStartDay'           => 0,
@@ -18,12 +18,13 @@ return [
         'useCompressedJs'               => true,
         'phpSessionName'                => 'cpsessid',
         'sendPoweredByHeader'           => false,
-        'loginPath'                     => 'users/login',
-        'activateAccountSuccessPath'    => 'users/profile',
-        'invalidUserTokenPath'          => 'users/invalid',
-        'setPasswordPath'               => 'users/password',
+        'loginPath'                     => 'user/login',
+        'activateAccountSuccessPath'    => 'user/welcome',
+        'invalidUserTokenPath'          => 'user/registration-error',
+        'setPasswordSuccessPath'        => 'user/login',
         'purgePendingUsersDuration'     => 'P1M',
         'useProjectConfigFile'          => true,
+
     ],
 
     // Dev environment settings
@@ -61,6 +62,7 @@ return [
 ];
 
 // If a local config file exists, merge any local config settings
+
 if (is_array($customLocalConfig = include('papertrain/automation.php'))) {
     $customGlobalConfig = array_merge($customConfig['*'], $customLocalConfig);
     $customConfig['*'] = $customGlobalConfig;
