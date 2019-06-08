@@ -180,7 +180,7 @@ function cleanupFiles(){
                 throw err;
             }
 
-            var newValue = file.replace(/vendor/g, '');
+            var newValue = file.replace(/\/vendor/g, '# Ignore Packages Here');
             fs.writeFile('./.gitignore', newValue, 'utf-8', (err)=>{
                 gitignore.text = 'Vendors directory has been removed from the gitignore file';
                 gitignore.succeed();

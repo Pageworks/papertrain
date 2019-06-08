@@ -1,3 +1,5 @@
+/vendor
+
 # NPM
 # -------
 /node_modules
@@ -22,7 +24,6 @@ license.key
 error_log
 logs/
 
-
 # Other
 # -------
 /.sass-cache
@@ -30,5 +31,3 @@ logs/
 .stylelintcache
 _compiled
 .editorconfig
-
-/vendor

@@ -3,6 +3,11 @@
 ### Added
 
 - Adds: Developers name input to the startup questionnaire [#167](https://github.com/Pageworks/papertrain/issues/167)
+- Adds: [Preparse](https://github.com/aelvan/Preparse-Field-Craft) plugin to the boilerplate[#169](https://github.com/Pageworks/papertrain/issues/169)
+
+### Fixed
+
+- Fixes: `.gitignore` file wasn't remove the leading `/` from the vendor directory line
 
 ## 0.1.4 - 2019-06-05
 

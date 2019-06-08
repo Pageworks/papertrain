@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec941f71ea649cb16f146c722afc0aaf",
+    "content-hash": "e829c55304740dd8621149951941e432",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -69,6 +69,60 @@
                 "issues": "https://github.com/aelvan/Imager-Craft/issues"
             },
             "time": "2019-04-13T19:47:44+00:00"
+        },
+        {
+            "name": "aelvan/preparse-field",
+            "version": "v1.0.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aelvan/Preparse-Field-Craft/zipball/133248f01a702f8975a9d204c9f2b116a4243266",
+                "reference": "133248f01a702f8975a9d204c9f2b116a4243266",
+                "shasum": ""
+            },
+            "require": {
+                "craftcms/cms": "^3.0.0-beta.23"
+            },
+            "type": "craft-plugin",
+            "extra": {
+                "name": "Preparse Field",
+                "handle": "preparse-field",
+                "schemaVersion": "1.0.5",
+                "hasCpSettings": false,
+                "hasCpSection": false,
+                "changelogUrl": "https://github.com/aelvan/Preparse-Field-Craft/tree/craft3/CHANGELOG.md",
+                "components": {
+                    "preparseFieldService": "aelvan\\preparsefield\\services\\PreparseFieldService"
+                },
+                "class": "aelvan\\preparsefield\\PreparseField"
+            },
+            "autoload": {
+                "psr-4": {
+                    "aelvan\\preparsefield\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "André Elvan",
+                    "homepage": "https://www.vaersaagod.no"
+                }
+            ],
+            "description": "A fieldtype that parses Twig when an element is saved, and saves the result as plain text.",
+            "keywords": [
+                "cms",
+                "craft",
+                "craft-plugin",
+                "craftcms",
+                "fieldtype",
+                "preparse"
+            ],
+            "support": {
+                "docs": "https://github.com/aelvan/Preparse-Field-Craft",
+                "issues": "https://github.com/aelvan/Preparse-Field-Craft/issues"
+            },
+            "time": "2019-03-21T08:36:20+00:00"
         },
         {
             "name": "angellco/spoon",

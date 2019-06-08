@@ -1,4 +1,4 @@
-dateModified: 1557839731
+dateModified: 1559996420
 email:
   fromEmail: 'REPLACE ME'
   fromName: 'REPLACE ME'
@@ -448,6 +448,10 @@ plugins:
       robotsTxt: "{# Sitemap URL #}\r\nSitemap: {{ url(seo.sitemapName ~ '.xml') }}\r\n\r\n{# Disallows #}\r\n{% if craft.app.config.env != 'production' %}\r\n\r\n{# Disallow access to everything when NOT in production #}\r\nUser-agent: *\r\nDisallow: /\r\n\r\n{% else %}\r\n\r\n{# Disallow access to cpresources/ when live #}\r\nUser-agent: *\r\nDisallow: /cpresources/\r\n\r\n{% endif %}"
       facebookAppId: ''
       twitterHandle: ''
+  preparse-field:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.5
 sections:
   84857542-340f-495c-ab00-0099b0341efc:
     name: Homepage
@@ -479,7 +483,7 @@ sites:
     handle: default
     language: en-US
     hasUrls: true
-    baseUrl: 'http://$DEFAULT_SITE_URL'
+    baseUrl: $DEFAULT_SITE_URL
     sortOrder: 1
     primary: true
 system:
