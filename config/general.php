@@ -24,10 +24,6 @@ return [
         'setPasswordPath'               => 'users/password',
         'purgePendingUsersDuration'     => 'P1M',
         'useProjectConfigFile'          => true,
-
-        // Leave at bottom of global settings
-        'jsCacheBustTimestamp' => '98165515',
-        'cssCacheBustTimestamp' => '98166328',
     ],
 
     // Dev environment settings
@@ -63,3 +59,11 @@ return [
         ],
     ],
 ];
+
+// If a local config file exists, merge any local config settings
+if (is_array($customLocalConfig = include('papertrain/automation.php'))) {
+    $customGlobalConfig = array_merge($customConfig['*'], $customLocalConfig);
+    $customConfig['*'] = $customGlobalConfig;
+}
+
+return $customConfig;
