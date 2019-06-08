@@ -1,4 +1,8 @@
-## 0.1.5 - Unreleased
+## 0.2.0 - Unreleased
+
+### Added
+
+- Adds: Developers name input to the startup questionnaire [#167](https://github.com/Pageworks/papertrain/issues/167)
 
 ## 0.1.4 - 2019-06-05
 
