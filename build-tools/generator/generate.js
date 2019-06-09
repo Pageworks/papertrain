@@ -75,6 +75,9 @@ function getUserInput(){
         else if(!needsHTML && needsScss && !needsScript){
             generationType = 'Global';
         }
+        else if(needsHTML && !needsScss){
+            generationType = 'Template';
+        }
         else{
             generationType = 'Unknown Type';
         }
