@@ -13,7 +13,7 @@
 ### Fixed
 
 - Fixes: `.gitignore` file wasn't remove the leading `/` from the vendor directory line
-- Fixes: removes the Pjax class instantiation due to minor Pjax bugs (temporary fix)
+- Fixes: removes the Pjax class instantiation due incomplete Application class methods
 
 ### Removed
 
