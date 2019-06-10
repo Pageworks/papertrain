@@ -31,7 +31,7 @@
         "compile:scripts": "tsc && cross-env NODE_ENV=production webpack --config ./webpack.config.js",
         "compile:styles": "cross-env NODE_ENV=production node ./build-tools/sass.config.js",
         "compile:lint": "npm-run-all lint:*",
-        "dev": "npm-run-all dev:*",
+        "dev": "node ./build-tools/compile.config.js && npm-run-all dev:*",
         "dev:typescript": "tsc",
         "dev:bundle": "cross-env NODE_ENV=development webpack --config ./webpack.config.js",
         "dev:sass": "cross-env NODE_ENV=development node ./build-tools/sass.config.js",
