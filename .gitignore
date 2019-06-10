@@ -1,6 +1,15 @@
+/vendor
+
 # NPM
 # -------
 /node_modules
+
+# Assets
+/public/assets/
+!/public/assets/fonts
+!/public/assets/images
+!/public/assets/polyfills
+!/public/assets/videos
 
 # Craft CMS
 # -------
@@ -22,7 +31,6 @@ license.key
 error_log
 logs/
 
-
 # Other
 # -------
 /.sass-cache
@@ -30,5 +38,4 @@ logs/
 .stylelintcache
 _compiled
 .editorconfig
-
-/vendor
+/config/papertrain/automation.php

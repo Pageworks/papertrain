@@ -1,38 +1,59 @@
 <p align="center">
-<a href="http://papertrain.io"><img alt="Papertrain" src="_papertrain/papertrain-logo.png"/></a><br/>
-<img style="display:inline-block;" src="https://img.shields.io/badge/CMS-Craft%203.1-ff69b4.svg?style=flat-square"/>
-<img style="display:inline-block;" src="https://img.shields.io/badge/templating%20engine-Twig-orange.svg?style=flat-square"/>
-<img style="display:inline-block;" src="https://img.shields.io/badge/style-SASS-blue.svg?style=flat-square"/>
-<img style="display:inline-block;" src="https://img.shields.io/badge/typescript-3.4-yellow.svg?style=flat-square"/>
-<img style="display:inline-block;" src="https://img.shields.io/badge/bundler-webpack-5299c8.svg?style=flat-square"/>
-<a style="display:inline-block;" href="https://github.com/AndrewK9/papertrain/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgray.svg?style=flat-square"/></a>
+    <a href="http://papertrain.io"><img alt="Papertrain" src="_papertrain/papertrain-logo.png"/></a><br/>
+    <img style="display:inline-block;" src="https://img.shields.io/badge/CMS-Craft%203.1-ff69b4.svg?style=flat-square"/>
+    <img style="display:inline-block;" src="https://img.shields.io/badge/templating%20engine-Twig-orange.svg?style=flat-square"/>
+    <img style="display:inline-block;" src="https://img.shields.io/badge/style-SASS-blue.svg?style=flat-square"/>
+    <img style="display:inline-block;" src="https://img.shields.io/badge/typescript-3.4-yellow.svg?style=flat-square"/>
+    <img style="display:inline-block;" src="https://img.shields.io/badge/bundler-webpack-5299c8.svg?style=flat-square"/>
+    <a style="display:inline-block;" href="https://github.com/AndrewK9/papertrain/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgray.svg?style=flat-square"/></a>
 </p>
 
 # Papertrain
 
 Papertrain is a framework designed to bring custom utilities and features to Craft CMS. Papertrain is built upon a [Modular Design Pattern](https://github.com/Pageworks/modular-design-pattern). Checkout this [example](https://github.com/codewithkyle/modular-design-pattern-javascript-example) to see how the modules work.
 
+1. [Getting Started](#getting-started)
+    - [New Project](#starting-a-new-project)
+    - [Existing Project](#joining-an-existing-project)
+1. [Creating Elements](#creating-elements)
+    - [Globals](#globals)
+    - [Objects](#objects)
+    - [Components](#components)
+    - [Templates](#templates)
+    - [Loading Styles and Scripts](#loading-styles-and-scripts)
+1. [CSS Namespaces](#css-namespaces)
+    - [Namespace Format](#namespace-format)
+    - [Prefixes](#prefixes)
+    - [Example](#example)
+1. [Deploying to Production](#deploying-to-production)
+1. [Feedback](#feedback)
+1. [License](#license)
+
 # Getting Started
 
-Start by downloading the [latest release](https://github.com/Pageworks/papertrain/releases) of Papertrain and extracting the files into your projects root directory.
+When getting started you have two possible options. If you are starting a new project follow the [New Project](#starting-a-new-project) guide. If you're working with a project that has already been established follow the [Existing Project](#joining-an-existing-project) guide.
 
-Install the NPM dependencies by running the following command in your terminal: (requires [Node.js](https://nodejs.org/en/))
+## Starting a New Project
+
+1: Start by downloading the [latest release](https://github.com/Pageworks/papertrain/releases) of Papertrain and extracting the files into your projects root directory.
+
+2: Install the NPM dependencies by running the following command in your terminal: (requires [Node.js](https://nodejs.org/en/))
 
 ```script
 npm install
 ```
 
-Then install Craft CMS by running the following command in your terminal: (requires [composer](https://getcomposer.org/download/))
+3: Install Craft CMS by running the following command in your terminal: (requires [composer](https://getcomposer.org/download/))
 
 ```script
 composer install
 ```
 
-Set your Apache server to point to the projects `/public` directory.
+4: Set your Apache server to point to the projects `/public` directory.
 
-Create a new empty database for the project.
+5: Create a new empty database for the project.
 
-Run the setup script by running the following command in your terminal:
+6: Run the setup script by running the following command in your terminal:
 
 ```script
 npm run setup
@@ -67,6 +88,32 @@ Then push your commit and master branch:
 ```script
 git push -u origin master
 ```
+
+## Joining an Existing Project
+
+1: Start by cloning the project
+
+```script
+git clone <URL>
+```
+
+2: Install the NPM dependencies by running the following command in your terminal: (requires [Node.js](https://nodejs.org/en/))
+
+```script
+npm ci
+```
+
+3: Set your Apache server to point to the projects `/public` directory.
+
+4: Create a new empty database for the project.
+
+5: Run the setup script by running the following command in your terminal:
+
+```script
+npm run setup
+```
+
+To finish follow the Craft CMS installation in the browser. If the browser doesn't automatically open navigate to the `/webmaster` route.
 
 # Creating Elements
 
@@ -135,17 +182,29 @@ Components are defined as a combination of following files:
 - Style
 - Script
 
-## Singles
+## Templates
 
-Singles are single template pages within Craft. They usually have a unique style, custom fields, or unique layout compared to the standard pages.
+Templates are single template pages within Craft. They usually have a unique style, custom fields, or unique layout compared to the standard pages.
 
-Singles can be composed of Globals, Objects, and Components.
+Templates can be composed of Globals, Objects, and Components.
 
-Singles are defined as a combination of the following files:
+Templates are defined as a combination of the following files:
 
 - HTML
-- Style
+- Style (optional)
 - Script (optional)
+
+## Loading Styles and Scripts
+
+To load custom scripts and styles use the `getAssetPaths` method avilable via the Papertrain module. Pass in the kebab-case filenames of any module, css, or package that you need. Then use Crafts `view.registerCssFile` or `view.registerJsFile` to have the files automagically included for you.
+
+```twig
+{% set assetPaths = craft.papertrain.getAssetPaths(['asset-file-name', 'npm-package-name']) %}
+
+{% do view.registerCssFile(assetPaths['asset-file-name'].css) %}
+{% do view.registerJsFile(assetPaths['asset-file-name'].module) %}
+{% do view.registerJsFile(assetPaths['npm-package-name'].package) %}
+```
 
 # CSS Namespaces
 
@@ -171,6 +230,7 @@ Classes will use a prefix to declare what type of element is being used.
 - `g-` will be used for globals
 - `o-` will be used for objects
 - `c-` will be used for components
+- `t-` will be used for templates
 - `u-` will be used for utility classes
 - `js-` will be used as a selector hook for JavaScript query selectors
 - `is-` when something is in a specific state such as `is-open`
@@ -227,6 +287,42 @@ Some elements may contain other elements, in the example below the card will con
     }
 }
 ```
+
+# Deploying to Production
+
+Papertrain uses server-side compiling via [Nodejs](https://nodejs.org/en/) for the CSS and JavaScript modules/packages. Follow these steps to setup the server-side compiling. If you don't want server side compiling update the `.gitignore` file by removing the `/public/assets` line. This guide will assume you're server is running Ubuntu Server.
+
+1: Install cwebp
+
+```script
+sudo apt-get install webp
+```
+
+2: Install Nodejs
+
+```script
+sudo apt-get install nodejs
+```
+
+3: Install or Update [NVM](https://github.com/nvm-sh/nvm)
+
+```script
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+```
+
+4: Install version 10.13.0 of node
+
+```script
+nvm install 10.13.0
+```
+
+5: Setup post-deployment commands
+
+```script
+<path to npm-cli.js> ci
+<path to npm-cli.js> run production
+```
+
 
 # Feedback
 
