@@ -175,9 +175,17 @@ function cloneFiles(){
             makeMarco();
         }
         else{
-            makeHTML();
+            makeIncludable();
         }
     }
+}
+
+function makeIncludable(){
+
+}
+
+function makeMacro(){
+
 }
 
 function makeTemplate(){
@@ -199,7 +207,7 @@ function makeTemplate(){
             modifiedFile = modifiedFile.replace(/REPLACE_WITH_KEBAB/g, kebabName);
 
             if(needsScript){
-                modifiedFile = modifiedFile.replace(/SCRIPT_PLACEHOLDER/g, `{% do view.registerJsFile(${ className }['${ kebabName }'].js) %}`);
+                modifiedFile = modifiedFile.replace(/SCRIPT_PLACEHOLDER/g, `{% do view.registerJsFile(${ className }Assets['${ kebabName }'].js) %}`);
                 modifiedFile = modifiedFile.replace(/MODULE_PLACEHOLDER/g, `data-module="${ className }"`);
             }else{
                 modifiedFile = modifiedFile.replace(/SCRIPT_PLACEHOLDER/g, '');
