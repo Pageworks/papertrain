@@ -9,7 +9,7 @@ const spinner = ora();
 
 // =====================[ BEGIN CONFIG ]=====================
 
-const HTMLFIleType = 'twig';
+const HTMLFileType = 'twig';
 
 // ======================[ END CONFIG ]======================
 
@@ -46,6 +46,10 @@ let scriptType = null;
 let generationType = null;
 
 let fileLocation = null;
+
+let hasScss = false;
+let hasHTML = false;
+let hasScript = false;
 
 function getUserInput(){
     (async ()=>{
@@ -107,6 +111,8 @@ function getUserInput(){
 
         const question4 = await questions.getLocation(defaultPath);
         fileLocation = question4.fileLocation;
+        fileLocation = fileLocation.replace(/^\//, '');
+        fileLocation = fileLocation.replace(/\/$/, '');
 
         if(generationType === 'Unknown Type'){
             console.log('');
@@ -118,7 +124,7 @@ function getUserInput(){
         console.log('');
         const question5 = await questions.confirmGeneration();
         if(question5.confirm){
-            console.log('Generating files, please wait');
+            console.log('Generating files, please wait.');
             generate();
         }else{
             console.log(chalk.red('Generator canceled'));
@@ -130,6 +136,183 @@ function getUserInput(){
 function generate(){
     spinner.start();
     spinner.text = 'Checking if the path is valid';
+
+    if(files.directoryExists(fileLocation)){
+        makeDirectory();
+    }else{
+        spinner.fail();
+        console.log(chalk.red(`${ fileLocation } is an invalid path`));
+    }
+}
+
+function makeDirectory(){
+    spinner.text = 'Creating new directory';
+    fs.mkdir(`${ fileLocation }/${ kebabName }`, (err)=>{
+        if(err){
+            spinner.fail();
+            console.log(chalk.red(`Failed to make the directory at ${ fileLocation }/${ kebabName }`));
+            return;
+        }
+
+        cloneFiles();
+    });
+}
+
+function cloneFiles(){
+    if(needsScss){
+        makeStyleFile();
+    }
+
+    if(needsScript){
+        makeScriptFile();
+    }
+
+    if(needsHTML){
+        if(generationType === 'Template'){
+            makeTemplate();
+        }
+        else if(generationType === 'Macro'){
+            makeMarco();
+        }
+        else{
+            makeHTML();
+        }
+    }
+}
+
+function makeTemplate(){
+    fs.copyFile(`${ __dirname }/files/template`, `${ fileLocation }/${ kebabName }/index.${ HTMLFileType }`, (err)=>{
+        if(err){
+            spinner.fail();
+            console.log(chalk.red(`Failed to make the template file at ${ fileLocation }/${ kebabName }`));
+            return;
+        }
+
+        fs.readFile(`${ fileLocation }/${ kebabName }/index.${ HTMLFileType }`, 'utf-8', (err, file)=>{
+            if (err){
+                spinner.fail();
+                console.log(chalk.red(`Failed to make the template file at ${ fileLocation }/${ kebabName }`));
+                return;
+            }
+
+            let modifiedFile = file.replace(/REPLACE_WITH_CLASS/g, className);
+            modifiedFile = modifiedFile.replace(/REPLACE_WITH_KEBAB/g, kebabName);
+
+            if(needsScript){
+                modifiedFile = modifiedFile.replace(/SCRIPT_PLACEHOLDER/g, `{% do view.registerJsFile(${ className }['${ kebabName }'].js) %}`);
+                modifiedFile = modifiedFile.replace(/MODULE_PLACEHOLDER/g, `data-module="${ className }"`);
+            }else{
+                modifiedFile = modifiedFile.replace(/SCRIPT_PLACEHOLDER/g, '');
+                modifiedFile = modifiedFile.replace(/MODULE_PLACEHOLDER/g, '');
+            }
+
+            fs.writeFile(`${ fileLocation }/${ kebabName }/index.${ HTMLFileType }`, modifiedFile, 'utf-8', (err)=>{
+                if (err){
+                    spinner.fail();
+                    console.log(chalk.red(`Failed to make the template file at ${ fileLocation }/${ kebabName }`));
+                    return;
+                }
+
+                hasScript = true;
+                checkForComplete();
+            });
+        });
+    });
+}
+
+
+function makeScriptFile(){
+    const fileType = (scriptType === 'TypeScript') ? 'ts' : 'js';
+    fs.copyFile(`${ __dirname }/files/script.${ fileType }`, `${ fileLocation }/${ kebabName }/${ kebabName }.${ fileType }`, (err)=>{
+        if(err){
+            spinner.fail();
+            console.log(chalk.red(`Failed to make the ${ scriptType } file at ${ fileLocation }/${ kebabName }`));
+            return;
+        }
+
+        fs.readFile(`${ fileLocation }/${ kebabName }/${ kebabName }.${ fileType }`, 'utf-8', (err, file)=>{
+            if (err){
+                spinner.fail();
+                console.log(chalk.red(`Failed to make the ${ scriptType } file at ${ fileLocation }/${ kebabName }`));
+                return;
+            }
+
+            const modifiedFile = file.replace(/REPLACE_ME/g, className);
+            fs.writeFile(`${ fileLocation }/${ kebabName }/${ kebabName }.${ fileType }`, modifiedFile, 'utf-8', (err)=>{
+                if (err){
+                    spinner.fail();
+                    console.log(chalk.red(`Failed to make the ${ scriptType } file at ${ fileLocation }/${ kebabName }`));
+                    return;
+                }
+
+                hasScript = true;
+                checkForComplete();
+            });
+        });
+    });
+}
+
+function makeStyleFile(){
+    const sassClassName = getClassName();
+    fs.copyFile(`${ __dirname }/files/style`, `${ fileLocation }/${ kebabName }/${ kebabName }.scss`, (err)=>{
+        if(err){
+            spinner.fail();
+            console.log(chalk.red(`Failed to make the SCSS file at ${ fileLocation }/${ kebabName }`));
+            return;
+        }
+
+        fs.readFile(`${ fileLocation }/${ kebabName }/${ kebabName }.scss`, 'utf-8', (err, file)=>{
+            if (err){
+                spinner.fail();
+                console.log(chalk.red(`Failed to open the SCSS file at ${ fileLocation }/${ kebabName }`));
+                return;
+            }
+
+            const modifiedFile = file.replace(/REPLACE_ME/g, sassClassName);
+            fs.writeFile(`${ fileLocation }/${ kebabName }/${ kebabName }.scss`, modifiedFile, 'utf-8', (err)=>{
+                if (err){
+                    spinner.fail();
+                    console.log(chalk.red(`Failed to save the updated SCSS file at ${ fileLocation }/${ kebabName }`));
+                    return;
+                }
+
+                hasScss = true;
+                checkForComplete();
+            });
+        });
+    });
+}
+
+function getClassName(){
+    let className = kebabName;
+
+    switch(generationType){
+        case 'Global':
+            className = `g-${ className }`;
+            break;
+        case 'Object':
+            className = `o-${ className }`;
+            break;
+        case 'Component':
+            className = `c-${ className }`;
+            break;
+        case 'Template':
+            className = `t-${ className }`;
+            break;
+        case 'Macro':
+            className = `m-${ className }`;
+            break;
+    }
+
+    return className;
+}
+
+function checkForComplete(){
+    if(needsHTML && !hasHTML || needsScript && !hasScript || needsScss && !hasScss){
+        return;
+    }
+
+    console.log('Finished');
 }
 
 // function generateObject(handle){
