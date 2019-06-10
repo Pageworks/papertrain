@@ -5,7 +5,7 @@ SCRIPT_PLACEHOLDER
 {% extends "_layouts/base" %}
 
 {% block content %}
-    <article id="REPLACE_WITH_KEBAB" class="g-container -full" data-template="REPLACE_WITH_KEBAB" MODULE_PLACEHOLDER>
+    <article class="REPLACE_WITH_SCSS_CLASS g-container -full" data-template="REPLACE_WITH_KEBAB" MODULE_PLACEHOLDER>
         <section class="g-container">
         </section>
     </article>

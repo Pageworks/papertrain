@@ -9,6 +9,7 @@
 - Adds: server-side compiling [#171](https://github.com/Pageworks/papertrain/issues/171)
 - Adds: Moves Env class instantiation to the Application class
 - Adds: Added a public static `Env.startLoading()` and `Env.stopLoading()` class to triggering the loading animation
+- Adds: new generator script [#172](https://github.com/Pageworks/papertrain/issues/172)
 
 ### Fixed
 

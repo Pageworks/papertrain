@@ -1,3 +1,9 @@
+/**
+ * @class REPLACE_ME
+ * @description A module for the REPLACE_NAME REPLACE_TYPE
+ * @author AUTHOR_NAME
+ */
+
 import { Module } from 'Module';
 import { Application } from 'Application';
 import { Env } from 'Env';

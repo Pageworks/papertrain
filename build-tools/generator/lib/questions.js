@@ -70,8 +70,7 @@ module.exports = {
                 message: 'What are you creating?',
                 choices: [
                     'Component',
-                    'Template',
-                    'Macro'
+                    'Template'
                 ]
             },
         ];
@@ -86,8 +85,7 @@ module.exports = {
                 message: 'What are you creating?',
                 choices: [
                     'Object',
-                    'Template',
-                    'Macro'
+                    'Template'
                 ]
             },
         ];
