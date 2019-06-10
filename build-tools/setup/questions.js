@@ -37,6 +37,17 @@ module.exports = {
                 }
             },
             {
+                name: 'developerName',
+                type: 'input',
+                message: 'Your Full Name:',
+                validate: (input)=>{
+                    if(input !== ''){
+                        return true;
+                    }
+                    return 'Please enter your full name.';
+                }
+            },
+            {
                 name: 'devEmailAddress',
                 type: 'input',
                 message: 'Your Email Address:',

@@ -11,16 +11,24 @@ html
     min-height: 100vh;
     text-align: left;
     position: relative;
+    overflow-x: hidden;
 }
 
 body{
     background: $base-background-color;
-    overflow: hidden;
     width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
 
     main{
         min-height: 80vh;
         width: 100%;
+        padding-top: 126px;
+        line-height: 0;
+
+        @media (min-width: $screen-medium){
+            padding-top: 125px;
+        }
     }
 }
 

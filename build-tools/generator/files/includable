@@ -1,0 +1,5 @@
+{% set REPLACE_WITH_CLASSAssets = craft.papertrain.getAssetPaths(['REPLACE_WITH_KEBAB']) %}
+{% do view.registerCssFile(REPLACE_WITH_CLASSAssets['REPLACE_WITH_KEBAB'].css) %}
+SCRIPT_PLACEHOLDER
+
+<div class="REPLACE_WITH_SCSS_CLASS" MODULE_PLACEHOLDER></div>

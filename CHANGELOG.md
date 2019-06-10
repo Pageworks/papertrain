@@ -1,4 +1,25 @@
-## 0.1.5 - Unreleased
+## 0.2.0 - 2019-06-10
+
+### Added
+
+- Adds: Developers name input to the startup questionnaire [#167](https://github.com/Pageworks/papertrain/issues/167)
+- Adds: [Preparse](https://github.com/aelvan/Preparse-Field-Craft) plugin to the boilerplate[#169](https://github.com/Pageworks/papertrain/issues/169)
+- Adds: basic Imager config to the `/config` directory [#168](https://github.com/Pageworks/papertrain/issues/168)
+- Adds: Papertrain module and `craft.papertrain.getAssetPaths()` variable [#170](https://github.com/Pageworks/papertrain/issues/170)
+- Adds: server-side compiling [#171](https://github.com/Pageworks/papertrain/issues/171)
+- Adds: Moves Env class instantiation to the Application class
+- Adds: Added a public static `Env.startLoading()` and `Env.stopLoading()` class to triggering the loading animation
+- Adds: new generator script [#172](https://github.com/Pageworks/papertrain/issues/172)
+- Adds: updates the readme [#166](https://github.com/Pageworks/papertrain/issues/166)
+
+### Fixed
+
+- Fixes: `.gitignore` file wasn't remove the leading `/` from the vendor directory line
+- Fixes: removes the Pjax class instantiation due incomplete Application class methods
+
+### Removed
+
+- Removes: `cc-installer.sh` script
 
 ## 0.1.4 - 2019-06-05
 
