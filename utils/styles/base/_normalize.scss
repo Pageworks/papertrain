@@ -1,11 +1,7 @@
 // Normalized Config Options
 // ==========================================================================
 
-/**
-* Remove the margins and padding in all browsers (opinionated).
-*/
-
-* {
+body{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -13,212 +9,221 @@
     -webkit-tap-highlight-color: transparent;
     position: relative;
     line-height: 1;
-}
 
-body{
-    *{
-        display: inline-block;
+    page-view{
+
+        *{
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            vertical-align: baseline;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            line-height: 1;
+        }
+
+        span,
+        strong,
+        b,
+        i,
+        em,
+        s,
+        sub,
+        sup,
+        var{
+            line-height: 1.618;
+            display: inline;
+        }
+
+        script,
+        style{
+            display: none !important;
+        }
+
+        sup,
+        sub{
+            vertical-align: middle;
+            font-size: $base-font-size;
+        }
+
+        code{
+            font-family: $font-family;
+            line-height: 1.618;
+        }
+
+        cite{
+            font-style: normal;
+            line-height: 1.618;
+        }
+
+        pre{
+            display: inline-block;
+            font-family: $font-family;
+            line-height: 1.618;
+        }
+
+        ol,
+        ul{
+            display: inline-block;
+
+            li{
+                list-style-type: none;
+                display: inline-block;
+                line-height: 1.618;
+            }
+        }
+
+        hr
+        {
+            border: 0;
+            border-bottom: solid 1px $black;
+            opacity: 0.15;
+            display: block;
+        }
+
+        a{
+            text-decoration: none;
+            color: inherit;
+            line-height: 1.618;
+        }
+
+        blockquote{
+            display: inline-block;
+            line-height: 1.618;
+        }
+
+        p{
+            display: block;
+            color: inherit;
+            line-height: 1.618;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6{
+            font-weight: 400;
+            display: inline-block;
+            font-size: $base-font-size;
+            color: inherit;
+            line-height: 1.618;
+        }
+
+        button{
+            outline: none;
+            border: none;
+            background-color: transparent;
+            font-family: $font-family;
+            line-height: 1.618;
+            font-weight: $font-weight;
+            font-size: $base-font-size;
+            text-align: left;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        /**
+        * Removes the basic styles from generic form elements.
+        */
+        input,
+        select,
+        textarea,
+        fieldset{
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            line-height: 1.618;
+            border-radius: 0;
+            color: inherit;
+
+            &:focus,
+            &:active{
+                box-shadow: none;
+                border: none;
+                outline: none;
+            }
+
+            &:invalid{
+                box-shadow: none;
+            }
+        }
+
+        input,
+        select{
+            background: transparent;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        input[type=radio],
+        input[type=checkbox]{
+            @include size(0px,0px);
+            position: absolute;
+            border: none;
+            outline: none;
+            background: transparent;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        input[type=date]{
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+            margin: 0;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="color"]{
+            -webkit-appearance: none;
+            border: none;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        input[type="color"]::-webkit-color-swatch {
+            border: none;
+        }
+
+        ::placeholder{
+            display: none;
+            color: transparent;
+        }
+
+        select{
+            html.has-js & {
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+            }
+        }
+
+        fieldset{
+            margin: 0;
+            padding: 0;
+        }
+
+        th{
+            font-weight: 400;
+        }
+
+        strong{
+            font-weight: 400;
+        }
     }
 }
 
-span,
-strong,
-b,
-i,
-em,
-s,
-sub,
-sup,
-var{
-    line-height: 1.618;
-    display: inline;
-}
-
-script,
-style{
-    display: none !important;
-}
-
-sup,
-sub{
-    vertical-align: middle;
-    font-size: $base-font-size;
-}
-
-code{
-    font-family: $font-family;
-    line-height: 1.618;
-}
-
-cite{
-    font-style: normal;
-    line-height: 1.618;
-}
-
-pre{
-    display: inline-block;
-    font-family: $font-family;
-    line-height: 1.618;
-}
-
-ol,
-ul{
-    display: inline-block;
-
-    li{
-        list-style-type: none;
-        display: inline-block;
-        line-height: 1.618;
-    }
-}
-
-hr
-{
-    border: 0;
-    border-bottom: solid 1px $black;
-    opacity: 0.15;
-    display: block;
-}
-
-a{
-    text-decoration: none;
-    color: inherit;
-    line-height: 1.618;
-}
-
-blockquote{
-    display: inline-block;
-    line-height: 1.618;
-}
-
-p{
-    display: block;
-    color: inherit;
-    line-height: 1.618;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6{
-    font-weight: 400;
-    display: inline-block;
-    font-size: $base-font-size;
-    color: inherit;
-    line-height: 1.618;
-}
-
-button{
-    outline: none;
-    border: none;
-    background-color: transparent;
-    font-family: $font-family;
-    line-height: 1.618;
-    font-weight: $font-weight;
-    font-size: $base-font-size;
-    text-align: left;
-    color: inherit;
-    cursor: pointer;
-}
-
-/**
-* Removes the basic styles from generic form elements.
-*/
-input,
-select,
-textarea,
-fieldset{
-    width: 100%;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    line-height: 1.618;
-    border-radius: 0;
-    color: inherit;
-
-    &:focus,
-    &:active{
-        box-shadow: none;
-        border: none;
-        outline: none;
-    }
-
-    &:invalid{
-        box-shadow: none;
-    }
-}
-
-input,
-select{
-    background: transparent;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-input[type=radio],
-input[type=checkbox]{
-    @include size(0px,0px);
-    position: absolute;
-    border: none;
-    outline: none;
-    background: transparent;
-    opacity: 0;
-    visibility: hidden;
-}
-
-input[type=date]{
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-}
-
-input[type=number] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-    margin: 0;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-}
-
-input[type="color"]{
-	-webkit-appearance: none;
-	border: none;
-}
-input[type="color"]::-webkit-color-swatch-wrapper {
-	padding: 0;
-}
-input[type="color"]::-webkit-color-swatch {
-	border: none;
-}
-
-::placeholder{
-    display: none;
-    color: transparent;
-}
-
-select{
-    html.has-js & {
-        appearance: none;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-    }
-}
-
-fieldset{
-    margin: 0;
-    padding: 0;
-}
-
-th{
-    font-weight: 400;
-}
-
-strong{
-    font-weight: 400;
-}
