@@ -6,6 +6,10 @@
 - Adds: adds base path config to the generator script [#176](https://github.com/Pageworks/papertrain/issues/176)
 - Adds: the `beforeDestroy()` method returns a promise and doesn't remove the Node until the promise resolves [#175](https://github.com/Pageworks/papertrain/issues/175)
 
+### Fixed
+
+- Fixes: the default element normalization only effects elements within the custom `<page-view>` element
+
 ## 0.2.0 - 2019-06-10
 
 ### Added
