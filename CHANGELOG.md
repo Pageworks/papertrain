@@ -3,6 +3,7 @@
 ### Added
 
 - Adds: better NPM package code splitting for Webpack [#177](https://github.com/Pageworks/papertrain/issues/177)
+- Adds: adds base path config to the generator script [#176](https://github.com/Pageworks/papertrain/issues/176)
 
 ## 0.2.0 - 2019-06-10
 

@@ -11,6 +11,8 @@ const spinner = ora();
 // =====================[ BEGIN CONFIG ]=====================
 
 const HTMLFileType = 'twig';
+const basePath = 'templates';
+
 
 // ======================[ END CONFIG ]======================
 
@@ -93,22 +95,22 @@ function getUserInput(){
 
         switch(generationType){
             case 'Global':
-                defaultPath = 'templates/_lib/globals'
+                defaultPath = `${ basePath }/_lib/globals`
                 break;
             case 'Object':
-                defaultPath = 'templates/_lib/objects'
+                defaultPath = `${ basePath }/_lib/objects`
                 break;
             case 'Component':
-                defaultPath = 'templates/_lib/components'
+                defaultPath = `${ basePath }/_lib/components`
                 break;
             case 'Template':
-                defaultPath = 'templates/'
+                defaultPath = `${ basePath }/`
                 break;
             case 'Macro':
-                defaultPath = 'templates/_macros'
+                defaultPath = `${ basePath }/_macros`
                 break;
             default:
-                defaultPath = 'templates/'
+                defaultPath = `${ basePath }/`
                 break;
         }
 
