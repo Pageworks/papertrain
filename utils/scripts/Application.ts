@@ -119,13 +119,23 @@ export class Application{
                     const index = this.modules.indexOf(module);
 
                     /** Fire the before destroy event */
-                    module.beforeDestroy();
+                    module.beforeDestroy().then(() => {
+                        /** Fire the destroy event */
+                        module.destroy();
 
-                    /** Fire the destroy event */
-                    module.destroy();
+                        /** Splice the module from the array */
+                        this.modules.splice(index, 1);
+                    })
+                    .catch(e => {
+                        if(Env.isDebug){
+                            console.error('Something went wrong while destroying a module', e);
+                        }
+                        /** Fire the destroy event */
+                        module.destroy();
 
-                    /** Splice the module from the array */
-                    this.modules.splice(index, 1);
+                        /** Splice the module from the array */
+                        this.modules.splice(index, 1);
+                    });
                 }
             });
         }else{

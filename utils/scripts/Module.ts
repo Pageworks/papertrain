@@ -67,7 +67,9 @@ export class Module {
      * Called by the runtime application before the module is destroyed.
      * Used to remove event listeners and end infinite callbacks.
      */
-    public beforeDestroy():void{}
+    public beforeDestroy():Promise<unknown>{
+        return Promise.resolve();
+    }
 
     /** Called by the runtime application when the module needs to be destroyed. */
     public destroy():void{

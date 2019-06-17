@@ -21,10 +21,6 @@ export class REPLACE_ME extends Module{
     afterMount(){
 
     }
-
-    beforeDestroy(){
-
-    }
 }
 
 // Adds module to the global Modules object
