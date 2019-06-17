@@ -231,6 +231,7 @@
         {% include "_layouts/global-javascript.twig" %}
 
         {% spaceless %}
+        <page-view>
             {# Page Transition Animation #}
             <div class="c-transition">
                 <div class="c-transition_primary"></div>
@@ -239,6 +240,7 @@
             <main role="main" class="js-pjax">
                 {% block content %}{% endblock %}
             </main>
+        </page-view>
         {% endspaceless %}
 
         {% set applicationPaths = craft.papertrain.getAssetPaths(['application']) %}

@@ -20,6 +20,11 @@ body{
     min-height: 100vh;
     overflow-x: hidden;
 
+    page-view{
+        width: 100%;
+        display: block;
+    }
+
     main{
         min-height: 80vh;
         width: 100%;
