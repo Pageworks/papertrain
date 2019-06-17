@@ -39,22 +39,29 @@ module.exports = {
     optimization: {
         runtimeChunk: 'single',
         splitChunks: {
-            chunks: 'all',
+            chunks: 'async',
             name: 'globals',
             maxInitialRequests: Infinity,
             minSize: 0,
             cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name(module) {
-                        // get the name. E.g. node_modules/packageName/not/this/part.js
-                        // or node_modules/packageName
-                        const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+            node_vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                chunks: 'all',
+                priority: 1,
+                name(module) {
+                let packageName = '';
+                let rawPackageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|.*$)/)[0];
+                let trimmedPackageName = rawPackageName.replace(/\/node_modules\//, '');
 
-                        // npm package names are URL-safe, but some servers don't like @ symbols
-                        return `../packages-${ timestamp }/npm.${packageName.replace('@', '')}`;
-                    },
+                if(trimmedPackageName.match(/^\@/)){
+                    let namespaceRemoved = trimmedPackageName.replace(/(.*?\/)(?=\w)/, '');
+                    packageName = namespaceRemoved.replace(/\/.*/, '');
+                }else{
+                    packageName = trimmedPackageName.replace(/\/.*/, '');
+                }
+                return `../packages-${ timestamp }/npm.${ packageName.toLowerCase() }`;
                 },
+            },
             },
         },
         minimizer: [new TerserPlugin({

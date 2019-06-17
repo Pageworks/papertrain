@@ -1,3 +1,9 @@
+## 0.2.1 - Unreleased
+
+### Added
+
+- Adds: better NPM package code splitting for Webpack [#177](https://github.com/Pageworks/papertrain/issues/177)
+
 ## 0.2.0 - 2019-06-10
 
 ### Added
