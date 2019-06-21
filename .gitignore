@@ -5,11 +5,8 @@
 /node_modules
 
 # Assets
-/public/assets/
-!/public/assets/fonts
-!/public/assets/images
-!/public/assets/polyfills
-!/public/assets/videos
+/public/automation/*
+!/public/automation/.gitkeep
 
 # Craft CMS
 # -------
@@ -39,3 +36,4 @@ logs/
 _compiled
 .editorconfig
 /config/papertrain/automation.php
+.editorconfig

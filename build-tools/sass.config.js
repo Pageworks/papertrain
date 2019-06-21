@@ -24,7 +24,7 @@ function compileSASS(){
     console.log(chalk.white('Compiling SASS'));
 
     // Make the new CSS directory
-    fs.mkdirSync(`./public/assets/styles-${ timestamp }`);
+    fs.mkdirSync(`./public/automation/styles-${ timestamp }`);
 
     // Generate the files
     for(let i = 0; i < files.length; i++){
@@ -41,7 +41,7 @@ function compileSASS(){
                 }else{
                     const fileName = result.stats.entry.match(/[ \w-]+?(?=\.)/gi)[0].toLowerCase();
                     if(fileName){
-                        const newFile = `./public/assets/styles-${ timestamp }/` + fileName + '.css';
+                        const newFile = `./public/automation/styles-${ timestamp }/` + fileName + '.css';
                         console.log(chalk.hex('#ffffff').bold(file), chalk.hex('#8cf57b').bold(' [compiled]'));
                         cleanup(files.indexOf(file));
                         fs.writeFile(newFile, result.css.toString(), function (err) {
@@ -71,7 +71,7 @@ function cleanup(index){
 
     console.log(chalk.white('Removing stale CSS'));
 
-    const path = `public/assets`;
+    const path = `public/automation`;
     const allDirs = fs.readdirSync(path);
     const styleDirs = [];
     for(let i = 0; i < allDirs.length; i++){
@@ -84,7 +84,7 @@ function cleanup(index){
         const directoryTimestamp = styleDirs[i].match(/[^styles-].*/)[0];
 
         if(parseInt(directoryTimestamp) < parseInt(timestamp)){
-            rimraf(`public/assets/${ styleDirs[i] }`, (err)=>{
+            rimraf(`public/automation/${ styleDirs[i] }`, (err)=>{
                 if(err){
                     console.log(`Failed to remove ${ styleDirs[i] }`);
                     throw err;

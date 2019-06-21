@@ -9,9 +9,10 @@
     }
 </script>
 
-{% set globalAssets = craft.papertrain.getAssetPaths(['runtime', 'globals', 'uuid', 'pageworks']) %}
+{% set globalAssets = craft.papertrain.getAssetPaths(['runtime', 'globals', 'uuid', 'device-manager', 'env']) %}
 
 {% do view.registerJsFile(globalAssets['runtime'].module) %}
 {% do view.registerJsFile(globalAssets['globals'].module, {"async":"async"}) %}
+{% do view.registerJsFile(globalAssets['env'].module, {"async":"async"}) %}
 {% do view.registerJsFile(globalAssets['uuid'].package, {"async":"async"}) %}
-{% do view.registerJsFile(globalAssets['pageworks'].package, {"async":"async"}) %}
+{% do view.registerJsFile(globalAssets['device-manager'].package, {"async":"async"}) %}

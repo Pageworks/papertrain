@@ -2,7 +2,7 @@
 {% do view.registerCssFile(REPLACE_WITH_CLASSAssets['REPLACE_WITH_KEBAB'].css) %}
 SCRIPT_PLACEHOLDER
 
-{% extends "_layouts/base" %}
+{% extends "_layouts/page" %}
 
 {% block content %}
     <article class="REPLACE_WITH_SCSS_CLASS g-container -full" data-template="REPLACE_WITH_KEBAB" MODULE_PLACEHOLDER>
