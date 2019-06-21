@@ -36,3 +36,4 @@ logs/
 _compiled
 .editorconfig
 /config/papertrain/automation.php
+.editorconfig
