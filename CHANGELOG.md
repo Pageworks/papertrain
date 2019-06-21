@@ -3,6 +3,12 @@
 ### Added
 
 - Adds: reset CSS to `base.twig` `<head>` [#181](https://github.com/Pageworks/papertrain/issues/181)
+- Adds: `page.twig` layout for templates
+- Adds: `public/automation/` directory due to gitignore issues with the assets directory [#180](https://github.com/Pageworks/papertrain/issues/180)
+
+### Removed
+
+- Removes: `.editorconfig` file
 
 ## 0.2.1 - 2010-06-17
 

@@ -27,7 +27,7 @@ module.exports = {
     mode: (process.env.NODE_ENV === 'production') ? 'production' : 'none',
     entry: entries,
     output: {
-        path: path.resolve(__dirname, './public/assets'),
+        path: path.resolve(__dirname, './public/automation'),
         filename: `modules-${ timestamp }/[name].js`
     },
     resolve:{
@@ -92,7 +92,7 @@ module.exports = {
 function cleanup(){
     console.log(chalk.white('Removing stale JavaScript builds'));
 
-    const path = `public/assets`;
+    const path = `public/automation`;
     const allDirs = fs.readdirSync(path);
 
     const moduleDirs = [];
@@ -106,7 +106,7 @@ function cleanup(){
         const modulesTimestamp = moduleDirs[i].match(/[^modules-].*/)[0];
 
         if(parseInt(modulesTimestamp) < parseInt(timestamp)){
-            rimraf(`public/assets/${ moduleDirs[i] }`, (err)=>{
+            rimraf(`public/automation/${ moduleDirs[i] }`, (err)=>{
                 if(err){
                     console.log(`Failed to remove ${ moduleDirs[i] }`);
                     throw err;
@@ -126,7 +126,7 @@ function cleanup(){
         const packageTimestamp = packageDirs[i].match(/[^packages-].*/)[0];
 
         if(parseInt(packageTimestamp) < parseInt(timestamp)){
-            rimraf(`public/assets/${ packageDirs[i] }`, (err)=>{
+            rimraf(`public/automation/${ packageDirs[i] }`, (err)=>{
                 if(err){
                     console.log(`Failed to remove ${ packageDirs[i] }`);
                     throw err;
