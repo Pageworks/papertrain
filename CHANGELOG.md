@@ -7,6 +7,12 @@
 - Adds: `public/automation/` directory due to gitignore issues with the assets directory [#180](https://github.com/Pageworks/papertrain/issues/180)
 - Adds: `.editorconfig` file to `.gitignore`
 
+### Fixed
+
+- Fixes: updates Craft CMS to latest version
+- Fixes: sets min-height to `100vh`
+- Fixes: removes default padding from `<main>`
+
 ### Removed
 
 - Removes: `.editorconfig` file
