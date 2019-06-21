@@ -1,3 +1,9 @@
+## 0.2.2 - 2010-06-21
+
+### Added
+
+- Adds: reset CSS to `base.twig` `<head>` [#181](https://github.com/Pageworks/papertrain/issues/181)
+
 ## 0.2.1 - 2010-06-17
 
 ### Added
