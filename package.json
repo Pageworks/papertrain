@@ -37,7 +37,10 @@
         "dev:sass": "cross-env NODE_ENV=development node ./build-tools/sass.config.js",
         "production": "node ./build-tools/compile.config.js && npm-run-all production:*",
         "production:scripts": "tsc && cross-env NODE_ENV=production webpack --config ./webpack.config.js",
-        "production:styles": "cross-env NODE_ENV=production node ./build-tools/sass.config.js"
+        "production:styles": "cross-env NODE_ENV=production node ./build-tools/sass.config.js",
+        "watch": "run-p watch:*",
+        "watch:sass": "onchange 'templates/**/*.scss' 'utils/**/*.scss' -- node ./build-tools/sass-watcher.config.js {{changed}}",
+        "watch:sync": "node ./build-tools/sync.js"
     },
     "lint-staged": {
         "linters": {
@@ -71,12 +74,12 @@
         "husky": "^1.3.1",
         "inquirer": "^6.3.1",
         "lint-staged": "^7.3.0",
+        "onchange": "^6.0.0",
         "stylelint": "^9.10.1",
         "stylelint-config-recommended-scss": "^3.2.0",
         "stylelint-scss": "^3.8.0",
         "tslint": "^5.17.0",
         "tslint-config-airbnb": "^5.11.1",
-        "tslint-config-prettier": "^1.18.0",
-        "watch": "^1.0.2"
+        "tslint-config-prettier": "^1.18.0"
     }
 }
