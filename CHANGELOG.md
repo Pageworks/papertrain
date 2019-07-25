@@ -1,3 +1,9 @@
+## 0.2.3 - 2010-07-25
+
+### Added
+
+- Adds: SASS watcher build tool [#184](https://github.com/Pageworks/papertrain/pull/184)
+
 ## 0.2.2 - 2010-06-21
 
 ### Added
