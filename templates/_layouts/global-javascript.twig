@@ -1,13 +1,8 @@
-<script>
-    {# IE 11 polyfills #}
-    if(!!window.MSInputMethodContext && !!document.documentMode && (window.chrome === undefined)){
-        document.write('<script type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/array-from.js' }}"><\/script>');
-        document.write('<script type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/closest.js' }}"><\/script>');
-        document.write('<script type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/remove.js' }}"><\/script>');
-        document.write('<script type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/promise.js' }}"><\/script>');
-        document.write('<script type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/fetch.js' }}"><\/script>');
-    }
-</script>
+<script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/array-from.js' }}"></script>
+<script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/closest.js' }}"></script>
+<script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/remove.js' }}"></script>
+<script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/promise.js' }}"></script>
+<script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/fetch.js' }}"></script>
 
 {% set globalAssets = craft.papertrain.getAssetPaths(['runtime', 'globals', 'uuid', 'device-manager', 'env']) %}
 

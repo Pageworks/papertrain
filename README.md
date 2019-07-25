@@ -56,7 +56,7 @@ composer install
 6: Run the setup script by running the following command in your terminal:
 
 ```script
-npm run setup
+npm run dev && npm run setup
 ```
 
 To finish follow the Craft CMS installation in the browser. If the browser doesn't automatically open navigate to the `/webmaster` route.
@@ -110,7 +110,7 @@ npm ci
 5: Run the setup script by running the following command in your terminal:
 
 ```script
-npm run setup
+npm run dev && npm run setup
 ```
 
 To finish follow the Craft CMS installation in the browser. If the browser doesn't automatically open navigate to the `/webmaster` route.
