@@ -175,8 +175,6 @@ You can compile production quality code by running the following command in your
 npm run compile
 ```
 
-Be sure to run this command before deploying any CSS or JavaScript changes.
-
 #### Design and Development
 
 **JavaScript Framework**
@@ -204,10 +202,10 @@ This section will detail the process of adding a new template to the project. We
 ```
 npm run create
 ```
-
-2. Use your arrow keys to select **template** from the list
-3. Name the template **demo**
-4. Provide the "no" value `n` for the TypeScript question
+2. Name the template **demo**
+3. Answer the questions
+4. Select **template** from the list
+5. Press enter to use the default path of `templates/` for the new template
 
 At this point your new template has been created and available at `templates/demo/`. If your site is running you can checkout the template by opening a browser and navigating to the `/demo` page.
 
@@ -216,17 +214,18 @@ At this point your new template has been created and available at `templates/dem
 ```
 npm run create
 ```
-
-6. Use your arrow keys to select **component** from the list
-7. Name the component **demo component**
+6. Name the component **demo component**
     - Note that underscores and hyphens are not allowed, they will be generated for you
+7. Answer the questions
+8. Use your arrow keys to select **component** from the list
+9. When asked for a path enter `templates/demo`
 
-You can checkout your new component at the `templates/_lib/components/` directory.
+You can checkout your new components files in the `templates/demo/demo-component/` directory.
 
 8. Open the `templates/demo/index.twig` file
-9. In the `<section>` element include your component using Twigs [include statement](https://twig.symfony.com/doc/2.x/tags/include.html) `{% include "_lib/components/demo-component/demo-component.twig" %}`
+9. In the `<section>` element include your component using Twigs [include statement](https://twig.symfony.com/doc/2.x/tags/include.html) `{% include "demo/demo-component" %}`
 
-10. Open the `templates/_lib/components/demo-component/demo-component.ts` file
+10. Open the `templates/demo/demo-component/demo-component.ts` file
 11. Paste the following code into the classes `afterMount()` method
 
 ```javascript
@@ -299,31 +298,32 @@ Replace the blocks code with a Twig [include statement](https://twig.symfony.com
 
 #### Using Global Classes & JavaScript
 
-Each JavaScript and CSS file is generated as it's own general file. To use a file on a page it must be registered.
+Each JavaScript and CSS file is generated as it's own general file. To use a file on a page it must be registered. Components, objects, and templates are generated with a asset path building function that takes an array of strings.
 
 **CSS**
 
 ```twig
-{% do view.registerCssFile(alias('@rootUrl')|trim('/') ~ '/assets/styles/demo-component.' ~ craft.app.config.general.cssCacheBustTimestamp ~ '.css') %}
+{% set ExampleAssets = craft.papertrain.getAssetPaths(['demo']) %}
+
+{% do view.registerCssFile(ExampleAssets['demo'].css) %}
 ```
 
-For CSS file registration replace the `demo-component` section with the name of the CSS file.
+CSS files can be registered to the view by passing in the string as a key to the asset object and requesting the `.css` path.
 
 **JavaScript**
 
-```twig
-{% do view.registerJsFile(alias('@rootUrl')|trim('/') ~ '/assets/scripts/demo-component.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js', { "async":"async" }) %}
-```
-
-For JavaScript file registration replace the `demo-component` section with the name of the JavaScript file. `async` is the preferred method for loading JavaScript files.
-
-If you need to register a global script (something from the `utils/scripts/` directory) or an NPM package that is imported use the following registration statement:
+JavaScript is split into two unique types.
 
 ```twig
-{% do view.registerJsFile(alias('@rootUrl')|trim('/') ~ '/assets/scripts/npm.package-name.' ~ craft.app.config.general.jsCacheBustTimestamp ~ '.js') %}
+{% set ExampleAssets = craft.papertrain.getAssetPaths(['demo-component', 'notifyjs']) %}
+
+{% do view.registerJsFile(ExampleAssets['notifyjs'].package) %}
+{% do view.registerJsFile(ExampleAssets['demo-component'].module, { "defer":"defer" }) %}
 ```
 
-Since global scripts and NPM packages are usually dependencies of your script they are not required to be `async` or `defer` loaded. If you're unsure of how Webpack bundled your dependency check the `public/scripts/` directory for your file. If a NPM package was scoped under an organization (`@pageworks`) the bundle name will be the organization name and not the individual package.
+The `.package` path is used to register NPM package dependencies. They should always be placed before all `.module` scripts and should never be loaded using `defer` or `async`.
+
+The `.module` script is any non-NPM packaged script, even if it's imported into the script using the ES6 import syntax. Modules should always use the `defer` attribute.
 
 #### Writing Global Scripts
 
