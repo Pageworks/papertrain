@@ -190,6 +190,23 @@ function cleanupFiles(){
         gitignore.stop();
     }
 
+    const contributing = ora();
+    contributing.spinner = 'dots';
+    contributing.text = 'Removing contributing file';
+    contributing.start();
+    if(fs.existsSync('./CONTRIBUTING.md')){
+        fs.unlink('./CONTRIBUTING.md', (err)=>{
+            if(err){
+                contributing.text = 'Failed to remove the contributing file';
+                contributing.fail();
+            }
+            contributing.text = 'CONTRIBUTING.md has been removed';
+            contributing.succeed();
+        });
+    }else{
+        contributing.stop();
+    }
+
     (async () => {
         // Opens the url in the default browser
         await open(`http://${ projectDetails.devUrl }/webmaster`);

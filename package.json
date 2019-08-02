@@ -1,7 +1,7 @@
 {
     "name": "papertrain",
-    "description": "Papertrain: a Craft CMS toolkit",
-    "version": "0.2.1",
+    "description": "Papertrain: a Craft CMS framework",
+    "version": "0.2.4",
     "author": "Pageworks",
     "license": "MIT",
     "repository": {
