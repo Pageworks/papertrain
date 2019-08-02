@@ -1,4 +1,4 @@
-## 0.2.4 - UNRELEASED
+## 0.2.4 - 2019-08-02
 
 ### Added
 
@@ -6,14 +6,19 @@
 - Adds: updated IE 11 polyfills to use `nomodule` attribute instead of wrapping the `document.write()` method in a render blocking script
 - Adds: papertrain v0.1 documentation
 - Adds: papertrain v0.2 documentation
+- Adds: contributing guidelines document [#186](https://github.com/Pageworks/papertrain/issues/186)
 
-## 0.2.3 - 2010-07-25
+### Fixed
+
+- Fixes: corrects the release date year for the v0.2.x releases
+
+## 0.2.3 - 2019-07-25
 
 ### Added
 
 - Adds: SASS watcher build tool [#184](https://github.com/Pageworks/papertrain/pull/184)
 
-## 0.2.2 - 2010-06-21
+## 0.2.2 - 2019-06-21
 
 ### Added
 
@@ -32,7 +37,7 @@
 
 - Removes: `.editorconfig` file
 
-## 0.2.1 - 2010-06-17
+## 0.2.1 - 2019-06-17
 
 ### Added
 

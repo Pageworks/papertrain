@@ -18,9 +18,9 @@ Papertrain is a framework designed to bring custom utilities and features to Cra
 
 If you are unsure about what version of Papertrain you are using please check the `package.json` file located in the root project directory.
 
-# Feedback
+# Contributing
 
-Feel free to [open an issue](https://github.com/Pageworks/papertrain/issues) and report any bugs or request additional features.
+Read through our [contributing](https://github.com/Pageworks/papertrain/blob/master/CONTRIBUTING.md) guidelines or feel free to [open an issue](https://github.com/Pageworks/papertrain/issues) and report any bugs or request additional features.
 
 # License
 
