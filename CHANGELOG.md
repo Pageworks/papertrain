@@ -4,7 +4,8 @@
 
 - Adds: updated project setup section of the readme
 - Adds: updated IE 11 polyfills to use `nomodule` attribute instead of wrapping the `document.write()` method in a render blocking script
-- Adds: papertrain v0.1.x documentation
+- Adds: papertrain v0.1 documentation
+- Adds: papertrain v0.2 documentation
 
 ## 0.2.3 - 2010-07-25
 
