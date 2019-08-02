@@ -1,3 +1,9 @@
+## 0.2.5 - UNRELEASED
+
+### Fixed
+
+- Fixes: updates documentation links to use the blobs from master, not develop
+
 ## 0.2.4 - 2019-08-02
 
 ### Added
