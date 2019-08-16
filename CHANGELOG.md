@@ -1,5 +1,14 @@
 ## 0.3 - UNRELEASED
 
+### Fixed
+
+- Fixes: moved dependencies to their proper section within `package.json`
+
+### Removed
+
+- Removes: `@pageworks/state-mananger` dependency
+- Removes: `@pageworks/pjax` dependency
+
 ## 0.2.5 - 2019-08-16
 
 ### Fixed
