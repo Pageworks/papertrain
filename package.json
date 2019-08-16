@@ -1,7 +1,7 @@
 {
     "name": "papertrain",
     "description": "Papertrain: a Craft CMS framework",
-    "version": "0.2.5",
+    "version": "0.3.0",
     "author": "Pageworks",
     "license": "MIT",
     "repository": {
@@ -11,8 +11,10 @@
     "keywords": [
         "craft cms",
         "craft 3",
-        "toolkit",
-        "cli"
+        "framework",
+        "cli",
+        "typescript",
+        "es modules"
     ],
     "bugs": {
         "url": "https://github.com/Pageworks/papertrain/issues",
@@ -52,21 +54,7 @@
     },
     "dependencies": {
         "@pageworks/device-manager": "^1.2.3",
-        "@pageworks/pjax": "^2.1.4",
-        "@pageworks/state-manager": "^1.0.2",
-        "uuid": "^3.3.2",
-        "webpack": "^4.33.0",
-        "webpack-cli": "^3.3.3",
-        "terser-webpack-plugin": "^1.3.0",
-        "chalk": "^2.4.2",
-        "clear": "^0.1.0",
-        "cross-env": "^5.2.0",
-        "dotenv": "^6.2.0",
-        "node-sass": "^4.11.0",
-        "npm-run-all": "^4.1.5",
-        "open": "^6.3.0",
-        "ora": "^3.4.0",
-        "typescript": "^3.5.1"
+        "uuid": "^3.3.2"
     },
     "devDependencies": {
         "browser-sync": "^2.26.7",
@@ -80,6 +68,18 @@
         "stylelint-scss": "^3.8.0",
         "tslint": "^5.17.0",
         "tslint-config-airbnb": "^5.11.1",
-        "tslint-config-prettier": "^1.18.0"
+        "tslint-config-prettier": "^1.18.0",
+        "webpack": "^4.33.0",
+        "webpack-cli": "^3.3.3",
+        "terser-webpack-plugin": "^1.3.0",
+        "chalk": "^2.4.2",
+        "clear": "^0.1.0",
+        "cross-env": "^5.2.0",
+        "dotenv": "^6.2.0",
+        "node-sass": "^4.11.0",
+        "npm-run-all": "^4.1.5",
+        "open": "^6.3.0",
+        "ora": "^3.4.0",
+        "typescript": "^3.5.1"
     }
 }
