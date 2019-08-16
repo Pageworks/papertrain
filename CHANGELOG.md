@@ -3,6 +3,11 @@
 ### Fixed
 
 - Fixes: updates documentation links to use the blobs from master, not develop
+- Fixes: removes typography generator SCSS & heading mixins
+
+### Removed
+
+- Removes: `_typography.scss` from `utils/styles/tools/`
 
 ## 0.2.4 - 2019-08-02
 
