@@ -19,6 +19,9 @@
 - Removes: `utils/` directory
 - Removes: `_lib/` directory
 - Removes: `.g-wrapper` and `.g-grid` globals
+- Removes: empty `_svgs/` directory
+- Removes: empty `_macros/` directory
+- Removes: empty `ajax/` directory
 
 ## 0.2.5 - 2019-08-16
 
