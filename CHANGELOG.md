@@ -3,6 +3,7 @@
 ### Added
 
 - Adds: moves `utils/styles/` to `scss-settings/`
+- Adds: moves `_lib/globals/` to `_globals/`
 
 ### Fixed
 
@@ -16,6 +17,7 @@
 - Removes: `@pageworks/state-mananger` dependency
 - Removes: `@pageworks/pjax` dependency
 - Removes: `utils/` directory
+- Removes: `_lib/` directory
 
 ## 0.2.5 - 2019-08-16
 
