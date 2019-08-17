@@ -14,15 +14,17 @@
                 {% set seo = craft.seo.custom(entry.title, '', false) %}
             {% elseif category is defined %}
                 {% set seo = craft.seo.custom(category.title, '', false) %}
+            {% elseif product is defined %}
+                {% set seo = craft.seo.custom(product.title, '', false) %}
             {% else %}
-                {% set seo = craft.seo.custom(siteName, '', false) %}
+                {% set seo = craft.seo.custom('MISSING', '', false) %}
             {% endif %}
         {% endif -%}
 
         {% set locale = craft.app.locale %}
         {% set locales = craft.app.i18n.siteLocaleIds|without(locale) %}
 
-        <title>{{ seo.title }}</title>
+        <title>{{ (seo.title|slice(0,7) == 'MISSING') ? 'REPLACE ME' : seo.title }}</title>
         <meta name="description" content="{{ seo.description }}" />
 
         {% set fb = seo.social.facebook -%}
