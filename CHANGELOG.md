@@ -18,6 +18,7 @@
 - Removes: `@pageworks/pjax` dependency
 - Removes: `utils/` directory
 - Removes: `_lib/` directory
+- Removes: `.g-wrapper` and `.g-grid` globals
 
 ## 0.2.5 - 2019-08-16
 
