@@ -8,7 +8,7 @@ const chalk = require('chalk');
 const timestamp = Date.now().toString();
 
 // Get all the base SCSS files from the base global scss directory
-const globalFiles = glob.sync('./utils/styles/*.scss');
+const globalFiles = glob.sync('./scss-settings/*.scss');
 
 // Get all the SCSS files from the templates lib directory
 const templateFiles = glob.sync('./templates/**/*.scss');
@@ -33,7 +33,7 @@ function compileSASS(){
             {
                 file: file,
                 outputStyle: 'compressed',
-                includePaths: ['utils/styles/settings', 'utils/styles/tools']
+                includePaths: ['scss-settings/settings', 'scss-settings/tools']
             },
             function(error, result){
                 if (error) {

@@ -1,13 +1,20 @@
 ## 0.3 - UNRELEASED
 
+### Added
+
+- Adds: moves `utils/styles/` to `scss-settings/`
+
 ### Fixed
 
 - Fixes: moved dependencies to their proper section within `package.json`
+- Fixes: updates base font stack to prefer native OS font stack
+- Fixes: updates reset CSS in `base.twig`
 
 ### Removed
 
 - Removes: `@pageworks/state-mananger` dependency
 - Removes: `@pageworks/pjax` dependency
+- Removes: `utils/` directory
 
 ## 0.2.5 - 2019-08-16
 

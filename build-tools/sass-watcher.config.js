@@ -18,7 +18,7 @@ function replaceFile(filepath)
 		 {
             file: filepath,
             outputStyle: 'compressed',
-            includePaths: ['utils/styles/settings', 'utils/styles/tools']
+            includePaths: ['scss-settings/settings', 'scss-settings/tools']
         },
         function(error, result){
         	if (error) {

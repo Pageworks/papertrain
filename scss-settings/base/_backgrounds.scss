@@ -4,9 +4,8 @@
 // Set background colors in settings/_colors.scss
 //
 
-section,
-article,
-.g-container{
+*
+{
     &.-white-background{
         background: $base-background-color;
         color: $font-base;

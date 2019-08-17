@@ -1,15 +1,15 @@
 // Spacing Units
 // =============================================================================
 $unit:          1rem;
-$unit-half:     $unit/2;
-$unit-quarter:  $unit/4;
-$base-p-margin: 0 0 $unit;
+$unit-half:     0.5rem;
+$unit-quarter:  0.25rem;
+$base-p-margin: 0 0 2rem;
 
 // Layout
 // =============================================================================
-$gutter:        $unit;
-$gutter-small:  $unit-half;
-$gutter-large:  $unit*2;
+$gutter:        2rem;
+$gutter-small:  1rem;
+$gutter-large:  4rem;
 
 // Container
 // ==========================================================================
