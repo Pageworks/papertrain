@@ -107,6 +107,8 @@ class WebModuleBundler
                             reject(err);
                         }
 
+                        console.log(chalk.hex('#ffffff').bold(serverSafeName), chalk.hex('#8cf57b').bold(' [bundled]'));
+
                         count++;
                         if (count === modules.length)
                         {
