@@ -41,15 +41,14 @@
         "production:scripts": "tsc && cross-env NODE_ENV=production webpack --config ./webpack.config.js",
         "production:styles": "cross-env NODE_ENV=production node ./build-tools/sass.config.js",
         "watch": "run-p watch:*",
-        "watch:sass": "onchange 'templates/**/*.scss' 'utils/**/*.scss' -- node ./build-tools/sass-watcher.config.js {{changed}}",
+        "watch:sass": "onchange 'templates/**/*.scss' 'sass/**/*.scss' -- node ./build-tools/sass-watcher.config.js {{changed}}",
         "watch:sync": "node ./build-tools/sync.js"
     },
     "lint-staged": {
         "linters": {
             "./templates/**/*.ts": "npm run lint:typescript",
             "./templates/**/*.scss": "npm run lint:sass",
-            "./utils/scripts/**/*.ts": "npm run lint:typescript",
-            "./utils/styles/**/*.scss": "npm run lint:sass"
+            "./sass/**/*.scss": "npm run lint:sass"
         }
     },
     "dependencies": {
