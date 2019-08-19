@@ -41,7 +41,7 @@
         "dev:es6": "npm run compile:es6",
         "dev:modules": "npm run compile:modules && node ./build-tools/modules.config.js",
 
-        "compile": "run-p compile:* && npm run bundle",
+        "compile": "node ./build-tools/compile.config.js && run-p compile:* && npm run bundle",
         "compile:es5": "tsc --p ./tsconfig-es5.json",
         "compile:es6": "tsc --p ./tsconfig.json",
         "compile:modules": "tsc --p ./tsconfig-modules.json",

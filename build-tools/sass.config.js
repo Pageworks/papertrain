@@ -92,9 +92,4 @@ function cleanup(index){
             });
         }
     }
-
-    // Write the timestamp to Crafts general config file
-    var data = fs.readFileSync('./config/papertrain/automation.php', 'utf-8');
-    var newValue = data.replace(/'cssCacheBustTimestamp'.*/g, "'cssCacheBustTimestamp' => '"+ timestamp +"',");
-    fs.writeFileSync('./config/papertrain/automation.php', newValue, 'utf-8');
 }

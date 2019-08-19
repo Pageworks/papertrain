@@ -29,14 +29,9 @@ class PapertrainModuleVariable
         return PapertrainModule::getInstance()->papertrainModuleService->buildAssetPaths($twigNames);
     }
 
-    public function getCssCachebust()
+    public function getCachebustTimestamp()
     {
-        return Craft::$app->config->general->cssCacheBustTimestamp;
-    }
-
-    public function getJsCachebust()
-    {
-        return Craft::$app->config->general->jsCacheBustTimestamp;
+        return Craft::$app->config->general->cacheBustTimestamp;
     }
 
     public function stylesheets(array $fileNames)

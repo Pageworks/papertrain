@@ -1,6 +1,8 @@
 interface Window
 {
-    stylesheets: Array<string>
+    stylesheets : Array<string>
+    packages : Array<string>
+    components : Array<string>
 }
 
 class Runtime
@@ -26,14 +28,14 @@ class Runtime
                 styleElement.setAttribute('component', stylesheetUrl);
                 document.head.appendChild(styleElement);
 
-                stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cssTimestamp }/${ stylesheetUrl }`;
+                stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetUrl }`;
                 fetch(stylesheetUrl)
                 .then(request => request.text())
                 .then(response => {
                     styleElement.innerHTML = response;
                 })
                 .catch(error => {   
-                    console.error(error);
+                    console.error(error); 
                 });
             }
 
@@ -60,5 +62,6 @@ class Runtime
         }
 
         document.addEventListener('fetch:stylesheets', this.handleStylesheetsFetchEvent);
+        document.addEventListener('fetch:scripts', this.handleScriptFetchEvent);
     }
 }

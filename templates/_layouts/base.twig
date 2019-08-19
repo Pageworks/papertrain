@@ -1,7 +1,7 @@
 {% set isDebug = craft.app.request.getParam('debug') %}
 {% set currentSite = craft.app.sites.currentSite %}
 <!doctype html>
-<html lang="{{ currentSite.language }}" class="has-no-js is-not-pointer-device is-not-touch-device dom-is-loading" {% if isDebug|length %}debug="true"{% endif %} data-csrf="{{ craft.app.request.csrfToken }}" data-css-timestamp="{{ craft.papertrain.getCssCachebust }}" data-js-timestamp="{{ craft.papertrain.getJsCachebust }}">
+<html lang="{{ currentSite.language }}" class="has-no-js is-not-pointer-device is-not-touch-device dom-is-loading" {% if isDebug|length %}debug="true"{% endif %} data-csrf="{{ craft.app.request.csrfToken }}" data-cachebust="{{ craft.papertrain.getCachebustTimestamp }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">

@@ -7,6 +7,5 @@
 
 return [
     // This is would be where your local cache busting values will be written
-    'jsCacheBustTimestamp' => '50519991',
-    'cssCacheBustTimestamp' => '50521408',
+    'cacheBustTimestamp' => '0000000000'
 ];

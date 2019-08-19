@@ -29,9 +29,9 @@ class PapertrainModuleService extends Component
     public function buildAssetPaths(array $twigNames)
     {
         $ret = array();
-        $modulesBasePath = \Craft::getAlias('@rootUrl').'/automation/modules-' . Craft::$app->config->general->jsCacheBustTimestamp . '/';
-        $packagesBasePath = \Craft::getAlias('@rootUrl').'/automation/packages-' . Craft::$app->config->general->jsCacheBustTimestamp . '/';
-        $stylesBasePath = \Craft::getAlias('@rootUrl').'/automation/styles-' . Craft::$app->config->general->cssCacheBustTimestamp . '/';
+        $modulesBasePath = \Craft::getAlias('@rootUrl').'/automation/modules-' . Craft::$app->config->general->cacheBustTimestamp . '/';
+        $packagesBasePath = \Craft::getAlias('@rootUrl').'/automation/packages-' . Craft::$app->config->general->cacheBustTimestamp . '/';
+        $stylesBasePath = \Craft::getAlias('@rootUrl').'/automation/styles-' . Craft::$app->config->general->cacheBustTimestamp . '/';
         foreach ($twigNames as $twigName){
             $kebabCaseName = StringHelper::toKebabCase($twigName);
             $finalName = StringHelper::toLowerCase($kebabCaseName);
