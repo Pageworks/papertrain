@@ -9,7 +9,6 @@
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
-        "baseUrl": "./utils/scripts",
         "allowJs": true,
         "checkJs": true,
         "lib": [
@@ -23,6 +22,7 @@
         ]
     },
     "include": [
-        "templates"
+        "templates",
+        "globals.d.ts"
     ]
 }
