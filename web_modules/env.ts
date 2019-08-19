@@ -3,6 +3,8 @@ class Env
     private _domState = 'loading';
     private _debugState = false;
 
+    public isDebug : boolean = this._debugState;
+
     constructor()
     {
         this.setDefaultDebug();
@@ -37,10 +39,4 @@ class Env
             this._debugState = true;
         }
     }
-
-    public isDebug = ()=>{
-        return this._debugState;
-    }
 }
-
-new Env();

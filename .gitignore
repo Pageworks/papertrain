@@ -2,7 +2,7 @@
 
 # NPM
 # -------
-/node_modules
+node_modules
 
 # Assets
 /public/automation/*
@@ -34,6 +34,8 @@ logs/
 .DS_Store
 .stylelintcache
 _compiled
+_modules
+_bundles
 .editorconfig
 /config/papertrain/automation.php
 .editorconfig

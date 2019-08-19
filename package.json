@@ -45,6 +45,7 @@
         "compile:es5": "tsc --p ./tsconfig-es5.json",
         "compile:es6": "tsc --p ./tsconfig.json",
         "compile:modules": "tsc --p ./tsconfig-modules.json",
+        "compile:styles": "cross-env NODE_ENV=production node ./build-tools/sass.config.js",
         "bundle": "node ./build-tools/bundler.config.js && node ./build-tools/modules.config.js"
     },
     "lint-staged": {

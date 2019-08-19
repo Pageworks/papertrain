@@ -28,4 +28,29 @@ class PapertrainModuleVariable
     {
         return PapertrainModule::getInstance()->papertrainModuleService->buildAssetPaths($twigNames);
     }
+
+    public function getCssCachebust()
+    {
+        return Craft::$app->config->general->cssCacheBustTimestamp;
+    }
+
+    public function getJsCachebust()
+    {
+        return Craft::$app->config->general->jsCacheBustTimestamp;
+    }
+
+    public function stylesheets(array $fileNames)
+    {
+        PapertrainModule::getInstance()->papertrainModuleService->buildStylesheets($fileNames);
+    }
+
+    public function packages(array $fileNames)
+    {
+        PapertrainModule::getInstance()->papertrainModuleService->buildPackages($fileNames);
+    }
+
+    public function components(array $fileNames)
+    {
+        PapertrainModule::getInstance()->papertrainModuleService->buildComponents($fileNames);
+    }
 }

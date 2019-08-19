@@ -1,3 +1,8 @@
+interface Window
+{
+    stylesheets: Array<string>
+}
+
 class Runtime
 {
     constructor()
@@ -12,14 +17,16 @@ class Runtime
     {
         while (window.stylesheets.length)
         {
-            const stylesheetUrl = window.stylesheets[0];
+            let stylesheetUrl = window.stylesheets[0];
 
-            let styleElement = document.head.querySelector(`[component="${ stylesheetUrl }"]`);
+            let styleElement = document.head.querySelector(`style[component="${ stylesheetUrl }"]`);
             if (!styleElement)
             {
                 styleElement = document.createElement('style');
                 styleElement.setAttribute('component', stylesheetUrl);
                 document.head.appendChild(styleElement);
+
+                stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cssTimestamp }/${ stylesheetUrl }`;
                 fetch(stylesheetUrl)
                 .then(request => request.text())
                 .then(response => {
@@ -53,8 +60,5 @@ class Runtime
         }
 
         document.addEventListener('fetch:stylesheets', this.handleStylesheetsFetchEvent);
-        document.addEventListener('fetch:scripts', this.handleScriptFetchEvent);
     }
 }
-
-new Runtime();

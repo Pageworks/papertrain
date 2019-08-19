@@ -11,3 +11,5 @@
 {% do view.registerJsFile(globalAssets['env'].module, {"async":"async"}) %}
 {% do view.registerJsFile(globalAssets['uuid'].package, {"async":"async"}) %}
 {% do view.registerJsFile(globalAssets['device-manager'].package, {"async":"async"}) %} #}
+
+{# <script defer="defer" type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/automation/modules/env.js' }}"></script> #}

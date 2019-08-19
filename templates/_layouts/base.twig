@@ -1,7 +1,7 @@
 {% set isDebug = craft.app.request.getParam('debug') %}
 {% set currentSite = craft.app.sites.currentSite %}
 <!doctype html>
-<html lang="{{ currentSite.language }}" class="has-no-js is-not-pointer-device is-not-touch-device dom-is-loading" {% if isDebug|length %}debug="true"{% endif %} data-csrf="{{ craft.app.request.csrfToken }}">
+<html lang="{{ currentSite.language }}" class="has-no-js is-not-pointer-device is-not-touch-device dom-is-loading" {% if isDebug|length %}debug="true"{% endif %} data-csrf="{{ craft.app.request.csrfToken }}" data-css-timestamp="{{ craft.papertrain.getCssCachebust }}" data-js-timestamp="{{ craft.papertrain.getJsCachebust }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -74,6 +74,8 @@
         <script>
             modules = {};
             window.stylesheets = [];
+            window.packages = [];
+            window.components = [];
         </script>
 
         <!-- Loading animation -->
@@ -287,7 +289,7 @@
     <body>
 
         <!-- Required Runtime JavaScript -->
-        {% include "_layouts/global-javascript.twig" %}
+        {# {% include "_layouts/global-javascript.twig" %} #}
 
         {% spaceless %}
             <div class="c-transition">
@@ -298,7 +300,7 @@
         {% endspaceless %}
 
         {% set applicationPaths = craft.papertrain.getAssetPaths(['runtime']) %}
-        <script defer="defer" src="{{ applicationPaths['runtime'].module }}"></script>
+        <script type="module" src="{{ alias('@rootUrl')|trim('/') ~ '/automation/modules/runtime.js' }}"></script>
 
         <noscript>
             <div style="position:fixed;bottom:0;left:0;padding:16px 32px;border-radius:8px 8px 0 0;text-align:center;background-color:#ffffff;box-shadow:0 -1px 3px rgba(0,0,0,0.15), 0 -4px 32px rgba(0,0,0,0.1);left:50%;transform:translateX(-50%);z-index:99999;">

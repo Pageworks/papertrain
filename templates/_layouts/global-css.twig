@@ -1,8 +1,1 @@
-{% set globalCssAssets = craft.papertrain.getAssetPaths(['main', 'fonts', 'container']) %}
-
-<script defer="defer">
-    {% for asset in globalCssAssets %}
-        window.stylesheets.push("{{ asset.css }}");
-    {% endfor %}
-</script>
-
+{{ craft.papertrain.stylesheets(['main', 'fonts', 'container']) }}

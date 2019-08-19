@@ -44,4 +44,34 @@ class PapertrainModuleService extends Component
 
         return $ret;
     }
+
+    public function buildStylesheets(array $fileNames)
+    {
+        echo '<script type="module">';
+        foreach ($fileNames as $file)
+        {
+            echo 'window.stylesheets.push("' . $file . '.css");';
+        }
+        echo '</script>';
+    }
+
+    public function buildPackages(array $fileNames)
+    {
+        echo '<script type="module">';
+        foreach ($fileNames as $file)
+        {
+            echo 'window.packages.push("' . $file . '.js");';
+        }
+        echo '</script>';
+    }
+
+    public function buildComponents(array $fileNames)
+    {
+        echo '<script type="module">';
+        foreach ($fileNames as $file)
+        {
+            echo 'window.components.push("' . $file . '.js");';
+        }
+        echo '</script>';
+    }
 }
