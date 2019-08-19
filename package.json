@@ -60,6 +60,10 @@
         "uuid": "^3.3.2"
     },
     "webDependencies": [
+        {
+            "package": "uuid/v4",
+            "import": "* as uuid"
+        }
     ],
     "devDependencies": {
         "browser-sync": "^2.26.7",
