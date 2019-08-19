@@ -4,6 +4,8 @@
 
 - Adds: moves `utils/styles/` to `scss-settings/`
 - Adds: moves `_lib/globals/` to `_globals/`
+- Adds: web modules bundler
+- Adds: node modules bundler
 
 ### Fixed
 
@@ -11,6 +13,7 @@
 - Fixes: updates base font stack to prefer native OS font stack
 - Fixes: updates reset CSS in `base.twig`
 - Fixes: updates document title to use product name on commerce sites OR just the static site name when no entry/category/product is available
+- Fixes: updates SASS compiler script to provide better error reporting
 
 ### Removed
 
