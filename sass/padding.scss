@@ -3,6 +3,10 @@
 
 // Spacing
 // ==========================================================================
+$spacing-properties: (
+    'padding': 'padding',
+) !default;
+
 @import './utilities/spacing';
 
 // Mobile Padding

@@ -20,6 +20,7 @@
         "url": "https://github.com/Pageworks/papertrain/issues",
         "email": "web@page.works"
     },
+    "types": "templates/_layouts/globals.d.ts",
     "scripts": {
         "precommit": "lint-staged",
         "lint:sass": "stylelint  *.scss --cache --config ./build-tools/.stylelintrc --cache-location ./build-tools/.stylelintcache",

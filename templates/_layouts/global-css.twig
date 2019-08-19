@@ -1,12 +1,8 @@
-{% set globalCssAssets = craft.papertrain.getAssetPaths(['main', 'fonts', 'utility', 'spacing', 'ratio', 'widths', 'container', 'wrapper', 'grid']) %}
+{% set globalCssAssets = craft.papertrain.getAssetPaths(['main', 'fonts', 'container']) %}
 
+<script defer="defer">
+    {% for asset in globalCssAssets %}
+        window.stylesheets.push("{{ asset.css }}");
+    {% endfor %}
+</script>
 
-{% do view.registerCssFile(globalCssAssets['main'].css) %}
-{% do view.registerCssFile(globalCssAssets['fonts'].css) %}
-{% do view.registerCssFile(globalCssAssets['utility'].css) %}
-{% do view.registerCssFile(globalCssAssets['spacing'].css) %}
-{% do view.registerCssFile(globalCssAssets['ratio'].css) %}
-{% do view.registerCssFile(globalCssAssets['widths'].css) %}
-{% do view.registerCssFile(globalCssAssets['container'].css) %}
-{% do view.registerCssFile(globalCssAssets['wrapper'].css) %}
-{% do view.registerCssFile(globalCssAssets['grid'].css) %}

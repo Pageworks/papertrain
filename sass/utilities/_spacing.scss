@@ -16,11 +16,6 @@ $spacing-directions: (
     '-vertical':   '-top'  '-bottom',
 ) !default;
 
-$spacing-properties: (
-    'padding': 'padding',
-    'margin':  'margin',
-) !default;
-
 $spacing-sizes: (
     null        :   $unit,
     '-quarter'  :   $unit-quarter,

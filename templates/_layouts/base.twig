@@ -70,10 +70,13 @@
         {# PWA Manifest #}
         {# <link rel="manifest" href="{{ alias('@rootUrl')|trim('/') }}/manifest.json"> #}
 
-        <!-- Required CSS -->
-        {% include "_layouts/global-css.twig" %}
+        <!-- Required global variables -->
+        <script>
+            modules = {};
+            window.stylesheets = [];
+        </script>
 
-        {# Loading animation CSS #}
+        <!-- Loading animation -->
         <style>
             .c-transition{
                 width: 100vw;
@@ -223,7 +226,7 @@
             }
         </style>
 
-        {# Reset CSS #}
+        <!-- Reset CSS-->
         <style>
             *,
             *::before,
@@ -262,9 +265,11 @@
                 padding: 0;
                 border: none;
             }
-            template
+
+            template,
             style,
-            script{
+            script,
+            title{
                 display: none !important;
             }
             button{
@@ -276,9 +281,8 @@
             }
         </style>
 
-        <script>
-            modules = {};
-        </script>
+        <!-- Required CSS -->
+        {% include "_layouts/global-css.twig" %}
     </head>
     <body>
 
@@ -286,7 +290,6 @@
         {% include "_layouts/global-javascript.twig" %}
 
         {% spaceless %}
-            {# Page Transition Animation #}
             <div class="c-transition">
                 <div class="c-transition_primary"></div>
                 <div class="c-transition_secondary"></div>
@@ -294,8 +297,8 @@
             {% block page %}{% endblock %}
         {% endspaceless %}
 
-        {% set applicationPaths = craft.papertrain.getAssetPaths(['application']) %}
-        {% do view.registerJsFile(applicationPaths['application'].module) %}
+        {% set applicationPaths = craft.papertrain.getAssetPaths(['runtime']) %}
+        <script defer="defer" src="{{ applicationPaths['runtime'].module }}"></script>
 
         <noscript>
             <div style="position:fixed;bottom:0;left:0;padding:16px 32px;border-radius:8px 8px 0 0;text-align:center;background-color:#ffffff;box-shadow:0 -1px 3px rgba(0,0,0,0.15), 0 -4px 32px rgba(0,0,0,0.1);left:50%;transform:translateX(-50%);z-index:99999;">

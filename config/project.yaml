@@ -1,4 +1,4 @@
-dateModified: 1559996630
+dateModified: 1566215763
 email:
   fromEmail: 'REPLACE ME'
   fromName: 'REPLACE ME'
@@ -483,7 +483,7 @@ sites:
     handle: default
     language: en-US
     hasUrls: true
-    baseUrl: $DEFAULT_SITE_URL
+    baseUrl: 'http://$DEFAULT_SITE_URL'
     sortOrder: 1
     primary: true
 system:

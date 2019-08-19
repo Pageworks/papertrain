@@ -8,7 +8,7 @@ const chalk = require('chalk');
 const timestamp = Date.now().toString();
 
 // Get all the base SCSS files from the base global scss directory
-const globalFiles = glob.sync('./scss-settings/*.scss');
+const globalFiles = glob.sync('./sass/*.scss');
 
 // Get all the SCSS files from the templates lib directory
 const templateFiles = glob.sync('./templates/**/*.scss');
