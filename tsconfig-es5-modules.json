@@ -6,8 +6,8 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "target": "es5",
-        "module": "commonjs",
-        "moduleResolution": "node",
+        "module": "none",
+        "moduleResolution": "classic",
         "allowJs": true,
         "lib": [
             "dom",
@@ -20,7 +20,6 @@
         ]
     },
     "include": [
-        "templates",
-        "globals.d.ts"
+        "web_modules"
     ]
 }

@@ -87,7 +87,7 @@ class WebModuleBundler
 
                     let fileData = data.toString();
 
-                    let globalVariableName = fileData.match(/(?<=var\s).*?(?=\=[\s]\(function)/)[0].trim();
+                    let globalVariableName = fileData.match(/(?<=class).*(?=\{)/)[0].trim();
 
                     let newData = '(function(){\n';
                     newData += fileData;

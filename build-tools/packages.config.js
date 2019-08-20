@@ -54,9 +54,9 @@ class NodeModuleBundler
     removeBundleDirectory()
     {
         return new Promise((resolve, reject)=>{
-            if (fs.existsSync('./_bundles'))
+            if (fs.existsSync('./_packages'))
             {
-                rimraf('./_bundles', (error)=>{
+                rimraf('./_packages', (error)=>{
                     if(error)
                     {
                         reject(error);
@@ -75,7 +75,7 @@ class NodeModuleBundler
     makeBundleDirectory()
     {
         return new Promise((resolve, reject)=>{
-            fs.mkdir('./_bundles', (err)=>{
+            fs.mkdir('./_packages', (err)=>{
                 if (err)
                 {
                     reject(err);
@@ -154,7 +154,7 @@ class NodeModuleBundler
                     data += `\nwindow.${ importName } = ${ importName };`;
                 }
                 
-                fs.writeFile(`./_bundles/${ serverSafeName }.js`, data, (err)=>{
+                fs.writeFile(`./_packages/${ serverSafeName }.js`, data, (err)=>{
                     if (err)
                     {
                         reject(err);
@@ -178,7 +178,7 @@ class NodeModuleBundler
             for (let i = 0; i < serverSafeBundleNames.length; i++)
             {
                 const inputOptions = {
-                    input: `./_bundles/${ serverSafeBundleNames[i] }.js`,
+                    input: `./_packages/${ serverSafeBundleNames[i] }.js`,
                     plugins: [
                         rollupPluginNodeResolve({
                             mainFields: ['browser', 'module', 'jsnext:main'],
