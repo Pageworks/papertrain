@@ -9,6 +9,8 @@
 - Adds: new custom runtime script to handle lazy loading css and JavaScript
 - Adds: custom elements polyfill from the [Polymer Project](https://www.polymer-project.org/)
 - Adds: legacy bundler for creating our single `main.js` file for IE 11 and other non-es2015 compatible browsers
+- Adds: new **Web Component** type to the generator
+- Adds: web component bundler
 
 ### Fixed
 
@@ -17,6 +19,8 @@
 - Fixes: updates reset CSS in `base.twig`
 - Fixes: updates document title to use product name on commerce sites OR just the static site name when no entry/category/product is available
 - Fixes: updates SASS compiler script to provide better error reporting
+- Fixes: updates the generators core functionality
+- Fixes: updates npm scripts to use new bundlers & TypeScript compiler config files
 
 ### Removed
 
@@ -28,6 +32,7 @@
 - Removes: empty `_svgs/` directory
 - Removes: empty `_macros/` directory
 - Removes: empty `ajax/` directory
+- Removes: **components** and **objects** from the generator
 
 ## 0.2.5 - 2019-08-16
 
