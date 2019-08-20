@@ -70,13 +70,8 @@ class PapertrainGenerator
             {
                 while (path === null)
                 {
-                    let newPath = await questions.getPath(type);
+                    let newPath = await questions.getPath(type, basePath);
                     newPath = newPath.path.trim().replace(/[\/]$/, '');
-
-                    if (newPath === 'templates')
-                    {
-                        newPath = '';
-                    }
 
                     await fs.promises.access(`${ basePath }/${ newPath }`)
                     .then(()=>{

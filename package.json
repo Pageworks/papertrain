@@ -25,7 +25,6 @@
         "precommit": "lint-staged",
         "lint:sass": "stylelint  *.scss --cache --config ./build-tools/.stylelintrc --cache-location ./build-tools/.stylelintcache",
         "lint:typescript": "tslint *.ts -c ./build-tools/.tslintrc.js -p ./tsconfig.json -t verbose",
-        "webpack": "cross-env NODE_ENV=development webpack --config ./webpack.config.js",
         "tsc": "tsc",
         "create": "node ./build-tools/generator/generator.js",
         "setup": "node ./build-tools/setup/setup.js",
@@ -36,17 +35,20 @@
         "watch": "run-p watch:*",
         "watch:sass": "onchange 'templates/**/*.scss' 'sass/**/*.scss' -- node ./build-tools/sass-watcher.config.js {{changed}}",
         "watch:sync": "node ./build-tools/sync.js",
-
         "dev": "run-p dev:*",
         "dev:es6": "npm run compile:es6",
         "dev:modules": "npm run compile:modules && node ./build-tools/modules.config.js",
-
-        "compile": "node ./build-tools/compile.config.js && run-p compile:* && npm run bundle",
+        "build": "npm run cleanup && npm run compile && npm run bundle",
+        "cleanup": "node ./build-tools/compile.config.js",
+        "compile": "npm run cleanup && run-p compile:*",
         "compile:es5": "tsc --p ./tsconfig-es5.json",
         "compile:es6": "tsc --p ./tsconfig.json",
         "compile:modules": "tsc --p ./tsconfig-modules.json",
         "compile:styles": "cross-env NODE_ENV=production node ./build-tools/sass.config.js",
-        "bundle": "node ./build-tools/bundler.config.js && node ./build-tools/modules.config.js"
+        "bundle": "run-p bundle:*",
+        "bundle:packages": "node ./build-tools/packages.config.js",
+        "bundle:modules": "node ./build-tools/modules.config.js",
+        "bundle:components": "node ./build-tools/components.config.js"
     },
     "lint-staged": {
         "linters": {

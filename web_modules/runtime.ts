@@ -147,12 +147,56 @@ class Runtime
         });
     }
 
+    private getComponents() : Promise<string|null>
+    {
+        return new Promise((resolve, reject) => {
+            if (window.components.length === 0)
+            {
+                resolve();
+            }
+
+            let fetched = 0;
+            const requestedComponents = window.components;
+            const numberOfRequiredFiles = requestedComponents.length;
+
+            while (requestedComponents.length)
+            {
+                let file = requestedComponents[0];
+                let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
+                if (!element)
+                {
+                    element = document.createElement('script');
+                    element.setAttribute('file', file);
+                    document.head.appendChild(element); 
+                    const url = `${ window.location.origin }/automation/components-${ document.documentElement.dataset.cachebust }/${ file }`;
+                    this.fetchFile(url)
+                    .then(response => {
+                        element.innerHTML = response;
+                        
+                        fetched++;
+                        if (fetched === numberOfRequiredFiles)
+                        {
+                            resolve();
+                        }
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+                }
+
+                requestedComponents.splice(0, 1);
+                window.components.splice(0, 1);
+            }
+        });
+    }
+
     private async getScripts()
     {
         try
         {
             await this.getPackages();
             await this.getModules();
+            await this.getComponents();
         }
         catch (error)
         {
