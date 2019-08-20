@@ -1,3 +1,5 @@
+declare var uuid:Function;
+
 class Env
 {
     private _domState = 'loading';
@@ -9,6 +11,7 @@ class Env
     {
         this.setDefaultDebug();
         this.stopLoading();
+        console.log(uuid());
     }
 
     public stopLoading() : void

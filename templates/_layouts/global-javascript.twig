@@ -4,4 +4,5 @@
 <script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/promise.js' }}"></script>
 <script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/fetch.js' }}"></script>
 
+{{ craft.papertrain.packages(['uuid-v4']) }}
 {{ craft.papertrain.modules(['env']) }}
