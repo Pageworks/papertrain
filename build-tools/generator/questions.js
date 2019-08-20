@@ -1,4 +1,5 @@
 const inquirer   = require('inquirer');
+const fs = require('fs');
 
 module.exports = {
     getName: ()=>{
@@ -8,10 +9,7 @@ module.exports = {
                 type: 'input',
                 message: 'Name',
                 validate: (input)=>{
-                    if (/[\-\_\t]/g.test(input)){
-                        return 'Tabs, hyphens, and underscores are not allowed. They will be generated for you.';
-                    }
-                    else if(input === ''){
+                    if(input === ''){
                         return 'A name is required.';
                     }
                     else{
@@ -23,26 +21,18 @@ module.exports = {
 
         return inquirer.prompt(questions);
     },
-    getDetails: ()=>{
+    getType: ()=>{
         const questions = [
             {
-                name: 'needsScss',
-                type: 'confirm',
-                message: 'Do you need SCSS?',
-                default: true
-            },
-            {
-                name: 'needsHTML',
-                type: 'confirm',
-                message: 'Do you need HTML?',
-                default: true
-            },
-            {
-                name: 'needsScript',
-                type: 'confirm',
-                message: 'Do you need a script?',
-                default: true
-            },
+                name: 'type',
+                type: 'list',
+                message: 'What are you creating?',
+                choices: [
+                    'Template',
+                    'Web Component',
+                    'Global Stylesheet'
+                ]
+            }
         ];
 
         return inquirer.prompt(questions);
@@ -62,43 +52,12 @@ module.exports = {
 
         return inquirer.prompt(questions);
     },
-    getType1: ()=>{
+    getPath: ()=>{
         const questions = [
             {
-                name: 'generationType',
-                type: 'list',
-                message: 'What are you creating?',
-                choices: [
-                    'Component',
-                    'Template'
-                ]
-            },
-        ];
-
-        return inquirer.prompt(questions);
-    },
-    getType2: ()=>{
-        const questions = [
-            {
-                name: 'generationType',
-                type: 'list',
-                message: 'What are you creating?',
-                choices: [
-                    'Object',
-                    'Template'
-                ]
-            },
-        ];
-
-        return inquirer.prompt(questions);
-    },
-    getLocation: (defaultPath)=>{
-        const questions = [
-            {
-                name: 'fileLocation',
+                name: 'path',
                 type: 'input',
                 message: 'Where should the files be generated?',
-                default: defaultPath,
                 validate: (input)=>{
                     if (/\s/g.test(input)){
                         return 'You should not have spaces in your path.';

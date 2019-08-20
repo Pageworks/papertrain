@@ -77,7 +77,6 @@ class Runtime
             {
                 let file = requestedPackages[0];
                 let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
-                console.log(file);
                 if (!element)
                 {
                     element = document.createElement('script');
@@ -125,7 +124,7 @@ class Runtime
                 {
                     element = document.createElement('script');
                     element.setAttribute('file', file);
-                    document.head.appendChild(element);
+                    document.head.appendChild(element); 
                     const url = `${ window.location.origin }/automation/modules-${ document.documentElement.dataset.cachebust }/${ file }`;
                     this.fetchFile(url)
                     .then(response => {

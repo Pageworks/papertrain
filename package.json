@@ -27,7 +27,7 @@
         "lint:typescript": "tslint *.ts -c ./build-tools/.tslintrc.js -p ./tsconfig.json -t verbose",
         "webpack": "cross-env NODE_ENV=development webpack --config ./webpack.config.js",
         "tsc": "tsc",
-        "create": "node ./build-tools/generator/generate.js",
+        "create": "node ./build-tools/generator/generator.js",
         "setup": "node ./build-tools/setup/setup.js",
         "preview": "node ./build-tools/sync.js",
         "production": "node ./build-tools/compile.config.js && npm-run-all production:*",

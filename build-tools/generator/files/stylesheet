@@ -1,7 +1,6 @@
 @import 'settings';
 @import 'mixins';
 
-.REPLACE_ME{
+.REPLACE_WITH_CSS{
     position: relative;
-    display: inline-block;
 }
