@@ -3,6 +3,7 @@ interface Window
     stylesheets : Array<string>
     packages : Array<string>
     components : Array<string>
+    modules : Array<string>
 }
 
 class Runtime
@@ -19,16 +20,15 @@ class Runtime
     {
         while (window.stylesheets.length)
         {
-            let stylesheetUrl = window.stylesheets[0];
-
-            let styleElement = document.head.querySelector(`style[component="${ stylesheetUrl }"]`);
+            let stylesheetFile = window.stylesheets[0];
+            let styleElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
             if (!styleElement)
             {
                 styleElement = document.createElement('style');
-                styleElement.setAttribute('component', stylesheetUrl);
+                styleElement.setAttribute('file', stylesheetFile);
                 document.head.appendChild(styleElement);
 
-                stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetUrl }`;
+                const stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetFile }`;
                 fetch(stylesheetUrl)
                 .then(request => request.text())
                 .then(response => {

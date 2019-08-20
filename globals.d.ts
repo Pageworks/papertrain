@@ -1,6 +1,9 @@
 interface Window
 {
-    stylesheets: Array<string>
+    stylesheets : Array<string>
+    packages : Array<string>
+    components : Array<string>
+    modules : Array<string>
 }
 
 declare class Env
@@ -10,4 +13,5 @@ declare class Env
     public isDebug : boolean;
     public getState() : string;
 }
+
 declare var env:Env;

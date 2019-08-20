@@ -74,4 +74,14 @@ class PapertrainModuleService extends Component
         }
         echo '</script>';
     }
+
+    public function buildModules(array $fileNames)
+    {
+        echo '<script type="module">';
+        foreach ($fileNames as $file)
+        {
+            echo 'window.modules.push("' . $file . '.js");';
+        }
+        echo '</script>';
+    }
 }

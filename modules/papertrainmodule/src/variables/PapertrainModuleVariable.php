@@ -48,4 +48,9 @@ class PapertrainModuleVariable
     {
         PapertrainModule::getInstance()->papertrainModuleService->buildComponents($fileNames);
     }
+
+    public function modules(array $fileNames)
+    {
+        PapertrainModule::getInstance()->papertrainModuleService->buildModules($fileNames);
+    }
 }

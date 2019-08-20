@@ -1,4 +1,4 @@
-## 0.3 - UNRELEASED
+## 0.3.0-a1 - UNRELEASED
 
 ### Added
 
@@ -6,6 +6,7 @@
 - Adds: moves `_lib/globals/` to `_globals/`
 - Adds: web modules bundler
 - Adds: node modules bundler
+- Adds: new custom runtime script to handle lazy loading css and JavaScript
 
 ### Fixed
 

@@ -76,6 +76,7 @@
             window.stylesheets = [];
             window.packages = [];
             window.components = [];
+            window.modules = [];
         </script>
 
         <!-- Loading animation -->
@@ -289,7 +290,7 @@
     <body>
 
         <!-- Required Runtime JavaScript -->
-        {# {% include "_layouts/global-javascript.twig" %} #}
+        {% include "_layouts/global-javascript.twig" %}
 
         {% spaceless %}
             <div class="c-transition">

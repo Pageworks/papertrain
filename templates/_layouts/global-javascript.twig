@@ -4,12 +4,4 @@
 <script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/promise.js' }}"></script>
 <script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/fetch.js' }}"></script>
 
-{# {% set globalAssets = craft.papertrain.getAssetPaths(['runtime', 'globals', 'uuid', 'device-manager', 'env']) %}
-
-{% do view.registerJsFile(globalAssets['runtime'].module) %}
-{% do view.registerJsFile(globalAssets['globals'].module, {"async":"async"}) %}
-{% do view.registerJsFile(globalAssets['env'].module, {"async":"async"}) %}
-{% do view.registerJsFile(globalAssets['uuid'].package, {"async":"async"}) %}
-{% do view.registerJsFile(globalAssets['device-manager'].package, {"async":"async"}) %} #}
-
-{# <script defer="defer" type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/automation/modules/env.js' }}"></script> #}
+{{ craft.papertrain.modules(['env']) }}
