@@ -52,12 +52,13 @@ module.exports = {
 
         return inquirer.prompt(questions);
     },
-    getPath: ()=>{
+    getPath: (type)=>{
         const questions = [
             {
                 name: 'path',
                 type: 'input',
-                message: 'Where should the files be generated?',
+                message: `Where should the ${ type } be generated?`,
+                default: (type === 'Template') ? 'templates/' : '',
                 validate: (input)=>{
                     if (/\s/g.test(input)){
                         return 'You should not have spaces in your path.';

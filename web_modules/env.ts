@@ -3,15 +3,13 @@ declare var uuid:Function;
 class Env
 {
     private _domState = 'loading';
-    private _debugState = false;
 
-    public isDebug : boolean = this._debugState;
+    public isDebug : boolean = false;
 
     constructor()
     {
         this.setDefaultDebug();
         this.stopLoading();
-        console.log(uuid());
     }
 
     public stopLoading() : void
@@ -33,13 +31,13 @@ class Env
 
     private setDefaultDebug() : void
     {
-        if (window.location.hostname.match(/.local/gi))
+        if (window.location.origin.match(/\.local/gi))
         {
-            this._debugState = true;
+            this.isDebug = true;
         }
         else if (document.documentElement.getAttribute('debug') !== null)
         {
-            this._debugState = true;
+            this.isDebug = true;
         }
     }
 }

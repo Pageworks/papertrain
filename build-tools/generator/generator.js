@@ -41,69 +41,78 @@ class PapertrainGenerator
             let type = await questions.getType();
             type = type.type;
 
-            this.cssName = this.generateCssName(baseName, type);
+            this.cssName = await this.generateCssName(baseName, type);
             this.kebabName = this.generateKebabCase(baseName);
             this.camelName = this.generateCamelCase(baseName);
             this.pascalName = this.generatePascalCase(baseName);
 
             if (type === 'Web Component')
             {
-                const scriptFileType = await questions.scriptFileType();
+                const scriptFileType = await questions.scriptType();
 
                 switch(scriptFileType.type)
                 {
                     case 'TypeScript':
-                        this.scriptFileType = '.ts';
+                        this.scriptFileType = 'ts';
                         break;
                     case 'JavaScript':
-                        this.scriptFileType = '.js';
+                        this.scriptFileType = 'js';
                         break;
                     default:
-                        this.scriptFileType = '.ts';
+                        this.scriptFileType = 'ts';
                         break;
                 }
             }
 
             let path = null;
 
-            if (type === 'Global Stylesheet')
+            if (type !== 'Global Stylesheet')
             {
-                path = `${ basePath }/_globals`;
-            }
-
-            while (path === null)
-            {
-                let newPath = await questions.getPath(failedPath);
-                newPath = newPath.path.trim().replace(/[\/]$/, '');
-                await fs.promises.access(`${ basePath }/${ newPath }`)
-                .then(()=>{
-                    path = `${ basePath }/${ newPath }`;
-                })
-                .catch(()=>{
-                    console.log(chalk.hex('#f5f47b').bold(`${ basePath }/${ newPath }`), chalk.white('is not a valid path'));
-                });
-            }
-
-            console.log('');
-            console.log(chalk.white('Creating a'), chalk.hex('#8cf57b').bold(`${ type }`), chalk.white('named'), chalk.hex('#8cf57b').bold(`${ baseName }`), chalk.white('at'), chalk.hex('#f5f47b').bold(`${ path }`));
-            console.log('');
-            const confirmed = await questions.confirmGeneration();
-            await new Promise((resolve, reject) => {
-                if (!confirmed.confirm)
+                while (path === null)
                 {
-                    reject('Generator canceled by the user');
+                    let newPath = await questions.getPath(type);
+                    newPath = newPath.path.trim().replace(/[\/]$/, '');
+
+                    if (newPath === 'templates')
+                    {
+                        newPath = '';
+                    }
+
+                    await fs.promises.access(`${ basePath }/${ newPath }`)
+                    .then(()=>{
+                        path = `${ basePath }/${ newPath }`;
+                    })
+                    .catch(()=>{
+                        console.log(chalk.hex('#f5f47b').bold(`${ basePath }/${ newPath }`), chalk.white('is not a valid path'));
+                    });
                 }
 
-                resolve();
-            });
+                console.log('');
+                console.log(chalk.white('Creating a'), chalk.hex('#8cf57b').bold(`${ type }`), chalk.white('named'), chalk.hex('#8cf57b').bold(`${ this.kebabName }`), chalk.white('at'), chalk.hex('#f5f47b').bold(`${ path }`));
+                console.log('');
+                const confirmed = await questions.confirmGeneration();
+                await new Promise((resolve, reject) => {
+                    if (!confirmed.confirm)
+                    {
+                        reject('Generator canceled by the user');
+                    }
 
-            spinner.start();
-            spinner.text = 'Creating directory';
-            await this.generateDirectory(path);
+                    resolve();
+                });
+
+                spinner.start();
+                spinner.text = 'Creating directory';
+                await this.generateDirectory(path);
+            }
+            else
+            {
+                path = `${ basePath }/_globals`;
+                spinner.start();
+            }
 
             spinner.text = 'Creating files';
             await this.generateFiles(path, type);
-
+            spinner.succeed();
             console.log(chalk.hex('#8cf57b').bold('Success!'));
         }
         catch (error)
@@ -126,9 +135,9 @@ class PapertrainGenerator
                 case 'Web Component':
                     resolve(newName);
                 case 'Template':
-                    resolve(`t-${ newName }`);
+                    resolve(`.t-${ newName }`);
                 case 'Global Stylesheet':
-                    resolve(`g-${ newName }`);
+                    resolve(`.g-${ newName }`);
                 default:
                     reject(`${ type } does not exist within the generate CSS name switch statement`);
             }
@@ -163,7 +172,7 @@ class PapertrainGenerator
     generateDirectory(path)
     {
         return new Promise((resolve, reject)=>{
-            fs.mkdir(`${ path }`, (err)=>{
+            fs.mkdir(`${ path }/${ this.kebabName }`, (err)=>{
                 if (err)
                 {
                     spinner.fail();
@@ -178,53 +187,55 @@ class PapertrainGenerator
     generateFiles(path, type)
     {
         return new Promise((resolve, reject)=>{
-            if (type === 'Template')
-            {
-                try
+            (async ()=>{
+                if (type === 'Template')
                 {
-                    await this.generateTemplate(path);
-                    await this.generateStylesheet(path);
-                    resolve();
+                    try
+                    {
+                        await this.generateTemplate(path);
+                        await this.generateStylesheet(path);
+                        resolve();
+                    }
+                    catch (error)
+                    {
+                        spinner.fail();
+                        reject(error);
+                    }
                 }
-                catch (error)
+                else if (type === 'Web Component')
+                {
+                    try
+                    {
+                        await this.generateComponent(path);
+                        await this.generateStylesheet(path);
+                        await this.generateScript(path);
+                        resolve();
+                    }
+                    catch (error)
+                    {
+                        spinner.fail();
+                        reject(error);
+                    }
+                }
+                else if (type === 'Global Stylesheet')
+                {
+                    try
+                    {
+                        await this.generateGlobalStylesheet(path);
+                        resolve();
+                    }
+                    catch (error)
+                    {
+                        spinner.fail();
+                        reject(error);
+                    }
+                }
+                else
                 {
                     spinner.fail();
-                    reject(error);
+                    reject(`Attempted to generate undefined type ${ type }`);
                 }
-            }
-            else if (type === 'Web Component')
-            {
-                try
-                {
-                    await this.generateComponent(path);
-                    await this.generateStylesheet(path);
-                    await this.generateScript(path);
-                    resolve();
-                }
-                catch (error)
-                {
-                    spinner.fail();
-                    reject(error);
-                }
-            }
-            else if (type === 'Global Stylesheet')
-            {
-                try
-                {
-                    await this.generateStylesheet(path);
-                    resolve();
-                }
-                catch (error)
-                {
-                    spinner.fail();
-                    reject(error);
-                }
-            }
-            else
-            {
-                spinner.fail();
-                reject(`Attempted to generate undefined type ${ type }`);
-            }
+            })();
         });
     }
 
@@ -296,13 +307,13 @@ class PapertrainGenerator
     generateComponent(path)
     {
         return new Promise((resolve, reject)=>{
-            fs.copyFile(`${ __dirname }/files/component`, `${ path }/${ this.kebabName }/${ this.kebabName }.${ HTMLFileType }`, (error)=>{
+            fs.copyFile(`${ __dirname }/files/component`, `${ path }/${ this.kebabName }/index.${ HTMLFileType }`, (error)=>{
                 if (error)
                 {
                     reject(error);
                 }
 
-                fs.readFile(`${ path }/${ this.kebabName }/${ this.kebabName }.${ HTMLFileType }`, 'utf-8', (error, data)=>{
+                fs.readFile(`${ path }/${ this.kebabName }/index.${ HTMLFileType }`, 'utf-8', (error, data)=>{
                     if (error)
                     {
                         reject(error);
@@ -311,11 +322,11 @@ class PapertrainGenerator
                     let modifiedFile = data;
                     modifiedFile = modifiedFile.replace(/REPLACE_WITH_KEBAB/g, this.kebabName);
 
-                    fs.writeFile(`${ path }/${ this.kebabName }/${ this.kebabName }.${ HTMLFileType }`, modifiedFile, 'utf-8', (err)=>{
+                    fs.writeFile(`${ path }/${ this.kebabName }/index.${ HTMLFileType }`, modifiedFile, 'utf-8', (err)=>{
                         if (err)
                         {
                             spinner.fail();
-                            reject(`Failed to make the component ${ HTMLFileType } file at ${ path }/${ this.kebabName }/${ this.kebabName }.${ HTMLFileType }`);
+                            reject(`Failed to make the component ${ HTMLFileType } file at ${ path }/${ this.kebabName }/index.${ HTMLFileType }`);
                         }
 
                         resolve();
@@ -351,6 +362,38 @@ class PapertrainGenerator
                         {
                             spinner.fail();
                             reject(`Failed to make the component script file at ${ path }/${ this.kebabName }/${ this.kebabName }.${ this.scriptFileType }`);
+                        }
+
+                        resolve();
+                    });
+                });
+            });
+        });
+    }
+
+    generateGlobalStylesheet(path)
+    {
+        return new Promise((resolve, reject)=>{
+            fs.copyFile(`${ __dirname }/files/stylesheet`, `${ path }/${ this.kebabName }.${ StylesheetFileType }`, (error)=>{
+                if (error)
+                {
+                    reject(error);
+                }
+
+                fs.readFile(`${ path }/${ this.kebabName }.${ StylesheetFileType }`, 'utf-8', (error, data)=>{
+                    if (error)
+                    {
+                        reject(error);
+                    }
+
+                    let modifiedFile = data;
+                    modifiedFile = modifiedFile.replace(/REPLACE_WITH_CSS/g, this.cssName);
+
+                    fs.writeFile(`${ path }/${ this.kebabName }.${ StylesheetFileType }`, modifiedFile, 'utf-8', (err)=>{
+                        if (err)
+                        {
+                            spinner.fail();
+                            reject(`Failed to make the stylesheet file at ${ path }/${ this.kebabName }.${ StylesheetFileType }`);
                         }
 
                         resolve();
