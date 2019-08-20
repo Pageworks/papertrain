@@ -6,7 +6,7 @@ interface Window
     modules : Array<string>
 }
 
-declare class EnvClass
+declare class Env
 {
     public startLoading() : void;
     public stopLoading() : void;
@@ -14,4 +14,4 @@ declare class EnvClass
     public getState() : string;
 }
 
-declare var Env:EnvClass;
+declare var env:Env;

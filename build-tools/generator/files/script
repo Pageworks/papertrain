@@ -16,7 +16,7 @@ class REPLACE_WITH_PASCAL extends HTMLElement
     }
 }
 
-if (Env.isDebug)
+if (env.isDebug)
 {
     console.log('%c[Web Component] '+'%cREPLACE_WITH_KEBAB %chas loaded', 'color:#4882fd','color:#48eefd','color:#eee');
 }

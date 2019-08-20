@@ -1,12 +1,9 @@
 {
     "compilerOptions": {
-        "outDir": "./_compiled/es5",
+        "outFile": "./_compiled/legacy/main.js",
         "sourceMap": false,
-        "noImplicitAny": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
         "target": "es5",
-        "module": "commonjs",
+        "module": "amd",
         "moduleResolution": "node",
         "allowJs": true,
         "lib": [

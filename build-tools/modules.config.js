@@ -2,7 +2,6 @@ const chalk = require('chalk');
 const glob = require("glob");
 const fs = require("fs");
 const rimraf = require('rimraf');
-const rollup = require('rollup');
 
 class WebModuleBundler
 {
@@ -24,7 +23,7 @@ class WebModuleBundler
         }
         catch (error)
         {
-            throw error;
+            console.log(chalk.hex('#ff6426').bold(error));
         }
     }
 
@@ -89,10 +88,8 @@ class WebModuleBundler
 
                     let globalVariableName = fileData.match(/(?<=class).*(?=\{)/)[0].trim();
 
-                    let newData = '(function(){\n';
-                    newData += fileData;
-                    newData += `\nwindow.${ globalVariableName } = new ${ globalVariableName }();\n`;
-                    newData += '})();\n';
+                    let newData = fileData;
+                    newData += `\nvar ${ globalVariableName.toLowerCase() } = new ${ globalVariableName }();\n`;
 
                     let serverSafeName = modules[i].replace(/^.*[\\\/]/, '').toLowerCase();
                     // let importName = serverSafeName.replace(/\.js/, '');

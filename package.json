@@ -14,7 +14,8 @@
         "framework",
         "cli",
         "typescript",
-        "es modules"
+        "es modules",
+        "web components"
     ],
     "bugs": {
         "url": "https://github.com/Pageworks/papertrain/issues",
@@ -46,7 +47,8 @@
         "bundle": "run-p bundle:*",
         "bundle:packages": "node ./build-tools/packages.config.js",
         "bundle:modules": "node ./build-tools/modules.config.js",
-        "bundle:components": "node ./build-tools/components.config.js"
+        "bundle:components": "node ./build-tools/components.config.js",
+        "bundle:legacy": "node ./build-tools/legacy.config.js"
     },
     "lint-staged": {
         "linters": {

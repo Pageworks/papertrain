@@ -301,6 +301,7 @@
         {% endspaceless %}
 
         <script type="module" src="{{ alias('@rootUrl')|trim('/') ~ '/automation/modules-' ~ craft.papertrain.getCachebustTimestamp ~ '/runtime.js' }}"></script>
+        <script nomodule defer="defer" type="text/javascript" src="{{ alias('@rootUrl')|trim('/') }}/assets/main.js"></script>
 
         <noscript>
             <div style="position:fixed;bottom:0;left:0;padding:16px 32px;border-radius:8px 8px 0 0;text-align:center;background-color:#ffffff;box-shadow:0 -1px 3px rgba(0,0,0,0.15), 0 -4px 32px rgba(0,0,0,0.1);left:50%;transform:translateX(-50%);z-index:99999;">

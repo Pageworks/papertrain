@@ -218,6 +218,7 @@ class Runtime
         {
             console.warn('Idle callback prototype not available in this browser, fetching stylesheets');
             this.getStylesheets();
+            this.getScripts();
         }
 
         document.addEventListener('fetch:stylesheets', this.handleStylesheetsFetchEvent);

@@ -26,7 +26,7 @@ class SassCompiler
         }
         catch (error)
         {
-            throw error;
+            console.log(chalk.hex('#ff6426').bold(error));
         }
     }
 

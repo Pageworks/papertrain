@@ -4,7 +4,6 @@ const rollup = require('rollup');
 const rollupPluginNodeResolve = require('rollup-plugin-node-resolve');
 const rollupPluginCommonjs = require('rollup-plugin-commonjs');
 const rimraf = require('rimraf');
-const glob = require("glob");
 
 const projectPackage = require('../package.json');
 
@@ -31,7 +30,7 @@ class NodeModuleBundler
         }
         catch (error)
         {
-            throw error;
+            console.log(chalk.hex('#ff6426').bold(error));
         }
     }
 

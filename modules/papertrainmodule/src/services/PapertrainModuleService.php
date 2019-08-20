@@ -47,7 +47,7 @@ class PapertrainModuleService extends Component
 
     public function buildStylesheets(array $fileNames)
     {
-        echo '<script type="module">';
+        echo '<script defer="defer">';
         foreach ($fileNames as $file)
         {
             echo 'window.stylesheets.push("' . $file . '.css");';
@@ -57,7 +57,7 @@ class PapertrainModuleService extends Component
 
     public function buildPackages(array $fileNames)
     {
-        echo '<script type="module">';
+        echo '<script defer="defer">';
         foreach ($fileNames as $file)
         {
             echo 'window.packages.push("' . $file . '.js");';
