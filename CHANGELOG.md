@@ -1,4 +1,14 @@
-## 0.3.0-a1 - UNRELEASED
+## 0.3.0-a2 - UNRELEASED
+
+### Added
+
+- Adds: Papertrain v0.3 documentation
+
+### Fixed
+
+- Fixes: added v0.3 draft documentation link & updates shields in `readme.md`
+
+## 0.3.0-a1 - 2019-08-19
 
 ### Added
 
