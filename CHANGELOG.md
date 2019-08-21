@@ -19,7 +19,7 @@
 - Fixes: updates reset CSS in `base.twig`
 - Fixes: updates document title to use product name on commerce sites OR just the static site name when no entry/category/product is available
 - Fixes: updates SASS compiler script to provide better error reporting
-- Fixes: updates the generators core functionality
+- Fixes: updates the generators core functionality [#190](https://github.com/Pageworks/papertrain/issues/190)
 - Fixes: updates npm scripts to use new bundlers & TypeScript compiler config files
 
 ### Removed

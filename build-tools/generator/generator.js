@@ -20,7 +20,8 @@ class PapertrainGenerator
     constructor()
     {
         clear();
-        console.log(chalk.cyan('Welcome to the Papertrain CLI generator'));
+        console.log('');
+        console.log(chalk.cyan('Papertrain CLI generator'));
 
         this.cssName;
         this.kebabName;
