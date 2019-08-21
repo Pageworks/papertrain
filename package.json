@@ -28,7 +28,7 @@
         "lint:sass": "stylelint  *.scss --cache --config ./build-tools/.stylelintrc --cache-location ./build-tools/.stylelintcache",
         "lint:typescript": "tslint *.ts -c ./build-tools/.tslintrc.js -p ./tsconfig.json -t verbose",
         "create": "node ./build-tools/generator/generator.js",
-        "setup": "node ./build-tools/setup/setup.js",
+        "setup": "npm run build && node ./build-tools/setup/setup.js",
         "preview": "node ./build-tools/sync.js",
         "watch": "run-p watch:*",
         "watch:sass": "onchange 'templates/**/*.scss' 'sass/**/*.scss' -- node ./build-tools/sass-watcher.config.js {{changed}}",

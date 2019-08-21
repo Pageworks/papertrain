@@ -1,4 +1,4 @@
-dateModified: 1566215763
+dateModified: 1566395353
 email:
   fromEmail: 'REPLACE ME'
   fromName: 'REPLACE ME'
@@ -9,155 +9,6 @@ fieldGroups:
   fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b:
     name: Generic
 fields:
-  2b37cd90-5bb9-4622-b0ac-c10f5680f95c:
-    name: 'Text 1'
-    handle: text1
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: ''
-      columnType: text
-    contentColumnType: text
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  70e7a627-1cd6-4504-bbef-7e99f311fa05:
-    name: 'Text 2'
-    handle: text2
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: ''
-      columnType: text
-    contentColumnType: text
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  9e1f14e4-3cc8-473c-80ff-172c0e85d4d7:
-    name: 'Text 3'
-    handle: text3
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: ''
-      columnType: text
-    contentColumnType: text
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  bf22a169-1799-4f2a-97fd-7ad552267736:
-    name: 'Bool 1'
-    handle: bool1
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\Lightswitch
-    settings:
-      default: ''
-    contentColumnType: boolean
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  1c9afc05-632f-46d4-975c-e29c4750b697:
-    name: 'Bool On 1'
-    handle: boolOn1
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\Lightswitch
-    settings:
-      default: '1'
-    contentColumnType: boolean
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  d11c37e6-6942-40bc-a141-81e3af8736b7:
-    name: 'Simple Body 1'
-    handle: simpleBody1
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\redactor\Field
-    settings:
-      redactorConfig: Simple.json
-      purifierConfig: ''
-      cleanupHtml: true
-      removeInlineStyles: '1'
-      removeEmptyTags: '1'
-      removeNbsp: '1'
-      purifyHtml: '1'
-      columnType: text
-      availableVolumes: ''
-      availableTransforms: '*'
-    contentColumnType: text
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  29435f60-0d1d-4338-aa17-bf193eab2d0e:
-    name: 'Single Image 1'
-    handle: singleImage1
-    instructions: ''
-    searchable: true
-    translationMethod: site
-    translationKeyFormat: null
-    type: craft\fields\Assets
-    settings:
-      useSingleFolder: '1'
-      defaultUploadLocationSource: 'volume:734530b2-7176-44fe-9ff8-22d23df70ed0'
-      defaultUploadLocationSubpath: ''
-      singleUploadLocationSource: 'volume:734530b2-7176-44fe-9ff8-22d23df70ed0'
-      singleUploadLocationSubpath: ''
-      restrictFiles: '1'
-      allowedKinds:
-        - image
-      sources:
-        - 'volume:734530b2-7176-44fe-9ff8-22d23df70ed0'
-      source: null
-      targetSiteId: null
-      viewMode: large
-      limit: '1'
-      selectionLabel: 'Add an Image'
-      localizeRelations: false
-    contentColumnType: string
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  495b6e52-1d34-4871-806b-93e7e07f16cc:
-    name: 'Images 1'
-    handle: images1
-    instructions: ''
-    searchable: true
-    translationMethod: site
-    translationKeyFormat: null
-    type: craft\fields\Assets
-    settings:
-      useSingleFolder: '1'
-      defaultUploadLocationSource: 'volume:734530b2-7176-44fe-9ff8-22d23df70ed0'
-      defaultUploadLocationSubpath: ''
-      singleUploadLocationSource: 'volume:734530b2-7176-44fe-9ff8-22d23df70ed0'
-      singleUploadLocationSubpath: ''
-      restrictFiles: '1'
-      allowedKinds:
-        - image
-      sources: '*'
-      source: null
-      targetSiteId: null
-      viewMode: large
-      limit: ''
-      selectionLabel: 'Add an Image'
-      localizeRelations: false
-    contentColumnType: string
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
   00aa98fd-9ff8-4a6f-9c46-e9c33cf0fb1d:
     name: 'Heading 1'
     handle: heading1
@@ -175,106 +26,21 @@ fields:
       columnType: text
     contentColumnType: text
     fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  842ca7e4-aec0-4ede-8ab9-36d55e6e2a4f:
-    name: 'Heading 2'
-    handle: heading2
+  1c9afc05-632f-46d4-975c-e29c4750b697:
+    name: 'Bool On 1'
+    handle: boolOn1
     instructions: ''
     searchable: true
     translationMethod: none
     translationKeyFormat: null
-    type: craft\fields\PlainText
+    type: craft\fields\Lightswitch
     settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: '48'
-      columnType: text
-    contentColumnType: text
+      default: '1'
+    contentColumnType: boolean
     fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  813046ce-3f57-48bc-992c-246af4beff7b:
-    name: 'Heading 3'
-    handle: heading3
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\fields\PlainText
-    settings:
-      placeholder: ''
-      code: ''
-      multiline: ''
-      initialRows: '4'
-      charLimit: '48'
-      columnType: text
-    contentColumnType: text
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  e0ee5596-80ed-4cfb-a809-a1d979afe32c:
-    name: 'Advanced Body 1'
-    handle: advancedBody1
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\redactor\Field
-    settings:
-      redactorConfig: Advanced.json
-      purifierConfig: ''
-      cleanupHtml: true
-      removeInlineStyles: '1'
-      removeEmptyTags: '1'
-      removeNbsp: '1'
-      purifyHtml: '1'
-      columnType: text
-      availableVolumes: '*'
-      availableTransforms: '*'
-    contentColumnType: text
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  d94389fe-1e22-4298-9292-9211634bc0ea:
-    name: 'Basic Body 1'
-    handle: basicBody1
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\redactor\Field
-    settings:
-      redactorConfig: Basic.json
-      purifierConfig: ''
-      cleanupHtml: true
-      removeInlineStyles: '1'
-      removeEmptyTags: '1'
-      removeNbsp: '1'
-      purifyHtml: '1'
-      columnType: text
-      availableVolumes: '*'
-      availableTransforms: '*'
-    contentColumnType: text
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  35ad1b4e-58de-43af-9c0c-c27d01e33e6b:
-    name: 'Full Body 1'
-    handle: fullBody1
-    instructions: ''
-    searchable: true
-    translationMethod: none
-    translationKeyFormat: null
-    type: craft\redactor\Field
-    settings:
-      redactorConfig: Full.json
-      purifierConfig: ''
-      cleanupHtml: true
-      removeInlineStyles: '1'
-      removeEmptyTags: '1'
-      removeNbsp: '1'
-      purifyHtml: '1'
-      columnType: text
-      availableVolumes: '*'
-      availableTransforms: '*'
-    contentColumnType: text
-    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  e2ccc203-9553-433f-bb56-14b196a07869:
-    name: 'Linked Entry 1'
-    handle: linkedEntry1
+  2566a990-9923-429f-b88c-8ae747d16db3:
+    name: 'Custom Link 1'
+    handle: customLink1
     instructions: ''
     searchable: false
     translationMethod: none
@@ -283,7 +49,12 @@ fields:
     settings:
       allowCustomText: '1'
       allowedLinkNames:
+        1: asset
+        2: category
         3: entry
+        6: custom
+        7: email
+        8: tel
         9: url
       allowTarget: '1'
       autoNoReferrer: ''
@@ -320,9 +91,243 @@ fields:
           allowAliases: ''
     contentColumnType: text
     fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
-  2566a990-9923-429f-b88c-8ae747d16db3:
-    name: 'Custom Link 1'
-    handle: customLink1
+  29435f60-0d1d-4338-aa17-bf193eab2d0e:
+    name: 'Single Image 1'
+    handle: singleImage1
+    instructions: ''
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Assets
+    settings:
+      useSingleFolder: '1'
+      defaultUploadLocationSource: 'volume:734530b2-7176-44fe-9ff8-22d23df70ed0'
+      defaultUploadLocationSubpath: ''
+      singleUploadLocationSource: 'volume:734530b2-7176-44fe-9ff8-22d23df70ed0'
+      singleUploadLocationSubpath: ''
+      restrictFiles: '1'
+      allowedKinds:
+        - image
+      sources:
+        - 'volume:734530b2-7176-44fe-9ff8-22d23df70ed0'
+      source: null
+      targetSiteId: null
+      viewMode: large
+      limit: '1'
+      selectionLabel: 'Add an Image'
+      localizeRelations: false
+    contentColumnType: string
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  2b37cd90-5bb9-4622-b0ac-c10f5680f95c:
+    name: 'Text 1'
+    handle: text1
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  35ad1b4e-58de-43af-9c0c-c27d01e33e6b:
+    name: 'Full Body 1'
+    handle: fullBody1
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: Full.json
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  495b6e52-1d34-4871-806b-93e7e07f16cc:
+    name: 'Images 1'
+    handle: images1
+    instructions: ''
+    searchable: true
+    translationMethod: site
+    translationKeyFormat: null
+    type: craft\fields\Assets
+    settings:
+      useSingleFolder: '1'
+      defaultUploadLocationSource: 'volume:734530b2-7176-44fe-9ff8-22d23df70ed0'
+      defaultUploadLocationSubpath: ''
+      singleUploadLocationSource: 'volume:734530b2-7176-44fe-9ff8-22d23df70ed0'
+      singleUploadLocationSubpath: ''
+      restrictFiles: '1'
+      allowedKinds:
+        - image
+      sources: '*'
+      source: null
+      targetSiteId: null
+      viewMode: large
+      limit: ''
+      selectionLabel: 'Add an Image'
+      localizeRelations: false
+    contentColumnType: string
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  70e7a627-1cd6-4504-bbef-7e99f311fa05:
+    name: 'Text 2'
+    handle: text2
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  813046ce-3f57-48bc-992c-246af4beff7b:
+    name: 'Heading 3'
+    handle: heading3
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: '48'
+      columnType: text
+    contentColumnType: text
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  842ca7e4-aec0-4ede-8ab9-36d55e6e2a4f:
+    name: 'Heading 2'
+    handle: heading2
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: '48'
+      columnType: text
+    contentColumnType: text
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  9e1f14e4-3cc8-473c-80ff-172c0e85d4d7:
+    name: 'Text 3'
+    handle: text3
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\PlainText
+    settings:
+      placeholder: ''
+      code: ''
+      multiline: ''
+      initialRows: '4'
+      charLimit: ''
+      columnType: text
+    contentColumnType: text
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  bf22a169-1799-4f2a-97fd-7ad552267736:
+    name: 'Bool 1'
+    handle: bool1
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\fields\Lightswitch
+    settings:
+      default: ''
+    contentColumnType: boolean
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  d11c37e6-6942-40bc-a141-81e3af8736b7:
+    name: 'Simple Body 1'
+    handle: simpleBody1
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: Simple.json
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: ''
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  d94389fe-1e22-4298-9292-9211634bc0ea:
+    name: 'Basic Body 1'
+    handle: basicBody1
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: Basic.json
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  e0ee5596-80ed-4cfb-a809-a1d979afe32c:
+    name: 'Advanced Body 1'
+    handle: advancedBody1
+    instructions: ''
+    searchable: true
+    translationMethod: none
+    translationKeyFormat: null
+    type: craft\redactor\Field
+    settings:
+      redactorConfig: Advanced.json
+      purifierConfig: ''
+      cleanupHtml: true
+      removeInlineStyles: '1'
+      removeEmptyTags: '1'
+      removeNbsp: '1'
+      purifyHtml: '1'
+      columnType: text
+      availableVolumes: '*'
+      availableTransforms: '*'
+    contentColumnType: text
+    fieldGroup: fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b
+  e2ccc203-9553-433f-bb56-14b196a07869:
+    name: 'Linked Entry 1'
+    handle: linkedEntry1
     instructions: ''
     searchable: false
     translationMethod: none
@@ -331,12 +336,7 @@ fields:
     settings:
       allowCustomText: '1'
       allowedLinkNames:
-        1: asset
-        2: category
         3: entry
-        6: custom
-        7: email
-        8: tel
         9: url
       allowTarget: '1'
       autoNoReferrer: ''
@@ -413,7 +413,7 @@ plugins:
   super-table:
     edition: standard
     enabled: true
-    schemaVersion: 2.0.12
+    schemaVersion: 2.2.0
   typedlinkfield:
     edition: standard
     enabled: true
@@ -458,7 +458,6 @@ sections:
     handle: homepage
     type: single
     enableVersioning: true
-    propagateEntries: true
     siteSettings:
       471b5ebe-f553-47d6-aa58-d02e5076065c:
         enabledByDefault: true
@@ -473,6 +472,7 @@ sections:
         titleLabel: null
         titleFormat: '{section.name|raw}'
         sortOrder: 1
+    propagationMethod: all
 siteGroups:
   7c028f52-0d4d-4794-8cfc-35974c34753b:
     name: Default
@@ -483,14 +483,14 @@ sites:
     handle: default
     language: en-US
     hasUrls: true
-    baseUrl: 'http://$DEFAULT_SITE_URL'
+    baseUrl: $DEFAULT_SITE_URL
     sortOrder: 1
     primary: true
 system:
   edition: solo
   name: $SYSTEM_NAME
   live: true
-  schemaVersion: 3.1.28
+  schemaVersion: 3.2.16
   timeZone: America/New_York
 users:
   requireEmailVerification: true
