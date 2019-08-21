@@ -19,7 +19,6 @@ class WebModuleBundler
             await this.makeDirectory(timestamp);
             const modules = await this.getWebModules();
             await this.bundle(modules, timestamp);
-            // await this.cleanup(timestamp);
         }
         catch (error)
         {

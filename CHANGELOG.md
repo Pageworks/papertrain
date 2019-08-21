@@ -8,6 +8,7 @@
 ### Fixed
 
 - Fixes: added v0.3 draft documentation link & updates shields in `readme.md`
+- Fixes: generated web components will always end with `-component`
 
 ## 0.3.0-a1 - 2019-08-19
 

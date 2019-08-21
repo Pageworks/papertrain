@@ -19,7 +19,6 @@ class ComponentBundler
             await this.makeDirectory(timestamp);
             const files = await this.getCompiledFiles();
             await this.moveFiles(files, timestamp);
-            // await this.cleanup(timestamp);
         }
         catch (error)
         {

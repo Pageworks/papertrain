@@ -37,13 +37,12 @@ class PapertrainGenerator
         try
         {
             let baseName = await questions.getName();
-            baseName = await this.sanitizeName(baseName.name);
-
             let type = await questions.getType();
             type = type.type;
+            baseName = await this.sanitizeName(baseName.name, type);
 
             this.cssName = await this.generateCssName(baseName, type);
-            this.kebabName = this.generateKebabCase(baseName);
+            this.kebabName = this.generateKebabCase(baseName, type);
             this.camelName = this.generateCamelCase(baseName);
             this.pascalName = this.generatePascalCase(baseName);
 
@@ -117,9 +116,19 @@ class PapertrainGenerator
         }
     }
 
-    sanitizeName(name)
+    sanitizeName(name, type)
     {
-        return name.trim().replace(/[\s\-\_]/g, ' ').trim();
+        let newName = name.trim().replace(/[\s\-\_]/g, ' ').trim();
+
+        if (type === 'Web Component')
+        {
+            if (!newName.match(/(component)$/))
+            {
+                newName += ' component';
+            }
+        }
+
+        return newName;
     }
 
     generateCssName(name, type)

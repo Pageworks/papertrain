@@ -22,7 +22,6 @@ class SassCompiler
             const files = [...globalFiles, ...templateFiles];
             await this.makeDirectory(timestamp);
             await this.compile(files, timestamp);
-            // await this.cleanup(timestamp);
         }
         catch (error)
         {

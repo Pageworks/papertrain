@@ -26,7 +26,6 @@ class NodeModuleBundler
             const dependencies = await this.getWebDependencies();
             const serverSafeBundleNames = await this.writeBundles(dependencies);
             await this.buildPackages(serverSafeBundleNames, timestamp);
-            // await this.cleanup(timestamp);
         }
         catch (error)
         {
