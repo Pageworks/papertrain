@@ -1,4 +1,6 @@
-## 0.3.0-a2 - UNRELEASED
+## 0.3.0-a3 - UNRELEASED
+
+## 0.3.0-a2 - 2019-08-21
 
 ### Added
 
@@ -14,7 +16,7 @@
 
 - Removes: `cross-env` dependency
 
-## 0.3.0-a1 - 2019-08-19
+## 0.3.0-a1 - 2019-08-20
 
 ### Added
 
