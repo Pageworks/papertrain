@@ -19,26 +19,58 @@ class WebModuleBundler
             await this.makeDirectory(timestamp);
             const modules = await this.getWebModules();
             await this.bundle(modules, timestamp);
-            await this.cleanup(timestamp);
+            // await this.cleanup(timestamp);
         }
         catch (error)
         {
             console.log(chalk.hex('#ff6426').bold(error));
+            await this.fail();
         }
     }
 
     getTimestamp()
     {
         return new Promise((resolve, reject)=>{
-            fs.readFile('config/papertrain/automation.php', (error, buffer)=>{
+            fs.readFile('config/papertrain/automation.tmp', (error, buffer)=>{
                 if (error)
                 {
                     reject(error);
                 }
 
                 const data = buffer.toString();
+
+                if (!data.match('continue'))
+                {
+                    reject('Skipping module bundler due to previous failure, see error above');
+                }
+
                 const timestamp = data.match(/\d+/g)[0];
                 resolve(timestamp);
+
+            });
+        });
+    }
+
+    fail()
+    {
+        return new Promise((resolve, reject)=>{
+            fs.readFile('config/papertrain/automation.tmp', (error, buffer)=>{
+                if (error)
+                {
+                    reject(error);
+                }
+
+                let data = buffer.toString();
+                data = data.replace('continue', 'failed');
+
+                fs.writeFile('config/papertrain/automation.tmp', data, (error)=>{
+                    if (error)
+                    {
+                        reject(error);
+                    }
+
+                    resolve();
+                });
             });
         });
     }
