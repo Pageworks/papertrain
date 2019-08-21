@@ -1,7 +1,6 @@
 const chalk = require('chalk');
 const glob = require("glob");
 const fs = require("fs");
-const rimraf = require('rimraf');
 
 class WebModuleBundler
 {

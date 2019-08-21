@@ -1,7 +1,6 @@
 const sass = require('node-sass');
 const glob = require("glob");
 const fs = require('fs');
-const rimraf = require("rimraf");
 const chalk = require('chalk');
 
 class SassCompiler

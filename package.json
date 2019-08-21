@@ -1,7 +1,7 @@
 {
     "name": "papertrain",
     "description": "Papertrain: a Craft CMS framework",
-    "version": "0.3.0-a1",
+    "version": "0.3.0-a2",
     "author": "Pageworks",
     "license": "MIT",
     "repository": {
@@ -15,7 +15,8 @@
         "cli",
         "typescript",
         "es modules",
-        "web components"
+        "web components",
+        "rollupjs"
     ],
     "bugs": {
         "url": "https://github.com/Pageworks/papertrain/issues",
@@ -26,7 +27,6 @@
         "precommit": "lint-staged",
         "lint:sass": "stylelint  *.scss --cache --config ./build-tools/.stylelintrc --cache-location ./build-tools/.stylelintcache",
         "lint:typescript": "tslint *.ts -c ./build-tools/.tslintrc.js -p ./tsconfig.json -t verbose",
-        "tsc": "tsc",
         "create": "node ./build-tools/generator/generator.js",
         "setup": "node ./build-tools/setup/setup.js",
         "preview": "node ./build-tools/sync.js",
@@ -44,7 +44,7 @@
         "compile:es6": "tsc --p ./tsconfig.json",
         "compile:modules": "tsc --p ./tsconfig-modules.json",
         "compile:es5-modules": "tsc --p ./tsconfig-es5-modules.json",
-        "compile:styles": "cross-env NODE_ENV=production node ./build-tools/sass.config.js",
+        "compile:styles": "node ./build-tools/sass.config.js",
         "bundle": "run-p bundle:*",
         "bundle:packages": "node ./build-tools/packages.config.js",
         "bundle:modules": "node ./build-tools/modules.config.js",
@@ -54,6 +54,7 @@
     "lint-staged": {
         "linters": {
             "./templates/**/*.ts": "npm run lint:typescript",
+            "./web_modules/**/*.ts": "npm run lint:typescript",
             "./templates/**/*.scss": "npm run lint:sass",
             "./sass/**/*.scss": "npm run lint:sass"
         }
@@ -72,7 +73,6 @@
         "browser-sync": "^2.26.7",
         "chalk": "^2.4.2",
         "clear": "^0.1.0",
-        "cross-env": "^5.2.0",
         "dotenv": "^6.2.0",
         "figlet": "^1.2.3",
         "glob": "^7.1.4",
