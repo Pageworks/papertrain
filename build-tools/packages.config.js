@@ -259,38 +259,6 @@ class NodeModuleBundler
             })();
         });
     }
-
-    cleanup(timestamp)
-    {
-        console.log(chalk.white('Removing stale node module bundles'));
-
-        const path = `public/automation`;
-        const allDirs = fs.readdirSync(path);
-        const styleDirs = [];
-        for (let i = 0; i < allDirs.length; i++)
-        {
-            if (allDirs[i].match(/packages-.*/))
-            {
-                styleDirs.push(allDirs[i]);
-            }
-        }
-
-        for (let i = 0; i < styleDirs.length; i++)
-        {
-            const directoryTimestamp = styleDirs[i].match(/[^packages-].*/)[0];
-
-            if (parseInt(directoryTimestamp) < parseInt(timestamp)) 
-            {
-                rimraf(`public/automation/${ styleDirs[i] }`, (err)=>{
-                    if (err)
-                    {
-                        console.log(`Failed to remove ${ styleDirs[i] }`);
-                        throw err;
-                    }
-                });
-            }
-        }
-    }
 }
 
 new NodeModuleBundler();

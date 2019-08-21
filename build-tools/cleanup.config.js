@@ -1,5 +1,6 @@
 const rimraf = require("rimraf");
 const fs = require('fs');
+const chalk = require('chalk');
 
 class CleanupManager
 {
@@ -16,6 +17,7 @@ class CleanupManager
             const directories = await this.getAllAutomatedDirectories();
             await this.cleanup(timestamp, directories);
             await this.updateCachebust();
+            console.log(chalk.hex('#8cf57b').bold('Success!'));
         }
         catch (error)
         {
@@ -67,22 +69,33 @@ class CleanupManager
             let count = 0;
             for (let i = 0; i < directories.length; i++)
             {
-                const directoryTimestamp = directories[i].match(/\d+/)[0];
-
-                if (parseInt(directoryTimestamp) !== parseInt(timestamp))
+                if (directories[i].match(/\d+/))
                 {
-                    rimraf(`public/automation/${ directories[i] }`, (err)=>{
-                        if (err)
-                        {
-                            reject(err);
-                        }
+                    const directoryTimestamp = directories[i].match(/\d+/)[0];
 
+                    if (parseInt(directoryTimestamp) !== parseInt(timestamp))
+                    {
+                        rimraf(`public/automation/${ directories[i] }`, (err)=>{
+                            if (err)
+                            {
+                                reject(err);
+                            }
+
+                            count++;
+                            if (count === directories.length)
+                            {
+                                resolve();
+                            }
+                        });
+                    }
+                    else
+                    {
                         count++;
                         if (count === directories.length)
                         {
                             resolve();
                         }
-                    });
+                    }
                 }
                 else
                 {

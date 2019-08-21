@@ -1,5 +1,6 @@
 const rimraf = require("rimraf");
 const fs = require('fs');
+const chalk = require('chalk');
 
 class AutomationManager
 {

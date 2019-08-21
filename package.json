@@ -39,7 +39,7 @@
         "build": "npm run prep && npm run compile && npm run bundle && npm run cleanup",
         "prep": "node ./build-tools/prep.config.js",
         "cleanup": "node ./build-tools/cleanup.config.js",
-        "compile": "npm run cleanup && run-p compile:*",
+        "compile": "run-p compile:*",
         "compile:es5": "tsc --p ./tsconfig-es5.json",
         "compile:es6": "tsc --p ./tsconfig.json",
         "compile:modules": "tsc --p ./tsconfig-modules.json",
