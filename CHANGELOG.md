@@ -3,6 +3,7 @@
 ### Added
 
 - Adds: Papertrain v0.3 documentation
+- Adds: `cleanup.config.js` build tool, cachebust timestamp and automated directories are only removed when all compilers/bundlers run successfully
 
 ### Fixed
 
