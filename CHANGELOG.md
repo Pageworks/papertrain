@@ -11,6 +11,8 @@
 - Fixes: updates Craft CMS to v3.2
 - Fixes: updates boilerplate plugins
 - Fixes: removes `echo` from Papertrain services, instead uses `craft\helpers\Template`
+- Fixes: updates runtime class to provide callbacks after all scripts/stylesheets have finished loading
+- Fixes: updates tslint to handle both sets of typescript (templates and web_modules)
 
 ## 0.3.0-a2 - 2019-08-21
 

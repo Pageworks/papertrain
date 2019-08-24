@@ -26,7 +26,8 @@
     "scripts": {
         "precommit": "lint-staged",
         "lint:sass": "stylelint  *.scss --cache --config ./build-tools/.stylelintrc --cache-location ./build-tools/.stylelintcache",
-        "lint:typescript": "tslint *.ts -c ./build-tools/.tslintrc.js -p ./tsconfig.json -t verbose",
+        "lint:typescript": "tslint ./templates/**/*.ts -c ./build-tools/.tslintrc.js -p ./tsconfig.json -t verbose",
+        "lint:typescript-modules" : "tslint ./web_modules/*.ts -c ./build-tools/.tslintrc.js -p ./tsconfig-modules.json -t verbose",
         "create": "node ./build-tools/generator/generator.js",
         "setup": "npm run build && node ./build-tools/setup/setup.js",
         "preview": "node ./build-tools/sync.js",
@@ -54,7 +55,7 @@
     "lint-staged": {
         "linters": {
             "./templates/**/*.ts": "npm run lint:typescript",
-            "./web_modules/**/*.ts": "npm run lint:typescript",
+            "./web_modules/**/*.ts": "npm run lint:typescript-modules",
             "./templates/**/*.scss": "npm run lint:sass",
             "./sass/**/*.scss": "npm run lint:sass"
         }
