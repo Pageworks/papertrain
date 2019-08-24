@@ -9,6 +9,7 @@
 - Fixes: `npm run setup` now calls `npm run build` before guiding the user through the setup process
 - Fixes: updates Craft CMS to v3.2
 - Fixes: updates boilerplate plugins
+- Fixes: removes `echo` from Papertrain services, instead uses `craft\helpers\Template`
 
 ## 0.3.0-a2 - 2019-08-21
 

@@ -26,62 +26,47 @@ class PapertrainModuleService extends Component
     // Public Methods
     // =========================================================================
 
-    public function buildAssetPaths(array $twigNames)
-    {
-        $ret = array();
-        $modulesBasePath = \Craft::getAlias('@rootUrl').'/automation/modules-' . Craft::$app->config->general->cacheBustTimestamp . '/';
-        $packagesBasePath = \Craft::getAlias('@rootUrl').'/automation/packages-' . Craft::$app->config->general->cacheBustTimestamp . '/';
-        $stylesBasePath = \Craft::getAlias('@rootUrl').'/automation/styles-' . Craft::$app->config->general->cacheBustTimestamp . '/';
-        foreach ($twigNames as $twigName){
-            $kebabCaseName = StringHelper::toKebabCase($twigName);
-            $finalName = StringHelper::toLowerCase($kebabCaseName);
-            $ret[$finalName] = [
-                'module' => $modulesBasePath.$finalName.'.js',
-                'package' => $packagesBasePath.'npm.'.$finalName.'.js',
-                'css' => $stylesBasePath.$finalName.'.css',
-            ];
-        }
-
-        return $ret;
-    }
-
     public function buildStylesheets(array $fileNames)
     {
-        echo '<script defer="defer">';
+        $script =  '<script defer="defer">';
         foreach ($fileNames as $file)
         {
-            echo 'window.stylesheets.push("' . $file . '.css");';
+            $script = $script . 'window.stylesheets.push("' . $file . '.css");';
         }
-        echo '</script>';
+        $script = $script . '</script>';
+        return $script;
     }
 
     public function buildPackages(array $fileNames)
     {
-        echo '<script defer="defer">';
+        $script = '<script defer="defer">';
         foreach ($fileNames as $file)
         {
-            echo 'window.packages.push("' . $file . '.js");';
+            $script = $script . 'window.packages.push("' . $file . '.js");';
         }
-        echo '</script>';
+        $script = $script . '</script>';
+        return $script;
     }
 
     public function buildComponents(array $fileNames)
     {
-        echo '<script type="module">';
+        $script = '<script type="module">';
         foreach ($fileNames as $file)
         {
-            echo 'window.components.push("' . $file . '.js");';
+            $script = $script . 'window.components.push("' . $file . '.js");';
         }
-        echo '</script>';
+        $script = $script . '</script>';
+        return $script;
     }
 
     public function buildModules(array $fileNames)
     {
-        echo '<script type="module">';
+        $script = '<script type="module">';
         foreach ($fileNames as $file)
         {
-            echo 'window.modules.push("' . $file . '.js");';
+            $script = $script . 'window.modules.push("' . $file . '.js");';
         }
-        echo '</script>';
+        $script = $script . '</script>';
+        return $script;
     }
 }

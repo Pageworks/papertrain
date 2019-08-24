@@ -261,7 +261,10 @@ class PapertrainGenerator
 
                     let modifiedFile = data;
                     modifiedFile = modifiedFile.replace(/REPLACE_WITH_KEBAB/g, this.kebabName);
-                    modifiedFile = modifiedFile.replace(/REPLACE_WITH_CSS/g, this.cssName);
+
+                    let fixedCssName = this.cssName.replace(/[\.]/g, '');
+
+                    modifiedFile = modifiedFile.replace(/REPLACE_WITH_CSS/g, fixedCssName);
 
                     fs.writeFile(`${ path }/${ this.kebabName }/index.${ HTMLFileType }`, modifiedFile, 'utf-8', (err)=>{
                         if (err)

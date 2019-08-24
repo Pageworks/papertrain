@@ -11,6 +11,7 @@
 namespace modules\papertrainmodule\variables;
 
 use modules\papertrainmodule\PapertrainModule;
+use craft\helpers\Template as TemplateHelper;
 
 use Craft;
 
@@ -23,34 +24,28 @@ class PapertrainModuleVariable
 {
     // Public Methods
     // =========================================================================
-
-    public function getAssetPaths(array $twigNames)
-    {
-        return PapertrainModule::getInstance()->papertrainModuleService->buildAssetPaths($twigNames);
-    }
-
-    public function getCachebustTimestamp()
+    public function getCachebustTimestamp() : string
     {
         return Craft::$app->config->general->cacheBustTimestamp;
     }
 
     public function stylesheets(array $fileNames)
     {
-        PapertrainModule::getInstance()->papertrainModuleService->buildStylesheets($fileNames);
+        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildStylesheets($fileNames));
     }
 
     public function packages(array $fileNames)
     {
-        PapertrainModule::getInstance()->papertrainModuleService->buildPackages($fileNames);
+        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildPackages($fileNames));
     }
 
     public function components(array $fileNames)
     {
-        PapertrainModule::getInstance()->papertrainModuleService->buildComponents($fileNames);
+        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildComponents($fileNames));
     }
 
     public function modules(array $fileNames)
     {
-        PapertrainModule::getInstance()->papertrainModuleService->buildModules($fileNames);
+        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildModules($fileNames));
     }
 }
