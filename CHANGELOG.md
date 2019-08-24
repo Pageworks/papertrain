@@ -3,6 +3,7 @@
 ### Added
 
 - Adds: updates the Getting Started > New Project guide
+- Adds: `dataModel` variable to templates
 
 ### Fixed
 
