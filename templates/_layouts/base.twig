@@ -370,14 +370,84 @@
             </div>
         </page-loading>
 
+        <noscript>
+            <header style="width: 100vw; padding: 2rem; background-color: #ffffff; position: fixed; top: 0; left: 0; box-shadow: 0 1px 3px rgba(25,25,25,0.1), 0 4px 16px rgba(25,25,25,0.1);">
+                <a href="{{ siteUrl }}" style="margin-right: 1rem;">Home</a>
+                <a href="{{ siteUrl|trim('/') }}/sitemap">Navigation</a>
+            </header>
+        </noscript>
+
         {% block page %}{% endblock %}
 
         <script type="module" src="{{ alias('@rootUrl')|trim('/') ~ '/automation/modules-' ~ craft.papertrain.getCachebustTimestamp ~ '/runtime.js' }}"></script>
         <script nomodule defer="defer" type="text/javascript" src="{{ alias('@rootUrl')|trim('/') }}/assets/ie-main.js"></script>
 
         <noscript>
-            <div style="position:fixed;bottom:0;left:0;padding:16px 32px;border-radius:8px 8px 0 0;text-align:center;background-color:#ffffff;box-shadow:0 -1px 3px rgba(0,0,0,0.15), 0 -4px 32px rgba(0,0,0,0.1);left:50%;transform:translateX(-50%);z-index:99999;">
-                <p>{{ "This website requires JavaScript to function. Please enable JavaScript and refresh the page."|t }}</p>
+            <style>
+                page-loading,
+                page-transition
+                {
+                    display: none !important;
+                }
+
+                html.dom-is-loading *
+                {
+                    cursor: initial !important;
+                }
+
+                body
+                {
+                    margin:40px auto;
+                    max-width:650px;
+                    line-height:1.6;
+                    font-size:18px;
+                    color:#444;
+                    padding: 96px 0;
+                }
+                
+                h1,
+                h2,
+                h3
+                {
+                    line-height:1.2
+                }
+
+                a
+                {
+                    margin: 0 0.5rem;
+                }
+
+                p a,
+                h1 a,
+                h2 a,
+                h3 a,
+                h4 a,
+                h5 a,
+                h6 a
+                {
+                    margin: 0;
+                }
+
+                img
+                {
+                    max-width: 100%;
+                    display: block;
+                    margin: 0 auto;
+                }
+
+                html.dom-is-loading a
+                {
+                    cursor: pointer !important;
+                }
+
+                svg
+                {
+                    display: none;
+                }
+            </style>
+
+            <div style="position:fixed;bottom:0;left:0;padding:16px 32px;border-radius:8px 8px 0 0;text-align:center;background-color:#ffffff;box-shadow:0 -1px 3px rgba(25,25,25,0.1), 0 -4px 16px rgba(25,25,25,0.1);left:50%;transform:translateX(-50%);z-index:99999;">
+                <p>{{ "You are viewing the read only mode of this website. Please enable JavaScript and refresh the page for the full experience."|t }}</p>
             </div>
         </noscript>
     </body>

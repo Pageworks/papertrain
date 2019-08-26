@@ -1,0 +1,14 @@
+{% extends "_layouts/page" %}
+
+{% block content %}
+    {{ craft.papertrain.stylesheets(['sitemap', 'button'])|raw }}
+
+    <article class="t-sitemap g-container -full" data-template="sitemap">
+        <section class="g-container">
+            {% set entries = craft.entries().all() %}
+            {% for entry in entries %}
+                <a href="{{ entry.url }}" class="g-button -solid -rounded -primary" style="margin: 0.5rem;">{{ entry.title }}</a><br>
+            {% endfor %}
+        </section>
+    </article>
+{% endblock %}

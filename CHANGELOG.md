@@ -8,6 +8,8 @@
 - Adds: new `criticalCss` array and loading animation
 - Adds: new `reset.scss` file to the `sass/` directory
 - Adds: `@pageworks/device-manager` package is imported
+- Adds: initial `noscript` style
+- Adds: basic sitemap navigation for users with JavaScript disabled
 
 ### Fixed
 
