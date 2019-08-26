@@ -21,8 +21,14 @@ class Runtime
         this.init();
     }
 
-    private handleStylesheetsFetchEvent:EventListener = this.getStylesheets.bind(this);
+    private handleStylesheetsFetchEvent:EventListener = this.getAllStylesheets.bind(this);
     private handleScriptFetchEvent:EventListener = this.getScripts.bind(this);
+
+    private getAllStylesheets() : void
+    {
+        this.getCriticalCss();
+        this.getStylesheets();
+    }
 
     private getCriticalCss() : void
     {
