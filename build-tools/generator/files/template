@@ -7,7 +7,7 @@
 {% extends "_layouts/page" %}
 
 {% block content %}
-    {{ craft.papertrain.stylesheets(['REPLACE_WITH_KEBAB']) }}
+    {{ craft.papertrain.stylesheets(['REPLACE_WITH_KEBAB'])|raw }}
 
     <article class="REPLACE_WITH_CSS g-container -full" data-template="REPLACE_WITH_KEBAB">
         <section class="g-container">

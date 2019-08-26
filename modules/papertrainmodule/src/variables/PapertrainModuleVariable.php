@@ -11,7 +11,6 @@
 namespace modules\papertrainmodule\variables;
 
 use modules\papertrainmodule\PapertrainModule;
-use craft\helpers\Template as TemplateHelper;
 
 use Craft;
 
@@ -29,23 +28,28 @@ class PapertrainModuleVariable
         return Craft::$app->config->general->cacheBustTimestamp;
     }
 
+    public function criticalCss(array $fileNames)
+    {
+        return PapertrainModule::getInstance()->papertrainModuleService->buildCriticalCss($fileNames);
+    }
+
     public function stylesheets(array $fileNames)
     {
-        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildStylesheets($fileNames));
+        return PapertrainModule::getInstance()->papertrainModuleService->buildStylesheets($fileNames);
     }
 
     public function packages(array $fileNames)
     {
-        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildPackages($fileNames));
+        return PapertrainModule::getInstance()->papertrainModuleService->buildPackages($fileNames);
     }
 
     public function components(array $fileNames)
     {
-        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildComponents($fileNames));
+        return PapertrainModule::getInstance()->papertrainModuleService->buildComponents($fileNames);
     }
 
     public function modules(array $fileNames)
     {
-        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildModules($fileNames));
+        return PapertrainModule::getInstance()->papertrainModuleService->buildModules($fileNames);
     }
 }

@@ -4,7 +4,12 @@ interface Window
     packages : Array<string>
     components : Array<string>
     modules : Array<string>
+    criticalCss : Array<string>
 }
+
+declare var Pjax:any;
+declare var DeviceManager:any;
+declare var env:any;
 
 class Runtime
 {
@@ -19,21 +24,21 @@ class Runtime
     private handleStylesheetsFetchEvent:EventListener = this.getStylesheets.bind(this);
     private handleScriptFetchEvent:EventListener = this.getScripts.bind(this);
 
-    private getStylesheets() : void
+    private getCriticalCss() : void
     {
         new Promise((resolve)=>{
-            if (window.stylesheets.length === 0)
+            if (window.criticalCss.length === 0)
             {
                 resolve();
             }
 
             let fetched = 0;
-            const requestedStylesheets = [...window.stylesheets];
+            const requestedStylesheets = [...window.criticalCss];
             const numberOfRequiredFiles = requestedStylesheets.length;
 
-            while (window.stylesheets.length)
+            while (window.criticalCss.length)
             {
-                const stylesheetFile = window.stylesheets[0];
+                const stylesheetFile = window.criticalCss[0];
                 let styleElement:HTMLElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
                 if (!styleElement)
                 {
@@ -66,12 +71,47 @@ class Runtime
                 }
 
                 requestedStylesheets.splice(0, 1);
-                window.stylesheets.splice(0, 1);
+                window.criticalCss.splice(0, 1);
             }
         })
         .then(()=>{
             // Do something after the stylesheets finish loading
+            const pageLoadingElement = document.body.querySelector('page-loading');
+            pageLoadingElement.classList.remove('is-loading');
         });
+    }
+
+    private getStylesheets() : void
+    {
+        if (window.stylesheets.length === 0)
+        {
+            return;
+        }
+
+        const requestedStylesheets = [...window.stylesheets];
+
+        while (window.stylesheets.length)
+        {
+            const stylesheetFile = window.stylesheets[0];
+            let styleElement:HTMLElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
+            if (!styleElement)
+            {
+                styleElement = document.createElement('style');
+                styleElement.setAttribute('file', stylesheetFile);
+                document.head.appendChild(styleElement);
+                const stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetFile }`;
+                this.fetchFile(stylesheetUrl)
+                .then(response => {
+                    styleElement.innerHTML = response;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            }
+
+            requestedStylesheets.splice(0, 1);
+            window.stylesheets.splice(0, 1);
+        }
     }
 
     private fetchFile(url:string) : Promise<string>
@@ -247,12 +287,42 @@ class Runtime
         });
     }
 
+    private fetchIeComponents() : void
+    {
+        fetch(`${ window.location.origin }/assets/ie-components.js`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: new Headers({
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'text/javascript'
+            })
+        })
+        .then(request => request.text())
+        .then(response => {
+            const ieComponentsScript = document.createElement('script');
+            ieComponentsScript.innerHTML = response;
+            document.head.appendChild(ieComponentsScript);
+        })
+        .catch((error)=>{
+            if (env.isDebug)
+            {
+                console.error(error);
+            }
+        });
+    }
+
     private scriptsCallback() : void
     {
         if (this._initialFetch)
         {
             this._initialFetch = false;
-            console.log('Initial scripts have finished loading');
+
+            new DeviceManager(env.isDebug, true);
+            
+            if (DeviceManager.isIE)
+            {
+                this.fetchIeComponents();
+            }
         }
     }
 
@@ -277,6 +347,7 @@ class Runtime
         {
             // @ts-ignore
             window.requestIdleCallback(()=>{
+                this.getCriticalCss();
                 this.getStylesheets();
                 this.getScripts();
             });
@@ -284,6 +355,7 @@ class Runtime
         else
         {
             console.warn('Idle callback prototype not available in this browser, fetching stylesheets');
+            this.getCriticalCss();
             this.getStylesheets();
             this.getScripts();
         }

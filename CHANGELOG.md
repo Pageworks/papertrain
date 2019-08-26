@@ -4,15 +4,25 @@
 
 - Adds: updates the Getting Started > New Project guide
 - Adds: `dataModel` variable to templates
+- Adds: service worker for custom `.js` and `.css` caching
+- Adds: new `criticalCss` array and loading animation
+- Adds: new `reset.scss` file to the `sass/` directory
+- Adds: `@pageworks/device-manager` package is imported
 
 ### Fixed
 
 - Fixes: `npm run setup` now calls `npm run build` before guiding the user through the setup process
 - Fixes: updates Craft CMS to v3.2
 - Fixes: updates boilerplate plugins
-- Fixes: removes `echo` from Papertrain services, instead uses `craft\helpers\Template`
+- Fixes: removes `echo` from Papertrain services, instead returns a `string`
 - Fixes: updates runtime class to provide callbacks after all scripts/stylesheets have finished loading
 - Fixes: updates tslint to handle both sets of typescript (templates and web_modules)
+- Fixes: runtime web component conflicts with NPM packages
+- Fixes: updates default template and component files to use the `|raw` twig filter
+
+### Removed
+
+- Removes: reset CSS from the documents head
 
 ## 0.3.0-a2 - 2019-08-21
 

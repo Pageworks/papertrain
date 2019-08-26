@@ -5,5 +5,19 @@
 <script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/fetch.js' }}"></script>
 <script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/custom-elements.js' }}"></script>
 
-{{ craft.papertrain.packages(['uuid-v4']) }}
-{{ craft.papertrain.modules(['env']) }}
+<script type="module">
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register("{{ alias('@rootUrl')|trim('/') ~ '/worker.js' }}",{ scope: '/' })
+        .then((reg) => {
+            if (navigator.serviceWorker.controller)
+            {
+                navigator.serviceWorker.controller.postMessage({'cachebust': document.documentElement.dataset.cachebust})
+            }
+        }).catch((error) => {
+            console.error('Registration failed with ' + error);
+        });
+    }
+</script>
+
+{{ craft.papertrain.packages(['uuid-v4'])|raw }}
+{{ craft.papertrain.modules(['env'])|raw }}

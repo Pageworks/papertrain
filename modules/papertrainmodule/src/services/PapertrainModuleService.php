@@ -25,7 +25,17 @@ class PapertrainModuleService extends Component
 {
     // Public Methods
     // =========================================================================
-
+    public function buildCriticalCss(array $fileNames)
+    {
+        $script =  '<script defer="defer">';
+        foreach ($fileNames as $file)
+        {
+            $script = $script . 'window.criticalCss.push("' . $file . '.css");';
+        }
+        $script = $script . '</script>';
+        return $script;
+    }
+    
     public function buildStylesheets(array $fileNames)
     {
         $script =  '<script defer="defer">';

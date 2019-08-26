@@ -1,6 +1,7 @@
 {% set isDebug = craft.app.request.getParam('debug') %}
 {% set currentSite = craft.app.sites.currentSite %}
 <!doctype html>
+{% spaceless %}
 <html lang="{{ currentSite.language }}" class="has-no-js is-not-pointer-device is-not-touch-device dom-is-loading" {% if isDebug|length %}debug="true"{% endif %} data-csrf="{{ craft.app.request.csrfToken }}" data-cachebust="{{ craft.papertrain.getCachebustTimestamp }}">
     <head>
         <meta charset="utf-8">
@@ -70,26 +71,145 @@
         {# PWA Manifest #}
         {# <link rel="manifest" href="{{ alias('@rootUrl')|trim('/') }}/manifest.json"> #}
 
+        <!-- Critical CSS -->
+        <style>
+            :root
+            {
+                font-size: 100%;
+            }
+
+            template,
+            style,
+            script,
+            title,
+            head{
+                display: none !important;
+            }
+
+            button{
+                user-select: none;
+            }
+
+            svg{
+                width: 24px;
+                height: 24px;
+            }
+        </style>
+
+        <!-- Loading animation -->
+        <style>
+            page-loading
+            {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                position: fixed;
+                top: 0;
+                left: 0;
+                justify-content: center;
+                align-items: center;
+                flex-flow: column wrap;
+                background-color: #fafafa;
+                color: #9aa5b1;
+                font-size: 1.25rem;
+                z-index: 1000000;
+                user-select: none;
+                pointer-events: none;
+                cursor: wait;
+                text-align: center;
+                visibility: hidden;
+                opacity: 0;
+            }
+
+            page-loading.is-loading
+            {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            page-loading span
+            {
+                line-height: 1.618;
+                display: block;
+            }
+
+            page-loading page-loading-bar
+            {
+                width: 200px;
+                height: 4px;
+                position: relative;
+                background: #e4e7eb;
+                overflow: hidden;
+                display: inline-block;
+            }
+
+            page-loading page-loading-bar bar-one
+            {
+                left: -145%;
+                position: absolute;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                animation: primaryBar 2s infinite linear;
+            }
+
+            page-loading page-loading-bar bar-one::before
+            {
+                content: "";
+                background: #cbd2d9;
+                display: inline-block;
+                box-sizing: border-box;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                animation: primaryScale 2s infinite linear;
+            }
+
+            page-loading page-loading-bar bar-two
+            {
+                left: -100%;
+                position: absolute;
+                width: 100%;
+                box-sizing: border-box;
+                height: 100%;
+                animation: secondaryBar 2s infinite linear;
+            }
+
+            page-loading page-loading-bar bar-two::before
+            {
+                content: "";
+                background: #cbd2d9;
+                display: inline-block;
+                box-sizing: border-box;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                animation: secondaryScale 2s infinite linear;
+            }
+
+
+        </style>
+
         <!-- Required global variables -->
         <script>
             modules = {};
+            window.criticalCss = [];
             window.stylesheets = [];
             window.packages = [];
             window.components = [];
             window.modules = [];
         </script>
 
-        <!-- Loading animation -->
+        <!-- Transition animation -->
         <style>
-            .c-transition{
-                width: 100vw;
-                height: 4px;
+            page-transition
+            {
                 width: 100vw;
                 height: 4px;
                 position: fixed;
                 top: 0;
                 left: 0;
-                z-index: 999999;
+                z-index: 99999;
                 transform: translate3d(0, -101%, 0);
                 transition: transform 125ms cubic-bezier(0.4, 0.0, 0.6, 1);
                 background: #fafafa;
@@ -104,36 +224,36 @@
                 cursor: wait !important;
             }
 
-            html.dom-is-loading .c-transition{
+            html.dom-is-loading page-transition{
                 transform: translate3d(0, 0, 0);
                 opacity: 1;
                 transition: transform 150ms cubic-bezier(0.0, 0.0, 0.2, 1);
             }
 
-            html.dom-is-loading .c-transition .c-transition_primary{
+            html.dom-is-loading page-transition transition-bar-one{
                 animation: primaryBar 2s infinite linear;
             }
 
-            html.dom-is-loading .c-transition .c-transition_primary:before{
+            html.dom-is-loading page-transition transition-bar-one:before{
                 animation: primaryScale 2s infinite linear;
             }
 
-            html.dom-is-loading .c-transition .c-transition_secondary{
+            html.dom-is-loading page-transition transition-bar-two{
                 animation: secondaryBar 2s infinite linear;
             }
 
-            html.dom-is-loading .c-transition .c-transition_secondary:before{
+            html.dom-is-loading page-transition transition-bar-two:before{
                 animation: secondaryScale 2s infinite linear;
             }
 
-            .c-transition .c-transition_primary{
+            page-transition transition-bar-one{
                 left: -145%;
                 position: absolute;
                 width: 100%;
                 height: 100%;
             }
 
-            .c-transition .c-transition_primary::before{
+            page-transition transition-bar-one::before{
                 content: "";
                 background: #3b83f9;
                 display: inline-block;
@@ -142,14 +262,14 @@
                 height: 100%;
             }
 
-            .c-transition .c-transition_secondary{
+            page-transition transition-bar-two{
                 left: -54%;
                 position: absolute;
                 width: 100%;
                 height: 100%;
             }
 
-            .c-transition .c-transition_secondary::before{
+            page-transition transition-bar-two::before{
                 content: "";
                 background: #3b83f9;
                 display: inline-block;
@@ -157,7 +277,6 @@
                 width: 100%;
                 height: 100%;
             }
-
             @keyframes primaryBar{
                 0%{
                     transform: translateX(0);
@@ -229,61 +348,6 @@
             }
         </style>
 
-        <!-- Reset CSS-->
-        <style>
-            *,
-            *::before,
-            *::after{
-                box-sizing: border-box;
-                -webkit-tap-highlight-color: transparent;
-                border: none;
-                outline: none;
-                position: relative;
-                display: inline-block;
-            }
-            html, body, div, span, button, applet, object, input, textarea, select iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video {  
-                position: relative;
-                margin: 0;
-                padding: 0;  
-                border: 0;  
-                font-size: 100%;
-                font: inherit;  
-                vertical-align: baseline; 
-                outline: none;
-                box-shadow: none;
-                text-decoration: none;
-                color: inherit;
-                background-color: transparent;
-            }
-            input::-webkit-inner-spin-button,
-            input::-webkit-outer-spin-button,
-            input[type=number]
-            {
-                -webkit-appearance: none;
-                -moz-appearance: textfield;
-            }
-            input[type=color]::-webkit-color-swatch-wrapper,
-            input[type=color]::-webkit-color-swatch
-            {
-                padding: 0;
-                border: none;
-            }
-
-            template,
-            style,
-            script,
-            title{
-                display: none !important;
-            }
-            button{
-                user-select: none;
-            }
-            svg{
-                width: 24px;
-                height: 24px;
-            }
-        </style>
-
         <!-- Required CSS -->
         {% include "_layouts/global-css.twig" %}
 
@@ -291,17 +355,25 @@
         {% include "_layouts/global-javascript.twig" %}
     </head>
     <body>
+        <page-transition>
+            <transition-bar-one></transition-bar-one>
+            <transition-bar-two></transition-bar-two>
+        </page-transition>
 
-        {% spaceless %}
-            <div class="c-transition">
-                <div class="c-transition_primary"></div>
-                <div class="c-transition_secondary"></div>
+        <page-loading class="is-loading">
+            <div>
+                <span>{{ "Loading, please wait."|t }}</span>
+                <page-loading-bar>
+                    <bar-one></bar-one>
+                    <bar-two></bar-two>
+                </page-loading-bar>
             </div>
-            {% block page %}{% endblock %}
-        {% endspaceless %}
+        </page-loading>
+
+        {% block page %}{% endblock %}
 
         <script type="module" src="{{ alias('@rootUrl')|trim('/') ~ '/automation/modules-' ~ craft.papertrain.getCachebustTimestamp ~ '/runtime.js' }}"></script>
-        <script nomodule defer="defer" type="text/javascript" src="{{ alias('@rootUrl')|trim('/') }}/assets/main.js"></script>
+        <script nomodule defer="defer" type="text/javascript" src="{{ alias('@rootUrl')|trim('/') }}/assets/ie-main.js"></script>
 
         <noscript>
             <div style="position:fixed;bottom:0;left:0;padding:16px 32px;border-radius:8px 8px 0 0;text-align:center;background-color:#ffffff;box-shadow:0 -1px 3px rgba(0,0,0,0.15), 0 -4px 32px rgba(0,0,0,0.1);left:50%;transform:translateX(-50%);z-index:99999;">
@@ -310,3 +382,4 @@
         </noscript>
     </body>
 </html>
+{% endspaceless %}

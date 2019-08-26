@@ -59,22 +59,13 @@ class LegacyBundler
 
                     if (count === files.length)
                     {
-                        fs.readFile('_compiled/legacy/main.js', (error, buffer)=>{
+                        fs.writeFile('public/assets/ie-main.js', data, (error)=>{
                             if (error)
                             {
                                 reject(error);
                             }
-
-                            data += buffer;
             
-                            fs.writeFile('public/assets/main.js', data, (error)=>{
-                                if (error)
-                                {
-                                    reject(error);
-                                }
-                
-                                resolve();
-                            });
+                            resolve();
                         });
                     }
                 });
