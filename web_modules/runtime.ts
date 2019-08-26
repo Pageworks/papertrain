@@ -7,7 +7,6 @@ interface Window
     criticalCss : Array<string>
 }
 
-declare var Pjax:any;
 declare var DeviceManager:any;
 declare var env:any;
 
