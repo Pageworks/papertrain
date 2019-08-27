@@ -61,7 +61,7 @@ module.exports = {
                 default: '/',
                 validate: (input)=>{
                     if (/\s/g.test(input)){
-                        return 'You should not have spaces in your path.';
+                        return 'You should not have spaces or tabs in your path.';
                     }
                     else{
                         return true;

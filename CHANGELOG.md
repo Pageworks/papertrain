@@ -21,10 +21,13 @@
 - Fixes: updates tslint to handle both sets of typescript (templates and web_modules)
 - Fixes: runtime web component conflicts with NPM packages
 - Fixes: updates default template and component files to use the `|raw` twig filter
+- Fixes: web component are generated into hidden directories
+- Fixes: renames `_globals/` to `_global-stylesheets`
 
 ### Removed
 
 - Removes: reset CSS from the documents head
+- Removes: empty `_components/` directory
 
 ## 0.3.0-a2 - 2019-08-21
 
