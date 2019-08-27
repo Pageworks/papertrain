@@ -48,30 +48,31 @@ v0.3 uses the following first party tools/libraries:
 
 ### New Project
 
-1. Start by downloading the [latest release](https://github.com/Pageworks/papertrain/releases) of Papertrain and extracting the files into your projects root directory
-2. Open your terminal and navigate to the projects root directory
-3. Install the NPM dependencies by running the following command in your terminal
+1. Download the [latest release](https://github.com/Pageworks/papertrain/releases) of Papertrain
+2. Extract the files into your projects root directory
+3. Open your terminal and navigate to the projects root directory
+4. Install the NPM dependencies by running the following command in your terminal
 
 ```script
 npm install
 ```
 
-4. Install Craft CMS by running the following command in your terminal
+5. Install Craft CMS by running the following command in your terminal
 
 ```script
 composer install
 ```
 
-5. Set your Apache server to point to the projects `public/` directory
-6. Create a new empty database for the project
-7. Run the setup script by running the following command in your terminal
+6. Set your Apache server to point to the projects `public/` directory
+7. Create a new empty database for the project
+8. Run the setup script by running the following command in your terminal
 
 ```script
 npm run setup
 ```
 
-8. To finish the new project setup follow the Craft CMS installation guide that opens in your web browser. If your web browser doesn't automatically open navigate to the `/webmaster/install` page.
-9. After Craft is installed you may need to navigate to the `/webmaster/utilities/updates` page to update Craft and the boilerplate plugins.
+9. To finish the new project setup follow the Craft CMS installation guide that opens in your web browser. If your web browser doesn't automatically open navigate to the `/webmaster/install` page.
+10. After Craft is installed you may need to navigate to the `/webmaster/utilities/updates` page to update Craft and the boilerplate plugins.
 
 ### Existing Project
 
