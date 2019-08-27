@@ -85,7 +85,7 @@ Papertrain comes with a custom Craft 3 module that provides basic functionality 
 
 This section will cover the basics of requesting your compiled code in the front-end.
 
-**Critical CSS**
+#### Critical CSS
 
 Any file placed within a Critical CSS array will always be fetched and appended to the `<head>` before the loading animation ends. You can define Critical CSS by using the following:
 
@@ -93,7 +93,7 @@ Any file placed within a Critical CSS array will always be fetched and appended 
 {{ craft.papertrain.criticalCss(['first-file', 'second-file']) }}
 ```
 
-**Stylesheets**
+#### Stylesheets
 
 Any file placed within a Stylesheets array will be fetched and appended to the `<head>` after the browsers first idle callback. The CSS within these files will be lazy painted with the goal of helping to reduce the [complexity and improve render performance](https://developers.google.com/web/fundamentals/performance/rendering/simplify-paint-complexity-and-reduce-paint-areas) of the initial contextual paint. The goal is to provide an acceptable first contextual paint under one second. You can define Stylesheets by using the following:
 
@@ -101,7 +101,7 @@ Any file placed within a Stylesheets array will be fetched and appended to the `
 {{ craft.papertrain.stylesheets(['first-file', 'second-file', 'thrid-file']) }}
 ```
 
-**NPM Packages**
+#### NPM Packages
 
 Sometimes it's easier to pull in a NPM package instead of trying to create your own homegrown solution. In these cases you'll need to follow these steps to ensure that the package is bundled for web and included in the project. In this example we will be using the `@pageworks/device-manager` package that is pre-installed in Papertrain.
 
@@ -139,7 +139,7 @@ Unless the NPM package uses a [Node.js API](https://nodejs.org/dist/latest-v6.x/
 
 If you're unsure what the generated file is called you can look for it in the `public/automation/packages/` directory.
 
-**Web Components**
+#### Web Components
 
 Web Components typically handle their CSS and Script front-end includes, however, you could use the following in a template to include a Web Component:
 
@@ -147,7 +147,7 @@ Web Components typically handle their CSS and Script front-end includes, however
 {{ craft.papertrain.components(['my-cool-component']) }}
 ```
 
-**Web Modules**
+#### Web Modules
 
 Web Modules are global state managers and can be requested in your template by using the following:
 
@@ -162,7 +162,7 @@ Website Templates are primarily composed of two components.
 1. The Template
 2. Web Components
 
-**Template**
+#### Template
 
 A new template can be created by using the Papertrain component generator. To start the generator run the following script in your terminal:
 
@@ -178,7 +178,7 @@ Templates consists of a View and a Stylesheet.
 
 In Papertrain these files are generated as `template.twig` and `template.scss`.
 
-**Web Component**
+#### Web Component
 
 [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) are [Custom Elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) that typically live within a specific template directory.
 
