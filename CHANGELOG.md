@@ -63,6 +63,7 @@
 - Adds: custom elements polyfill from the [Polymer Project](https://www.polymer-project.org/)
 - Adds: legacy bundler for creating our single `main.js` file for IE 11 and other non-es2015 compatible browsers
 - Adds: new **Web Component** type to the generator
+- Adds: initial v0.3 documentation rough draft
 
 ### Fixed
 

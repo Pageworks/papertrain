@@ -116,10 +116,11 @@ class WebModuleBundler
 
                     let fileData = data.toString();
 
-                    let globalVariableName = fileData.match(/(?<=class).*(?=\{)/)[0].trim();
+                    let variableName = fileData.match(/(?<=class).*(?=\{)/)[0].trim();
+                    let globalVariableName = this.generateCamelCase(variableName);
 
                     let newData = fileData;
-                    newData += `\nvar ${ globalVariableName.toLowerCase() } = new ${ globalVariableName }();\n`;
+                    newData += `\nvar ${ globalVariableName } = new ${ variableName }();\n`;
 
                     let serverSafeName = modules[i].replace(/^.*[\\\/]/, '').toLowerCase();
                     // let importName = serverSafeName.replace(/\.js/, '');
@@ -145,6 +146,13 @@ class WebModuleBundler
                 });
             }
         });
+    }
+
+    generateCamelCase(name)
+    {
+        return name.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index)=>{
+            return index == 0 ? word.toLowerCase() : word.toUpperCase();
+        }).replace(/\s+/g, '');
     }
 }
 
