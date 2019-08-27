@@ -7,9 +7,10 @@
 - Adds: service worker for custom `.js` and `.css` caching
 - Adds: new `criticalCss` array and loading animation
 - Adds: new `reset.scss` file to the `sass/` directory
-- Adds: `@pageworks/device-manager` package is imported
+- Adds: `@pageworks/device-manager` package is now a default package
 - Adds: initial `noscript` style
 - Adds: basic sitemap navigation for users with JavaScript disabled
+- Adds: `base.scss` and `page.scss` to the `_layouts/` directory
 
 ### Fixed
 
@@ -22,12 +23,14 @@
 - Fixes: runtime web component conflicts with NPM packages
 - Fixes: updates default template and component files to use the `|raw` twig filter
 - Fixes: web component are generated into hidden directories
-- Fixes: renames `_globals/` to `_global-stylesheets`
+- Fixes: renames `_globals/` to `_global-stylesheets/`
 
 ### Removed
 
 - Removes: reset CSS from the documents head
 - Removes: empty `_components/` directory
+- Removes: `sass/_base/` directory and files
+- Removes: `uuid/v4` is no longer generated as a package by default, it is still installed as a dependency
 
 ## 0.3.0-a2 - 2019-08-21
 

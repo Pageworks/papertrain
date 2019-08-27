@@ -1,6 +1,7 @@
 {% extends "_layouts/base.twig" %}
 
 {% block page %}
+    {{ craft.papertrain.criticalCss(['page'])|raw }}
     <main role="main" class="js-pjax">
         {% block content %}{% endblock %}
     </main>

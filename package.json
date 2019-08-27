@@ -66,10 +66,6 @@
     },
     "webDependencies": [
         {
-            "package": "uuid/v4",
-            "import": "* as uuid"
-        },
-        {
             "package": "@pageworks/device-manager",
             "import": "DeviceManager"
         }
