@@ -3,11 +3,12 @@
 ## Contents
 
 1. [Requirements](#requirements)
-    - [Required Knowledge](#required-knowledge)
-    - [Required Software](#required-software)
+    1. [Required Knowledge](#required-knowledge)
+    1. [Required Software](#required-software)
 1. [Tools & Libraries](#tools-and-libraries)
 1. [Getting Started](#getting-started)
-    1. [New Project Setup](#new-project)
+    - [New Project Setup](#new-project)
+    - [Existing Project Setup](#existing-project)
 1. [Working with Papertrain](#working-with-papertrain)
     1. [Front-End Imports](#front-end-imports)
     1. [The Project Templating Hierarchy](#the-project-templating-hierarchy)
@@ -71,6 +72,10 @@ npm run setup
 
 8. To finish the new project setup follow the Craft CMS installation guide that opens in your web browser. If your web browser doesn't automatically open navigate to the `/webmaster/install` page.
 9. After Craft is installed you may need to navigate to the `/webmaster/utilities/updates` page to update Craft and the boilerplate plugins.
+
+### Existing Project
+
+TODO: Update/rewrite v0.2 existing project guide here
 
 ## Working with Papertrain
 
