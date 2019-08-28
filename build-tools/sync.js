@@ -18,15 +18,15 @@ browserSync.watch("./public/automation/**/*.css", (event, file)=>{
 		browserSync.reload([file]);
 	}
 });
+browserSync.watch("./public/automation/**/*.js", (event, file)=>{
+	if (event === 'change')
+	{
+		browserSync.reload([file]);
+	}
+});
 browserSync.watch("./templates/**/*.twig", (event, file)=>{
 	if (event === 'change')
 	{
 		browserSync.reload();
 	}
-});
-browserSync.watch("./templates", (event, file)=>{
-    browserSync.reload;
- });
-browserSync.watch("./public/assets", (event, file)=>{
-    browserSync.reload;
 });

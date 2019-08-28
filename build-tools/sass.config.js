@@ -125,7 +125,8 @@ class SassCompiler
                         }
                         else
                         {
-                            const fileName = result.stats.entry.match(/[\w-]+?(?=\.)/gi)[0].toLowerCase();
+                            let fileName = result.stats.entry.replace(/.*\//g, '').toLowerCase();
+                            fileName = fileName.replace(/(.scss)|(.sass)/g, '').trim();
                             if (fileName)
                             {
                                 const newFile = `./public/automation/styles-${ timestamp }/${ fileName }.css`;

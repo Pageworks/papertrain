@@ -1,7 +1,7 @@
 {
     "name": "papertrain",
     "description": "Papertrain: a Craft CMS framework",
-    "version": "0.3.0-a2",
+    "version": "0.3.0-a4",
     "author": "Pageworks",
     "license": "MIT",
     "repository": {
@@ -33,6 +33,8 @@
         "preview": "node ./build-tools/sync.js",
         "watch": "run-p watch:*",
         "watch:sass": "onchange 'templates/**/*.scss' 'sass/**/*.scss' -- node ./build-tools/sass-watcher.config.js {{changed}}",
+        "watch:typescript": "onchange 'templates/**/*.ts' -- tsc {{changed}} ./globals.d.ts --lib ESNext --lib DOM --target ESNext --outDir ./_compiled/es6",
+        "watch:components": "onchange '_compiled/es6/**/*.js' -- node ./build-tools/injector.config.js",
         "watch:sync": "node ./build-tools/sync.js",
         "dev": "run-p dev:*",
         "dev:es6": "npm run compile:es6",

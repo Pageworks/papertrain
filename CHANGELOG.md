@@ -1,3 +1,15 @@
+## 0.3.0-a4 - UNRELEASED
+
+### Added
+
+- Adds: TypeScript watcher & web component script injector for browser sync usage
+
+### Fixed
+
+- Fixes: removes `$elevation-3` through `$elevation-5` from `_config.scss`
+- Fixes: reduces the drop shadow on `$elevation-1` and `$elevation-2`
+- Fixes: regex file name parsing in the SASS compiler
+
 ## 0.3.0-a3 - 2019-08-27
 
 ### Added
