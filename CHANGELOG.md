@@ -9,6 +9,7 @@
 - Fixes: removes `$elevation-3` through `$elevation-5` from `_config.scss`
 - Fixes: reduces the drop shadow on `$elevation-1` and `$elevation-2`
 - Fixes: regex file name parsing in the SASS compiler
+- Fixes: hooks up `npm run dev` script to the new compilers & custom bundlers
 
 ## 0.3.0-a3 - 2019-08-27
 
