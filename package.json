@@ -33,7 +33,7 @@
         "preview": "node ./build-tools/sync.js",
         "watch": "run-p watch:*",
         "watch:sass": "onchange 'templates/**/*.scss' 'sass/**/*.scss' -- node ./build-tools/sass-watcher.config.js {{changed}}",
-        "watch:typescript": "onchange 'templates/**/*.ts' -- tsc {{changed}} ./globals.d.ts --lib ESNext --lib DOM --target ESNext --outDir ./_compiled/es6",
+        "watch:typescript": "tsc --p ./tsconfig.json --watch",
         "watch:components": "onchange '_compiled/es6/**/*.js' -- node ./build-tools/injector.config.js",
         "watch:sync": "node ./build-tools/sync.js",
         "dev": "npm run prep && npm-run-all dev:*",

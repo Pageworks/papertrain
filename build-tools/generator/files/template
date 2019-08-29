@@ -9,7 +9,7 @@
 {% block content %}
     {{ craft.papertrain.stylesheets(['REPLACE_WITH_KEBAB'])|raw }}
 
-    <article class="REPLACE_WITH_CSS g-container -full" data-template="REPLACE_WITH_KEBAB">
+    <article id="REPLACE_WITH_KEBAB" class="g-container -full" data-template="REPLACE_WITH_KEBAB">
         <section class="g-container">
             {{ dataModel.sample }}
         </section>

@@ -140,7 +140,7 @@ class PapertrainGenerator
                 case 'Web Component':
                     resolve(newName);
                 case 'Template':
-                    resolve(`.t-${ newName }`);
+                    resolve(`#${ newName }`);
                 case 'Global Stylesheet':
                     resolve(`.g-${ newName }`);
                 default:
@@ -261,10 +261,6 @@ class PapertrainGenerator
 
                     let modifiedFile = data;
                     modifiedFile = modifiedFile.replace(/REPLACE_WITH_KEBAB/g, this.kebabName);
-
-                    let fixedCssName = this.cssName.replace(/[\.]/g, '');
-
-                    modifiedFile = modifiedFile.replace(/REPLACE_WITH_CSS/g, fixedCssName);
 
                     fs.writeFile(`${ path }/${ this.kebabName }/index.${ HTMLFileType }`, modifiedFile, 'utf-8', (err)=>{
                         if (err)

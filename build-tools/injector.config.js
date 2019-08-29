@@ -61,7 +61,7 @@ class InjectionManager
             for (let i = 0; i < files.length; i++)
             {
                 let filename = files[i].replace(/.*[\/]/, '').trim();
-                fs.copyFile(files[i], `public/automation/components-${ timestamp }/${ filename }`, (error)=>{
+                fs.rename(files[i], `public/automation/components-${ timestamp }/${ filename }`, (error)=>{
                     if (error)
                     {
                         reject(error);
