@@ -13,20 +13,11 @@ browserSync.init({
 });
 
 browserSync.watch("./public/automation/**/*.css", (event, file)=>{
-	if (event === 'change')
-	{
-		browserSync.reload([file]);
-	}
+	browserSync.reload();
 });
 browserSync.watch("./public/automation/**/*.js", (event, file)=>{
-	if (event === 'change')
-	{
-		browserSync.reload([file]);
-	}
+	browserSync.reload();
 });
 browserSync.watch("./templates/**/*.twig", (event, file)=>{
-	if (event === 'change')
-	{
-		browserSync.reload();
-	}
+	browserSync.reload();
 });

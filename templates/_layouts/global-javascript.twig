@@ -6,7 +6,7 @@
 <script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/custom-elements.js' }}"></script>
 
 <script type="module">
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && !window.location.origin.match(/\.local/gi) && !window.location.hostname.match('localhost')) {
         navigator.serviceWorker.register("{{ alias('@rootUrl')|trim('/') ~ '/worker.js' }}",{ scope: '/' })
         .then((reg) => {
             if (navigator.serviceWorker.controller)

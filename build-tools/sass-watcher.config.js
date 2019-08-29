@@ -70,20 +70,27 @@ class SassWatcher
 			   },
 			   function(error, result)
 			   {
-				   if (error)
-				   {
-					   reject(`SASS Compile Error: ${ error.message } at line ${ error.line } ${ error.file }`);
-				   }
+					if (error)
+					{
+						reject(`SASS Compile Error: ${ error.message } at line ${ error.line } ${ error.file }`);
+					}
 
-				   const filename = file.replace(/(.*\/)|(\.sass|\.css|\.scss)/g, '');
-				   
-				   fs.writeFile(`public/automation/styles-${ timestamp }/${ filename }.css`, result.css, (error)=>{
-					   if (error)
-					   {
-						   reject(error);
-					   }
+				   	const filename = file.replace(/(.*\/)|(\.sass|\.css|\.scss)/g, '');
 
-					   resolve();
+				   	fs.unlink(`public/automation/styles-${ timestamp }/${ filename }.css`, (error)=>{
+						if (error)
+						{
+							reject(error);
+						}
+
+					   fs.writeFile(`public/automation/styles-${ timestamp }/${ filename }.css`, result.css, (error)=>{
+							if (error)
+							{
+								reject(error);
+							}
+	
+							resolve();
+						});
 				   });
 			   }
 		   );
