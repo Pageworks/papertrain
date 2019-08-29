@@ -11,6 +11,7 @@
 - Fixes: regex file name parsing in the SASS compiler
 - Fixes: hooks up `npm run dev` script to the new compilers & custom bundlers
 - Fixes: upgrades templates from classes to IDs since there will only ever be 1 instance of a template (page) within the document
+- Fixes: upgraded sass watcher's speed and performance
 
 ## 0.3.0-a3 - 2019-08-27
 
