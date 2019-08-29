@@ -3,6 +3,7 @@
 ### Added
 
 - Adds: TypeScript watcher & web component script injector for browser sync usage
+- Adds: async/await to the stylesheet fetching logic
 
 ### Fixed
 

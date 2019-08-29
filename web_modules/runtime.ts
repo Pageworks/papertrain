@@ -23,15 +23,29 @@ class Runtime
     private handleStylesheetsFetchEvent:EventListener = this.getAllStylesheets.bind(this);
     private handleScriptFetchEvent:EventListener = this.getScripts.bind(this);
 
-    private getAllStylesheets() : void
+    private async getAllStylesheets()
     {
-        this.getCriticalCss();
-        this.getStylesheets();
+        try
+        {
+            await this.getCriticalCss();
+            this.criticalCssHasLoaded();
+            await this.getStylesheets();
+        }
+        catch (error)
+        {
+            console.error(error);
+        }
     }
 
-    private getCriticalCss() : void
+    private criticalCssHasLoaded() : void
     {
-        new Promise((resolve)=>{
+        const pageLoadingElement = document.body.querySelector('page-loading');
+        pageLoadingElement.classList.remove('is-loading');
+    }
+
+    private getCriticalCss() : Promise<any>
+    {
+        return new Promise((resolve)=>{
             if (window.criticalCss.length === 0)
             {
                 resolve();
@@ -78,45 +92,44 @@ class Runtime
                 requestedStylesheets.splice(0, 1);
                 window.criticalCss.splice(0, 1);
             }
-        })
-        .then(()=>{
-            // Do something after the stylesheets finish loading
-            const pageLoadingElement = document.body.querySelector('page-loading');
-            pageLoadingElement.classList.remove('is-loading');
         });
     }
 
-    private getStylesheets() : void
+    private getStylesheets() : Promise<any>
     {
-        if (window.stylesheets.length === 0)
-        {
-            return;
-        }
-
-        const requestedStylesheets = [...window.stylesheets];
-
-        while (window.stylesheets.length)
-        {
-            const stylesheetFile = window.stylesheets[0];
-            let styleElement:HTMLElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
-            if (!styleElement)
+        return new Promise((resolve)=>{
+            if (window.stylesheets.length === 0)
             {
-                styleElement = document.createElement('style');
-                styleElement.setAttribute('file', stylesheetFile);
-                document.head.appendChild(styleElement);
-                const stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetFile }`;
-                this.fetchFile(stylesheetUrl)
-                .then(response => {
-                    styleElement.innerHTML = response;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+                resolve();
             }
 
-            requestedStylesheets.splice(0, 1);
-            window.stylesheets.splice(0, 1);
-        }
+            const requestedStylesheets = [...window.stylesheets];
+
+            while (window.stylesheets.length)
+            {
+                const stylesheetFile = window.stylesheets[0];
+                let styleElement:HTMLElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
+                if (!styleElement)
+                {
+                    styleElement = document.createElement('style');
+                    styleElement.setAttribute('file', stylesheetFile);
+                    document.head.appendChild(styleElement);
+                    const stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetFile }`;
+                    this.fetchFile(stylesheetUrl)
+                    .then(response => {
+                        styleElement.innerHTML = response;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                }
+
+                requestedStylesheets.splice(0, 1);
+                window.stylesheets.splice(0, 1);
+            }
+
+            resolve();
+        });
     }
 
     private fetchFile(url:string) : Promise<string>
@@ -352,16 +365,14 @@ class Runtime
         {
             // @ts-ignore
             window.requestIdleCallback(()=>{
-                this.getCriticalCss();
-                this.getStylesheets();
+                this.getAllStylesheets();
                 this.getScripts();
             });
         }
         else
         {
             console.warn('Idle callback prototype not available in this browser, fetching stylesheets');
-            this.getCriticalCss();
-            this.getStylesheets();
+            this.getAllStylesheets();
             this.getScripts();
         }
 
