@@ -46,6 +46,8 @@ v0.3 uses the following first party tools/libraries:
 
 ## Getting Started
 
+Use the following guides to setup a Papertrain project. Please note that additional setup steps may be required on a project-by-project basis, please speak with the Project Manager or your team lead for additional assistance or instructions.
+
 ### New Project
 
 1. Download the [latest release](https://github.com/Pageworks/papertrain/releases) of Papertrain
@@ -76,7 +78,24 @@ npm run setup
 
 ### Existing Project
 
-TODO: Update/rewrite v0.2 existing project guide here
+1. Clone the repository
+2. Navigate your terminal into the projects root directory
+3. Install the NPM packages by running the following command:
+
+```script
+npm ci
+```
+
+4. Set your Apache server to point to the projects `public/` directory
+5. Create a new empty database for the project OR import the existing staging/production database
+6. Setup the project by running the following command:
+
+```script
+npm run setup
+```
+
+7. If you **DID NOT** import an existing database during *Step 5* you can finish the setup by following the Craft CMS installation guide that opens in your web browser. If your web browser doesn't automatically open navigate to the `/webmaster/install` page.
+
 
 ## Working with Papertrain
 

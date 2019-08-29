@@ -4,6 +4,7 @@
 
 - Adds: TypeScript watcher & web component script injector for browser sync usage
 - Adds: async/await to the stylesheet fetching logic
+- Adds: joining an existing project setup guide to the v0.3 documentation
 
 ### Fixed
 
