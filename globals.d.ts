@@ -21,7 +21,7 @@ declare var env:Env
 
 interface TwigOptions
 {
-    data: string
+    data?: string
     id?: string
     href?: string
     async?: boolean
@@ -30,7 +30,7 @@ interface TwigOptions
 
 interface TwigTemplate
 {
-    render: (data:Object)=>void
+    render: (data:Object)=>string
 }
 
 declare function twig(options:TwigOptions) : TwigTemplate
