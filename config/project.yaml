@@ -1,4 +1,4 @@
-dateModified: 1566395353
+dateModified: 1567170320
 email:
   fromEmail: 'REPLACE ME'
   fromName: 'REPLACE ME'
@@ -490,7 +490,7 @@ system:
   edition: solo
   name: $SYSTEM_NAME
   live: true
-  schemaVersion: 3.2.16
+  schemaVersion: 3.3.3
   timeZone: America/New_York
 users:
   requireEmailVerification: true

@@ -10,6 +10,7 @@
 - Adds: `public/assets/libraries/` directory to store 3rd party libraries
 - Adds: new library fetching step the the runtime `getScripts()` method
 - Adds: new libraries loaded callback method to the runtime
+- Adds: upgrades to Craft 3.3
 
 ### Fixed
 
