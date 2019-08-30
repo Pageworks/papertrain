@@ -11,6 +11,7 @@
 namespace modules\papertrainmodule\variables;
 
 use modules\papertrainmodule\PapertrainModule;
+use craft\helpers\Template as TemplateHelper;
 
 use Craft;
 
@@ -30,26 +31,26 @@ class PapertrainModuleVariable
 
     public function criticalCss(array $fileNames)
     {
-        return PapertrainModule::getInstance()->papertrainModuleService->buildCriticalCss($fileNames);
+        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildCriticalCss($fileNames));
     }
 
     public function stylesheets(array $fileNames)
     {
-        return PapertrainModule::getInstance()->papertrainModuleService->buildStylesheets($fileNames);
+        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildStylesheets($fileNames));
     }
 
     public function packages(array $fileNames)
     {
-        return PapertrainModule::getInstance()->papertrainModuleService->buildPackages($fileNames);
+        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildPackages($fileNames));
     }
 
     public function components(array $fileNames)
     {
-        return PapertrainModule::getInstance()->papertrainModuleService->buildComponents($fileNames);
+        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildComponents($fileNames));
     }
 
     public function modules(array $fileNames)
     {
-        return PapertrainModule::getInstance()->papertrainModuleService->buildModules($fileNames);
+        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildModules($fileNames));
     }
 }
