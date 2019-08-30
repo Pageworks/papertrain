@@ -5,6 +5,11 @@
 - Adds: TypeScript watcher & web component script injector for browser sync usage
 - Adds: async/await to the stylesheet fetching logic
 - Adds: joining an existing project setup guide to the v0.3 documentation
+- Adds: [Twig.js](https://github.com/twigjs/twig.js) JavaScript library ([twig.js example](https://github.com/codewithkyle/twigjs-prototype))
+- Adds: `ajax/` directory to `public/` as a place to store Twig snippets for Twig.js
+- Adds: `public/assets/libraries/` directory to store 3rd party libraries
+- Adds: new library fetching step the the runtime `getScripts()` method
+- Adds: new libraries loaded callback method to the runtime
 
 ### Fixed
 

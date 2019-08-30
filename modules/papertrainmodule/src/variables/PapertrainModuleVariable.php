@@ -53,4 +53,9 @@ class PapertrainModuleVariable
     {
         return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildModules($fileNames));
     }
+
+    public function libraries(array $fileNames)
+    {
+        return TemplateHelper::raw(PapertrainModule::getInstance()->papertrainModuleService->buildLibraries($fileNames));
+    }
 }

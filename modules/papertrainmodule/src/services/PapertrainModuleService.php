@@ -79,4 +79,15 @@ class PapertrainModuleService extends Component
         $script = $script . '</script>';
         return $script;
     }
+
+    public function buildLibraries(array $fileNames)
+    {
+        $script = '<script defer="defer">';
+        foreach ($fileNames as $file)
+        {
+            $script = $script . 'window.libraries.push("' . $file . '.js");';
+        }
+        $script = $script . '</script>';
+        return $script;
+    }
 }

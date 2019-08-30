@@ -5,10 +5,13 @@ interface Window
     components : Array<string>
     modules : Array<string>
     criticalCss : Array<string>
+    libraries : Array<string>
+    twig : Function
 }
 
 declare var DeviceManager:any;
 declare var env:any;
+declare var Twig:any;
 
 class Runtime
 {
@@ -344,11 +347,69 @@ class Runtime
         }
     }
 
+    private getLibraries() : Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+            if (window.libraries.length === 0)
+            {
+                resolve();
+            }
+            
+            let fetched = 0;
+            const requestedLibraries = [...window.libraries];
+            const numberOfRequiredFiles = requestedLibraries.length;
+
+            while (requestedLibraries.length)
+            {
+                const file = requestedLibraries[0];
+                let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
+                if (!element)
+                {
+                    element = document.createElement('script');
+                    element.setAttribute('file', file);
+                    document.head.appendChild(element);
+                    const url = `${ window.location.origin }/assets/libraries/${ file }`;
+                    this.fetchFile(url)
+                    .then(response => {
+                        element.innerHTML = response;
+                        
+                        fetched++;
+                        if (fetched === numberOfRequiredFiles)
+                        {
+                            resolve();
+                        }
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+                }
+                else
+                {
+                    fetched++;
+                    if (fetched === numberOfRequiredFiles)
+                    {
+                        resolve();
+                    }
+                }
+
+                requestedLibraries.splice(0, 1);
+                window.libraries.splice(0, 1);
+            }
+        });
+    }
+
+    private librariesCallback() : void
+    {
+        window.twig = Twig.twig;
+    }
+
     private async getScripts()
     {
         try
         {
             await this.getPackages();
+            await this.getLibraries();
+            this.librariesCallback();
             await this.getModules();
             await this.getComponents();
             this.scriptsCallback();
