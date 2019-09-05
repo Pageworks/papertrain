@@ -5,8 +5,23 @@
 <script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/fetch.js' }}"></script>
 <script nomodule type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/custom-elements.js' }}"></script>
 
+{# Polyfill Hacks & Workarounds #}
+<script>
+    if (window.safari)
+    {
+        document.write('<script type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/libraries/twig-js.js' }}"><\/script>');
+        document.write('<script type="text/javascript">window.twig = Twig.twig;<\/script>');
+    }
+
+    if (/Edge/.test(navigator.userAgent))
+    {
+        document.write('<script type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/custom-elements.js' }}"><\/script>');
+    }
+</script>
+
+{# Service Worker #}
 <script type="module">
-    if ('serviceWorker' in navigator && !window.location.origin.match(/\.local/gi) && !window.location.hostname.match('localhost')) {
+    if ('serviceWorker' in navigator && !window.location.origin.match(/\.local/gi) && !window.location.hostname.match('localhost') && !window.location.origin.match(/(127\.0\.0\.1)/g)) {
         navigator.serviceWorker.register("{{ alias('@rootUrl')|trim('/') ~ '/worker.js' }}",{ scope: '/' })
         .then((reg) => {
             if (navigator.serviceWorker.controller)

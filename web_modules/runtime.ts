@@ -350,6 +350,12 @@ class Runtime
     private getLibraries() : Promise<any>
     {
         return new Promise((resolve, reject) => {
+            // @ts-ignore
+            if (window.safari)
+            {
+                return;
+            }
+
             if (window.libraries.length === 0)
             {
                 resolve();
@@ -400,6 +406,12 @@ class Runtime
 
     private librariesCallback() : void
     {
+        // @ts-ignore
+        if (window.safari)
+        {
+            return;
+        }
+
         window.twig = Twig.twig;
     }
 

@@ -11,6 +11,7 @@
 - Adds: new library fetching step the the runtime `getScripts()` method
 - Adds: new libraries loaded callback method to the runtime
 - Adds: upgrades to Craft 3.3
+- Adds: new Polyfill Hacks & Workarounds script to the `global-javascript.twig` file due to Safari and Edge limitations
 
 ### Fixed
 
@@ -22,6 +23,8 @@
 - Fixes: upgraded sass watcher's speed and performance
 - Fixes: service worker is disabled on `.local` domains or when the `window.location.hostname` is `localhost`
 - Fixes: switched the `|raw` twig filter back to exporting a the raw TemplateHelper response, easier to use and `|raw` didn't provide any performance advantages
+- Fixes: adds `customElements` polyfill to Edge
+- Fixes: runtime ignores library fetching methods on Safari due to fetch/ajax file size limit of 512kb
 
 ## 0.3.0-a3 - 2019-08-27
 
