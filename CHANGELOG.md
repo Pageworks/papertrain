@@ -1,4 +1,6 @@
-## 0.3.0-a4 - UNRELEASED
+## 0.3.0-a5 - UNRELEASED
+
+## 0.3.0-a4 - 2019-09-05
 
 ### Added
 
