@@ -1,5 +1,9 @@
 ## 0.3.0-a5 - UNRELEASED
 
+### Added
+
+- Adds: new Template Manager class to fix the issue where Twig.js uses XMLHttpRequest instead of Fetch
+
 ## 0.3.0-a4 - 2019-09-05
 
 ### Added
