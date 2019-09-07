@@ -2,7 +2,7 @@
 
 ### Added
 
-- Adds: new Template Manager class to fix the issue where Twig.js uses XMLHttpRequest instead of Fetch
+- Adds: new Template Manager class to fix the issue where Twig.js uses XMLHttpRequest instead of Fetch [synchronous XMLHttpRequest deprecation source](https://xhr.spec.whatwg.org/#the-open()-method)
 
 ## 0.3.0-a4 - 2019-09-05
 
