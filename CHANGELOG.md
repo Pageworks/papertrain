@@ -4,6 +4,13 @@
 
 - Adds: new Template Manager class to fix the issue where Twig.js uses XMLHttpRequest instead of Fetch [synchronous XMLHttpRequest deprecation source](https://xhr.spec.whatwg.org/#the-open()-method)
 
+### Fixed
+
+- Fixes: updates v0.3 documentation
+- Fixes: runtime application trims `.js` and `.css` file extensions from the requested filename strings
+- Fixes: papertrain module no longer sets the file extensions
+- Fixes: `npm run compile` command is an alias for `npm run build`
+
 ## 0.3.0-a4 - 2019-09-05
 
 ### Added

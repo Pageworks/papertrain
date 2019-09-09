@@ -60,14 +60,14 @@ class Runtime
 
             while (window.criticalCss.length)
             {
-                const stylesheetFile = window.criticalCss[0];
+                const stylesheetFile = window.criticalCss[0].replace(/(\.css)/gi, '');
                 let styleElement:HTMLElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
                 if (!styleElement)
                 {
                     styleElement = document.createElement('style');
                     styleElement.setAttribute('file', stylesheetFile);
                     document.head.appendChild(styleElement);
-                    const stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetFile }`;
+                    const stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetFile }.css`;
                     this.fetchFile(stylesheetUrl)
                     .then(response => {
                         styleElement.innerHTML = response;
@@ -110,14 +110,14 @@ class Runtime
 
             while (window.stylesheets.length)
             {
-                const stylesheetFile = window.stylesheets[0];
+                const stylesheetFile = window.stylesheets[0].replace(/(\.css)/gi, '');
                 let styleElement:HTMLElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
                 if (!styleElement)
                 {
                     styleElement = document.createElement('style');
                     styleElement.setAttribute('file', stylesheetFile);
                     document.head.appendChild(styleElement);
-                    const stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetFile }`;
+                    const stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetFile }.css`;
                     this.fetchFile(stylesheetUrl)
                     .then(response => {
                         styleElement.innerHTML = response;
@@ -169,14 +169,14 @@ class Runtime
 
             while (requestedPackages.length)
             {
-                const file = requestedPackages[0];
+                const file = requestedPackages[0].replace(/(\.js)/gi, '');
                 let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
                 if (!element)
                 {
                     element = document.createElement('script');
                     element.setAttribute('file', file);
                     document.head.appendChild(element);
-                    const url = `${ window.location.origin }/automation/packages-${ document.documentElement.dataset.cachebust }/${ file }`;
+                    const url = `${ window.location.origin }/automation/packages-${ document.documentElement.dataset.cachebust }/${ file }.js`;
                     this.fetchFile(url)
                     .then(response => {
                         element.innerHTML = response;
@@ -220,14 +220,14 @@ class Runtime
 
             while (requestedModules.length)
             {
-                const file = requestedModules[0];
+                const file = requestedModules[0].replace(/(\.js)/gi, '');
                 let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
                 if (!element)
                 {
                     element = document.createElement('script');
                     element.setAttribute('file', file);
                     document.head.appendChild(element); 
-                    const url = `${ window.location.origin }/automation/modules-${ document.documentElement.dataset.cachebust }/${ file }`;
+                    const url = `${ window.location.origin }/automation/modules-${ document.documentElement.dataset.cachebust }/${ file }.js`;
                     this.fetchFile(url)
                     .then(response => {
                         element.innerHTML = response;
@@ -271,14 +271,14 @@ class Runtime
 
             while (requestedComponents.length)
             {
-                const file = requestedComponents[0];
+                const file = requestedComponents[0].replace(/(\.js)/gi, '');
                 let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
                 if (!element)
                 {
                     element = document.createElement('script');
                     element.setAttribute('file', file);
                     document.head.appendChild(element); 
-                    const url = `${ window.location.origin }/automation/components-${ document.documentElement.dataset.cachebust }/${ file }`;
+                    const url = `${ window.location.origin }/automation/components-${ document.documentElement.dataset.cachebust }/${ file }.js`;
                     this.fetchFile(url)
                     .then(response => {
                         element.innerHTML = response;
@@ -367,14 +367,14 @@ class Runtime
 
             while (requestedLibraries.length)
             {
-                const file = requestedLibraries[0];
+                const file = requestedLibraries[0].replace(/(\.js)/gi, '');
                 let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
                 if (!element)
                 {
                     element = document.createElement('script');
                     element.setAttribute('file', file);
                     document.head.appendChild(element);
-                    const url = `${ window.location.origin }/assets/libraries/${ file }`;
+                    const url = `${ window.location.origin }/assets/libraries/${ file }.js`;
                     this.fetchFile(url)
                     .then(response => {
                         element.innerHTML = response;

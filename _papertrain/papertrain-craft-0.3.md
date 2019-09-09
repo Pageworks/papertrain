@@ -27,7 +27,7 @@ Papertrain provides the tooling to help limit the knowledge requirements when bu
 
 ### Required Software
 
-- [Node.js](https://nodejs.org/en/)
+- [Node.js >=10.16.3](https://nodejs.org/en/)
 - [Composer](https://getcomposer.org/download/)
 - [Ubuntu LAMP stack](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04) or [MAMP Pro](https://www.mamp.info/en/)
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
@@ -39,6 +39,8 @@ v0.3 uses the following third party tools/libraries:
 - [rollup.js](https://rollupjs.org/guide/en/)
 - [node-sass v4](https://github.com/sass/node-sass)
 - [TypeScript v3](https://www.typescriptlang.org/docs/home.html)
+
+*Note:* If you're having an issue with node-sass when compiling try running the rebuild command `npm rebuild node-sass`
 
 v0.3 uses the following first party tools/libraries:
 
@@ -173,6 +175,14 @@ Web Modules are global state managers and can be requested in your template by u
 
 ```twig
 {{ craft.papertrain.modules(['example-module']) }}
+```
+
+### 3rd Party Libraries
+
+3rd part libraries are JavaScript libraries that can be included on a specific page or globally for the entire project. All 3rd party files should be placed in the `public/assets/libraries/` directory. You can request the libraries by using the following:
+
+```twig
+{{ craft.papertrain.libraries(['filename']) }}
 ```
 
 ### The Project Templating Hierarchy

@@ -30,7 +30,7 @@ class PapertrainModuleService extends Component
         $script =  '<script defer="defer">';
         foreach ($fileNames as $file)
         {
-            $script = $script . 'window.criticalCss.push("' . $file . '.css");';
+            $script = $script . 'window.criticalCss.push("' . $file . '");';
         }
         $script = $script . '</script>';
         return $script;
@@ -41,7 +41,7 @@ class PapertrainModuleService extends Component
         $script =  '<script defer="defer">';
         foreach ($fileNames as $file)
         {
-            $script = $script . 'window.stylesheets.push("' . $file . '.css");';
+            $script = $script . 'window.stylesheets.push("' . $file . '");';
         }
         $script = $script . '</script>';
         return $script;
@@ -52,7 +52,7 @@ class PapertrainModuleService extends Component
         $script = '<script defer="defer">';
         foreach ($fileNames as $file)
         {
-            $script = $script . 'window.packages.push("' . $file . '.js");';
+            $script = $script . 'window.packages.push("' . $file . '");';
         }
         $script = $script . '</script>';
         return $script;
@@ -63,7 +63,7 @@ class PapertrainModuleService extends Component
         $script = '<script type="module">';
         foreach ($fileNames as $file)
         {
-            $script = $script . 'window.components.push("' . $file . '.js");';
+            $script = $script . 'window.components.push("' . $file . '");';
         }
         $script = $script . '</script>';
         return $script;
@@ -74,7 +74,7 @@ class PapertrainModuleService extends Component
         $script = '<script type="module">';
         foreach ($fileNames as $file)
         {
-            $script = $script . 'window.modules.push("' . $file . '.js");';
+            $script = $script . 'window.modules.push("' . $file . '");';
         }
         $script = $script . '</script>';
         return $script;
@@ -85,7 +85,7 @@ class PapertrainModuleService extends Component
         $script = '<script defer="defer">';
         foreach ($fileNames as $file)
         {
-            $script = $script . 'window.libraries.push("' . $file . '.js");';
+            $script = $script . 'window.libraries.push("' . $file . '");';
         }
         $script = $script . '</script>';
         return $script;
