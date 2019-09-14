@@ -1,11 +1,9 @@
-dateModified: 1567170320
+dateModified: 1568460314
 email:
   fromEmail: 'REPLACE ME'
   fromName: 'REPLACE ME'
   transportType: craft\mail\transportadapters\Sendmail
 fieldGroups:
-  80dde2a7-878d-491b-82ba-bb5261590762:
-    name: Common
   fd9bbfe1-97ad-43c7-b6cd-81d3a9f92a0b:
     name: Generic
 fields:
