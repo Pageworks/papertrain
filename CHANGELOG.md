@@ -1,4 +1,6 @@
-## 0.3.0-a5 - UNRELEASED
+## 0.3.0 - UNRELEASED
+
+## 0.3.0 - 2019-09-14
 
 ### Fixed
 
