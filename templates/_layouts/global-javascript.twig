@@ -7,12 +7,6 @@
 
 {# Polyfill Hacks & Workarounds #}
 <script>
-    if (window.safari)
-    {
-        document.write('<script type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/libraries/twig-js.js' }}"><\/script>');
-        document.write('<script type="text/javascript">window.twig = Twig.twig;<\/script>');
-    }
-
     if (/Edge/.test(navigator.userAgent))
     {
         document.write('<script type="text/javascript" src="{{ alias('@rootUrl')|trim('/') ~ '/assets/polyfills/custom-elements.js' }}"><\/script>');
@@ -35,5 +29,4 @@
 </script>
 
 {{ craft.papertrain.packages(['pageworks-device-manager']) }}
-{{ craft.papertrain.libraries(['twig-js']) }}
 {{ craft.papertrain.modules(['env']) }}

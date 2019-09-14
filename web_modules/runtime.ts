@@ -60,7 +60,7 @@ class Runtime
 
             while (window.criticalCss.length)
             {
-                const stylesheetFile = window.criticalCss[0].replace(/(\.css)/gi, '');
+                const stylesheetFile = window.criticalCss[0].replace(/(\.css)$/gi, '');
                 let styleElement:HTMLElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
                 if (!styleElement)
                 {
@@ -110,7 +110,7 @@ class Runtime
 
             while (window.stylesheets.length)
             {
-                const stylesheetFile = window.stylesheets[0].replace(/(\.css)/gi, '');
+                const stylesheetFile = window.stylesheets[0].replace(/(\.css)$/gi, '');
                 let styleElement:HTMLElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
                 if (!styleElement)
                 {
@@ -169,7 +169,7 @@ class Runtime
 
             while (requestedPackages.length)
             {
-                const file = requestedPackages[0].replace(/(\.js)/gi, '');
+                const file = requestedPackages[0].replace(/(\.js)$/gi, '');
                 let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
                 if (!element)
                 {
@@ -220,7 +220,7 @@ class Runtime
 
             while (requestedModules.length)
             {
-                const file = requestedModules[0].replace(/(\.js)/gi, '');
+                const file = requestedModules[0].replace(/(\.js)$/gi, '');
                 let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
                 if (!element)
                 {
@@ -271,7 +271,7 @@ class Runtime
 
             while (requestedComponents.length)
             {
-                const file = requestedComponents[0].replace(/(\.js)/gi, '');
+                const file = requestedComponents[0].replace(/(\.js)$/gi, '');
                 let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
                 if (!element)
                 {
@@ -367,7 +367,7 @@ class Runtime
 
             while (requestedLibraries.length)
             {
-                const file = requestedLibraries[0].replace(/(\.js)/gi, '');
+                const file = requestedLibraries[0].replace(/(\.js)$/gi, '');
                 let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
                 if (!element)
                 {
@@ -411,8 +411,6 @@ class Runtime
         {
             return;
         }
-
-        window.twig = Twig.twig;
     }
 
     private async getScripts()

@@ -1,8 +1,13 @@
 ## 0.3.0-a5 - UNRELEASED
 
-### Added
+### Fixed
 
-- Adds: new Template Manager class to fix the issue where Twig.js uses XMLHttpRequest instead of Fetch [synchronous XMLHttpRequest deprecation source](https://xhr.spec.whatwg.org/#the-open()-method)
+- Fixes: regex patterns only removes the `.css` or `.js` from the end of the filenames when fetching files
+
+### Removed
+
+- Removes: twigjs
+- Removes: Template Manager web component
 
 ### Fixed
 
