@@ -6,12 +6,10 @@ interface Window
     modules : Array<string>
     criticalCss : Array<string>
     libraries : Array<string>
-    twig : Function
 }
 
 declare var DeviceManager:any;
 declare var env:any;
-declare var Twig:any;
 
 class Runtime
 {
