@@ -1,16 +1,11 @@
 {
     "compilerOptions": {
-        "outDir": "./_compiled/es6",
+        "outFile": "public/assets/ie-components.js",
         "sourceMap": false,
-        "noImplicitAny": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "removeComments": true,
-        "target": "esnext",
-        "module": "esnext",
+        "target": "es5",
+        "module": "amd",
         "moduleResolution": "node",
         "allowJs": true,
-        "checkJs": true,
         "lib": [
             "dom",
             "scripthost",

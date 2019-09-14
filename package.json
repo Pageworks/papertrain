@@ -1,7 +1,7 @@
 {
     "name": "papertrain",
     "description": "Papertrain: a Craft CMS framework",
-    "version": "0.2.5",
+    "version": "0.3.0-a4",
     "author": "Pageworks",
     "license": "MIT",
     "repository": {
@@ -11,75 +11,95 @@
     "keywords": [
         "craft cms",
         "craft 3",
-        "toolkit",
-        "cli"
+        "framework",
+        "cli",
+        "typescript",
+        "es modules",
+        "web components",
+        "rollupjs"
     ],
     "bugs": {
         "url": "https://github.com/Pageworks/papertrain/issues",
         "email": "web@page.works"
     },
+    "types": "templates/_layouts/globals.d.ts",
     "scripts": {
         "precommit": "lint-staged",
         "lint:sass": "stylelint  *.scss --cache --config ./build-tools/.stylelintrc --cache-location ./build-tools/.stylelintcache",
-        "lint:typescript": "tslint *.ts -c ./build-tools/.tslintrc.js -p ./tsconfig.json -t verbose",
-        "webpack": "cross-env NODE_ENV=development webpack --config ./webpack.config.js",
-        "tsc": "tsc",
-        "create": "node ./build-tools/generator/generate.js",
-        "setup": "node ./build-tools/setup/setup.js",
+        "lint:typescript": "tslint ./templates/**/*.ts -c ./build-tools/.tslintrc.js -p ./tsconfig.json -t verbose",
+        "lint:typescript-modules": "tslint ./web_modules/*.ts -c ./build-tools/.tslintrc.js -p ./tsconfig-modules.json -t verbose",
+        "create": "node ./build-tools/generator/generator.js",
+        "setup": "npm run build && node ./build-tools/setup/setup.js",
         "preview": "node ./build-tools/sync.js",
-        "compile": "node ./build-tools/compile.config.js && npm-run-all compile:*",
-        "compile:scripts": "tsc && cross-env NODE_ENV=production webpack --config ./webpack.config.js",
-        "compile:styles": "cross-env NODE_ENV=production node ./build-tools/sass.config.js",
-        "compile:lint": "npm-run-all lint:*",
-        "dev": "node ./build-tools/compile.config.js && npm-run-all dev:*",
-        "dev:typescript": "tsc",
-        "dev:bundle": "cross-env NODE_ENV=development webpack --config ./webpack.config.js",
-        "dev:sass": "cross-env NODE_ENV=development node ./build-tools/sass.config.js",
-        "production": "node ./build-tools/compile.config.js && npm-run-all production:*",
-        "production:scripts": "tsc && cross-env NODE_ENV=production webpack --config ./webpack.config.js",
-        "production:styles": "cross-env NODE_ENV=production node ./build-tools/sass.config.js",
         "watch": "run-p watch:*",
-        "watch:sass": "onchange 'templates/**/*.scss' 'utils/**/*.scss' -- node ./build-tools/sass-watcher.config.js {{changed}}",
-        "watch:sync": "node ./build-tools/sync.js"
+        "watch:sass": "onchange 'templates/**/*.scss' 'sass/**/*.scss' -- node ./build-tools/sass-watcher.config.js {{changed}}",
+        "watch:typescript": "tsc --p ./tsconfig.json --watch",
+        "watch:components": "onchange '_compiled/es6/**/*.js' -- node ./build-tools/injector.config.js",
+        "watch:sync": "node ./build-tools/sync.js",
+        "dev": "npm run prep && npm-run-all dev:*",
+        "dev:components": "npm run compile:es6",
+        "dev:modules": "npm run compile:modules",
+        "dev:styles": "npm run compile:styles",
+        "dev:bundle": "npm run bundle:components && npm run bundle:modules && npm run bundle:packages",
+        "dev:cleanup": "npm run cleanup",
+        "build": "npm run prep && run-p compile:* && npm run bundle && npm run cleanup",
+        "prep": "node ./build-tools/prep.config.js",
+        "cleanup": "node ./build-tools/cleanup.config.js",
+        "compile": "npm run build",
+        "compile:es5": "tsc --p ./tsconfig-es5.json",
+        "compile:es6": "tsc --p ./tsconfig.json",
+        "compile:modules": "tsc --p ./tsconfig-modules.json",
+        "compile:es5-modules": "tsc --p ./tsconfig-es5-modules.json",
+        "compile:styles": "node ./build-tools/sass.config.js",
+        "bundle": "run-p bundle:*",
+        "bundle:packages": "node ./build-tools/packages.config.js",
+        "bundle:modules": "node ./build-tools/modules.config.js",
+        "bundle:components": "node ./build-tools/components.config.js",
+        "bundle:legacy": "node ./build-tools/legacy.config.js"
     },
     "lint-staged": {
         "linters": {
             "./templates/**/*.ts": "npm run lint:typescript",
+            "./web_modules/**/*.ts": "npm run lint:typescript-modules",
             "./templates/**/*.scss": "npm run lint:sass",
-            "./utils/scripts/**/*.ts": "npm run lint:typescript",
-            "./utils/styles/**/*.scss": "npm run lint:sass"
+            "./sass/**/*.scss": "npm run lint:sass"
         }
     },
     "dependencies": {
         "@pageworks/device-manager": "^1.2.3",
-        "@pageworks/pjax": "^2.1.4",
-        "@pageworks/state-manager": "^1.0.2",
-        "uuid": "^3.3.2",
-        "webpack": "^4.33.0",
-        "webpack-cli": "^3.3.3",
-        "terser-webpack-plugin": "^1.3.0",
-        "chalk": "^2.4.2",
-        "clear": "^0.1.0",
-        "cross-env": "^5.2.0",
-        "dotenv": "^6.2.0",
-        "node-sass": "^4.11.0",
-        "npm-run-all": "^4.1.5",
-        "open": "^6.3.0",
-        "ora": "^3.4.0",
-        "typescript": "^3.5.1"
+        "uuid": "^3.3.3"
     },
+    "webDependencies": [
+        {
+            "package": "@pageworks/device-manager",
+            "import": "DeviceManager"
+        }
+    ],
     "devDependencies": {
         "browser-sync": "^2.26.7",
+        "chalk": "^2.4.2",
+        "clear": "^0.1.0",
+        "dotenv": "^6.2.0",
         "figlet": "^1.2.3",
+        "glob": "^7.1.4",
         "husky": "^1.3.1",
-        "inquirer": "^6.3.1",
+        "inquirer": "^6.5.2",
         "lint-staged": "^7.3.0",
+        "node-sass": "^4.11.0",
+        "npm-run-all": "^4.1.5",
         "onchange": "^6.0.0",
+        "open": "^6.3.0",
+        "ora": "^3.4.0",
+        "rimraf": "^3.0.0",
+        "rollup": "^1.20.3",
+        "rollup-plugin-commonjs": "^10.1.0",
+        "rollup-plugin-node-resolve": "^5.2.0",
         "stylelint": "^9.10.1",
         "stylelint-config-recommended-scss": "^3.2.0",
-        "stylelint-scss": "^3.8.0",
-        "tslint": "^5.17.0",
+        "stylelint-scss": "^3.10.0",
+        "tslint": "^5.19.0",
         "tslint-config-airbnb": "^5.11.1",
-        "tslint-config-prettier": "^1.18.0"
+        "tslint-config-prettier": "^1.18.0",
+        "typescript": "^3.6.2"
     }
 }

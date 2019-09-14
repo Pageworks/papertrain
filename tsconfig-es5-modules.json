@@ -1,16 +1,14 @@
 {
     "compilerOptions": {
-        "outDir": "./_compiled/es6",
+        "outDir": "./_compiled/es5",
         "sourceMap": false,
         "noImplicitAny": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "removeComments": true,
-        "target": "esnext",
-        "module": "esnext",
-        "moduleResolution": "node",
+        "target": "es5",
+        "module": "none",
+        "moduleResolution": "classic",
         "allowJs": true,
-        "checkJs": true,
         "lib": [
             "dom",
             "scripthost",
@@ -22,7 +20,6 @@
         ]
     },
     "include": [
-        "templates",
-        "globals.d.ts"
+        "web_modules"
     ]
 }

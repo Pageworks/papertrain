@@ -1,6 +1,7 @@
 @import 'settings';
 @import 'mixins';
 
-#homepage{
+REPLACE_WITH_CSS
+{
     position: relative;
 }

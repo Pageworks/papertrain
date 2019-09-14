@@ -1,0 +1,4 @@
+{{ craft.papertrain.stylesheets(['REPLACE_WITH_KEBAB']) }}
+{{ craft.papertrain.components(['REPLACE_WITH_KEBAB']) }}
+
+<REPLACE_WITH_KEBAB></REPLACE_WITH_KEBAB>

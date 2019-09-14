@@ -1,14 +1,14 @@
 {
     "compilerOptions": {
-        "outDir": "./_compiled/es6",
+        "outDir": "./_modules",
         "sourceMap": false,
         "noImplicitAny": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "removeComments": true,
         "target": "esnext",
-        "module": "esnext",
-        "moduleResolution": "node",
+        "module": "none",
+        "moduleResolution": "classic",
         "allowJs": true,
         "checkJs": true,
         "lib": [
@@ -22,7 +22,6 @@
         ]
     },
     "include": [
-        "templates",
-        "globals.d.ts"
+        "web_modules"
     ]
 }

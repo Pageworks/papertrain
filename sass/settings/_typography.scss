@@ -1,0 +1,21 @@
+// Typefaces
+// =============================================================================
+$font-sans-serif:   "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+$font-serif:        Georgia, Cambria, "Times New Roman", Times, serif;
+$font-heading:      $font-serif;
+$font-quote:        Georgia, cursive;
+$font-code:         monospace;
+
+// Weights
+// =============================================================================
+$light: 300;
+$regular: 400;
+$medium: 500;
+$heavy: 700;
+
+// Typography
+// =============================================================================
+$font-weight: $regular;
+$font-family: $font-sans-serif;
+$color: $font-base;
+$base-font-size: 1rem;
