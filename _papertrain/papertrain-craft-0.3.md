@@ -13,6 +13,7 @@
     1. [Front-End Imports](#front-end-imports)
     1. [The Project Templating Hierarchy](#the-project-templating-hierarchy)
     1. [Web Modules](#web-modules)
+1. [Deploying to Production](#deploying-to-production)
 
 ## Requirements
 
@@ -318,3 +319,26 @@ npm run build
 ```
 
 The Cart Manager will be available as `cartManager` within the global scope of the window.
+
+
+## Deploying to Production
+
+Papertrain uses server-side compiling via [Nodejs](https://nodejs.org/en/) for the CSS and JavaScript modules/packages. Follow these steps to setup the server-side compiling. If you don't want server side compiling update the `.gitignore` file by removing the `/public/assets` line. This guide will assume your server is an Ubuntu Server.
+
+```sh
+# Install webp
+sudo apt-get install webp
+
+# Install nodejs
+sudo apt-get install nodejs
+
+# Install node version manager
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+
+# Install node v10.13.0
+nvm install 10.13.0
+
+# Setup post-deployment hooks/commands
+<path to npm-cli.js> ci
+<path to npm-cli.js> run production
+```
