@@ -1,0 +1,15 @@
+@import 'settings';
+@import 'mixins';
+
+*
+{
+    &.-white-background{
+        background: $base-background-color;
+        color: $font-base;
+    }
+
+    &.-snow-background{
+        background: $secondary-background-color;
+        color: $font-base;
+    }
+}

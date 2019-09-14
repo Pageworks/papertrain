@@ -1,12 +1,3 @@
-{% set globalCssAssets = craft.papertrain.getAssetPaths(['main', 'fonts', 'utility', 'spacing', 'ratio', 'widths', 'container', 'wrapper', 'grid']) %}
-
-
-{% do view.registerCssFile(globalCssAssets['main'].css) %}
-{% do view.registerCssFile(globalCssAssets['fonts'].css) %}
-{% do view.registerCssFile(globalCssAssets['utility'].css) %}
-{% do view.registerCssFile(globalCssAssets['spacing'].css) %}
-{% do view.registerCssFile(globalCssAssets['ratio'].css) %}
-{% do view.registerCssFile(globalCssAssets['widths'].css) %}
-{% do view.registerCssFile(globalCssAssets['container'].css) %}
-{% do view.registerCssFile(globalCssAssets['wrapper'].css) %}
-{% do view.registerCssFile(globalCssAssets['grid'].css) %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+{{ craft.papertrain.criticalCss(['reset', 'base', 'backgrounds', 'container']) }}
+{{ craft.papertrain.stylesheets(['fonts']) }}

@@ -1,0 +1,24 @@
+/**
+ * @class REPLACE_WITH_PASCAL
+ * @description A web component for the REPLACE_WITH_KEBAB element
+ * @author AUTHOR_NAME
+ */
+class REPLACE_WITH_PASCAL extends HTMLElement
+{
+    constructor()
+    {
+        super();
+    }
+
+    connectedCallback()
+    {
+
+    }
+}
+
+if (env.isDebug)
+{
+    console.log('%c[Web Component] '+'%cREPLACE_WITH_KEBAB %chas loaded', 'color:#4882fd','color:#48eefd','color:#eee');
+}
+
+customElements.define('REPLACE_WITH_KEBAB', REPLACE_WITH_PASCAL);

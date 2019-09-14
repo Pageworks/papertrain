@@ -398,33 +398,20 @@ import { ClassName } from 'ClassName';
 
 Papertrain uses server-side compiling via [Nodejs](https://nodejs.org/en/) for the CSS and JavaScript modules/packages. Follow these steps to setup the server-side compiling. If you don't want server side compiling update the `.gitignore` file by removing the `/public/assets` line. This guide will assume your server is an Ubuntu Server.
 
-1: Install cwebp
-
-```script
+```sh
+# Install webp
 sudo apt-get install webp
-```
 
-2: Install Nodejs
-
-```script
+# Install nodejs
 sudo apt-get install nodejs
-```
 
-3: Install or Update [NVM](https://github.com/nvm-sh/nvm)
-
-```script
+# Install node version manager
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-```
 
-4: Install version 10.13.0 of node
-
-```script
+# Install node v10.13.0
 nvm install 10.13.0
-```
 
-5: Setup post-deployment commands
-
-```script
+# Setup post-deployment hooks/commands
 <path to npm-cli.js> ci
 <path to npm-cli.js> run production
 ```

@@ -1,12 +1,17 @@
-{% set REPLACE_WITH_CLASSAssets = craft.papertrain.getAssetPaths(['REPLACE_WITH_KEBAB']) %}
-{% do view.registerCssFile(REPLACE_WITH_CLASSAssets['REPLACE_WITH_KEBAB'].css) %}
-SCRIPT_PLACEHOLDER
+{% set dataModel = 
+    {
+        "sample": "Hello world"
+    }
+%}
 
 {% extends "_layouts/page" %}
 
 {% block content %}
-    <article class="REPLACE_WITH_SCSS_CLASS g-container -full" data-template="REPLACE_WITH_KEBAB" MODULE_PLACEHOLDER>
+    {{ craft.papertrain.stylesheets(['REPLACE_WITH_KEBAB']) }}
+
+    <article id="REPLACE_WITH_KEBAB" class="g-container -full" data-template="REPLACE_WITH_KEBAB">
         <section class="g-container">
+            {{ dataModel.sample }}
         </section>
     </article>
 {% endblock %}
