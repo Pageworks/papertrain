@@ -1,4 +1,15 @@
-## 0.3.0 - UNRELEASED
+## 0.3.1 - UNRELEASED
+
+### Added
+
+- Adds: [append](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append#Polyfill) polyfill [#202](https://github.com/Pageworks/papertrain/issues/202)
+- Adds: [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) polyfill ([source](https://github.com/w3c/IntersectionObserver/blob/master/polyfill/intersection-observer.js)) [#203](https://github.com/Pageworks/papertrain/issues/203)
+- Adds: when Web Components are connected they fire a `component-mounted` event on the `document` [#204](https://github.com/Pageworks/papertrain/issues/204)
+- Adds: [Custom Event API](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) polyfill ([source](https://github.com/kumarharsh/custom-event-polyfill/blob/master/polyfill.js))
+
+### Fixed
+
+- Fixes: broken Papertrain v0.3 documentation link [#199](https://github.com/Pageworks/papertrain/issues/199)
 
 ## 0.3.0 - 2019-09-14
 
