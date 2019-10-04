@@ -6,6 +6,10 @@
 
 ## 0.3.0 - 2019-09-14
 
+### Added
+
+- Adds: [append](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append#Polyfill) polyfill [#202](https://github.com/Pageworks/papertrain/issues/202)
+
 ### Fixed
 
 - Fixes: regex patterns only removes the `.css` or `.js` from the end of the filenames when fetching files
