@@ -1,4 +1,8 @@
-## 0.3.0 - UNRELEASED
+## 0.3.1 - UNRELEASED
+
+### Fixed
+
+- Fixes: broken Papertrain v0.3 documentation link [#199](https://github.com/Pageworks/papertrain/issues/199)
 
 ## 0.3.0 - 2019-09-14
 

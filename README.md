@@ -14,7 +14,7 @@ Papertrain is a framework designed to bring custom utilities and features to Cra
 
 If you are unsure about what version of Papertrain you are using please check the `package.json` file located in the root project directory.
 
-[Papertrain v0.3 Documentation](https://github.com/Pageworks/papertrain/blob/wip/papertrain-0.3/_papertrain/papertrain-craft-0.3.md)
+[Papertrain v0.3 Documentation](https://github.com/Pageworks/papertrain/blob/master/_papertrain/papertrain-craft-0.3.md)
 
 [Papertrain v0.2 Documentation](https://github.com/Pageworks/papertrain/blob/master/_papertrain/papertrain-craft-0.2.md)
 
