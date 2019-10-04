@@ -6,10 +6,12 @@
 - Adds: [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) polyfill ([source](https://github.com/w3c/IntersectionObserver/blob/master/polyfill/intersection-observer.js)) [#203](https://github.com/Pageworks/papertrain/issues/203)
 - Adds: when Web Components are connected they fire a `component-mounted` event on the `document` [#204](https://github.com/Pageworks/papertrain/issues/204)
 - Adds: [Custom Event API](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) polyfill ([source](https://github.com/kumarharsh/custom-event-polyfill/blob/master/polyfill.js))
+- Adds: adds link to the [Web Components Library](https://components.papertrain.io/) in the `readme.md` file
 
 ### Fixed
 
 - Fixes: broken Papertrain v0.3 documentation link [#199](https://github.com/Pageworks/papertrain/issues/199)
+- Fixes: updates v0.3 documentation to require nodejs [v12.10.0](https://nodejs.org/download/release/latest-v12.x/)
 
 ## 0.3.0 - 2019-09-14
 

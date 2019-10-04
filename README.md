@@ -3,7 +3,7 @@
     <img style="display:inline-block;" src="https://img.shields.io/badge/CMS-Craft%203-ff69b4.svg?style=flat-square"/>
     <img style="display:inline-block;" src="https://img.shields.io/badge/templating%20engine-Twig-orange.svg?style=flat-square"/>
     <img style="display:inline-block;" src="https://img.shields.io/badge/style-SASS-blue.svg?style=flat-square"/>
-    <img style="display:inline-block;" src="https://img.shields.io/badge/typescript-3-yellow.svg?style=flat-square"/>
+    <img style="display:inline-block;" src="https://img.shields.io/badge/typescript-3.6-yellow.svg?style=flat-square"/>
     <img style="display:inline-block;" src="https://img.shields.io/badge/bundler-rollup.js-5299c8.svg?style=flat-square"/>
     <a style="display:inline-block;" href="https://github.com/AndrewK9/papertrain/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-lightgray.svg?style=flat-square"/></a>
 </p>
@@ -20,10 +20,14 @@ If you are unsure about what version of Papertrain you are using please check th
 
 [Papertrain v0.1 Documentation](https://github.com/Pageworks/papertrain/blob/master/_papertrain/papertrain-craft-0.1.x.md)
 
-# Contributing
+## Web Components
+
+Browse the [Web Components Library](https://components.papertrain.io/) to demo the collection of pre-built Web Components.
+
+## Contributing
 
 Read through our [contributing](https://github.com/Pageworks/papertrain/blob/master/CONTRIBUTING.md) guidelines or feel free to [open an issue](https://github.com/Pageworks/papertrain/issues) and report any bugs or request additional features.
 
-# License
+## License
 
 Papertrain is licensed under the [MIT](https://github.com/Pageworks/papertrain/blob/master/LICENSE) license.
