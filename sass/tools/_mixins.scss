@@ -1,18 +1,10 @@
 // Custom Mixins
 // ==========================================================================
 
-@mixin touch
-{
-    &.has-touch{
-        html.is-touch-device & {
-            @content;
-        }
-    }
-}
-
 @mixin hover
 {
-    &:hover
+    &:hover,
+    &:focus
     {
         html.is-not-touch-device & {
             @content;
@@ -25,12 +17,6 @@
     &:active
     {
         html.is-not-touch-device & {
-            @content;
-        }
-    }
-
-    &.has-touch{
-        html.is-touch-device & {
             @content;
         }
     }

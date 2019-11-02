@@ -1,6 +1,44 @@
 {% set dataModel = 
     {
-        "sample": "Hello world."
+        "intro": "Welcome to Papertrain",
+        "introCopy": "If you already have experience with Papertrain v0.4 delete the <code>homepage/</code> directory from the <code>templates/</code> directory to get started with your project.",
+        "links": [
+            {
+                "name": "#templates",
+                "label": "Creating Templates"
+            },
+            {
+                "name": "#web-components",
+                "label": "Creating Web Components"
+            },
+            {
+                "name": "#web-modules",
+                "label": "Creating Web Modules"
+            },
+            {
+                "name": "#npm-packages",
+                "label": "Adding NPM Packages"
+            },
+            {
+                "name": "#libraries",
+                "label": "Adding 3rd Party Libraries"
+            }
+        ],
+        "templates": {
+            "heading": "Creating Templates"
+        },
+        "webComponents": {
+            "heading": "Creating Web Components"
+        },
+        "webModules": {
+            "heading": "Creating Web Modules"
+        },
+        "npmPackages": {
+            "heading": "Adding NPM Packages"
+        },
+        "libraries": {
+            "heading": "Adding 3rd Party Libraries"
+        }
     }
 %}
 
@@ -8,6 +46,46 @@
 
 {% block content %}
     <article id="homepage" eager-load-css="homepage">
-        <span>{{ dataModel.sample }}</span>
+        <section id="intro">
+            <div>
+                <h1>
+                    {{ dataModel.intro }}
+                </h1>
+                <p>{{ dataModel.introCopy|raw }}</p>
+                <nav>
+                    {% for link in dataModel.links %}
+                        <a href="{{ link.name }}">
+                            {{ link.label }}
+                            <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="long-arrow-right" class="svg-inline--fa fa-long-arrow-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M295.515 115.716l-19.626 19.626c-4.753 4.753-4.675 12.484.173 17.14L356.78 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h344.78l-80.717 77.518c-4.849 4.656-4.927 12.387-.173 17.14l19.626 19.626c4.686 4.686 12.284 4.686 16.971 0l131.799-131.799c4.686-4.686 4.686-12.284 0-16.971L312.485 115.716c-4.686-4.686-12.284-4.686-16.97 0z"></path></svg>
+                        </a>
+                    {% endfor %}
+                </nav>
+            </div>
+        </section>
+        <a name="templates">
+            <section>
+                <h2>{{ dataModel.templates.heading }}</h2>
+            </section>
+        </a>
+        <a name="web-components">
+            <section>
+                <h2>{{ dataModel.webComponents.heading }}</h2>
+            </section>
+        </a>
+        <a name="web-modules">
+            <section>
+                <h2>{{ dataModel.webModules.heading }}</h2>
+            </section>
+        </a>
+        <a name="npm-packages">
+            <section>
+                <h2>{{ dataModel.npmPackages.heading }}</h2>
+            </section>
+        </a>
+        <a name="libraries">
+            <section>
+                <h2>{{ dataModel.libraries.heading }}</h2>
+            </section>
+        </a>
     </article>
 {% endblock %}
