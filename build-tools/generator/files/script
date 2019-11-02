@@ -12,14 +12,7 @@ class REPLACE_WITH_PASCAL extends HTMLElement
 
     connectedCallback()
     {
-        const hasMountedEvent = new CustomEvent('component-mounted', { detail: { component: 'REPLACE_WITH_KEBAB' } });
-        document.dispatchEvent(hasMountedEvent);
+        
     }
 }
-
-if (env.isDebug)
-{
-    console.log('%c[Web Component] '+'%cREPLACE_WITH_KEBAB %chas loaded', 'color:#4882fd','color:#48eefd','color:#eee');
-}
-
 customElements.define('REPLACE_WITH_KEBAB', REPLACE_WITH_PASCAL);

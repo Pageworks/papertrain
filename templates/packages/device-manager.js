@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 'use strict';
 
 export const DeviceManager = /** @class */ (function () {

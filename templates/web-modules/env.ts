@@ -1,7 +1,5 @@
 class Env
 {
-    private _domState = 'loading';
-
     public isDebug : boolean = false;
 
     constructor()
@@ -12,19 +10,12 @@ class Env
 
     public stopLoading() : void
     {
-        document.documentElement.classList.remove('dom-is-loading');
-        this._domState = 'idling';
+        document.documentElement.setAttribute('state', 'idling');
     }
 
     public startLoading() : void
     {
-        document.documentElement.classList.add('dom-is-loading');
-        this._domState = 'loading';
-    }
-
-    public getState() : string
-    {
-        return this._domState;
+        document.documentElement.setAttribute('state', 'soft-loading');
     }
 
     private setDefaultDebug() : void

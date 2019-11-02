@@ -7,9 +7,7 @@
 {% extends "_layouts/page" %}
 
 {% block content %}
-    <article id="homepage" class="g-container -full" data-template="homepage">
-        <section class="g-container">
-            {{ dataModel.sample }}
-        </section>
+    <article id="homepage" eager-load-css="homepage">
+        <span>{{ dataModel.sample }}</span>
     </article>
 {% endblock %}

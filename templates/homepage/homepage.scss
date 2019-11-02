@@ -1,6 +1,21 @@
 @import 'settings';
 @import 'mixins';
 
-#homepage{
+body
+{
+    background-color: royalblue;
+}
+
+#homepage
+{
     position: relative;
+    text-align: center;
+    color: $white;
+    font-size: 2rem;
+    height: 100vh;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-flow:  column wrap;
 }

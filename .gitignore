@@ -4,10 +4,15 @@
 # -------
 node_modules
 
-# Assets
+# Automation / Build Script Outputs
+# Remove the top 3 from this file when not using server side compiling
+# -------
 /public/assets/ie11.js
 /public/automation
+/config/papertrain/automation.php
 /public/automation_BACKUP
+/public/automation_INCOMING
+/config/papertrain/automation.tmp
 
 # Craft CMS
 # -------
@@ -35,10 +40,6 @@ logs/
 .DS_Store
 .stylelintcache
 _compiled
-_modules
-_bundles
-_packages
 _ie
 .editorconfig
-/config/papertrain/automation.php
 .editorconfig

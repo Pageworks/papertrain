@@ -1,7 +1,7 @@
 {% extends "_layouts/base.twig" %}
 
 {% block page %}
-    <main role="main" class="js-pjax">
+    <main role="main" eager-load-css="reset page base">
         {% block content %}{% endblock %}
     </main>
 {% endblock %}

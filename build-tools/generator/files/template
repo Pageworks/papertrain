@@ -7,11 +7,7 @@
 {% extends "_layouts/page" %}
 
 {% block content %}
-    {{ craft.papertrain.stylesheets(['REPLACE_WITH_KEBAB']) }}
-
-    <article id="REPLACE_WITH_KEBAB" class="g-container -full" data-template="REPLACE_WITH_KEBAB">
-        <section class="g-container">
-            {{ dataModel.sample }}
-        </section>
+    <article id="REPLACE_WITH_KEBAB" eager-load-css="REPLACE_WITH_KEBAB">
+        {{ dataModel.sample }}
     </article>
 {% endblock %}

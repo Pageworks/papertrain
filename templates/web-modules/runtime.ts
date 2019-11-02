@@ -1,20 +1,43 @@
 import { DeviceManager } from '../packages/device-manager.js';
+import { env } from './env';
 
-declare var stylesheets : Array<string>;
-declare var packages : Array<string>;
-declare var components : Array<string>;
-declare var modules : Array<string>;
-declare var criticalCss : Array<string>;
-declare var libraries : Array<string>;
+interface WorkerResponse
+{
+    type: 'eager'|'lazy',
+    files: Array<string>,
+}
 
 class Runtime
 {
-    private _initialFetch : boolean;
+    private _bodyParserWorker : Worker;
 
     constructor()
     {
-        this._initialFetch = true;
-        this.init();
+        this._bodyParserWorker = new Worker(`${ window.location.origin }/automation/body-parser.js`);
+        window.addEventListener('load', () => {
+            this._bodyParserWorker.postMessage(document.body.innerHTML);
+        });
+        this._bodyParserWorker.onmessage = this.handleWorkerMessage.bind(this);
+        
+        new DeviceManager(env.isDebug, true);
+    }
+
+    private handleWorkerMessage(e:MessageEvent)
+    {
+        const response:WorkerResponse = e.data;
+        if (response.type === 'eager')
+        {
+            this.fetchResources(response.files, 'link', 'css').then(() => {
+                document.documentElement.setAttribute('state', 'idling');
+            });
+        }
+        else if (response.type === 'lazy')
+        {
+            document.documentElement.setAttribute('state', 'soft-loading');
+            this.fetchResources(response.files, 'link', 'css').then(() => {
+                document.documentElement.setAttribute('state', 'idling');
+            });
+        }
     }
 
     private async fetchFile(element:Element, filename:string, filetype:string)
@@ -33,29 +56,27 @@ class Runtime
         }
     }
 
-    private fetchResources(fileListArray:Array<string>, element:string, filetype:string) : Promise<any>
+    private fetchResources(fileList:Array<string>, element:'link'|'script', filetype:'css'|'js') : Promise<any>
     {
         return new Promise((resolve) => {
-            if (fileListArray.length === 0)
+            if (fileList.length === 0)
             {
                 resolve();
             }
 
-            let count = 0;
-            const required = fileListArray.length;
-
-            while (fileListArray.length > 0)
+            let loaded = 0;
+            for (let i = 0; i < fileList.length; i++)
             {
-                const filename = fileListArray[0].replace(/(\.js)$|(\.css)$/gi, '');
+                const filename = fileList[i];
                 let el = document.head.querySelector(`${ element }[file="${ filename }.${ filetype }"]`);
                 if (!el)
                 {
                     el = document.createElement(element);
                     el.setAttribute('file', `${ filename }.${ filetype }`);
-                    document.head.appendChild(el);
+                    document.head.append(el);
                     el.addEventListener('load', () => {
-                        count++;
-                        if (count === required)
+                        loaded++;
+                        if (loaded === fileList.length)
                         {
                             resolve();
                         }
@@ -64,96 +85,12 @@ class Runtime
                 }
                 else
                 {
-                    count++;
-                    if (count === required)
+                    loaded++;
+                    if (loaded === fileList.length)
                     {
                         resolve();
                     }
                 }
-
-                fileListArray.splice(0, 1);
-            }
-        });
-    }
-
-    private criticalCssLoadCallback() : void
-    {
-        // Do something after the stylesheets finish loading
-        document.documentElement.setAttribute('state', 'soft-loading');
-    }
-
-    private loadingCompleteCallback() : void
-    {
-        if (this._initialFetch)
-        {
-            this._initialFetch = false;
-
-            /** Do something on initial load */
-            new DeviceManager(false, true);
-        }
-
-        /** Do something every time the app loads or reloads */
-        document.documentElement.setAttribute('state', 'idling');
-    }
-
-    private librariesLoadCallback() : void
-    {
-        /** Do something with 3rd party libraries */
-    }
-
-    private modulesLoadCallback() : void
-    {
-        const modulesLoadedEvent = new CustomEvent('runtime:modulesLoaded');
-        document.dispatchEvent(modulesLoadedEvent);
-    }
-
-    private async getScripts()
-    {
-        try
-        {
-            await this.fetchResources(packages, 'script', 'js',);
-            await this.fetchResources(libraries, 'script', 'js');
-            this.librariesLoadCallback();
-            await this.fetchResources(modules, 'script', 'js');
-            this.modulesLoadCallback();
-            await this.fetchResources(components, 'script', 'js');
-            this.loadingCompleteCallback();
-        }
-        catch (error)
-        {
-            console.error(error);
-        }
-    }
-
-    private async getStylesheets()
-    {
-        try
-        {
-            await this.fetchResources(criticalCss, 'link', 'css');
-            this.criticalCssLoadCallback();
-            await this.fetchResources(stylesheets, 'link', 'css');
-        }
-        catch (error)
-        {
-            console.error(error);
-        }
-    }
-
-    private init() : void
-    {
-        window.addEventListener('load', () => {
-            if ('requestIdleCallback' in window)
-            {
-                // @ts-ignore
-                window.requestIdleCallback(()=>{
-                    this.getStylesheets();
-                    this.getScripts();
-                });
-            }
-            else
-            {
-                this.getStylesheets();
-                this.getScripts();
             }
         });
     }

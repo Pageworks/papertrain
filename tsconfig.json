@@ -10,7 +10,7 @@
         "module": "esnext",
         "moduleResolution": "node",
         "allowJs": true,
-        "checkJs": false,
+        "checkJs": true,
         "lib": [
             "dom",
             "scripthost",
