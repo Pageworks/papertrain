@@ -34,7 +34,23 @@ function parseLazyLoadedCSS(body:string)
             }
         });
     }
-    respondWithFiles('lazy', files);
+    const uniqueFiles:Array<string> = [];
+    for (let i = 0; i < files.length; i++)
+    {
+        let isUnique = true;
+        for (let k = 0; k < uniqueFiles.length; k++)
+        {
+            if (files[i] === uniqueFiles[k])
+            {
+                isUnique = false;
+            }
+        }
+        if (isUnique)
+        {
+            uniqueFiles.push(files[i]);
+        }
+    }
+    respondWithFiles('lazy', uniqueFiles);
 }
 
 function parseEagerLoadedCSS(body:string)
@@ -58,6 +74,22 @@ function parseEagerLoadedCSS(body:string)
             }
         });
     }
-    respondWithFiles('eager', files);
+    const uniqueFiles:Array<string> = [];
+    for (let i = 0; i < files.length; i++)
+    {
+        let isUnique = true;
+        for (let k = 0; k < uniqueFiles.length; k++)
+        {
+            if (files[i] === uniqueFiles[k])
+            {
+                isUnique = false;
+            }
+        }
+        if (isUnique)
+        {
+            uniqueFiles.push(files[i]);
+        }
+    }
+    respondWithFiles('eager', uniqueFiles);
     parseLazyLoadedCSS(body);
 }

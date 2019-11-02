@@ -38,6 +38,11 @@ class Runtime
 
     private handleIntersection(entries:Array<IntersectionObserverEntry>)
     {
+        if (env.isIE)
+        {
+            return;
+        }
+        
         for (let i = 0; i < entries.length; i++)
         {
             if (entries[i].isIntersecting)
