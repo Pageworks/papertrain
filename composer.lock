@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac0d42b6e8302cc4d45431650efba4d8",
+    "content-hash": "bd674c950253f65946003db550566a94",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -4235,11 +4235,11 @@
         },
         {
             "name": "verbb/image-resizer",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/verbb/image-resizer/zipball/8289d1dd9a960e425724f8d6baf187b7fa0234f2",
-                "reference": "8289d1dd9a960e425724f8d6baf187b7fa0234f2",
+                "url": "https://api.github.com/repos/verbb/image-resizer/zipball/77b9c5a8871ab7728fb5cf70c9d224b151da216e",
+                "reference": "77b9c5a8871ab7728fb5cf70c9d224b151da216e",
                 "shasum": ""
             },
             "require": {
@@ -4287,7 +4287,7 @@
                 "docs": "https://github.com/verbb/image-resizer",
                 "rss": "https://github.com/verbb/image-resizer/commits/v2.atom"
             },
-            "time": "2019-06-04T05:18:30+00:00"
+            "time": "2019-09-18T12:16:43+00:00"
         },
         {
             "name": "verbb/smith",
