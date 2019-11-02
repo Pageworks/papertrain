@@ -22,15 +22,19 @@ class Runtime
         {
             this._bodyParserWorker = new Worker(`${ window.location.origin }/automation/body-parser.js`);
         }
-        window.addEventListener('load', () => {
-            this._bodyParserWorker.postMessage(document.body.innerHTML);
-        });
+        window.addEventListener('load', this.handleLoadEvent);
+    }
+
+    private intersectionCallback:IntersectionObserverCallback = this.handleIntersection.bind(this);
+    private handleLoadEvent:EventListener = this.init.bind(this);
+
+    private init() : void
+    {
+        this._bodyParserWorker.postMessage(document.body.innerHTML);
         this._bodyParserWorker.onmessage = this.handleWorkerMessage.bind(this);
         this._io = new IntersectionObserver(this.intersectionCallback);
         new DeviceManager(env.isDebug, true);
     }
-
-    private intersectionCallback:IntersectionObserverCallback = this.handleIntersection.bind(this);
 
     private handleIntersection(entries:Array<IntersectionObserverEntry>)
     {
