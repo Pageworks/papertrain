@@ -14,12 +14,33 @@ class AutomationManager
         try
         {
             await this.removeStaleCompiledFiles();
+            await this.removeIEFiles();
             await this.generateNewCachebust();
         }
         catch (error)
         {
             console.log(chalk.hex('#ff6426').bold(error));
         }
+    }
+
+    removeIEFiles()
+    {
+        return new Promise((resolve, reject)=>{
+            fs.promises.access('_ie')
+            .then(()=>{
+                rimraf('_ie', (error)=>{
+                    if (error)
+                    {
+                        reject(error);
+                    }
+
+                    resolve();
+                });
+            })
+            .catch(()=>{
+                resolve();
+            });
+        });
     }
 
     removeStaleCompiledFiles()
@@ -66,8 +87,6 @@ class AutomationManager
                         {
                             reject(error);
                         }
-
-                        resolve();
                     });
                 });
             });

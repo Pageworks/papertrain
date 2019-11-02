@@ -1,4 +1,4 @@
-continue
+<?php
 
 /**
  * This file will be DELETED EVERY TIME the compiler runs.

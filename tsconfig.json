@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "./_compiled/es6",
+        "outDir": "_compiled",
         "sourceMap": false,
         "noImplicitAny": true,
         "experimentalDecorators": true,
@@ -10,7 +10,7 @@
         "module": "esnext",
         "moduleResolution": "node",
         "allowJs": true,
-        "checkJs": true,
+        "checkJs": false,
         "lib": [
             "dom",
             "scripthost",
@@ -22,7 +22,6 @@
         ]
     },
     "include": [
-        "templates",
-        "globals.d.ts"
+        "templates"
     ]
 }

@@ -37,44 +37,25 @@
         "watch:components": "onchange '_compiled/es6/**/*.js' -- node ./build-tools/injector.config.js",
         "watch:sync": "node ./build-tools/sync.js",
         "dev": "npm run prep && npm-run-all dev:*",
-        "dev:components": "npm run compile:es6",
-        "dev:modules": "npm run compile:modules",
-        "dev:styles": "npm run compile:styles",
-        "dev:bundle": "npm run bundle:components && npm run bundle:modules && npm run bundle:packages",
-        "dev:cleanup": "npm run cleanup",
-        "build": "npm run prep && run-p compile:* && npm run bundle && npm run cleanup",
+        "build": "npm run prep && tsc --p ./tsconfig.json && node ./build-tools/script-scrubber.js && node ./build-tools/sass.config.js && npm run cleanup",
+        "compile": "npm run build",
         "prep": "node ./build-tools/prep.config.js",
         "cleanup": "node ./build-tools/cleanup.config.js",
-        "compile": "npm run build",
-        "compile:es5": "tsc --p ./tsconfig-es5.json",
-        "compile:es6": "tsc --p ./tsconfig.json",
-        "compile:modules": "tsc --p ./tsconfig-modules.json",
-        "compile:es5-modules": "tsc --p ./tsconfig-es5-modules.json",
-        "compile:styles": "node ./build-tools/sass.config.js",
-        "bundle": "run-p bundle:*",
-        "bundle:packages": "node ./build-tools/packages.config.js",
-        "bundle:modules": "node ./build-tools/modules.config.js",
-        "bundle:components": "node ./build-tools/components.config.js",
-        "bundle:legacy": "node ./build-tools/legacy.config.js"
+        "ie:scrub": "node ./build-tools/ie-script-scrubber.js",
+        "ie:compile": "tsc --p ./tsconfig-ie11.json",
+        "bundle": "node ./build-tools/bundler.js",
+        "production": "npm run build && npm-run-all ie:*"
     },
     "lint-staged": {
         "linters": {
             "./templates/**/*.ts": "npm run lint:typescript",
-            "./web_modules/**/*.ts": "npm run lint:typescript-modules",
             "./templates/**/*.scss": "npm run lint:sass",
             "./sass/**/*.scss": "npm run lint:sass"
         }
     },
     "dependencies": {
-        "@pageworks/device-manager": "^1.2.3",
-        "uuid": "^3.3.3"
+        "@pageworks/device-manager": "^1.2.3"
     },
-    "webDependencies": [
-        {
-            "package": "@pageworks/device-manager",
-            "import": "DeviceManager"
-        }
-    ],
     "devDependencies": {
         "browser-sync": "^2.26.7",
         "chalk": "^2.4.2",

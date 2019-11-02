@@ -5,10 +5,9 @@
 node_modules
 
 # Assets
-/public/automation/*
-!/public/automation/.gitkeep
-/public/assets/ie-main.js
-/public/assets/ie-components.js
+/public/assets/ie11.js
+/public/automation
+/public/automation_BACKUP
 
 # Craft CMS
 # -------
@@ -39,6 +38,7 @@ _compiled
 _modules
 _bundles
 _packages
+_ie
 .editorconfig
 /config/papertrain/automation.php
 .editorconfig

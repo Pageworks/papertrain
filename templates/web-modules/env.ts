@@ -1,5 +1,3 @@
-declare var uuid:Function;
-
 class Env
 {
     private _domState = 'loading';
@@ -41,3 +39,4 @@ class Env
         }
     }
 }
+export const env:Env = new Env();

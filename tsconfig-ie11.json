@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es3",
+        "module": "amd",
+        "outFile": "public/assets/ie11.js",
+        "allowJs": true,
+        "checkJs": false
+    },
+    "include": [
+        "_ie"
+    ]
+}

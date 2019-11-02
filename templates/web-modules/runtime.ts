@@ -1,12 +1,11 @@
-interface Window
-{
-    stylesheets : Array<string>
-    packages : Array<string>
-    components : Array<string>
-    modules : Array<string>
-    criticalCss : Array<string>
-    libraries : Array<string>
-}
+import { DeviceManager } from '../packages/device-manager.js';
+
+declare var stylesheets : Array<string>;
+declare var packages : Array<string>;
+declare var components : Array<string>;
+declare var modules : Array<string>;
+declare var criticalCss : Array<string>;
+declare var libraries : Array<string>;
 
 class Runtime
 {
@@ -18,25 +17,23 @@ class Runtime
         this.init();
     }
 
-    private handleStylesheetsFetchEvent:EventListener = this.getStylesheets.bind(this);
-    private handleScriptFetchEvent:EventListener = this.getScripts.bind(this);
-
-    private async fetchFile(element:Element, filename:string, filetype:string, directory:string)
+    private async fetchFile(element:Element, filename:string, filetype:string)
     {
+        const url = `${ window.location.origin }/automation/${ filename }.${ filetype }`;
         switch (filetype)
         {
             case 'css':
                 element.setAttribute('rel', 'stylesheet');
-                element.setAttribute('href', `${ window.location.origin }/automation/${ directory }-${ document.documentElement.dataset.cachebust }/${ filename }.${ filetype }`);
+                element.setAttribute('href', url);
                 break;
             case 'js':
                 element.setAttribute('type', 'text/javascript');
-                element.setAttribute('src', `${ window.location.origin }/automation/${ directory }-${ document.documentElement.dataset.cachebust }/${ filename }.${ filetype }`);
+                element.setAttribute('src', url);
                 break;
         }
     }
 
-    private fetchResources(fileListArray:Array<string>, element:string, filetype:string, directory:string) : Promise<any>
+    private fetchResources(fileListArray:Array<string>, element:string, filetype:string) : Promise<any>
     {
         return new Promise((resolve) => {
             if (fileListArray.length === 0)
@@ -63,7 +60,7 @@ class Runtime
                             resolve();
                         }
                     });
-                    this.fetchFile(el, filename, filetype, directory);
+                    this.fetchFile(el, filename, filetype);
                 }
                 else
                 {
@@ -82,10 +79,7 @@ class Runtime
     private criticalCssLoadCallback() : void
     {
         // Do something after the stylesheets finish loading
-        const pageLoadingElement = document.body.querySelector('page-loading');
-        setTimeout(() => {
-            pageLoadingElement.classList.remove('is-loading');
-        }, 250);
+        document.documentElement.setAttribute('state', 'soft-loading');
     }
 
     private loadingCompleteCallback() : void
@@ -95,9 +89,11 @@ class Runtime
             this._initialFetch = false;
 
             /** Do something on initial load */
+            new DeviceManager(false, true);
         }
 
         /** Do something every time the app loads or reloads */
+        document.documentElement.setAttribute('state', 'idling');
     }
 
     private librariesLoadCallback() : void
@@ -115,12 +111,12 @@ class Runtime
     {
         try
         {
-            await this.fetchResources(window.packages, 'script', 'js', 'packages');
-            await this.fetchResources(window.libraries, 'script', 'js', 'libraries');
+            await this.fetchResources(packages, 'script', 'js',);
+            await this.fetchResources(libraries, 'script', 'js');
             this.librariesLoadCallback();
-            await this.fetchResources(window.modules, 'script', 'js', 'modules');
+            await this.fetchResources(modules, 'script', 'js');
             this.modulesLoadCallback();
-            await this.fetchResources(window.components, 'script', 'js', 'components');
+            await this.fetchResources(components, 'script', 'js');
             this.loadingCompleteCallback();
         }
         catch (error)
@@ -133,9 +129,9 @@ class Runtime
     {
         try
         {
-            await this.fetchResources(window.criticalCss, 'link', 'css', 'styles');
+            await this.fetchResources(criticalCss, 'link', 'css');
             this.criticalCssLoadCallback();
-            await this.fetchResources(window.stylesheets, 'link', 'css', 'styles');
+            await this.fetchResources(stylesheets, 'link', 'css');
         }
         catch (error)
         {
@@ -145,7 +141,7 @@ class Runtime
 
     private init() : void
     {
-        document.addEventListener('load', () => {
+        window.addEventListener('load', () => {
             if ('requestIdleCallback' in window)
             {
                 // @ts-ignore
@@ -156,13 +152,10 @@ class Runtime
             }
             else
             {
-                console.warn('Idle callback prototype not available in this browser, fetching stylesheets');
                 this.getStylesheets();
                 this.getScripts();
             }
         });
-
-        document.addEventListener('fetch:stylesheets', this.handleStylesheetsFetchEvent);
-        document.addEventListener('fetch:scripts', this.handleScriptFetchEvent);
     }
 }
+new Runtime();

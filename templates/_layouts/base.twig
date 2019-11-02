@@ -2,7 +2,7 @@
 {% set currentSite = craft.app.sites.currentSite %}
 <!doctype html>
 {% spaceless %}
-<html lang="{{ currentSite.language }}" class="has-no-js is-not-pointer-device is-not-touch-device dom-is-loading" {% if isDebug|length %}debug="true"{% endif %} data-csrf="{{ craft.app.request.csrfToken }}" data-cachebust="{{ craft.papertrain.getCachebustTimestamp }}">
+<html lang="{{ currentSite.language }}" class="has-no-js is-not-pointer-device is-not-touch-device" state="hard-loading" {% if isDebug|length %}debug="true"{% endif %} data-csrf="{{ craft.app.request.csrfToken }}" data-cachebust="{{ craft.papertrain.getCachebustTimestamp }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -121,7 +121,7 @@
                 opacity: 0;
             }
 
-            page-loading.is-loading
+            html[state="hard-loading"] page-loading
             {
                 visibility: visible;
                 opacity: 1;
@@ -131,6 +131,7 @@
             {
                 line-height: 1.618;
                 display: block;
+                font-family: system-ui, sans-serif;
             }
 
             page-loading page-loading-bar
@@ -221,29 +222,29 @@
                 pointer-events: none;
             }
 
-            html.dom-is-loading *{
+            html[state="soft-loading"] *{
                 cursor: wait !important;
             }
 
-            html.dom-is-loading page-transition{
+            html[state="soft-loading"] page-transition{
                 transform: translate3d(0, 0, 0);
                 opacity: 1;
                 transition: transform 150ms cubic-bezier(0.0, 0.0, 0.2, 1);
             }
 
-            html.dom-is-loading page-transition transition-bar-one{
+            html[state="soft-loading"] page-transition transition-bar-one{
                 animation: primaryBar 2s infinite linear;
             }
 
-            html.dom-is-loading page-transition transition-bar-one:before{
+            html[state="soft-loading"] page-transition transition-bar-one:before{
                 animation: primaryScale 2s infinite linear;
             }
 
-            html.dom-is-loading page-transition transition-bar-two{
+            html[state="soft-loading"] page-transition transition-bar-two{
                 animation: secondaryBar 2s infinite linear;
             }
 
-            html.dom-is-loading page-transition transition-bar-two:before{
+            html[state="soft-loading"] page-transition transition-bar-two:before{
                 animation: secondaryScale 2s infinite linear;
             }
 
@@ -349,11 +350,11 @@
             }
         </style>
 
-        <!-- Required CSS -->
-        {% include "_layouts/global-css.twig" %}
-
         <!-- Required Runtime JavaScript -->
         {% include "_layouts/global-javascript.twig" %}
+
+        <!-- Required CSS -->
+        {% include "_layouts/global-css.twig" %}
     </head>
     <body>
         <page-transition>
@@ -371,82 +372,12 @@
             </div>
         </page-loading>
 
-        <noscript>
-            <header style="width: 100vw; padding: 2rem; background-color: #ffffff; position: fixed; top: 0; left: 0; box-shadow: 0 1px 3px rgba(25,25,25,0.1), 0 4px 16px rgba(25,25,25,0.1);">
-                <a href="{{ siteUrl }}" style="margin-right: 1rem;">Home</a>
-                <a href="{{ siteUrl|trim('/') }}/sitemap">Navigation</a>
-            </header>
-        </noscript>
-
         {% block page %}{% endblock %}
 
-        <script type="module" src="{{ alias('@rootUrl')|trim('/') ~ '/automation/modules-' ~ craft.papertrain.getCachebustTimestamp ~ '/runtime.js' }}"></script>
-        <script nomodule defer="defer" type="text/javascript" src="{{ alias('@rootUrl')|trim('/') }}/assets/ie-main.js"></script>
+        <script type="module" src="{{ alias('@rootUrl')|trim('/') ~ '/automation/runtime.js' }}"></script>
+        <script nomodule defer="defer" type="text/javascript" src="{{ alias('@rootUrl')|trim('/') }}/assets/ie11.js"></script>
 
         <noscript>
-            <style>
-                page-loading,
-                page-transition
-                {
-                    display: none !important;
-                }
-
-                html.dom-is-loading *
-                {
-                    cursor: initial !important;
-                }
-
-                body
-                {
-                    margin:40px auto;
-                    max-width:650px;
-                    line-height:1.6;
-                    font-size:18px;
-                    color:#444;
-                    padding: 96px 0;
-                }
-                
-                h1,
-                h2,
-                h3
-                {
-                    line-height:1.2
-                }
-
-                a
-                {
-                    margin: 0 0.5rem;
-                }
-
-                p a,
-                h1 a,
-                h2 a,
-                h3 a,
-                h4 a,
-                h5 a,
-                h6 a
-                {
-                    margin: 0;
-                }
-
-                img
-                {
-                    max-width: 100%;
-                    display: block;
-                    margin: 0 auto;
-                }
-
-                html.dom-is-loading a
-                {
-                    cursor: pointer !important;
-                }
-
-                svg
-                {
-                    display: none;
-                }
-            </style>
-
             <div style="position:fixed;bottom:0;left:0;padding:16px 32px;border-radius:8px 8px 0 0;text-align:center;background-color:#ffffff;box-shadow:0 -1px 3px rgba(25,25,25,0.1), 0 -4px 16px rgba(25,25,25,0.1);left:50%;transform:translateX(-50%);z-index:99999;">
                 <p>{{ "You are viewing the read only mode of this website. Please enable JavaScript and refresh the page for the full experience."|t }}</p>
             </div>
