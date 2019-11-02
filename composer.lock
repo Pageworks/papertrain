@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "06ad2938442ce5fadbc9d0032f266688",
+    "content-hash": "00d8df04b537c09b379ee4d875997bb1",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -123,64 +123,6 @@
                 "issues": "https://github.com/aelvan/Preparse-Field-Craft/issues"
             },
             "time": "2019-08-03T18:47:37+00:00"
-        },
-        {
-            "name": "angellco/spoon",
-            "version": "3.3.7",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/angell-co/Spoon/zipball/1ca40c79d70426d3df6acd78de6cc2d6530f19ad",
-                "reference": "1ca40c79d70426d3df6acd78de6cc2d6530f19ad",
-                "shasum": ""
-            },
-            "require": {
-                "craftcms/cms": "^3.1.0"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "name": "Spoon",
-                "handle": "spoon",
-                "hasCpSettings": false,
-                "hasCpSection": true,
-                "changelogUrl": "https://raw.githubusercontent.com/angell-co/spoon/master/CHANGELOG.md",
-                "components": {
-                    "fields": "angellco\\spoon\\services\\Fields",
-                    "blockTypes": "angellco\\spoon\\services\\BlockTypes",
-                    "loader": "angellco\\spoon\\services\\Loader"
-                },
-                "class": "angellco\\spoon\\Spoon",
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "angellco\\spoon\\": "src/"
-                }
-            },
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Angell & Co",
-                    "homepage": "https://angell.io"
-                }
-            ],
-            "description": "A plugin for Craft to enhance your Matrix fields with groups, tabs and more!",
-            "keywords": [
-                "cms",
-                "craft",
-                "craft-plugin",
-                "craftcms",
-                "matrix",
-                "spoon"
-            ],
-            "support": {
-                "docs": "https://github.com/angell-co/spoon/blob/master/README.md",
-                "issues": "https://github.com/angell-co/spoon/issues"
-            },
-            "time": "2019-04-25T12:07:09+00:00"
         },
         {
             "name": "anubarak/craft-relabel",
@@ -4444,58 +4386,6 @@
                 "craftcms"
             ],
             "time": "2019-04-14T09:09:32+00:00"
-        },
-        {
-            "name": "verbb/super-table",
-            "version": "2.3.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/verbb/super-table/zipball/243a7c67a3e49156352f5d132e1a0183f3edcf39",
-                "reference": "243a7c67a3e49156352f5d132e1a0183f3edcf39",
-                "shasum": ""
-            },
-            "require": {
-                "craftcms/cms": "^3.3.1.1"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "name": "Super Table",
-                "handle": "super-table",
-                "description": "Super-charge your Craft workflow with Super Table. Use it to group fields together or build complex Matrix-in-Matrix solutions.",
-                "documentationUrl": "https://github.com/verbb/super-table",
-                "changelogUrl": "https://raw.githubusercontent.com/verbb/super-table/craft-3/CHANGELOG.md",
-                "class": "verbb\\supertable\\SuperTable"
-            },
-            "autoload": {
-                "psr-4": {
-                    "verbb\\supertable\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Verbb",
-                    "homepage": "https://verbb.io"
-                }
-            ],
-            "description": "Super-charge your Craft workflow with Super Table. Use it to group fields together or build complex Matrix-in-Matrix solutions.",
-            "keywords": [
-                "cms",
-                "craft",
-                "craft-plugin",
-                "craftcms",
-                "super table"
-            ],
-            "support": {
-                "email": "support@verbb.io",
-                "issues": "https://github.com/verbb/super-table/issues?state=open",
-                "source": "https://github.com/verbb/super-table",
-                "docs": "https://github.com/verbb/super-table",
-                "rss": "https://github.com/verbb/super-table/commits/v2.atom"
-            },
-            "time": "2019-09-11T10:36:16+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
