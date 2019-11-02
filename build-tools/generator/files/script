@@ -12,7 +12,7 @@ class REPLACE_WITH_PASCAL extends HTMLElement
 
     connectedCallback()
     {
-        
+        this.setAttribute('state', 'mounted');
     }
 }
 customElements.define('REPLACE_WITH_KEBAB', REPLACE_WITH_PASCAL);
