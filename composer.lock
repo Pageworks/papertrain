@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd674c950253f65946003db550566a94",
+    "content-hash": "7f5edc0e3694fd4e3178f851ae591c23",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -126,11 +126,11 @@
         },
         {
             "name": "anubarak/craft-relabel",
-            "version": "1.3.2.2",
+            "version": "1.3.4",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Anubarak/craft-relabel/zipball/6e5fe51836d218e66b616e2535b3e470328f87e7",
-                "reference": "6e5fe51836d218e66b616e2535b3e470328f87e7",
+                "url": "https://api.github.com/repos/Anubarak/craft-relabel/zipball/34c13706937c94f841ef48f62e6c5c223e93a3a3",
+                "reference": "34c13706937c94f841ef48f62e6c5c223e93a3a3",
                 "shasum": ""
             },
             "require": {
@@ -140,8 +140,6 @@
             "extra": {
                 "name": "Relabel",
                 "handle": "relabel",
-                "hasCpSettings": false,
-                "hasCpSection": false,
                 "class": "anubarak\\relabel\\Relabel"
             },
             "autoload": {
@@ -166,7 +164,7 @@
                 "craftcms",
                 "relabel"
             ],
-            "time": "2019-07-12T06:22:49+00:00"
+            "time": "2019-10-01T06:12:55+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
