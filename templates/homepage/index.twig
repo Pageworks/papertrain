@@ -1,7 +1,7 @@
 {% set dataModel = 
     {
         "intro": "Welcome to Papertrain",
-        "introCopy": "If you already have experience with Papertrain v0.4 delete the <code>homepage/</code> directory from the <code>templates/</code> directory to get started with your project.",
+        "introCopy": "If you already have experience with Papertrain v0.4 delete this <code>homepage/</code> directory to get started. If you havn't you should read through the following documentation. Papertrain uses the <a href=\"https://jintmethod.dev/\" target=\"_blank\">JINT methodology</a> for loading stylesheets, scirpts, and images. Content should be rendered on both the server-side and client-side depending on the context and desired functionality.",
         "links": [
             {
                 "name": "#templates",
@@ -25,7 +25,11 @@
             }
         ],
         "templates": {
-            "heading": "Creating Templates"
+            "heading": "Creating Templates",
+            "copy": "<p>Templates consist of two key parts: an <code>&lt;article&gt;</code> element a <a href=\"https://twig.symfony.com/doc/2.x/tags/set.html\" target=\"_blank\">twig variable</a> named <code>dataModel</code>. Twig variables use a syntax similar to JSON so if you have any experience with that you should be able to pick up on writing twig variables relatively quickly. We use a data model twig variable to quickly mock-up the template's content. By using the variable our templates data structure can be agnostic of the CMS. This means we could hook-up the template structure to any CMS we choose as long as the Twig templating engine is used.</p>
+            <p>Creating new templates is easy when using the Papertrain code generator. It will produce a basic version of a template along with its SCSS file in the location you provide. To generate a new template enter the following command into your terminal:</p>
+            <codeblock>npm run create</codeblock>
+            <p>When prompted enter the name <code>example</code> and select the <code>Template</code> option from the list. Generated files are placed relative to the <code>templates/</code> directory. You can enter a custom path or you can press enter to place the template directly in the templates directory. You can view your new page at <a href=\"" ~ siteUrl|trim('/') ~ "/example\" target=\"_blank\">" ~ siteUrl|trim('/') ~ "/example</a> and you can edit the twig and scss files at <code>templates/example/</code>.</p>",
         },
         "webComponents": {
             "heading": "Creating Web Components"
@@ -62,30 +66,31 @@
                 </nav>
             </div>
         </section>
-        <a name="templates">
-            <section>
+        <section>
+            <a name="templates">
                 <h2>{{ dataModel.templates.heading }}</h2>
-            </section>
-        </a>
-        <a name="web-components">
-            <section>
+            </a>
+            {{ dataModel.templates.copy|raw }}
+        </section>
+        <section>
+            <a name="web-components">
                 <h2>{{ dataModel.webComponents.heading }}</h2>
-            </section>
-        </a>
-        <a name="web-modules">
-            <section>
+            </a>
+        </section>
+        <section>
+            <a name="web-modules">
                 <h2>{{ dataModel.webModules.heading }}</h2>
-            </section>
-        </a>
-        <a name="npm-packages">
-            <section>
+            </a>
+        </section>
+        <section>
+            <a name="npm-packages">
                 <h2>{{ dataModel.npmPackages.heading }}</h2>
-            </section>
-        </a>
-        <a name="libraries">
-            <section>
+            </a>
+        </section>
+        <section>
+            <a name="libraries">
                 <h2>{{ dataModel.libraries.heading }}</h2>
-            </section>
-        </a>
+            </a>
+        </section>
     </article>
 {% endblock %}

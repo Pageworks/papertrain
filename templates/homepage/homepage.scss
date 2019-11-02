@@ -1,30 +1,26 @@
 @import 'settings';
 @import 'mixins';
 
-body
-{
-    scroll-behavior: smooth;
-}
-
 #homepage
 {
     position: relative;
     display: block;
     width: 100%;
     padding: 0 2rem 6rem;
+    scroll-behavior: smooth;
 
     a[name]
+    {
+        display: block;
+        widows: 100%;
+    }
+
+    section
     {
         width: 1024px;
         max-width: 100%;
         display: block;
         margin: 2rem auto;
-    }
-
-    section
-    {
-        width: 100%;
-        display: block;
         
         &#intro
         {
@@ -48,8 +44,7 @@ body
                 line-height: 1.618;
                 font-size: 1.25rem;
                 display: block;
-                width: 768px;
-                max-width: 100%;
+                width: 100%;
             }
 
             nav
@@ -102,10 +97,10 @@ body
 
         h2
         {
-            font-size: 2rem;
+            font-size: 2.25rem;
             font-weight: $heavy;
             display: block;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         p
@@ -116,21 +111,57 @@ body
             display: block;
             width: 100%;
 
-            &:last-of-type
+            &:last-child
             {
                 margin-bottom: 0;
+            }
+
+            a
+            {
+                color: royalblue;
+                display: inline;
+                text-decoration: underline;
+                opacity: 0.87;
+
+                @include hover
+                {
+                    opacity: 1;
+                }
             }
         }
 
         code
         {
-            white-space: pre-wrap;
+            white-space: nowrap;
+            overflow-x: scroll;
+            font-family: monospace;
             background-color: $grey-1;
             border-radius: 0.125rem;
             color: rgba($slate, 0.87);
-            font-size: 1rem;
+            vertical-align: middle;
             padding: 0 0.5rem;
             user-select: all;
+        }
+
+        codeblock
+        {
+            white-space: pre;
+            overflow-x: scroll;
+            font-family: monospace;
+            background-color: $grey-1;
+            border-radius: 0.125rem;
+            color: rgba($slate, 0.87);
+            padding: 0.5rem 1rem;
+            font-size: 1.25rem;
+            line-height: 1.618;
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+
+            &:last-child
+            {
+                margin-bottom: 0;
+            }
         }
     }
 }
