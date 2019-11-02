@@ -36,9 +36,9 @@
   },
   "autoload": {
     "psr-4": {
-      "modules\\papertrainmodule\\": "modules/papertrainmodule/src/"
+      "modules\\": "modules/"
     }
-},
+  },
   "config": {
     "optimize-autoloader": true,
     "platform": {

@@ -13,15 +13,6 @@
  * built-in system components.
  */
 return [
-    'modules' => [
-        'papertrain-module' => [
-            'class' => \modules\papertrainmodule\PapertrainModule::class,
-            'components' => [
-                'papertrainModuleService' => [
-                    'class' => 'modules\papertrainmodule\services\PapertrainModuleService',
-                ],
-            ],
-        ],
-    ],
-    'bootstrap' => ['papertrain-module'],
+    'modules' => [],
+    'bootstrap' => [],
 ];
