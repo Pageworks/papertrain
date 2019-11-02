@@ -14,8 +14,7 @@ class SassWatcher
 		try
 		{
 			const file = await this.getFile();
-			const timestamp = await this.getTimestamp();
-			await this.injectSass(file, timestamp);
+			await this.injectSass(file);
 		}
 		catch (error)
 		{
@@ -36,30 +35,8 @@ class SassWatcher
 			reject('Failed to get file from CLI, file was:', file);
 		});
 	}
-
-	getTimestamp()
-    {
-        return new Promise((resolve, reject)=>{
-            fs.readFile('config/papertrain/automation.php', (error, buffer)=>{
-                if (error)
-                {
-                    reject(error);
-                }
-
-                const data = buffer.toString();
-				const timestamp = data.match(/\d+/g)[0];
-				
-				if (timestamp)
-				{
-					resolve(timestamp);
-				}
-
-				reject('Failed to get the timestamp value, regex match returned', timestamp);
-            });
-        });
-	}
 	
-	injectSass(file, timestamp)
+	injectSass(file)
 	{
 		return new Promise((resolve, reject)=>{
 			sass.render(
@@ -77,13 +54,13 @@ class SassWatcher
 
 				   	const filename = file.replace(/(.*\/)|(\.sass|\.css|\.scss)/g, '');
 
-				   	fs.unlink(`public/automation/styles-${ timestamp }/${ filename }.css`, (error)=>{
+				   	fs.unlink(`public/automation/${ filename }.css`, (error)=>{
 						if (error)
 						{
 							reject(error);
 						}
 
-					   fs.writeFile(`public/automation/styles-${ timestamp }/${ filename }.css`, result.css, (error)=>{
+					   fs.writeFile(`public/automation/${ filename }.css`, result.css, (error)=>{
 							if (error)
 							{
 								reject(error);

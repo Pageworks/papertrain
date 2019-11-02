@@ -1,6 +1,6 @@
 {% set dataModel = 
     {
-        "sample": "Hello world"
+        "sample": "Hello world."
     }
 %}
 
@@ -8,6 +8,7 @@
 
 {% block content %}
     <article id="homepage" eager-load-css="homepage">
-        <span>{{ dataModel.sample }}</span>
+        <span style="margin-bottom:300vh;">{{ dataModel.sample }}</span>
+        {% include "homepage/test-component" %}
     </article>
 {% endblock %}

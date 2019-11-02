@@ -42,6 +42,7 @@ class Runtime
         {
             if (entries[i].isIntersecting)
             {
+                /** TODO: drop IE 11 support when Edge becomes Chromium and switch to the dynamic import syntax */
                 this._io.unobserve(entries[i].target);
                 entries[i].target.setAttribute('state', 'loading');
                 const customElement = entries[i].target.tagName.toLowerCase().trim();

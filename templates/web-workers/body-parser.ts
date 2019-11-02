@@ -1,3 +1,5 @@
+/** TODO: Refactor using async/await once we drop support for IE 11 */
+
 self.onmessage = (e:MessageEvent) => {
     parseEagerLoadedCSS(e.data);
 }

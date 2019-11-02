@@ -177,7 +177,7 @@ class PapertrainGenerator
     generateDirectory(path, type)
     {
         return new Promise((resolve, reject)=>{
-            fs.mkdir(`${ path }/${ (type === 'Web Component') ? '_' : '' }${ this.kebabName }`, (err)=>{
+            fs.mkdir(`${ path }/${ this.kebabName }`, (err)=>{
                 if (err)
                 {
                     spinner.fail();
@@ -279,13 +279,13 @@ class PapertrainGenerator
     generateStylesheet(path, type)
     {
         return new Promise((resolve, reject)=>{
-            fs.copyFile(`${ __dirname }/files/stylesheet`, `${ path }/${ (type === 'Web Component') ? '_' : '' }${ this.kebabName }/${ this.kebabName }.${ StylesheetFileType }`, (error)=>{
+            fs.copyFile(`${ __dirname }/files/stylesheet`, `${ path }/${ this.kebabName }/${ this.kebabName }.${ StylesheetFileType }`, (error)=>{
                 if (error)
                 {
                     reject(error);
                 }
 
-                fs.readFile(`${ path }/${ (type === 'Web Component') ? '_' : '' }${ this.kebabName }/${ this.kebabName }.${ StylesheetFileType }`, 'utf-8', (error, data)=>{
+                fs.readFile(`${ path }/${ this.kebabName }/${ this.kebabName }.${ StylesheetFileType }`, 'utf-8', (error, data)=>{
                     if (error)
                     {
                         reject(error);
@@ -294,7 +294,7 @@ class PapertrainGenerator
                     let modifiedFile = data;
                     modifiedFile = modifiedFile.replace(/REPLACE_WITH_CSS/g, this.cssName);
 
-                    fs.writeFile(`${ path }/${ (type === 'Web Component') ? '_' : '' }${ this.kebabName }/${ this.kebabName }.${ StylesheetFileType }`, modifiedFile, 'utf-8', (err)=>{
+                    fs.writeFile(`${ path }/${ this.kebabName }/${ this.kebabName }.${ StylesheetFileType }`, modifiedFile, 'utf-8', (err)=>{
                         if (err)
                         {
                             spinner.fail();
@@ -311,13 +311,13 @@ class PapertrainGenerator
     generateComponent(path)
     {
         return new Promise((resolve, reject)=>{
-            fs.copyFile(`${ __dirname }/files/component`, `${ path }/_${ this.kebabName }/index.${ HTMLFileType }`, (error)=>{
+            fs.copyFile(`${ __dirname }/files/component`, `${ path }/${ this.kebabName }/index.${ HTMLFileType }`, (error)=>{
                 if (error)
                 {
                     reject(error);
                 }
 
-                fs.readFile(`${ path }/_${ this.kebabName }/index.${ HTMLFileType }`, 'utf-8', (error, data)=>{
+                fs.readFile(`${ path }/${ this.kebabName }/index.${ HTMLFileType }`, 'utf-8', (error, data)=>{
                     if (error)
                     {
                         reject(error);
@@ -326,7 +326,7 @@ class PapertrainGenerator
                     let modifiedFile = data;
                     modifiedFile = modifiedFile.replace(/REPLACE_WITH_KEBAB/g, this.kebabName);
 
-                    fs.writeFile(`${ path }/_${ this.kebabName }/index.${ HTMLFileType }`, modifiedFile, 'utf-8', (err)=>{
+                    fs.writeFile(`${ path }/${ this.kebabName }/index.${ HTMLFileType }`, modifiedFile, 'utf-8', (err)=>{
                         if (err)
                         {
                             spinner.fail();
@@ -343,13 +343,13 @@ class PapertrainGenerator
     generateScript(path)
     {
         return new Promise((resolve, reject)=>{
-            fs.copyFile(`${ __dirname }/files/script`, `${ path }/_${ this.kebabName }/${ this.kebabName }.${ this.scriptFileType }`, (error)=>{
+            fs.copyFile(`${ __dirname }/files/script`, `${ path }/${ this.kebabName }/${ this.kebabName }.${ this.scriptFileType }`, (error)=>{
                 if (error)
                 {
                     reject(error);
                 }
 
-                fs.readFile(`${ path }/_${ this.kebabName }/${ this.kebabName }.${ this.scriptFileType }`, 'utf-8', (error, data)=>{
+                fs.readFile(`${ path }/${ this.kebabName }/${ this.kebabName }.${ this.scriptFileType }`, 'utf-8', (error, data)=>{
                     if (error)
                     {
                         reject(error);
@@ -361,7 +361,7 @@ class PapertrainGenerator
                     const devName = (process.env.DEV_NAME) ? process.env.DEV_NAME : 'Anonymous';
                     modifiedFile = modifiedFile.replace(/AUTHOR_NAME/g, devName);
 
-                    fs.writeFile(`${ path }/_${ this.kebabName }/${ this.kebabName }.${ this.scriptFileType }`, modifiedFile, 'utf-8', (err)=>{
+                    fs.writeFile(`${ path }/${ this.kebabName }/${ this.kebabName }.${ this.scriptFileType }`, modifiedFile, 'utf-8', (err)=>{
                         if (err)
                         {
                             spinner.fail();
