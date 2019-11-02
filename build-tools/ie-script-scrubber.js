@@ -77,7 +77,17 @@ class ScriptScrubber
                     reject(error);
                 }
 
-                resolve(files);
+                const validFiles = [];
+                for (let i = 0; i < files.length; i++)
+                {
+                    const filePath = files[i];
+                    if (!filePath.match('/web-workers/'))
+                    {
+                        validFiles.push(filePath);
+                    }
+                }
+
+                resolve(validFiles);
             });
         });
     }

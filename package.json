@@ -43,6 +43,7 @@
         "cleanup": "node ./build-tools/cleanup.config.js",
         "ie:scrub": "node ./build-tools/ie-script-scrubber.js",
         "ie:compile": "tsc --p ./tsconfig-ie11.json",
+        "ie:workers": "tsc --p ./tsconfig-ie11-workers.json",
         "bundle": "node ./build-tools/bundler.js",
         "production": "npm run build && npm-run-all ie:*"
     },

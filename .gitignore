@@ -7,7 +7,7 @@ node_modules
 # Automation / Build Script Outputs
 # Remove the top 3 from this file when not using server side compiling
 # -------
-/public/assets/ie11.js
+/public/ie
 /public/automation
 /config/papertrain/automation.php
 /public/automation_BACKUP

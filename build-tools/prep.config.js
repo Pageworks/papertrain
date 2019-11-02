@@ -16,11 +16,29 @@ class AutomationManager
             await this.removeStaleCompiledFiles();
             await this.removeIEFiles();
             await this.generateNewCachebust();
+            await this.removePublicIEDirectory();
         }
         catch (error)
         {
             console.log(chalk.hex('#ff6426').bold(error));
         }
+    }
+
+    removePublicIEDirectory()
+    {
+        return new Promise((resolve, reject) => {
+            if (fs.existsSync('public/ie'))
+            {
+                fs.rmdir('public/ie', { recursive: true }, (error) => {
+                    if (error)
+                    {
+                        reject(error);
+                    }
+
+                    resolve();
+                });
+            }
+        });
     }
 
     removeIEFiles()
@@ -87,6 +105,8 @@ class AutomationManager
                         {
                             reject(error);
                         }
+
+                        resolve();
                     });
                 });
             });

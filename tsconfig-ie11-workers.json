@@ -2,11 +2,11 @@
     "compilerOptions": {
         "target": "es3",
         "module": "amd",
-        "outFile": "public/ie/main.js",
+        "outDir": "public/ie",
         "allowJs": true,
         "checkJs": false
     },
     "include": [
-        "_ie"
+        "_compiled/web-workers"
     ]
 }

@@ -2,6 +2,9 @@ class Env
 {
     public isDebug : boolean = false;
 
+    // @ts-ignore
+    public isIE : boolean = !!window.MSInputMethodContext && !!document.documentMode;
+
     constructor()
     {
         this.setDefaultDebug();
