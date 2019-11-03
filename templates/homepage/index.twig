@@ -44,7 +44,10 @@
         },
         "webModules": {
             "heading": "Web Modules",
-            "body": "<p></p>"
+            "body": "<p>There are two types of web modules. Web modules can act like NPM packages that provide unique functionality to a project, however, this type of web module is extremely project/design specific, so instead  we'll focus on state manager type. A web module's primary role is to manage a state model and handle the communication between web components. Web components should not directly communicate with one another, even when web components are located within the view of another web component. Components should be calling public methods on the web module allowing the module to manage the state model or handle communicating with an API. Then web components should listen for an update event so they can handle the new state when the web module has finished updating the state.</p>
+            <p>Creating a state manager type web module is easy in Papertrain when using the code generator. Web modules are generated as a TypeScript file in the <code>web-modules/</code> directory. To generate a new state manager web module run the following command in your terminal:</p>
+            <codeblock>npm run create</codeblock>
+            <p>Then enter the name of your web module and select <code>Web Module</code> from the list. Web modules use the <code>export</code> keyword to export an instance of the class that will be used by any web component that needs to communicate with it. Web components can import the web module by using the <code>import</code> keyword. For more information about importing and exporting <a href\"https://v8.dev/features/modules\" target=\"_blank\">click here</a> to learn more about ES Modules.</p>"
         },
         "npmPackages": {
             "heading": "Adding NPM Packages"
