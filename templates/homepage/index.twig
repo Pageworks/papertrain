@@ -47,13 +47,25 @@
             "body": "<p>There are two types of web modules. Web modules can act like NPM packages that provide unique functionality to a project, however, this type of web module is extremely project/design specific, so instead  we'll focus on state manager type. A web module's primary role is to manage a state model and handle the communication between web components. Web components should not directly communicate with one another, even when web components are located within the view of another web component. Components should be calling public methods on the web module allowing the module to manage the state model or handle communicating with an API. Then web components should listen for an update event so they can handle the new state when the web module has finished updating the state.</p>
             <p>Creating a state manager type web module is easy in Papertrain when using the code generator. Web modules are generated as a TypeScript file in the <code>web-modules/</code> directory. To generate a new state manager web module run the following command in your terminal:</p>
             <codeblock>npm run create</codeblock>
-            <p>Then enter the name of your web module and select <code>Web Module</code> from the list. Web modules use the <code>export</code> keyword to export an instance of the class that will be used by any web component that needs to communicate with it. Web components can import the web module by using the <code>import</code> keyword. For more information about importing and exporting <a href\"https://v8.dev/features/modules\" target=\"_blank\">click here</a> to learn more about ES Modules.</p>"
+            <p>Then enter the name of your web module and select <code>Web Module</code> from the list. Web modules use the <code>export</code> keyword to export an instance of the class that will be used by any web component that needs to communicate with it. Web components can import the web module by using the <code>import</code> keyword. For more information about importing and exporting <a href\"https://v8.dev/features/modules\" target=\"_blank\">click here</a> to learn more about ES Modules. Below is an example of how a web module can be imported into a web component.</p>
+            <codeblock>import { exampleModule } from '../web-modules/example-module';</codeblock>"
         },
         "npmPackages": {
-            "heading": "Adding NPM Packages"
+            "heading": "Adding NPM Packages",
+            "body": "<p>Papertrain uses <a href=\"https://rollupjs.org/guide/en/\" target=\"_blank\">rollup.js</a> to bundle NPM packages for use on the web. However, Papertrains implementation of rollup is unique. One of the issues of using rollup is that all imports are resolved by pulling in the source code into the file that contained the import. This means every file that includes an NPM package will include the same source code as all the other files. The heavly contribues to file size bloat and slower load/parsing times. Papertrains provided solution is to rollup the import into a single file. The import is bundled in an IIFE allowing the developer to choose how the bundle will be exported using the <code>export</code> keyword.</p>
+            <p>A question you may have is, \"if I only need one small NPM package why don't we just use rollup the way it was intended and allow it to rollup the source into the one web component I need?\". The simple answer is that rollup wouldn't play nicely with ES Modules. Since they use the same import statements rollup would try to pull in all our web modules along with any NPM packages.</p>
+            <p>Including a new NPM package into the project is simple. First, you start by installing the NPM package using NPM and your terminal:</p>
+            <codeblock>npm i -S uuid</codeblock>
+            <p>Now that the package <code>uuid</code> is saved as a dependency in the <code>package.json</code> we can import it. Create a new file called <code>uuid.js</code> in the <code>packages/</code> directory. Open the file and add the following line of JavaScript:</p>
+            <codeblock>import uuid from 'uuid/v4';<br/>uuid();</codeblock>
+            <p>Then how you proceed with the package is up to you. You could clean up the IIFE to be exported (see the default device manager package) or you could make the package available on the window. When making packages available on the window instead of exporting them you'll need to add a render-blocking script tag to the DOM or you'll need to dynamically load the package when your web component is connected. To make the uuid generator available on the window update the <code>v4_1();</code> line to be:</p>
+            <codeblock>window.uuid = v4_1();</codeblock>
+            <p>The preferred method for handling NPM packages is to export the package. Especially if it needs to be reused, an example of a reusable package would be <a href=\"https://github.com/juliangarnier/anime/\" target=\"_blank\">animejs</a>.</p>"
         },
         "libraries": {
-            "heading": "Adding 3rd Party Libraries"
+            "heading": "Adding 3rd Party Libraries",
+            "body": "<p>Libraries can be included in two ways. First, they can be included in a <code>&lt;script&gt;</code> element. If you want to ensure the library loads before your web component don't defer or async the script tag. The other option is to include the library's source code in the <code>libraries/</code> directory. Depending on the library you could wrap the library to use the <code>export</code> keyword allowing you to import the library using the <code>import</code> keyword.</p>
+            <p>Loading libraries using a render-blocking script tag is not recommended. It's recommended that you figure out how to wrap the library in an export or how to lazy load the library. If you choose to lazy load the script only load when the web component is connected so you don't hurt the  overall page performance.</p>"
         }
     }
 %}
@@ -100,11 +112,13 @@
             <a name="npm-packages">
                 <h2>{{ dataModel.npmPackages.heading }}</h2>
             </a>
+            {{ dataModel.npmPackages.body|raw }}
         </section>
         <section>
             <a name="libraries">
                 <h2>{{ dataModel.libraries.heading }}</h2>
             </a>
+            {{ dataModel.libraries.body|raw }}
         </section>
     </article>
 {% endblock %}
