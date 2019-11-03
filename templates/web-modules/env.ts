@@ -8,7 +8,6 @@ class Env
     constructor()
     {
         this.setDefaultDebug();
-        this.stopLoading();
     }
 
     public stopLoading() : void

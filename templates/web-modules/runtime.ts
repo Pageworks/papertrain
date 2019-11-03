@@ -30,7 +30,10 @@ class Runtime
 
     private init() : void
     {
-        this._bodyParserWorker.postMessage(document.body.innerHTML);
+        this._bodyParserWorker.postMessage({
+            type: 'eager',
+            body: document.body.innerHTML
+        });
         this._bodyParserWorker.onmessage = this.handleWorkerMessage.bind(this);
         this._io = new IntersectionObserver(this.intersectionCallback);
         new DeviceManager(env.isDebug, true);
@@ -77,6 +80,10 @@ class Runtime
         {
             this.fetchResources(response.files, 'link', 'css').then(() => {
                 document.documentElement.setAttribute('state', 'idling');
+                this._bodyParserWorker.postMessage({
+                    type: 'lazy',
+                    body: document.body.innerHTML
+                });
                 this.handleWebComponents();
             });
         }

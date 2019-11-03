@@ -1,13 +1,21 @@
 /** TODO: Refactor using async/await once we drop support for IE 11 */
 
-self.onmessage = (e:MessageEvent) => {
-    parseEagerLoadedCSS(e.data);
+onmessage = (e:MessageEvent) => {
+    switch (e.data.type)
+    {
+        case 'eager':
+            parseEagerLoadedCSS(e.data.body);
+            break;
+        case 'lazy':
+            parseLazyLoadedCSS(e.data.body);
+            break;
+    }
 }
 
 function respondWithFiles(responseType:'eager'|'lazy', fileNames:Array<string>)
 {
     // @ts-ignore
-    self.postMessage({
+    postMessage({
         type: responseType,
         files: fileNames
     });
@@ -91,5 +99,4 @@ function parseEagerLoadedCSS(body:string)
         }
     }
     respondWithFiles('eager', uniqueFiles);
-    parseLazyLoadedCSS(body);
 }
