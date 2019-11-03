@@ -30,6 +30,7 @@ module.exports = {
                 choices: [
                     'Template',
                     'Web Component',
+                    'Web Module',
                     'Global Stylesheet'
                 ]
             }

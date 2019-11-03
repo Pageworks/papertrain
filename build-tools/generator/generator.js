@@ -66,7 +66,7 @@ class PapertrainGenerator
 
             let path = null;
 
-            if (type !== 'Global Stylesheet')
+            if (type !== 'Global Stylesheet' && type !== 'Web Module')
             {
                 while (path === null)
                 {
@@ -99,9 +99,14 @@ class PapertrainGenerator
                 spinner.text = 'Creating directory';
                 await this.generateDirectory(path, type);
             }
-            else
+            else if (type === 'Global Stylesheet')
             {
                 path = `${ basePath }/_global-stylesheets`;
+                spinner.start();
+            }
+            else if (type === 'Web Module')
+            {
+                path = `${ basePath }/web-modules`;
                 spinner.start();
             }
 
@@ -143,6 +148,8 @@ class PapertrainGenerator
                     resolve(`#${ newName }`);
                 case 'Global Stylesheet':
                     resolve(`.g-${ newName }`);
+                case 'Web Module':
+                    resolve();
                 default:
                     reject(`${ type } does not exist within the generate CSS name switch statement`);
             }
@@ -211,9 +218,9 @@ class PapertrainGenerator
                 {
                     try
                     {
-                        await this.generateComponent(path, type);
-                        await this.generateStylesheet(path, type);
-                        await this.generateScript(path, type);
+                        await this.generateComponent(path);
+                        await this.generateStylesheet(path);
+                        await this.generateScript(path);
                         resolve();
                     }
                     catch (error)
@@ -235,12 +242,58 @@ class PapertrainGenerator
                         reject(error);
                     }
                 }
+                else if (type === 'Web Module')
+                {
+                    try
+                    {
+                        await this.generateWebModule(path);
+                        resolve();
+                    }
+                    catch (error)
+                    {
+                        spinner.fail();
+                        reject(error);
+                    }
+                }
                 else
                 {
                     spinner.fail();
                     reject(`Attempted to generate undefined type ${ type }`);
                 }
             })();
+        });
+    }
+
+    generateWebModule(path)
+    {
+        return new Promise((resolve, reject) => {
+            fs.copyFile(`${ __dirname }/files/state-manager`, `${ path }/${ this.kebabName }.ts`, (error) => {
+                if (error)
+                {
+                    reject(error);
+                }
+
+                fs.readFile(`${ path }/${ this.kebabName }.ts`, (error, buffer) => {
+                    if (error)
+                    {
+                        reject(error);
+                    }
+
+                    let modifiedFile = buffer.toString();
+                    modifiedFile = modifiedFile.replace(/REPLACE_WITH_CAMEL/g, this.camelName);
+                    modifiedFile = modifiedFile.replace(/REPLACE_WITH_PASCAL/g, this.pascalName);
+
+                    fs.writeFile(`${ path }/${ this.kebabName }.ts`, modifiedFile, 'utf-8', (err)=>{
+                        if (err)
+                        {
+                            spinner.fail();
+                            reject(`Failed to make the web module file at ${ path }/${ this.kebabName }.ts`);
+                        }
+
+                        resolve();
+                    });
+                });
+            });
         });
     }
 
@@ -276,7 +329,7 @@ class PapertrainGenerator
         });
     }
 
-    generateStylesheet(path, type)
+    generateStylesheet(path)
     {
         return new Promise((resolve, reject)=>{
             fs.copyFile(`${ __dirname }/files/stylesheet`, `${ path }/${ this.kebabName }/${ this.kebabName }.${ StylesheetFileType }`, (error)=>{

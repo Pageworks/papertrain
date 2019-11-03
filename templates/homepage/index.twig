@@ -5,15 +5,15 @@
         "links": [
             {
                 "name": "#templates",
-                "label": "Creating Templates"
+                "label": "Templates"
             },
             {
                 "name": "#web-components",
-                "label": "Creating Web Components"
+                "label": "Web Components"
             },
             {
                 "name": "#web-modules",
-                "label": "Creating Web Modules"
+                "label": "Web Modules"
             },
             {
                 "name": "#npm-packages",
@@ -25,7 +25,7 @@
             }
         ],
         "templates": {
-            "heading": "Creating Templates",
+            "heading": "Templates",
             "body": "<p>Templates consist of two key parts: an <code>&lt;article&gt;</code> element a <a href=\"https://twig.symfony.com/doc/2.x/tags/set.html\" target=\"_blank\">twig variable</a> named <code>dataModel</code>. Twig variables use a similar syntax to JSON so if you have any experience with that you should be able to pick up on writing twig variables relatively quickly. We use a data model twig variable to quickly mock-up the template's content allowing our templates data structure to be agnostic of the CMS. This means that we could hook-up the template structure to any CMS we choose as long as the Twig templating engine is used.</p>
             <p>Creating new templates is easy when using the Papertrain code generator. It will produce a basic version of a template along with its SCSS file in the location you provide. To generate a new template enter the following command into your terminal:</p>
             <codeblock>npm run create</codeblock>
@@ -33,7 +33,7 @@
             <p>Be default templates scss files are loaded using the <code>eager-load-css</code> attribute attached to the <code>&lt;artilce&gt;</code> element. This attribute will tell the runtime script not to display the page until the file has loaded.</p>",
         },
         "webComponents": {
-            "heading": "Creating Web Components",
+            "heading": "Web Components",
             "body": "<p>Web components are the bread and butter of Papertrain. You will spend most of your time developing web components or their pre-web component state known as custom elements. Before diving into how web components work we will briefly cover their foundation.</p>
             <p>Custom elements are HTML elements with unique functionality as defined by the <a href=\"https://html.spec.whatwg.org/multipage/custom-elements.html\" target=\"_blank\">HTML spec</a>. Their tag names must be lowercase, kebab-case, and must contain at least one hyphen. Custom elements are upgraded into web components when a script is loaded that registers the custom element with the <a href=\"https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry\" target=\"_blank\">Custom Element Registry</a>. Once the script is loaded the browser will connect all custom elements within the DOM with an instance of the class provided to the custom element registry. At that point, the custom elements <code>connectedCallback()</code> method is called and the web component has been mounted.</p>
             <p>Let's cover the benefits of using web components. When a web component is mounted the custom elements in the DOM the web components script merge. In the component's script, the <code>this</code> keyword refers to both the script and the node within the DOM. When you call <code>this.remove()</code> the node will be removed from the DOM and the instance of the class will be removed from memory. Since scripts and elements are directly linked it means you could use a query selector get to the element and then you could call public methods from the web component. The second key benefit is that new web components will be mounted when new custom elements are added to the DOM either through <code>document.body.append(element)</code> or <code>document.body.innerHTML += '&lt;custom-element&gt;&lt;/custom-element&gt;'</code>. This means we don't have to manage a relationship between the elements in the DOM and the class instances in memory.</p>
@@ -43,7 +43,8 @@
             <codeblock>{% include \"example/demo-component\" %}</codeblock>"
         },
         "webModules": {
-            "heading": "Creating Web Modules"
+            "heading": "Web Modules",
+            "body": "<p></p>"
         },
         "npmPackages": {
             "heading": "Adding NPM Packages"
@@ -90,6 +91,7 @@
             <a name="web-modules">
                 <h2>{{ dataModel.webModules.heading }}</h2>
             </a>
+            {{ dataModel.webModules.body|raw }}
         </section>
         <section>
             <a name="npm-packages">
