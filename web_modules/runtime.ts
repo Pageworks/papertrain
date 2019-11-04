@@ -8,9 +8,6 @@ interface Window
     libraries : Array<string>
 }
 
-declare var DeviceManager:any;
-declare var env:any;
-
 class Runtime
 {
     private _initialFetch : boolean;
@@ -21,16 +18,110 @@ class Runtime
         this.init();
     }
 
-    private handleStylesheetsFetchEvent:EventListener = this.getAllStylesheets.bind(this);
+    private handleStylesheetsFetchEvent:EventListener = this.getStylesheets.bind(this);
     private handleScriptFetchEvent:EventListener = this.getScripts.bind(this);
 
-    private async getAllStylesheets()
+    private async fetchFile(element:Element, filename:string, filetype:string, directory:string)
+    {
+        switch (filetype)
+        {
+            case 'css':
+                element.setAttribute('rel', 'stylesheet');
+                element.setAttribute('href', `${ window.location.origin }/automation/${ directory }-${ document.documentElement.dataset.cachebust }/${ filename }.${ filetype }`);
+                break;
+            case 'js':
+                element.setAttribute('type', 'text/javascript');
+                element.setAttribute('src', `${ window.location.origin }/automation/${ directory }-${ document.documentElement.dataset.cachebust }/${ filename }.${ filetype }`);
+                break;
+        }
+    }
+
+    private fetchResources(fileListArray:Array<string>, element:string, filetype:string, directory:string) : Promise<any>
+    {
+        return new Promise((resolve) => {
+            if (fileListArray.length === 0)
+            {
+                resolve();
+            }
+
+            let count = 0;
+            const required = fileListArray.length;
+
+            while (fileListArray.length > 0)
+            {
+                const filename = fileListArray[0].replace(/(\.js)$|(\.css)$/gi, '');
+                let el = document.head.querySelector(`${ element }[file="${ filename }.${ filetype }"]`);
+                if (!el)
+                {
+                    el = document.createElement(element);
+                    el.setAttribute('file', `${ filename }.${ filetype }`);
+                    document.head.appendChild(el);
+                    el.addEventListener('load', () => {
+                        count++;
+                        if (count === required)
+                        {
+                            resolve();
+                        }
+                    });
+                    this.fetchFile(el, filename, filetype, directory);
+                }
+                else
+                {
+                    count++;
+                    if (count === required)
+                    {
+                        resolve();
+                    }
+                }
+
+                fileListArray.splice(0, 1);
+            }
+        });
+    }
+
+    private criticalCssLoadCallback() : void
+    {
+        // Do something after the stylesheets finish loading
+        const pageLoadingElement = document.body.querySelector('page-loading');
+        setTimeout(() => {
+            pageLoadingElement.classList.remove('is-loading');
+        }, 250);
+    }
+
+    private loadingCompleteCallback() : void
+    {
+        if (this._initialFetch)
+        {
+            this._initialFetch = false;
+
+            /** Do something on initial load */
+        }
+
+        /** Do something every time the app loads or reloads */
+    }
+
+    private librariesLoadCallback() : void
+    {
+        /** Do something with 3rd party libraries */
+    }
+
+    private modulesLoadCallback() : void
+    {
+        const modulesLoadedEvent = new CustomEvent('runtime:modulesLoaded');
+        document.dispatchEvent(modulesLoadedEvent);
+    }
+
+    private async getScripts()
     {
         try
         {
-            await this.getCriticalCss();
-            this.criticalCssHasLoaded();
-            await this.getStylesheets();
+            await this.fetchResources(window.packages, 'script', 'js', 'packages');
+            await this.fetchResources(window.libraries, 'script', 'js', 'libraries');
+            this.librariesLoadCallback();
+            await this.fetchResources(window.modules, 'script', 'js', 'modules');
+            this.modulesLoadCallback();
+            await this.fetchResources(window.components, 'script', 'js', 'components');
+            this.loadingCompleteCallback();
         }
         catch (error)
         {
@@ -38,389 +129,13 @@ class Runtime
         }
     }
 
-    private criticalCssHasLoaded() : void
-    {
-        const pageLoadingElement = document.body.querySelector('page-loading');
-        pageLoadingElement.classList.remove('is-loading');
-    }
-
-    private getCriticalCss() : Promise<any>
-    {
-        return new Promise((resolve)=>{
-            if (window.criticalCss.length === 0)
-            {
-                resolve();
-            }
-
-            let fetched = 0;
-            const requestedStylesheets = [...window.criticalCss];
-            const numberOfRequiredFiles = requestedStylesheets.length;
-
-            while (window.criticalCss.length)
-            {
-                const stylesheetFile = window.criticalCss[0].replace(/(\.css)$/gi, '');
-                let styleElement:HTMLElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
-                if (!styleElement)
-                {
-                    styleElement = document.createElement('style');
-                    styleElement.setAttribute('file', stylesheetFile);
-                    document.head.appendChild(styleElement);
-                    const stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetFile }.css`;
-                    this.fetchFile(stylesheetUrl)
-                    .then(response => {
-                        styleElement.innerHTML = response;
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    })
-                    .then(()=>{
-                        fetched++;
-                        if (fetched === numberOfRequiredFiles)
-                        {
-                            resolve();
-                        }
-                    });
-                }
-                else
-                {
-                    fetched++;
-                    if (fetched === numberOfRequiredFiles)
-                    {
-                        resolve();
-                    }
-                }
-
-                requestedStylesheets.splice(0, 1);
-                window.criticalCss.splice(0, 1);
-            }
-        });
-    }
-
-    private getStylesheets() : Promise<any>
-    {
-        return new Promise((resolve)=>{
-            if (window.stylesheets.length === 0)
-            {
-                resolve();
-            }
-
-            const requestedStylesheets = [...window.stylesheets];
-
-            while (window.stylesheets.length)
-            {
-                const stylesheetFile = window.stylesheets[0].replace(/(\.css)$/gi, '');
-                let styleElement:HTMLElement = document.head.querySelector(`style[file="${ stylesheetFile }"]`);
-                if (!styleElement)
-                {
-                    styleElement = document.createElement('style');
-                    styleElement.setAttribute('file', stylesheetFile);
-                    document.head.appendChild(styleElement);
-                    const stylesheetUrl = `${ window.location.origin }/automation/styles-${ document.documentElement.dataset.cachebust }/${ stylesheetFile }.css`;
-                    this.fetchFile(stylesheetUrl)
-                    .then(response => {
-                        styleElement.innerHTML = response;
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-                }
-
-                requestedStylesheets.splice(0, 1);
-                window.stylesheets.splice(0, 1);
-            }
-
-            resolve();
-        });
-    }
-
-    private fetchFile(url:string) : Promise<string>
-    {
-        return new Promise((resolve, reject)=>{
-            fetch(url, {
-                method: 'GET',
-                credentials: 'include',
-                headers: new Headers({
-                    'X-Requested-With': 'XMLHttpRequest'
-                })
-            })
-            .then(request => request.text())
-            .then(response => {
-                resolve(response);
-            })
-            .catch(error => {   
-                reject(error);
-            });
-        });
-    }
-
-    private getPackages() : Promise<string|null>
-    {
-        return new Promise((resolve, reject) => {
-            if (window.packages.length === 0)
-            {
-                resolve();
-            }
-            
-            let fetched = 0;
-            const requestedPackages = [...window.packages];
-            const numberOfRequiredFiles = requestedPackages.length;
-
-            while (requestedPackages.length)
-            {
-                const file = requestedPackages[0].replace(/(\.js)$/gi, '');
-                let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
-                if (!element)
-                {
-                    element = document.createElement('script');
-                    element.setAttribute('file', file);
-                    document.head.appendChild(element);
-                    const url = `${ window.location.origin }/automation/packages-${ document.documentElement.dataset.cachebust }/${ file }.js`;
-                    this.fetchFile(url)
-                    .then(response => {
-                        element.innerHTML = response;
-                        
-                        fetched++;
-                        if (fetched === numberOfRequiredFiles)
-                        {
-                            resolve();
-                        }
-                    })
-                    .catch(error => {
-                        reject(error);
-                    });
-                }
-                else
-                {
-                    fetched++;
-                    if (fetched === numberOfRequiredFiles)
-                    {
-                        resolve();
-                    }
-                }
-
-                requestedPackages.splice(0, 1);
-                window.packages.splice(0, 1);
-            }
-        });
-    }
-
-    private getModules() : Promise<string|null>
-    {
-        return new Promise((resolve, reject) => {
-            if (window.modules.length === 0)
-            {
-                resolve();
-            }
-
-            let fetched = 0;
-            const requestedModules = [...window.modules];
-            const numberOfRequiredFiles = requestedModules.length;
-
-            while (requestedModules.length)
-            {
-                const file = requestedModules[0].replace(/(\.js)$/gi, '');
-                let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
-                if (!element)
-                {
-                    element = document.createElement('script');
-                    element.setAttribute('file', file);
-                    document.head.appendChild(element); 
-                    const url = `${ window.location.origin }/automation/modules-${ document.documentElement.dataset.cachebust }/${ file }.js`;
-                    this.fetchFile(url)
-                    .then(response => {
-                        element.innerHTML = response;
-                        
-                        fetched++;
-                        if (fetched === numberOfRequiredFiles)
-                        {
-                            resolve();
-                        }
-                    })
-                    .catch(error => {
-                        reject(error);
-                    });
-                }
-                else
-                {
-                    fetched++;
-                    if (fetched === numberOfRequiredFiles)
-                    {
-                        resolve();
-                    }
-                }
-
-                requestedModules.splice(0, 1);
-                window.modules.splice(0, 1);
-            }
-        });
-    }
-
-    private getComponents() : Promise<string|null>
-    {
-        return new Promise((resolve, reject) => {
-            if (window.components.length === 0)
-            {
-                resolve();
-            }
-
-            let fetched = 0;
-            const requestedComponents = [...window.components];
-            const numberOfRequiredFiles = requestedComponents.length;
-
-            while (requestedComponents.length)
-            {
-                const file = requestedComponents[0].replace(/(\.js)$/gi, '');
-                let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
-                if (!element)
-                {
-                    element = document.createElement('script');
-                    element.setAttribute('file', file);
-                    document.head.appendChild(element); 
-                    const url = `${ window.location.origin }/automation/components-${ document.documentElement.dataset.cachebust }/${ file }.js`;
-                    this.fetchFile(url)
-                    .then(response => {
-                        element.innerHTML = response;
-                        
-                        fetched++;
-                        if (fetched === numberOfRequiredFiles)
-                        {
-                            resolve();
-                        }
-                    })
-                    .catch(error => {
-                        reject(error);
-                    });
-                }
-                else
-                {
-                    fetched++;
-                    if (fetched === numberOfRequiredFiles)
-                    {
-                        resolve();
-                    }
-                }
-
-                requestedComponents.splice(0, 1);
-                window.components.splice(0, 1);
-            }
-        });
-    }
-
-    private fetchIeComponents() : void
-    {
-        fetch(`${ window.location.origin }/assets/ie-components.js`, {
-            method: 'GET',
-            credentials: 'include',
-            headers: new Headers({
-                'X-Requested-With': 'XMLHttpRequest',
-                'Accept': 'text/javascript'
-            })
-        })
-        .then(request => request.text())
-        .then(response => {
-            const ieComponentsScript = document.createElement('script');
-            ieComponentsScript.innerHTML = response;
-            document.head.appendChild(ieComponentsScript);
-        })
-        .catch((error)=>{
-            if (env.isDebug)
-            {
-                console.error(error);
-            }
-        });
-    }
-
-    private scriptsCallback() : void
-    {
-        if (this._initialFetch)
-        {
-            this._initialFetch = false;
-
-            new DeviceManager(env.isDebug, true);
-            
-            if (DeviceManager.isIE)
-            {
-                this.fetchIeComponents();
-            }
-        }
-    }
-
-    private getLibraries() : Promise<any>
-    {
-        return new Promise((resolve, reject) => {
-            // @ts-ignore
-            if (window.safari)
-            {
-                return;
-            }
-
-            if (window.libraries.length === 0)
-            {
-                resolve();
-            }
-            
-            let fetched = 0;
-            const requestedLibraries = [...window.libraries];
-            const numberOfRequiredFiles = requestedLibraries.length;
-
-            while (requestedLibraries.length)
-            {
-                const file = requestedLibraries[0].replace(/(\.js)$/gi, '');
-                let element:HTMLElement = document.head.querySelector(`script[file="${ file }"]`);
-                if (!element)
-                {
-                    element = document.createElement('script');
-                    element.setAttribute('file', file);
-                    document.head.appendChild(element);
-                    const url = `${ window.location.origin }/assets/libraries/${ file }.js`;
-                    this.fetchFile(url)
-                    .then(response => {
-                        element.innerHTML = response;
-                        
-                        fetched++;
-                        if (fetched === numberOfRequiredFiles)
-                        {
-                            resolve();
-                        }
-                    })
-                    .catch(error => {
-                        reject(error);
-                    });
-                }
-                else
-                {
-                    fetched++;
-                    if (fetched === numberOfRequiredFiles)
-                    {
-                        resolve();
-                    }
-                }
-
-                requestedLibraries.splice(0, 1);
-                window.libraries.splice(0, 1);
-            }
-        });
-    }
-
-    private librariesCallback() : void
-    {
-        // @ts-ignore
-        if (window.safari)
-        {
-            return;
-        }
-    }
-
-    private async getScripts()
+    private async getStylesheets()
     {
         try
         {
-            await this.getPackages();
-            await this.getLibraries();
-            this.librariesCallback();
-            await this.getModules();
-            await this.getComponents();
-            this.scriptsCallback();
+            await this.fetchResources(window.criticalCss, 'link', 'css', 'styles');
+            this.criticalCssLoadCallback();
+            await this.fetchResources(window.stylesheets, 'link', 'css', 'styles');
         }
         catch (error)
         {
@@ -434,14 +149,14 @@ class Runtime
         {
             // @ts-ignore
             window.requestIdleCallback(()=>{
-                this.getAllStylesheets();
+                this.getStylesheets();
                 this.getScripts();
             });
         }
         else
         {
             console.warn('Idle callback prototype not available in this browser, fetching stylesheets');
-            this.getAllStylesheets();
+            this.getStylesheets();
             this.getScripts();
         }
 
