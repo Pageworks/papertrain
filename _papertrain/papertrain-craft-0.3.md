@@ -28,7 +28,7 @@ Papertrain provides the tooling to help limit the knowledge requirements when bu
 
 ### Required Software
 
-- [Node.js >=10.16.3](https://nodejs.org/en/)
+- [Node.js >=12.10.0](https://nodejs.org/en/)
 - [Composer](https://getcomposer.org/download/)
 - [Ubuntu LAMP stack](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-ubuntu-18-04) or [MAMP Pro](https://www.mamp.info/en/)
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
@@ -335,8 +335,8 @@ sudo apt-get install nodejs
 # Install node version manager
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
-# Install node v10.13.0
-nvm install 10.13.0
+# Install the current version of nodejs
+nvm install 12.10.0
 
 # Setup post-deployment hooks/commands
 <path to npm-cli.js> ci

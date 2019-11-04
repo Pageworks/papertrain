@@ -25,8 +25,8 @@ class AutomationManager
     removeStaleCompiledFiles()
     {
         return new Promise((resolve, reject)=>{
-            fs.promises.access('_compiled')
-            .then(()=>{
+            if (fs.existsSync('_compiled'))
+            {
                 rimraf('_compiled', (error)=>{
                     if (error)
                     {
@@ -35,10 +35,11 @@ class AutomationManager
 
                     resolve();
                 });
-            })
-            .catch(()=>{
+            }
+            else
+            {
                 resolve();
-            });
+            }
         });
     }
 
