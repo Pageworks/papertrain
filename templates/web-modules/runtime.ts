@@ -7,6 +7,8 @@ interface WorkerResponse
     files: Array<string>,
 }
 
+type WebComponentLoad = null|'lazy'|'eager';
+
 class Runtime
 {
     private _bodyParserWorker : Worker;
@@ -17,12 +19,13 @@ class Runtime
         if (env.isIE)
         {
             this._bodyParserWorker = new Worker(`${ window.location.origin }/ie/body-parser.js`);
+            this.init();
         }
         else
         {
             this._bodyParserWorker = new Worker(`${ window.location.origin }/automation/body-parser.js`);
+            window.addEventListener('load', this.handleLoadEvent);
         }
-        window.addEventListener('load', this.handleLoadEvent);
     }
 
     private intersectionCallback:IntersectionObserverCallback = this.handleIntersection.bind(this);
@@ -39,6 +42,26 @@ class Runtime
         new DeviceManager(env.isDebug, true);
     }
 
+    private upgradeToWebComponent(customElementTagName:string, customElement:Element) : void
+    {
+        let el = document.head.querySelector(`script[file="${ customElementTagName }.js"]`);
+        if (!el)
+        {
+            customElement.setAttribute('state', 'loading');
+            el = document.createElement('script');
+            el.setAttribute('file', `${ customElementTagName }.js`);
+            document.head.append(el);
+            el.addEventListener('load', () => {
+                customElement.setAttribute('state', 'loaded');
+            });
+            this.fetchFile(el, customElementTagName, 'js');
+        }
+        else
+        {
+            customElement.setAttribute('state', 'loaded');
+        }
+    }
+
     private handleIntersection(entries:Array<IntersectionObserverEntry>)
     {
         if (env.isIE)
@@ -52,23 +75,8 @@ class Runtime
             {
                 /** TODO: drop IE 11 support when Edge becomes Chromium and switch to the dynamic import syntax */
                 this._io.unobserve(entries[i].target);
-                entries[i].target.setAttribute('state', 'loading');
                 const customElement = entries[i].target.tagName.toLowerCase().trim();
-                let el = document.head.querySelector(`script[file="${ customElement }.js"]`);
-                if (!el)
-                {
-                    el = document.createElement('script');
-                    el.setAttribute('file', `${ customElement }.js`);
-                    document.head.append(el);
-                    el.addEventListener('load', () => {
-                        entries[i].target.setAttribute('state', 'loaded');
-                    });
-                    this.fetchFile(el, customElement, 'js');
-                }
-                else
-                {
-                    entries[i].target.setAttribute('state', 'loaded');
-                }
+                this.upgradeToWebComponent(customElement, entries[i].target);
             }
         }
     }
@@ -156,8 +164,19 @@ class Runtime
         const customElements = Array.from(document.body.querySelectorAll('[web-component]:not([state])'));
         for (let i = 0; i < customElements.length; i++)
         {
-            customElements[i].setAttribute('state', 'unseen');
-            this._io.observe(customElements[i]);
+            const element = customElements[i];
+            const loadType = element.getAttribute('loading') as WebComponentLoad;
+
+            if (loadType === 'eager')
+            {
+                const customElement = element.tagName.toLowerCase().trim();
+                this.upgradeToWebComponent(customElement, element);
+            }
+            else
+            {
+                element.setAttribute('state', 'unseen');
+                this._io.observe(customElements[i]);
+            }
         }
     }
 }
