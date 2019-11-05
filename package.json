@@ -55,7 +55,8 @@
         }
     },
     "dependencies": {
-        "@pageworks/device-manager": "^1.2.3"
+        "@pageworks/device-manager": "^1.2.3",
+        "uuid": "^3.3.3"
     },
     "devDependencies": {
         "browser-sync": "^2.26.7",

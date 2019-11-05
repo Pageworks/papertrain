@@ -43,6 +43,7 @@ class Runtime
 
     private upgradeToWebComponent(customElementTagName:string, customElement:Element) : void
     {
+        /** TODO: drop IE 11 support when Edge becomes Chromium and switch to the dynamic import syntax */
         let el = document.head.querySelector(`script[file="${ customElementTagName }.js"]`);
         if (!el)
         {
@@ -72,7 +73,6 @@ class Runtime
         {
             if (entries[i].isIntersecting)
             {
-                /** TODO: drop IE 11 support when Edge becomes Chromium and switch to the dynamic import syntax */
                 this._io.unobserve(entries[i].target);
                 const customElement = entries[i].target.tagName.toLowerCase().trim();
                 this.upgradeToWebComponent(customElement, entries[i].target);
