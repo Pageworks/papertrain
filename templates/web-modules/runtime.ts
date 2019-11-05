@@ -19,13 +19,12 @@ class Runtime
         if (env.isIE)
         {
             this._bodyParserWorker = new Worker(`${ window.location.origin }/ie/body-parser.js`);
-            this.init();
         }
         else
         {
             this._bodyParserWorker = new Worker(`${ window.location.origin }/automation/body-parser.js`);
-            window.addEventListener('load', this.handleLoadEvent);
         }
+        window.addEventListener('DOMContentLoaded', this.handleLoadEvent);
     }
 
     private intersectionCallback:IntersectionObserverCallback = this.handleIntersection.bind(this);
