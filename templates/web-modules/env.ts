@@ -23,7 +23,7 @@ class Env
         if (!ticket && typeof ticket !== 'string')
         {
             console.error(`A ticket with the typeof 'string' is required to end the loading state.`);
-            return
+            return;
         }
 
         for (let i = 0; i < this._tickets.length; i++)

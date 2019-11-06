@@ -51,9 +51,16 @@ class Runtime
             el = document.createElement('script');
             el.setAttribute('file', `${ customElementTagName }.js`);
             document.head.append(el);
-            el.addEventListener('load', () => {
+            if (!env.isIE)
+            {
+                el.addEventListener('load', () => {
+                    customElement.setAttribute('state', 'loaded');
+                });
+            }
+            else
+            {
                 customElement.setAttribute('state', 'loaded');
-            });
+            }
             this.fetchFile(el, customElementTagName, 'js');
         }
         else
@@ -96,9 +103,9 @@ class Runtime
         }
         else if (response.type === 'lazy')
         {
-            document.documentElement.setAttribute('state', 'soft-loading');
+            const ticket = env.startLoading();
             this.fetchResources(response.files, 'link', 'css').then(() => {
-                document.documentElement.setAttribute('state', 'idling');
+                env.stopLoading(ticket);
             });
         }
     }
@@ -137,13 +144,27 @@ class Runtime
                     el = document.createElement(element);
                     el.setAttribute('file', `${ filename }.${ filetype }`);
                     document.head.append(el);
-                    el.addEventListener('load', () => {
-                        loaded++;
-                        if (loaded === fileList.length)
-                        {
-                            resolve();
-                        }
-                    });
+                    if (!env.isIE)
+                    {
+                        el.addEventListener('load', () => {
+                            loaded++;
+                            if (loaded === fileList.length)
+                            {
+                                resolve();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        setTimeout(() => {
+                            loaded++;
+                            if (loaded === fileList.length)
+                            {
+                                resolve();
+                            }
+                        }, 250);
+                    }
+                    
                     this.fetchFile(el, filename, filetype);
                 }
                 else
