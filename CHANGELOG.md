@@ -1,4 +1,12 @@
-## 0.3.1 - UNRELEASED
+## 0.4.0 - UNRELEASED
+
+### Added
+
+- Adds: [includes] polyfill [#212](https://github.com/Pageworks/papertrain/issues/212)
+- Adds: [URL API] polyfill [#213](https://github.com/Pageworks/papertrain/issues/213)
+- Adds: [classList] polyfill [#214](https://github.com/Pageworks/papertrain/issues/214)
+
+## 0.3.1 - 2019-11-04
 
 ### Added
 
@@ -12,6 +20,8 @@
 
 - Fixes: broken Papertrain v0.3 documentation link [#199](https://github.com/Pageworks/papertrain/issues/199)
 - Fixes: updates v0.3 documentation to require nodejs [v12.10.0](https://nodejs.org/download/release/latest-v12.x/)
+- Fixes: updates runtime to use appended scripts and stylesheets [#210](https://github.com/Pageworks/papertrain/issues/210)
+- Fixes: broken `fs.promsies` API on production servers [#201](https://github.com/Pageworks/papertrain/issues/201)
 
 ## 0.3.0 - 2019-09-14
 
