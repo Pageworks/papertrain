@@ -3,6 +3,7 @@
 ## Contents
 
 1. [Overview](#overview)
+    1. [General Workflow](#general-workflow)
     1. [Required Knowledge](#required-knowledge)
     1. [Required Software](#required-software)
 1. [Tools & Libraries](#tools-and-libraries)
@@ -14,7 +15,15 @@
 
 ## Overview
 
-Papertrain provides custom tooling to build fast, organized, and optimized websites or web applications. To learn more about the underlying ideas behind Papertrain please take a moment to read about the [JINT Methodology](https://jintmethod.dev/) and [Atomic Design](http://atomicdesign.bradfrost.com/table-of-contents/).
+Papertrain provides custom tooling to build fast, organized, and optimized websites or web applications. To learn more about the underlying ideas behind Papertrain please take a moment to read about the [JINT Methodology](https://jintmethod.dev/) and [Atomic Design Methodology](http://atomicdesign.bradfrost.com/table-of-contents/).
+
+### General Workflow
+
+Use the `npm run create` command to generate a `Template`, then add (custom) elements and scss to the generated files. When a custom element needs functionality (JavaScript) use the `npm run create` command to generate a `Web Component`. If the component is only used within the template, place the component directly in the templates directory, otherwise, if a component is used on several templates place it in the `templates/` directory. Use the [twig include statement](https://twig.symfony.com/doc/2.x/tags/include.html) to include the web component.
+
+Web components **SHOULD NOT** directly communicate with one another. If several components need to react to other components changes or need to share data received from an API use the `npm run create` command to generate a `State Manager` and use the [ES Module import statement](https://v8.dev/features/modules). Web components submit information to Web Modules (also known as State Managers) and Web Modules dispatch [custom events](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent) with an instance of the updated state on the `document`. Then any web components that need to react to changes can listen for the event and react accordingly.
+
+Please note that this is a general guide and should work for most projects. You don't have to use the `npm run create` command to create everything within the project. If you feel as if the tools provided by Papertrain are restricting your ability to complete a task or build a project feel free to ignore them. Any JavaScript or TypeScript written within the `templates/` directory will be compiled into the `public/automation/` directory, all ES Module import statements will be rewritten to match the path for the public files (`./`), all scripts (besides Web Workers) are compiled into one file for IE 11 with the import statements removed, and all scss files within the `templates/` directory are compiled into css and placed in the `public/automation/` directory. You can structure the `templates/` directory to work for your specific project and can place the scss/JavaScript/TypeScript files anywhere. If the base files used by the generator (`npm run create`) need to be modified for a project they can be found in the `build-tools/generator/files/` directory. Per the [JINT](https://jintmethod.dev/) methodology Papertrain is a malleable project framework and can be shaped to work for the project's unique/specific needs. It should never limit the developer's ability to perform their job.
 
 ### Required Knowledge
 
