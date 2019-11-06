@@ -36,16 +36,16 @@
         "watch:typescript": "tsc --p ./tsconfig-watcher.json --watch",
         "watch:components": "onchange '_watcher/**/*.js' -- node ./build-tools/injector.js",
         "watch:sync": "node ./build-tools/sync.js",
-        "dev": "npm run prep && npm-run-all dev:*",
+        "bundle": "node ./build-tools/bundler.js",
         "build": "npm run prep && tsc --p ./tsconfig.json && node ./build-tools/script-scrubber.js && node ./build-tools/sass.config.js && npm run cleanup",
         "compile": "npm run build",
+        "dev": "npm run build",
+        "production": "npm run build && npm-run-all ie:*",
         "prep": "node ./build-tools/prep.config.js",
         "cleanup": "node ./build-tools/cleanup.config.js",
         "ie:scrub": "node ./build-tools/ie-script-scrubber.js",
         "ie:compile": "tsc --p ./tsconfig-ie11.json",
-        "ie:workers": "tsc --p ./tsconfig-ie11-workers.json",
-        "bundle": "node ./build-tools/bundler.js",
-        "production": "npm run build && npm-run-all ie:*"
+        "ie:workers": "tsc --p ./tsconfig-ie11-workers.json"
     },
     "lint-staged": {
         "linters": {
