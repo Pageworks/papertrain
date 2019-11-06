@@ -2,7 +2,7 @@
 {% set currentSite = craft.app.sites.currentSite %}
 <!doctype html>
 {% spaceless %}
-<html lang="{{ currentSite.language }}" class="has-no-js is-not-pointer-device is-not-touch-device" state="hard-loading" {% if isDebug|length %}debug="true"{% endif %} data-csrf="{{ craft.app.request.csrfToken }}" data-cachebust="{{ craft.config.cacheBustTimestamp }}">
+<html lang="{{ currentSite.language }}" class="has-no-js is-not-pointer-device is-not-touch-device" state="hard-loading" {% if isDebug|length %}debug="true"{% endif %} data-csrf="{{ craft.app.request.csrfToken }}" data-cachebust="{{ craft.app.config.general.cacheBustTimestamp }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
