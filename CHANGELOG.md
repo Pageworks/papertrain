@@ -5,6 +5,41 @@
 - Adds: [includes] polyfill [#212](https://github.com/Pageworks/papertrain/issues/212)
 - Adds: [URL API] polyfill [#213](https://github.com/Pageworks/papertrain/issues/213)
 - Adds: [classList] polyfill [#214](https://github.com/Pageworks/papertrain/issues/214)
+- Adds: IE 11 script scrubber build tool
+- Adds: script scrubber build tool
+- Adds: `templates/packages/` directory for managing NPM packages
+- Adds: `templates/web-workers/` directory for utilizing [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
+- Adds: `templates/libraries/` directory for managing 3rd party libraries
+- Adds: custom `/homepage` template that contains Papertrain v0.4 documentation
+- Adds: `State Manager` option to the code generator
+- Adds: Papertrain v0.4 documentation
+- Adds: support for the [ES Module](https://v8.dev/features/modules) import/export syntax
+
+### Refactored
+
+- Refactors: rollup implementation in the `bundler.js` build tool script
+- Refactors: moved `web_modules` from the projects root directory to `templates/web-modules/`
+- Refactors: moves all compiled scripts and css files into the `public/automation/` directory
+- Refactors: custom elements are marked to be upgraded to web components using a `web-component` attribute
+- Refactors: web components are loaded using the `loading` attribute (lazy by default)
+- Refactors: CSS is requested using `eager-load-css="file-one file-two file-three"` or `lazy-load-css="file-four"`
+- Refactors: `env.startLoading()` returns a ticket, the ticket is required when calling `env.stopLoading()`
+
+### Fixed
+
+- Fixes: updates Craft CMS
+- Fixes: updates default plugins
+- Fixes: updates `prep.config.js` to use `fs.existsSync` instead of `fs.promises` due to issues on production
+- Fixes: updates readme
+- Fixes: updates contributing guidelines
+- Fixes: TypeScript compiler target changed to `es2019`
+
+### Removed
+
+- Removes: default generic fields
+- Removes: [spoon](https://plugins.craftcms.com/spoon) plugin
+- Removes: [super table](https://plugins.craftcms.com/super-table) plugin
+- Removes: Papertrain module
 
 ## 0.3.1 - 2019-11-04
 

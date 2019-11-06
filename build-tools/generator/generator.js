@@ -66,7 +66,7 @@ class PapertrainGenerator
 
             let path = null;
 
-            if (type !== 'Global Stylesheet' && type !== 'Web Module')
+            if (type !== 'Global Stylesheet' && type !== 'State Manager')
             {
                 while (path === null)
                 {
@@ -104,7 +104,7 @@ class PapertrainGenerator
                 path = `${ basePath }/_global-stylesheets`;
                 spinner.start();
             }
-            else if (type === 'Web Module')
+            else if (type === 'State Manager')
             {
                 path = `${ basePath }/web-modules`;
                 spinner.start();
@@ -148,7 +148,7 @@ class PapertrainGenerator
                     resolve(`#${ newName }`);
                 case 'Global Stylesheet':
                     resolve(`.g-${ newName }`);
-                case 'Web Module':
+                case 'State Manager':
                     resolve();
                 default:
                     reject(`${ type } does not exist within the generate CSS name switch statement`);
@@ -242,7 +242,7 @@ class PapertrainGenerator
                         reject(error);
                     }
                 }
-                else if (type === 'Web Module')
+                else if (type === 'State Manager')
                 {
                     try
                     {
@@ -287,7 +287,7 @@ class PapertrainGenerator
                         if (err)
                         {
                             spinner.fail();
-                            reject(`Failed to make the web module file at ${ path }/${ this.kebabName }.ts`);
+                            reject(`Failed to make the state manager file at ${ path }/${ this.kebabName }.ts`);
                         }
 
                         resolve();

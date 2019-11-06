@@ -44,8 +44,8 @@ class AutomationManager
     removeIEFiles()
     {
         return new Promise((resolve, reject)=>{
-            fs.promises.access('_ie')
-            .then(()=>{
+            if (fs.existsSync('public/ie'))
+            {
                 rimraf('_ie', (error)=>{
                     if (error)
                     {
@@ -54,18 +54,19 @@ class AutomationManager
 
                     resolve();
                 });
-            })
-            .catch(()=>{
+            }
+            else
+            {
                 resolve();
-            });
+            }
         });
     }
 
     removeStaleCompiledFiles()
     {
         return new Promise((resolve, reject)=>{
-            fs.promises.access('_compiled')
-            .then(()=>{
+            if (fs.existsSync('_compiled'))
+            {
                 rimraf('_compiled', (error)=>{
                     if (error)
                     {
@@ -74,10 +75,11 @@ class AutomationManager
 
                     resolve();
                 });
-            })
-            .catch(()=>{
+            }
+            else
+            {
                 resolve();
-            });
+            }
         });
     }
 
