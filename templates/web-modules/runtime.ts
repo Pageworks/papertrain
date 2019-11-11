@@ -124,11 +124,11 @@ class Runtime
                 element.setAttribute('href', url);
                 break;
             case 'js':
-                element.setAttribute('type', 'text/javascript');
+                element.setAttribute('type', 'module');
                 element.setAttribute('src', url);
                 break;
             case 'mjs':
-                element.setAttribute('type', 'text/javascript');
+                element.setAttribute('type', 'module');
                 element.setAttribute('src', url);
                 break;
             default:
@@ -137,7 +137,7 @@ class Runtime
         }
     }
 
-    public fetchResources(resourceList:Array<ResourceObject>) : Promise<any>
+    public fetchResources(resourceList:Array<ResourceObject>) : Promise<{}>
     {
         return new Promise((resolve) => {
             if (resourceList.length === 0)
