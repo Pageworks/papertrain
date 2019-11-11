@@ -14,6 +14,7 @@
 - Adds: `State Manager` option to the code generator
 - Adds: Papertrain v0.4 documentation
 - Adds: support for the [ES Module](https://v8.dev/features/modules) import/export syntax
+- Adds: npm packages have a `// @ts-nocheck` comment by default
 
 ### Refactored
 

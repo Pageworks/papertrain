@@ -18,11 +18,74 @@ class Bundler
             const files = await this.getFiles();
             const cleanFile = await this.scrubFiles(files);
             await this.bundle(cleanFile);
+            const newFiles= await this.getJavaScriptFiles();
+            if (newFiles.length)
+            {
+                await this.tsNoCheckFiles(newFiles);
+            }
         }
         catch (error)
         {
             console.log(error);
         }
+    }
+
+    tsNoCheckFiles(files)
+    {
+        return new Promise((resolve, reject) => {
+            let scrubbed = 0;
+            for (let i = 0; i < files.length; i++)
+            {
+                const file = files[i];
+                fs.readFile(file, (error, buffer) => {
+                    if (error)
+                    {
+                        reject(error);
+                    }
+
+                    const data = buffer.toString();
+                    if (!data.match(/(\/\/\s\@ts\-nocheck)/g))
+                    {
+                        let newData = '// @ts-nocheck\n\n';
+                        newData += data;
+                        fs.writeFile(file,newData, (error) => {
+                            if (error)
+                            {
+                                reject(error);
+                            }
+
+                            scrubbed++;
+                            if (scrubbed === files.length)
+                            {
+                                resolve();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        scrubbed++;
+                        if (scrubbed === files.length)
+                        {
+                            resolve();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    getJavaScriptFiles()
+    {
+        return new Promise((resolve, reject) => {
+            glob('templates/packages/*.js', (error, files) => {
+                if (error)
+                {
+                    reject(error);
+                }
+
+                resolve(files);
+            });
+        });
     }
 
     bundle(files)

@@ -90,23 +90,27 @@ class Runtime
     private handleWorkerMessage(e:MessageEvent)
     {
         const response:WorkerResponse = e.data;
-        if (response.type === 'eager')
+        switch (response.type)
         {
-            this.fetchResources(response.files, 'link', 'css').then(() => {
-                document.documentElement.setAttribute('state', 'idling');
-                this._bodyParserWorker.postMessage({
-                    type: 'lazy',
-                    body: document.body.innerHTML
+            case 'eager':
+                this.fetchResources(response.files, 'link', 'css').then(() => {
+                    document.documentElement.setAttribute('state', 'idling');
+                    this._bodyParserWorker.postMessage({
+                        type: 'lazy',
+                        body: document.body.innerHTML
+                    });
+                    this.handleWebComponents();
                 });
-                this.handleWebComponents();
-            });
-        }
-        else if (response.type === 'lazy')
-        {
-            const ticket = env.startLoading();
-            this.fetchResources(response.files, 'link', 'css').then(() => {
-                env.stopLoading(ticket);
-            });
+                break;
+            case 'lazy':
+                const ticket = env.startLoading();
+                this.fetchResources(response.files, 'link', 'css').then(() => {
+                    env.stopLoading(ticket);
+                });
+                break;
+            default:
+                console.warn(`Unknown response type from Body Parser worker: ${ response.type }`);
+                break;
         }
     }
 
