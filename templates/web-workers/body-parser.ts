@@ -12,7 +12,7 @@ onmessage = (e:MessageEvent) => {
     }
 }
 
-function respondWithFiles(responseType:'eager'|'lazy', fileNames:Array<string>)
+function respondWithFiles(responseType:'eager'|'lazy', fileNames:Array<ResourceObject>)
 {
     // @ts-ignore
     postMessage({
@@ -42,20 +42,24 @@ function parseLazyLoadedCSS(body:string)
             }
         });
     }
-    const uniqueFiles:Array<string> = [];
+    const uniqueFiles:Array<ResourceObject> = [];
     for (let i = 0; i < files.length; i++)
     {
         let isUnique = true;
         for (let k = 0; k < uniqueFiles.length; k++)
         {
-            if (files[i] === uniqueFiles[k])
+            if (files[i] === uniqueFiles[k].filename)
             {
                 isUnique = false;
             }
         }
         if (isUnique)
         {
-            uniqueFiles.push(files[i]);
+            const resourceOjb:ResourceObject = {
+                filename: files[i],
+                extension: 'css'
+            };
+            uniqueFiles.push(resourceOjb);
         }
     }
     respondWithFiles('lazy', uniqueFiles);
@@ -82,20 +86,24 @@ function parseEagerLoadedCSS(body:string)
             }
         });
     }
-    const uniqueFiles:Array<string> = [];
+    const uniqueFiles:Array<ResourceObject> = [];
     for (let i = 0; i < files.length; i++)
     {
         let isUnique = true;
         for (let k = 0; k < uniqueFiles.length; k++)
         {
-            if (files[i] === uniqueFiles[k])
+            if (files[i] === uniqueFiles[k].filename)
             {
                 isUnique = false;
             }
         }
         if (isUnique)
         {
-            uniqueFiles.push(files[i]);
+            const resourceOjb:ResourceObject = {
+                filename: files[i],
+                extension: 'css'
+            };
+            uniqueFiles.push(resourceOjb);
         }
     }
     respondWithFiles('eager', uniqueFiles);

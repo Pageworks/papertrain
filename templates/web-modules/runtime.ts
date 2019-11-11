@@ -4,7 +4,7 @@ import { env } from './env';
 interface WorkerResponse
 {
     type: 'eager'|'lazy',
-    files: Array<string>,
+    files: Array<ResourceObject>,
 }
 
 type WebComponentLoad = null|'lazy'|'eager';
@@ -93,7 +93,7 @@ class Runtime
         switch (response.type)
         {
             case 'eager':
-                this.fetchResources(response.files, 'link', 'css').then(() => {
+                this.fetchResources(response.files).then(() => {
                     document.documentElement.setAttribute('state', 'idling');
                     this._bodyParserWorker.postMessage({
                         type: 'lazy',
@@ -104,7 +104,7 @@ class Runtime
                 break;
             case 'lazy':
                 const ticket = env.startLoading();
-                this.fetchResources(response.files, 'link', 'css').then(() => {
+                this.fetchResources(response.files).then(() => {
                     env.stopLoading(ticket);
                 });
                 break;
@@ -114,7 +114,7 @@ class Runtime
         }
     }
 
-    private async fetchFile(element:Element, filename:string, filetype:'css'|'js')
+    private async fetchFile(element:Element, filename:string, filetype:string)
     {
         const url = `${ window.location.origin }/automation/${ filename }.${ filetype }`;
         switch (filetype)
@@ -127,21 +127,30 @@ class Runtime
                 element.setAttribute('type', 'text/javascript');
                 element.setAttribute('src', url);
                 break;
+            case 'mjs':
+                element.setAttribute('type', 'text/javascript');
+                element.setAttribute('src', url);
+                break;
+            default:
+                console.warn(`Unknown file type requested: ${ filename }.${ filetype }`);
+                break;
         }
     }
 
-    private fetchResources(fileList:Array<string>, element:'link'|'script', filetype:'css'|'js') : Promise<any>
+    public fetchResources(resourceList:Array<ResourceObject>) : Promise<any>
     {
         return new Promise((resolve) => {
-            if (fileList.length === 0)
+            if (resourceList.length === 0)
             {
                 resolve();
             }
 
             let loaded = 0;
-            for (let i = 0; i < fileList.length; i++)
+            for (let i = 0; i < resourceList.length; i++)
             {
-                const filename = fileList[i];
+                const filename = resourceList[i].filename;
+                const filetype = resourceList[i].extension;
+                const element:string = (resourceList[i].extension === 'css') ? 'link' : 'script';
                 let el = document.head.querySelector(`${ element }[file="${ filename }.${ filetype }"]`);
                 if (!el)
                 {
@@ -152,7 +161,7 @@ class Runtime
                     {
                         el.addEventListener('load', () => {
                             loaded++;
-                            if (loaded === fileList.length)
+                            if (loaded === resourceList.length)
                             {
                                 resolve();
                             }
@@ -162,7 +171,7 @@ class Runtime
                     {
                         setTimeout(() => {
                             loaded++;
-                            if (loaded === fileList.length)
+                            if (loaded === resourceList.length)
                             {
                                 resolve();
                             }
@@ -174,7 +183,7 @@ class Runtime
                 else
                 {
                     loaded++;
-                    if (loaded === fileList.length)
+                    if (loaded === resourceList.length)
                     {
                         resolve();
                     }
