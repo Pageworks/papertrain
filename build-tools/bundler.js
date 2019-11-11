@@ -16,13 +16,9 @@ class Bundler
         try
         {
             const files = await this.getFiles();
-            const cleanFile = await this.scrubFiles(files);
-            await this.bundle(cleanFile);
-            const newFiles= await this.getJavaScriptFiles();
-            if (newFiles.length)
-            {
-                await this.tsNoCheckFiles(newFiles);
-            }
+            const unbundledFiles = await this.scrubFiles(files);
+            await this.bundle(unbundledFiles);
+            await this.tsNoCheckFiles(unbundledFiles);
         }
         catch (error)
         {
