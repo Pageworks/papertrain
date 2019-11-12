@@ -11,7 +11,7 @@
 - Adds: `templates/web-workers/` directory for utilizing [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
 - Adds: `templates/libraries/` directory for managing 3rd party libraries
 - Adds: custom `/homepage` template that contains Papertrain v0.4 documentation
-- Adds: `State Manager` option to the code generator
+- Adds: `State Manager` option to the code generator [state manager prototype](https://github.com/codewithkyle/dynamic-state-management-prototype)
 - Adds: Papertrain v0.4 documentation
 - Adds: support for the [ES Module](https://v8.dev/features/modules) import/export syntax
 - Adds: npm packages have a `// @ts-nocheck` comment by default
