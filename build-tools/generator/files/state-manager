@@ -19,24 +19,7 @@ class REPLACE_WITH_PASCAL
 
     private setState(updatedState:Partial<REPLACE_WITH_PASCALState>) : void
     {
-        Object.keys(updatedState).forEach((key:string) => {
-            // @ts-ignore
-            if (this.state[key] !== null && this.state[key] !== undefined)
-            {
-                // @ts-ignore
-                if (updatedState[key] !== this.state[key])
-                {
-                    // @ts-ignore
-                    this.state[key] = updatedState[key];
-                }
-            }
-            else
-            {
-                // @ts-ignore
-                this.state[key] = updatedState[key];
-            }
-        });
-        const newState = Object.assign({}, this.state);
+        const newState = Object.assign(this.state, updatedState);
         const updateEvent = new CustomEvent('REPLACE_WITH_CAMEL:update', {detail: { state: newState } });
         document.dispatchEvent(updateEvent);
     }
