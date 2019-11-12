@@ -9,7 +9,7 @@
     height: 48px;
     line-height: 45px;
     font-weight: $medium;
-    padding: 0 $unit;
+    padding: 0 1rem;
     transition: all 150ms $ease;
     white-space: nowrap;
     max-width: 100%;
@@ -50,7 +50,7 @@
     }
 
     &.-wide{
-        padding: 0 $unit*2;
+        padding: 0 2rem;
     }
 
     &.-raised{

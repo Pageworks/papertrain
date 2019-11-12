@@ -2,16 +2,46 @@ import { uuid } from '../packages/uuid';
 
 class Env
 {
-    // @ts-ignore
-    public isIE : boolean = !!window.MSInputMethodContext && !!document.documentMode;
-    public isDebug : boolean = false;
+    
+    public isIE : boolean;
+    public isDebug : boolean;
+    public connection : NetworkType;
+    public cpu : number;
+    public memory : number|null;
 
     private _tickets : Array<string>;
 
     constructor()
     {
+        // @ts-ignore
+        this.isIE = !!window.MSInputMethodContext && !!document.documentMode;
+        this.memory = null;
+        this.cpu = window.navigator.hardwareConcurrency;
+        this.connection = '4g';
+        this.isDebug = false;
+
         this._tickets = [];
+
         this.setDefaultDebug();
+        this.init();
+    }
+
+    private init() : void
+    {
+        try
+        {
+            // @ts-ignore
+            this.connection = window.navigator.connection.effectiveType;
+            // @ts-ignore
+            this.memory = window.navigator.deviceMemory;
+        }
+        catch (error)
+        {
+            if (this.isDebug)
+            {
+                console.warn(error);
+            }
+        }
     }
 
     /**
@@ -20,7 +50,7 @@ class Env
      */
     public stopLoading(ticket:string) : void
     {
-        if (!ticket && typeof ticket !== 'string')
+        if (!ticket || typeof ticket !== 'string')
         {
             console.error(`A ticket with the typeof 'string' is required to end the loading state.`);
             return;

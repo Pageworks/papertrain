@@ -6,9 +6,7 @@
     &:hover,
     &:focus
     {
-        html.is-not-touch-device & {
-            @content;
-        }
+        @content;
     }
 }
 
@@ -16,76 +14,7 @@
 {
     &:active
     {
-        html.is-not-touch-device & {
-            @content;
-        }
-    }
-}
-
-//
-// Applies flexbox based modifiers. Typically used for container and wrapper objects.
-//
-// @output Several flexbox based modifiers
-//
-@mixin u-flexbox{
-    &.-flex{
-        display: inline-flex;
-    }
-
-    &.-flexbox{
-        display: flex;
-    }
-
-    &.-flex,
-    &.-flexbox{
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
-
-        &.-no-wrap{
-            flex-wrap: nowrap;
-        }
-
-        // Alignment
-        &.-align-end{
-            align-items: flex-end;
-        }
-
-        &.-align-center{
-            align-items: center;
-        }
-
-        // Justify
-        &.-justify-end{
-            justify-content: flex-end;
-        }
-
-        &.-justify-center{
-            justify-content: center;
-        }
-
-        &.-space-between{
-            justify-content: space-between;
-        }
-
-        &.-space-around{
-            justify-content: space-around;
-        }
-
-        // Utilities
-        &.-full-center{
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        &.-col-reverse{
-            flex-direction: column-reverse;
-        }
-
-        &.-row-reverse{
-            flex-direction: row-reverse;
-        }
+        @content;
     }
 }
 

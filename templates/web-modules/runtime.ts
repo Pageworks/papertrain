@@ -1,4 +1,3 @@
-import { DeviceManager } from '../packages/device-manager.js';
 import { env } from './env';
 
 interface WorkerResponse
@@ -38,7 +37,6 @@ class Runtime
         });
         this._bodyParserWorker.onmessage = this.handleWorkerMessage.bind(this);
         this._io = new IntersectionObserver(this.intersectionCallback);
-        new DeviceManager(env.isDebug, true);
     }
 
     private upgradeToWebComponent(customElementTagName:string, customElement:Element) : void

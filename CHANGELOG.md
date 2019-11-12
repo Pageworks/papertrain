@@ -34,6 +34,7 @@
 - Fixes: updates readme
 - Fixes: updates contributing guidelines
 - Fixes: TypeScript compiler target changed to `es2019`
+- Fixes: `@include hover` mixin adds `:focus` and `:hover` classes (updated to follow accessability best practices)
 
 ### Removed
 
@@ -41,6 +42,15 @@
 - Removes: [spoon](https://plugins.craftcms.com/spoon) plugin
 - Removes: [super table](https://plugins.craftcms.com/super-table) plugin
 - Removes: Papertrain module
+- Removes: generated width utility classes (ex: `u-1/1 u-1/2@large`)
+- Removes: generated ratio utility classes (ex: `u-ratio-16/9`)
+- Removes: generated padding utility classes (ex: `u-padding-x2`)
+- Removes: generated margin utility classes (ex: `u-margin-bottom-x2`)
+- Removes: unused helper classes
+- Removes: global container stylesheet
+- Removes: global fonts stylesheet (replaced Google fonts URL with `system-ui`)
+- Removes: global backgrounds css classes
+- Removes: [Device Manager](https://github.com/Pageworks/device-manager) package
 
 ## 0.3.1 - 2019-11-04
 

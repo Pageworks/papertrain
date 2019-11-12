@@ -1,10 +1,6 @@
 // Typefaces
 // =============================================================================
-$font-sans-serif:   system-ui, sans-serif;
-$font-serif:        Georgia, Cambria, "Times New Roman", Times, serif;
-$font-heading:      $font-serif;
-$font-quote:        cursive;
-$font-code:         monospace;
+$code:  monospace;
 
 // Weights
 // =============================================================================
@@ -16,6 +12,6 @@ $heavy: 700;
 // Typography
 // =============================================================================
 $font-weight: $regular;
-$font-family: $font-sans-serif;
+$font-family: system-ui, sans-serif;
 $color: $font-base;
 $base-font-size: 1rem;

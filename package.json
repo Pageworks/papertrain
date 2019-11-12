@@ -55,7 +55,6 @@
         }
     },
     "dependencies": {
-        "@pageworks/device-manager": "^1.2.3",
         "uuid": "^3.3.3"
     },
     "devDependencies": {
