@@ -25,6 +25,7 @@
     "types": "./globals.d.ts",
     "scripts": {
         "precommit": "lint-staged",
+        "imageCopy": "./imageCopy.sh",
         "lint:sass": "stylelint  *.scss --cache --config ./build-tools/.stylelintrc --cache-location ./build-tools/.stylelintcache",
         "lint:typescript": "tslint ./templates/**/*.ts -c ./build-tools/.tslintrc.js -p ./tsconfig.json -t verbose",
         "lint:typescript-modules": "tslint ./web_modules/*.ts -c ./build-tools/.tslintrc.js -p ./tsconfig-modules.json -t verbose",
